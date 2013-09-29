@@ -1,0 +1,64 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TemplateEngine.Frontend", "TemplateEngine.Frontend\TemplateEngine.Frontend.csproj", "{18E8DA22-911B-46E9-A310-C7AFC14DDDED}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TemplateEngine.Frontend.UI", "TemplateEngine.Frontend.UI\TemplateEngine.Frontend.UI.csproj", "{C8390D27-481D-4470-9B40-9FC428D40AF9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TemplateEngine.Backend.UI", "TemplateEngine.Backend.UI\TemplateEngine.Backend.UI.csproj", "{3A1BF1D0-8AA8-4D03-9A9C-D647B634E45D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TemplateEngine.Backend", "TemplateEngine.Backend\TemplateEngine.Backend.csproj", "{81BF7E93-6AF0-4C89-98D5-C66903FEDD1B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{95D62A44-A396-4AE1-98E1-1D91EBB62F0E}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Backend", "Backend", "{BCEEA115-8283-48F4-8FB9-AFBE8A87407A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Frontend", "Frontend", "{086F01CF-43A8-46BB-836F-9037DE37B4C1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TemplateEngine.Web", "TemplateEngine.Web\TemplateEngine.Web.csproj", "{8095932D-EC0B-4990-90F1-951B7B5FEEAC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{18E8DA22-911B-46E9-A310-C7AFC14DDDED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{18E8DA22-911B-46E9-A310-C7AFC14DDDED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{18E8DA22-911B-46E9-A310-C7AFC14DDDED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{18E8DA22-911B-46E9-A310-C7AFC14DDDED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C8390D27-481D-4470-9B40-9FC428D40AF9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C8390D27-481D-4470-9B40-9FC428D40AF9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C8390D27-481D-4470-9B40-9FC428D40AF9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C8390D27-481D-4470-9B40-9FC428D40AF9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3A1BF1D0-8AA8-4D03-9A9C-D647B634E45D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3A1BF1D0-8AA8-4D03-9A9C-D647B634E45D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3A1BF1D0-8AA8-4D03-9A9C-D647B634E45D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3A1BF1D0-8AA8-4D03-9A9C-D647B634E45D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{81BF7E93-6AF0-4C89-98D5-C66903FEDD1B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{81BF7E93-6AF0-4C89-98D5-C66903FEDD1B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{81BF7E93-6AF0-4C89-98D5-C66903FEDD1B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{81BF7E93-6AF0-4C89-98D5-C66903FEDD1B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8095932D-EC0B-4990-90F1-951B7B5FEEAC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8095932D-EC0B-4990-90F1-951B7B5FEEAC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8095932D-EC0B-4990-90F1-951B7B5FEEAC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8095932D-EC0B-4990-90F1-951B7B5FEEAC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{81BF7E93-6AF0-4C89-98D5-C66903FEDD1B} = {BCEEA115-8283-48F4-8FB9-AFBE8A87407A}
+		{3A1BF1D0-8AA8-4D03-9A9C-D647B634E45D} = {BCEEA115-8283-48F4-8FB9-AFBE8A87407A}
+		{18E8DA22-911B-46E9-A310-C7AFC14DDDED} = {086F01CF-43A8-46BB-836F-9037DE37B4C1}
+		{C8390D27-481D-4470-9B40-9FC428D40AF9} = {086F01CF-43A8-46BB-836F-9037DE37B4C1}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		VisualSVNWorkingCopyRoot = .
+	EndGlobalSection
+EndGlobal
