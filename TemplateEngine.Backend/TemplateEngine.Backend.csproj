@@ -36,6 +36,12 @@
     <Reference Include="Neptuo.Bootstrap">
       <HintPath>..\References\Neptuo.Bootstrap.dll</HintPath>
     </Reference>
+    <Reference Include="Neptuo.Data">
+      <HintPath>..\References\Neptuo.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Neptuo.Data.Entity">
+      <HintPath>..\References\Neptuo.Data.Entity.dll</HintPath>
+    </Reference>
     <Reference Include="Neptuo.Templates.Components">
       <HintPath>..\References\Neptuo.Templates.Components.dll</HintPath>
     </Reference>
@@ -44,6 +50,9 @@
     </Reference>
     <Reference Include="Neptuo.Tokens">
       <HintPath>..\References\Neptuo.Tokens.dll</HintPath>
+    </Reference>
+    <Reference Include="Neptuo.Web">
+      <HintPath>..\References\Neptuo.Web.dll</HintPath>
     </Reference>
     <Reference Include="Neptuo.Web.Routing">
       <HintPath>..\References\Neptuo.Web.Routing.dll</HintPath>
@@ -58,9 +67,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AccountBootstrapTask.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RoutingBootstrapTask.cs" />
-    <Compile Include="ServerVirtualPathProvider.cs" />
+    <Compile Include="Web\ServerVirtualPathProvider.cs" />
     <Compile Include="Web\Routing\TemplateRouteParameterFactory.cs" />
     <Compile Include="Web\TemplateHttpHandler.cs" />
     <Compile Include="Web\TemplateHttpHandlerBase.cs" />
@@ -69,6 +79,30 @@
     <Compile Include="ViewServiceBootstrapTask.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\TemplateEngine.Accounts.Data.Entity\TemplateEngine.Accounts.Data.Entity.csproj">
+      <Project>{6dd08b12-15bd-4eb3-8273-da33c59b71c3}</Project>
+      <Name>TemplateEngine.Accounts.Data.Entity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TemplateEngine.Accounts.Data\TemplateEngine.Accounts.Data.csproj">
+      <Project>{81a511cb-e52e-4fd8-91fc-e0b3fa6eeb3e}</Project>
+      <Name>TemplateEngine.Accounts.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TemplateEngine.Accounts.Web\TemplateEngine.Accounts.Web.csproj">
+      <Project>{a67f64a5-c62d-491e-8aee-2b5766668b5e}</Project>
+      <Name>TemplateEngine.Accounts.Web</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TemplateEngine.Accounts\TemplateEngine.Accounts.csproj">
+      <Project>{36f0d8f9-1f8f-409c-9eda-c17644c4c0d8}</Project>
+      <Name>TemplateEngine.Accounts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TemplateEngine.Data.Entity\TemplateEngine.Data.Entity.csproj">
+      <Project>{176a5378-45be-4132-99bf-2f24b94712a4}</Project>
+      <Name>TemplateEngine.Data.Entity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TemplateEngine.Data\TemplateEngine.Data.csproj">
+      <Project>{cfb337ac-4c28-4ccc-98db-860acea11bed}</Project>
+      <Name>TemplateEngine.Data</Name>
+    </ProjectReference>
     <ProjectReference Include="..\TemplateEngine.Web\TemplateEngine.Web.csproj">
       <Project>{8095932d-ec0b-4990-90f1-951b7b5feeac}</Project>
       <Name>TemplateEngine.Web</Name>

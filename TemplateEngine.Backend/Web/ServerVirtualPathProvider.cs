@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 
-namespace Neptuo.TemplateEngine.Backend
+namespace Neptuo.TemplateEngine.Backend.Web
 {
     public class ServerVirtualPathProvider : IVirtualPathProvider
     {

@@ -4,13 +4,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{A67F64A5-C62D-491E-8AEE-2B5766668B5E}</ProjectGuid>
+    <ProjectGuid>{176A5378-45BE-4132-99BF-2F24B94712A4}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Neptuo.TemplateEngine.Accounts.Web</RootNamespace>
-    <AssemblyName>Neptuo.TemplateEngine.Accounts.Web</AssemblyName>
+    <RootNamespace>TemplateEngine.Data.Entity</RootNamespace>
+    <AssemblyName>TemplateEngine.Data.Entity</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -30,18 +32,22 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Neptuo, Version=2.2.3.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Neptuo">
       <HintPath>..\References\Neptuo.dll</HintPath>
     </Reference>
     <Reference Include="Neptuo.Data">
       <HintPath>..\References\Neptuo.Data.dll</HintPath>
     </Reference>
-    <Reference Include="Neptuo.Templates.Components">
-      <HintPath>..\References\Neptuo.Templates.Components.dll</HintPath>
+    <Reference Include="Neptuo.Data.Entity">
+      <HintPath>..\References\Neptuo.Data.Entity.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -49,12 +55,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controls\UserDetailControl.cs" />
-    <Compile Include="Controls\UserEditControl.cs" />
-    <Compile Include="Controls\UserListControl.cs" />
+    <Compile Include="DataContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TemplateEngine.Accounts.Data.Entity\TemplateEngine.Accounts.Data.Entity.csproj">
+      <Project>{6dd08b12-15bd-4eb3-8273-da33c59b71c3}</Project>
+      <Name>TemplateEngine.Accounts.Data.Entity</Name>
+    </ProjectReference>
     <ProjectReference Include="..\TemplateEngine.Accounts.Data\TemplateEngine.Accounts.Data.csproj">
       <Project>{81a511cb-e52e-4fd8-91fc-e0b3fa6eeb3e}</Project>
       <Name>TemplateEngine.Accounts.Data</Name>
@@ -63,12 +75,9 @@
       <Project>{36f0d8f9-1f8f-409c-9eda-c17644c4c0d8}</Project>
       <Name>TemplateEngine.Accounts</Name>
     </ProjectReference>
-    <ProjectReference Include="..\TemplateEngine.Web\TemplateEngine.Web.csproj">
-      <Project>{8095932d-ec0b-4990-90f1-951b7b5feeac}</Project>
-      <Name>TemplateEngine.Web</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
