@@ -1,4 +1,5 @@
 ﻿using Neptuo.Bootstrap;
+using Neptuo.TemplateEngine.Backend.Web;
 using Neptuo.TemplateEngine.Web.Controls;
 using Neptuo.Templates;
 using Neptuo.Templates.Compilation;
@@ -44,6 +45,7 @@ namespace Neptuo.TemplateEngine.Backend
             SetupViewService(viewService, registry, fileProvider, virtualPathProvider);
 
             container
+                .RegisterInstance<TypeBuilderRegistry>(registry)
                 .RegisterInstance<IViewService>(viewService);
         }
 

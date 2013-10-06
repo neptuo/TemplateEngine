@@ -40,6 +40,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Practices.Unity">
       <HintPath>..\packages\Unity.3.0.1304.1\lib\Net45\Microsoft.Practices.Unity.dll</HintPath>
@@ -53,6 +57,14 @@
     <Reference Include="Neptuo.Bootstrap">
       <HintPath>..\References\Neptuo.Bootstrap.dll</HintPath>
     </Reference>
+    <Reference Include="Neptuo.Data, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\Neptuo.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Neptuo.Data.Entity, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\Neptuo.Data.Entity.dll</HintPath>
+    </Reference>
     <Reference Include="Neptuo.Templates.Components">
       <HintPath>..\References\Neptuo.Templates.Components.dll</HintPath>
     </Reference>
@@ -65,9 +77,16 @@
     <Reference Include="Neptuo.Unity">
       <HintPath>..\References\Neptuo.Unity.dll</HintPath>
     </Reference>
+    <Reference Include="Neptuo.Unity.Web">
+      <HintPath>..\References\Neptuo.Unity.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="Neptuo.Web">
+      <HintPath>..\References\Neptuo.Web.dll</HintPath>
+    </Reference>
     <Reference Include="Neptuo.Web.Routing">
       <HintPath>..\References\Neptuo.Web.Routing.dll</HintPath>
     </Reference>
+    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -87,7 +106,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
-    <Content Include="Web.config" />
+    <Content Include="Views\Accounts\UserEdit.html" />
+    <Content Include="Views\Accounts\UserList.html" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Global.asax.cs">
@@ -106,9 +129,33 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\TemplateEngine.Accounts.Data.Entity\TemplateEngine.Accounts.Data.Entity.csproj">
+      <Project>{6dd08b12-15bd-4eb3-8273-da33c59b71c3}</Project>
+      <Name>TemplateEngine.Accounts.Data.Entity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TemplateEngine.Accounts.Data\TemplateEngine.Accounts.Data.csproj">
+      <Project>{81a511cb-e52e-4fd8-91fc-e0b3fa6eeb3e}</Project>
+      <Name>TemplateEngine.Accounts.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TemplateEngine.Accounts.Web\TemplateEngine.Accounts.Web.csproj">
+      <Project>{a67f64a5-c62d-491e-8aee-2b5766668b5e}</Project>
+      <Name>TemplateEngine.Accounts.Web</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TemplateEngine.Accounts\TemplateEngine.Accounts.csproj">
+      <Project>{36f0d8f9-1f8f-409c-9eda-c17644c4c0d8}</Project>
+      <Name>TemplateEngine.Accounts</Name>
+    </ProjectReference>
     <ProjectReference Include="..\TemplateEngine.Backend\TemplateEngine.Backend.csproj">
       <Project>{81bf7e93-6af0-4c89-98d5-c66903fedd1b}</Project>
       <Name>TemplateEngine.Backend</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TemplateEngine.Data.Entity\TemplateEngine.Data.Entity.csproj">
+      <Project>{176a5378-45be-4132-99bf-2f24b94712a4}</Project>
+      <Name>TemplateEngine.Data.Entity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TemplateEngine.Data\TemplateEngine.Data.csproj">
+      <Project>{cfb337ac-4c28-4ccc-98db-860acea11bed}</Project>
+      <Name>TemplateEngine.Data</Name>
     </ProjectReference>
     <ProjectReference Include="..\TemplateEngine.Web\TemplateEngine.Web.csproj">
       <Project>{8095932d-ec0b-4990-90f1-951b7b5feeac}</Project>

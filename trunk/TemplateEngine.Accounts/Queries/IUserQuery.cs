@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Neptuo.TemplateEngine.Accounts.Web.Controls
+namespace Neptuo.TemplateEngine.Accounts.Queries
 {
-    public class UserListViewControl
+    public interface IUserQuery
     {
+        IEnumerable<UserAccount> Get();
     }
 }
