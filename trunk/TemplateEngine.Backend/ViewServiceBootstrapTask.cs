@@ -1,6 +1,7 @@
 ﻿using Neptuo.Bootstrap;
 using Neptuo.TemplateEngine.Backend.Web;
 using Neptuo.TemplateEngine.Web.Controls;
+using Neptuo.TemplateEngine.Web.Observers;
 using Neptuo.Templates;
 using Neptuo.Templates.Compilation;
 using Neptuo.Templates.Compilation.CodeGenerators;
@@ -64,6 +65,7 @@ namespace Neptuo.TemplateEngine.Backend
         protected virtual void SetupTypeBuilderRegistry(TypeBuilderRegistry registry)
         {
             registry.RegisterNamespace(new NamespaceDeclaration("ui", "Neptuo.TemplateEngine.Web.Controls, Neptuo.TemplateEngine.Web"));
+            registry.RegisterObserverBuilder("data", "Event", new DefaultTypeObserverBuilderFactory(typeof(EventObserver), ObserverBuilderScope.PerElement));
         }
     }
 }
