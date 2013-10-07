@@ -14,6 +14,7 @@ namespace Neptuo.TemplateEngine.Accounts
 
         public virtual string Username { get; set; }
         public virtual string Password { get; set; }
+        public virtual bool IsEnabled { get; set; }
 
         public abstract List<UserRole> Roles { get; set; }
     }

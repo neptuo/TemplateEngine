@@ -20,6 +20,8 @@ namespace Neptuo.TemplateEngine.Accounts.Web.Controls
             : base(componentManager)
         {
             UserAccounts = userAccounts;
+            Attributes["method"] = "post";
+            Attributes["action"] = "";
         }
 
         public override void OnInit()
