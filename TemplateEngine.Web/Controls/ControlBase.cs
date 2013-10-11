@@ -13,7 +13,7 @@ namespace Neptuo.TemplateEngine.Web.Controls
     /// <summary>
     /// Controls extends this class support tag name specified in <see cref="ComponentAttribute"/>.
     /// </summary>
-    public abstract class BaseControl : IControl, IAttributeCollection
+    public abstract class ControlBase : IControl, IAttributeCollection
     {
         private string tagName;
         private bool? isSelfClosing;
@@ -69,7 +69,7 @@ namespace Neptuo.TemplateEngine.Web.Controls
             set { defaultPropertyName = value; }
         }
 
-        public BaseControl(IComponentManager componentManager)
+        public ControlBase(IComponentManager componentManager)
         {
             ComponentManager = componentManager;
             Attributes = new HtmlAttributeCollection();
@@ -85,7 +85,6 @@ namespace Neptuo.TemplateEngine.Web.Controls
 
                 foreach (KeyValuePair<string, string> attribute in Attributes)
                     writer.Attribute(attribute.Key, attribute.Value);
-
                 
                 if (IsSelfClosing)
                 {

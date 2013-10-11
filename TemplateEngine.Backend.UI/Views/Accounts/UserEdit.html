@@ -1,10 +1,10 @@
-﻿<ui:UserEdit UserKey="1">
+﻿<ui:UserEdit UserKey="1"> 
     
     <div>
-        Username: <ui:TextBox view:ID="Username" />
+        Username: <ui:TextBox view:ID="Username" html:Style="width: 400px;" />
     </div>
     <div>
-        Password: <ui:TextBox view:ID="Password" />
+        Password: <ui:PasswordBox view:ID="Password" html:Style="width: 400px;" />
     </div>
     <div>
         Password again: ##
@@ -13,9 +13,7 @@
         Enabled: <ui:CheckBox view:ID="IsEnabled" /> 
     </div>
 
-
-    <ui:Button Text="Save" Name="Save" data:Event="Save" />
+    <ui:HiddenBox view:ID="Key" />
+    <ui:Button Text="Save" Name="Save" ui:Event="Save" />
 
 </ui:UserEdit>
-
- 

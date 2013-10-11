@@ -9,7 +9,7 @@ using Neptuo.Templates;
 namespace Neptuo.TemplateEngine.Web.Controls
 {
     [DefaultProperty("Text")]
-    public class LiteralControl : BaseControl, ITextControl
+    public class LiteralControl : ControlBase, ITextControl
     {
         public string Text { get; set; }
 

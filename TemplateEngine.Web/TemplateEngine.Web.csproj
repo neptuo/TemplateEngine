@@ -55,16 +55,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controls\BaseContentControl.cs" />
-    <Compile Include="Controls\BaseControl.cs" />
+    <Compile Include="Controls\ContentControlBase.cs" />
+    <Compile Include="Controls\ControlBase.cs" />
     <Compile Include="Controls\ButtonControl.cs" />
     <Compile Include="Controls\CheckBoxControl.cs" />
+    <Compile Include="Controls\FormControlBase.cs" />
+    <Compile Include="Controls\FormInputControlBase.cs" />
     <Compile Include="Controls\GenericContentControl.cs" />
     <Compile Include="Controls\GenericContentControlBuilder.cs" />
     <Compile Include="Controls\HiddenBoxControl.cs" />
     <Compile Include="Controls\IFormControl.cs" />
     <Compile Include="Controls\ITemplate.cs" />
     <Compile Include="Controls\ITextControl.cs" />
+    <Compile Include="Controls\PasswordBoxControl.cs" />
     <Compile Include="Controls\TextBoxControl.cs" />
     <Compile Include="IEventHandler.cs" />
     <Compile Include="IStackStorage.cs" />

@@ -7,7 +7,7 @@ using Neptuo.Templates;
 
 namespace Neptuo.TemplateEngine.Web.Controls
 {
-    public class GenericContentControl : BaseContentControl
+    public class GenericContentControl : ContentControlBase
     {
         public new string TagName
         {

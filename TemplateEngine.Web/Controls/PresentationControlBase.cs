@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Web.Controls
 {
-    public class PresentationControlBase : BaseContentControl
+    public class PresentationControlBase : ContentControlBase
     {
         //public ITemplate Template { get; set; }
         public IModelDefinition ModelDefinition { get; private set; }
@@ -56,7 +56,7 @@ namespace Neptuo.TemplateEngine.Web.Controls
             List<IFieldDefinition> fields = new List<IFieldDefinition>();
             foreach (IFieldDefinition field in ModelDefinition.Fields)
             {
-                if (modelView.Storage[field.Identifier].GetType() != typeof(GreedyFieldView))
+                if (modelView.Storage[field.Identifier] != null)
                     fields.Add(field);
             }
             return fields;
@@ -119,18 +119,6 @@ namespace Neptuo.TemplateEngine.Web.Controls
         }
     }
 
-    public class GreedyFieldView : IFieldView
-    {
-        public object GetValue()
-        {
-            return null;
-        }
-
-        public void SetValue(object value)
-        { }
-    }
-
-
     public class DictionaryViewStorage : IViewStorage
     {
         private Dictionary<string, IFieldView> storage = new Dictionary<string, IFieldView>();
@@ -143,7 +131,7 @@ namespace Neptuo.TemplateEngine.Web.Controls
                 if (storage.TryGetValue(identifier, out fieldView))
                     return fieldView;
 
-                return new GreedyFieldView();
+                return null;
             }
             set { storage[identifier] = value; }
         }
