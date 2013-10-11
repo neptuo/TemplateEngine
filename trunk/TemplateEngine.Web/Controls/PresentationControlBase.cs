@@ -1,4 +1,5 @@
 ﻿using Neptuo.PresentationModels;
+using Neptuo.PresentationModels.TypeModels;
 using Neptuo.TemplateEngine.Web.Controls;
 using Neptuo.Templates;
 using System;
@@ -16,11 +17,11 @@ namespace Neptuo.TemplateEngine.Web.Controls
         protected IModelPresenter ModelPresenter { get; private set; }
         protected TemplateModelView ModelView { get; private set; }
 
-        public PresentationControlBase(IComponentManager componentManager, IModelDefinition modelDefinition, IStackStorage<IViewStorage> viewStorage)
+        public PresentationControlBase(IComponentManager componentManager, PresentationConfiguration configuration)
             : base(componentManager)
         {
-            ModelView = new TemplateModelView(ComponentManager, viewStorage);
-            ModelDefinition = new FilteredModelDefinition(modelDefinition, ModelView);
+            ModelView = new TemplateModelView(ComponentManager, configuration.ViewStorage);
+            ModelDefinition = new FilteredModelDefinition(configuration.ModelDefinition, ModelView);
             ModelPresenter = new DefaultModelPresenter(ModelDefinition, ModelView);
         }
 
@@ -39,6 +40,31 @@ namespace Neptuo.TemplateEngine.Web.Controls
         {
             ModelPresenter.GetData(setter);
         }
+    }
+
+    public class PresentationConfiguration
+    {
+        public IModelDefinition ModelDefinition { get; protected set; }
+        public IStackStorage<IViewStorage> ViewStorage { get; protected set; }
+
+        public PresentationConfiguration(IModelDefinition modelDefinition, IStackStorage<IViewStorage> viewStorage)
+        {
+            if(modelDefinition == null)
+                throw new ArgumentNullException("modelDefinition");
+
+            if(viewStorage == null)
+                throw new ArgumentNullException("viewStorage");
+
+            ModelDefinition = modelDefinition;
+            ViewStorage = viewStorage;
+        }
+    }
+
+    public class PresentationConfiguration<T> : PresentationConfiguration
+    {
+        public PresentationConfiguration(MetadataReaderService metadataReaderService, IStackStorage<IViewStorage> viewStorage)
+            : base(new ReflectionModelDefinitionBuilder(typeof(T), metadataReaderService).Build(), viewStorage)
+        { }
     }
 
     public class FilteredModelDefinition : ProxyModelDefinition
