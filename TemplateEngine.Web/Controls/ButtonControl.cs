@@ -15,7 +15,9 @@ namespace Neptuo.TemplateEngine.Web.Controls
 
         public ButtonControl(IComponentManager componentManager)
             : base(componentManager)
-        { }
+        {
+            Attributes["class"] = "btn";
+        }
 
         public override void OnInit()
         {

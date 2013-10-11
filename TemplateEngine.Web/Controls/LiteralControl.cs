@@ -12,6 +12,7 @@ namespace Neptuo.TemplateEngine.Web.Controls
     public class LiteralControl : ControlBase, ITextControl
     {
         public string Text { get; set; }
+        public string FormatString { get; set; }
 
         public LiteralControl(IComponentManager componentManager)
             : base(componentManager)
@@ -19,7 +20,10 @@ namespace Neptuo.TemplateEngine.Web.Controls
 
         protected override void RenderBody(IHtmlWriter writer)
         {
-            writer.Content(Text);
+            if (!String.IsNullOrEmpty(FormatString))
+                writer.Content(String.Format(FormatString, Text));
+            else
+                writer.Content(Text);
         }
     }
 }

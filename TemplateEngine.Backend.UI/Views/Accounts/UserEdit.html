@@ -1,19 +1,34 @@
-﻿<ui:UserEdit UserKey="1">
+﻿<ui:Doctype /> 
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>User Edit</title>
+
+    <link href="http://getbootstrap.com/2.3.2/assets/css/bootstrap.css" rel="stylesheet" />
+    <link href="http://getbootstrap.com/2.3.2/assets/css/bootstrap-responsive.css" rel="stylesheet" />
+
+</head>
+<body class="container">
+
+    <ui:UserEdit UserKey="1" html:Class="form-horizontal">
     
-    <div>
-        Username: <ui:TextBox view:ID="Username" html:Style="width: 400px;" />
-    </div>
-    <div>
-        Password: <ui:PasswordBox view:ID="Password" html:Style="width: 400px;" />
-    </div>
-    <div>
-        Password again: ##
-    </div>
-    <div>
-        Enabled: <ui:CheckBox view:ID="IsEnabled" /> 
-    </div>
+        <ui:FormItem LabelText="Username">
+            <ui:TextBox view:ID="Username" html:Style="width: 400px;" />
+        </ui:FormItem>
+        <ui:FormItem LabelText="Password">
+            <ui:PasswordBox view:ID="Password" html:Style="width: 400px;" />
+        </ui:FormItem>
+        <ui:FormItem LabelText="Password again">
+            ##
+        </ui:FormItem>
+        <ui:FormItem>
+            <ui:CheckBox view:ID="IsEnabled" LabelText="Is enabled" /> 
+        </ui:FormItem>
 
-    <ui:HiddenBox view:ID="Key" />
-    <ui:Button Text="Save" Name="Save" ui:Event="Save" />
+        <ui:HiddenBox view:ID="Key" />
+        <ui:Button Text="Save" Name="Save" ui:Event="Save" />
 
-</ui:UserEdit>
+    </ui:UserEdit>
+
+</body>
+</html>
