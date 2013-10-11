@@ -19,8 +19,8 @@ namespace Neptuo.TemplateEngine.Accounts.Web.Controls
         protected IEventHandler EventHandler { get; private set; }
         public int? UserKey { get; set; }
 
-        public UserEditControl(IComponentManager componentManager, IStackStorage<IViewStorage> viewStorage, IEventHandler eventHandler, IUserAccountRepository userAccounts)
-            : base(componentManager, new ReflectionModelDefinitionBuilder(typeof(UserAccount), new MetadataReaderService()).Build(), viewStorage)
+        public UserEditControl(IComponentManager componentManager, PresentationConfiguration<UserAccount> configuration, IEventHandler eventHandler, IUserAccountRepository userAccounts)
+            : base(componentManager, configuration)
         {
             UserAccounts = userAccounts;
             EventHandler = eventHandler;

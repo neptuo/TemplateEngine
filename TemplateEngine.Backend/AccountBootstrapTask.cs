@@ -36,9 +36,7 @@ namespace Neptuo.TemplateEngine.Backend
                 .RegisterType<IActivator<UserAccount>, UserAccountRepository>(new PerRequestLifetime())
                 .RegisterType<IUserRoleRepository, UserRoleRepository>(new PerRequestLifetime())
                 .RegisterType<IActivator<UserRole>, UserRoleRepository>(new PerRequestLifetime())
-                .RegisterType<IUserQuery, UserAccountRepository>(new PerRequestLifetime())
-                .RegisterType<IStackStorage<IViewStorage>, StackStorage<IViewStorage>>(new SingletonLifetime(new StackStorage<IViewStorage>()))
-                .RegisterType<IEventHandler, SimpleEventHandler>(new SingletonLifetime(new SimpleEventHandler()));
+                .RegisterType<IUserQuery, UserAccountRepository>(new PerRequestLifetime());
 
             registry
                 .RegisterNamespace(new NamespaceDeclaration("ui", "Neptuo.TemplateEngine.Accounts.Web.Controls, Neptuo.TemplateEngine.Accounts.Web"));

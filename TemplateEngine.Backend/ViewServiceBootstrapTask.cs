@@ -1,11 +1,13 @@
 ﻿using Neptuo.Bootstrap;
 using Neptuo.TemplateEngine.Backend.Web;
+using Neptuo.TemplateEngine.Web;
 using Neptuo.TemplateEngine.Web.Controls;
 using Neptuo.TemplateEngine.Web.Observers;
 using Neptuo.Templates;
 using Neptuo.Templates.Compilation;
 using Neptuo.Templates.Compilation.CodeGenerators;
 using Neptuo.Templates.Compilation.Parsers;
+using Neptuo.Web;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -47,7 +49,9 @@ namespace Neptuo.TemplateEngine.Backend
 
             container
                 .RegisterInstance<TypeBuilderRegistry>(registry)
-                .RegisterInstance<IViewService>(viewService);
+                .RegisterInstance<IViewService>(viewService)
+                .RegisterType<IStackStorage<IViewStorage>, StackStorage<IViewStorage>>(new PerRequestLifetime())
+                .RegisterType<IEventHandler, SimpleEventHandler>(new PerRequestLifetime());
         }
 
         protected virtual void SetupViewService(CodeDomViewService viewService, TypeBuilderRegistry registry, IFileProvider fileProvider, IVirtualPathProvider virtualPathProvider)
