@@ -20,7 +20,7 @@ namespace Neptuo.TemplateEngine.Backend.Web
         {
             IViewServiceContext viewServiceContext = GetViewServiceContext();
             BaseGeneratedView view = (BaseGeneratedView)GetViewService().Process(GetTemplateUrl(), viewServiceContext);
-            IComponentManager componentManager = GetComponentManager(viewServiceContext);
+            IComponentManager componentManager = GetComponentManager(viewServiceContext, context);
 
             IDependencyContainer container = viewServiceContext.DependencyProvider.CreateChildContainer();
             container.RegisterInstance<IComponentManager>(componentManager);
@@ -32,7 +32,7 @@ namespace Neptuo.TemplateEngine.Backend.Web
             view.Dispose();
         }
 
-        protected virtual IComponentManager GetComponentManager(IViewServiceContext viewServiceContext)
+        protected virtual IComponentManager GetComponentManager(IViewServiceContext viewServiceContext, HttpContext httpContext)
         {
             return new ComponentManager();
         }

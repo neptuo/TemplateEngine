@@ -37,6 +37,12 @@
     <Reference Include="Neptuo.Data">
       <HintPath>..\References\Neptuo.Data.dll</HintPath>
     </Reference>
+    <Reference Include="Neptuo.PresentationModels">
+      <HintPath>..\References\Neptuo.PresentationModels.dll</HintPath>
+    </Reference>
+    <Reference Include="Neptuo.PresentationModels.TypeModels">
+      <HintPath>..\References\Neptuo.PresentationModels.TypeModels.dll</HintPath>
+    </Reference>
     <Reference Include="Neptuo.Templates.Components">
       <HintPath>..\References\Neptuo.Templates.Components.dll</HintPath>
     </Reference>

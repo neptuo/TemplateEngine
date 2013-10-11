@@ -1,0 +1,15 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Neptuo.TemplateEngine.Web
+{
+    public interface IStackStorage<T>
+    {
+        void Push(T storage);
+        T Pop();
+        T Peek();
+    }
+}

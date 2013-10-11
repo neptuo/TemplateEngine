@@ -57,6 +57,7 @@ namespace Neptuo.TemplateEngine.Backend
             viewService.ParserService.ValueParsers.Add(new MarkupExtensionValueParser(registry));
             viewService.NamingService = new HashNamingService(fileProvider);
             viewService.TempDirectory = @"C:\Temp\NeptuoTemplateEngine";
+            //viewService.DebugMode = true;
             viewService.BinDirectories.Add(virtualPathProvider.MapPath("~/Bin"));
 
             CODEDOMREGISTEREXTENSIONS.Register(viewService.CodeDomGenerator);
@@ -66,6 +67,8 @@ namespace Neptuo.TemplateEngine.Backend
         {
             registry.RegisterNamespace(new NamespaceDeclaration("ui", "Neptuo.TemplateEngine.Web.Controls, Neptuo.TemplateEngine.Web"));
             registry.RegisterObserverBuilder("data", "Event", new DefaultTypeObserverBuilderFactory(typeof(EventObserver), ObserverBuilderScope.PerElement));
+            registry.RegisterObserverBuilder("view", "ID", new DefaultTypeObserverBuilderFactory(typeof(ViewIdentifierObserver), ObserverBuilderScope.PerElement));
+            registry.RegisterObserverBuilder("html", "*", new DefaultTypeObserverBuilderFactory(typeof(HtmlObserver), ObserverBuilderScope.PerElement));
         }
     }
 }
