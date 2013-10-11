@@ -59,8 +59,10 @@
     <Compile Include="Controls\ControlBase.cs" />
     <Compile Include="Controls\ButtonControl.cs" />
     <Compile Include="Controls\CheckBoxControl.cs" />
+    <Compile Include="Controls\DoctypeControl.cs" />
     <Compile Include="Controls\FormControlBase.cs" />
     <Compile Include="Controls\FormInputControlBase.cs" />
+    <Compile Include="Controls\FormItemControl.cs" />
     <Compile Include="Controls\GenericContentControl.cs" />
     <Compile Include="Controls\GenericContentControlBuilder.cs" />
     <Compile Include="Controls\HiddenBoxControl.cs" />

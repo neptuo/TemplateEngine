@@ -9,6 +9,7 @@ namespace Neptuo.TemplateEngine.Web.Controls
 {
     public class CheckBoxControl : FormInputControlBase
     {
+        public string LabelText { get; set; }
         public bool IsChecked { get; set; }
 
         public CheckBoxControl(IComponentManager componentManager)
@@ -22,7 +23,15 @@ namespace Neptuo.TemplateEngine.Web.Controls
             if (IsChecked)
                 Attributes["checked"] = "checked";
 
+            writer
+                .Tag("label")
+                .Attribute("class", "checkbox");
+
             base.Render(writer);
+
+            writer
+                .Content(LabelText)
+                .CloseFullTag();
         }
 
         public override void HandleValue(string value)
