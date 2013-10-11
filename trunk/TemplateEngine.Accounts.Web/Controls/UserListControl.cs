@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace Neptuo.TemplateEngine.Accounts.Web.Controls
 {
     [Html("div")]
-    public class UserListControl : BaseContentControl
+    public class UserListControl : ContentControlBase
     {
         private IUserQuery userQuery;
 

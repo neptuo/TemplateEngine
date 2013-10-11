@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace Neptuo.TemplateEngine.Accounts.Web.Controls
 {
     [Html("div")]
-    public class UserDetailControl : BaseContentControl
+    public class UserDetailControl : ContentControlBase
     {
         public UserDetailControl(IComponentManager componentManager)
             : base(componentManager)

@@ -7,19 +7,23 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Web.Controls
 {
-    [Html("input")]
-    public class HiddenBoxControl : BaseControl, IFormControl, ITextControl
+    public class HiddenBoxControl : FormInputControlBase, ITextControl
     {
-        public string Name { get; set; }
         public string Text { get; set; }
 
         public HiddenBoxControl(IComponentManager componentManager)
             : base(componentManager)
         {
-            Attributes["type"] = "hidden";
+            Type = "hidden";
         }
 
-        public void HandleValue(string value)
+        public override void Render(IHtmlWriter writer)
+        {
+            Attributes["value"] = Text;
+            base.Render(writer);
+        }
+
+        public override void HandleValue(string value)
         {
             Text = value;
         }
