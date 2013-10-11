@@ -33,6 +33,12 @@
     <Reference Include="Neptuo">
       <HintPath>..\References\Neptuo.dll</HintPath>
     </Reference>
+    <Reference Include="Neptuo.PresentationModels">
+      <HintPath>..\References\Neptuo.PresentationModels.dll</HintPath>
+    </Reference>
+    <Reference Include="Neptuo.PresentationModels.TypeModels">
+      <HintPath>..\References\Neptuo.PresentationModels.TypeModels.dll</HintPath>
+    </Reference>
     <Reference Include="Neptuo.Templates.Components">
       <HintPath>..\References\Neptuo.Templates.Components.dll</HintPath>
     </Reference>
@@ -52,12 +58,26 @@
     <Compile Include="Controls\BaseContentControl.cs" />
     <Compile Include="Controls\BaseControl.cs" />
     <Compile Include="Controls\ButtonControl.cs" />
+    <Compile Include="Controls\CheckBoxControl.cs" />
     <Compile Include="Controls\GenericContentControl.cs" />
     <Compile Include="Controls\GenericContentControlBuilder.cs" />
+    <Compile Include="Controls\HiddenBoxControl.cs" />
+    <Compile Include="Controls\IFormControl.cs" />
+    <Compile Include="Controls\ITemplate.cs" />
+    <Compile Include="Controls\ITextControl.cs" />
+    <Compile Include="Controls\TextBoxControl.cs" />
+    <Compile Include="IEventHandler.cs" />
+    <Compile Include="IStackStorage.cs" />
+    <Compile Include="IViewStorage.cs" />
     <Compile Include="Controls\LiteralControl.cs" />
     <Compile Include="Controls\LiteralControlBuilder.cs" />
+    <Compile Include="Controls\PresentationControlBase.cs" />
     <Compile Include="Observers\EventObserver.cs" />
+    <Compile Include="Observers\HtmlObserver.cs" />
+    <Compile Include="Observers\ViewIdentifierObserver.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RequestComponentManager.cs" />
+    <Compile Include="StackStorage.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
