@@ -61,6 +61,7 @@
     <Compile Include="Controls\ControlBase.cs" />
     <Compile Include="Controls\ButtonControl.cs" />
     <Compile Include="Controls\CheckBoxControl.cs" />
+    <Compile Include="Controls\DefaultTemplateAttribute.cs" />
     <Compile Include="Controls\DoctypeControl.cs" />
     <Compile Include="Controls\FileTemplate.cs" />
     <Compile Include="Controls\FormControlBase.cs" />
