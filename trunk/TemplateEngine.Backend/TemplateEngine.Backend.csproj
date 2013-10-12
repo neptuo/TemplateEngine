@@ -111,6 +111,10 @@
       <Project>{cfb337ac-4c28-4ccc-98db-860acea11bed}</Project>
       <Name>TemplateEngine.Data</Name>
     </ProjectReference>
+    <ProjectReference Include="..\TemplateEngine.Web.Compilation\TemplateEngine.Web.Compilation.csproj">
+      <Project>{f116d6f7-e47c-4c73-a802-4f61ba50857f}</Project>
+      <Name>TemplateEngine.Web.Compilation</Name>
+    </ProjectReference>
     <ProjectReference Include="..\TemplateEngine.Web\TemplateEngine.Web.csproj">
       <Project>{8095932d-ec0b-4990-90f1-951b7b5feeac}</Project>
       <Name>TemplateEngine.Web</Name>

@@ -9,7 +9,7 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Neptuo.TemplateEngine.Web.Controls
+namespace Neptuo.TemplateEngine.Web.Compilation.Parsers
 {
     public class LiteralControlBuilder<T> : ILiteralBuilder
         where T : IControl
