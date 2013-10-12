@@ -1,6 +1,9 @@
 ﻿using Neptuo.Bootstrap;
 using Neptuo.TemplateEngine.Backend.Web;
 using Neptuo.TemplateEngine.Web;
+using Neptuo.TemplateEngine.Web.Compilation.CodeGenerators;
+using Neptuo.TemplateEngine.Web.Compilation.CodeObjects;
+using Neptuo.TemplateEngine.Web.Compilation.Parsers;
 using Neptuo.TemplateEngine.Web.Controls;
 using Neptuo.TemplateEngine.Web.Observers;
 using Neptuo.Templates;
@@ -63,8 +66,7 @@ namespace Neptuo.TemplateEngine.Backend
             viewService.TempDirectory = @"C:\Temp\NeptuoTemplateEngine";
             //viewService.DebugMode = true;
             viewService.BinDirectories.Add(virtualPathProvider.MapPath("~/Bin"));
-
-            CODEDOMREGISTEREXTENSIONS.Register(viewService.CodeDomGenerator);
+            SetupCodeDomGenerator(viewService.CodeDomGenerator);
         }
 
         protected virtual void SetupTypeBuilderRegistry(TypeBuilderRegistry registry)
@@ -73,6 +75,16 @@ namespace Neptuo.TemplateEngine.Backend
             registry.RegisterObserverBuilder("ui", "Event", new DefaultTypeObserverBuilderFactory(typeof(EventObserver), ObserverBuilderScope.PerElement));
             registry.RegisterObserverBuilder("view", "ID", new DefaultTypeObserverBuilderFactory(typeof(ViewIdentifierObserver), ObserverBuilderScope.PerElement));
             registry.RegisterObserverBuilder("html", "*", new DefaultTypeObserverBuilderFactory(typeof(HtmlObserver), ObserverBuilderScope.PerElement));
+            
+            registry.RegisterPropertyBuilder(typeof(ITemplate), new DefaultPropertyBuilderFactory<TemplatePropertyBuilder>());
+        }
+
+        protected virtual void SetupCodeDomGenerator(CodeDomGenerator generator)
+        {
+            IFieldNameProvider fieldNameProvider = new SequenceFieldNameProvider();
+            generator.RegisterStandartCodeGenerators(fieldNameProvider);
+            generator.SetCodeObjectGenerator(typeof(TemplateCodeObject), new CodeDomTemplateGenerator(fieldNameProvider));
+            generator.SetCodeObjectGenerator(typeof(MethodReferenceCodeObject), new CodeDomMethodReferenceGenerator());
         }
     }
 }
