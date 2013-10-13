@@ -38,7 +38,7 @@ namespace Neptuo.TemplateEngine.Web.Compilation.Parsers
             templateCodeObject.Properties.Add(
                 new SetPropertyDescriptor(
                     new TypePropertyInfo(
-                        templateCodeObject.GetType().GetProperty(
+                        typeof(FileTemplate).GetProperty(
                             TypeHelper.PropertyName<FileTemplate, string>(t => t.Path)
                         )
                     ),

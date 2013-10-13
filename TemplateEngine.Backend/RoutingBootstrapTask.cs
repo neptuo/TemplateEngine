@@ -29,6 +29,7 @@ namespace Neptuo.TemplateEngine.Backend
             RouteParameters.Registry.Add("path", new TemplateRouteParameterFactory());
 
             routes.Add(new TokenRoute("~/{Path}", new TemplateRouteHandler(viewService, dependencyProvider), TemplateRouteParameter.TemplateUrlSuffix));
+            routes.Add(new TokenRoute("~/error", new ErrorRouteHandler(), ".ashx"));
         }
     }
 }

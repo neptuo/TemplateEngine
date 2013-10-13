@@ -1,16 +1,8 @@
-﻿<ui:Doctype />
-<html lang="en">
-<head>
-    <meta charset="utf-8" />
-    <title>User Edit</title>
+﻿<ui:Template Template="~/Views/Shared/AdminLayout.html">
+    <ui:TemplateContent Name="Title" Content="User edit" />
+    <ui:TemplateContent Name="Body">
 
-    <link href="http://getbootstrap.com/2.3.2/assets/css/bootstrap.css" rel="stylesheet" />
-    <link href="http://getbootstrap.com/2.3.2/assets/css/bootstrap-responsive.css" rel="stylesheet" />
+        <ui:UserEdit UserKey="1" />
 
-</head>
-<body class="container">
-
-    <ui:UserEdit UserKey="1" />
-
-</body>
-</html>
+    </ui:TemplateContent>
+</ui:Template>
