@@ -74,7 +74,9 @@
     <Compile Include="Controls\ITemplateContent.cs" />
     <Compile Include="Controls\ITextControl.cs" />
     <Compile Include="Controls\PasswordBoxControl.cs" />
+    <Compile Include="Controls\StringTemplate.cs" />
     <Compile Include="Controls\TextBoxControl.cs" />
+    <Compile Include="Controls\ViewTemplateBase.cs" />
     <Compile Include="Controls\ViewTemplateContent.cs" />
     <Compile Include="IEventHandler.cs" />
     <Compile Include="IStackStorage.cs" />

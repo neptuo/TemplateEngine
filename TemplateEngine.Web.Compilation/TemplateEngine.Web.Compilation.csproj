@@ -50,6 +50,7 @@
   <ItemGroup>
     <Compile Include="CodeGenerators\CodeDomMethodReferenceGenerator.cs" />
     <Compile Include="CodeGenerators\CodeDomTemplateGenerator.cs" />
+    <Compile Include="CodeGenerators\CodeDomTemplatePropertyTypeGenerator.cs" />
     <Compile Include="CodeObjects\MethodReferenceCodeObject.cs" />
     <Compile Include="CodeObjects\TemplateCodeObject.cs" />
     <Compile Include="Parsers\GenericContentControlBuilder.cs" />

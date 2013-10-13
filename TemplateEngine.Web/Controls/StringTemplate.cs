@@ -8,17 +8,17 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Web.Controls
 {
-    public class FileTemplate : ViewTemplateBase
+    public class StringTemplate : ViewTemplateBase
     {
-        public string Path { get; set; }
+        public string TemplateContent { get; set; }
 
-        public FileTemplate(IDependencyProvider dependencyProvider, IComponentManager componentManager, IViewService viewService)
+        public StringTemplate(IDependencyProvider dependencyProvider, IComponentManager componentManager, IViewService viewService)
             : base(dependencyProvider, componentManager, viewService)
         { }
 
         protected override BaseGeneratedView CreateView()
         {
-            return (BaseGeneratedView)ViewService.Process(Path, new ViewServiceContext(DependencyProvider));
+            return (BaseGeneratedView)ViewService.ProcessContent(TemplateContent, new ViewServiceContext(DependencyProvider));
         }
     }
 }

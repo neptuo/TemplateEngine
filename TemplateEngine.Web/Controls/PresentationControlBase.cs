@@ -4,16 +4,21 @@ using Neptuo.TemplateEngine.Web.Controls;
 using Neptuo.Templates;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Web.Controls
 {
+    [DefaultProperty("Template")]
     public class PresentationControlBase : ContentControlBase
     {
         //public ITemplate Template { get; set; }
         public IModelDefinition ModelDefinition { get; private set; }
+        public ITemplate Template { get; set; }
+
+        protected ITemplateContent TemplateContent { get; private set; }
         protected IModelPresenter ModelPresenter { get; private set; }
         protected TemplateModelView ModelView { get; private set; }
 
@@ -27,8 +32,16 @@ namespace Neptuo.TemplateEngine.Web.Controls
 
         public override void OnInit()
         {
-            ModelView.Content = Content;
+            Init(Template);
+            TemplateContent = Template.CreateInstance();
+            //Init(TemplateContent);
+            ModelView.Template = TemplateContent;
             ModelView.OnInit();
+        }
+
+        protected override void RenderBody(IHtmlWriter writer)
+        {
+            Render(TemplateContent, writer);
         }
 
         public void SetData(IModelValueGetter getter)
@@ -105,7 +118,7 @@ namespace Neptuo.TemplateEngine.Web.Controls
     public class TemplateModelView : ModelViewBase
     {
         public IComponentManager ComponentManager { get; private set; }
-        public ICollection<object> Content { get; set; }
+        public ITemplateContent Template { get; set; }
         protected IStackStorage<IViewStorage> ViewStorage { get; private set; }
         public IViewStorage Storage { get; private set; }
 
@@ -128,13 +141,10 @@ namespace Neptuo.TemplateEngine.Web.Controls
 
         public void OnInit()
         {
-            if (Content != null)
+            if (Template != null)
             {
                 ViewStorage.Push(Storage);
-
-                foreach (object item in Content)
-                    ComponentManager.Init(item);
-                
+                ComponentManager.Init(Template);
                 ViewStorage.Pop();
             }
         }
