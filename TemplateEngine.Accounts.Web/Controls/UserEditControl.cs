@@ -1,4 +1,6 @@
-﻿using Neptuo.PresentationModels.TypeModels;
+﻿using Neptuo.Data.Commands;
+using Neptuo.PresentationModels.TypeModels;
+using Neptuo.TemplateEngine.Accounts.Commands;
 using Neptuo.TemplateEngine.Accounts.Data;
 using Neptuo.TemplateEngine.Web;
 using Neptuo.TemplateEngine.Web.Controls;
@@ -15,15 +17,17 @@ namespace Neptuo.TemplateEngine.Accounts.Web.Controls
     public class UserEditControl : PresentationControlBase
     {
         protected IUserAccountRepository UserAccounts { get; private set; }
-        protected UserAccount UserAccount { get; private set; }
+        protected EditUserCommand Model { get; private set; }
         protected IEventHandler EventHandler { get; private set; }
+        protected ICommandDispatcher CommandDispatcher { get; private set; }
         public int? UserKey { get; set; }
 
-        public UserEditControl(IComponentManager componentManager, PresentationConfiguration<UserAccount> configuration, IEventHandler eventHandler, IUserAccountRepository userAccounts)
+        public UserEditControl(IComponentManager componentManager, PresentationConfiguration<EditUserCommand> configuration, IEventHandler eventHandler, ICommandDispatcher commandDispatcher, IUserAccountRepository userAccounts)
             : base(componentManager, configuration)
         {
             UserAccounts = userAccounts;
             EventHandler = eventHandler;
+            CommandDispatcher = commandDispatcher;
             Attributes["method"] = "post";
             Attributes["action"] = "";
         }
@@ -32,23 +36,26 @@ namespace Neptuo.TemplateEngine.Accounts.Web.Controls
         {
             EventHandler.Subscribe("Save", HandleSave);
 
+            UserAccount userAccount;
             if (UserKey != null)
-                UserAccount = UserAccounts.Get(UserKey.Value) ?? UserAccounts.Create();
+                userAccount = UserAccounts.Get(UserKey.Value) ?? UserAccounts.Create();
             else
-                UserAccount = UserAccounts.Create();
+                userAccount = UserAccounts.Create();
 
-            UserAccount.Username = "Pepa";
-            UserAccount.Password = "ABc";
+            Model = new EditUserCommand(userAccount);
 
             base.OnInit();
             Init(Template);
 
-            ModelPresenter.SetData(new ReflectionModelValueProvider(UserAccount));
+            ModelPresenter.SetData(new ReflectionModelValueProvider(Model));
         }
 
         protected void HandleSave(EventHandlerEventArgs e)
         {
-            ModelPresenter.GetData(new ReflectionModelValueProvider(UserAccount));
+            ModelPresenter.GetData(new ReflectionModelValueProvider(Model));
+
+            if (Model.Password == Model.PasswordAgain)
+                CommandDispatcher.Handle(Model);
         }
     }
 }

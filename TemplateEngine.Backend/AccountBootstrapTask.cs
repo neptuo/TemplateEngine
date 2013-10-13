@@ -1,6 +1,9 @@
 ﻿using Neptuo.Bootstrap;
+using Neptuo.Data.Commands.Handlers;
 using Neptuo.Lifetimes;
 using Neptuo.TemplateEngine.Accounts;
+using Neptuo.TemplateEngine.Accounts.Commands;
+using Neptuo.TemplateEngine.Accounts.Commands.Handlers;
 using Neptuo.TemplateEngine.Accounts.Data;
 using Neptuo.TemplateEngine.Accounts.Data.Entity;
 using Neptuo.TemplateEngine.Accounts.Queries;
@@ -36,7 +39,8 @@ namespace Neptuo.TemplateEngine.Backend
                 .RegisterType<IActivator<UserAccount>, UserAccountRepository>(new PerRequestLifetime())
                 .RegisterType<IUserRoleRepository, UserRoleRepository>(new PerRequestLifetime())
                 .RegisterType<IActivator<UserRole>, UserRoleRepository>(new PerRequestLifetime())
-                .RegisterType<IUserQuery, UserAccountRepository>(new PerRequestLifetime());
+                .RegisterType<IUserQuery, UserAccountRepository>(new PerRequestLifetime())
+                .RegisterType<ICommandHandler<EditUserCommand>, EditUserCommandHandler>();
 
             registry
                 .RegisterNamespace(new NamespaceDeclaration("ui", "Neptuo.TemplateEngine.Accounts.Web.Controls, Neptuo.TemplateEngine.Accounts.Web"));

@@ -1,6 +1,12 @@
-﻿
+﻿<ui:AdminLayout>
+    <ui:TemplateContent Name="Body">
+        
+        <ui:UserList />
 
-<ui:UserList>
-    <ui:Literal Text="User list" />
-</ui:UserList>
+        <hr />
+        
+        <ui:Literal l:Text="Hello, World!" /> 
+        <a href="UserEdit.aspx" class="btn btn-primary">Create user account</a>
 
+    </ui:TemplateContent>
+</ui:AdminLayout>
