@@ -10,9 +10,29 @@
     <ui:TemplatePlaceholder Name="Head" />
 
 </head>
-<body class="container">
+<body>
 
-    <ui:TemplatePlaceholder Name="Body" />
+    <div class="navbar navbar-inverse navbar-static-top">
+        <div class="navbar-inner">
+            <div class="container">
+                <a href="~/" class="brand">TemplateEngine</a>
+                <ul class="nav">
+                    <li>
+                        <a href="#web">Web</a>
+                    </li>
+                </ul>
+                <ul class="nav" style="float: right;">
+                    <li>
+                        <a href="~/Accounts/UserList.aspx">User accounts</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <ui:TemplatePlaceholder Name="Body" />
+    </div>
 
 </body>
 </html>

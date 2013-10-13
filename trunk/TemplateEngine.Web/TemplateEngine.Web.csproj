@@ -86,6 +86,7 @@
     <Compile Include="IViewStorage.cs" />
     <Compile Include="Controls\LiteralControl.cs" />
     <Compile Include="Controls\PresentationControlBase.cs" />
+    <Compile Include="LocalizationHelper.cs" />
     <Compile Include="Observers\EventObserver.cs" />
     <Compile Include="Observers\HtmlObserver.cs" />
     <Compile Include="Observers\ViewIdentifierObserver.cs" />

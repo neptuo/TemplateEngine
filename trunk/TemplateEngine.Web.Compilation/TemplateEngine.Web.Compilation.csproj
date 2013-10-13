@@ -48,13 +48,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CodeGenerators\CodeDomLocalizationGenerator.cs" />
     <Compile Include="CodeGenerators\CodeDomMethodReferenceGenerator.cs" />
     <Compile Include="CodeGenerators\CodeDomTemplateGenerator.cs" />
     <Compile Include="CodeGenerators\CodeDomTemplatePropertyTypeGenerator.cs" />
+    <Compile Include="CodeObjects\LocalizationCodeObject.cs" />
     <Compile Include="CodeObjects\MethodReferenceCodeObject.cs" />
     <Compile Include="CodeObjects\TemplateCodeObject.cs" />
     <Compile Include="Parsers\GenericContentControlBuilder.cs" />
     <Compile Include="Parsers\LiteralControlBuilder.cs" />
+    <Compile Include="Parsers\LocalizationObserverBuilder.cs" />
+    <Compile Include="Parsers\LocalizationObserverBuilderFactory.cs" />
+    <Compile Include="Parsers\LocalizationObserverRegistration.cs" />
     <Compile Include="Parsers\TemplatePropertyBuilder.cs" />
     <Compile Include="Parsers\UserTemplateComponentBuilder.cs" />
     <Compile Include="Parsers\UserTemplateComponentBuilderFactory.cs" />
