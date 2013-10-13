@@ -1,4 +1,4 @@
-﻿<ui:Doctype /> 
+﻿<ui:Doctype />
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -10,25 +10,7 @@
 </head>
 <body class="container">
 
-    <ui:UserEdit UserKey="1">
-    
-        <ui:FormItem LabelText="Username">
-            <ui:TextBox view:ID="Username" html:Style="width: 400px;" />
-        </ui:FormItem>
-        <ui:FormItem LabelText="Password">
-            <ui:PasswordBox view:ID="Password" html:Style="width: 400px;" />
-        </ui:FormItem>
-        <ui:FormItem LabelText="Password again">
-            ##
-        </ui:FormItem>
-        <ui:FormItem>
-            <ui:CheckBox view:ID="IsEnabled" LabelText="Is enabled" /> 
-        </ui:FormItem>
-
-        <ui:HiddenBox view:ID="Key" />
-        <ui:Button Text="Save" Name="Save" ui:Event="Save" />
-
-    </ui:UserEdit>
+    <ui:UserEdit UserKey="1" />
 
 </body>
 </html>

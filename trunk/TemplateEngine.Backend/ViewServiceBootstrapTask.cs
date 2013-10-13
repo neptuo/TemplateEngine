@@ -85,6 +85,7 @@ namespace Neptuo.TemplateEngine.Backend
             generator.RegisterStandartCodeGenerators(fieldNameProvider);
             generator.SetCodeObjectGenerator(typeof(TemplateCodeObject), new CodeDomTemplateGenerator(fieldNameProvider));
             generator.SetCodeObjectGenerator(typeof(MethodReferenceCodeObject), new CodeDomMethodReferenceGenerator());
+            generator.SetPropertyTypeGenerator(typeof(ITemplate), new CodeDomTemplatePropertyTypeGenerator(fieldNameProvider, "{0}.Views.{1}.html"));
         }
     }
 }

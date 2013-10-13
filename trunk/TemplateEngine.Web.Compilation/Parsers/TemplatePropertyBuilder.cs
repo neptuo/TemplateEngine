@@ -19,7 +19,7 @@ namespace Neptuo.TemplateEngine.Web.Compilation.Parsers
             codeObject.Properties.Add(new SetPropertyDescriptor(propertyInfo, templateCodeObject));
 
             IPropertyInfo targetProperty = new TypePropertyInfo(
-                templateCodeObject.GetType().GetProperty(
+                typeof(ContentTemplateContent).GetProperty(
                     TypeHelper.PropertyName<ContentTemplateContent, object>(t => t.Content)
                 )
             );

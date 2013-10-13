@@ -109,6 +109,11 @@ namespace Neptuo.TemplateEngine.Web.Controls
             ComponentManager.Init(component);
         }
 
+        protected void Render(object component, IHtmlWriter writer)
+        {
+            ComponentManager.Render(component, writer);
+        }
+
         protected void Init<T>(IEnumerable<T> compoments)
         {
             if (compoments != null)

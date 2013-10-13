@@ -41,6 +41,7 @@ namespace Neptuo.TemplateEngine.Accounts.Web.Controls
             UserAccount.Password = "ABc";
 
             base.OnInit();
+            Init(Template);
 
             ModelPresenter.SetData(new ReflectionModelValueProvider(UserAccount));
         }
