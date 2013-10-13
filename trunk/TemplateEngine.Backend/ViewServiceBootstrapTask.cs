@@ -54,6 +54,7 @@ namespace Neptuo.TemplateEngine.Backend
                 .RegisterInstance<TypeBuilderRegistry>(registry)
                 .RegisterInstance<IViewService>(viewService)
                 .RegisterType<IStackStorage<IViewStorage>, StackStorage<IViewStorage>>(new PerRequestLifetime())
+                .RegisterType<IStackStorage<TemplateContentStorage>, StackStorage<TemplateContentStorage>>(new PerRequestLifetime())
                 .RegisterType<IEventHandler, SimpleEventHandler>(new PerRequestLifetime());
         }
 

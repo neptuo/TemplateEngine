@@ -75,6 +75,9 @@
     <Compile Include="Controls\ITextControl.cs" />
     <Compile Include="Controls\PasswordBoxControl.cs" />
     <Compile Include="Controls\StringTemplate.cs" />
+    <Compile Include="Controls\TemplateContentControl.cs" />
+    <Compile Include="Controls\TemplateControl.cs" />
+    <Compile Include="Controls\TemplatePlaceholder.cs" />
     <Compile Include="Controls\TextBoxControl.cs" />
     <Compile Include="Controls\ViewTemplateBase.cs" />
     <Compile Include="Controls\ViewTemplateContent.cs" />
@@ -89,6 +92,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RequestComponentManager.cs" />
     <Compile Include="StackStorage.cs" />
+    <Compile Include="TemplateContentStorage.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

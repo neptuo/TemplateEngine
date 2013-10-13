@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 namespace Neptuo.TemplateEngine.Web.Controls
 {
     [DefaultProperty("Template")]
-    public class PresentationControlBase : ContentControlBase
+    public class PresentationControlBase : ControlBase
     {
         //public ITemplate Template { get; set; }
         public IModelDefinition ModelDefinition { get; private set; }
