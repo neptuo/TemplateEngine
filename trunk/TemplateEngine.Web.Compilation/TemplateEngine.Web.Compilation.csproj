@@ -56,7 +56,8 @@
     <Compile Include="Parsers\GenericContentControlBuilder.cs" />
     <Compile Include="Parsers\LiteralControlBuilder.cs" />
     <Compile Include="Parsers\TemplatePropertyBuilder.cs" />
-    <Compile Include="Parsers\UserComponentBuilder.cs" />
+    <Compile Include="Parsers\UserTemplateComponentBuilder.cs" />
+    <Compile Include="Parsers\UserTemplateComponentBuilderFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
