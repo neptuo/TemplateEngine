@@ -95,7 +95,12 @@
     <Compile Include="StackStorage.cs" />
     <Compile Include="TemplateContentStorage.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\TemplateEngine.Navigation\TemplateEngine.Navigation.csproj">
+      <Project>{f16d8bc8-2191-498f-9950-dc8aa200b0ba}</Project>
+      <Name>TemplateEngine.Navigation</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

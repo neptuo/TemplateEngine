@@ -38,6 +38,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TemplateEngine.Data.Entity"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TemplateEngine.Web.Compilation", "TemplateEngine.Web.Compilation\TemplateEngine.Web.Compilation.csproj", "{F116D6F7-E47C-4C73-A802-4F61BA50857F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TemplateEngine.Navigation", "TemplateEngine.Navigation\TemplateEngine.Navigation.csproj", "{F16D8BC8-2191-498F-9950-DC8AA200B0BA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -92,6 +94,10 @@ Global
 		{F116D6F7-E47C-4C73-A802-4F61BA50857F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F116D6F7-E47C-4C73-A802-4F61BA50857F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F116D6F7-E47C-4C73-A802-4F61BA50857F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F16D8BC8-2191-498F-9950-DC8AA200B0BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F16D8BC8-2191-498F-9950-DC8AA200B0BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F16D8BC8-2191-498F-9950-DC8AA200B0BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F16D8BC8-2191-498F-9950-DC8AA200B0BA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

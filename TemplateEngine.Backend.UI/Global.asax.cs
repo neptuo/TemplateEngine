@@ -35,6 +35,7 @@ namespace Neptuo.TemplateEngine.Backend.UI
         {
             bootstrapper.Register<ViewServiceBootstrapTask>();
             bootstrapper.Register<RoutingBootstrapTask>();
+            bootstrapper.Register<NavigationBootstrapTask>();
 
             bootstrapper.Register<AccountBootstrapTask>();
         }
