@@ -17,7 +17,6 @@ namespace Neptuo.TemplateEngine.Web.Compilation.Parsers
         public void Parse(IContentBuilderContext context, IComponentCodeObject codeObject, IEnumerable<IXmlAttribute> attributes)
         {
             ComponentCodeObject component = (ComponentCodeObject)codeObject;
-
             foreach (IXmlAttribute attribute in attributes)
             {
                 PropertyInfo propertyInfo = component.Type.GetProperty(attribute.LocalName);

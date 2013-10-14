@@ -122,7 +122,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Login.html" />
+    <Content Include="Views\Accounts\Login.html" />
     <Content Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -159,6 +159,10 @@
     <ProjectReference Include="..\TemplateEngine.Data\TemplateEngine.Data.csproj">
       <Project>{cfb337ac-4c28-4ccc-98db-860acea11bed}</Project>
       <Name>TemplateEngine.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TemplateEngine.Navigation\TemplateEngine.Navigation.csproj">
+      <Project>{f16d8bc8-2191-498f-9950-dc8aa200b0ba}</Project>
+      <Name>TemplateEngine.Navigation</Name>
     </ProjectReference>
     <ProjectReference Include="..\TemplateEngine.Web.Compilation\TemplateEngine.Web.Compilation.csproj">
       <Project>{f116d6f7-e47c-4c73-a802-4f61ba50857f}</Project>

@@ -41,5 +41,13 @@ namespace Neptuo.TemplateEngine.Backend.Web.Routing
 
             return false;
         }
+
+        public static string FormatUrl(string path)
+        {
+            if (path == null)
+                throw new ArgumentNullException("path");
+
+            return String.Format("{0}{1}", path, TemplateUrlSuffix);
+        }
     }
 }

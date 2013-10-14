@@ -55,6 +55,9 @@
     <Compile Include="CodeObjects\LocalizationCodeObject.cs" />
     <Compile Include="CodeObjects\MethodReferenceCodeObject.cs" />
     <Compile Include="CodeObjects\TemplateCodeObject.cs" />
+    <Compile Include="Parsers\FormUriObserverBuider.cs" />
+    <Compile Include="Parsers\FormUriObserverBuiderFactory.cs" />
+    <Compile Include="Parsers\FormUriObserverBuiderRegistration.cs" />
     <Compile Include="Parsers\GenericContentControlBuilder.cs" />
     <Compile Include="Parsers\LiteralControlBuilder.cs" />
     <Compile Include="Parsers\LocalizationObserverBuilder.cs" />
@@ -66,6 +69,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\TemplateEngine.Navigation\TemplateEngine.Navigation.csproj">
+      <Project>{f16d8bc8-2191-498f-9950-dc8aa200b0ba}</Project>
+      <Name>TemplateEngine.Navigation</Name>
+    </ProjectReference>
     <ProjectReference Include="..\TemplateEngine.Web\TemplateEngine.Web.csproj">
       <Project>{8095932d-ec0b-4990-90f1-951b7b5feeac}</Project>
       <Name>TemplateEngine.Web</Name>

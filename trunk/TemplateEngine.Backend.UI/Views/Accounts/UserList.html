@@ -1,4 +1,4 @@
-﻿<ui:AdminLayout>
+﻿<ui:AdminLayout Title="User list">
     <ui:TemplateContent Name="Body">
         
         <ui:UserList />
@@ -6,7 +6,7 @@
         <hr />
         
         <ui:Literal l:Text="Hello, World!" /> 
-        <a href="UserEdit.aspx" class="btn btn-primary">Create user account</a>
+        <a form:href="Accounts.User.Edit" class="btn btn-primary">Create user account</a>
 
     </ui:TemplateContent>
 </ui:AdminLayout>

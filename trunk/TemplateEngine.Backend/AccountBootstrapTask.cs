@@ -7,6 +7,9 @@ using Neptuo.TemplateEngine.Accounts.Commands.Handlers;
 using Neptuo.TemplateEngine.Accounts.Data;
 using Neptuo.TemplateEngine.Accounts.Data.Entity;
 using Neptuo.TemplateEngine.Accounts.Queries;
+using Neptuo.TemplateEngine.Backend.Web.Routing;
+using Neptuo.TemplateEngine.Navigation;
+using Neptuo.TemplateEngine.Navigation.Bootstrap;
 using Neptuo.TemplateEngine.Web;
 using Neptuo.Templates.Compilation;
 using Neptuo.Templates.Compilation.Parsers;
@@ -24,11 +27,13 @@ namespace Neptuo.TemplateEngine.Backend
     {
         private IDependencyContainer dependencyContainer;
         private TypeBuilderRegistry registry;
+        private IFormUriRegistry formRegistry;
 
-        public AccountBootstrapTask(IDependencyContainer dependencyContainer, TypeBuilderRegistry registry)
+        public AccountBootstrapTask(IDependencyContainer dependencyContainer, TypeBuilderRegistry registry, IFormUriRegistry formRegistry)
         {
             this.dependencyContainer = dependencyContainer;
             this.registry = registry;
+            this.formRegistry = formRegistry;
         }
 
         public void Initialize()
@@ -44,6 +49,12 @@ namespace Neptuo.TemplateEngine.Backend
 
             registry
                 .RegisterNamespace(new NamespaceDeclaration("ui", "Neptuo.TemplateEngine.Accounts.Web.Controls, Neptuo.TemplateEngine.Accounts.Web"));
+
+            formRegistry
+                .Register("Accounts.User.List", TemplateRouteParameter.FormatUrl("~/Accounts/UserList"))
+                .Register("Accounts.User.Edit", TemplateRouteParameter.FormatUrl("~/Accounts/UserEdit"));
+
+            FormUri edit = (FormUri)"Accounts.User.Edit";
         }
     }
 }
