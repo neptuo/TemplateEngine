@@ -17,6 +17,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web;
+using CodeDomStructureGenerator = Neptuo.TemplateEngine.Web.Compilation.CodeGenerators.CodeDomStructureGenerator;
 
 namespace Neptuo.TemplateEngine.Backend
 {
@@ -53,6 +54,7 @@ namespace Neptuo.TemplateEngine.Backend
             container
                 .RegisterInstance<TypeBuilderRegistry>(registry)
                 .RegisterInstance<IViewService>(viewService)
+                .RegisterInstance<IVirtualUrlProvider>(new ServerVirtualPathProvider())
                 .RegisterType<IStackStorage<IViewStorage>, StackStorage<IViewStorage>>(new PerRequestLifetime())
                 .RegisterType<IStackStorage<TemplateContentStorage>, StackStorage<TemplateContentStorage>>(new PerRequestLifetime())
                 .RegisterType<IEventHandler, SimpleEventHandler>(new PerRequestLifetime());
@@ -79,6 +81,7 @@ namespace Neptuo.TemplateEngine.Backend
             registry.RegisterObserverBuilder("html", "*", new DefaultTypeObserverBuilderFactory(typeof(HtmlObserver), ObserverBuilderScope.PerElement));
             registry.RegisterObserverBuilder("l", "*", new LocalizationObserverBuilderFactory());
             registry.RegisterObserverBuilder("form", "*", new FormUriObserverBuiderFactory());
+            registry.RegisterObserverBuilder("ui", "IsPlaceholder", new DefaultTypeObserverBuilderFactory(typeof(IsPlaceholderObserver), ObserverBuilderScope.PerElement));
             
             registry.RegisterPropertyBuilder(typeof(ITemplate), new DefaultPropertyBuilderFactory<TemplatePropertyBuilder>());
         }
@@ -87,9 +90,11 @@ namespace Neptuo.TemplateEngine.Backend
         {
             IFieldNameProvider fieldNameProvider = new SequenceFieldNameProvider();
             generator.RegisterStandartCodeGenerators(fieldNameProvider);
+            generator.SetBaseStructureGenerator(new CodeDomStructureGenerator());
             generator.SetCodeObjectGenerator(typeof(TemplateCodeObject), new CodeDomTemplateGenerator(fieldNameProvider));
             generator.SetCodeObjectGenerator(typeof(MethodReferenceCodeObject), new CodeDomMethodReferenceGenerator());
             generator.SetCodeObjectGenerator(typeof(LocalizationCodeObject), new CodeDomLocalizationGenerator());
+            generator.SetCodeObjectGenerator(typeof(ResolveUrlCodeObject), new CodeDomResolveUrlGenerator());
             generator.SetPropertyTypeGenerator(typeof(ITemplate), new CodeDomTemplatePropertyTypeGenerator(fieldNameProvider, "{0}.Views.{1}.html"));
         }
     }

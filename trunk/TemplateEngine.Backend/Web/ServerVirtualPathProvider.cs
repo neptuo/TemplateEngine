@@ -8,7 +8,7 @@ using System.Web;
 
 namespace Neptuo.TemplateEngine.Backend.Web
 {
-    public class ServerVirtualPathProvider : IVirtualPathProvider
+    public class ServerVirtualPathProvider : IVirtualPathProvider, IVirtualUrlProvider
     {
         public string MapPath(string path)
         {
@@ -19,6 +19,11 @@ namespace Neptuo.TemplateEngine.Backend.Web
                 return path;
 
             return HttpContext.Current.Server.MapPath(path);
+        }
+
+        public string ResolveUrl(string path)
+        {
+            return VirtualPathUtility.ToAbsolute(path);
         }
     }
 }

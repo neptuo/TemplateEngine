@@ -23,6 +23,9 @@ namespace Neptuo.TemplateEngine.Backend
             DefaultFormUriService formService = new DefaultFormUriService();
             FormUriServiceRegistration.SetInstance(formService);
 
+            formService
+                .Register("Home", "~/Home.aspx");
+
             dependencyContainer
                 .RegisterInstance<IFormUriService>(formService)
                 .RegisterInstance<IFormUriRegistry>(formService);

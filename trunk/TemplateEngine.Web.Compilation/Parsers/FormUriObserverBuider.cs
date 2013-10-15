@@ -1,4 +1,5 @@
 ﻿using Neptuo.TemplateEngine.Navigation;
+using Neptuo.TemplateEngine.Web.Compilation.CodeObjects;
 using Neptuo.Templates.Compilation.CodeObjects;
 using Neptuo.Templates.Compilation.Parsers;
 using System;
@@ -31,12 +32,12 @@ namespace Neptuo.TemplateEngine.Web.Compilation.Parsers
                     PropertyInfo propertyInfo = component.Type.GetProperty(attribute.LocalName);
                     if (propertyInfo != null)
                     {
-                        propertyDescriptor = new SetPropertyDescriptor(new TypePropertyInfo(propertyInfo), new PlainValueCodeObject(formUri.Url()));
+                        propertyDescriptor = new SetPropertyDescriptor(new TypePropertyInfo(propertyInfo), new ResolveUrlCodeObject(formUri.Url()));
                         component.Properties.Add(propertyDescriptor);
                     }
                     else
                     {
-                        BaseBuilder.BindAttributeCollection(context, component, component, attribute.LocalName, formUri.Url());
+                        BaseBuilder.BindAttributeCollection(context, component, component, attribute.LocalName, new ResolveUrlCodeObject(formUri.Url()));
                     }
                 }
             }

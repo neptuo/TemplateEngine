@@ -11,19 +11,16 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Web.Controls
 {
-    [DefaultProperty("Template")]
-    public class PresentationControlBase : ControlBase
+    public class PresentationControlBase : TemplateControl
     {
         //public ITemplate Template { get; set; }
         public IModelDefinition ModelDefinition { get; private set; }
-        public ITemplate Template { get; set; }
 
-        protected ITemplateContent TemplateContent { get; private set; }
         protected IModelPresenter ModelPresenter { get; private set; }
         protected TemplateModelView ModelView { get; private set; }
 
         public PresentationControlBase(IComponentManager componentManager, PresentationConfiguration configuration)
-            : base(componentManager)
+            : base(componentManager, configuration.TemplateStorage)
         {
             ModelView = new TemplateModelView(ComponentManager, configuration.ViewStorage);
             ModelDefinition = new FilteredModelDefinition(configuration.ModelDefinition, ModelView);
@@ -36,12 +33,7 @@ namespace Neptuo.TemplateEngine.Web.Controls
             TemplateContent = Template.CreateInstance();
             //Init(TemplateContent);
             ModelView.Template = TemplateContent;
-            ModelView.OnInit();
-        }
-
-        protected override void RenderBody(IHtmlWriter writer)
-        {
-            Render(TemplateContent, writer);
+            ModelView.OnInit(base.OnInit);
         }
 
         public void SetData(IModelValueGetter getter)
@@ -59,8 +51,9 @@ namespace Neptuo.TemplateEngine.Web.Controls
     {
         public IModelDefinition ModelDefinition { get; protected set; }
         public IStackStorage<IViewStorage> ViewStorage { get; protected set; }
+        public IStackStorage<TemplateContentStorage> TemplateStorage { get; protected set; }
 
-        public PresentationConfiguration(IModelDefinition modelDefinition, IStackStorage<IViewStorage> viewStorage)
+        public PresentationConfiguration(IModelDefinition modelDefinition, IStackStorage<IViewStorage> viewStorage, IStackStorage<TemplateContentStorage> templateStorage)
         {
             if(modelDefinition == null)
                 throw new ArgumentNullException("modelDefinition");
@@ -68,15 +61,19 @@ namespace Neptuo.TemplateEngine.Web.Controls
             if(viewStorage == null)
                 throw new ArgumentNullException("viewStorage");
 
+            if (templateStorage == null)
+                throw new ArgumentNullException("templateStorage");
+
             ModelDefinition = modelDefinition;
             ViewStorage = viewStorage;
+            TemplateStorage = templateStorage;
         }
     }
 
     public class PresentationConfiguration<T> : PresentationConfiguration
     {
-        public PresentationConfiguration(MetadataReaderService metadataReaderService, IStackStorage<IViewStorage> viewStorage)
-            : base(new ReflectionModelDefinitionBuilder(typeof(T), metadataReaderService).Build(), viewStorage)
+        public PresentationConfiguration(MetadataReaderService metadataReaderService, IStackStorage<IViewStorage> viewStorage, IStackStorage<TemplateContentStorage> templateStorage)
+            : base(new ReflectionModelDefinitionBuilder(typeof(T), metadataReaderService).Build(), viewStorage, templateStorage)
         { }
     }
 
@@ -139,12 +136,12 @@ namespace Neptuo.TemplateEngine.Web.Controls
             //Content = content;
         }
 
-        public void OnInit()
+        public void OnInit(Action innerInit)
         {
-            if (Template != null)
+            if (innerInit != null)
             {
                 ViewStorage.Push(Storage);
-                ComponentManager.Init(Template);
+                innerInit();
                 ViewStorage.Pop();
             }
         }
