@@ -1,9 +1,35 @@
 ﻿<ui:AdminLayout Title="User edit">
     <ui:TemplateContent Name="Body">
 
-        <ui:UserEdit /> 
+        <ui:UserEdit html:Class="form-horizontal">
+            <Template>
+                <ui:FormItem ui:IsPlaceholder="Title">
+                    <ui:TemplatePlaceholder Name="Title" />
+                </ui:FormItem>
 
-        <a href="UserList.aspx" class="btn btn-primary">Back to user list</a>
+                <ui:FormItem l:LabelText="Username">
+                    <ui:TextBox view:ID="Username" html:Class="input-xxlarge" />
+                </ui:FormItem>
+                <ui:FormItem l:LabelText="Password">
+                    <ui:PasswordBox view:ID="Password" html:Class="input-xxlarge" />
+                </ui:FormItem>
 
+                <ui:FormItem>
+                    <ui:HiddenBox view:ID="Key" />
+                    <ui:Button l:Text="Save" Name="Save" ui:Event="Save" />
+
+                    <ui:TemplatePlaceholder Name="Buttons" />
+                </ui:FormItem>
+            </Template>
+            <ui:TemplateContent Name="Buttons">
+                <a form:href="Accounts.User.List" class="btn btn-primary">Back to user list</a>
+            </ui:TemplateContent>
+            <ui:TemplateContent Name="Title">
+                <h1>Create user account</h1>
+            </ui:TemplateContent>
+        </ui:UserEdit>  
+         
     </ui:TemplateContent>
-</ui:AdminLayout> 
+    
+</ui:AdminLayout>
+       

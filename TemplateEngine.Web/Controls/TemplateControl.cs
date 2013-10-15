@@ -27,7 +27,10 @@ namespace Neptuo.TemplateEngine.Web.Controls
         public override void OnInit()
         {
             Init(Content);
-            Storage.AddRange(Content);
+
+            if (Content != null)
+                Storage.AddRange(Content);
+
             Contents.Push(Storage);
 
             base.OnInit();

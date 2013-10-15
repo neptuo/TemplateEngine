@@ -110,6 +110,7 @@
     <Content Include="Global.asax" />
     <Content Include="Views\Accounts\UserEdit.html" />
     <Content Include="Views\Accounts\UserList.html" />
+    <Content Include="Views\Home.html" />
     <Content Include="Views\Shared\AdminLayout.html" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>

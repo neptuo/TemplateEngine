@@ -15,6 +15,11 @@ namespace Neptuo.TemplateEngine.Web.Compilation.Parsers
     {
         public bool Parse(IContentBuilderContext context, IPropertiesCodeObject codeObject, IPropertyInfo propertyInfo, IEnumerable<IXmlNode> content)
         {
+            // If content is only whitespace -> don't bind
+            string contentText = String.Join("", content.Select(n => n.OuterXml));
+            if (String.IsNullOrWhiteSpace(contentText))
+                return true;
+
             IComponentCodeObject templateCodeObject = new TemplateCodeObject(typeof(ContentTemplate));
             codeObject.Properties.Add(new SetPropertyDescriptor(propertyInfo, templateCodeObject));
 
