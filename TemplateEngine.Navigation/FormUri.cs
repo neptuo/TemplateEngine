@@ -41,13 +41,13 @@ namespace Neptuo.TemplateEngine.Navigation
         //    this.url = url;
         //}
 
-        public static implicit operator FormUri(string uri)
+        public static explicit operator FormUri(string uri)
         {
             FormUri formUri;
             if (FormUriService.Instance.TryGet(uri, out formUri))
                 return formUri;
 
-            return null; //TODO: Throw new Expception?
+            throw new ArgumentOutOfRangeException("uri", String.Format("This '{0}' isn't registered form uri.", uri));
         }
     }
 }
