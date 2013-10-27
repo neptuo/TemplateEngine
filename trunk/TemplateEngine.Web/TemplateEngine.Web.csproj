@@ -73,6 +73,15 @@
     <Compile Include="Controls\ITemplate.cs" />
     <Compile Include="Controls\ITemplateContent.cs" />
     <Compile Include="Controls\ITextControl.cs" />
+    <Compile Include="Controls\IValueControl.cs" />
+    <Compile Include="Controls\LinkControl.cs" />
+    <Compile Include="Controls\MessagePanelControl.cs" />
+    <Compile Include="Controls\ParameterControl.cs" />
+    <Compile Include="Controls\PresentationListControlBase.cs" />
+    <Compile Include="DefaultModelPresenter.cs" />
+    <Compile Include="DictionaryViewStorage.cs" />
+    <Compile Include="FilteredModelDefinition.cs" />
+    <Compile Include="Message.cs" />
     <Compile Include="Controls\PasswordBoxControl.cs" />
     <Compile Include="Controls\StringTemplate.cs" />
     <Compile Include="Controls\TemplateContentControl.cs" />
@@ -88,14 +97,19 @@
     <Compile Include="Controls\LiteralControl.cs" />
     <Compile Include="Controls\PresentationControlBase.cs" />
     <Compile Include="LocalizationHelper.cs" />
+    <Compile Include="MessageStorage.cs" />
     <Compile Include="Observers\EventObserver.cs" />
     <Compile Include="Observers\HtmlObserver.cs" />
     <Compile Include="Observers\IsPlaceholderObserver.cs" />
     <Compile Include="Observers\ViewIdentifierObserver.cs" />
+    <Compile Include="PresentationConfiguration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RedirectNavigateTo.cs" />
+    <Compile Include="RedirectNavigator.cs" />
     <Compile Include="RequestComponentManager.cs" />
     <Compile Include="StackStorage.cs" />
     <Compile Include="TemplateContentStorage.cs" />
+    <Compile Include="TemplateModelView.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\TemplateEngine.Navigation\TemplateEngine.Navigation.csproj">

@@ -1,4 +1,8 @@
-﻿<ui:FormItem l:LabelText="Username">
+﻿<ui:FormItem ui:IsPlaceHolder="Title">
+    <ui:TemplatePlaceholder Name="Title" />
+</ui:FormItem>
+
+<ui:FormItem l:LabelText="Username">
     <ui:TextBox view:ID="Username" html:Class="input-xxlarge" />
 </ui:FormItem>
 <ui:FormItem l:LabelText="Password">
@@ -13,7 +17,7 @@
 
 <ui:FormItem>
     <ui:HiddenBox view:ID="Key" />
-    <ui:Button l:Text="Save" Name="Save" ui:Event="Save" />
+    <ui:Button l:Text="Save" ui:Event="UserEdit-Save" />
 
     <ui:TemplatePlaceholder Name="Buttons" />
 </ui:FormItem>

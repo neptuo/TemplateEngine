@@ -1,6 +1,8 @@
 ﻿using Neptuo.Bootstrap;
 using Neptuo.TemplateEngine.Navigation;
 using Neptuo.TemplateEngine.Navigation.Bootstrap;
+using Neptuo.TemplateEngine.Web;
+using Neptuo.Web;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,7 +30,8 @@ namespace Neptuo.TemplateEngine.Backend
 
             dependencyContainer
                 .RegisterInstance<IFormUriService>(formService)
-                .RegisterInstance<IFormUriRegistry>(formService);
+                .RegisterInstance<IFormUriRegistry>(formService)
+                .RegisterType<INavigator, RedirectNavigator>(new PerRequestLifetime());
         }
     }
 }

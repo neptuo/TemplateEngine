@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Neptuo.TemplateEngine.Accounts.Web.Controls
+namespace Neptuo.TemplateEngine.Accounts.Web.Presenters
 {
     [Html("div")]
     public class UserDetailControl : ContentControlBase

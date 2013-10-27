@@ -1,7 +1,9 @@
 ﻿using Microsoft.Practices.Unity;
 using Neptuo;
 using Neptuo.Bootstrap;
+using Neptuo.Data;
 using Neptuo.Data.Commands;
+using Neptuo.Data.Entity;
 using Neptuo.Lifetimes;
 using Neptuo.Lifetimes.Mapping;
 using Neptuo.TemplateEngine.Accounts.Data.Entity;
@@ -52,6 +54,7 @@ namespace Neptuo.TemplateEngine.Backend.UI
             dependencyContainer
                 .RegisterType<HttpContextBase>(new GetterLifetime(() => new HttpContextWrapper(HttpContext.Current)))
                 .RegisterType<DataContext>(new PerRequestLifetime())
+                .RegisterType<IUnitOfWorkFactory, DataContextUnitOfWorkFactory>(new PerRequestLifetime())
                 .RegisterType<IAccountDbContext, DataContext>(new PerRequestLifetime())
                 .RegisterType<ICommandDispatcher, DependencyCommandDispatcher>()
                 .RegisterInstance<IDependencyProvider>(dependencyContainer)

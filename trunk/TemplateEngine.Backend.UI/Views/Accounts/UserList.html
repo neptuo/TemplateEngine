@@ -1,12 +1,45 @@
 ﻿<ui:AdminLayout Title="User list">
     <ui:TemplateContent Name="Body">
         
-        <ui:UserList />
+        <ui:UserList>
+            <Template>
+                <table>
+                    <tr>
+                        <th>ID</th>
+                        <th>Username</th>
+                        <th>Is enabled</th>
+                        <th></th>
+                    </tr>
+                    <ui:TemplatePlaceHolder Name="Content" />
+                </table>
+            </Template>
+            <ItemTemplate>
+                <tr>
+                    <td>
+                        <ui:Literal view:ID="Key" />
+                    </td>
+                    <td>
+                        <ui:Literal view:ID="Username" />
+                    </td>
+                    <td>
+                        <ui:Literal view:ID="IsEnabled" />
+                    </td>
+                    <td>
+                        <ui:Link form:Href="Accounts.User.Edit">
+                            <Parameters>
+                                <ui:Parameter Name="UserID" view:ID="Key" />
+                            </Parameters>
+                            Edit
+                        </ui:Link>
+                    </td>
+                </tr>
+            </ItemTemplate>
+        </ui:UserList>
 
         <hr />
         
-        <ui:Literal l:Text="Hello, World!" /> 
         <a form:href="Accounts.User.Edit" class="btn btn-primary">Create user account</a>
 
     </ui:TemplateContent>    
 </ui:AdminLayout>
+  
