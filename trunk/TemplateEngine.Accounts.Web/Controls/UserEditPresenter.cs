@@ -25,6 +25,8 @@ namespace Neptuo.TemplateEngine.Accounts.Web.Presenters
         protected ICommandDispatcher CommandDispatcher { get; private set; }
         protected MessageStorage MessageStorage { get; private set; }
         protected INavigator Navigator { get; private set; }
+        
+        [PropertySet(true)]
         public int? UserKey { get; set; }
 
         public UserEditPresenter(
