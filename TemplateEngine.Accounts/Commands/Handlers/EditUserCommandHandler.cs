@@ -38,13 +38,17 @@ namespace Neptuo.TemplateEngine.Accounts.Commands.Handlers
                 if (userAccount.Username != command.Username)
                     userAccount.Username = command.Username;
 
-                if (userAccount.Password != command.Password)
+                if (userAccount.Password != command.Password && !String.IsNullOrEmpty(command.Password))
                     userAccount.Password = command.Password;
 
                 if (userAccount.IsEnabled != command.IsEnabled)
                     userAccount.IsEnabled = command.IsEnabled;
 
-                UserAccounts.Insert(userAccount);
+                if (userAccount.Key == 0)
+                    UserAccounts.Insert(userAccount);
+                else
+                    UserAccounts.Update(userAccount);
+
                 transaction.SaveChanges();
             }
         }
