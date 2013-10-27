@@ -60,6 +60,13 @@ namespace Neptuo.TemplateEngine.Web.Observers
                 return;
             }
 
+            IValueControl valueControl = Control as IValueControl;
+            if (valueControl != null)
+            {
+                valueControl.Value = value;
+                return;
+            }
+
             CheckBoxControl checkBoxControl = Control as CheckBoxControl;
             if (checkBoxControl != null)
             {

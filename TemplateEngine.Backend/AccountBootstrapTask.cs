@@ -1,5 +1,6 @@
 ﻿using Neptuo.Bootstrap;
 using Neptuo.Data.Commands.Handlers;
+using Neptuo.Data.Commands.Validation;
 using Neptuo.Lifetimes;
 using Neptuo.TemplateEngine.Accounts;
 using Neptuo.TemplateEngine.Accounts.Commands;
@@ -45,10 +46,11 @@ namespace Neptuo.TemplateEngine.Backend
                 .RegisterType<IUserRoleRepository, UserRoleRepository>(new PerRequestLifetime())
                 .RegisterType<IActivator<UserRole>, UserRoleRepository>(new PerRequestLifetime())
                 .RegisterType<IUserQuery, UserAccountRepository>(new PerRequestLifetime())
-                .RegisterType<ICommandHandler<EditUserCommand>, EditUserCommandHandler>();
+                .RegisterType<ICommandHandler<EditUserCommand>, EditUserCommandHandler>(new PerRequestLifetime())
+                .RegisterType<ICommandValidator<EditUserCommand>, EditUserCommandHandler>(new PerRequestLifetime());
 
             registry
-                .RegisterNamespace(new NamespaceDeclaration("ui", "Neptuo.TemplateEngine.Accounts.Web.Controls, Neptuo.TemplateEngine.Accounts.Web"));
+                .RegisterNamespace(new NamespaceDeclaration("ui", "Neptuo.TemplateEngine.Accounts.Web.Presenters, Neptuo.TemplateEngine.Accounts.Web"));
 
             formRegistry
                 .Register("Accounts.User.List", TemplateRouteParameter.FormatUrl("~/Accounts/UserList"))

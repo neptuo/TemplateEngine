@@ -42,7 +42,7 @@ namespace Neptuo.TemplateEngine.Backend
                 .RegisterInstance<IFileProvider>(fileProvider);
 
             TypeBuilderRegistry registry = new TypeBuilderRegistry(
-                new TypeBuilderRegistryConfiguration(container),
+                new TypeBuilderRegistryConfiguration(container).AddComponentSuffix("presenter"),
                 new LiteralControlBuilder<LiteralControl>(c => c.Text),
                 new GenericContentControlBuilder<GenericContentControl>(c => c.TagName)
             );
@@ -57,7 +57,8 @@ namespace Neptuo.TemplateEngine.Backend
                 .RegisterInstance<IVirtualUrlProvider>(new ServerVirtualPathProvider())
                 .RegisterType<IStackStorage<IViewStorage>, StackStorage<IViewStorage>>(new PerRequestLifetime())
                 .RegisterType<IStackStorage<TemplateContentStorage>, StackStorage<TemplateContentStorage>>(new PerRequestLifetime())
-                .RegisterType<IEventHandler, SimpleEventHandler>(new PerRequestLifetime());
+                .RegisterType<IEventHandler, SimpleEventHandler>(new PerRequestLifetime())
+                .RegisterType<MessageStorage>(new PerRequestLifetime());
         }
 
         protected virtual void SetupViewService(CodeDomViewService viewService, TypeBuilderRegistry registry, IFileProvider fileProvider, IVirtualPathProvider virtualPathProvider)

@@ -45,6 +45,8 @@
     <Compile Include="FormUriService.cs" />
     <Compile Include="Bootstrap\IFormUriRegistry.cs" />
     <Compile Include="IFormUriService.cs" />
+    <Compile Include="INavigateTo.cs" />
+    <Compile Include="INavigator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

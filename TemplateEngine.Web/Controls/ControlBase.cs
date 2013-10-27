@@ -82,9 +82,7 @@ namespace Neptuo.TemplateEngine.Web.Controls
             if (!String.IsNullOrEmpty(TagName))
             {
                 writer.Tag(TagName);
-
-                foreach (KeyValuePair<string, string> attribute in Attributes)
-                    writer.Attribute(attribute.Key, attribute.Value);
+                RenderAttributes(writer);
                 
                 if (IsSelfClosing)
                 {
@@ -100,6 +98,12 @@ namespace Neptuo.TemplateEngine.Web.Controls
             {
                 RenderBody(writer);
             }
+        }
+
+        protected virtual void RenderAttributes(IHtmlWriter writer)
+        {
+            foreach (KeyValuePair<string, string> attribute in Attributes)
+                writer.Attribute(attribute.Key, attribute.Value);
         }
 
         protected virtual void RenderBody(IHtmlWriter writer) { }

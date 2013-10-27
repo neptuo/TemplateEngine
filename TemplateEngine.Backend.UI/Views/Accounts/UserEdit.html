@@ -2,25 +2,6 @@
     <ui:TemplateContent Name="Body">
 
         <ui:UserEdit html:Class="form-horizontal">
-            <Template>
-                <ui:FormItem ui:IsPlaceholder="Title">
-                    <ui:TemplatePlaceholder Name="Title" />
-                </ui:FormItem>
-
-                <ui:FormItem l:LabelText="Username">
-                    <ui:TextBox view:ID="Username" html:Class="input-xxlarge" />
-                </ui:FormItem>
-                <ui:FormItem l:LabelText="Password">
-                    <ui:PasswordBox view:ID="Password" html:Class="input-xxlarge" />
-                </ui:FormItem>
-
-                <ui:FormItem>
-                    <ui:HiddenBox view:ID="Key" />
-                    <ui:Button l:Text="Save" Name="Save" ui:Event="Save" />
-
-                    <ui:TemplatePlaceholder Name="Buttons" />
-                </ui:FormItem>
-            </Template>
             <ui:TemplateContent Name="Buttons">
                 <a form:href="Accounts.User.List" class="btn btn-primary">Back to user list</a>
             </ui:TemplateContent>
@@ -32,4 +13,4 @@
     </ui:TemplateContent>
     
 </ui:AdminLayout>
-       
+             

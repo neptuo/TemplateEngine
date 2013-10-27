@@ -28,8 +28,9 @@ namespace Neptuo.TemplateEngine.Web.Observers
             if(button == null)
                 throw new InvalidOperationException("EventObserver must used on ButtonControl.");
 
-            if(String.IsNullOrEmpty(button.Name))
-                throw new InvalidOperationException("ButtonControl must have a name.");
+            if (String.IsNullOrEmpty(button.Name))
+                button.Name = Event;
+                //throw new InvalidOperationException("ButtonControl must have a name.");
 
             if (HttpContext.Request.Form.AllKeys.Contains(button.Name))
                 EventHandler.Publish(Event, new EventHandlerEventArgs(Event));
