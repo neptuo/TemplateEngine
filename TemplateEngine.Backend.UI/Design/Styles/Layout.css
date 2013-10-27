@@ -1,0 +1,23 @@
+﻿
+.container {
+    width: 940px !important;
+}
+
+.sub-header {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 1030;
+    margin-top: 41px;
+    padding: 4px 0;
+    background: #eeeeee;
+    border-bottom: 1px solid #cccccc;
+}
+
+.sub-header h2 {
+    font-size: 18px;
+    margin: 0;
+    padding: 0;
+    line-height: 26px;
+}

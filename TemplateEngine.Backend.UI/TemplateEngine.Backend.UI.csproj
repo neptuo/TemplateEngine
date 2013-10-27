@@ -107,6 +107,8 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Design\Styles\Common.css" />
+    <Content Include="Design\Styles\Layout.css" />
     <Content Include="Global.asax" />
     <Content Include="Views\Accounts\UserEdit.html" />
     <Content Include="Views\Accounts\UserList.html" />

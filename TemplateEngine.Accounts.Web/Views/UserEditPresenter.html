@@ -1,5 +1,5 @@
 ﻿<ui:FormItem ui:IsPlaceHolder="Title">
-    <ui:TemplatePlaceholder Name="Title" />
+    
 </ui:FormItem>
 
 <ui:FormItem l:LabelText="Username">
@@ -12,12 +12,22 @@
     <ui:PasswordBox view:ID="PasswordAgain" html:Class="input-xxlarge" />
 </ui:FormItem>
 <ui:FormItem>
-    <ui:CheckBox view:ID="IsEnabled" l:LabelText="Is enabled" /> 
+    <ui:CheckBox view:ID="IsEnabled" l:LabelText="Is enabled" />
 </ui:FormItem>
 
-<ui:FormItem>
-    <ui:HiddenBox view:ID="Key" />
-    <ui:Button l:Text="Save" ui:Event="UserEdit-Save" />
+<div class="sub-header">
+    <div class="container">
+        <div class="left">
+            <h2 ui:IsPlaceholder="Title">
+                <ui:TemplatePlaceholder Name="Title" />
+            </h2>
+        </div>
+        <div class="right">
+            <ui:Button l:Text="Save" ui:Event="UserEdit-Save" html:Class="btn btn-small btn-primary" />
+            <ui:TemplatePlaceholder Name="Buttons" />
 
-    <ui:TemplatePlaceholder Name="Buttons" />
-</ui:FormItem>
+            <a form:href="Accounts.User.List" class="btn btn-small">Back to user list</a>
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>
