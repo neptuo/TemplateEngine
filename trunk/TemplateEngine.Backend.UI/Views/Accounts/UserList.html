@@ -1,6 +1,18 @@
 ﻿<ui:AdminLayout Title="User list">
     <ui:TemplateContent Name="Body">
         
+        <div class="sub-header">
+            <div class="container">
+                <div class="left">
+                    <h2>User accounts</h2>
+                </div>
+                <div class="right">
+                    <a form:href="Accounts.User.Edit" class="btn btn-small btn-primary">Create user account</a>
+                </div>
+                <div class="clear"></div>
+            </div>
+        </div>
+
         <ui:UserList>
             <Template>
                 <table>
@@ -35,10 +47,6 @@
                 </tr>
             </ItemTemplate>
         </ui:UserList>
-
-        <hr />
-        
-        <a form:href="Accounts.User.Edit" class="btn btn-primary">Create user account</a>
 
     </ui:TemplateContent>    
 </ui:AdminLayout>
