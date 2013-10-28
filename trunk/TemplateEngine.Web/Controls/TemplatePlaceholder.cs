@@ -10,10 +10,10 @@ namespace Neptuo.TemplateEngine.Web.Controls
 {
     public class TemplatePlaceholder : IControl
     {
-        protected IStackStorage<TemplateContentStorage> Contents { get; private set; }
+        protected TemplateContentStorageStack Contents { get; private set; }
         public string Name { get; set; }
 
-        public TemplatePlaceholder(IStackStorage<TemplateContentStorage> contents)
+        public TemplatePlaceholder(TemplateContentStorageStack contents)
         {
             Contents = contents;
         }

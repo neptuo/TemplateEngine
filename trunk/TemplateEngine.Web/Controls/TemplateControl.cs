@@ -13,15 +13,15 @@ namespace Neptuo.TemplateEngine.Web.Controls
     {
         public ICollection<TemplateContentControl> Content { get; set; }
         public ITemplate Template { get; set; }
-        protected IStackStorage<TemplateContentStorage> Contents { get; private set; }
+        protected TemplateContentStorageStack Contents { get; private set; }
         protected ITemplateContent TemplateContent { get; set; }
         protected TemplateContentStorage Storage { get; private set; }
 
-        public TemplateControl(IComponentManager componentManager, IStackStorage<TemplateContentStorage> contents)
+        public TemplateControl(IComponentManager componentManager, TemplateContentStorageStack contents)
             : base(componentManager)
         {
             Contents = contents;
-            Storage = new TemplateContentStorage();
+            Storage = contents.CreateStorage();
         }
 
         public override void OnInit()

@@ -14,7 +14,7 @@ namespace Neptuo.TemplateEngine.Accounts.Web.Presenters
     {
         protected IUserQuery UserQuery { get; private set; }
 
-        public UserListPresenter(IComponentManager componentManager, IStackStorage<TemplateContentStorage> viewStorage, PresentationConfiguration<UserAccount> configuration, IUserQuery userQuery)
+        public UserListPresenter(IComponentManager componentManager, TemplateContentStorageStack viewStorage, PresentationConfiguration<UserAccount> configuration, IUserQuery userQuery)
             : base(componentManager, viewStorage, configuration)
         {
             UserQuery = userQuery;
