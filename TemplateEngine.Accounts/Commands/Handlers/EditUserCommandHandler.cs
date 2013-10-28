@@ -57,6 +57,9 @@ namespace Neptuo.TemplateEngine.Accounts.Commands.Handlers
         {
             List<IValidationMessage> messages = new List<IValidationMessage>();
 
+            if (String.IsNullOrEmpty(command.Username))
+                messages.Add(new TextValidationMessage(TypeHelper.PropertyName<EditUserCommand, string>(c => c.Username), "Username can't be empty!"));
+
             if (command.Password != command.PasswordAgain)
                 messages.Add(new TextValidationMessage(TypeHelper.PropertyName<EditUserCommand, string>(c => c.PasswordAgain), "Passwords must match!"));
 

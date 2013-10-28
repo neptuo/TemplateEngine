@@ -55,7 +55,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controls\UserDetailControl.cs" />
+    <Compile Include="Controls\UserDetailPresenter.cs" />
     <Compile Include="Controls\UserEditPresenter.cs" />
     <Compile Include="Controls\UserListPresenter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

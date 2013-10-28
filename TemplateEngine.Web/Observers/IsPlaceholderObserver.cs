@@ -12,9 +12,9 @@ namespace Neptuo.TemplateEngine.Web.Observers
     {
         public string IsPlaceholder { get; set; }
 
-        protected IStackStorage<TemplateContentStorage> TemplateStorage { get; private set; }
+        protected TemplateContentStorageStack TemplateStorage { get; private set; }
 
-        public IsPlaceholderObserver(IStackStorage<TemplateContentStorage> templateStorage)
+        public IsPlaceholderObserver(TemplateContentStorageStack templateStorage)
         {
             TemplateStorage = templateStorage;
         }

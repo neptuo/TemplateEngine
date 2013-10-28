@@ -56,7 +56,7 @@ namespace Neptuo.TemplateEngine.Backend
                 .RegisterInstance<IViewService>(viewService)
                 .RegisterInstance<IVirtualUrlProvider>(new ServerVirtualPathProvider())
                 .RegisterType<IStackStorage<IViewStorage>, StackStorage<IViewStorage>>(new PerRequestLifetime())
-                .RegisterType<IStackStorage<TemplateContentStorage>, StackStorage<TemplateContentStorage>>(new PerRequestLifetime())
+                .RegisterType<TemplateContentStorageStack>(new PerRequestLifetime())
                 .RegisterType<IEventHandler, SimpleEventHandler>(new PerRequestLifetime())
                 .RegisterType<MessageStorage>(new PerRequestLifetime());
         }

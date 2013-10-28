@@ -12,9 +12,9 @@ namespace Neptuo.TemplateEngine.Web
     {
         public IModelDefinition ModelDefinition { get; protected set; }
         public IStackStorage<IViewStorage> ViewStorage { get; protected set; }
-        public IStackStorage<TemplateContentStorage> TemplateStorage { get; protected set; }
+        public TemplateContentStorageStack TemplateStorage { get; protected set; }
 
-        public PresentationConfiguration(IModelDefinition modelDefinition, IStackStorage<IViewStorage> viewStorage, IStackStorage<TemplateContentStorage> templateStorage)
+        public PresentationConfiguration(IModelDefinition modelDefinition, IStackStorage<IViewStorage> viewStorage, TemplateContentStorageStack templateStorage)
         {
             if (modelDefinition == null)
                 throw new ArgumentNullException("modelDefinition");
@@ -33,7 +33,7 @@ namespace Neptuo.TemplateEngine.Web
 
     public class PresentationConfiguration<T> : PresentationConfiguration
     {
-        public PresentationConfiguration(MetadataReaderService metadataReaderService, IStackStorage<IViewStorage> viewStorage, IStackStorage<TemplateContentStorage> templateStorage)
+        public PresentationConfiguration(MetadataReaderService metadataReaderService, IStackStorage<IViewStorage> viewStorage, TemplateContentStorageStack templateStorage)
             : base(new ReflectionModelDefinitionBuilder(typeof(T), metadataReaderService).Build(), viewStorage, templateStorage)
         { }
     }

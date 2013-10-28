@@ -62,6 +62,7 @@
     <Compile Include="Controls\ButtonControl.cs" />
     <Compile Include="Controls\CheckBoxControl.cs" />
     <Compile Include="Controls\DefaultTemplateAttribute.cs" />
+    <Compile Include="Controls\DesignData\SupportUiEventAttribute.cs" />
     <Compile Include="Controls\DoctypeControl.cs" />
     <Compile Include="Controls\FileTemplate.cs" />
     <Compile Include="Controls\FormControlBase.cs" />
@@ -110,6 +111,7 @@
     <Compile Include="RequestComponentManager.cs" />
     <Compile Include="StackStorage.cs" />
     <Compile Include="TemplateContentStorage.cs" />
+    <Compile Include="TemplateContentStorageStack.cs" />
     <Compile Include="TemplateModelView.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -17,7 +17,7 @@ namespace Neptuo.TemplateEngine.Web.Controls
         protected List<T> Models { get; private set; }
         //protected List<PresentationControlBase> ItemTemplates { get; private set; }
 
-        public PresentationListControlBase(IComponentManager componentManager, IStackStorage<TemplateContentStorage> viewStorage, PresentationConfiguration configuration)
+        public PresentationListControlBase(IComponentManager componentManager, TemplateContentStorageStack viewStorage, PresentationConfiguration configuration)
             : base(componentManager, viewStorage)
         {
             this.configuration = configuration;

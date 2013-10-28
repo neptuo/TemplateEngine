@@ -6,6 +6,7 @@ using Neptuo.TemplateEngine.Accounts.Data;
 using Neptuo.TemplateEngine.Navigation;
 using Neptuo.TemplateEngine.Web;
 using Neptuo.TemplateEngine.Web.Controls;
+using Neptuo.TemplateEngine.Web.Controls.DesignData;
 using Neptuo.Templates;
 using Neptuo.Validation;
 using System;
@@ -17,6 +18,7 @@ using System.Threading.Tasks;
 namespace Neptuo.TemplateEngine.Accounts.Web.Presenters
 {
     [Html("form")]
+    [SupportUiEvent("UserEdit-Save")]
     public class UserEditPresenter : PresentationControlBase
     {
         protected IUserAccountRepository UserAccounts { get; private set; }

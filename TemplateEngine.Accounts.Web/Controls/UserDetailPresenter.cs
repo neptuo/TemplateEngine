@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 namespace Neptuo.TemplateEngine.Accounts.Web.Presenters
 {
     [Html("div")]
-    public class UserDetailControl : ContentControlBase
+    public class UserDetailPresenter : ContentControlBase
     {
-        public UserDetailControl(IComponentManager componentManager)
+        public UserDetailPresenter(IComponentManager componentManager)
             : base(componentManager)
         { }
     }
