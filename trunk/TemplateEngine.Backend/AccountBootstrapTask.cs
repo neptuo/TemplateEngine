@@ -1,6 +1,5 @@
 ﻿using Neptuo.Bootstrap;
-using Neptuo.Data.Commands.Handlers;
-using Neptuo.Data.Commands.Validation;
+using Neptuo.Commands.Handlers;
 using Neptuo.Lifetimes;
 using Neptuo.TemplateEngine.Accounts;
 using Neptuo.TemplateEngine.Accounts.Commands;
@@ -8,12 +7,15 @@ using Neptuo.TemplateEngine.Accounts.Commands.Handlers;
 using Neptuo.TemplateEngine.Accounts.Data;
 using Neptuo.TemplateEngine.Accounts.Data.Entity;
 using Neptuo.TemplateEngine.Accounts.Queries;
+using Neptuo.TemplateEngine.Accounts.Web.Controllers;
 using Neptuo.TemplateEngine.Backend.Web.Routing;
 using Neptuo.TemplateEngine.Navigation;
 using Neptuo.TemplateEngine.Navigation.Bootstrap;
 using Neptuo.TemplateEngine.Web;
+using Neptuo.TemplateEngine.Web.Controllers;
 using Neptuo.Templates.Compilation;
 using Neptuo.Templates.Compilation.Parsers;
+using Neptuo.Validation;
 using Neptuo.Web;
 using System;
 using System.Collections.Generic;
@@ -29,12 +31,14 @@ namespace Neptuo.TemplateEngine.Backend
         private IDependencyContainer dependencyContainer;
         private TypeBuilderRegistry registry;
         private IFormUriRegistry formRegistry;
+        private IControllerRegistry uiEventRegistry;
 
-        public AccountBootstrapTask(IDependencyContainer dependencyContainer, TypeBuilderRegistry registry, IFormUriRegistry formRegistry)
+        public AccountBootstrapTask(IDependencyContainer dependencyContainer, TypeBuilderRegistry registry, IFormUriRegistry formRegistry, IControllerRegistry uiEventRegistry)
         {
             this.dependencyContainer = dependencyContainer;
             this.registry = registry;
             this.formRegistry = formRegistry;
+            this.uiEventRegistry = uiEventRegistry;
         }
 
         public void Initialize()
@@ -47,7 +51,7 @@ namespace Neptuo.TemplateEngine.Backend
                 .RegisterType<IActivator<UserRole>, UserRoleRepository>(new PerRequestLifetime())
                 .RegisterType<IUserQuery, UserAccountRepository>(new PerRequestLifetime())
                 .RegisterType<ICommandHandler<EditUserCommand>, EditUserCommandHandler>(new PerRequestLifetime())
-                .RegisterType<ICommandValidator<EditUserCommand>, EditUserCommandHandler>(new PerRequestLifetime());
+                .RegisterType<IValidator<EditUserCommand>, EditUserCommandHandler>(new PerRequestLifetime());
 
             registry
                 .RegisterNamespace(new NamespaceDeclaration("ui", "Neptuo.TemplateEngine.Accounts.Web.Presenters, Neptuo.TemplateEngine.Accounts.Web"));
@@ -56,7 +60,8 @@ namespace Neptuo.TemplateEngine.Backend
                 .Register("Accounts.User.List", TemplateRouteParameter.FormatUrl("~/Accounts/UserList"))
                 .Register("Accounts.User.Edit", TemplateRouteParameter.FormatUrl("~/Accounts/UserEdit"));
 
-            FormUri edit = (FormUri)"Accounts.User.Edit";
+            uiEventRegistry
+                .Add("UserEdit-Save", dependencyContainer, typeof(UserEditSaveController));
         }
     }
 }

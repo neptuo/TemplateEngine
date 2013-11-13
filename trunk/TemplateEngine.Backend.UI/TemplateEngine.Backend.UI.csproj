@@ -57,6 +57,10 @@
     <Reference Include="Neptuo.Bootstrap">
       <HintPath>..\References\Neptuo.Bootstrap.dll</HintPath>
     </Reference>
+    <Reference Include="Neptuo.Commands, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\Neptuo.Commands.dll</HintPath>
+    </Reference>
     <Reference Include="Neptuo.Data, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\References\Neptuo.Data.dll</HintPath>
@@ -64,6 +68,16 @@
     <Reference Include="Neptuo.Data.Entity, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\References\Neptuo.Data.Entity.dll</HintPath>
+    </Reference>
+    <Reference Include="Neptuo.PresentationModels.BindingConverters">
+      <HintPath>..\References\Neptuo.PresentationModels.BindingConverters.dll</HintPath>
+    </Reference>
+    <Reference Include="Neptuo.PresentationModels.TypeModels.DataAnnotations">
+      <HintPath>..\References\Neptuo.PresentationModels.TypeModels.DataAnnotations.dll</HintPath>
+    </Reference>
+    <Reference Include="Neptuo.PresentationModels.Validation, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\Neptuo.PresentationModels.Validation.dll</HintPath>
     </Reference>
     <Reference Include="Neptuo.Templates.Components">
       <HintPath>..\References\Neptuo.Templates.Components.dll</HintPath>

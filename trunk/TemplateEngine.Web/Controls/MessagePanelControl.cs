@@ -12,6 +12,7 @@ namespace Neptuo.TemplateEngine.Web.Controls
         protected MessageStorage MessageStorage { get; private set; }
 
         public string Key { get; set; }
+        public string PropertyName { get; set; }
 
         public MessagePanelControl(IComponentManager componentManager, MessageStorage messageStorage)
             : base(componentManager)
@@ -28,24 +29,27 @@ namespace Neptuo.TemplateEngine.Web.Controls
 
             foreach (Message message in MessageStorage.GetList(Key))
             {
-                string cssClass = null;
-                switch (message.Type)
+                if (PropertyName == null || message.PropertyName == PropertyName)
                 {
-                    case MessageType.Error:
-                        cssClass = "message-error";
-                        break;
-                    case MessageType.Info:
-                        cssClass = "message-info";
-                        break;
-                    case MessageType.Warn:
-                        cssClass = "message-warn";
-                        break;
-                }
+                    string cssClass = null;
+                    switch (message.Type)
+                    {
+                        case MessageType.Error:
+                            cssClass = "message-error";
+                            break;
+                        case MessageType.Info:
+                            cssClass = "message-info";
+                            break;
+                        case MessageType.Warn:
+                            cssClass = "message-warn";
+                            break;
+                    }
 
-                writer
-                    .Tag("li")
-                    .Attribute("class", cssClass)
-                    .Content(message.Text);
+                    writer
+                        .Tag("li")
+                        .Attribute("class", cssClass)
+                        .Content(message.Text);
+                }
             }
 
             writer

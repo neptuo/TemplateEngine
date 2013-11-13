@@ -1,6 +1,6 @@
-﻿using Neptuo.Data;
-using Neptuo.Data.Commands.Handlers;
-using Neptuo.Data.Commands.Validation;
+﻿using Neptuo.Commands.Handlers;
+using Neptuo.Commands.Validation;
+using Neptuo.Data;
 using Neptuo.Linq.Expressions;
 using Neptuo.TemplateEngine.Accounts.Data;
 using Neptuo.Validation;
@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Accounts.Commands.Handlers
 {
-    public class EditUserCommandHandler : ICommandHandler<EditUserCommand>, ICommandValidator<EditUserCommand>
+    public class EditUserCommandHandler : ICommandHandler<EditUserCommand>, IValidator<EditUserCommand>
     {
         protected IUserAccountRepository UserAccounts { get; private set; }
         protected IUnitOfWorkFactory TransactionFactory { get; private set; }
@@ -59,6 +59,9 @@ namespace Neptuo.TemplateEngine.Accounts.Commands.Handlers
 
             if (String.IsNullOrEmpty(command.Username))
                 messages.Add(new TextValidationMessage(TypeHelper.PropertyName<EditUserCommand, string>(c => c.Username), "Username can't be empty!"));
+
+            if (String.IsNullOrEmpty(command.Password))
+                messages.Add(new TextValidationMessage(TypeHelper.PropertyName<EditUserCommand, string>(c => c.Password), "Password can't be empty!"));
 
             if (command.Password != command.PasswordAgain)
                 messages.Add(new TextValidationMessage(TypeHelper.PropertyName<EditUserCommand, string>(c => c.PasswordAgain), "Passwords must match!"));

@@ -37,7 +37,7 @@ namespace Neptuo.TemplateEngine.Web.Controls
                 ComponentManager.AddComponent(control, null);
                 Init(control);
                 itemTemplates.Add(control);
-                control.SetData(new ReflectionModelValueProvider(model));
+                control.SetData(configuration.ValueProviderFactory.Create(model));
             }
 
             TemplateContentControl templateContent = new TemplateContentControl(ComponentManager)

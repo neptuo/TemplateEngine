@@ -36,6 +36,9 @@
     <Reference Include="Neptuo.Bootstrap">
       <HintPath>..\References\Neptuo.Bootstrap.dll</HintPath>
     </Reference>
+    <Reference Include="Neptuo.Commands">
+      <HintPath>..\References\Neptuo.Commands.dll</HintPath>
+    </Reference>
     <Reference Include="Neptuo.Data">
       <HintPath>..\References\Neptuo.Data.dll</HintPath>
     </Reference>
@@ -46,9 +49,18 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\References\Neptuo.PresentationModels.dll</HintPath>
     </Reference>
+    <Reference Include="Neptuo.PresentationModels.BindingConverters">
+      <HintPath>..\References\Neptuo.PresentationModels.BindingConverters.dll</HintPath>
+    </Reference>
     <Reference Include="Neptuo.PresentationModels.TypeModels, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\References\Neptuo.PresentationModels.TypeModels.dll</HintPath>
+    </Reference>
+    <Reference Include="Neptuo.PresentationModels.TypeModels.DataAnnotations">
+      <HintPath>..\References\Neptuo.PresentationModels.TypeModels.DataAnnotations.dll</HintPath>
+    </Reference>
+    <Reference Include="Neptuo.PresentationModels.Validation">
+      <HintPath>..\References\Neptuo.PresentationModels.Validation.dll</HintPath>
     </Reference>
     <Reference Include="Neptuo.Templates.Components">
       <HintPath>..\References\Neptuo.Templates.Components.dll</HintPath>
@@ -77,6 +89,7 @@
   <ItemGroup>
     <Compile Include="AccountBootstrapTask.cs" />
     <Compile Include="NavigationBootstrapTask.cs" />
+    <Compile Include="PresentationModelBootstrapTask.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RoutingBootstrapTask.cs" />
     <Compile Include="Web\ErrorHttpHandler.cs" />

@@ -4,18 +4,21 @@
 
 <ui:FormItem l:LabelText="Username">
     <ui:TextBox view:ID="Username" html:Class="input-xxlarge" />
+    <ui:MessagePanel PropertyName="Username" />
 </ui:FormItem>
 <ui:FormItem l:LabelText="Password">
     <ui:PasswordBox view:ID="Password" html:Class="input-xxlarge" />
+    <ui:MessagePanel PropertyName="Password" />
 </ui:FormItem>
 <ui:FormItem l:LabelText="Password again">
     <ui:PasswordBox view:ID="PasswordAgain" html:Class="input-xxlarge" />
+    <ui:MessagePanel PropertyName="PasswordAgain" />
 </ui:FormItem>
 <ui:FormItem>
     <ui:CheckBox view:ID="IsEnabled" l:LabelText="Is enabled" />
+    <ui:MessagePanel PropertyName="IsEnabled" />
 </ui:FormItem>
 
-<!-- Causes problem because of new level of template contents -->
 <ui:SubHeader>
     <ui:TemplateContent Name="Left">
         <h2 ui:IsPlaceholder="Title">
@@ -25,6 +28,7 @@
     <ui:TemplateContent Name="Right">
         <ui:Button l:Text="Save" ui:Event="UserEdit-Save" html:Class="btn btn-small btn-primary" />
         <ui:TemplatePlaceholder Name="Buttons" />
+        <ui:HiddenBox view:ID="Key" />
 
         <a form:href="Accounts.User.List" class="btn btn-small">Back to user list</a>
     </ui:TemplateContent>

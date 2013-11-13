@@ -82,6 +82,15 @@
     <Compile Include="DefaultModelPresenter.cs" />
     <Compile Include="DictionaryViewStorage.cs" />
     <Compile Include="FilteredModelDefinition.cs" />
+    <Compile Include="Controllers\Binders\RequestBindingValueStorage.cs" />
+    <Compile Include="Controllers\DependencyControllerFactory.cs" />
+    <Compile Include="Controllers\Binders\IModelBinder.cs" />
+    <Compile Include="Controllers\IController.cs" />
+    <Compile Include="Controllers\IControllerFactory.cs" />
+    <Compile Include="Controllers\IControllerRegistry.cs" />
+    <Compile Include="Controllers\Binders\ModelBinderExtensions.cs" />
+    <Compile Include="Controllers\Binders\RequestModelBinder.cs" />
+    <Compile Include="Controllers\ControllerRegistryBase.cs" />
     <Compile Include="Message.cs" />
     <Compile Include="Controls\PasswordBoxControl.cs" />
     <Compile Include="Controls\StringTemplate.cs" />
