@@ -13,8 +13,13 @@ namespace Neptuo.TemplateEngine.Web
         public IModelDefinition ModelDefinition { get; protected set; }
         public IStackStorage<IViewStorage> ViewStorage { get; protected set; }
         public TemplateContentStorageStack TemplateStorage { get; protected set; }
+        public IModelValueProviderFactory ValueProviderFactory { get; protected set; }
 
-        public PresentationConfiguration(IModelDefinition modelDefinition, IStackStorage<IViewStorage> viewStorage, TemplateContentStorageStack templateStorage)
+        public PresentationConfiguration(
+            IModelDefinition modelDefinition, 
+            IStackStorage<IViewStorage> viewStorage, 
+            TemplateContentStorageStack templateStorage, 
+            IModelValueProviderFactory valueProviderFactory)
         {
             if (modelDefinition == null)
                 throw new ArgumentNullException("modelDefinition");
@@ -25,16 +30,24 @@ namespace Neptuo.TemplateEngine.Web
             if (templateStorage == null)
                 throw new ArgumentNullException("templateStorage");
 
+            if (valueProviderFactory == null)
+                throw new ArgumentNullException("valueProviderFactory");
+
             ModelDefinition = modelDefinition;
             ViewStorage = viewStorage;
             TemplateStorage = templateStorage;
+            ValueProviderFactory = valueProviderFactory;
         }
     }
 
     public class PresentationConfiguration<T> : PresentationConfiguration
     {
-        public PresentationConfiguration(MetadataReaderService metadataReaderService, IStackStorage<IViewStorage> viewStorage, TemplateContentStorageStack templateStorage)
-            : base(new ReflectionModelDefinitionBuilder(typeof(T), metadataReaderService).Build(), viewStorage, templateStorage)
+        public PresentationConfiguration(
+            IModelDefinitionFactory factory, 
+            IStackStorage<IViewStorage> viewStorage, 
+            TemplateContentStorageStack templateStorage,
+            IModelValueProviderFactory valueProviderFactory)
+            : base(factory.Create<T>(), viewStorage, templateStorage, valueProviderFactory)
         { }
     }
 }

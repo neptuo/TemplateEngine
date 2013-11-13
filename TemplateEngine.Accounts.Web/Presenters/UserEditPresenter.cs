@@ -1,8 +1,8 @@
-﻿using Neptuo.Data.Commands;
-using Neptuo.Data.Commands.Validation;
+﻿using Neptuo.Commands;
 using Neptuo.PresentationModels.TypeModels;
 using Neptuo.TemplateEngine.Accounts.Commands;
 using Neptuo.TemplateEngine.Accounts.Data;
+using Neptuo.TemplateEngine.Accounts.Web.Controllers;
 using Neptuo.TemplateEngine.Navigation;
 using Neptuo.TemplateEngine.Web;
 using Neptuo.TemplateEngine.Web.Controls;
@@ -18,7 +18,7 @@ using System.Threading.Tasks;
 namespace Neptuo.TemplateEngine.Accounts.Web.Presenters
 {
     [Html("form")]
-    [SupportUiEvent("UserEdit-Save")]
+    [SupportUiEvent("UserEdit-Save", typeof(UserEditSaveController))]
     public class UserEditPresenter : PresentationControlBase
     {
         protected IUserAccountRepository UserAccounts { get; private set; }
@@ -27,6 +27,7 @@ namespace Neptuo.TemplateEngine.Accounts.Web.Presenters
         protected ICommandDispatcher CommandDispatcher { get; private set; }
         protected MessageStorage MessageStorage { get; private set; }
         protected INavigator Navigator { get; private set; }
+        protected IModelValueProviderFactory ValueProviderFactory { get; private set; }
         
         [PropertySet(true)]
         public int? UserKey { get; set; }
@@ -47,13 +48,14 @@ namespace Neptuo.TemplateEngine.Accounts.Web.Presenters
             CommandDispatcher = commandDispatcher;
             MessageStorage = messageStorage;
             Navigator = navigator;
+            ValueProviderFactory = configuration.ValueProviderFactory;
             Attributes["method"] = "post";
             Attributes["action"] = "";
         }
 
         public override void OnInit()
         {
-            EventHandler.Subscribe("UserEdit-Save", HandleSave);
+            //EventHandler.Subscribe("UserEdit-Save", HandleSave);
 
             UserAccount userAccount;
             if (UserKey != null)
@@ -66,18 +68,18 @@ namespace Neptuo.TemplateEngine.Accounts.Web.Presenters
             base.OnInit();
             Init(Template);
 
-            ModelPresenter.SetData(new ReflectionModelValueProvider(Model));
+            ModelPresenter.SetData(ValueProviderFactory.Create(Model));
         }
 
         protected void HandleSave(EventHandlerEventArgs e)
         {
-            ModelPresenter.GetData(new ReflectionModelValueProvider(Model));
+            ModelPresenter.GetData(ValueProviderFactory.Create(Model));
 
             IValidationResult validation = CommandDispatcher.Validate(Model);
             if (validation.IsValid)
             {
                 CommandDispatcher.Handle(Model);
-                MessageStorage.Add(null, "User account saved.", MessageType.Info);
+                MessageStorage.Add(null, String.Empty, "User account saved.", MessageType.Info);
                 Navigator.Open((FormUri)"Accounts.User.List");
             }
             else
@@ -89,7 +91,7 @@ namespace Neptuo.TemplateEngine.Accounts.Web.Presenters
         protected void AddModelState(IValidationResult validation)
         {
             foreach (IValidationMessage message in validation.Messages)
-                MessageStorage.Add(null, message.Message, MessageType.Error);
+                MessageStorage.Add(null, message.Key, message.Message, MessageType.Error);
         }
     }
 }

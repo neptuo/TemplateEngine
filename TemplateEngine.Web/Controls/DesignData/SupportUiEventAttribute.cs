@@ -9,11 +9,13 @@ namespace Neptuo.TemplateEngine.Web.Controls.DesignData
     [AttributeUsage(AttributeTargets.Class)]
     public class SupportUiEventAttribute : Attribute
     {
-        public IEnumerable<string> Events { get; set; }
+        public string Event { get; set; }
+        public Type Handler { get; set; }
 
-        public SupportUiEventAttribute(params string[] events)
+        public SupportUiEventAttribute(string eventName, Type handler)
         {
-            Events = events;
+            Event = eventName;
+            Handler = handler;
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using Neptuo.Templates;
+﻿using Neptuo.TemplateEngine.Web.Controllers;
+using Neptuo.Templates;
 using Neptuo.Templates.Compilation;
 using System;
 using System.Collections.Generic;
@@ -19,10 +20,13 @@ namespace Neptuo.TemplateEngine.Backend.Web
         public void ProcessRequest(HttpContext context)
         {
             IViewServiceContext viewServiceContext = GetViewServiceContext();
+            IDependencyContainer container = viewServiceContext.DependencyProvider.CreateChildContainer();
+
+            HandleUiEvents(context, container);
+
             BaseGeneratedView view = (BaseGeneratedView)GetViewService().Process(GetTemplateUrl(), viewServiceContext);
             IComponentManager componentManager = GetComponentManager(viewServiceContext, context);
 
-            IDependencyContainer container = viewServiceContext.DependencyProvider.CreateChildContainer();
             container.RegisterInstance<IComponentManager>(componentManager);
 
             view.Setup(new BaseViewPage(componentManager), componentManager, container);
@@ -30,6 +34,17 @@ namespace Neptuo.TemplateEngine.Backend.Web
             view.Init();
             view.Render(new HtmlTextWriter(context.Response.Output));
             view.Dispose();
+        }
+
+        protected virtual void HandleUiEvents(HttpContext httpContext, IDependencyContainer dependencyContainer)
+        {
+            IControllerRegistry registry = dependencyContainer.Resolve<IControllerRegistry>();
+            foreach (string key in httpContext.Request.Form.AllKeys)
+            {
+                IController handler;
+                if (registry.TryGet(key, out handler))
+                    handler.Execute();
+            }
         }
 
         protected virtual IComponentManager GetComponentManager(IViewServiceContext viewServiceContext, HttpContext httpContext)

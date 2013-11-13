@@ -1,12 +1,13 @@
 ﻿using Microsoft.Practices.Unity;
 using Neptuo;
 using Neptuo.Bootstrap;
+using Neptuo.Commands;
 using Neptuo.Data;
-using Neptuo.Data.Commands;
 using Neptuo.Data.Entity;
 using Neptuo.Lifetimes;
 using Neptuo.Lifetimes.Mapping;
 using Neptuo.TemplateEngine.Accounts.Data.Entity;
+using Neptuo.TemplateEngine.Web.Controllers;
 using Neptuo.Unity;
 using Neptuo.Unity.Lifetimes.Mapping;
 using Neptuo.Unity.Web.Lifetimes.Mapping;
@@ -38,6 +39,7 @@ namespace Neptuo.TemplateEngine.Backend.UI
             bootstrapper.Register<ViewServiceBootstrapTask>();
             bootstrapper.Register<RoutingBootstrapTask>();
             bootstrapper.Register<NavigationBootstrapTask>();
+            bootstrapper.Register<PresentationModelBootstrapTask>();
 
             bootstrapper.Register<AccountBootstrapTask>();
         }
@@ -57,6 +59,7 @@ namespace Neptuo.TemplateEngine.Backend.UI
                 .RegisterType<IUnitOfWorkFactory, DataContextUnitOfWorkFactory>(new PerRequestLifetime())
                 .RegisterType<IAccountDbContext, DataContext>(new PerRequestLifetime())
                 .RegisterType<ICommandDispatcher, DependencyCommandDispatcher>()
+                .RegisterType<IControllerRegistry>(new SingletonLifetime(new ControllerRegistryBase()))
                 .RegisterInstance<IDependencyProvider>(dependencyContainer)
                 .RegisterInstance<IDependencyContainer>(dependencyContainer);
 

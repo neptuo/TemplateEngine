@@ -1,6 +1,7 @@
 ﻿using Neptuo.Bootstrap;
 using Neptuo.TemplateEngine.Backend.Web;
 using Neptuo.TemplateEngine.Web;
+using Neptuo.TemplateEngine.Web.Compilation;
 using Neptuo.TemplateEngine.Web.Compilation.CodeGenerators;
 using Neptuo.TemplateEngine.Web.Compilation.CodeObjects;
 using Neptuo.TemplateEngine.Web.Compilation.Parsers;
@@ -13,6 +14,7 @@ using Neptuo.Templates.Compilation.Parsers;
 using Neptuo.Web;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -63,11 +65,18 @@ namespace Neptuo.TemplateEngine.Backend
 
         protected virtual void SetupViewService(CodeDomViewService viewService, TypeBuilderRegistry registry, IFileProvider fileProvider, IVirtualPathProvider virtualPathProvider)
         {
+            string tempDirectory = @"C:\Temp\NeptuoTemplateEngine";
+            string currentDirectory = DateTime.Now.Ticks.ToString();
+
+            string currentTemp = Path.Combine(tempDirectory, currentDirectory);
+            if (!Directory.Exists(currentTemp))
+                Directory.CreateDirectory(currentTemp);
+
             viewService.ParserService.ContentParsers.Add(new XmlContentParser(registry));
             viewService.ParserService.DefaultValueParser = new PlainValueParser();
             viewService.ParserService.ValueParsers.Add(new MarkupExtensionValueParser(registry));
             viewService.NamingService = new HashNamingService(fileProvider);
-            viewService.TempDirectory = @"C:\Temp\NeptuoTemplateEngine";
+            viewService.TempDirectory = currentTemp;
             //viewService.DebugMode = true;
             viewService.BinDirectories.Add(virtualPathProvider.MapPath("~/Bin"));
             SetupCodeDomGenerator(viewService.CodeDomGenerator);

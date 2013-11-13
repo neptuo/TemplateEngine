@@ -34,7 +34,11 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\References\Neptuo.dll</HintPath>
     </Reference>
-    <Reference Include="Neptuo.Data">
+    <Reference Include="Neptuo.Commands">
+      <HintPath>..\References\Neptuo.Commands.dll</HintPath>
+    </Reference>
+    <Reference Include="Neptuo.Data, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\References\Neptuo.Data.dll</HintPath>
     </Reference>
     <Reference Include="Neptuo.PresentationModels">
@@ -55,9 +59,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controls\UserDetailPresenter.cs" />
-    <Compile Include="Controls\UserEditPresenter.cs" />
-    <Compile Include="Controls\UserListPresenter.cs" />
+    <Compile Include="Presenters\UserDetailPresenter.cs" />
+    <Compile Include="Presenters\UserEditPresenter.cs" />
+    <Compile Include="Presenters\UserListPresenter.cs" />
+    <Compile Include="Controllers\UserEditSaveController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -10,7 +10,7 @@ namespace Neptuo.TemplateEngine.Web
     {
         private Dictionary<string, List<Message>> storage = new Dictionary<string, List<Message>>();
 
-        public void Add(string key, string text, MessageType type = MessageType.Error)
+        public void Add(string key, string propertyName, string text, MessageType type = MessageType.Error)
         {
             if(key == null)
                 key = String.Empty;
@@ -22,7 +22,7 @@ namespace Neptuo.TemplateEngine.Web
                 storage.Add(key, list);
             }
 
-            list.Add(new Message(text, type));
+            list.Add(new Message(propertyName, text, type));
         }
 
         public IEnumerable<Message> GetList(string key)
