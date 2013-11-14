@@ -40,6 +40,7 @@ namespace Neptuo.TemplateEngine.Backend.UI
             bootstrapper.Register<RoutingBootstrapTask>();
             bootstrapper.Register<NavigationBootstrapTask>();
             bootstrapper.Register<PresentationModelBootstrapTask>();
+            bootstrapper.Register<BindingBootstrapTask>();
 
             bootstrapper.Register<AccountBootstrapTask>();
         }

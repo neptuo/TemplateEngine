@@ -3,19 +3,19 @@
 </ui:FormItem>
 
 <ui:FormItem l:LabelText="Username">
-    <ui:TextBox view:ID="Username" html:Class="input-xxlarge" />
+    <ui:TextBox Name="Username" Text="{Binding Username}" html:Class="input-xxlarge" />
     <ui:MessagePanel PropertyName="Username" />
 </ui:FormItem>
 <ui:FormItem l:LabelText="Password">
-    <ui:PasswordBox view:ID="Password" html:Class="input-xxlarge" />
+    <ui:PasswordBox Name="Password" Text="{Binding Password}" html:Class="input-xxlarge" />
     <ui:MessagePanel PropertyName="Password" />
 </ui:FormItem>
 <ui:FormItem l:LabelText="Password again">
-    <ui:PasswordBox view:ID="PasswordAgain" html:Class="input-xxlarge" />
+    <ui:PasswordBox Name="PasswordAgain" Text="{Binding PasswordAgain}" html:class="input-xxlarge" />
     <ui:MessagePanel PropertyName="PasswordAgain" />
 </ui:FormItem>
 <ui:FormItem>
-    <ui:CheckBox view:ID="IsEnabled" l:LabelText="Is enabled" />
+    <ui:CheckBox Name="IsEnabled" IsChecked="{Binding IsEnabled}" l:LabelText="Is enabled" />
     <ui:MessagePanel PropertyName="IsEnabled" />
 </ui:FormItem>
 

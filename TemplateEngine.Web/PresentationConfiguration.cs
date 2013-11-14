@@ -14,12 +14,14 @@ namespace Neptuo.TemplateEngine.Web
         public IStackStorage<IViewStorage> ViewStorage { get; protected set; }
         public TemplateContentStorageStack TemplateStorage { get; protected set; }
         public IModelValueProviderFactory ValueProviderFactory { get; protected set; }
+        public DataContextStorage DataContext { get; protected set; }
 
         public PresentationConfiguration(
             IModelDefinition modelDefinition, 
             IStackStorage<IViewStorage> viewStorage, 
             TemplateContentStorageStack templateStorage, 
-            IModelValueProviderFactory valueProviderFactory)
+            IModelValueProviderFactory valueProviderFactory,
+            DataContextStorage dataContext)
         {
             if (modelDefinition == null)
                 throw new ArgumentNullException("modelDefinition");
@@ -33,10 +35,14 @@ namespace Neptuo.TemplateEngine.Web
             if (valueProviderFactory == null)
                 throw new ArgumentNullException("valueProviderFactory");
 
+            if (dataContext == null)
+                throw new ArgumentNullException("dataContext");
+
             ModelDefinition = modelDefinition;
             ViewStorage = viewStorage;
             TemplateStorage = templateStorage;
             ValueProviderFactory = valueProviderFactory;
+            DataContext = dataContext;
         }
     }
 
@@ -46,8 +52,9 @@ namespace Neptuo.TemplateEngine.Web
             IModelDefinitionFactory factory, 
             IStackStorage<IViewStorage> viewStorage, 
             TemplateContentStorageStack templateStorage,
-            IModelValueProviderFactory valueProviderFactory)
-            : base(factory.Create<T>(), viewStorage, templateStorage, valueProviderFactory)
+            IModelValueProviderFactory valueProviderFactory,
+            DataContextStorage dataContext)
+            : base(factory.Create<T>(), viewStorage, templateStorage, valueProviderFactory, dataContext)
         { }
     }
 }

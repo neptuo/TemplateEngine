@@ -1,4 +1,5 @@
-﻿using Neptuo.PresentationModels.TypeModels;
+﻿using Neptuo.PresentationModels;
+using Neptuo.PresentationModels.TypeModels;
 using Neptuo.Templates;
 using Neptuo.Templates.Controls;
 using System;
@@ -15,6 +16,7 @@ namespace Neptuo.TemplateEngine.Web.Controls
 
         public ITemplate ItemTemplate { get; set; }
         protected List<T> Models { get; private set; }
+        protected DataContextStorage DataContext { get; private set; }
         //protected List<PresentationControlBase> ItemTemplates { get; private set; }
 
         public PresentationListControlBase(IComponentManager componentManager, TemplateContentStorageStack viewStorage, PresentationConfiguration configuration)
@@ -22,6 +24,7 @@ namespace Neptuo.TemplateEngine.Web.Controls
         {
             this.configuration = configuration;
             Models = new List<T>();
+            DataContext = configuration.DataContext;
             //ItemTemplates = new List<PresentationControlBase>();
         }
 
@@ -32,12 +35,17 @@ namespace Neptuo.TemplateEngine.Web.Controls
             List<object> itemTemplates = new List<object>();
             foreach (T model in Models)
             {
+                IModelValueProvider provider = configuration.ValueProviderFactory.Create(model);
+                DataContext.Push(provider);
+
                 PresentationControlBase control = new PresentationControlBase(ComponentManager, configuration);
                 control.Template = ItemTemplate;
                 ComponentManager.AddComponent(control, null);
                 Init(control);
                 itemTemplates.Add(control);
-                control.SetData(configuration.ValueProviderFactory.Create(model));
+                control.SetData(provider);
+
+                DataContext.Pop();
             }
 
             TemplateContentControl templateContent = new TemplateContentControl(ComponentManager)

@@ -88,6 +88,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AccountBootstrapTask.cs" />
+    <Compile Include="BindingBootstrapTask.cs" />
     <Compile Include="NavigationBootstrapTask.cs" />
     <Compile Include="PresentationModelBootstrapTask.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
