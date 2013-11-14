@@ -27,18 +27,18 @@
             <ItemTemplate>
                 <tr>
                     <td>
-                        <ui:Literal view:ID="Key" />
+                        <ui:Literal Text="{Binding Key}" />
                     </td>
                     <td>
-                        <ui:Literal view:ID="Username" />
+                        <ui:Literal text="{Binding Username}" />
                     </td>
                     <td>
-                        <ui:Literal view:ID="IsEnabled" />
+                        <ui:Literal text="{Binding IsEnabled}" />
                     </td>
                     <td>
                         <ui:Link form:Href="Accounts.User.Edit">
                             <Parameters>
-                                <ui:Parameter Name="UserKey" view:ID="Key" />
+                                <ui:parameter name="UserKey" value="{Binding Key}" />
                             </Parameters>
                             Edit
                         </ui:Link>

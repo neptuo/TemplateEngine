@@ -85,6 +85,8 @@ namespace Neptuo.TemplateEngine.Backend
         protected virtual void SetupTypeBuilderRegistry(TypeBuilderRegistry registry)
         {
             registry.RegisterNamespace(new NamespaceDeclaration("ui", "Neptuo.TemplateEngine.Web.Controls, Neptuo.TemplateEngine.Web"));
+            registry.RegisterNamespace(new NamespaceDeclaration("", "Neptuo.TemplateEngine.Web.Extensions, Neptuo.TemplateEngine.Web"));
+
             registry.RegisterComponentBuilder("ui", "AdminLayout", new UserTemplateComponentBuilderFactory("~/Views/Shared/AdminLayout.html"));
             registry.RegisterComponentBuilder("ui", "SubHeader", new UserTemplateComponentBuilderFactory("~/Views/Shared/SubHeader.html"));
             registry.RegisterObserverBuilder("ui", "Event", new DefaultTypeObserverBuilderFactory(typeof(EventObserver), ObserverBuilderScope.PerElement));

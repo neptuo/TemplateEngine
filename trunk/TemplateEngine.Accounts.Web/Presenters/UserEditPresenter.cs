@@ -1,4 +1,5 @@
 ﻿using Neptuo.Commands;
+using Neptuo.PresentationModels;
 using Neptuo.PresentationModels.TypeModels;
 using Neptuo.TemplateEngine.Accounts.Commands;
 using Neptuo.TemplateEngine.Accounts.Data;
@@ -28,6 +29,7 @@ namespace Neptuo.TemplateEngine.Accounts.Web.Presenters
         protected MessageStorage MessageStorage { get; private set; }
         protected INavigator Navigator { get; private set; }
         protected IModelValueProviderFactory ValueProviderFactory { get; private set; }
+        protected DataContextStorage DataContext { get; private set; }
         
         [PropertySet(true)]
         public int? UserKey { get; set; }
@@ -49,6 +51,7 @@ namespace Neptuo.TemplateEngine.Accounts.Web.Presenters
             MessageStorage = messageStorage;
             Navigator = navigator;
             ValueProviderFactory = configuration.ValueProviderFactory;
+            DataContext = configuration.DataContext;
             Attributes["method"] = "post";
             Attributes["action"] = "";
         }
@@ -65,10 +68,14 @@ namespace Neptuo.TemplateEngine.Accounts.Web.Presenters
 
             Model = new EditUserCommand(userAccount);
 
+            IModelValueProvider provider = ValueProviderFactory.Create(Model);
+            DataContext.Push(provider);
+
             base.OnInit();
             Init(Template);
 
-            ModelPresenter.SetData(ValueProviderFactory.Create(Model));
+            ModelPresenter.SetData(provider);
+            DataContext.Pop();
         }
 
         protected void HandleSave(EventHandlerEventArgs e)
@@ -86,6 +93,16 @@ namespace Neptuo.TemplateEngine.Accounts.Web.Presenters
             {
                 AddModelState(validation);
             }
+        }
+
+        public override void Render(IHtmlWriter writer)
+        {
+            IModelValueProvider provider = ValueProviderFactory.Create(Model);
+            DataContext.Push(provider);
+
+            base.Render(writer);
+
+            DataContext.Pop();
         }
 
         protected void AddModelState(IValidationResult validation)
