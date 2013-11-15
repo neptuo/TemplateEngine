@@ -11,7 +11,7 @@ namespace Neptuo.TemplateEngine.Web.Compilation.Parsers
     {
         public IObserverRegistration CreateBuilder(string prefix, string attributeName)
         {
-            return new LocalizationObserverRegistration();
+            return new FuncObserverBuilderRegistration(() => new LocalizationObserverBuilder(), ObserverBuilderScope.PerElement);
         }
     }
 }

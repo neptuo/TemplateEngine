@@ -61,12 +61,11 @@
     <Compile Include="CodeObjects\TemplateCodeObject.cs" />
     <Compile Include="Parsers\FormUriObserverBuider.cs" />
     <Compile Include="Parsers\FormUriObserverBuiderFactory.cs" />
-    <Compile Include="Parsers\FormUriObserverBuiderRegistration.cs" />
+    <Compile Include="Parsers\FuncObserverBuilderRegistration.cs" />
     <Compile Include="Parsers\GenericContentControlBuilder.cs" />
     <Compile Include="Parsers\LiteralControlBuilder.cs" />
     <Compile Include="Parsers\LocalizationObserverBuilder.cs" />
     <Compile Include="Parsers\LocalizationObserverBuilderFactory.cs" />
-    <Compile Include="Parsers\LocalizationObserverRegistration.cs" />
     <Compile Include="Parsers\TemplatePropertyBuilder.cs" />
     <Compile Include="Parsers\UserTemplateComponentBuilder.cs" />
     <Compile Include="Parsers\UserTemplateComponentBuilderFactory.cs" />

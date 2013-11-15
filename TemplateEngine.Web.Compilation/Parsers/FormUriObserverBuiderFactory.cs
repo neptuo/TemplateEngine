@@ -12,7 +12,7 @@ namespace Neptuo.TemplateEngine.Web.Compilation.Parsers
     {
         public IObserverRegistration CreateBuilder(string prefix, string attributeName)
         {
-            return new FormUriObserverBuiderRegistration();
+            return new FuncObserverBuilderRegistration(() => new FormUriObserverBuider(FormUriService.Instance), ObserverBuilderScope.PerElement);
         }
     }
 }

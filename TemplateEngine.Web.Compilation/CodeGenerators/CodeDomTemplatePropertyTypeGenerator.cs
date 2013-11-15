@@ -33,7 +33,8 @@ namespace Neptuo.TemplateEngine.Web.Compilation.CodeGenerators
             try
             {
                 //Type type = propertyInfo.DeclaringType;
-                Stream fileStream = type.Assembly.GetManifestResourceStream(String.Format(ViewPathFormat, type.Assembly.GetName().Name, type.Name));
+                string fileName = String.Format(ViewPathFormat, type.Assembly.GetName().Name, String.Join(".", type.Name, propertyInfo.Name));
+                Stream fileStream = type.Assembly.GetManifestResourceStream(fileName);
                 if (fileStream == null)
                     return null;
 
