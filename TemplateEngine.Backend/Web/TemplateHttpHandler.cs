@@ -38,9 +38,9 @@ namespace Neptuo.TemplateEngine.Backend.Web
             return ViewServiceContext;
         }
 
-        protected override IComponentManager GetComponentManager(IViewServiceContext viewServiceContext, HttpContext httpContext)
-        {
-            return new RequestComponentManager(httpContext.Request.Form);
-        }
+        //protected override IComponentManager GetComponentManager(IViewServiceContext viewServiceContext, HttpContext httpContext)
+        //{
+        //    return new RequestComponentManager(httpContext.Request.Form);
+        //}
     }
 }
