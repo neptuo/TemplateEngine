@@ -24,7 +24,6 @@ namespace Neptuo.TemplateEngine.Accounts.Web.Presenters
     {
         protected IUserAccountRepository UserAccounts { get; private set; }
         protected EditUserCommand Model { get; private set; }
-        protected IEventHandler EventHandler { get; private set; }
         protected ICommandDispatcher CommandDispatcher { get; private set; }
         protected MessageStorage MessageStorage { get; private set; }
         protected INavigator Navigator { get; private set; }
@@ -37,7 +36,6 @@ namespace Neptuo.TemplateEngine.Accounts.Web.Presenters
         public UserEditPresenter(
             IComponentManager componentManager, 
             PresentationConfiguration<EditUserCommand> configuration, 
-            IEventHandler eventHandler, 
             ICommandDispatcher commandDispatcher, 
             IUserAccountRepository userAccounts,
             MessageStorage messageStorage,
@@ -46,7 +44,6 @@ namespace Neptuo.TemplateEngine.Accounts.Web.Presenters
             : base(componentManager, configuration)
         {
             UserAccounts = userAccounts;
-            EventHandler = eventHandler;
             CommandDispatcher = commandDispatcher;
             MessageStorage = messageStorage;
             Navigator = navigator;
@@ -58,8 +55,6 @@ namespace Neptuo.TemplateEngine.Accounts.Web.Presenters
 
         public override void OnInit()
         {
-            //EventHandler.Subscribe("UserEdit-Save", HandleSave);
-
             UserAccount userAccount;
             if (UserKey != null)
                 userAccount = UserAccounts.Get(UserKey.Value) ?? UserAccounts.Create();
@@ -78,7 +73,8 @@ namespace Neptuo.TemplateEngine.Accounts.Web.Presenters
             DataContext.Pop();
         }
 
-        protected void HandleSave(EventHandlerEventArgs e)
+        [Obsolete]
+        protected void HandleSave()
         {
             ModelPresenter.GetData(ValueProviderFactory.Create(Model));
 
