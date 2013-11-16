@@ -110,7 +110,6 @@
     <Compile Include="Controls\Templates\ViewTemplateBase.cs" />
     <Compile Include="Controls\Templates\ViewTemplateContent.cs" />
     <Compile Include="GeneratedViewBase.cs" />
-    <Compile Include="IEventHandler.cs" />
     <Compile Include="IStackStorage.cs" />
     <Compile Include="Controls\LiteralControl.cs" />
     <Compile Include="Controls\Presentation\PresentationControlBase.cs" />
