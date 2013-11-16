@@ -87,10 +87,10 @@ namespace Neptuo.TemplateEngine.Backend.UI
 
         //}
 
-        //protected void Application_Error(object sender, EventArgs e)
-        //{
+        protected void Application_Error(object sender, EventArgs e)
+        {
 
-        //}
+        }
 
         //protected void Session_End(object sender, EventArgs e)
         //{

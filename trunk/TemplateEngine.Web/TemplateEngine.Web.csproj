@@ -57,29 +57,29 @@
   <ItemGroup>
     <Compile Include="BindingManagerBase.cs" />
     <Compile Include="Controls\ContentControlBase.cs" />
-    <Compile Include="Controls\ContentTemplate.cs" />
-    <Compile Include="Controls\ContentTemplateContent.cs" />
+    <Compile Include="Controls\Templates\ContentTemplate.cs" />
+    <Compile Include="Controls\Templates\ContentTemplateContent.cs" />
     <Compile Include="Controls\ControlBase.cs" />
-    <Compile Include="Controls\ButtonControl.cs" />
-    <Compile Include="Controls\CheckBoxControl.cs" />
-    <Compile Include="Controls\DefaultTemplateAttribute.cs" />
+    <Compile Include="Controls\Forms\ButtonControl.cs" />
+    <Compile Include="Controls\Forms\CheckBoxControl.cs" />
+    <Compile Include="Controls\Templates\DefaultTemplateAttribute.cs" />
     <Compile Include="Controls\DesignData\SupportUiEventAttribute.cs" />
     <Compile Include="Controls\DoctypeControl.cs" />
-    <Compile Include="Controls\FileTemplate.cs" />
-    <Compile Include="Controls\FormControlBase.cs" />
-    <Compile Include="Controls\FormInputControlBase.cs" />
+    <Compile Include="Controls\Templates\FileTemplate.cs" />
+    <Compile Include="Controls\Forms\FormControlBase.cs" />
+    <Compile Include="Controls\Forms\FormInputControlBase.cs" />
     <Compile Include="Controls\FormItemControl.cs" />
     <Compile Include="Controls\GenericContentControl.cs" />
-    <Compile Include="Controls\HiddenBoxControl.cs" />
-    <Compile Include="Controls\IFormControl.cs" />
-    <Compile Include="Controls\ITemplate.cs" />
-    <Compile Include="Controls\ITemplateContent.cs" />
+    <Compile Include="Controls\Forms\HiddenBoxControl.cs" />
+    <Compile Include="Controls\Forms\IFormControl.cs" />
+    <Compile Include="Controls\Templates\ITemplate.cs" />
+    <Compile Include="Controls\Templates\ITemplateContent.cs" />
     <Compile Include="Controls\ITextControl.cs" />
     <Compile Include="Controls\IValueControl.cs" />
     <Compile Include="Controls\LinkControl.cs" />
     <Compile Include="Controls\MessagePanelControl.cs" />
     <Compile Include="Controls\ParameterControl.cs" />
-    <Compile Include="Controls\PresentationListControlBase.cs" />
+    <Compile Include="Controls\Presentation\PresentationListControlBase.cs" />
     <Compile Include="DataContextStorage.cs" />
     <Compile Include="DefaultModelPresenter.cs" />
     <Compile Include="DictionaryViewStorage.cs" />
@@ -87,6 +87,7 @@
     <Compile Include="IValueConverter.cs" />
     <Compile Include="IValueConverterService.cs" />
     <Compile Include="Converters\NullToBoolValueConverter.cs" />
+    <Compile Include="IViewStorage.cs" />
     <Compile Include="ValueConverterService.cs" />
     <Compile Include="FilteredModelDefinition.cs" />
     <Compile Include="Controllers\Binders\RequestBindingValueStorage.cs" />
@@ -100,20 +101,19 @@
     <Compile Include="Controllers\ControllerRegistryBase.cs" />
     <Compile Include="IBindingManager.cs" />
     <Compile Include="Message.cs" />
-    <Compile Include="Controls\PasswordBoxControl.cs" />
-    <Compile Include="Controls\StringTemplate.cs" />
-    <Compile Include="Controls\TemplateContentControl.cs" />
-    <Compile Include="Controls\TemplateControl.cs" />
-    <Compile Include="Controls\TemplatePlaceholder.cs" />
-    <Compile Include="Controls\TextBoxControl.cs" />
-    <Compile Include="Controls\ViewTemplateBase.cs" />
-    <Compile Include="Controls\ViewTemplateContent.cs" />
+    <Compile Include="Controls\Forms\PasswordBoxControl.cs" />
+    <Compile Include="Controls\Templates\StringTemplate.cs" />
+    <Compile Include="Controls\Templates\TemplateContentControl.cs" />
+    <Compile Include="Controls\Templates\TemplateControl.cs" />
+    <Compile Include="Controls\Templates\TemplatePlaceholder.cs" />
+    <Compile Include="Controls\Forms\TextBoxControl.cs" />
+    <Compile Include="Controls\Templates\ViewTemplateBase.cs" />
+    <Compile Include="Controls\Templates\ViewTemplateContent.cs" />
     <Compile Include="GeneratedViewBase.cs" />
     <Compile Include="IEventHandler.cs" />
     <Compile Include="IStackStorage.cs" />
-    <Compile Include="IViewStorage.cs" />
     <Compile Include="Controls\LiteralControl.cs" />
-    <Compile Include="Controls\PresentationControlBase.cs" />
+    <Compile Include="Controls\Presentation\PresentationControlBase.cs" />
     <Compile Include="LocalizationHelper.cs" />
     <Compile Include="MessageStorage.cs" />
     <Compile Include="Observers\EventObserver.cs" />
@@ -125,7 +125,6 @@
     <Compile Include="PropertySetAttribute.cs" />
     <Compile Include="RedirectNavigateTo.cs" />
     <Compile Include="RedirectNavigator.cs" />
-    <Compile Include="RequestComponentManager.cs" />
     <Compile Include="StackStorage.cs" />
     <Compile Include="TemplateContentStorage.cs" />
     <Compile Include="TemplateContentStorageStack.cs" />
@@ -140,6 +139,7 @@
   <ItemGroup>
     <Content Include="Views\FormItemControl.Template.html" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
