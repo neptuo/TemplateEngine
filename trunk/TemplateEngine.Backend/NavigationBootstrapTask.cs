@@ -2,6 +2,7 @@
 using Neptuo.TemplateEngine.Navigation;
 using Neptuo.TemplateEngine.Navigation.Bootstrap;
 using Neptuo.TemplateEngine.Web;
+using Neptuo.TemplateEngine.Web.Navigation;
 using Neptuo.Web;
 using System;
 using System.Collections.Generic;
