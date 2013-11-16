@@ -28,7 +28,7 @@
     <ui:TemplateContent Name="Right">
         <ui:Button l:Text="Save" ui:Event="UserEdit-Save" html:Class="btn btn-small btn-primary" />
         <ui:TemplatePlaceholder Name="Buttons" />
-        <ui:HiddenBox view:ID="Key" />
+        <ui:HiddenBox Name="Key" Text="{Binding Key}" />
 
         <a form:href="Accounts.User.List" class="btn btn-small">Back to user list</a>
     </ui:TemplateContent>

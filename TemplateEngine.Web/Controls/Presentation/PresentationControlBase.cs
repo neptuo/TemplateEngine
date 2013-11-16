@@ -11,38 +11,35 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Web.Controls
 {
-    public class PresentationControlBase : TemplateControl
+    public abstract class PresentationControlBase : TemplateControl
     {
-        public IModelDefinition ModelDefinition { get; private set; }
-
-        protected IModelPresenter ModelPresenter { get; private set; }
-        protected TemplateModelView ModelView { get; private set; }
+        protected DataContextStorage DataContext { get; private set; }
+        protected IModelValueGetter ModelGetter { get; private set; }
 
         public PresentationControlBase(IComponentManager componentManager, PresentationConfiguration configuration)
             : base(componentManager, configuration.TemplateStorage)
         {
-            ModelView = new TemplateModelView(ComponentManager, configuration.ViewStorage);
-            ModelDefinition = new FilteredModelDefinition(configuration.ModelDefinition, ModelView);
-            ModelPresenter = new DefaultModelPresenter(ModelDefinition, ModelView);
+            DataContext = configuration.DataContext;
         }
+
+        protected abstract IModelValueGetter CreateModel();
 
         public override void OnInit()
         {
             Init(Template);
             TemplateContent = Template.CreateInstance();
-            //Init(TemplateContent);
-            ModelView.Template = TemplateContent;
-            ModelView.OnInit(base.OnInit);
+
+            ModelGetter = CreateModel();
+            DataContext.Push(ModelGetter);
+            base.OnInit();
+            DataContext.Pop();
         }
 
-        public void SetData(IModelValueGetter getter)
+        public override void Render(IHtmlWriter writer)
         {
-            ModelPresenter.SetData(getter);
-        }
-
-        public void GetData(IModelValueSetter setter)
-        {
-            ModelPresenter.GetData(setter);
+            DataContext.Push(ModelGetter);
+            base.Render(writer);
+            DataContext.Pop();
         }
     }
 }
