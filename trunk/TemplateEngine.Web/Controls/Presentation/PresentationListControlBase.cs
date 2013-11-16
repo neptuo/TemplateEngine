@@ -38,12 +38,13 @@ namespace Neptuo.TemplateEngine.Web.Controls
                 IModelValueProvider provider = configuration.ValueProviderFactory.Create(model);
                 DataContext.Push(provider);
 
-                PresentationControlBase control = new PresentationControlBase(ComponentManager, configuration);
+                //PresentationControlBase control = new PresentationControlBase(ComponentManager, configuration);
+                TemplateControl control = new TemplateControl(ComponentManager, configuration.TemplateStorage);
                 control.Template = ItemTemplate;
                 ComponentManager.AddComponent(control, null);
                 Init(control);
                 itemTemplates.Add(control);
-                control.SetData(provider);
+                //control.SetData(provider);
 
                 DataContext.Pop();
             }
