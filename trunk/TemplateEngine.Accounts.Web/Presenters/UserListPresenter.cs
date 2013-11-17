@@ -14,25 +14,15 @@ namespace Neptuo.TemplateEngine.Accounts.Web.Presenters
     {
         protected IUserQuery UserQuery { get; private set; }
 
-        public UserListPresenter(IComponentManager componentManager, TemplateContentStorageStack viewStorage, PresentationConfiguration<UserAccount> configuration, IUserQuery userQuery)
-            : base(componentManager, viewStorage, configuration)
+        public UserListPresenter(IComponentManager componentManager, PresentationConfiguration<UserAccount> configuration, IUserQuery userQuery)
+            : base(componentManager, configuration)
         {
             UserQuery = userQuery;
         }
 
-        public override void OnInit()
+        protected override IEnumerable<UserAccount> LoadData()
         {
-            Models.AddRange(UserQuery.Get());
-            base.OnInit();
+            return UserQuery.Get();
         }
-
-        //protected override void RenderBody(IHtmlWriter writer)
-        //{
-        //    writer.Tag("ul");
-        //    foreach (UserAccount user in UserQuery.Get())
-        //        writer.Tag("li").Content(user.Username).CloseTag();
-
-        //    writer.CloseTag();
-        //}
     }
 }

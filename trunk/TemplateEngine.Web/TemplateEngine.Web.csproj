@@ -84,6 +84,7 @@
     <Compile Include="DefaultModelPresenter.cs" />
     <Compile Include="DictionaryViewStorage.cs" />
     <Compile Include="Extensions\BindingExtension.cs" />
+    <Compile Include="Extensions\CurrentUrlExtension.cs" />
     <Compile Include="IValueConverter.cs" />
     <Compile Include="IValueConverterService.cs" />
     <Compile Include="Converters\NullToBoolValueConverter.cs" />

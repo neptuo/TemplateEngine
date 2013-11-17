@@ -3,6 +3,7 @@ using Neptuo.PresentationModels;
 using Neptuo.PresentationModels.TypeModels;
 using Neptuo.TemplateEngine.Accounts.Commands;
 using Neptuo.TemplateEngine.Accounts.Data;
+using Neptuo.TemplateEngine.Accounts.Queries;
 using Neptuo.TemplateEngine.Accounts.Web.Controllers;
 using Neptuo.TemplateEngine.Navigation;
 using Neptuo.TemplateEngine.Web;
@@ -18,11 +19,10 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Accounts.Web.Presenters
 {
-    [Html("form")]
-    [SupportUiEvent("UserEdit-Save", typeof(UserEditSaveController))]
+    [SupportUiEvent("User/Save", typeof(UserEditSaveController))]
     public class UserEditPresenter : PresentationControlBase
     {
-        protected IUserAccountRepository UserAccounts { get; private set; }
+        protected IUserQuery UserQuery { get; private set; }
         protected INavigator Navigator { get; private set; }
         protected IModelValueProviderFactory ValueProviderFactory { get; private set; }
         
@@ -31,26 +31,22 @@ namespace Neptuo.TemplateEngine.Accounts.Web.Presenters
 
         public UserEditPresenter(
             IComponentManager componentManager, 
-            PresentationConfiguration<EditUserCommand> configuration, 
-            IUserAccountRepository userAccounts,
+            PresentationConfiguration<EditUserCommand> configuration,
+            IUserQuery userQuery,
             INavigator navigator
         )
             : base(componentManager, configuration)
         {
-            UserAccounts = userAccounts;
+            UserQuery = userQuery;
             Navigator = navigator;
             ValueProviderFactory = configuration.ValueProviderFactory;
-            Attributes["method"] = "post";
-            Attributes["action"] = "";
         }
 
         protected override IModelValueGetter CreateModel()
         {
-            UserAccount userAccount;
+            UserAccount userAccount = null;
             if (UserKey != null)
-                userAccount = UserAccounts.Get(UserKey.Value) ?? UserAccounts.Create();
-            else
-                userAccount = UserAccounts.Create();
+                userAccount = UserQuery.Get(UserKey.Value);
 
             EditUserCommand model = new EditUserCommand(userAccount);
             return ValueProviderFactory.Create(model);

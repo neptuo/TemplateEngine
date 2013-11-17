@@ -84,10 +84,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\UserListPresenter.Template.html" />
+    <EmbeddedResource Include="Views\UserListPresenter.Template.view" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Views\UserEditPresenter.Template.html" />
+    <EmbeddedResource Include="Views\UserEditPresenter.Template.view" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

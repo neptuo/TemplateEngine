@@ -15,36 +15,33 @@ namespace Neptuo.TemplateEngine.Web.Controls
         private PresentationConfiguration configuration;
 
         public ITemplate ItemTemplate { get; set; }
-        protected List<T> Models { get; private set; }
         protected DataContextStorage DataContext { get; private set; }
-        //protected List<PresentationControlBase> ItemTemplates { get; private set; }
 
-        public PresentationListControlBase(IComponentManager componentManager, TemplateContentStorageStack viewStorage, PresentationConfiguration configuration)
-            : base(componentManager, viewStorage)
+        public PresentationListControlBase(IComponentManager componentManager, PresentationConfiguration configuration)
+            : base(componentManager, configuration.TemplateStorage)
         {
             this.configuration = configuration;
-            Models = new List<T>();
             DataContext = configuration.DataContext;
-            //ItemTemplates = new List<PresentationControlBase>();
         }
+
+        protected abstract IEnumerable<T> LoadData();
 
         public override void OnInit()
         {
             Init(ItemTemplate);
 
             List<object> itemTemplates = new List<object>();
-            foreach (T model in Models)
+            IEnumerable<T> models = LoadData();
+            foreach (T model in models)
             {
                 IModelValueProvider provider = configuration.ValueProviderFactory.Create(model);
                 DataContext.Push(provider);
 
-                //PresentationControlBase control = new PresentationControlBase(ComponentManager, configuration);
                 TemplateControl control = new TemplateControl(ComponentManager, configuration.TemplateStorage);
                 control.Template = ItemTemplate;
                 ComponentManager.AddComponent(control, null);
                 Init(control);
                 itemTemplates.Add(control);
-                //control.SetData(provider);
 
                 DataContext.Pop();
             }
@@ -60,11 +57,5 @@ namespace Neptuo.TemplateEngine.Web.Controls
 
             base.OnInit();
         }
-
-        //public override void Render(IHtmlWriter writer)
-        //{
-        //    foreach (PresentationControlBase control in ItemTemplates)
-        //        Render(control, writer);
-        //}
     }
 }

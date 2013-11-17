@@ -19,9 +19,12 @@ namespace Neptuo.TemplateEngine.Accounts.Commands
 
         public EditUserCommand(UserAccount userAccount)
         {
-            Key = userAccount.Key;
-            Username = userAccount.Username;
-            IsEnabled = userAccount.IsEnabled;
+            if (userAccount != null)
+            {
+                Key = userAccount.Key;
+                Username = userAccount.Username;
+                IsEnabled = userAccount.IsEnabled;
+            }
         }
     }
 }

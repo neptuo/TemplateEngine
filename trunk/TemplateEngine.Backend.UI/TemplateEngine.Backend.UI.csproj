@@ -124,11 +124,11 @@
     <Content Include="Design\Styles\Common.css" />
     <Content Include="Design\Styles\Layout.css" />
     <Content Include="Global.asax" />
-    <Content Include="Views\Accounts\UserEdit.html" />
-    <Content Include="Views\Accounts\UserList.html" />
+    <None Include="Views\Accounts\UserEdit.view" />
+    <None Include="Views\Accounts\UserList.view" />
     <Content Include="Views\Home.html" />
-    <Content Include="Views\Shared\AdminLayout.html" />
-    <Content Include="Views\Shared\SubHeader.html" />
+    <None Include="Views\Shared\AdminLayout.view" />
+    <None Include="Views\Shared\SubHeader.view" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -140,7 +140,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Accounts\Login.html" />
+    <None Include="Views\Accounts\Login.view" />
     <Content Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

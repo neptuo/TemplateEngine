@@ -1,0 +1,3 @@
+﻿<strong>
+    <ui:literal text="Hello [from login]!!" />
+</strong>
