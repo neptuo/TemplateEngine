@@ -56,6 +56,7 @@ namespace Neptuo.TemplateEngine.Backend.UI
 
             dependencyContainer
                 .RegisterType<HttpContextBase>(new GetterLifetime(() => new HttpContextWrapper(HttpContext.Current)))
+                .RegisterType<HttpRequestBase>(new GetterLifetime(() => new HttpRequestWrapper(HttpContext.Current.Request)))
                 .RegisterType<DataContext>(new PerRequestLifetime())
                 .RegisterType<IUnitOfWorkFactory, DataContextUnitOfWorkFactory>(new PerRequestLifetime())
                 .RegisterType<IAccountDbContext, DataContext>(new PerRequestLifetime())

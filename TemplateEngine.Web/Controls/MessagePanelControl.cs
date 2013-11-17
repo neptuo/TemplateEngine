@@ -22,38 +22,42 @@ namespace Neptuo.TemplateEngine.Web.Controls
 
         public override void Render(IHtmlWriter writer)
         {
-            writer
-                .Tag("ul");
-
-            RenderAttributes(writer);
-
-            foreach (Message message in MessageStorage.GetList(Key))
+            IEnumerable<Message> messages = MessageStorage.GetList(Key);
+            if (messages.Any())
             {
-                if (PropertyName == null || message.PropertyName == PropertyName)
+                writer
+                    .Tag("ul");
+
+                RenderAttributes(writer);
+
+                foreach (Message message in messages)
                 {
-                    string cssClass = null;
-                    switch (message.Type)
+                    if (PropertyName == null || message.PropertyName == PropertyName)
                     {
-                        case MessageType.Error:
-                            cssClass = "message-error";
-                            break;
-                        case MessageType.Info:
-                            cssClass = "message-info";
-                            break;
-                        case MessageType.Warn:
-                            cssClass = "message-warn";
-                            break;
+                        string cssClass = null;
+                        switch (message.Type)
+                        {
+                            case MessageType.Error:
+                                cssClass = "message-error";
+                                break;
+                            case MessageType.Info:
+                                cssClass = "message-info";
+                                break;
+                            case MessageType.Warn:
+                                cssClass = "message-warn";
+                                break;
+                        }
+
+                        writer
+                            .Tag("li")
+                            .Attribute("class", cssClass)
+                            .Content(message.Text);
                     }
-
-                    writer
-                        .Tag("li")
-                        .Attribute("class", cssClass)
-                        .Content(message.Text);
                 }
-            }
 
-            writer
-                .CloseFullTag();
+                writer
+                    .CloseFullTag();
+            }
         }
     }
 }

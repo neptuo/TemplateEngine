@@ -31,14 +31,14 @@ namespace Neptuo.TemplateEngine.Backend
         private IDependencyContainer dependencyContainer;
         private TypeBuilderRegistry registry;
         private IFormUriRegistry formRegistry;
-        private IControllerRegistry uiEventRegistry;
+        private IControllerRegistry controllerRegistry;
 
-        public AccountBootstrapTask(IDependencyContainer dependencyContainer, TypeBuilderRegistry registry, IFormUriRegistry formRegistry, IControllerRegistry uiEventRegistry)
+        public AccountBootstrapTask(IDependencyContainer dependencyContainer, TypeBuilderRegistry registry, IFormUriRegistry formRegistry, IControllerRegistry controllerRegistry)
         {
             this.dependencyContainer = dependencyContainer;
             this.registry = registry;
             this.formRegistry = formRegistry;
-            this.uiEventRegistry = uiEventRegistry;
+            this.controllerRegistry = controllerRegistry;
         }
 
         public void Initialize()
@@ -60,8 +60,8 @@ namespace Neptuo.TemplateEngine.Backend
                 .Register("Accounts.User.List", TemplateRouteParameter.FormatUrl("~/Accounts/UserList"))
                 .Register("Accounts.User.Edit", TemplateRouteParameter.FormatUrl("~/Accounts/UserEdit"));
 
-            uiEventRegistry
-                .Add("UserEdit-Save", dependencyContainer, typeof(UserEditSaveController));
+            controllerRegistry
+                .Add("User/Save", dependencyContainer, typeof(UserEditSaveController));
         }
     }
 }

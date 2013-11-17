@@ -1,0 +1,33 @@
+﻿<form method="post" action="{CurrentUrl}" html:Class="form-horizontal">
+    <ui:FormItem l:LabelText="Username">
+        <ui:TextBox Name="Username" Text="{Binding Username}" html:Class="input-xxlarge" />
+        <ui:MessagePanel PropertyName="Username" />
+    </ui:FormItem>
+    <ui:FormItem l:LabelText="Password">
+        <ui:PasswordBox Name="Password" Text="{Binding Password}" html:Class="input-xxlarge" />
+        <ui:MessagePanel PropertyName="Password" />
+    </ui:FormItem>
+    <ui:FormItem l:LabelText="Password again">
+        <ui:PasswordBox Name="PasswordAgain" Text="{Binding PasswordAgain}" html:class="input-xxlarge" />
+        <ui:MessagePanel PropertyName="PasswordAgain" />
+    </ui:FormItem>
+    <ui:FormItem>
+        <ui:CheckBox Name="IsEnabled" IsChecked="{Binding IsEnabled}" l:LabelText="Is enabled" />
+        <ui:MessagePanel PropertyName="IsEnabled" />
+    </ui:FormItem>
+
+    <ui:SubHeader>
+        <ui:TemplateContent Name="Left">
+            <h2 ui:IsPlaceholder="Title">
+                <ui:TemplatePlaceholder Name="Title" />
+            </h2>
+        </ui:TemplateContent>
+        <ui:TemplateContent Name="Right">
+            <ui:Button l:Text="Save" ui:Event="User/Save" html:Class="btn btn-small btn-primary" />
+            <ui:TemplatePlaceholder Name="Buttons" />
+            <ui:HiddenBox Name="Key" Text="{Binding Key}" />
+
+            <a form:href="Accounts.User.List" class="btn btn-small">Back to user list</a>
+        </ui:TemplateContent>
+    </ui:SubHeader>
+</form>

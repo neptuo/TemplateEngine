@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Neptuo.Data;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,8 @@ namespace Neptuo.TemplateEngine.Accounts.Queries
 {
     public interface IUserQuery
     {
+        UserAccount Get(Key key);
         IEnumerable<UserAccount> Get();
+        IEnumerable<UserAccount> Get(int pageIndex, int pageSize);
     }
 }

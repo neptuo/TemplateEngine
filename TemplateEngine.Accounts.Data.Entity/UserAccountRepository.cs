@@ -1,4 +1,5 @@
-﻿using Neptuo.Data.Entity;
+﻿using Neptuo.Data;
+using Neptuo.Data.Entity;
 using Neptuo.TemplateEngine.Accounts.Queries;
 using System;
 using System.Collections.Generic;
@@ -23,6 +24,19 @@ namespace Neptuo.TemplateEngine.Accounts.Data.Entity
         public IEnumerable<UserAccount> Get()
         {
             return DbContext.UserAccounts;
+        }
+
+        public IEnumerable<UserAccount> Get(int pageIndex, int pageSize)
+        {
+            return DbContext.UserAccounts.Skip(pageIndex * pageSize).Take(pageSize);
+        }
+
+        public UserAccount Get(Key key)
+        {
+            if (key == null)
+                throw new ArgumentNullException("key");
+
+            return DbContext.UserAccounts.FirstOrDefault(u => u.Key == key.ID);
         }
     }
 }

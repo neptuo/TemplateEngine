@@ -12,7 +12,7 @@ namespace Neptuo.TemplateEngine.Backend.Web.Routing
     public class TemplateRouteParameter : IRouteParameter
     {
         public const string TemplateUrlSuffix = ".aspx";
-        public const string TemplatePathSuffix = ".html";
+        public const string TemplatePathSuffix = ".view";
 
         private HttpContextBase httpContext;
 
