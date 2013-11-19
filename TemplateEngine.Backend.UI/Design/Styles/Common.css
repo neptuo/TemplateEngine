@@ -9,3 +9,30 @@
 .right {
     float: right;
 }
+
+
+a {
+    color: #3b73af;
+}
+
+.nav-pills>li.active>a {
+    color: #333333;
+    font-weight: bold;
+    background: white;
+}
+
+.nav-pills>li>a:hover, .nav-pills>li.active>a:hover {
+    border-radius: 0;
+    background: #E6E6E6;
+}
+.nav-pills > li.active > a:hover {
+    color: #333333;
+}
+
+.btn {
+    padding: 4px 8px;
+}
+
+.nav > li > a {
+    padding: 4px 8px;
+}

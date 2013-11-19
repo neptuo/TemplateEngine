@@ -10,7 +10,7 @@ namespace Neptuo.TemplateEngine.Accounts.Data.Entity
 {
     public interface IAccountDbContext : IDbContext
     {
-        DbSet<UserAccountEntity> UserAccounts { get; }
-        DbSet<UserRoleEntity> UserRoles { get; }
+        IDbSet<UserAccountEntity> UserAccounts { get; }
+        IDbSet<UserRoleEntity> UserRoles { get; }
     }
 }
