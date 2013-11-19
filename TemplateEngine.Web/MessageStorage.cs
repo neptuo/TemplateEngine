@@ -10,19 +10,19 @@ namespace Neptuo.TemplateEngine.Web
     {
         private Dictionary<string, List<Message>> storage = new Dictionary<string, List<Message>>();
 
-        public void Add(string key, string propertyName, string text, MessageType type = MessageType.Error)
+        public void Add(string group, string key, string text, MessageType type = MessageType.Error)
         {
-            if(key == null)
-                key = String.Empty;
+            if(group == null)
+                group = String.Empty;
 
             List<Message> list;
-            if (!storage.TryGetValue(key, out list))
+            if (!storage.TryGetValue(group, out list))
             {
                 list = new List<Message>();
-                storage.Add(key, list);
+                storage.Add(group, list);
             }
 
-            list.Add(new Message(propertyName, text, type));
+            list.Add(new Message(key, text, type));
         }
 
         public IEnumerable<Message> GetList(string key)
