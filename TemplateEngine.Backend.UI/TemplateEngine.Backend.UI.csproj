@@ -126,7 +126,7 @@
     <Content Include="Global.asax" />
     <None Include="Views\Accounts\UserEdit.view" />
     <None Include="Views\Accounts\UserList.view" />
-    <Content Include="Views\Home.html" />
+    <None Include="Views\Home.view" />
     <None Include="Views\Shared\AdminLayout.view" />
     <None Include="Views\Shared\SubHeader.view" />
     <Content Include="Web.config">
