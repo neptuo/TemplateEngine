@@ -1,19 +1,19 @@
 ﻿<form method="post" action="{CurrentUrl}" html:Class="form-horizontal">
     <ui:FormItem l:LabelText="Username">
         <ui:TextBox Name="Username" Text="{Binding Username}" html:Class="input-xxlarge" />
-        <ui:MessagePanel PropertyName="Username" />
+        <ui:MessagePanel Key="Username" />
     </ui:FormItem>
     <ui:FormItem l:LabelText="Password">
         <ui:PasswordBox Name="Password" Text="{Binding Password}" html:Class="input-xxlarge" />
-        <ui:MessagePanel PropertyName="Password" />
+        <ui:MessagePanel Key="Password" />
     </ui:FormItem>
     <ui:FormItem l:LabelText="Password again">
         <ui:PasswordBox Name="PasswordAgain" Text="{Binding PasswordAgain}" html:class="input-xxlarge" />
-        <ui:MessagePanel PropertyName="PasswordAgain" />
+        <ui:MessagePanel Key="PasswordAgain" />
     </ui:FormItem>
     <ui:FormItem>
         <ui:CheckBox Name="IsEnabled" IsChecked="{Binding IsEnabled}" l:LabelText="Is enabled" />
-        <ui:MessagePanel PropertyName="IsEnabled" />
+        <ui:MessagePanel Key="IsEnabled" />
     </ui:FormItem>
 
     <ui:SubHeader>

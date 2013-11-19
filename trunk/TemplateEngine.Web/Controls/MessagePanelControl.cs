@@ -11,8 +11,8 @@ namespace Neptuo.TemplateEngine.Web.Controls
     {
         protected MessageStorage MessageStorage { get; private set; }
 
+        public string Group { get; set; }
         public string Key { get; set; }
-        public string PropertyName { get; set; }
 
         public MessagePanelControl(IComponentManager componentManager, MessageStorage messageStorage)
             : base(componentManager)
@@ -22,7 +22,7 @@ namespace Neptuo.TemplateEngine.Web.Controls
 
         public override void Render(IHtmlWriter writer)
         {
-            IEnumerable<Message> messages = MessageStorage.GetList(Key);
+            IEnumerable<Message> messages = MessageStorage.GetList(Group);
             if (messages.Any())
             {
                 writer
@@ -32,7 +32,7 @@ namespace Neptuo.TemplateEngine.Web.Controls
 
                 foreach (Message message in messages)
                 {
-                    if (PropertyName == null || message.PropertyName == PropertyName)
+                    if (Key == null || message.Key == Key)
                     {
                         string cssClass = null;
                         switch (message.Type)
