@@ -1,28 +1,50 @@
 ﻿<ui:AdminLayout Title="User list">
+    <ui:TemplateContent Name="SideNav">
+        <ul class="nav nav-pills nav-stacked">
+            <li>
+                <a form:href="Accounts.User.Edit">Create user account</a>
+            </li>
+            <li>
+                <a href="#" class="disabled">User roles</a>
+            </li>
+            <li>
+                <a href="#" class="disabled">Permissions</a>
+            </li>
+        </ul>
+    </ui:TemplateContent>
     <ui:TemplateContent Name="Body">
         
         <ui:SubHeader>
             <ui:TemplateContent Name="Left">
-                <h2>User accounts</h2>
+                <h2>
+                    <span class="glyphicon glyphicon-user"></span>
+                    User accounts
+                </h2>
             </ui:TemplateContent>
             <ui:TemplateContent Name="Right">
-                <a form:href="Accounts.User.Edit" class="btn btn-small btn-primary">Create user account</a>
-                <a href="#" class="btn btn-small disabled">User roles</a>
-                <a href="#" class="btn btn-small disabled">Permissions</a>
+                <a form:href="Accounts.User.Edit" class="btn btn-primary">Create user account</a>
+                <a href="#" class="btn disabled">User roles</a>
+                <a href="#" class="btn disabled">Permissions</a>
             </ui:TemplateContent>
         </ui:SubHeader>
 
         <ui:UserList>
             <Template>
-                <table>
-                    <tr>
-                        <th>ID</th>
-                        <th>Username</th>
-                        <th>Is enabled</th>
-                        <th></th>
-                    </tr>
-                    <ui:TemplatePlaceHolder Name="Content" />
-                </table>
+                <div style="padding: 10px;">
+                    <table class="table table-condensed table-hover">
+                        <thead>
+                            <tr>
+                                <th>#ID</th>
+                                <th>Username</th>
+                                <th>Is enabled</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <ui:TemplatePlaceholder Name="Content" />
+                        </tbody>
+                    </table>
+                </div>
             </Template>
             <ItemTemplate>
                 <tr>

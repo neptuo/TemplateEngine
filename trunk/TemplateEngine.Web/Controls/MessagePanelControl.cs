@@ -51,7 +51,8 @@ namespace Neptuo.TemplateEngine.Web.Controls
                         writer
                             .Tag("li")
                             .Attribute("class", cssClass)
-                            .Content(message.Text);
+                            .Content(message.Text)
+                            .CloseFullTag();
                     }
                 }
 

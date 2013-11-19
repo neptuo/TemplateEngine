@@ -10,7 +10,7 @@ namespace TemplateEngine.Data.Entity
 {
     public class DataContext : DbContext, IAccountDbContext
     {
-        public DbSet<UserAccountEntity> UserAccounts { get; set; }
-        public DbSet<UserRoleEntity> UserRoles { get; set; }
+        public IDbSet<UserAccountEntity> UserAccounts { get; set; }
+        public IDbSet<UserRoleEntity> UserRoles { get; set; }
     }
 }

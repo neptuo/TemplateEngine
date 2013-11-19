@@ -2,7 +2,10 @@
     <ui:TemplateContent Name="Body">
 
         <ui:UserEdit html:Class="form-horizontal">
-            <ui:TemplateContent name="Title" content="Create new user account" />
+            <ui:TemplateContent Name="Title">
+                <i class="icon-user"></i>
+                Create new user account
+            </ui:TemplateContent>
         </ui:UserEdit>
          
     </ui:TemplateContent>
