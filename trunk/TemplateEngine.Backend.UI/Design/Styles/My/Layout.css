@@ -20,7 +20,7 @@
     padding: 9px 10px;
 }
 
-.navbar-main a:hover, .navbar-main .nav > li > a:hover {
+.navbar-main a:hover, .navbar-main a:focus, .navbar-main .nav > li > a:hover, .navbar-main .nav > li > a:focus {
     background: #296CA3;
 }
 
@@ -78,4 +78,13 @@ footer.navbar {
 
 .body {
     display: table-cell;
+    vertical-align: top;
 }
+
+
+.sub-panel {
+    padding: 8px 15px 8px 10px;
+    background: #F5F5F5;
+    border-bottom: 1px solid #cccccc;
+}
+

@@ -59,7 +59,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Presenters\UserDataSource.cs" />
+    <Compile Include="DataSources\UserDataSource.cs" />
     <Compile Include="Presenters\UserDetailPresenter.cs" />
     <Compile Include="Presenters\UserEditPresenter.cs" />
     <Compile Include="Presenters\UserListPresenter.cs" />

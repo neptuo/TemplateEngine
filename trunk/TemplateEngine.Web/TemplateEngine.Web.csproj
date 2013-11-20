@@ -87,6 +87,7 @@
     <Compile Include="DictionaryViewStorage.cs" />
     <Compile Include="Extensions\BindingExtension.cs" />
     <Compile Include="Extensions\CurrentUrlExtension.cs" />
+    <Compile Include="Extensions\RequestExtension.cs" />
     <Compile Include="IDataSource.cs" />
     <Compile Include="IValueConverter.cs" />
     <Compile Include="IValueConverterService.cs" />

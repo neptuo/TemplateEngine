@@ -9,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Neptuo.TemplateEngine.Accounts.Web.Presenters
+namespace Neptuo.TemplateEngine.Accounts.Web.DataSources
 {
     public class UserDataSource : IDataSource
     {
@@ -17,6 +17,7 @@ namespace Neptuo.TemplateEngine.Accounts.Web.Presenters
         private IModelValueProviderFactory factory;
 
         public int? Key { get; set; }
+        public string Username { get; set; }
 
         public UserDataSource(IUserQuery userQuery, IModelValueProviderFactory factory)
         {
@@ -26,7 +27,11 @@ namespace Neptuo.TemplateEngine.Accounts.Web.Presenters
 
         public IEnumerable GetData()
         {
-            foreach (UserAccount userAccount in userQuery.Get())
+            IEnumerable<UserAccount> data = userQuery.Get();
+            if(!String.IsNullOrEmpty(Username))
+                data = data.Where(u => u.Username.StartsWith(Username));
+
+            foreach (UserAccount userAccount in data)
                 yield return factory.Create(userAccount);
         }
 
