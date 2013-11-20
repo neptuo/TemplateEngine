@@ -10,12 +10,29 @@ namespace Neptuo.TemplateEngine.Web.Controls
 {
     public class DoctypeControl : IControl
     {
+        public DoctypeType Type { get; set; }
+
         public void OnInit()
         { }
 
         public void Render(IHtmlWriter writer)
         {
-            writer.Content("<!DOCTYPE html>");
+            switch (Type)
+            {
+                case DoctypeType.Xhtml:
+                    writer.Content("<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">");
+                    break;
+                case DoctypeType.Html5:
+                default:
+                    writer.Content("<!DOCTYPE html>");
+                    break;
+            }
         }
+    }
+
+    public enum DoctypeType
+    {
+        Html5,
+        Xhtml
     }
 }

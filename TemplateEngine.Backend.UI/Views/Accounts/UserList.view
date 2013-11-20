@@ -1,9 +1,12 @@
-﻿<ui:AdminLayout Title="User list">
+﻿<ui:AdminLayout Title="User Accounts">
     <ui:TemplateContent Name="SideNav">
         <ul class="nav nav-pills nav-stacked">
             <!--<li>
                 <a form:href="Accounts.User.Edit">Create user account</a>
             </li>-->
+            <li class="active">
+                <a form:href="Accounts.User.List">User accounts</a>
+            </li>
             <li>
                 <a href="#" class="disabled">User roles</a>
             </li>

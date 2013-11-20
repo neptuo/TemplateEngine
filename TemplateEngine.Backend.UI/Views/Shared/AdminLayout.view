@@ -1,12 +1,17 @@
-﻿<ui:Doctype />
+﻿<ui:Doctype Type="Xhtml" />
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8" />
-    <title><ui:TemplatePlaceholder Name="Title" /> - TemplateEngine</title>
-
-    <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="../../Design/Styles/Common.css" rel="stylesheet" />
-    <link href="../../Design/Styles/Layout.css" rel="stylesheet" />
+    <title>
+        <ui:TemplatePlaceholder Name="Title" />
+        <ui:Literal Text=" - " ui:IsPlaceholder="Title" />
+        TemplateEngine
+    </title>
+    
+    <link href="../../Design/Styles/bootstrap.css" rel="stylesheet" />
+    <link href="../../Design/Styles/bootstrap-theme.css" rel="stylesheet" />
+    <link href="../../Design/Styles/My/Common.css" rel="stylesheet" />
+    <link href="../../Design/Styles/My/Layout.css" rel="stylesheet" />
 
     <ui:TemplatePlaceholder Name="Head" />
 
@@ -53,5 +58,7 @@
         <div class="clear"></div>
     </footer>
 
+    <script src="../../Design/Scripts/jquery-1.9.1.js"></script>
+    <script src="../../Design/Scripts/bootstrap.js"></script>
 </body>
 </html>
