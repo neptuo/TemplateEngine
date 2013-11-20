@@ -29,13 +29,16 @@
             </ui:TemplateContent>
         </ui:SubHeader>
 
-        <ui:UserList>
+        <ui:ListView> 
+            <Source>
+                <ui:UserDataSource Key="1" />
+            </Source>
             <Template>
                 <div style="padding: 10px;">
                     <table class="table table-condensed table-hover">
                         <thead>
                             <tr>
-                                <th>#ID</th>
+                                <th>ID</th>
                                 <th>Username</th>
                                 <th>Is enabled</th>
                                 <th></th>
@@ -68,7 +71,7 @@
                     </td>
                 </tr>
             </ItemTemplate>
-        </ui:UserList>
+        </ui:ListView>
 
     </ui:TemplateContent>    
 </ui:AdminLayout>

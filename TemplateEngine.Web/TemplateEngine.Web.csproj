@@ -57,6 +57,8 @@
   <ItemGroup>
     <Compile Include="BindingManagerBase.cs" />
     <Compile Include="Controls\ContentControlBase.cs" />
+    <Compile Include="Controls\DetailViewControl.cs" />
+    <Compile Include="Controls\ListViewControl.cs" />
     <Compile Include="Controls\Templates\ContentTemplate.cs" />
     <Compile Include="Controls\Templates\ContentTemplateContent.cs" />
     <Compile Include="Controls\ControlBase.cs" />
@@ -85,6 +87,7 @@
     <Compile Include="DictionaryViewStorage.cs" />
     <Compile Include="Extensions\BindingExtension.cs" />
     <Compile Include="Extensions\CurrentUrlExtension.cs" />
+    <Compile Include="IDataSource.cs" />
     <Compile Include="IValueConverter.cs" />
     <Compile Include="IValueConverterService.cs" />
     <Compile Include="Converters\NullToBoolValueConverter.cs" />
