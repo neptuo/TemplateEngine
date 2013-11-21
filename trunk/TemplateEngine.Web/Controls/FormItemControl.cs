@@ -19,7 +19,7 @@ namespace Neptuo.TemplateEngine.Web.Controls
         {
             writer
                 .Tag("div")
-                .Attribute("class", "control-group");
+                .Attribute("class", "form-group");
 
             foreach (KeyValuePair<string, string> attribute in Attributes)
                 writer.Attribute(attribute.Key, attribute.Value);
@@ -28,19 +28,19 @@ namespace Neptuo.TemplateEngine.Web.Controls
             {
                 writer
                     .Tag("label")
-                    .Attribute("class", "control-label")
+                    //.Attribute("class", "control-label")
                     .Content(LabelText)
                     .CloseFullTag();
             }
 
-            writer
-                .Tag("div")
-                .Attribute("class", "controls");
+            //writer
+            //    .Tag("div")
+            //    .Attribute("class", "controls");
 
             RenderBody(writer);
 
-            writer
-                .CloseFullTag();
+            //writer
+            //    .CloseFullTag();
 
             //if (!String.IsNullOrEmpty(LabelText))
             //{

@@ -31,16 +31,20 @@
 
         <div class="sub-panel">
             <form class="form-inline">
-                <div class="form-group">
-                    <span class="glyphicon glyphicon-search"></span>
-                </div>
-                <div class="form-group">
-                    <label class="sr-only" for="FilterUsername">Username:</label>
-                    <ui:TextBox Name="Username" Text="{Request Username}" html:Class="form-control input-sm" placeholder="Username" />
-                </div>
+                <ui:FormItem>
+                    <label for="FilterID">ID:</label>
+                    <ui:TextBox html:ID="FilterID" Name="Key" Text="{Request Key}" html:Class="form-control input-sm w50" html:Style="display: block;" placeholder="ID" />
+                </ui:FormItem>
+                <ui:FormItem>
+                    <label for="FilterUsername">Username:</label>
+                    <ui:TextBox html:ID="FilterUsername" Name="Username" Text="{Request Username}" html:Class="form-control input-sm" placeholder="Username" />
+                </ui:FormItem>
 
                 <div class="right">
-                    <ui:Button l:Text="Search" html:Class="btn btn-success btn-sm" />
+                    <ui:Button html:Class="btn btn-success btn-sm">
+                        <span class="glyphicon glyphicon-search"></span>
+                        Search
+                    </ui:Button>
                     <a form:href="Accounts.User.List" class="btn btn-default btn-sm">Clear</a>
                 </div>
             </form>
@@ -48,17 +52,18 @@
 
         <ui:ListView> 
             <Source>
-                <data:UserDataSource Username="{Request Username}" />
+                <data:UserDataSource Username="{Request Username}" Key="{Request Key}" />
             </Source>
             <Template>
                 <div style="padding: 10px;">
                     <table class="table table-condensed table-hover">
                         <thead>
                             <tr>
-                                <th>ID</th>
+                                <th class="w50">ID</th>
                                 <th>Username</th>
-                                <th>Is enabled</th>
-                                <th></th>
+                                <th>Roles</th>
+                                <th class="w150">Is enabled</th>
+                                <th class="w100"></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -75,6 +80,7 @@
                     <td>
                         <ui:Literal text="{Binding Username}" />
                     </td>
+                    <td></td>
                     <td>
                         <ui:Literal text="{Binding IsEnabled}" />
                     </td>
@@ -85,6 +91,10 @@
                             </Parameters>
                             Edit
                         </ui:Link>
+                        <form method="post" action="{CurrentUrl}" html:Class="form-inline" html:Style="display: inline;">
+                            <ui:HiddenBox Text="{Binding Key}" />
+                            <ui:Button l:Text="Delete" ui:Event="User/Delete" html:Class="btn btn-xs" />
+                        </form>
                     </td>
                 </tr>
             </ItemTemplate>
