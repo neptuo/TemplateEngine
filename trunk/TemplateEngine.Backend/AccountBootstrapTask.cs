@@ -45,11 +45,11 @@ namespace Neptuo.TemplateEngine.Backend
         {
             dependencyContainer
                 //.RegisterInstance<IAccountDbContext>()
-                .RegisterType<IUserAccountRepository, UserAccountRepository>(new PerRequestLifetime())
-                .RegisterType<IActivator<UserAccount>, UserAccountRepository>(new PerRequestLifetime())
+                .RegisterType<IUserAccountRepository, MemoryUserAccountRepository>(new SingletonLifetime())
+                .RegisterType<IActivator<UserAccount>, MemoryUserAccountRepository>(new SingletonLifetime())
+                .RegisterType<IUserQuery, MemoryUserAccountRepository>(new SingletonLifetime())
                 .RegisterType<IUserRoleRepository, UserRoleRepository>(new PerRequestLifetime())
                 .RegisterType<IActivator<UserRole>, UserRoleRepository>(new PerRequestLifetime())
-                .RegisterType<IUserQuery, UserAccountRepository>(new PerRequestLifetime())
                 .RegisterType<ICommandHandler<EditUserCommand>, EditUserCommandHandler>(new PerRequestLifetime())
                 .RegisterType<IValidator<EditUserCommand>, EditUserCommandHandler>(new PerRequestLifetime());
 
@@ -62,6 +62,23 @@ namespace Neptuo.TemplateEngine.Backend
 
             controllerRegistry
                 .Add("User/Save", dependencyContainer, typeof(UserEditSaveController));
+
+#if DEBUG
+            CreateDummyUserAccounts();
+#endif
+        }
+
+        protected void CreateDummyUserAccounts()
+        {
+            IUserAccountRepository storage = dependencyContainer.Resolve<IUserAccountRepository>();
+            for (int i = 0; i < 34; i++)
+            {
+                storage.Insert(new MemoryUserAccount
+                {
+                    Username = "User " + i,
+                    IsEnabled = (i % 3) == 1
+                });
+            }
         }
     }
 }

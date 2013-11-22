@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,10 +6,8 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Web
 {
-    public interface IDataSource
+    public interface IParameterProvider
     {
-        object GetItem();
-        IEnumerable GetData(int? pageIndex, int? pageSize);
-        int GetTotalCount();
+        bool TryGet(string key, out object value);
     }
 }
