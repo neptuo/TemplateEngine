@@ -57,6 +57,7 @@
   <ItemGroup>
     <Compile Include="BindingManagerBase.cs" />
     <Compile Include="Controls\ContentControlBase.cs" />
+    <Compile Include="Controls\DesignData\HintAttribute.cs" />
     <Compile Include="Controls\DetailViewControl.cs" />
     <Compile Include="Controls\ListViewControl.cs" />
     <Compile Include="Controls\Templates\ContentTemplate.cs" />
@@ -89,10 +90,12 @@
     <Compile Include="Extensions\CurrentUrlExtension.cs" />
     <Compile Include="Extensions\RequestExtension.cs" />
     <Compile Include="IDataSource.cs" />
+    <Compile Include="IParameterProvider.cs" />
     <Compile Include="IValueConverter.cs" />
     <Compile Include="IValueConverterService.cs" />
     <Compile Include="Converters\NullToBoolValueConverter.cs" />
     <Compile Include="IViewStorage.cs" />
+    <Compile Include="RequestParameterProvider.cs" />
     <Compile Include="ValueConverterService.cs" />
     <Compile Include="FilteredModelDefinition.cs" />
     <Compile Include="Controllers\Binders\RequestBindingValueStorage.cs" />

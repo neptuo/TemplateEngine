@@ -25,16 +25,6 @@ namespace Neptuo.TemplateEngine.Accounts.Web.DataSources
             this.factory = factory;
         }
 
-        public IEnumerable GetData()
-        {
-            IEnumerable<UserAccount> data = userQuery.Get();
-            if(!String.IsNullOrEmpty(Username))
-                data = data.Where(u => u.Username.StartsWith(Username));
-
-            foreach (UserAccount userAccount in data)
-                yield return factory.Create(userAccount);
-        }
-
         public object GetItem()
         {
             UserAccount userAccount = null;
@@ -47,6 +37,24 @@ namespace Neptuo.TemplateEngine.Accounts.Web.DataSources
                 return null;
 
             return factory.Create(userAccount);
+        }
+
+        public IEnumerable GetData(int? pageIndex, int? pageSize)
+        {
+            IEnumerable<UserAccount> data = userQuery.Get();
+            if(!String.IsNullOrEmpty(Username))
+                data = data.Where(u => u.Username.StartsWith(Username));
+
+            if (pageSize != null)
+                data = data.Skip((pageIndex ?? 0) * pageSize.Value).Take(pageSize.Value);
+
+            foreach (UserAccount userAccount in data)
+                yield return factory.Create(userAccount);
+        }
+
+        public int GetTotalCount()
+        {
+            return userQuery.Get().Count();
         }
     }
 }

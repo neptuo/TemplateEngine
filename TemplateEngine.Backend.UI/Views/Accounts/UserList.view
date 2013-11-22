@@ -2,16 +2,25 @@
     <ui:TemplateContent Name="SideNav">
         <ul class="nav nav-pills nav-stacked">
             <!--<li>
-                <a form:href="Accounts.User.Edit">Create user account</a>
-            </li>-->
+            <a form:href="Accounts.User.Edit">Create user account</a>
+        </li>-->
             <li class="active">
-                <a form:href="Accounts.User.List">User accounts</a>
+                <a form:href="Accounts.User.List">
+                    <span class="glyphicon glyphicon-user"></span>
+                    User accounts
+                </a>
             </li>
             <li>
-                <a href="#" class="disabled">User roles</a>
+                <a href="#" class="disabled">
+                    <span class="glyphicon glyphicon-th-large"></span>
+                    User roles
+                </a>
             </li>
             <li>
-                <a href="#" class="disabled">Permissions</a>
+                <a href="#" class="disabled">
+                    <span class="glyphicon glyphicon-align-left"></span>
+                    Permissions
+                </a>
             </li>
         </ul>
     </ui:TemplateContent>
@@ -33,24 +42,34 @@
             <form class="form-inline">
                 <ui:FormItem>
                     <label for="FilterID">ID:</label>
-                    <ui:TextBox html:ID="FilterID" Name="Key" Text="{Request Key}" html:Class="form-control input-sm w50" html:Style="display: block;" placeholder="ID" />
+                    <ui:TextBox html:ID="FilterID" Name="Key" Text="{Request Key}" html:Class="form-control input-sm w50" html:Style="display: block;" />
                 </ui:FormItem>
                 <ui:FormItem>
                     <label for="FilterUsername">Username:</label>
-                    <ui:TextBox html:ID="FilterUsername" Name="Username" Text="{Request Username}" html:Class="form-control input-sm" placeholder="Username" />
+                    <ui:TextBox html:ID="FilterUsername" Name="Username" Text="{Request Username}" html:Class="form-control input-sm" />
+                </ui:FormItem>
+                <ui:FormItem>
+                    <label for="FilterRole">Role:</label>
+                    <select id="FilterRole" class="form-control input-sm w200" style="display: block;"></select>
                 </ui:FormItem>
 
                 <div class="right">
                     <ui:Button html:Class="btn btn-success btn-sm">
                         <span class="glyphicon glyphicon-search"></span>
-                        Search
+                        <ui:Literal l:Text="Search" />
                     </ui:Button>
-                    <a form:href="Accounts.User.List" class="btn btn-default btn-sm">Clear</a>
+                    <ui:Link form:Href="Accounts.User.List" html:Class="btn btn-default btn-sm" l:Text="Clear" CopyParameters="PageIndex" />
                 </div>
             </form>
         </div>
 
-        <ui:ListView> 
+        <ui:Link form:Href="Accounts.User.List" Text="Link" CopyParameters="Query">
+            <Parameters>
+                <ui:Parameter Name="PageIndex" Value="2" />
+            </Parameters>
+        </ui:Link>
+ 
+        <ui:ListView PageIndex="{Request PageIndex}" PageSize="10"> 
             <Source>
                 <data:UserDataSource Username="{Request Username}" Key="{Request Key}" />
             </Source>
@@ -62,6 +81,7 @@
                                 <th class="w50">ID</th>
                                 <th>Username</th>
                                 <th>Roles</th>
+                                <th class="w200">Last logged in</th>
                                 <th class="w150">Is enabled</th>
                                 <th class="w100"></th>
                             </tr>
@@ -81,13 +101,14 @@
                         <ui:Literal text="{Binding Username}" />
                     </td>
                     <td></td>
+                    <td></td>
                     <td>
                         <ui:Literal text="{Binding IsEnabled}" />
                     </td>
                     <td>
                         <ui:Link form:Href="Accounts.User.Edit">
                             <Parameters>
-                                <ui:parameter name="UserKey" value="{Binding Key}" />
+                                <ui:Parameter Name="UserKey" Value="{Binding Key}" />
                             </Parameters>
                             Edit
                         </ui:Link>

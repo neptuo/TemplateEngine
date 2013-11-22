@@ -12,7 +12,10 @@ namespace Neptuo.TemplateEngine.Web.Controls
     {
         public IDataSource Source { get; set; }
         public ITemplate ItemTemplate { get; set; }
+        public int? PageSize { get; set; }
+        public int? PageIndex { get; set; }
         protected DataContextStorage DataContext { get; private set; }
+        protected int TotalCount { get; private set; }
 
         public ListViewControl(IComponentManager componentManager, TemplateContentStorageStack storage, DataContextStorage dataContext)
             : base(componentManager, storage)
@@ -29,7 +32,9 @@ namespace Neptuo.TemplateEngine.Web.Controls
                 throw new InvalidOperationException("Missing data source.");
 
             List<object> itemTemplates = new List<object>();
-            IEnumerable models = Source.GetData();
+
+            IEnumerable models = Source.GetData(PageIndex, PageSize);
+            TotalCount = Source.GetTotalCount();
             foreach (object model in models)
             {
                 DataContext.Push(model);
@@ -53,6 +58,33 @@ namespace Neptuo.TemplateEngine.Web.Controls
             Content.Add(templateContent);
 
             base.OnInit();
+        }
+
+        protected override void RenderBody(IHtmlWriter writer)
+        {
+            base.RenderBody(writer);
+
+            if (PageSize != null)
+            {
+                writer
+                    .Tag("ul")
+                    .Attribute("class", "pagination pagination-sm");
+
+                for (int i = 0; i < (TotalCount / PageSize); i++)
+                {
+                    writer
+                        .Tag("li")
+                        .Attribute("class", ((PageIndex ?? 0) == i) ? "active" : "")
+                            .Tag("a")
+                            .Attribute("href", (i != 0) ? ("?PageIndex=" + i) : "?")
+                            .Content(i + 1)
+                            .CloseFullTag()
+                        .CloseFullTag();
+                }
+
+                writer
+                    .CloseFullTag();
+            }
         }
     }
 }

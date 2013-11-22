@@ -7,6 +7,7 @@ using Neptuo.Data.Entity;
 using Neptuo.Lifetimes;
 using Neptuo.Lifetimes.Mapping;
 using Neptuo.TemplateEngine.Accounts.Data.Entity;
+using Neptuo.TemplateEngine.Web;
 using Neptuo.TemplateEngine.Web.Controllers;
 using Neptuo.Unity;
 using Neptuo.Unity.Lifetimes.Mapping;
@@ -58,6 +59,7 @@ namespace Neptuo.TemplateEngine.Backend.UI
                 .RegisterType<HttpContextBase>(new GetterLifetime(() => new HttpContextWrapper(HttpContext.Current)))
                 .RegisterType<HttpRequestBase>(new GetterLifetime(() => new HttpRequestWrapper(HttpContext.Current.Request)))
                 .RegisterType<DataContext>(new PerRequestLifetime())
+                .RegisterType<IParameterProvider, RequestParameterProvider>(new PerRequestLifetime())
                 .RegisterType<IUnitOfWorkFactory, DataContextUnitOfWorkFactory>(new PerRequestLifetime())
                 .RegisterType<IAccountDbContext, DataContext>(new PerRequestLifetime())
                 .RegisterType<ICommandDispatcher, DependencyCommandDispatcher>()

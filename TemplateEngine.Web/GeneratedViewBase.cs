@@ -1,4 +1,5 @@
-﻿using Neptuo.Templates;
+﻿using Neptuo.PresentationModels;
+using Neptuo.Templates;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,6 +14,7 @@ namespace Neptuo.TemplateEngine.Web
     {
         protected IVirtualUrlProvider urlProvider;
         protected HttpContextBase httpContext;
+        protected IBindingConverterCollection bindingConverters;
 
         public string ResolveUrl(string relativeUrl)
         {
@@ -37,6 +39,31 @@ namespace Neptuo.TemplateEngine.Web
                 return default(T);
 
             return (T)typeConverter.ConvertFrom(value);
+        }
+
+        protected override T CastValueTo<T>(object value)
+        {
+            if (value == null)
+                return default(T);
+
+            Type sourceType = value.GetType();
+            Type targetType = typeof(T);
+
+            if (sourceType == targetType)
+                return (T)value;
+
+            if (sourceType == typeof(string))
+            {
+                if (bindingConverters == null)
+                    bindingConverters = dependencyProvider.Resolve<IBindingConverterCollection>();
+
+                IFieldDefinition field = new FieldDefinition(String.Empty, new TypeFieldType(targetType), new MetadataCollection());
+                object targetValue;
+                if (bindingConverters.TryConvert(value.ToString(), field, out targetValue))
+                    return (T)targetValue;
+            }
+
+            return base.CastValueTo<T>(value);
         }
     }
 }
