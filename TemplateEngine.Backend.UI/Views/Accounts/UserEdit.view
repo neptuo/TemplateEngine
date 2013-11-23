@@ -1,12 +1,66 @@
-﻿<ui:AdminLayout Title="User edit">
+﻿<ui:AdminLayout Title="User Accounts - Create/Edit account">
+    <ui:TemplateContent Name="SideNav">
+        <ul class="nav nav-pills nav-stacked">
+            <ui:AccountSideNav />
+        </ul>
+    </ui:TemplateContent>
     <ui:TemplateContent Name="Body">
 
-        <ui:UserEdit html:Class="form-horizontal">
-            <ui:TemplateContent Name="Title">
-                <i class="icon-user"></i>
-                Create new user account
-            </ui:TemplateContent>
-        </ui:UserEdit>
+        <ui:DetailView>
+            <Source>
+                <data:UserEditDataSource Key="{Request UserKey}" />
+            </Source>
+            <Template>
+
+                <div style="padding: 10px;">
+                    <form method="post" action="{CurrentUrl}" html:Class="">
+                        <div class="col-md-6">
+                            <ui:FormItem l:LabelText="Username" l:HelpText="Local username, must be unique">
+                                <ui:TextBox Name="Username" Text="{Binding Username}" IsAutoFocus="true" html:ID="Username" html:Class="form-control" />
+                                <ui:MessagePanel Key="Username" />
+                            </ui:FormItem>
+                            <ui:FormItem l:LabelText="Password" l:HelpText="Local password">
+                                <ui:PasswordBox Name="Password" Text="{Binding Password}" html:Class="form-control" />
+                                <ui:MessagePanel Key="Password" />
+                            </ui:FormItem>
+                            <ui:FormItem l:LabelText="Password again" l:HelpText="Must match previously types password">
+                                <ui:PasswordBox Name="PasswordAgain" Text="{Binding PasswordAgain}" html:Class="form-control" />
+                                <ui:MessagePanel Key="PasswordAgain" />
+                            </ui:FormItem>
+                            <ui:FormItem l:HelpText="Check to activate account">
+                                <ui:CheckBox Name="IsEnabled" IsChecked="{Binding IsEnabled}" l:LabelText="Is enabled" />
+                                <ui:MessagePanel Key="IsEnabled" />
+                            </ui:FormItem>
+                        </div>
+                        <div class="col-md-6">
+                            <ui:FormItem l:LabelText="Roles" l:HelpText="Assign roles to account">
+                                <ui:CheckBox IsChecked="true" l:LabelText="Administrators" />
+                                <ui:CheckBox IsChecked="true" l:LabelText="Everyone" />
+                                <ui:CheckBox IsChecked="true" l:LabelText="WebAdmins" />
+                                <ui:CheckBox IsChecked="true" l:LabelText="Articles" />
+                            </ui:FormItem>
+                        </div>
+
+                        <ui:SubHeader>
+                            <ui:TemplateContent Name="Left">
+                                <h2>
+                                    <i class="icon-user"></i>
+                                    User Accounts - Create/Edit account
+                                </h2>
+                            </ui:TemplateContent>
+                            <ui:TemplateContent Name="Right">
+                                <ui:HiddenBox Name="Key" Text="{Binding Key}" />
+                                <ui:Button l:Text="Save" ui:Event="User/Save" html:Class="btn btn-primary" />
+                                <ui:Button l:Text="Delete" ui:Event="User/Delete" html:Class="btn btn-danger" />
+
+                                <a form:href="Accounts.User.List" class="btn btn-small">Back to user list</a>
+                            </ui:TemplateContent>
+                        </ui:SubHeader>
+                    </form>
+                </div>
+
+            </Template>
+        </ui:DetailView>
          
     </ui:TemplateContent>
 </ui:AdminLayout>

@@ -10,6 +10,7 @@ namespace Neptuo.TemplateEngine.Web.Controls
     public class FormItemControl : ContentControlBase
     {
         public string LabelText { get; set; }
+        public string HelpText { get; set; }
 
         public FormItemControl(IComponentManager componentManager)
             : base(componentManager)
@@ -38,6 +39,15 @@ namespace Neptuo.TemplateEngine.Web.Controls
             //    .Attribute("class", "controls");
 
             RenderBody(writer);
+
+            if (!String.IsNullOrEmpty(HelpText))
+            {
+                writer
+                    .Tag("p")
+                    .Attribute("class", "help-block")
+                    .Content(HelpText)
+                    .CloseFullTag();
+            }
 
             //writer
             //    .CloseFullTag();

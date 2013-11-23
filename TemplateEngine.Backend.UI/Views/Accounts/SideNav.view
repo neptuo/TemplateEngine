@@ -1,0 +1,18 @@
+﻿<li class="active">
+    <a form:href="Accounts.User.List">
+        <span class="glyphicon glyphicon-user"></span>
+        User accounts
+    </a>
+</li>
+<li>
+    <a href="#" class="disabled">
+        <span class="glyphicon glyphicon-th-large"></span>
+        User roles
+    </a>
+</li>
+<li>
+    <a href="#" class="disabled">
+        <span class="glyphicon glyphicon-align-left"></span>
+        Permissions
+    </a>
+</li>

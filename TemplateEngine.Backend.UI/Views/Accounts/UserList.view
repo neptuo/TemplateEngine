@@ -1,27 +1,7 @@
 ﻿<ui:AdminLayout Title="User Accounts">
     <ui:TemplateContent Name="SideNav">
         <ul class="nav nav-pills nav-stacked">
-            <!--<li>
-            <a form:href="Accounts.User.Edit">Create user account</a>
-        </li>-->
-            <li class="active">
-                <a form:href="Accounts.User.List">
-                    <span class="glyphicon glyphicon-user"></span>
-                    User accounts
-                </a>
-            </li>
-            <li>
-                <a href="#" class="disabled">
-                    <span class="glyphicon glyphicon-th-large"></span>
-                    User roles
-                </a>
-            </li>
-            <li>
-                <a href="#" class="disabled">
-                    <span class="glyphicon glyphicon-align-left"></span>
-                    Permissions
-                </a>
-            </li>
+            <ui:AccountSideNav />
         </ul>
     </ui:TemplateContent>
     <ui:TemplateContent Name="Body">
@@ -39,7 +19,7 @@
         </ui:SubHeader>
 
         <div class="sub-panel">
-            <form class="form-inline">
+            <form action="{CurrentUrl}" html:Class="form-inline">
                 <ui:FormItem>
                     <label for="FilterID">ID:</label>
                     <ui:TextBox html:ID="FilterID" Name="Key" Text="{Request Key}" html:Class="form-control input-sm w50" html:Style="display: block;" />
@@ -63,11 +43,11 @@
             </form>
         </div>
 
-        <ui:Link form:Href="Accounts.User.List" Text="Link" CopyParameters="Query">
+        <!--<ui:Link form:Href="Accounts.User.List" Text="Link" CopyParameters="Query">
             <Parameters>
                 <ui:Parameter Name="PageIndex" Value="2" />
             </Parameters>
-        </ui:Link>
+        </ui:Link>-->
  
         <ui:ListView PageIndex="{Request PageIndex}" PageSize="10"> 
             <Source>
