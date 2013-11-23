@@ -10,7 +10,7 @@ namespace Neptuo.TemplateEngine.Web.Controls
 {
     public class ListViewControl : TemplateControl
     {
-        public IDataSource Source { get; set; }
+        public IListDataSource Source { get; set; }
         public ITemplate ItemTemplate { get; set; }
         public int? PageSize { get; set; }
         public int? PageIndex { get; set; }

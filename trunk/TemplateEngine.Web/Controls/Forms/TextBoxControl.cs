@@ -10,6 +10,7 @@ namespace Neptuo.TemplateEngine.Web.Controls
     public class TextBoxControl : FormInputControlBase, ITextControl
     {
         public string Text { get; set; }
+        public bool IsAutoFocus { get; set; }
 
         public TextBoxControl(IComponentManager componentManager)
             : base(componentManager)
@@ -20,6 +21,9 @@ namespace Neptuo.TemplateEngine.Web.Controls
         public override void Render(IHtmlWriter writer)
         {
             Attributes["value"] = Text;
+            if (IsAutoFocus)
+                Attributes["autofocus"] = "autofocus";
+
             base.Render(writer);
         }
 

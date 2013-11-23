@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Accounts.Web.DataSources
 {
-    public class UserDataSource : IDataSource
+    public class UserDataSource : IListDataSource, IDataSource
     {
         private IUserQuery userQuery;
         private IModelValueProviderFactory factory;

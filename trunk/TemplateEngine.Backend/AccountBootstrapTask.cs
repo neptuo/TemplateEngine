@@ -12,6 +12,7 @@ using Neptuo.TemplateEngine.Backend.Web.Routing;
 using Neptuo.TemplateEngine.Navigation;
 using Neptuo.TemplateEngine.Navigation.Bootstrap;
 using Neptuo.TemplateEngine.Web;
+using Neptuo.TemplateEngine.Web.Compilation.Parsers;
 using Neptuo.TemplateEngine.Web.Controllers;
 using Neptuo.Templates.Compilation;
 using Neptuo.Templates.Compilation.Parsers;
@@ -55,6 +56,8 @@ namespace Neptuo.TemplateEngine.Backend
 
             registry.RegisterNamespace(new NamespaceDeclaration("ui", "Neptuo.TemplateEngine.Accounts.Web.Presenters, Neptuo.TemplateEngine.Accounts.Web"));
             registry.RegisterNamespace(new NamespaceDeclaration("data", "Neptuo.TemplateEngine.Accounts.Web.DataSources, Neptuo.TemplateEngine.Accounts.Web"));
+            
+            registry.RegisterComponentBuilder("ui", "AccountSideNav", new UserTemplateComponentBuilderFactory("~/Views/Accounts/SideNav.view"));
 
             formRegistry
                 .Register("Accounts.User.List", TemplateRouteParameter.FormatUrl("~/Accounts/UserList"))
