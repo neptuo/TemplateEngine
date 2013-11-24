@@ -13,13 +13,13 @@ namespace Neptuo.TemplateEngine.Accounts.Web.DataSources
 {
     public class UserDataSource : IListDataSource, IDataSource
     {
-        private IUserQuery userQuery;
+        private IUserAccountQuery userQuery;
         private IModelValueProviderFactory factory;
 
         public int? Key { get; set; }
         public string Username { get; set; }
 
-        public UserDataSource(IUserQuery userQuery, IModelValueProviderFactory factory)
+        public UserDataSource(IUserAccountQuery userQuery, IModelValueProviderFactory factory)
         {
             this.userQuery = userQuery;
             this.factory = factory;

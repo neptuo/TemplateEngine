@@ -22,7 +22,7 @@ namespace Neptuo.TemplateEngine.Accounts.Web.Presenters
     [SupportUiEvent("User/Save", typeof(UserEditSaveController))]
     public class UserEditPresenter : PresentationControlBase
     {
-        protected IUserQuery UserQuery { get; private set; }
+        protected IUserAccountQuery UserQuery { get; private set; }
         protected INavigator Navigator { get; private set; }
         protected IModelValueProviderFactory ValueProviderFactory { get; private set; }
         
@@ -32,7 +32,7 @@ namespace Neptuo.TemplateEngine.Accounts.Web.Presenters
         public UserEditPresenter(
             IComponentManager componentManager, 
             PresentationConfiguration<EditUserCommand> configuration,
-            IUserQuery userQuery,
+            IUserAccountQuery userQuery,
             INavigator navigator
         )
             : base(componentManager, configuration)

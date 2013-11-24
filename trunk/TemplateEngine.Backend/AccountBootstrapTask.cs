@@ -48,9 +48,12 @@ namespace Neptuo.TemplateEngine.Backend
                 //.RegisterInstance<IAccountDbContext>()
                 .RegisterType<IUserAccountRepository, MemoryUserAccountRepository>(new SingletonLifetime())
                 .RegisterType<IActivator<UserAccount>, MemoryUserAccountRepository>(new SingletonLifetime())
-                .RegisterType<IUserQuery, MemoryUserAccountRepository>(new SingletonLifetime())
-                .RegisterType<IUserRoleRepository, UserRoleRepository>(new PerRequestLifetime())
-                .RegisterType<IActivator<UserRole>, UserRoleRepository>(new PerRequestLifetime())
+                .RegisterType<IUserAccountQuery, MemoryUserAccountRepository>(new SingletonLifetime())
+
+                .RegisterType<IUserRoleRepository, MemoryUserRoleRepository>(new SingletonLifetime())
+                .RegisterType<IActivator<UserRole>, MemoryUserRoleRepository>(new SingletonLifetime())
+                .RegisterType<IUserRoleQuery, MemoryUserRoleRepository>(new SingletonLifetime())
+
                 .RegisterType<ICommandHandler<EditUserCommand>, EditUserCommandHandler>(new PerRequestLifetime())
                 .RegisterType<IValidator<EditUserCommand>, EditUserCommandHandler>(new PerRequestLifetime());
 
@@ -68,6 +71,7 @@ namespace Neptuo.TemplateEngine.Backend
 
 #if DEBUG
             CreateDummyUserAccounts();
+            CreateDummyUserRoles();
 #endif
         }
 
@@ -82,6 +86,31 @@ namespace Neptuo.TemplateEngine.Backend
                     IsEnabled = (i % 3) == 1
                 });
             }
+        }
+
+        protected void CreateDummyUserRoles()
+        {
+            IUserRoleRepository storage = dependencyContainer.Resolve<IUserRoleRepository>();
+            storage.Insert(new MemoryUserRole
+            {
+                Name = "Administrators",
+                Description = "System admins"
+            });
+            storage.Insert(new MemoryUserRole
+            {
+                Name = "Everyone",
+                Description = "Public (un-authenticated) users"
+            });
+            storage.Insert(new MemoryUserRole
+            {
+                Name = "WebAdmins",
+                Description = "Admins of web presentation"
+            });
+            storage.Insert(new MemoryUserRole
+            {
+                Name = "Articles",
+                Description = "Article writers"
+            });
         }
     }
 }

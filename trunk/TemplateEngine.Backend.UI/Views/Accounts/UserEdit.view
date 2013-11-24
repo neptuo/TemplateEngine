@@ -12,18 +12,18 @@
             </Source>
             <Template>
 
-                <div style="padding: 10px;">
+                <div style="padding: 15px 10px;">
                     <form method="post" action="{CurrentUrl}" html:Class="">
                         <div class="col-md-6">
                             <ui:FormItem l:LabelText="Username" l:HelpText="Local username, must be unique">
                                 <ui:TextBox Name="Username" Text="{Binding Username}" IsAutoFocus="true" html:ID="Username" html:Class="form-control" />
                                 <ui:MessagePanel Key="Username" />
                             </ui:FormItem>
-                            <ui:FormItem l:LabelText="Password" l:HelpText="Local password">
+                            <ui:FormItem l:LabelText="Password" l:HelpText="Local password (leave empty to use current password)">
                                 <ui:PasswordBox Name="Password" Text="{Binding Password}" html:Class="form-control" />
                                 <ui:MessagePanel Key="Password" />
                             </ui:FormItem>
-                            <ui:FormItem l:LabelText="Password again" l:HelpText="Must match previously types password">
+                            <ui:FormItem l:LabelText="Password again" l:HelpText="Must match previously typed password">
                                 <ui:PasswordBox Name="PasswordAgain" Text="{Binding PasswordAgain}" html:Class="form-control" />
                                 <ui:MessagePanel Key="PasswordAgain" />
                             </ui:FormItem>
@@ -33,27 +33,35 @@
                             </ui:FormItem>
                         </div>
                         <div class="col-md-6">
-                            <ui:FormItem l:LabelText="Roles" l:HelpText="Assign roles to account">
-                                <ui:CheckBox IsChecked="true" l:LabelText="Administrators" />
-                                <ui:CheckBox IsChecked="true" l:LabelText="Everyone" />
-                                <ui:CheckBox IsChecked="true" l:LabelText="WebAdmins" />
-                                <ui:CheckBox IsChecked="true" l:LabelText="Articles" />
+                            <ui:FormItem l:LabelText="Roles" l:HelpText="Assigned roles to account">
+                                <ui:ListView>
+                                    <Source>
+                                        <data:UserRoleDataSource />
+                                    </Source>
+                                    <ItemTemplate>
+                                        <ui:CheckBox IsChecked="true" LabelText="{Binding Name}" />
+                                    </ItemTemplate>
+                                </ui:ListView>
                             </ui:FormItem>
                         </div>
 
                         <ui:SubHeader>
                             <ui:TemplateContent Name="Left">
                                 <h2>
-                                    <i class="icon-user"></i>
+
+                                    <span class="glyphicon glyphicon-user"></span>
                                     User Accounts - Create/Edit account
                                 </h2>
                             </ui:TemplateContent>
                             <ui:TemplateContent Name="Right">
+                                <a form:href="Accounts.User.List" class="btn btn-small">
+                                    <span class="glyphicon glyphicon-arrow-left"></span>
+                                    Back to user list
+                                </a>
+
                                 <ui:HiddenBox Name="Key" Text="{Binding Key}" />
                                 <ui:Button l:Text="Save" ui:Event="User/Save" html:Class="btn btn-primary" />
                                 <ui:Button l:Text="Delete" ui:Event="User/Delete" html:Class="btn btn-danger" />
-
-                                <a form:href="Accounts.User.List" class="btn btn-small">Back to user list</a>
                             </ui:TemplateContent>
                         </ui:SubHeader>
                     </form>

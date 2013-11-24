@@ -7,6 +7,7 @@ using Neptuo.Data.Entity;
 using Neptuo.Lifetimes;
 using Neptuo.Lifetimes.Mapping;
 using Neptuo.TemplateEngine.Accounts.Data.Entity;
+using Neptuo.TemplateEngine.Permissions;
 using Neptuo.TemplateEngine.Web;
 using Neptuo.TemplateEngine.Web.Controllers;
 using Neptuo.Unity;
@@ -64,6 +65,7 @@ namespace Neptuo.TemplateEngine.Backend.UI
                 .RegisterType<IAccountDbContext, DataContext>(new PerRequestLifetime())
                 .RegisterType<ICommandDispatcher, DependencyCommandDispatcher>()
                 .RegisterType<IControllerRegistry>(new SingletonLifetime(new ControllerRegistryBase()))
+                .RegisterType<IPermissionProvider, OptimisticPermissionProvider>(new PerSessionLifetime())
                 .RegisterInstance<IDependencyProvider>(dependencyContainer)
                 .RegisterInstance<IDependencyContainer>(dependencyContainer);
 
