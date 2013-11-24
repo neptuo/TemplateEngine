@@ -197,6 +197,10 @@
       <Project>{f16d8bc8-2191-498f-9950-dc8aa200b0ba}</Project>
       <Name>TemplateEngine.Navigation</Name>
     </ProjectReference>
+    <ProjectReference Include="..\TemplateEngine.Permissions\TemplateEngine.Permissions.csproj">
+      <Project>{e5c314ff-89ba-489e-bc2a-df8701a8c3f1}</Project>
+      <Name>TemplateEngine.Permissions</Name>
+    </ProjectReference>
     <ProjectReference Include="..\TemplateEngine.Web.Compilation\TemplateEngine.Web.Compilation.csproj">
       <Project>{f116d6f7-e47c-4c73-a802-4f61ba50857f}</Project>
       <Name>TemplateEngine.Web.Compilation</Name>

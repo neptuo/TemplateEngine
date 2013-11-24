@@ -61,6 +61,7 @@
   <ItemGroup>
     <Compile Include="DataSources\UserDataSource.cs" />
     <Compile Include="DataSources\UserEditDataSource.cs" />
+    <Compile Include="DataSources\UserRoleDataSource.cs" />
     <Compile Include="Presenters\UserDetailPresenter.cs" />
     <Compile Include="Presenters\UserEditPresenter.cs" />
     <Compile Include="Presenters\UserListPresenter.cs" />

@@ -12,9 +12,9 @@ namespace Neptuo.TemplateEngine.Accounts.Web.Presenters
 {
     public class UserListPresenter : PresentationListControlBase<UserAccount>
     {
-        protected IUserQuery UserQuery { get; private set; }
+        protected IUserAccountQuery UserQuery { get; private set; }
 
-        public UserListPresenter(IComponentManager componentManager, PresentationConfiguration<UserAccount> configuration, IUserQuery userQuery)
+        public UserListPresenter(IComponentManager componentManager, PresentationConfiguration<UserAccount> configuration, IUserAccountQuery userQuery)
             : base(componentManager, configuration)
         {
             UserQuery = userQuery;

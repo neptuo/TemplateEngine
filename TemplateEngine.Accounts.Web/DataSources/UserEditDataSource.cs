@@ -13,13 +13,13 @@ namespace Neptuo.TemplateEngine.Accounts.Web.DataSources
 {
     public class UserEditDataSource : IDataSource
     {
-        private IUserQuery userQuery;
+        private IUserAccountQuery userQuery;
         private IActivator<UserAccount> userFactory;
         private IModelValueProviderFactory providerFactory;
 
         public int Key { get; set; }
 
-        public UserEditDataSource(IUserQuery userQuery, IActivator<UserAccount> userFactory, IModelValueProviderFactory providerFactory)
+        public UserEditDataSource(IUserAccountQuery userQuery, IActivator<UserAccount> userFactory, IModelValueProviderFactory providerFactory)
         {
             this.userQuery = userQuery;
             this.userFactory = userFactory;
