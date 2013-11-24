@@ -30,7 +30,22 @@
                 </ui:FormItem>
                 <ui:FormItem>
                     <label for="FilterRole">Role:</label>
-                    <select id="FilterRole" class="form-control input-sm w200" style="display: block;"></select>
+                    <ui:ListView>
+                        <Source>
+                            <data:UserRoleDataSource />
+                        </Source>
+                        <Template>
+                            <select id="FilterRole" name="Role" class="form-control input-sm w200" style="display: block;">
+                                <option value="">---</option>
+                                <ui:TemplatePlaceholder Name="Content" />
+                            </select>
+                        </Template>
+                        <ItemTemplate>
+                            <option value="{Binding Key}" html:Class="">
+                                <ui:Literal Text="{Binding Name}" />
+                            </option>
+                        </ItemTemplate>
+                    </ui:ListView>
                 </ui:FormItem>
 
                 <div class="right">

@@ -49,10 +49,11 @@ namespace Neptuo.TemplateEngine.Backend.UI
 
         protected virtual IDependencyContainer CreateDependencyContainer()
         {
-            UnityDependencyContainer dependencyContainer = new UnityDependencyContainer();
-            dependencyContainer.Map(typeof(SingletonLifetime), new SingletonLifetimeMapper());
-            dependencyContainer.Map(typeof(GetterLifetime), new GetterLifetimeMapper());
-            dependencyContainer.Map(typeof(PerRequestLifetime), new PerRequestLifetimeMapper());
+            UnityDependencyContainer dependencyContainer = new UnityDependencyContainer()
+                .Map(typeof(SingletonLifetime), new SingletonLifetimeMapper())
+                .Map(typeof(GetterLifetime), new GetterLifetimeMapper())
+                .Map(typeof(PerRequestLifetime), new PerRequestLifetimeMapper())
+                .Map(typeof(PerSessionLifetime), new PerSessionLifetimeMapper());
 
             DataContext dataContext = new DataContext();
 
@@ -65,7 +66,7 @@ namespace Neptuo.TemplateEngine.Backend.UI
                 .RegisterType<IAccountDbContext, DataContext>(new PerRequestLifetime())
                 .RegisterType<ICommandDispatcher, DependencyCommandDispatcher>()
                 .RegisterType<IControllerRegistry>(new SingletonLifetime(new ControllerRegistryBase()))
-                .RegisterType<IPermissionProvider, OptimisticPermissionProvider>(new PerSessionLifetime())
+                .RegisterType<IPermissionProvider, OptimisticPermissionProvider>(new PerRequestLifetime())
                 .RegisterInstance<IDependencyProvider>(dependencyContainer)
                 .RegisterInstance<IDependencyContainer>(dependencyContainer);
 
