@@ -62,11 +62,13 @@
     <Compile Include="DataSources\UserDataSource.cs" />
     <Compile Include="DataSources\UserEditDataSource.cs" />
     <Compile Include="DataSources\UserRoleDataSource.cs" />
+    <Compile Include="DataSources\UserRoleEditDataSource.cs" />
     <Compile Include="Presenters\UserDetailPresenter.cs" />
     <Compile Include="Presenters\UserEditPresenter.cs" />
     <Compile Include="Presenters\UserListPresenter.cs" />
     <Compile Include="Controllers\UserEditSaveController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewDataExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\TemplateEngine.Accounts.Data\TemplateEngine.Accounts.Data.csproj">

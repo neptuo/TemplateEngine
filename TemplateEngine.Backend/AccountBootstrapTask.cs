@@ -64,10 +64,13 @@ namespace Neptuo.TemplateEngine.Backend
 
             formRegistry
                 .Register("Accounts.User.List", TemplateRouteParameter.FormatUrl("~/Accounts/UserList"))
-                .Register("Accounts.User.Edit", TemplateRouteParameter.FormatUrl("~/Accounts/UserEdit"));
+                .Register("Accounts.User.Edit", TemplateRouteParameter.FormatUrl("~/Accounts/UserEdit"))
+
+                .Register("Accounts.Role.List", TemplateRouteParameter.FormatUrl("~/Accounts/RoleList"))
+                .Register("Accounts.Role.Edit", TemplateRouteParameter.FormatUrl("~/Accounts/RoleEdit"));
 
             controllerRegistry
-                .Add("User/Save", dependencyContainer, typeof(UserEditSaveController));
+                .Add("Accounts/User/Save", dependencyContainer, typeof(UserEditSaveController));
 
 #if DEBUG
             CreateDummyUserAccounts();

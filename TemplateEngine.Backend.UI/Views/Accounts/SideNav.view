@@ -5,7 +5,7 @@
     </a>
 </li>
 <li>
-    <a href="#" class="disabled">
+    <a form:href="Accounts.Role.List" class="disabled">
         <span class="glyphicon glyphicon-th-large"></span>
         User roles
     </a>

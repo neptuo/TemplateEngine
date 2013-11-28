@@ -43,7 +43,7 @@ namespace Neptuo.TemplateEngine.Accounts.Web.DataSources
         {
             IEnumerable<UserAccount> data = userQuery.Get();
             if(!String.IsNullOrEmpty(Username))
-                data = data.Where(u => u.Username.StartsWith(Username));
+                data = data.Where(u => u.Username.Contains(Username));
 
             if (pageSize != null)
                 data = data.Skip((pageIndex ?? 0) * pageSize.Value).Take(pageSize.Value);
