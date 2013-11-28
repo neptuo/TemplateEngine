@@ -139,7 +139,9 @@
     <Content Include="Design\Scripts\jquery-1.9.1.min.js" />
     <Content Include="Design\Scripts\jquery-1.9.1.min.map" />
     <Content Include="Views\Accounts\SideNav.view" />
+    <Content Include="Views\Accounts\RoleEdit.view" />
     <None Include="Views\Accounts\UserEdit.view" />
+    <Content Include="Views\Accounts\RoleList.view" />
     <None Include="Views\Accounts\UserList.view" />
     <None Include="Views\Home.view" />
     <None Include="Views\Shared\AdminLayout.view" />

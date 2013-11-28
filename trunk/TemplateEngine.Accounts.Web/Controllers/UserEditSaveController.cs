@@ -24,7 +24,7 @@ namespace Neptuo.TemplateEngine.Accounts.Web.Controllers
             MessageStorage = messageStorage;
         }
 
-        public void Execute()
+        public void Execute(IControllerContext context)
         {
             EditUserCommand model = ModelBinder.Bind<EditUserCommand>(new EditUserCommand());
             IValidationResult validationResult = Validator.Validate(model);
@@ -35,6 +35,7 @@ namespace Neptuo.TemplateEngine.Accounts.Web.Controllers
                 foreach (IValidationMessage message in validationResult.Messages)
                     MessageStorage.Add(null, message.Key, message.Message, MessageType.Error);
 
+                context.ViewData.SetEditUser(model);
                 return;
             }
 

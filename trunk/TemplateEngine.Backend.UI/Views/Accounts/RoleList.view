@@ -9,12 +9,12 @@
         <ui:SubHeader>
             <ui:TemplateContent Name="Left">
                 <h2>
-                    <span class="glyphicon glyphicon-user"></span>
-                    User accounts
+                    <span class="glyphicon glyphicon-th-large"></span>
+                    User roles
                 </h2>
             </ui:TemplateContent>
             <ui:TemplateContent Name="Right">
-                <a form:href="Accounts.User.Edit" class="btn btn-primary">Create user account</a>
+                <a form:href="Accounts.Role.Edit" class="btn btn-primary">Create new user role</a>
             </ui:TemplateContent>
         </ui:SubHeader>
 
@@ -25,27 +25,8 @@
                     <ui:TextBox html:ID="FilterID" Name="Key" Text="{Request Key}" html:Class="form-control input-sm w50" html:Style="display: block;" />
                 </ui:FormItem>
                 <ui:FormItem>
-                    <label for="FilterUsername">Username:</label>
-                    <ui:TextBox html:ID="FilterUsername" Name="Username" Text="{Request Username}" html:Class="form-control input-sm" />
-                </ui:FormItem>
-                <ui:FormItem>
-                    <label for="FilterRole">Role:</label>
-                    <ui:ListView>
-                        <Source>
-                            <data:UserRoleDataSource />
-                        </Source>
-                        <Template>
-                            <select id="FilterRole" name="Role" class="form-control input-sm w200" style="display: block;">
-                                <option value="">---</option>
-                                <ui:TemplatePlaceholder Name="Content" />
-                            </select>
-                        </Template>
-                        <ItemTemplate>
-                            <option value="{Binding Key}" html:Class="">
-                                <ui:Literal Text="{Binding Name}" />
-                            </option>
-                        </ItemTemplate>
-                    </ui:ListView>
+                    <label for="FilterUsername">Name:</label>
+                    <ui:TextBox html:ID="FilterName" Name="Name" Text="{Request Name}" html:Class="form-control input-sm" />
                 </ui:FormItem>
 
                 <div class="right">
@@ -53,20 +34,14 @@
                         <span class="glyphicon glyphicon-search"></span>
                         <ui:Literal l:Text="Search" />
                     </ui:Button>
-                    <ui:Link form:Href="Accounts.User.List" html:Class="btn btn-default btn-sm" l:Text="Clear" CopyParameters="PageIndex" />
+                    <ui:Link form:Href="Accounts.Role.List" html:Class="btn btn-default btn-sm" l:Text="Clear" CopyParameters="PageIndex" />
                 </div>
             </form>
         </div>
 
-        <!--<ui:Link form:Href="Accounts.User.List" Text="Link" CopyParameters="Query">
-            <Parameters>
-                <ui:Parameter Name="PageIndex" Value="2" />
-            </Parameters>
-        </ui:Link>-->
- 
         <ui:ListView PageIndex="{Request PageIndex}" PageSize="10"> 
             <Source>
-                <data:UserDataSource Username="{Request Username}" Key="{Request Key}" />
+                <data:UserRoleDataSource Name="{Request Name}" Key="{Request Key}" />
             </Source>
             <Template>
                 <div style="padding: 10px;">
@@ -74,10 +49,7 @@
                         <thead>
                             <tr>
                                 <th class="w50">ID</th>
-                                <th>Username</th>
-                                <th>Roles</th>
-                                <th class="w200">Last logged in</th>
-                                <th class="w150">Is enabled</th>
+                                <th>Name</th>
                                 <th class="w150"></th>
                             </tr>
                         </thead>
@@ -93,22 +65,17 @@
                         <ui:Literal Text="{Binding Key}" />
                     </td>
                     <td>
-                        <ui:Literal text="{Binding Username}" />
-                    </td>
-                    <td></td>
-                    <td></td>
-                    <td>
-                        <ui:Literal text="{Binding IsEnabled}" />
+                        <ui:Literal text="{Binding Name}" />
                     </td>
                     <td>
-                        <ui:Link form:Href="Accounts.User.Edit" Text="Upravit">
+                        <ui:Link form:Href="Accounts.Role.Edit" Text="Upravit">
                             <Parameters>
-                                <ui:Parameter Name="UserKey" Value="{Binding Key}" />
+                                <ui:Parameter Name="RoleKey" Value="{Binding Key}" />
                             </Parameters>
                         </ui:Link>
                         <form method="post" action="{CurrentUrl}" html:Class="form-inline" html:Style="display: inline;">
                             <ui:HiddenBox Text="{Binding Key}" />
-                            <ui:Button l:Text="Delete" ui:Event="Accounts/User/Delete" html:Class="btn btn-xs btn-danger" />
+                            <ui:Button l:Text="Delete" ui:Event="Accounts/Role/Delete" html:Class="btn btn-xs btn-danger" />
                         </form>
                     </td>
                 </tr>

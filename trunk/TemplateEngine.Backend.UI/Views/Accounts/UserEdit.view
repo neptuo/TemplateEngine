@@ -60,8 +60,8 @@
                                 </a>
 
                                 <ui:HiddenBox Name="Key" Text="{Binding Key}" />
-                                <ui:Button l:Text="Save" ui:Event="User/Save" html:Class="btn btn-primary" />
-                                <ui:Button l:Text="Delete" ui:Event="User/Delete" html:Class="btn btn-danger" />
+                                <ui:Button l:Text="Save" ui:Event="Accounts/User/Save" html:Class="btn btn-primary" />
+                                <ui:Button l:Text="Delete" ui:Event="Accounts/User/Delete" html:Class="btn btn-danger" />
                             </ui:TemplateContent>
                         </ui:SubHeader>
                     </form>
