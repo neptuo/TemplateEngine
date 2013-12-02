@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Neptuo.Templates.Controls;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,7 +12,7 @@ using Neptuo.Templates;
 namespace Neptuo.TemplateEngine.Web.Controls
 {
     [DefaultProperty("Content")]
-    public abstract class ContentControlBase : ControlBase, IContentControl
+    public abstract class HtmlContentControlBase : HtmlControlBase, IContentControl
     {
         protected override bool IsSelfClosing
         {
@@ -26,7 +27,7 @@ namespace Neptuo.TemplateEngine.Web.Controls
 
         public ICollection<object> Content { get; set; }
 
-        public ContentControlBase(IComponentManager componentManager)
+        public HtmlContentControlBase(IComponentManager componentManager)
             : base(componentManager)
         { }
 

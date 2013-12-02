@@ -56,9 +56,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BindingManagerBase.cs" />
-    <Compile Include="Controls\ContentControlBase.cs" />
+    <Compile Include="Controls\HtmlContentControlBase.cs" />
     <Compile Include="Controls\DesignData\HintAttribute.cs" />
     <Compile Include="Controls\DetailViewControl.cs" />
+    <Compile Include="Controls\HtmlControlBase.cs" />
     <Compile Include="Controls\ListViewControl.cs" />
     <Compile Include="Controls\Templates\ContentTemplate.cs" />
     <Compile Include="Controls\Templates\ContentTemplateContent.cs" />
@@ -84,6 +85,7 @@
     <Compile Include="Controls\ParameterControl.cs" />
     <Compile Include="Controls\Presentation\PresentationListControlBase.cs" />
     <Compile Include="DataContextStorage.cs" />
+    <Compile Include="DataSources\ListDataSourceBase.cs" />
     <Compile Include="DefaultModelPresenter.cs" />
     <Compile Include="DictionaryViewStorage.cs" />
     <Compile Include="Extensions\BindingExtension.cs" />

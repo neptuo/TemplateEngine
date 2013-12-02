@@ -13,47 +13,13 @@ namespace Neptuo.TemplateEngine.Web.Controls
     /// <summary>
     /// Controls extends this class support tag name specified in <see cref="ComponentAttribute"/>.
     /// </summary>
-    public abstract class ControlBase : IControl, IAttributeCollection
+    public abstract class ControlBase : IControl
     {
-        private string tagName;
-        private bool? isSelfClosing;
         private string defaultPropertyName;
 
         public HtmlAttributeCollection Attributes { get; protected set; }
 
         protected IComponentManager ComponentManager { get; private set; }
-        protected virtual string TagName
-        {
-            get
-            {
-                if (tagName == null)
-                {
-
-                    HtmlAttribute attr = ReflectionHelper.GetAttribute<HtmlAttribute>(GetType());
-                    if (attr != null)
-                        tagName = attr.TagName;
-                }
-                return tagName;
-            }
-            set { tagName = value; }
-        }
-
-        protected virtual bool IsSelfClosing
-        {
-            get
-            {
-                if (isSelfClosing == null)
-                {
-                    HtmlAttribute attr = ReflectionHelper.GetAttribute<HtmlAttribute>(GetType());
-                    if (attr != null)
-                        isSelfClosing = attr.IsSelfClosing;
-
-                }
-                return isSelfClosing ?? true;
-            }
-            set { isSelfClosing = value; }
-        }
-
         protected string DefaultPropertyName
         {
             get
@@ -77,36 +43,7 @@ namespace Neptuo.TemplateEngine.Web.Controls
 
         public virtual void OnInit() { }
 
-        public virtual void Render(IHtmlWriter writer)
-        {
-            if (!String.IsNullOrEmpty(TagName))
-            {
-                writer.Tag(TagName);
-                RenderAttributes(writer);
-                
-                if (IsSelfClosing)
-                {
-                    writer.CloseTag();
-                }
-                else
-                {
-                    RenderBody(writer);
-                    writer.CloseFullTag();
-                }
-            }
-            else
-            {
-                RenderBody(writer);
-            }
-        }
-
-        protected virtual void RenderAttributes(IHtmlWriter writer)
-        {
-            foreach (KeyValuePair<string, string> attribute in Attributes)
-                writer.Attribute(attribute.Key, attribute.Value);
-        }
-
-        protected virtual void RenderBody(IHtmlWriter writer) { }
+        public virtual void Render(IHtmlWriter writer) { }
 
         protected void Init(object component)
         {
@@ -125,11 +62,6 @@ namespace Neptuo.TemplateEngine.Web.Controls
                 foreach (T component in compoments)
                     Init(component);
             }
-        }
-
-        public void SetAttribute(string name, string value)
-        {
-            Attributes[name] = value;
         }
     }
 }

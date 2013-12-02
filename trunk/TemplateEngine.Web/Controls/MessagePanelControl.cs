@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Web.Controls
 {
-    public class MessagePanelControl : ControlBase
+    public class MessagePanelControl : HtmlControlBase
     {
         protected MessageStorage MessageStorage { get; private set; }
 

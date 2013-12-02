@@ -1,14 +1,14 @@
 ﻿<li class="active">
-    <a form:href="Accounts.User.List">
+    <ui:Link form:Href="Accounts.User.List">
         <span class="glyphicon glyphicon-user"></span>
         User accounts
-    </a>
+    </ui:Link>
 </li>
 <li>
-    <a form:href="Accounts.Role.List" class="disabled">
+    <ui:Link form:Href="Accounts.Role.List">
         <span class="glyphicon glyphicon-th-large"></span>
         User roles
-    </a>
+    </ui:Link>
 </li>
 <li>
     <a href="#" class="disabled">

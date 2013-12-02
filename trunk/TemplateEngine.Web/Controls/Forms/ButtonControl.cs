@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace Neptuo.TemplateEngine.Web.Controls
 {
     [Html("button")]
-    public class ButtonControl : ContentControlBase
+    public class ButtonControl : HtmlContentControlBase
     {
         public string Name { get; set; }
         public string Text { get; set; }

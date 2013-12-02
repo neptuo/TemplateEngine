@@ -11,7 +11,7 @@ using System.Web;
 namespace Neptuo.TemplateEngine.Web.Controls
 {
     [Html("a")]
-    public class LinkControl : ContentControlBase
+    public class LinkControl : HtmlContentControlBase
     {
         private IVirtualUrlProvider urlProvider;
         private HttpRequestBase httpRequest;
@@ -38,6 +38,9 @@ namespace Neptuo.TemplateEngine.Web.Controls
 
             if (Href == null)
                 throw new ArgumentNullException("Href");
+
+            if (httpRequest.AppRelativeCurrentExecutionFilePath.EndsWith(Href))
+                Attributes["class"] = "active";
 
             if (!String.IsNullOrEmpty(Text))
                 Content = new List<object> { Text };
