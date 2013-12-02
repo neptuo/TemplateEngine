@@ -59,6 +59,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\UserRoleSaveController.cs" />
     <Compile Include="DataSources\UserDataSource.cs" />
     <Compile Include="DataSources\UserEditDataSource.cs" />
     <Compile Include="DataSources\UserRoleDataSource.cs" />

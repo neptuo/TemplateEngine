@@ -1,4 +1,5 @@
 ﻿using Neptuo.TemplateEngine.Web.Controllers;
+using Neptuo.TemplateEngine.Web.Controllers.Binders;
 using Neptuo.Templates;
 using Neptuo.Templates.Compilation;
 using System;
@@ -39,11 +40,15 @@ namespace Neptuo.TemplateEngine.Backend.Web
         protected virtual void HandleUiEvents(HttpContext httpContext, IDependencyContainer dependencyContainer)
         {
             IControllerRegistry registry = dependencyContainer.Resolve<IControllerRegistry>();
+            IModelBinder modelBinder = dependencyContainer.Resolve<IModelBinder>();
+            ViewDataCollection viewData = new ViewDataCollection();
+
+            IControllerContext context = new ControllerContext(viewData, modelBinder);
             foreach (string key in httpContext.Request.Form.AllKeys)
             {
                 IController handler;
                 if (registry.TryGet(key, out handler))
-                    handler.Execute();
+                    handler.Execute(context);
             }
         }
 

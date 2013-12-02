@@ -7,8 +7,10 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Web.Controllers
 {
-    public interface IController
+    public interface IControllerContext
     {
-        void Execute(IControllerContext context);
+        IViewData ViewData { get; }
+        IModelBinder ModelBinder { get; }
     }
+
 }
