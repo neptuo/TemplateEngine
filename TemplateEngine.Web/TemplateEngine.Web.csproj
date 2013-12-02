@@ -56,6 +56,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BindingManagerBase.cs" />
+    <Compile Include="Controllers\ControllerContext.cs" />
+    <Compile Include="Controllers\IControllerContext.cs" />
+    <Compile Include="Controllers\IViewData.cs" />
+    <Compile Include="Controllers\ViewDataCollection.cs" />
     <Compile Include="Controls\HtmlContentControlBase.cs" />
     <Compile Include="Controls\DesignData\HintAttribute.cs" />
     <Compile Include="Controls\DetailViewControl.cs" />

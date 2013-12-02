@@ -18,6 +18,10 @@
                             <ui:TextBox Name="Name" Text="{Binding Name}" IsAutoFocus="true" html:ID="Name" html:Class="form-control" />
                             <ui:MessagePanel Key="Name" />
                         </ui:FormItem>
+                        <ui:FormItem l:LabelText="Description" l:HelpText="Role descrition">
+                            <ui:TextBox Name="Description" Text="{Binding Description}" html:ID="Description" html:Class="form-control" />
+                            <ui:MessagePanel Key="Description" />
+                        </ui:FormItem>
 
                         <ui:SubHeader>
                             <ui:TemplateContent Name="Left">

@@ -55,6 +55,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Commands\EditUserCommand.cs" />
+    <Compile Include="Commands\EditUserRoleCommand.cs" />
     <Compile Include="Commands\Handlers\EditUserCommandHandler.cs" />
     <Compile Include="Data\IUserAccountRepository.cs" />
     <Compile Include="Data\IUserRoleRepository.cs" />

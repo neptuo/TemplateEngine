@@ -13,20 +13,18 @@ namespace Neptuo.TemplateEngine.Accounts.Web.Controllers
 {
     public class UserEditSaveController : IController
     {
-        protected IModelBinder ModelBinder { get; private set; }
         protected IValidator<EditUserCommand> Validator { get; private set; }
         protected MessageStorage MessageStorage { get; private set; }
 
-        public UserEditSaveController(IModelBinder modelBinder, IValidator<EditUserCommand> validator, MessageStorage messageStorage)
+        public UserEditSaveController(IValidator<EditUserCommand> validator, MessageStorage messageStorage)
         {
-            ModelBinder = modelBinder;
             Validator = validator;
             MessageStorage = messageStorage;
         }
 
         public void Execute(IControllerContext context)
         {
-            EditUserCommand model = ModelBinder.Bind<EditUserCommand>(new EditUserCommand());
+            EditUserCommand model = context.ModelBinder.Bind<EditUserCommand>(new EditUserCommand());
             IValidationResult validationResult = Validator.Validate(model);
             if (!validationResult.IsValid)
             {
