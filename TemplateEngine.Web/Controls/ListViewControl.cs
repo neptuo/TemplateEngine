@@ -60,9 +60,9 @@ namespace Neptuo.TemplateEngine.Web.Controls
             base.OnInit();
         }
 
-        protected override void RenderBody(IHtmlWriter writer)
+        public override void Render(IHtmlWriter writer)
         {
-            base.RenderBody(writer);
+            base.Render(writer);
 
             if (PageSize != null)
             {

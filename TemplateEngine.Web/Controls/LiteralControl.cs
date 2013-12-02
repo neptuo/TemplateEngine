@@ -18,7 +18,7 @@ namespace Neptuo.TemplateEngine.Web.Controls
             : base(componentManager)
         { }
 
-        protected override void RenderBody(IHtmlWriter writer)
+        public override void Render(IHtmlWriter writer)
         {
             if (!String.IsNullOrEmpty(FormatString))
                 writer.Content(String.Format(FormatString, Text));

@@ -42,7 +42,7 @@ namespace Neptuo.TemplateEngine.Web.Controls
             Contents.Pop();
         }
 
-        protected override void RenderBody(IHtmlWriter writer)
+        public override void Render(IHtmlWriter writer)
         {
             Contents.Push(Storage);
             Render(TemplateContent, writer);

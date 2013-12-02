@@ -93,12 +93,12 @@
                         <ui:Literal Text="{Binding Key}" />
                     </td>
                     <td>
-                        <ui:Literal text="{Binding Username}" />
+                        <ui:Literal Text="{Binding Username}" />
                     </td>
                     <td></td>
                     <td></td>
                     <td>
-                        <ui:Literal text="{Binding IsEnabled}" />
+                        <ui:Literal Text="{Binding IsEnabled}" />
                     </td>
                     <td>
                         <ui:Link form:Href="Accounts.User.Edit" Text="Upravit">

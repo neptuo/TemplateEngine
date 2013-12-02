@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Web.Controls
 {
-    public abstract class FormControlBase : ControlBase, IFormControl
+    public abstract class FormControlBase : HtmlControlBase, IFormControl
     {
         public string Name { get; set; }
 
