@@ -20,13 +20,11 @@
 
         <div class="sub-panel">
             <form action="{CurrentUrl}" html:Class="form-inline">
-                <ui:FormItem>
-                    <label for="FilterID">ID:</label>
-                    <ui:TextBox html:ID="FilterID" Name="Key" Text="{Request Key}" CssClass="form-control input-sm w50" html:Style="display: block;" />
+                <ui:FormItem l:LabelText="ID:">
+                    <ui:TextBox Name="Key" Text="{Request Key}" CssClass="form-control input-sm w50" html:Style="display: block;" />
                 </ui:FormItem>
-                <ui:FormItem>
-                    <label for="FilterUsername">Username:</label>
-                    <ui:TextBox html:ID="FilterUsername" Name="Username" Text="{Request Username}" CssClass="form-control input-sm" /> 
+                <ui:FormItem l:LabelText="Username:">
+                    <ui:TextBox Name="Username" Text="{Request Username}" CssClass="form-control input-sm" /> 
                 </ui:FormItem>
                 <ui:FormItem>
                     <label for="FilterRole">Role:</label>

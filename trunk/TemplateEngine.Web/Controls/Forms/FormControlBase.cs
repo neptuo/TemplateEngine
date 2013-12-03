@@ -15,6 +15,14 @@ namespace Neptuo.TemplateEngine.Web.Controls
             : base(componentManager, "input", true)
         { }
 
+        public override void OnInit()
+        {
+            base.OnInit();
+
+            if (ID == null)
+                ID = Name;
+        }
+
         public override void Render(IHtmlWriter writer)
         {
             Attributes["name"] = Name;

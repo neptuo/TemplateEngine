@@ -51,6 +51,9 @@ namespace Neptuo.TemplateEngine.Web.Controls
 
         protected virtual void RenderAttributes(IHtmlWriter writer)
         {
+            if (!String.IsNullOrEmpty(ID))
+                Attributes["id"] = ID;
+
             if (CssClass != null)
             {
                 if (!Attributes.ContainsKey("class"))
