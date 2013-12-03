@@ -10,7 +10,6 @@ using System.Web;
 
 namespace Neptuo.TemplateEngine.Web.Controls
 {
-    [Html("a")]
     public class LinkControl : HtmlContentControlBase
     {
         private IVirtualUrlProvider urlProvider;
@@ -26,7 +25,7 @@ namespace Neptuo.TemplateEngine.Web.Controls
         public ICollection<ParameterControl> Parameters { get; set; }
 
         public LinkControl(IComponentManager componentManager, IVirtualUrlProvider urlProvider, HttpRequestBase httpRequest)
-            : base(componentManager)
+            : base(componentManager, "a")
         {
             this.urlProvider = urlProvider;
             this.httpRequest = httpRequest;

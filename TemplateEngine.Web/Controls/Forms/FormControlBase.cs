@@ -12,7 +12,7 @@ namespace Neptuo.TemplateEngine.Web.Controls
         public string Name { get; set; }
 
         public FormControlBase(IComponentManager componentManager)
-            : base(componentManager)
+            : base(componentManager, "input", true)
         { }
 
         public override void Render(IHtmlWriter writer)

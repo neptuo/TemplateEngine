@@ -2,32 +2,20 @@
 using Neptuo.Templates.Controls;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
-using System.ComponentModel;
-using System.IO;
-using System.Collections;
+using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Web.Controls
 {
     [DefaultProperty("Content")]
-    public abstract class HtmlContentControlBase : HtmlControlBase, IContentControl
+    public abstract class ContentControlBase : ControlBase, IContentControl
     {
-        protected override bool IsSelfClosing
-        {
-            get
-            {
-                if (Content != null && Content.Count != 0)
-                    return false;
-
-                return base.IsSelfClosing;
-            }
-        }
-
         public ICollection<object> Content { get; set; }
-
-        public HtmlContentControlBase(IComponentManager componentManager, string tagName, bool isSelfClosing = false)
-            : base(componentManager, tagName, isSelfClosing)
+        
+        public ContentControlBase(IComponentManager componentManager)
+            : base(componentManager)
         { }
 
         public override void OnInit()
@@ -41,7 +29,12 @@ namespace Neptuo.TemplateEngine.Web.Controls
             }
         }
 
-        protected override void RenderBody(IHtmlWriter writer)
+        public override void Render(IHtmlWriter writer)
+        {
+            RenderBody(writer);
+        }
+
+        protected virtual void RenderBody(IHtmlWriter writer)
         {
             if (Content != null)
             {

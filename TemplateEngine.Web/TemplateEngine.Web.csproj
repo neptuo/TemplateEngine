@@ -60,6 +60,8 @@
     <Compile Include="Controllers\IControllerContext.cs" />
     <Compile Include="Controllers\IViewData.cs" />
     <Compile Include="Controllers\ViewDataCollection.cs" />
+    <Compile Include="Controls\ContentControlBase.cs" />
+    <Compile Include="Controls\CssClassCollection.cs" />
     <Compile Include="Controls\HtmlContentControlBase.cs" />
     <Compile Include="Controls\DesignData\HintAttribute.cs" />
     <Compile Include="Controls\DetailViewControl.cs" />

@@ -7,14 +7,13 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Web.Controls
 {
-    [Html("button")]
     public class ButtonControl : HtmlContentControlBase
     {
         public string Name { get; set; }
         public string Text { get; set; }
 
         public ButtonControl(IComponentManager componentManager)
-            : base(componentManager)
+            : base(componentManager, "button")
         {
             Attributes["class"] = "btn";
         }
