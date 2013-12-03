@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Web.Controls
 {
-    [Html("input", true)]
     public abstract class FormInputControlBase : FormControlBase
     {
         protected string Type { get; set; }

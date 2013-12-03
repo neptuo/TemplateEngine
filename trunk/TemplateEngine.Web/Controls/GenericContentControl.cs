@@ -22,7 +22,7 @@ namespace Neptuo.TemplateEngine.Web.Controls
         //}
 
         public GenericContentControl(IComponentManager componentManager)
-            : base(componentManager)
+            : base(componentManager, "div")
         { 
             //IsSelfClosing = false;
         }

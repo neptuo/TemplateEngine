@@ -13,13 +13,14 @@ namespace Neptuo.TemplateEngine.Web.Extensions
     [DefaultProperty("Key")]
     public class RequestExtension : IValueExtension
     {
-        private HttpRequestBase httpRequest;
+        private IParameterProvider parameterProvider;
 
         public string Key { get; set; }
+        public object Default { get; set; }
 
-        public RequestExtension(HttpRequestBase httpRequest)
+        public RequestExtension(IParameterProvider parameterProvider)
         {
-            this.httpRequest = httpRequest;
+            this.parameterProvider = parameterProvider;
         }
 
         [ReturnType(typeof(string))]
@@ -28,7 +29,11 @@ namespace Neptuo.TemplateEngine.Web.Extensions
             if (Key == null)
                 throw new ArgumentOutOfRangeException("Key", "Missing key.");
 
-            return httpRequest.Params[Key];
+            object value;
+            if (parameterProvider.TryGet(Key, out value))
+                return value;
+
+            return Default;
         }
     }
 }

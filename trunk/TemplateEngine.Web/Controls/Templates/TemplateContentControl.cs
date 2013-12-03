@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Web.Controls
 {
-    public class TemplateContentControl : HtmlContentControlBase
+    public class TemplateContentControl : ContentControlBase
     {
         public string Name { get; set; }
 

@@ -15,7 +15,7 @@ namespace Neptuo.TemplateEngine.Web.Controls
         public string Key { get; set; }
 
         public MessagePanelControl(IComponentManager componentManager, MessageStorage messageStorage)
-            : base(componentManager)
+            : base(componentManager, "ul")
         {
             MessageStorage = messageStorage;
         }
@@ -26,7 +26,7 @@ namespace Neptuo.TemplateEngine.Web.Controls
             if (messages.Any())
             {
                 writer
-                    .Tag("ul");
+                    .Tag(TagName);
 
                 RenderAttributes(writer);
 
