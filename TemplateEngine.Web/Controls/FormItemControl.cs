@@ -30,6 +30,7 @@ namespace Neptuo.TemplateEngine.Web.Controls
                 writer
                     .Tag("label")
                     //.Attribute("class", "control-label")
+                    .Attribute("for", GetForAttribute())
                     .Content(LabelText)
                     .CloseFullTag();
             }
@@ -60,6 +61,27 @@ namespace Neptuo.TemplateEngine.Web.Controls
 
             writer
                 .CloseFullTag();
+        }
+
+        protected string GetForAttribute()
+        {
+            if (Content.Any())
+            {
+                foreach (object control in Content)
+                {
+                    HtmlControlBase htmlControl = control as HtmlControlBase;
+                    if (htmlControl != null)
+                    {
+                        if (!String.IsNullOrEmpty(htmlControl.ID))
+                            return htmlControl.ID;
+
+                        string id = Guid.NewGuid().ToString();
+                        htmlControl.ID = id;
+                        return id;
+                    }
+                }
+            }
+            return null;
         }
     }
 }
