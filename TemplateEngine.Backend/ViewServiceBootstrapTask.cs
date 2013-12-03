@@ -89,12 +89,14 @@ namespace Neptuo.TemplateEngine.Backend
 
             registry.RegisterComponentBuilder("ui", "AdminLayout", new UserTemplateComponentBuilderFactory("~/Views/Shared/AdminLayout.view"));
             registry.RegisterComponentBuilder("ui", "SubHeader", new UserTemplateComponentBuilderFactory("~/Views/Shared/SubHeader.view"));
+            
             registry.RegisterObserverBuilder("ui", "Event", new DefaultTypeObserverBuilderFactory(typeof(EventObserver), ObserverBuilderScope.PerElement));
             registry.RegisterObserverBuilder("view", "ID", new DefaultTypeObserverBuilderFactory(typeof(ViewIdentifierObserver), ObserverBuilderScope.PerElement));
             registry.RegisterObserverBuilder("html", "*", new DefaultTypeObserverBuilderFactory(typeof(HtmlObserver), ObserverBuilderScope.PerElement));
             registry.RegisterObserverBuilder("l", "*", new LocalizationObserverBuilderFactory());
             registry.RegisterObserverBuilder("form", "*", new FormUriObserverBuiderFactory());
             registry.RegisterObserverBuilder("ui", "IsPlaceholder", new DefaultTypeObserverBuilderFactory(typeof(IsPlaceholderObserver), ObserverBuilderScope.PerElement));
+            registry.RegisterObserverBuilder("ui", "Visible", new DefaultTypeObserverBuilderFactory(typeof(VisibleObserver), ObserverBuilderScope.PerElement));
             
             registry.RegisterPropertyBuilder(typeof(ITemplate), new DefaultPropertyBuilderFactory<TemplatePropertyBuilder>());
         }

@@ -8,7 +8,7 @@
 
         <ui:DetailView>
             <Source>
-                <data:UserEditDataSource Key="{Request UserKey}" />
+                <data:UserAccountEditDataSource Key="{Request UserKey}" />
             </Source>
             <Template>
 
@@ -60,7 +60,7 @@
                                 </a>
 
                                 <ui:HiddenBox Name="Key" Text="{Binding Key}" />
-                                <ui:Button l:Text="Save" ui:Event="Accounts/User/Save" html:Class="btn btn-primary" />
+                                <ui:Button l:Text="Save" ui:Event="Accounts/User/Save" html:Class="btn btn-primary" ui:Visible="{Binding IsNew}" />
                                 <ui:Button l:Text="Delete" ui:Event="Accounts/User/Delete" html:Class="btn btn-danger" />
                             </ui:TemplateContent>
                         </ui:SubHeader>
