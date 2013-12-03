@@ -9,6 +9,7 @@ namespace Neptuo.TemplateEngine.Web.Controllers
 {
     public interface IControllerContext
     {
+        string Action { get; }
         IViewData ViewData { get; }
         IModelBinder ModelBinder { get; }
     }

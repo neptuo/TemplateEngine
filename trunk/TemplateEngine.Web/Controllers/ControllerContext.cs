@@ -9,11 +9,13 @@ namespace Neptuo.TemplateEngine.Web.Controllers
 {
     public class ControllerContext : IControllerContext
     {
+        public string Action { get; private set; }
         public IViewData ViewData { get; private set; }
         public IModelBinder ModelBinder { get; private set; }
 
-        public ControllerContext(IViewData viewData, IModelBinder modelBinder)
+        public ControllerContext(string action, IViewData viewData, IModelBinder modelBinder)
         {
+            Action = action;
             ViewData = viewData;
             ModelBinder = modelBinder;
         }

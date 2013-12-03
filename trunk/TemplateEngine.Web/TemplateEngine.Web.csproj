@@ -101,6 +101,7 @@
     <Compile Include="IValueConverterService.cs" />
     <Compile Include="Converters\NullToBoolValueConverter.cs" />
     <Compile Include="IViewStorage.cs" />
+    <Compile Include="Observers\VisibleObserver.cs" />
     <Compile Include="RequestParameterProvider.cs" />
     <Compile Include="ValueConverterService.cs" />
     <Compile Include="FilteredModelDefinition.cs" />

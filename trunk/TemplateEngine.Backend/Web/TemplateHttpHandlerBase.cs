@@ -43,12 +43,11 @@ namespace Neptuo.TemplateEngine.Backend.Web
             IModelBinder modelBinder = dependencyContainer.Resolve<IModelBinder>();
             ViewDataCollection viewData = new ViewDataCollection();
 
-            IControllerContext context = new ControllerContext(viewData, modelBinder);
             foreach (string key in httpContext.Request.Form.AllKeys)
             {
                 IController handler;
                 if (registry.TryGet(key, out handler))
-                    handler.Execute(context);
+                    handler.Execute(new ControllerContext(key, viewData, modelBinder));
             }
         }
 
