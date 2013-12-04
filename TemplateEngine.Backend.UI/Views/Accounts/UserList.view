@@ -28,7 +28,7 @@
                 </ui:FormItem>
                 <ui:FormItem>
                     <label for="FilterRole">Role:</label>
-                    <ui:ListView>
+                    <ui:Select Value="{Request RoleKey}">
                         <Source>
                             <data:UserRoleDataSource />
                         </Source>
@@ -39,11 +39,9 @@
                             </select>
                         </Template>
                         <ItemTemplate>
-                            <option value="{Binding Key}" html:Class="">
-                                <ui:Literal Text="{Binding Name}" />
-                            </option>
+                            <ui:Option Text="{Binding Name}" Value="{Binding Key}" SelectedValue="{TemplateBinding Value}" />
                         </ItemTemplate>
-                    </ui:ListView>
+                    </ui:Select>
                 </ui:FormItem>
 
                 <div class="right">

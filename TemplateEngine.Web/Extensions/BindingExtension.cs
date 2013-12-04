@@ -26,12 +26,17 @@ namespace Neptuo.TemplateEngine.Web.Extensions
 
         public object ProvideValue(IValueExtensionContext context)
         {
-            object data = BindingManager.GetValue(Expression, DataContext.Peek());
+            object data = GetData();
 
             if (!String.IsNullOrEmpty(ConverterKey))
                 data = ConverterService.GetConverter(ConverterKey).ConvertTo(data);
 
             return data;
+        }
+
+        protected virtual object GetData()
+        {
+            return BindingManager.GetValue(Expression, DataContext.Peek());
         }
     }
 }
