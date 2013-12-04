@@ -99,6 +99,7 @@
     <Compile Include="Extensions\BindingExtension.cs" />
     <Compile Include="Extensions\CurrentUrlExtension.cs" />
     <Compile Include="Extensions\RequestExtension.cs" />
+    <Compile Include="Extensions\SwitchExtension.cs" />
     <Compile Include="Extensions\TemplateBindingExtension.cs" />
     <Compile Include="IDataSource.cs" />
     <Compile Include="IParameterProvider.cs" />
