@@ -39,7 +39,7 @@
                                         <data:UserRoleDataSource />
                                     </Source>
                                     <ItemTemplate>
-                                        <ui:CheckBox IsChecked="true" LabelText="{Binding Name}" />
+                                        <ui:CheckBox IsChecked="true" LabelText="{Binding Name}" disabled="disabled" />
                                     </ItemTemplate>
                                 </ui:ListView>
                             </ui:FormItem>
@@ -48,9 +48,8 @@
                         <ui:SubHeader>
                             <ui:TemplateContent Name="Left">
                                 <h2>
-
                                     <span class="glyphicon glyphicon-user"></span>
-                                    User Accounts - Create/Edit account
+                                    <ui:Literal Text="{Switch {Binding IsNew}, TrueValue=Create, FalseValue=Edit}" l:FormatString="User Accounts - {0} account" />
                                 </h2>
                             </ui:TemplateContent>
                             <ui:TemplateContent Name="Right">
@@ -60,9 +59,9 @@
                                 </a>
 
                                 <ui:HiddenBox Name="Key" Text="{Binding Key}" />
-                                <ui:Button l:Text="Save" ui:Event="Accounts/User/Save" html:Class="btn btn-primary" />
+                                <ui:Button l:Text="Save" ui:Event="{Switch {Binding IsNew}, TrueValue=Accounts/User/Create, FalseValue=Accounts/User/Update}" CssClass="btn btn-primary" />
                                 <!--ui:Visible="{Binding IsNew}"-->
-                                <ui:Button l:Text="Delete" ui:Event="Accounts/User/Delete" html:Class="btn btn-danger" />
+                                <ui:Button l:Text="Delete" ui:Event="Accounts/User/Delete" CssClass="btn btn-danger" />
                             </ui:TemplateContent>
                         </ui:SubHeader>
                     </form>
