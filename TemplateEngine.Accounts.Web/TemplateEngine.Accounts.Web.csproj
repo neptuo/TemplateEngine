@@ -65,6 +65,7 @@
     <Compile Include="DataSources\UserRoleDataSource.cs" />
     <Compile Include="DataSources\UserRoleEditDataSource.cs" />
     <Compile Include="Models\UserAccountEditModel.cs" />
+    <Compile Include="Models\UserRoleEditModel.cs" />
     <Compile Include="Presenters\UserDetailPresenter.cs" />
     <Compile Include="Presenters\UserEditPresenter.cs" />
     <Compile Include="Presenters\UserListPresenter.cs" />

@@ -1,5 +1,6 @@
 ﻿using Neptuo.PresentationModels.TypeModels;
 using Neptuo.TemplateEngine.Accounts.Queries;
+using Neptuo.TemplateEngine.Accounts.Web.Models;
 using Neptuo.TemplateEngine.Web;
 using System;
 using System.Collections.Generic;
@@ -29,8 +30,8 @@ namespace Neptuo.TemplateEngine.Accounts.Web.DataSources
 
         public object GetItem()
         {
-            UserRole userRole = roleQuery.Get(Key) ?? roleFactory.Create();
-            return providerFactory.Create(userRole);
+            UserRoleEditModel model = new UserRoleEditModel(roleQuery.Get(Key) ?? roleFactory.Create());
+            return providerFactory.Create(model);
         }
     }
 }

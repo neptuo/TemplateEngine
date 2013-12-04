@@ -33,7 +33,7 @@
                             <data:UserRoleDataSource />
                         </Source>
                         <Template>
-                            <select id="FilterRole" name="Role" class="form-control input-sm w200" style="display: block;">
+                            <select id="FilterRole" name="RoleKey" class="form-control input-sm w200" style="display: block;">
                                 <option value="">---</option>
                                 <ui:TemplatePlaceholder Name="Content" />
                             </select>
@@ -76,7 +76,7 @@
                                 <th>Roles</th>
                                 <th class="w200">Last logged in</th>
                                 <th class="w150">Is enabled</th>
-                                <th class="w150"></th>
+                                <th class="w150 action-list"></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -98,7 +98,7 @@
                     <td>
                         <ui:Literal Text="{Binding IsEnabled}" />
                     </td>
-                    <td>
+                    <td class="action-list">
                         <ui:Link form:Href="Accounts.User.Edit" Text="Upravit">
                             <Parameters>
                                 <ui:Parameter Name="UserKey" Value="{Binding Key}" />
