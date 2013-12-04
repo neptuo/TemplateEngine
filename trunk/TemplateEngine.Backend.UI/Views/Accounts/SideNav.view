@@ -1,4 +1,4 @@
-﻿<li class="active">
+﻿<li> <!--class="active"-->
     <ui:Link form:Href="Accounts.User.List">
         <span class="glyphicon glyphicon-user"></span>
         User accounts

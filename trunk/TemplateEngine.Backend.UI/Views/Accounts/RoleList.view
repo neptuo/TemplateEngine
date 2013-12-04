@@ -20,13 +20,14 @@
 
         <div class="sub-panel">
             <form action="{CurrentUrl}" html:Class="form-inline">
-                <ui:FormItem>
-                    <label for="FilterID">ID:</label>
-                    <ui:TextBox html:ID="FilterID" Name="Key" Text="{Request Key}" html:Class="form-control input-sm w50" html:Style="display: block;" />
+                <ui:FormItem l:LabelText="ID:">
+                    <ui:TextBox Name="Key" Text="{Request Key}" html:Class="form-control input-sm w50" html:Style="display: block;" />
                 </ui:FormItem>
-                <ui:FormItem>
-                    <label for="FilterUsername">Name:</label>
-                    <ui:TextBox html:ID="FilterName" Name="Name" Text="{Request Name}" html:Class="form-control input-sm" />
+                <ui:FormItem l:LabelText="Name:">
+                    <ui:TextBox Name="Name" Text="{Request Name}" html:Class="form-control input-sm w200" html:Style="display: block;" />
+                </ui:FormItem>
+                <ui:FormItem l:LabelText="Description:">
+                    <ui:TextBox Name="Description" Text="{Request Description}" html:Class="form-control input-sm" />
                 </ui:FormItem>
 
                 <div class="right">
@@ -39,7 +40,8 @@
             </form>
         </div>
 
-        <ui:ListView PageIndex="{Request PageIndex}" PageSize="10"> 
+        <ui:ListView PageIndex="{Request PageIndex}" PageSize="10">
+            <!--Source="{data:UserRole Name={Request Name}, Key={Request Key}}"-->
             <Source>
                 <data:UserRoleDataSource Name="{Request Name}" Key="{Request Key}" />
             </Source>
@@ -49,8 +51,9 @@
                         <thead>
                             <tr>
                                 <th class="w50">ID</th>
-                                <th>Name</th>
-                                <th class="w150"></th>
+                                <th class="w200">Name</th>
+                                <th>Description</th>
+                                <th class="w150 action-list"></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -65,9 +68,12 @@
                         <ui:Literal Text="{Binding Key}" />
                     </td>
                     <td>
-                        <ui:Literal text="{Binding Name}" />
+                        <ui:Literal Text="{Binding Name}" />
                     </td>
                     <td>
+                        <ui:Literal Text="{Binding Description}" />
+                    </td>
+                    <td class="action-list">
                         <ui:Link form:Href="Accounts.Role.Edit" Text="Upravit">
                             <Parameters>
                                 <ui:Parameter Name="RoleKey" Value="{Binding Key}" />

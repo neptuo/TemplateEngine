@@ -37,6 +37,10 @@ a {
     padding: 4px 8px;
 }
 
+td.action-list {
+    text-align: right;
+}
+
 /* ---------------------- WIDTHS ----------------------- */
 
 .w50 {
