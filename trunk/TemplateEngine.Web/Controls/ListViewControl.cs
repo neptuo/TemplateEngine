@@ -35,6 +35,7 @@ namespace Neptuo.TemplateEngine.Web.Controls
 
             IEnumerable models = Source.GetData(PageIndex, PageSize);
             TotalCount = Source.GetTotalCount();
+            DataContext.Push(this, "Template");
             foreach (object model in models)
             {
                 DataContext.Push(model);
@@ -56,6 +57,7 @@ namespace Neptuo.TemplateEngine.Web.Controls
             ComponentManager.AddComponent(templateContent, null);
             Init(templateContent);
             Content.Add(templateContent);
+            DataContext.Pop("Template");
 
             base.OnInit();
         }
