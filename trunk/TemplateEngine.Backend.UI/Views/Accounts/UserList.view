@@ -103,7 +103,7 @@
                             </Parameters>
                         </ui:Link>
                         <form method="post" action="{CurrentUrl}" html:Class="form-inline" html:Style="display: inline;">
-                            <ui:HiddenBox Text="{Binding Key}" />
+                            <ui:HiddenBox Name="UserKey" Text="{Binding Key}" />
                             <ui:Button l:Text="Delete" ui:Event="Accounts/User/Delete" html:Class="btn btn-xs btn-danger" />
                         </form>
                     </td>

@@ -1,5 +1,6 @@
 ﻿using Neptuo.Commands;
 using Neptuo.TemplateEngine.Accounts.Commands;
+using Neptuo.TemplateEngine.Accounts.Data;
 using Neptuo.TemplateEngine.Web;
 using Neptuo.TemplateEngine.Web.Controllers;
 using Neptuo.TemplateEngine.Web.Controllers.Binders;
@@ -31,17 +32,41 @@ namespace Neptuo.TemplateEngine.Accounts.Web.Controllers
             IValidationResult validationResult = Validator.Validate(model);
             if (!validationResult.IsValid)
             {
-                MessageStorage.Add(null, String.Empty, "Please fill all required values correctly.");
-
-                foreach (IValidationMessage message in validationResult.Messages)
-                    MessageStorage.Add(null, message.Key, message.Message, MessageType.Error);
-
+                MessageStorage.AddValidationResult(validationResult, "UserEdit");
                 context.ViewData.SetEditUserAccount(model);
                 return;
             }
 
             CommandDispatcher.Handle(model);
-            MessageStorage.Add(null, String.Empty, "User account saved.", MessageType.Info);
+            MessageStorage.Add("UserEdit", String.Empty, "User account saved.", MessageType.Info);
         }
     }
+
+    public class UserDeleteController : IController
+    {
+        protected IUserAccountRepository UserAccounts { get; private set; }
+        protected MessageStorage MessageStorage { get; private set; }
+
+        public UserDeleteController(IUserAccountRepository userAccounts, MessageStorage messageStorage)
+        {
+            UserAccounts = userAccounts;
+            MessageStorage = messageStorage;
+        }
+
+        public void Execute(IControllerContext context)
+        {
+            UserDeleteModel model = context.ModelBinder.Bind<UserDeleteModel>(new UserDeleteModel());
+            if(model.UserKey != 0)
+            {
+                UserAccounts.Delete(UserAccounts.Get(model.UserKey));
+                MessageStorage.Add(null, String.Empty, "User account deleted", MessageType.Info);
+            }
+        }
+
+        public class UserDeleteModel
+        {
+            public int UserKey { get; set; }
+        }
+    }
+
 }

@@ -59,6 +59,7 @@
     <Compile Include="Controllers\ControllerContext.cs" />
     <Compile Include="Controllers\IControllerContext.cs" />
     <Compile Include="Controllers\IViewData.cs" />
+    <Compile Include="Controllers\MessageStorageExtensions.cs" />
     <Compile Include="Controllers\ViewDataCollection.cs" />
     <Compile Include="Controls\ContentControlBase.cs" />
     <Compile Include="Controls\CssClassCollection.cs" />

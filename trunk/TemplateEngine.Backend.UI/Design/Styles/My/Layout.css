@@ -86,7 +86,8 @@ footer.navbar {
 .sub-panel {
     padding: 8px 15px 8px 10px;
     background: #F5F5F5;
-    border-bottom: 1px solid #cccccc;
+    border: 0px solid #cccccc;
+    border-width: 0 0 1px 0;
 }
 
 .table {
@@ -100,4 +101,46 @@ footer.navbar {
     background: #F5F5F5;
     border-top: 1px solid #cccccc;
     border-radius: 0;
+}
+
+
+.message-list {
+    padding: 8px 15px 8px 10px;
+    margin: 0;
+    list-style: none;
+    background: #F5F5F5;
+    border: 0px solid #cccccc;
+    border-width: 0 0 1px 0;
+}
+
+.form-group .message-list {
+    border-width: 0 1px 1px 1px;
+}
+
+.message-list li {
+    padding: 2px 4px;
+    margin: 0 0 1px 0;
+    border: 1px solid;
+}
+
+/*li.message-info:before {
+    font-family: "Glyphicons Halflings";
+    content: "\e086";
+}*/
+li.message-info {
+  color: #3a87ad;
+  background-color: #d9edf7;
+  border-color: #bce8f1;
+}
+
+li.message-warn {
+  color: #c09853;
+  background-color: #fcf8e3;
+  border-color: #faebcc;
+}
+
+li.message-error {
+  color: #b94a48;
+  background-color: #f2dede;
+  border-color: #ebccd1;
 }

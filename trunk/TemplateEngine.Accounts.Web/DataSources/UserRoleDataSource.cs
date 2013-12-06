@@ -23,7 +23,7 @@ namespace Neptuo.TemplateEngine.Accounts.Web.DataSources
             this.factory = factory;
         }
 
-        public IEnumerable GetData(int? pageIndex, int? pageSize)
+        protected IEnumerable<UserRole> GetDataOverride(int? pageIndex, int? pageSize)
         {
             IEnumerable<UserRole> data = roleQuery.Get();
 
@@ -33,13 +33,18 @@ namespace Neptuo.TemplateEngine.Accounts.Web.DataSources
             if (pageSize != null)
                 data = data.Skip((pageIndex ?? 0) * pageSize.Value).Take(pageSize.Value);
 
-            foreach (UserRole userRole in data)
+            return data;
+        }
+
+        public IEnumerable GetData(int? pageIndex, int? pageSize)
+        {
+            foreach (UserRole userRole in GetDataOverride(pageIndex, pageSize))
                 yield return factory.Create(userRole);
         }
 
         public int GetTotalCount()
         {
-            return roleQuery.Get().Count();
+            return GetDataOverride(null, null).Count();
         }
     }
 }

@@ -39,22 +39,30 @@ namespace Neptuo.TemplateEngine.Accounts.Web.DataSources
             return factory.Create(userAccount);
         }
 
-        public IEnumerable GetData(int? pageIndex, int? pageSize)
+        protected IEnumerable<UserAccount> GetDataOverride(int? pageIndex, int? pageSize)
         {
             IEnumerable<UserAccount> data = userQuery.Get();
-            if(!String.IsNullOrEmpty(Username))
+            if (!String.IsNullOrEmpty(Username))
                 data = data.Where(u => u.Username.Contains(Username));
+
+            if (Key != null)
+                data = data.Where(u => u.Key == Key);
 
             if (pageSize != null)
                 data = data.Skip((pageIndex ?? 0) * pageSize.Value).Take(pageSize.Value);
 
-            foreach (UserAccount userAccount in data)
+            return data;
+        }
+
+        public IEnumerable GetData(int? pageIndex, int? pageSize)
+        {
+            foreach (UserAccount userAccount in GetDataOverride(pageIndex, pageSize))
                 yield return factory.Create(userAccount);
         }
 
         public int GetTotalCount()
         {
-            return userQuery.Get().Count();
+            return GetDataOverride(null, null).Count();
         }
     }
 }
