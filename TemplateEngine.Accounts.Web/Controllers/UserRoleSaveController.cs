@@ -1,5 +1,6 @@
 ﻿using Neptuo.Commands;
 using Neptuo.TemplateEngine.Accounts.Commands;
+using Neptuo.TemplateEngine.Accounts.Data;
 using Neptuo.TemplateEngine.Web;
 using Neptuo.TemplateEngine.Web.Controllers;
 using Neptuo.TemplateEngine.Web.Controllers.Binders;
@@ -44,4 +45,32 @@ namespace Neptuo.TemplateEngine.Accounts.Web.Controllers
             MessageStorage.Add(null, String.Empty, "User role saved.", MessageType.Info);
         }
     }
+
+    public class UserRoleDeleteController : IController
+    {
+        protected IUserRoleRepository UserRoles { get; private set; }
+        protected MessageStorage MessageStorage { get; private set; }
+
+        public UserRoleDeleteController(IUserRoleRepository userRoles, MessageStorage messageStorage)
+        {
+            UserRoles = userRoles;
+            MessageStorage = messageStorage;
+        }
+
+        public void Execute(IControllerContext context)
+        {
+            UserRoleDeleteModel model = context.ModelBinder.Bind<UserRoleDeleteModel>(new UserRoleDeleteModel());
+            if (model.UserRoleKey != 0)
+            {
+                UserRoles.Delete(UserRoles.Get(model.UserRoleKey));
+                MessageStorage.Add(null, String.Empty, "User role deleted", MessageType.Info);
+            }
+        }
+
+        public class UserRoleDeleteModel
+        {
+            public int UserRoleKey { get; set; }
+        }
+    }
+
 }

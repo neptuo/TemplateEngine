@@ -17,19 +17,19 @@
                         <div class="col-md-6">
                             <ui:FormItem l:LabelText="Username" l:HelpText="Local username, must be unique">
                                 <ui:TextBox Name="Username" Text="{Binding Username}" IsAutoFocus="true" html:ID="Username" html:Class="form-control" />
-                                <ui:MessagePanel Key="Username" />
+                                <ui:MessagePanel Group="UserEdit" Key="Username" />
                             </ui:FormItem>
                             <ui:FormItem l:LabelText="Password" l:HelpText="Local password (leave empty to use current password)">
                                 <ui:PasswordBox Name="Password" Text="{Binding Password}" html:Class="form-control" />
-                                <ui:MessagePanel Key="Password" />
+                                <ui:MessagePanel Group="UserEdit" Key="Password" />
                             </ui:FormItem>
                             <ui:FormItem l:LabelText="Password again" l:HelpText="Must match previously typed password">
                                 <ui:PasswordBox Name="PasswordAgain" Text="{Binding PasswordAgain}" html:Class="form-control" />
-                                <ui:MessagePanel Key="PasswordAgain" />
+                                <ui:MessagePanel Group="UserEdit" Key="PasswordAgain" />
                             </ui:FormItem>
                             <ui:FormItem l:HelpText="Check to activate account">
                                 <ui:CheckBox Name="IsEnabled" IsChecked="{Binding IsEnabled}" l:LabelText="Is enabled" />
-                                <ui:MessagePanel Key="IsEnabled" />
+                                <ui:MessagePanel Group="UserEdit" Key="IsEnabled" />
                             </ui:FormItem>
                         </div>
                         <div class="col-md-6">

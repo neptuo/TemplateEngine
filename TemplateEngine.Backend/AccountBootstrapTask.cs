@@ -71,8 +71,12 @@ namespace Neptuo.TemplateEngine.Backend
                 .Register("Accounts.Role.Edit", TemplateRouteParameter.FormatUrl("~/Accounts/RoleEdit"));
 
             controllerRegistry
-                .Add("Accounts/User/Save", dependencyContainer, typeof(UserEditSaveController))
-                .Add("Accounts/Role/Save", dependencyContainer, typeof(UserRoleSaveController));
+                .Add("Accounts/User/Update", dependencyContainer, typeof(UserEditSaveController))
+                .Add("Accounts/User/Create", dependencyContainer, typeof(UserEditSaveController))
+                .Add("Accounts/User/Delete", dependencyContainer, typeof(UserDeleteController))
+
+                .Add("Accounts/Role/Save", dependencyContainer, typeof(UserRoleSaveController))
+                .Add("Accounts/Role/Delete", dependencyContainer, typeof(UserRoleDeleteController));
 
 #if DEBUG
             CreateDummyUserAccounts();

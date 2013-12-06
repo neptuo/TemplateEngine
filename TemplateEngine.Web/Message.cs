@@ -19,6 +19,7 @@ namespace Neptuo.TemplateEngine.Web
 
             Key = key;
             Text = text;
+            Type = type;
         }
     }
 
