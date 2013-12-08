@@ -86,6 +86,9 @@
                     </td>
                 </tr>
             </ItemTemplate>
+            <EmptyTemplate>
+                No user roles
+            </EmptyTemplate>
         </ui:ListView>
 
     </ui:TemplateContent>    

@@ -12,6 +12,7 @@ namespace Neptuo.TemplateEngine.Web.Controls
     {
         public IListDataSource Source { get; set; }
         public ITemplate ItemTemplate { get; set; }
+        public ITemplate EmptyTemplate { get; set; }
         public int? PageSize { get; set; }
         public int? PageIndex { get; set; }
         protected DataContextStorage DataContext { get; private set; }
@@ -26,37 +27,44 @@ namespace Neptuo.TemplateEngine.Web.Controls
         public override void OnInit()
         {
             Init(ItemTemplate);
-            Init(Source);
+            if (ItemTemplate == null)
+                throw new ArgumentException("Missing item template.", "ItemTemplate");
 
+            Init(Source);
             if (Source == null)
-                throw new InvalidOperationException("Missing data source.");
+                throw new ArgumentException("Missing data source.", "Source");
 
             List<object> itemTemplates = new List<object>();
 
             IEnumerable models = Source.GetData(PageIndex, PageSize);
             TotalCount = Source.GetTotalCount();
             DataContext.Push(this, "Template");
+
+            bool isEmpty = true;
             foreach (object model in models)
             {
+                isEmpty = false;
                 DataContext.Push(model);
-
-                TemplateControl control = new TemplateControl(ComponentManager, Contents);
-                control.Template = ItemTemplate;
-                ComponentManager.AddComponent(control, null);
-                Init(control);
-                itemTemplates.Add(control);
-
+                itemTemplates.Add(InitTemplate(ItemTemplate));
                 DataContext.Pop();
             }
 
-            TemplateContentControl templateContent = new TemplateContentControl(ComponentManager)
+            if (isEmpty && EmptyTemplate != null)
             {
-                Name = "Content",
-                Content = itemTemplates
-            };
-            ComponentManager.AddComponent(templateContent, null);
-            Init(templateContent);
-            Content.Add(templateContent);
+                Template = EmptyTemplate;
+            }
+            else
+            {
+
+                TemplateContentControl templateContent = new TemplateContentControl(ComponentManager)
+                {
+                    Name = "Content",
+                    Content = itemTemplates
+                };
+                ComponentManager.AddComponent(templateContent, null);
+                Init(templateContent);
+                Content.Add(templateContent);
+            }
             DataContext.Pop("Template");
 
             base.OnInit();
@@ -72,7 +80,7 @@ namespace Neptuo.TemplateEngine.Web.Controls
                     .Tag("ul")
                     .Attribute("class", "pagination pagination-sm");
 
-                for (int i = 0; i < (TotalCount / PageSize); i++)
+                for (int i = 0; i < (int)Math.Ceiling((decimal)TotalCount / PageSize.Value); i++)
                 {
                     writer
                         .Tag("li")

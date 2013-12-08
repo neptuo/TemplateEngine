@@ -60,7 +60,8 @@ namespace Neptuo.TemplateEngine.Backend
                 .RegisterType<IStackStorage<IViewStorage>, StackStorage<IViewStorage>>(new PerRequestLifetime())
                 .RegisterType<TemplateContentStorageStack>(new PerRequestLifetime())
                 //.RegisterType<IEventHandler, SimpleEventHandler>(new PerRequestLifetime())
-                .RegisterType<MessageStorage>(new PerRequestLifetime());
+                .RegisterType<MessageStorage>(new PerRequestLifetime())
+                .RegisterType<NavigationCollection>(new PerRequestLifetime());
         }
 
         protected virtual void SetupViewService(CodeDomViewService viewService, TypeBuilderRegistry registry, IFileProvider fileProvider, IVirtualPathProvider virtualPathProvider)
@@ -112,6 +113,7 @@ namespace Neptuo.TemplateEngine.Backend
             generator.SetCodeObjectGenerator(typeof(MethodReferenceCodeObject), new CodeDomMethodReferenceGenerator());
             generator.SetCodeObjectGenerator(typeof(LocalizationCodeObject), new CodeDomLocalizationGenerator());
             generator.SetCodeObjectGenerator(typeof(ResolveUrlCodeObject), new CodeDomResolveUrlGenerator());
+            generator.SetCodeObjectGenerator(typeof(ExplicitCastCodeObject), new CodeDomExplicitCastGenerator());
 
             generator.SetPropertyDescriptorGenerator(typeof(CssClassPropertyDescriptor), new CodeDomCssClassPropertyGenerator());
             generator.SetPropertyTypeGenerator(typeof(ITemplate), new CodeDomTemplatePropertyTypeGenerator(fieldNameProvider, "{0}.Views.{1}.view"));

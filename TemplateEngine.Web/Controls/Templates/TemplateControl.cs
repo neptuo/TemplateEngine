@@ -48,5 +48,14 @@ namespace Neptuo.TemplateEngine.Web.Controls
             Render(TemplateContent, writer);
             Contents.Pop();
         }
+
+        protected TemplateControl InitTemplate(ITemplate template)
+        {
+            TemplateControl control = new TemplateControl(ComponentManager, Contents);
+            control.Template = template;
+            ComponentManager.AddComponent(control, null);
+            Init(control);
+            return control;
+        }
     }
 }

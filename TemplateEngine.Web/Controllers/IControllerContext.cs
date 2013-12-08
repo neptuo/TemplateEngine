@@ -12,6 +12,7 @@ namespace Neptuo.TemplateEngine.Web.Controllers
         string Action { get; }
         IViewData ViewData { get; }
         IModelBinder ModelBinder { get; }
+        NavigationCollection Navigations { get; }
     }
 
 }

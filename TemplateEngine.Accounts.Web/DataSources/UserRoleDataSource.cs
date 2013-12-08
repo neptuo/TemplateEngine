@@ -15,6 +15,7 @@ namespace Neptuo.TemplateEngine.Accounts.Web.DataSources
         private IUserRoleQuery roleQuery;
         private IModelValueProviderFactory factory;
 
+        public int? Key { get; set; }
         public string Name { get; set; }
 
         public UserRoleDataSource(IUserRoleQuery roleQuery, IModelValueProviderFactory factory)
@@ -29,6 +30,9 @@ namespace Neptuo.TemplateEngine.Accounts.Web.DataSources
 
             if (!String.IsNullOrEmpty(Name))
                 data = data.Where(r => r.Name.Contains(Name));
+
+            if (Key != null)
+                data = data.Where(r => r.Key == Key);
 
             if (pageSize != null)
                 data = data.Skip((pageIndex ?? 0) * pageSize.Value).Take(pageSize.Value);
