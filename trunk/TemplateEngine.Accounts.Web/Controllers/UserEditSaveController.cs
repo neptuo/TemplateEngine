@@ -59,6 +59,7 @@ namespace Neptuo.TemplateEngine.Accounts.Web.Controllers
             if(model.UserKey != 0)
             {
                 UserAccounts.Delete(UserAccounts.Get(model.UserKey));
+                context.Navigations.Add("Accounts.User.Deleted");
                 MessageStorage.Add(null, String.Empty, "User account deleted", MessageType.Info);
             }
         }

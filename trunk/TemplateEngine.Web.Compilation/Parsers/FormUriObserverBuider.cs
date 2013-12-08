@@ -32,7 +32,13 @@ namespace Neptuo.TemplateEngine.Web.Compilation.Parsers
                     PropertyInfo propertyInfo = component.Type.GetProperty(attribute.LocalName);
                     if (propertyInfo != null)
                     {
-                        propertyDescriptor = new SetPropertyDescriptor(new TypePropertyInfo(propertyInfo), new ResolveUrlCodeObject(formUri.Url()));
+                        if (propertyInfo.PropertyType == typeof(string))
+                            propertyDescriptor = new SetPropertyDescriptor(new TypePropertyInfo(propertyInfo), new ResolveUrlCodeObject(formUri.Url()));
+                        else if (propertyInfo.PropertyType == typeof(FormUri))
+                            propertyDescriptor = new SetPropertyDescriptor(new TypePropertyInfo(propertyInfo), new ExplicitCastCodeObject(typeof(FormUri), attribute.Value));
+                        else
+                            throw new InvalidOperationException(String.Format("Unnable to set property of type '{0}' with FormUri.", propertyInfo.PropertyType));
+
                         component.Properties.Add(propertyDescriptor);
                     }
                     else

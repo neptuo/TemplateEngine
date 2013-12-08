@@ -60,16 +60,17 @@ namespace Neptuo.TemplateEngine.Accounts.Web.Controllers
         public void Execute(IControllerContext context)
         {
             UserRoleDeleteModel model = context.ModelBinder.Bind<UserRoleDeleteModel>(new UserRoleDeleteModel());
-            if (model.UserRoleKey != 0)
+            if (model.RoleKey != 0)
             {
-                UserRoles.Delete(UserRoles.Get(model.UserRoleKey));
+                UserRoles.Delete(UserRoles.Get(model.RoleKey));
+                context.Navigations.Add("Accounts.Role.Deleted");
                 MessageStorage.Add(null, String.Empty, "User role deleted", MessageType.Info);
             }
         }
 
         public class UserRoleDeleteModel
         {
-            public int UserRoleKey { get; set; }
+            public int RoleKey { get; set; }
         }
     }
 

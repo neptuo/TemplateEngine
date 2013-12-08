@@ -12,12 +12,14 @@ namespace Neptuo.TemplateEngine.Web.Controllers
         public string Action { get; private set; }
         public IViewData ViewData { get; private set; }
         public IModelBinder ModelBinder { get; private set; }
+        public NavigationCollection Navigations { get; private set; }
 
-        public ControllerContext(string action, IViewData viewData, IModelBinder modelBinder)
+        public ControllerContext(string action, IViewData viewData, IModelBinder modelBinder, NavigationCollection navigations)
         {
             Action = action;
             ViewData = viewData;
             ModelBinder = modelBinder;
+            Navigations = navigations;
         }
     }
 }

@@ -49,6 +49,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CodeGenerators\CodeDomCssClassPropertyGenerator.cs" />
+    <Compile Include="CodeGenerators\CodeDomExplicitCastGenerator.cs" />
     <Compile Include="CodeGenerators\CodeDomLocalizationGenerator.cs" />
     <Compile Include="CodeGenerators\CodeDomMethodReferenceGenerator.cs" />
     <Compile Include="CodeGenerators\CodeDomPropertySetAttributeGenerator.cs" />
@@ -57,6 +58,7 @@
     <Compile Include="CodeGenerators\CodeDomTemplateGenerator.cs" />
     <Compile Include="CodeGenerators\CodeDomTemplatePropertyTypeGenerator.cs" />
     <Compile Include="CodeObjects\CssClassPropertyDescriptor.cs" />
+    <Compile Include="CodeObjects\ExplicitCastCodeObject.cs" />
     <Compile Include="CodeObjects\LocalizationCodeObject.cs" />
     <Compile Include="CodeObjects\MethodReferenceCodeObject.cs" />
     <Compile Include="CodeObjects\ResolveUrlCodeObject.cs" />

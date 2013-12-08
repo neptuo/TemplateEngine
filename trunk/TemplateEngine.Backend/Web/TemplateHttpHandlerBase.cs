@@ -1,4 +1,5 @@
-﻿using Neptuo.TemplateEngine.Web.Controllers;
+﻿using Neptuo.TemplateEngine.Web;
+using Neptuo.TemplateEngine.Web.Controllers;
 using Neptuo.TemplateEngine.Web.Controllers.Binders;
 using Neptuo.Templates;
 using Neptuo.Templates.Compilation;
@@ -42,12 +43,13 @@ namespace Neptuo.TemplateEngine.Backend.Web
             IControllerRegistry registry = dependencyContainer.Resolve<IControllerRegistry>();
             IModelBinder modelBinder = dependencyContainer.Resolve<IModelBinder>();
             ViewDataCollection viewData = new ViewDataCollection();
+            NavigationCollection navigations = dependencyContainer.Resolve<NavigationCollection>();
 
             foreach (string key in httpContext.Request.Form.AllKeys)
             {
                 IController handler;
                 if (registry.TryGet(key, out handler))
-                    handler.Execute(new ControllerContext(key, viewData, modelBinder));
+                    handler.Execute(new ControllerContext(key, viewData, modelBinder, navigations));
             }
         }
 
