@@ -51,7 +51,7 @@ namespace Neptuo.TemplateEngine.Accounts.Web.DataSources
             if (pageSize != null)
                 data = data.Skip((pageIndex ?? 0) * pageSize.Value).Take(pageSize.Value);
 
-            return data;
+            return data.OrderBy(u => u.Key);
         }
 
         public IEnumerable GetData(int? pageIndex, int? pageSize)

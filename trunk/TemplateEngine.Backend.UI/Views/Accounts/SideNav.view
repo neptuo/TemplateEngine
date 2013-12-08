@@ -10,7 +10,7 @@
         User roles
     </ui:Link>
 </li>
-<li>
+<li ui:Visible="false">
     <a href="#" class="disabled">
         <span class="glyphicon glyphicon-align-left"></span>
         Permissions

@@ -26,7 +26,7 @@
                 <ui:FormItem l:LabelText="Username:">
                     <ui:TextBox Name="Username" Text="{Request Username}" CssClass="form-control input-sm" /> 
                 </ui:FormItem>
-                <ui:FormItem>
+                <ui:FormItem ui:Visible="false">
                     <label for="FilterRole">Role:</label>
                     <ui:Select Value="{Request RoleKey}">
                         <Source>
