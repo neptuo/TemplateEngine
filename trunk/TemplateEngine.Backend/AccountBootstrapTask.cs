@@ -33,13 +33,15 @@ namespace Neptuo.TemplateEngine.Backend
         private TypeBuilderRegistry registry;
         private IFormUriRegistry formRegistry;
         private IControllerRegistry controllerRegistry;
+        private GlobalNavigationCollection globalNavigations;
 
-        public AccountBootstrapTask(IDependencyContainer dependencyContainer, TypeBuilderRegistry registry, IFormUriRegistry formRegistry, IControllerRegistry controllerRegistry)
+        public AccountBootstrapTask(IDependencyContainer dependencyContainer, TypeBuilderRegistry registry, IFormUriRegistry formRegistry, IControllerRegistry controllerRegistry, GlobalNavigationCollection globalNavigations)
         {
             this.dependencyContainer = dependencyContainer;
             this.registry = registry;
             this.formRegistry = formRegistry;
             this.controllerRegistry = controllerRegistry;
+            this.globalNavigations = globalNavigations;
         }
 
         public void Initialize()
@@ -77,6 +79,15 @@ namespace Neptuo.TemplateEngine.Backend
 
                 .Add("Accounts/Role/Save", dependencyContainer, typeof(UserRoleSaveController))
                 .Add("Accounts/Role/Delete", dependencyContainer, typeof(UserRoleDeleteController));
+
+            globalNavigations
+                .Add("Accounts.User.Deleted", (FormUri)"Accounts.User.List")
+                .Add("Accounts.User.Created", (FormUri)"Accounts.User.List")
+                .Add("Accounts.User.Updated", (FormUri)"Accounts.User.List")
+
+                .Add("Accounts.Role.Deleted", (FormUri)"Accounts.Role.List")
+                .Add("Accounts.Role.Created", (FormUri)"Accounts.Role.List")
+                .Add("Accounts.Role.Updated", (FormUri)"Accounts.Role.List");
 
 #if DEBUG
             CreateDummyUserAccounts();

@@ -1,4 +1,5 @@
-﻿using Neptuo.TemplateEngine.Web;
+﻿using Neptuo.TemplateEngine.Navigation;
+using Neptuo.TemplateEngine.Web;
 using Neptuo.TemplateEngine.Web.Controllers;
 using Neptuo.TemplateEngine.Web.Controllers.Binders;
 using Neptuo.Templates;
@@ -24,21 +25,22 @@ namespace Neptuo.TemplateEngine.Backend.Web
             IViewServiceContext viewServiceContext = GetViewServiceContext();
             IDependencyContainer container = viewServiceContext.DependencyProvider.CreateChildContainer();
 
-            HandleUiEvents(context, container);
+            if (!HandleUiEvents(context, container))
+            {
+                BaseGeneratedView view = (BaseGeneratedView)GetViewService().Process(GetTemplateUrl(), viewServiceContext);
+                IComponentManager componentManager = GetComponentManager(viewServiceContext, context);
 
-            BaseGeneratedView view = (BaseGeneratedView)GetViewService().Process(GetTemplateUrl(), viewServiceContext);
-            IComponentManager componentManager = GetComponentManager(viewServiceContext, context);
+                container.RegisterInstance<IComponentManager>(componentManager);
 
-            container.RegisterInstance<IComponentManager>(componentManager);
-
-            view.Setup(new BaseViewPage(componentManager), componentManager, container);
-            view.CreateControls();
-            view.Init();
-            view.Render(new HtmlTextWriter(context.Response.Output));
-            view.Dispose();
+                view.Setup(new BaseViewPage(componentManager), componentManager, container);
+                view.CreateControls();
+                view.Init();
+                view.Render(new HtmlTextWriter(context.Response.Output));
+                view.Dispose();
+            }
         }
 
-        protected virtual void HandleUiEvents(HttpContext httpContext, IDependencyContainer dependencyContainer)
+        protected virtual bool HandleUiEvents(HttpContext httpContext, IDependencyContainer dependencyContainer)
         {
             IControllerRegistry registry = dependencyContainer.Resolve<IControllerRegistry>();
             IModelBinder modelBinder = dependencyContainer.Resolve<IModelBinder>();
@@ -51,6 +53,25 @@ namespace Neptuo.TemplateEngine.Backend.Web
                 if (registry.TryGet(key, out handler))
                     handler.Execute(new ControllerContext(key, viewData, modelBinder, navigations));
             }
+
+            GlobalNavigationCollection globalNavigations = dependencyContainer.Resolve<GlobalNavigationCollection>();
+            INavigator navigator = dependencyContainer.Resolve<INavigator>();
+
+            return ProcessNavigationRules(navigations, globalNavigations, navigator);
+        }
+
+        protected virtual bool ProcessNavigationRules(NavigationCollection navigations, GlobalNavigationCollection globalNavigations, INavigator navigator)
+        {
+            foreach (string name in navigations)
+            {
+                FormUri to;
+                if (globalNavigations.TryGetValue(name, out to))
+                {
+                    navigator.Open(to);
+                    return true;
+                }
+            }
+            return false;
         }
 
         protected virtual IComponentManager GetComponentManager(IViewServiceContext viewServiceContext, HttpContext httpContext)

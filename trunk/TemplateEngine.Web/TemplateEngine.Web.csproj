@@ -104,6 +104,7 @@
     <Compile Include="Extensions\RequestExtension.cs" />
     <Compile Include="Extensions\SwitchExtension.cs" />
     <Compile Include="Extensions\TemplateBindingExtension.cs" />
+    <Compile Include="GlobalNavigationCollection.cs" />
     <Compile Include="IDataSource.cs" />
     <Compile Include="NavigationCollection.cs" />
     <Compile Include="IParameterProvider.cs" />
