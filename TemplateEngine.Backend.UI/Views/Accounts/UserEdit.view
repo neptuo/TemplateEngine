@@ -1,7 +1,4 @@
-﻿<ui:Navigation>
-    <ui:NavigationItem Name="Accounts.User.Deleted" form:To="Accounts.User.List" />
-</ui:Navigation>
-<ui:AdminLayout Title="User Accounts - Create/Edit account">
+﻿<ui:AdminLayout Title="User Accounts - Create/Edit account">
     <ui:TemplateContent Name="SideNav">
         <ul class="nav nav-pills nav-stacked">
             <ui:AccountSideNav />

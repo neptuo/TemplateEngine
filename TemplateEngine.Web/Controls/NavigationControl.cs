@@ -14,14 +14,16 @@ namespace Neptuo.TemplateEngine.Web.Controls
     public class NavigationControl : ControlBase
     {
         protected NavigationCollection Navigations { get; private set; }
+        protected GlobalNavigationCollection GlobalNavigations { get; private set; }
         protected INavigator Navigator { get; private set; }
         public ICollection<NavigationItem> Items { get; set; }
 
-        public NavigationControl(IComponentManager componentManager, INavigator navigator, NavigationCollection navigations)
+        public NavigationControl(IComponentManager componentManager, INavigator navigator, NavigationCollection navigations, GlobalNavigationCollection globalNavigations)
             : base(componentManager)
         {
             Navigator = navigator;
             Navigations = navigations;
+            GlobalNavigations = globalNavigations;
         }
 
         public override void OnInit()
@@ -29,10 +31,16 @@ namespace Neptuo.TemplateEngine.Web.Controls
             Init(Items);
             foreach (string name in Navigations)
             {
-                foreach (NavigationItem item in Items)
+                if (Items != null)
                 {
-                    if(item.Name == name)
-                        Navigator.Open((FormUri)item.To);
+                    foreach (NavigationItem item in Items)
+                    {
+                        if (item.Name == name)
+                        {
+                            Navigator.Open(item.To);
+                            return;
+                        }
+                    }
                 }
             }
         }

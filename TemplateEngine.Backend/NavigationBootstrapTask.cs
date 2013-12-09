@@ -32,7 +32,9 @@ namespace Neptuo.TemplateEngine.Backend
             dependencyContainer
                 .RegisterInstance<IFormUriService>(formService)
                 .RegisterInstance<IFormUriRegistry>(formService)
-                .RegisterType<INavigator, RedirectNavigator>(new PerRequestLifetime());
+                .RegisterType<INavigator, RedirectNavigator>(new PerRequestLifetime())
+                .RegisterType<NavigationCollection>(new PerRequestLifetime())
+                .RegisterInstance(new GlobalNavigationCollection());
         }
     }
 }
