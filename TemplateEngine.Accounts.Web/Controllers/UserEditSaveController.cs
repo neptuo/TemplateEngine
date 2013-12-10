@@ -38,7 +38,17 @@ namespace Neptuo.TemplateEngine.Accounts.Web.Controllers
             }
 
             CommandDispatcher.Handle(model);
-            MessageStorage.Add("UserEdit", String.Empty, "User account saved.", MessageType.Info);
+
+            if (model.Key == 0)
+            {
+                MessageStorage.Add(null, String.Empty, "User account created.", MessageType.Info);
+                context.Navigations.Add("Accounts.User.Created");
+            }
+            else
+            {
+                MessageStorage.Add(null, String.Empty, "User account modified.", MessageType.Info);
+                context.Navigations.Add("Accounts.User.Updated");
+            }
         }
     }
 

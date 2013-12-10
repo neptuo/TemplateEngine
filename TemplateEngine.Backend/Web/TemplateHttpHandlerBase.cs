@@ -10,10 +10,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web;
+using System.Web.SessionState;
 
 namespace Neptuo.TemplateEngine.Backend.Web
 {
-    public abstract class TemplateHttpHandlerBase : IHttpHandler
+    public abstract class TemplateHttpHandlerBase : IHttpHandler, IRequiresSessionState
     {
         public bool IsReusable
         {

@@ -3,6 +3,7 @@ using Neptuo.Templates;
 using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,6 +25,10 @@ namespace Neptuo.TemplateEngine.Web.Controls
         public string CopyParameters { get; set; }
         public ICollection<ParameterControl> Parameters { get; set; }
 
+        [Hint("Setting to false, disable adding 'active' css class when matching url with current.")]
+        [DefaultValue(true)]
+        public bool AllowActive { get; set; }
+
         public LinkControl(IComponentManager componentManager, IVirtualUrlProvider urlProvider, HttpRequestBase httpRequest)
             : base(componentManager, "a")
         {
@@ -38,7 +43,7 @@ namespace Neptuo.TemplateEngine.Web.Controls
             if (Href == null)
                 throw new ArgumentNullException("Href");
 
-            if (httpRequest.AppRelativeCurrentExecutionFilePath.EndsWith(Href))
+            if (AllowActive && httpRequest.AppRelativeCurrentExecutionFilePath.EndsWith(Href))
                 Attributes["class"] = "active";
 
             if (!String.IsNullOrEmpty(Text))

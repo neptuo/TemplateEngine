@@ -42,7 +42,17 @@ namespace Neptuo.TemplateEngine.Accounts.Web.Controllers
             }
 
             CommandDispatcher.Handle(model);
-            MessageStorage.Add(null, String.Empty, "User role saved.", MessageType.Info);
+
+            if (model.Key == 0)
+            {
+                MessageStorage.Add(null, String.Empty, "User role created.", MessageType.Info);
+                context.Navigations.Add("Accounts.Role.Created");
+            }
+            else
+            {
+                MessageStorage.Add(null, String.Empty, "User role modified.", MessageType.Info);
+                context.Navigations.Add("Accounts.Role.Updated");
+            }
         }
     }
 
