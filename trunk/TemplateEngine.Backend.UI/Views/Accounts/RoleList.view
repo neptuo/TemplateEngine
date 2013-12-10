@@ -35,7 +35,7 @@
                         <span class="glyphicon glyphicon-search"></span>
                         <ui:Literal l:Text="Search" />
                     </ui:Button>
-                    <ui:Link form:Href="Accounts.Role.List" html:Class="btn btn-default btn-sm" l:Text="Clear" CopyParameters="PageIndex" />
+                    <ui:Link form:Href="Accounts.Role.List" CssClass="btn btn-default btn-sm" l:Text="Clear" CopyParameters="PageIndex" AllowActive="false" />
                 </div>
             </form>
         </div>
