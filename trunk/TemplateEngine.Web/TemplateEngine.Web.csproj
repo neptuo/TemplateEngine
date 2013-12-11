@@ -56,7 +56,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BindingManagerBase.cs" />
+    <Compile Include="Controllers\ActionAttribute.cs" />
+    <Compile Include="Controllers\ControllerBase.cs" />
     <Compile Include="Controllers\ControllerContext.cs" />
+    <Compile Include="Controllers\ControllerRegistryExtensions.cs" />
     <Compile Include="Controllers\IControllerContext.cs" />
     <Compile Include="Controllers\IViewData.cs" />
     <Compile Include="Controllers\MessageStorageExtensions.cs" />

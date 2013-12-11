@@ -15,25 +15,25 @@ namespace Neptuo.TemplateEngine.Web.Controllers
             Storage = new Dictionary<string, IControllerFactory>();
         }
 
-        public IControllerRegistry Add(string eventName, IControllerFactory factory)
+        public IControllerRegistry Add(string actionName, IControllerFactory factory)
         {
-            if (eventName == null)
-                throw new ArgumentNullException("eventName");
+            if (actionName == null)
+                throw new ArgumentNullException("actionName");
 
             if (factory == null)
                 throw new ArgumentNullException("factory");
 
-            Storage[eventName] = factory;
+            Storage[actionName] = factory;
             return this;
         }
 
-        public bool TryGet(string eventName, out IController handler)
+        public bool TryGet(string actionName, out IController handler)
         {
-            if (eventName == null)
-                throw new ArgumentNullException("eventName");
+            if (actionName == null)
+                throw new ArgumentNullException("actionName");
 
             IControllerFactory factory;
-            if (Storage.TryGetValue(eventName, out factory))
+            if (Storage.TryGetValue(actionName, out factory))
             {
                 handler = factory.Create();
                 return true;
