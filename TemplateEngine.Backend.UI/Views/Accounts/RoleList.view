@@ -21,7 +21,7 @@
         <div class="sub-panel">
             <form action="{CurrentUrl}" html:Class="form-inline">
                 <ui:FormItem l:LabelText="ID:">
-                    <ui:TextBox Name="Key" Text="{Request Key}" html:Class="form-control input-sm w50" html:Style="display: block;" />
+                    <ui:TextBox Name="Key" Text="{Request Key}" IsAutoFocus="true" html:Class="form-control input-sm w50" html:Style="display: block;" />
                 </ui:FormItem>
                 <ui:FormItem l:LabelText="Name:">
                     <ui:TextBox Name="Name" Text="{Request Name}" html:Class="form-control input-sm w200" html:Style="display: block;" />
@@ -80,7 +80,7 @@
                             </Parameters>
                         </ui:Link>
                         <form method="post" action="{CurrentUrl}" html:Class="form-inline" html:Style="display: inline;">
-                            <ui:HiddenBox Name="UserRoleKey" Text="{Binding Key}" />
+                            <ui:HiddenBox Name="RoleKey" Text="{Binding Key}" />
                             <ui:Button l:Text="Delete" ui:Event="Accounts/Role/Delete" html:Class="btn btn-xs btn-danger" />
                         </form>
                     </td>

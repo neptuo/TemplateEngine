@@ -26,7 +26,6 @@
                         <ui:SubHeader>
                             <ui:TemplateContent Name="Left">
                                 <h2>
-
                                     <span class="glyphicon glyphicon-user"></span>
                                     User Roles - Create/Edit role
                                 </h2>
@@ -38,8 +37,9 @@
                                 </a>
 
                                 <ui:HiddenBox Name="Key" Text="{Binding Key}" />
-                                <ui:Button l:Text="Save" ui:Event="Accounts/Role/Save" html:Class="btn btn-primary" />
-                                <ui:button l:Text="Delete" ui:Event="Accounts/Role/Delete" html:Class="btn btn-danger" />
+                                
+                                <ui:Button l:Text="Save" ui:Event="{Switch {Binding IsNew}, TrueValue=Accounts/Role/Create, FalseValue=Accounts/Role/Update}" CssClass="btn btn-primary" />
+                                <ui:Button l:Text="Delete" ui:Event="Accounts/Role/Delete" html:Class="btn btn-danger" />
                             </ui:TemplateContent>
                         </ui:SubHeader>
                     </form>

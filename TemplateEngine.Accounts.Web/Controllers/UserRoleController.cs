@@ -13,22 +13,60 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Accounts.Web.Controllers
 {
-    public class UserRoleSaveController : IController
+    public class UserRoleController : ControllerBase
     {
+        protected IUserRoleRepository UserRoles { get; private set; }
         protected ICommandDispatcher CommandDispatcher { get; private set; }
         protected IValidator<EditUserRoleCommand> Validator { get; private set; }
         protected MessageStorage MessageStorage { get; private set; }
 
-        public UserRoleSaveController(ICommandDispatcher commandDispatcher, IValidator<EditUserRoleCommand> validator, MessageStorage messageStorage)
+        public UserRoleController(IUserRoleRepository userRoles, ICommandDispatcher commandDispatcher, IValidator<EditUserRoleCommand> validator, MessageStorage messageStorage)
         {
+            UserRoles = userRoles;
             CommandDispatcher = commandDispatcher;
             Validator = validator;
             MessageStorage = messageStorage;
         }
 
-        public void Execute(IControllerContext context)
+        #region Delete
+
+        [Action("Accounts/Role/Delete")]
+        public void Delete()
         {
-            EditUserRoleCommand model = context.ModelBinder.Bind<EditUserRoleCommand>(new EditUserRoleCommand());
+            UserRoleDeleteModel model = Context.ModelBinder.Bind<UserRoleDeleteModel>(new UserRoleDeleteModel());
+            if (model.RoleKey != 0)
+            {
+                UserRoles.Delete(UserRoles.Get(model.RoleKey));
+                Context.Navigations.Add("Accounts.Role.Deleted");
+                MessageStorage.Add(null, String.Empty, "User role deleted", MessageType.Info);
+            }
+
+        }
+
+        public class UserRoleDeleteModel
+        {
+            public int RoleKey { get; set; }
+        }
+
+        #endregion
+
+        #region Create/Update
+
+        [Action("Accounts/Role/Create")]
+        public void Create()
+        {
+            CreateUpdate();
+        }
+
+        [Action("Accounts/Role/Update")]
+        public void Update()
+        {
+            Update();
+        }
+
+        protected void CreateUpdate()
+        {
+            EditUserRoleCommand model = Context.ModelBinder.Bind<EditUserRoleCommand>(new EditUserRoleCommand());
             IValidationResult validationResult = Validator.Validate(model);
             if (!validationResult.IsValid)
             {
@@ -37,7 +75,7 @@ namespace Neptuo.TemplateEngine.Accounts.Web.Controllers
                 foreach (IValidationMessage message in validationResult.Messages)
                     MessageStorage.Add(null, message.Key, message.Message, MessageType.Error);
 
-                context.ViewData.SetEditUserRole(model);
+                Context.ViewData.SetEditUserRole(model);
                 return;
             }
 
@@ -46,42 +84,15 @@ namespace Neptuo.TemplateEngine.Accounts.Web.Controllers
             if (model.Key == 0)
             {
                 MessageStorage.Add(null, String.Empty, "User role created.", MessageType.Info);
-                context.Navigations.Add("Accounts.Role.Created");
+                Context.Navigations.Add("Accounts.Role.Created");
             }
             else
             {
                 MessageStorage.Add(null, String.Empty, "User role modified.", MessageType.Info);
-                context.Navigations.Add("Accounts.Role.Updated");
-            }
-        }
-    }
-
-    public class UserRoleDeleteController : IController
-    {
-        protected IUserRoleRepository UserRoles { get; private set; }
-        protected MessageStorage MessageStorage { get; private set; }
-
-        public UserRoleDeleteController(IUserRoleRepository userRoles, MessageStorage messageStorage)
-        {
-            UserRoles = userRoles;
-            MessageStorage = messageStorage;
-        }
-
-        public void Execute(IControllerContext context)
-        {
-            UserRoleDeleteModel model = context.ModelBinder.Bind<UserRoleDeleteModel>(new UserRoleDeleteModel());
-            if (model.RoleKey != 0)
-            {
-                UserRoles.Delete(UserRoles.Get(model.RoleKey));
-                context.Navigations.Add("Accounts.Role.Deleted");
-                MessageStorage.Add(null, String.Empty, "User role deleted", MessageType.Info);
+                Context.Navigations.Add("Accounts.Role.Updated");
             }
         }
 
-        public class UserRoleDeleteModel
-        {
-            public int RoleKey { get; set; }
-        }
+        #endregion
     }
-
 }

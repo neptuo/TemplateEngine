@@ -10,7 +10,8 @@ namespace Neptuo.TemplateEngine.Web
     {
         public static string Translate(string text)
         {
-            return String.Format("[{0}]", text);
+            //return String.Format("[{0}]", text);
+            return text;
         }
     }
 }

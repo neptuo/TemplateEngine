@@ -22,12 +22,4 @@ namespace Neptuo.TemplateEngine.Web.Controllers
             return (IController)DependencyContainer.Resolve(HandlerType, null);
         }
     }
-
-    public static class DependencyControllerFactoryRegistry
-    {
-        public static IControllerRegistry Add(this IControllerRegistry registry, string eventName, IDependencyContainer dependencyContainer, Type handlerType)
-        {
-            return registry.Add(eventName, new DependencyControllerFactory(dependencyContainer, handlerType));
-        }
-    }
 }

@@ -21,7 +21,7 @@
         <div class="sub-panel">
             <form action="{CurrentUrl}" html:Class="form-inline">
                 <ui:FormItem l:LabelText="ID:">
-                    <ui:TextBox Name="Key" Text="{Request Key}" CssClass="form-control input-sm w50" html:Style="display: block;" />
+                    <ui:TextBox Name="Key" Text="{Request Key}" IsAutoFocus="true" CssClass="form-control input-sm w50" html:Style="display: block;" />
                 </ui:FormItem>
                 <ui:FormItem l:LabelText="Username:">
                     <ui:TextBox Name="Username" Text="{Request Username}" CssClass="form-control input-sm" /> 

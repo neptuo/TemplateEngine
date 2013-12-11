@@ -19,7 +19,7 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Accounts.Web.Presenters
 {
-    [SupportUiEvent("User/Save", typeof(UserEditSaveController))]
+    [SupportUiEvent("User/Save", typeof(UserAccountController))]
     public class UserEditPresenter : PresentationControlBase
     {
         protected IUserAccountQuery UserQuery { get; private set; }

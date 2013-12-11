@@ -8,8 +8,8 @@ namespace Neptuo.TemplateEngine.Web.Controllers
 {
     public interface IControllerRegistry
     {
-        IControllerRegistry Add(string eventName, IControllerFactory factory);
+        IControllerRegistry Add(string actionName, IControllerFactory factory);
 
-        bool TryGet(string eventName, out IController handler);
+        bool TryGet(string actionName, out IController handler);
     }
 }
