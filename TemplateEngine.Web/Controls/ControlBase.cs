@@ -17,8 +17,6 @@ namespace Neptuo.TemplateEngine.Web.Controls
     {
         private string defaultPropertyName;
 
-        public HtmlAttributeCollection Attributes { get; protected set; }
-
         protected IComponentManager ComponentManager { get; private set; }
         protected string DefaultPropertyName
         {
@@ -38,7 +36,6 @@ namespace Neptuo.TemplateEngine.Web.Controls
         public ControlBase(IComponentManager componentManager)
         {
             ComponentManager = componentManager;
-            Attributes = new HtmlAttributeCollection();
         }
 
         public virtual void OnInit() { }

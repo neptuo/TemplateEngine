@@ -96,7 +96,7 @@ namespace Neptuo.TemplateEngine.Backend
             registry.RegisterObserverBuilder("l", "*", new LocalizationObserverBuilderFactory());
             registry.RegisterObserverBuilder("form", "*", new FormUriObserverBuiderFactory());
             registry.RegisterObserverBuilder("ui", "IsPlaceholder", new DefaultTypeObserverBuilderFactory(typeof(IsPlaceholderObserver), ObserverBuilderScope.PerElement));
-            registry.RegisterObserverBuilder("ui", "Visible", new DefaultTypeObserverBuilderFactory(typeof(VisibleObserver), ObserverBuilderScope.PerElement));
+            registry.RegisterObserverBuilder("ui", "IsVisible", new DefaultTypeObserverBuilderFactory(typeof(VisibleObserver), ObserverBuilderScope.PerElement));
             
             registry.RegisterPropertyBuilder(typeof(ITemplate), new DefaultPropertyBuilderFactory<TemplatePropertyBuilder>());
             registry.RegisterPropertyBuilder(typeof(CssClassCollection), new DefaultPropertyBuilderFactory<CssClassPropertyBuilder>());

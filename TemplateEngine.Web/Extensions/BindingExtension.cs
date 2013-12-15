@@ -36,7 +36,12 @@ namespace Neptuo.TemplateEngine.Web.Extensions
 
         protected virtual object GetData()
         {
-            return BindingManager.GetValue(Expression, DataContext.Peek());
+            object source = DataContext.Peek();
+            object value;
+            if (BindingManager.TryGetValue(Expression, source, out value))
+                return value;
+
+            return null;
         }
     }
 }

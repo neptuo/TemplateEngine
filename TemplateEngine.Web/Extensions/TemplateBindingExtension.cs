@@ -1,4 +1,6 @@
-﻿using Neptuo.Templates.Extensions;
+﻿using Neptuo.TemplateEngine.Web.Controls;
+using Neptuo.Templates;
+using Neptuo.Templates.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,7 +17,20 @@ namespace Neptuo.TemplateEngine.Web.Extensions
 
         protected override object GetData()
         {
-            return BindingManager.GetValue(Expression, DataContext.Peek("Template"));
+            object source = DataContext.Peek("Template");
+            object value;
+            if (BindingManager.TryGetValue(Expression, source, out value))
+                return value;
+
+            IHtmlAttributeCollection attributeSource = source as IHtmlAttributeCollection;
+            if(attributeSource != null)
+            {
+                string attributeValue;
+                if (attributeSource.Attributes.TryGetValue(Expression.ToLowerInvariant(), out attributeValue))
+                    return attributeValue;
+            }
+
+            return null;
         }
     }
 }

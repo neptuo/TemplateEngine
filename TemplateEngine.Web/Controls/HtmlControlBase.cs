@@ -8,11 +8,13 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Web.Controls
 {
-    public abstract class HtmlControlBase : ControlBase, IAttributeCollection
+    public abstract class HtmlControlBase : ControlBase, IAttributeCollection, IHtmlAttributeCollection
     {
         public string ID { get; set; }
         public string CssStyle { get; set; }
         public CssClassCollection CssClass { get; set; }
+
+        public HtmlAttributeCollection Attributes { get; protected set; }
 
         protected virtual string TagName { get; set; }
         protected virtual bool IsSelfClosing { get; set; }
@@ -22,6 +24,7 @@ namespace Neptuo.TemplateEngine.Web.Controls
         {
             TagName = tagName;
             IsSelfClosing = isSelfClosing;
+            Attributes = new HtmlAttributeCollection();
         }
 
         public override void Render(IHtmlWriter writer)

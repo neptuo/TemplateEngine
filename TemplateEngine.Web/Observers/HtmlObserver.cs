@@ -11,6 +11,7 @@ namespace Neptuo.TemplateEngine.Web.Observers
     public class HtmlObserver : IObserver
     {
         public string ID { get; set; }
+        public string Name { get; set; }
         public string Class { get; set; }
         public string Style { get; set; }
 
@@ -22,6 +23,9 @@ namespace Neptuo.TemplateEngine.Web.Observers
 
             if (!String.IsNullOrEmpty(ID))
                 htmlControl.SetAttribute("id", ID);
+
+            if (!String.IsNullOrEmpty(Name))
+                htmlControl.SetAttribute("name", Name);
 
             if (!String.IsNullOrEmpty(Class))
                 htmlControl.SetAttribute("class", Class);
