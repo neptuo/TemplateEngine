@@ -10,17 +10,17 @@ namespace Neptuo.TemplateEngine.Web.Observers
 {
     public class VisibleObserver : IObserver
     {
-        public bool Visible { get; set; }
+        public bool IsVisible { get; set; }
 
         public void OnInit(ObserverEventArgs e)
         {
-            if (!Visible)
+            if (!IsVisible)
                 e.Cancel = true;
         }
 
         public void Render(ObserverEventArgs e, IHtmlWriter writer)
         {
-            if (!Visible)
+            if (!IsVisible)
                 e.Cancel = true;
         }
     }

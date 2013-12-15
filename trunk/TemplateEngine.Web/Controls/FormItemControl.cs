@@ -22,8 +22,8 @@ namespace Neptuo.TemplateEngine.Web.Controls
                 .Tag("div")
                 .Attribute("class", "form-group");
 
-            foreach (KeyValuePair<string, string> attribute in Attributes)
-                writer.Attribute(attribute.Key, attribute.Value);
+            //foreach (KeyValuePair<string, string> attribute in Attributes)
+            //    writer.Attribute(attribute.Key, attribute.Value);
 
             if (!String.IsNullOrEmpty(LabelText))
             {

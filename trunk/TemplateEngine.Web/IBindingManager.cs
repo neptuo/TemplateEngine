@@ -8,7 +8,7 @@ namespace Neptuo.TemplateEngine.Web
 {
     public interface IBindingManager
     {
-        void SetValue(object target, string expression, object value);
-        object GetValue(string expression, object value);
+        bool TrySetValue(object target, string expression, object value);
+        bool TryGetValue(string expression, object source, out object value);
     }
 }

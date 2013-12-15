@@ -65,9 +65,9 @@ namespace Neptuo.TemplateEngine.Web.Controls
                 Init(templateContent);
                 Content.Add(templateContent);
             }
-            DataContext.Pop("Template");
 
             base.OnInit();
+            DataContext.Pop("Template");
         }
 
         public override void Render(IHtmlWriter writer)

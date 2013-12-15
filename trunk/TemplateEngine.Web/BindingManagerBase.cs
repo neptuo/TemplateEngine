@@ -10,7 +10,7 @@ namespace Neptuo.TemplateEngine.Web
 {
     public class BindingManagerBase : IBindingManager
     {
-        public void SetValue(object target, string expression, object value)
+        public bool TrySetValue(object target, string expression, object value)
         {
             PropertyInfo info = null;
             Type type = target.GetType();
@@ -27,37 +27,49 @@ namespace Neptuo.TemplateEngine.Web
 
             if (info != null)
                 info.SetValue(target, value, null);
+
+            return info != null;
         }
 
-        public object GetValue(string expression, object value)
+        public bool TryGetValue(string expression, object source, out object value)
         {
             if (String.IsNullOrEmpty(expression))
-                return value;
+            {
+                value = source;
+                return true;
+            }
 
-            if (value == null)
-                return null;
+            if (source == null)
+            {
+                value = null;
+                return false;
+            }
 
-            IModelValueProvider provider = value as IModelValueProvider;
+            IModelValueProvider provider = source as IModelValueProvider;
             if (provider != null)
-                return provider.GetValueOrDefault(expression, null);
+                return provider.TryGetValue(expression, out value);
 
             PropertyInfo info = null;
-            Type type = value.GetType();
+            Type type = source.GetType();
             string[] exprs = expression.Split(new char[] { '.' }, StringSplitOptions.RemoveEmptyEntries);
 
             for (int i = 0; i < exprs.Length; i++)
             {
                 info = type.GetProperty(exprs[i]);
                 if (info == null)
-                    return null;
+                {
+                    value = null;
+                    return false;
+                }
 
                 type = info.PropertyType;
 
-                if (value != null)
-                    value = info.GetValue(value, null);
+                if (source != null)
+                    source = info.GetValue(source, null);
             }
 
-            return value;
+            value = source;
+            return true;
         }
     }
 }

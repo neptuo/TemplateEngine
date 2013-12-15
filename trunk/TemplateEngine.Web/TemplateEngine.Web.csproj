@@ -70,6 +70,7 @@
     <Compile Include="Controls\DesignData\HintAttribute.cs" />
     <Compile Include="Controls\DetailViewControl.cs" />
     <Compile Include="Controls\HtmlControlBase.cs" />
+    <Compile Include="Controls\IHtmlAttributeCollection.cs" />
     <Compile Include="Controls\ListViewControl.cs" />
     <Compile Include="Controls\NavigationControl.cs" />
     <Compile Include="Controls\NavigationItem.cs" />
@@ -165,10 +166,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\FormItemControl.Template.html" />
+    <EmbeddedResource Include="Views\ListViewControl.Template.view" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Views\ListViewControl.Template.view" />
+    <EmbeddedResource Include="Views\SelectControl.Template.view" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
