@@ -177,7 +177,9 @@
     </SkcPlugin>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Neptuo.TemplateEngine.Web.xml" />
+    <Content Include="_Neptuo.TemplateEngine.Web.xml">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildBinPath)\SharpKit\5\SharpKit.Build.targets" />
