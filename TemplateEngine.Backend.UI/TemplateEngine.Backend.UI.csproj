@@ -121,6 +121,10 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Design\Scripts\Generated\Neptuo.Bootstrap.js" />
+    <Content Include="Design\Scripts\Generated\Neptuo.js" />
+    <Content Include="Design\Scripts\Generated\Neptuo.ObjectBuilder.js" />
+    <Content Include="Design\Scripts\Generated\Neptuo.System.Client.js" />
     <Content Include="Design\Styles\bootstrap-theme.css" />
     <Content Include="Design\Styles\bootstrap-theme.min.css" />
     <Content Include="Design\Styles\bootstrap.css" />
