@@ -49,7 +49,7 @@ namespace Neptuo.TemplateEngine.Web.Controls
             if (!String.IsNullOrEmpty(Text))
                 Content = new List<object> { Text };
 
-            Init(Parameters);
+            InitComponents(Parameters);
         }
 
         protected override void RenderAttributes(IHtmlWriter writer)

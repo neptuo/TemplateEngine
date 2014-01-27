@@ -28,7 +28,7 @@ namespace Neptuo.TemplateEngine.Web.Controls
 
         public override void OnInit()
         {
-            Init(Items);
+            InitComponents(Items);
             foreach (string name in Navigations)
             {
                 if (Items != null)

@@ -30,6 +30,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Neptuo">
+      <HintPath>..\References\Neptuo.dll</HintPath>
+    </Reference>
+    <Reference Include="Neptuo.Templates.Components">
+      <HintPath>..\References\Neptuo.Templates.Components.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -39,7 +45,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\ControlBase.cs" />
+    <Compile Include="Controls\ITextControl.cs" />
+    <Compile Include="Controls\LiteralControl.cs" />
+    <Compile Include="GeneratedViewBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="View_3D09FEDA526F72327E9894F4A68B10A6DDEF92A5.cs" />
   </ItemGroup>
   <ItemGroup>
     <SkcPlugin Include="Neptuo.SharpKit.Exugin.ExuginPlugin, Neptuo.SharpKit.Exugin">
@@ -47,6 +58,7 @@
     </SkcPlugin>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Neptuo.TemplateEngine.Web.Client.js" />
     <Content Include="Neptuo.TemplateEngine.Web.Client.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
