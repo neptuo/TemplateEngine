@@ -20,7 +20,7 @@ namespace Neptuo.TemplateEngine.Web.Controls
 
         public override void OnInit()
         {
-            Init(Source);
+            InitComponent(Source);
 
             if (Source == null)
                 throw new InvalidOperationException("Missing data source.");

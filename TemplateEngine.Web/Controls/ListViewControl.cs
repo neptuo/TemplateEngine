@@ -26,11 +26,11 @@ namespace Neptuo.TemplateEngine.Web.Controls
 
         public override void OnInit()
         {
-            Init(ItemTemplate);
+            InitComponent(ItemTemplate);
             if (ItemTemplate == null)
                 throw new ArgumentException("Missing item template.", "ItemTemplate");
 
-            Init(Source);
+            InitComponent(Source);
             if (Source == null)
                 throw new ArgumentException("Missing data source.", "Source");
 
@@ -62,7 +62,7 @@ namespace Neptuo.TemplateEngine.Web.Controls
                     Content = itemTemplates
                 };
                 ComponentManager.AddComponent(templateContent, null);
-                Init(templateContent);
+                InitComponent(templateContent);
                 Content.Add(templateContent);
             }
 

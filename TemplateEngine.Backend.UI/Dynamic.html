@@ -11,15 +11,31 @@
     <script src="Design/Scripts/bootstrap.js"></script>
 
     <script src="Design/Scripts/Generated/Neptuo.System.Client.js"></script>
+    <script src="Design/Scripts/Generated/StringWriter.js"></script>
     <script src="Design/Scripts/Generated/Neptuo.js"></script>
     <script src="Design/Scripts/Generated/Neptuo.ObjectBuilder.js"></script>
     <script src="Design/Scripts/Generated/Neptuo.Bootstrap.js"></script>
     <script src="Design/Scripts/Generated/Neptuo.Templates.Components.js"></script>
+
+    <script src="Design/Scripts/Generated/TemplateEngine/Neptuo.TemplateEngine.Web.Client.js"></script>
     <script>
         JsRuntime.Start();
 
         var objectBuilder = new Neptuo.ObjectBuilder.DependencyContainer.ctor();
-        var eventDispatcher = objectBuilder.Resolve(Typeof(Neptuo.Events.EventDispatcher), null);
+        Neptuo.DependencyContainerExtensions.RegisterInstance$1(Neptuo.Templates.IComponentManager.ctor, objectBuilder, new Neptuo.Templates.ComponentManager.ctor());
+
+        $(function () {
+
+            var writer = new System.IO.StringWriter.ctor();
+            var view = new Neptuo.Templates.View_3D09FEDA526F72327E9894F4A68B10A6DDEF92A5.ctor();
+            view.Setup(new Neptuo.Templates.BaseViewPage.ctor(objectBuilder.Resolve(Typeof(Neptuo.Templates.IComponentManager.ctor), null)), objectBuilder.Resolve(Typeof(Neptuo.Templates.IComponentManager.ctor), null), objectBuilder);
+            view.CreateControls();
+            view.Init();
+            view.Render(new Neptuo.Templates.HtmlTextWriter.ctor(writer));
+            view.Dispose();
+            $("body").html(writer.toString());
+
+        });
     </script>
 </head>
 <body>

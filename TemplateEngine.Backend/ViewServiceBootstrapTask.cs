@@ -77,7 +77,7 @@ namespace Neptuo.TemplateEngine.Backend
             viewService.ParserService.ValueParsers.Add(new MarkupExtensionValueParser(registry));
             viewService.NamingService = new HashNamingService(fileProvider);
             viewService.TempDirectory = currentTemp;
-            //viewService.DebugMode = true;
+            viewService.DebugMode = CodeDomDebugMode.GeneratePdb | CodeDomDebugMode.GenerateSourceCode;
             viewService.BinDirectories.Add(virtualPathProvider.MapPath("~/Bin"));
             SetupCodeDomGenerator(viewService.CodeDomGenerator);
         }

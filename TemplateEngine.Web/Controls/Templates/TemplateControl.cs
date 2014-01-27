@@ -26,7 +26,7 @@ namespace Neptuo.TemplateEngine.Web.Controls
 
         public override void OnInit()
         {
-            Init(Content);
+            InitComponents(Content);
 
             if (Content != null)
                 Storage.AddRange(Content);
@@ -35,9 +35,9 @@ namespace Neptuo.TemplateEngine.Web.Controls
 
             base.OnInit();
 
-            Init(Template);
+            InitComponent(Template);
             TemplateContent = Template.CreateInstance();
-            Init(TemplateContent);
+            InitComponent(TemplateContent);
 
             Contents.Pop();
         }
@@ -45,7 +45,7 @@ namespace Neptuo.TemplateEngine.Web.Controls
         public override void Render(IHtmlWriter writer)
         {
             Contents.Push(Storage);
-            Render(TemplateContent, writer);
+            RenderComponent(TemplateContent, writer);
             Contents.Pop();
         }
 
@@ -54,7 +54,7 @@ namespace Neptuo.TemplateEngine.Web.Controls
             TemplateControl control = new TemplateControl(ComponentManager, Contents);
             control.Template = template;
             ComponentManager.AddComponent(control, null);
-            Init(control);
+            InitComponent(control);
             return control;
         }
     }

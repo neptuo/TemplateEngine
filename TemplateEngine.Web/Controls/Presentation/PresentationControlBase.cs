@@ -26,7 +26,7 @@ namespace Neptuo.TemplateEngine.Web.Controls
 
         public override void OnInit()
         {
-            Init(Template);
+            InitComponent(Template);
             TemplateContent = Template.CreateInstance();
 
             ModelGetter = CreateModel();

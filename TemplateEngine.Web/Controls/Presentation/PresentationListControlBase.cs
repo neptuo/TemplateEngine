@@ -28,7 +28,7 @@ namespace Neptuo.TemplateEngine.Web.Controls
 
         public override void OnInit()
         {
-            Init(ItemTemplate);
+            InitComponent(ItemTemplate);
 
             List<object> itemTemplates = new List<object>();
             IEnumerable<T> models = LoadData();
@@ -40,7 +40,7 @@ namespace Neptuo.TemplateEngine.Web.Controls
                 TemplateControl control = new TemplateControl(ComponentManager, configuration.TemplateStorage);
                 control.Template = ItemTemplate;
                 ComponentManager.AddComponent(control, null);
-                Init(control);
+                InitComponent(control);
                 itemTemplates.Add(control);
 
                 DataContext.Pop();
@@ -52,7 +52,7 @@ namespace Neptuo.TemplateEngine.Web.Controls
                 Content = itemTemplates
             };
             ComponentManager.AddComponent(templateContent, null);
-            Init(templateContent);
+            InitComponent(templateContent);
             Content.Add(templateContent);
 
             base.OnInit();
