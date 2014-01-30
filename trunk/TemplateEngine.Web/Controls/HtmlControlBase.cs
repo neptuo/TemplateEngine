@@ -62,7 +62,7 @@ namespace Neptuo.TemplateEngine.Web.Controls
                 if (!Attributes.ContainsKey("class"))
                     Attributes["class"] = String.Join(" ", CssClass);
                 else
-                    Attributes["class"] += " " + String.Join(" ", CssClass);
+                    Attributes["class"] = String.Format("{0} {1}", Attributes["class"], String.Join(" ", CssClass));
             }
 
             foreach (KeyValuePair<string, string> attribute in Attributes)
