@@ -33,6 +33,9 @@
     <Reference Include="Neptuo">
       <HintPath>..\References\Neptuo.dll</HintPath>
     </Reference>
+    <Reference Include="Neptuo.SharpKit.CodeGenerator">
+      <HintPath>..\References\Neptuo.SharpKit.CodeGenerator.dll</HintPath>
+    </Reference>
     <Reference Include="Neptuo.Templates.Components">
       <HintPath>..\References\Neptuo.Templates.Components.dll</HintPath>
     </Reference>
@@ -63,6 +66,8 @@
     <Compile Include="CodeObjects\MethodReferenceCodeObject.cs" />
     <Compile Include="CodeObjects\ResolveUrlCodeObject.cs" />
     <Compile Include="CodeObjects\TemplateCodeObject.cs" />
+    <Compile Include="ExtendedViewService.cs" />
+    <Compile Include="IJavascriptSourceViewService.cs" />
     <Compile Include="Parsers\CssClassPropertyBuilder.cs" />
     <Compile Include="Parsers\FormUriObserverBuider.cs" />
     <Compile Include="Parsers\FormUriObserverBuiderFactory.cs" />

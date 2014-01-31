@@ -1,5 +1,6 @@
 ﻿using Neptuo.Bootstrap;
 using Neptuo.TemplateEngine.Backend.Web.Routing;
+using Neptuo.TemplateEngine.Web.Compilation;
 using Neptuo.Templates.Compilation;
 using Neptuo.Web.Routing;
 using System;
@@ -15,12 +16,14 @@ namespace Neptuo.TemplateEngine.Backend
     {
         private RouteCollection routes;
         private IViewService viewService;
+        private IJavascriptSourceViewService javascriptViewService;
         private IDependencyProvider dependencyProvider;
 
-        public RoutingBootstrapTask(IViewService viewService, IDependencyProvider dependencyProvider)
+        public RoutingBootstrapTask(IViewService viewService, IJavascriptSourceViewService javascriptViewService, IDependencyProvider dependencyProvider)
         {
             this.routes = RouteTable.Routes;
             this.viewService = viewService;
+            this.javascriptViewService = javascriptViewService;
             this.dependencyProvider = dependencyProvider;
         }
 
@@ -30,6 +33,7 @@ namespace Neptuo.TemplateEngine.Backend
 
             routes.Add(new TokenRoute("~/{Path}", new TemplateRouteHandler(viewService, dependencyProvider), TemplateRouteParameter.TemplateUrlSuffix));
             routes.Add(new TokenRoute("~/error", new ErrorRouteHandler(), ".ashx"));
+            routes.Add(new TokenRoute("~/views", new ViewGeneratorRouteHandler(javascriptViewService, dependencyProvider), ".ashx"));
         }
     }
 }
