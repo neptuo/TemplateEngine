@@ -132,6 +132,10 @@
       <Project>{f16d8bc8-2191-498f-9950-dc8aa200b0ba}</Project>
       <Name>TemplateEngine.Navigation</Name>
     </ProjectReference>
+    <ProjectReference Include="..\TemplateEngine.PresentationModels\TemplateEngine.PresentationModels.csproj">
+      <Project>{b064bdbc-3755-4110-8eb7-6add2535d9fd}</Project>
+      <Name>TemplateEngine.PresentationModels</Name>
+    </ProjectReference>
     <ProjectReference Include="..\TemplateEngine.Web.Compilation\TemplateEngine.Web.Compilation.csproj">
       <Project>{f116d6f7-e47c-4c73-a802-4f61ba50857f}</Project>
       <Name>TemplateEngine.Web.Compilation</Name>
@@ -139,6 +143,10 @@
     <ProjectReference Include="..\TemplateEngine.Web\TemplateEngine.Web.csproj">
       <Project>{8095932d-ec0b-4990-90f1-951b7b5feeac}</Project>
       <Name>TemplateEngine.Web</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TemplateEngine\TemplateEngine.csproj">
+      <Project>{0ddeef40-567f-49de-94ec-314309702534}</Project>
+      <Name>TemplateEngine</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

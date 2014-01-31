@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Neptuo.TemplateEngine.Web
+namespace Neptuo.TemplateEngine
 {
     public class StackStorage<T> : IStackStorage<T>
     {

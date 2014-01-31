@@ -101,8 +101,6 @@
     <Compile Include="Controls\Presentation\PresentationListControlBase.cs" />
     <Compile Include="DataContextStorage.cs" />
     <Compile Include="DataSources\ListDataSourceBase.cs" />
-    <Compile Include="DefaultModelPresenter.cs" />
-    <Compile Include="DictionaryViewStorage.cs" />
     <Compile Include="Extensions\BindingExtension.cs" />
     <Compile Include="Extensions\CurrentUrlExtension.cs" />
     <Compile Include="Extensions\RequestExtension.cs" />
@@ -115,11 +113,9 @@
     <Compile Include="IValueConverter.cs" />
     <Compile Include="IValueConverterService.cs" />
     <Compile Include="Converters\NullToBoolValueConverter.cs" />
-    <Compile Include="IViewStorage.cs" />
     <Compile Include="Observers\VisibleObserver.cs" />
     <Compile Include="RequestParameterProvider.cs" />
     <Compile Include="ValueConverterService.cs" />
-    <Compile Include="FilteredModelDefinition.cs" />
     <Compile Include="Controllers\Binders\RequestBindingValueStorage.cs" />
     <Compile Include="Controllers\DependencyControllerFactory.cs" />
     <Compile Include="Controllers\Binders\IModelBinder.cs" />
@@ -140,7 +136,6 @@
     <Compile Include="Controls\Templates\ViewTemplateBase.cs" />
     <Compile Include="Controls\Templates\ViewTemplateContent.cs" />
     <Compile Include="GeneratedViewBase.cs" />
-    <Compile Include="IStackStorage.cs" />
     <Compile Include="Controls\LiteralControl.cs" />
     <Compile Include="Controls\Presentation\PresentationControlBase.cs" />
     <Compile Include="LocalizationHelper.cs" />
@@ -148,21 +143,22 @@
     <Compile Include="Observers\EventObserver.cs" />
     <Compile Include="Observers\HtmlObserver.cs" />
     <Compile Include="Observers\IsPlaceholderObserver.cs" />
-    <Compile Include="Observers\ViewIdentifierObserver.cs" />
     <Compile Include="PresentationConfiguration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PropertySetAttribute.cs" />
     <Compile Include="Navigation\RedirectNavigateTo.cs" />
     <Compile Include="Navigation\RedirectNavigator.cs" />
-    <Compile Include="StackStorage.cs" />
     <Compile Include="TemplateContentStorage.cs" />
     <Compile Include="TemplateContentStorageStack.cs" />
-    <Compile Include="TemplateModelView.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\TemplateEngine.Navigation\TemplateEngine.Navigation.csproj">
       <Project>{f16d8bc8-2191-498f-9950-dc8aa200b0ba}</Project>
       <Name>TemplateEngine.Navigation</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TemplateEngine\TemplateEngine.csproj">
+      <Project>{0ddeef40-567f-49de-94ec-314309702534}</Project>
+      <Name>TemplateEngine</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

@@ -1,5 +1,7 @@
 ﻿using Neptuo.Bootstrap;
 using Neptuo.TemplateEngine.Backend.Web;
+using Neptuo.TemplateEngine.PresentationModels;
+using Neptuo.TemplateEngine.PresentationModels.Observers;
 using Neptuo.TemplateEngine.Web;
 using Neptuo.TemplateEngine.Web.Compilation;
 using Neptuo.TemplateEngine.Web.Compilation.CodeGenerators;

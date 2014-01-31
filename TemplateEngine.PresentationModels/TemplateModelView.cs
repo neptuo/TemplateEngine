@@ -1,5 +1,4 @@
 ﻿using Neptuo.PresentationModels;
-using Neptuo.TemplateEngine.Web.Controls;
 using Neptuo.Templates;
 using System;
 using System.Collections.Generic;
@@ -7,12 +6,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Neptuo.TemplateEngine.Web
+namespace Neptuo.TemplateEngine.PresentationModels
 {
     public class TemplateModelView : ModelViewBase
     {
         public IComponentManager ComponentManager { get; private set; }
-        public ITemplateContent Template { get; set; }
         protected IStackStorage<IViewStorage> ViewStorage { get; private set; }
         public IViewStorage Storage { get; private set; }
 
