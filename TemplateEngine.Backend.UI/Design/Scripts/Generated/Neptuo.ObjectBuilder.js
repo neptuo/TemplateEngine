@@ -100,7 +100,7 @@ var Neptuo$ObjectBuilder$DependencyContainer =
         RegisterType: function (from, to, name, lifetime)
         {
             if (to.get_IsInterface())
-                throw $CreateException(new Neptuo.ObjectBuilder.DependencyException.ctor(System.String.Format$$String$$Object$$Object("Target can\'t be interface. Mapping \'{0}\' to \'{1}\'.", from.get_FullName(), to.get_FullName())), new Error());
+                    throw $CreateException(new Neptuo.ObjectBuilder.DependencyException.ctor(System.String.Format$$String$$Object$$Object("Target can\'t be interface. Mapping \'{0}\' to \'{1}\'.", from.get_FullName(), to.get_FullName())), new Error());
             if (to.get_IsAbstract())
                 throw $CreateException(new Neptuo.ObjectBuilder.DependencyException.ctor(System.String.Format$$String$$Object$$Object("Target can\'t be abstract class. Mapping \'{0}\' to \'{1}\'.", from.get_FullName(), to.get_FullName())), new Error());
             this.get_Registry().Add(this.GetKey(from), name, (function ()

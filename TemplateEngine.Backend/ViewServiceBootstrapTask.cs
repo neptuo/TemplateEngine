@@ -52,12 +52,13 @@ namespace Neptuo.TemplateEngine.Backend
             );
             SetupTypeBuilderRegistry(registry);
 
-            CodeDomViewService viewService = new CodeDomViewService();
+            ExtendedViewService viewService = new ExtendedViewService();
             SetupViewService(viewService, registry, fileProvider, virtualPathProvider);
 
             container
                 .RegisterInstance<TypeBuilderRegistry>(registry)
                 .RegisterInstance<IViewService>(viewService)
+                .RegisterInstance<IJavascriptSourceViewService>(viewService)
                 .RegisterInstance<IVirtualUrlProvider>(new ServerVirtualPathProvider())
                 .RegisterType<IStackStorage<IViewStorage>, StackStorage<IViewStorage>>(new PerRequestLifetime())
                 .RegisterType<TemplateContentStorageStack>(new PerRequestLifetime())
