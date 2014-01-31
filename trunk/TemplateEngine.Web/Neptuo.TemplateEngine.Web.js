@@ -2140,7 +2140,7 @@ var Neptuo$TemplateEngine$Web$DataContextStorage =
     {
         ctor: function ()
         {
-            this.storage = new System.Collections.Generic.Dictionary$2.ctor(System.String.ctor, Neptuo.TemplateEngine.Web.StackStorage$1.ctor);
+            this.storage = new System.Collections.Generic.Dictionary$2.ctor(System.String.ctor, Neptuo.TemplateEngine.StackStorage$1.ctor);
             System.Object.ctor.call(this);
         },
         Push: function (value, name)
@@ -2156,7 +2156,7 @@ var Neptuo$TemplateEngine$Web$DataContextStorage =
                 return $res;
             }).call(this))
             {
-                stack = new Neptuo.TemplateEngine.Web.StackStorage$1.ctor(System.Object.ctor);
+                stack = new Neptuo.TemplateEngine.StackStorage$1.ctor(System.Object.ctor);
                 this.storage.set_Item$$TKey(name, stack);
             }
             stack.Push(value);
@@ -2249,66 +2249,6 @@ var Neptuo$TemplateEngine$Web$DataSources$ListDataSourceBase$1 =
     IsAbstract: true
 };
 JsTypes.push(Neptuo$TemplateEngine$Web$DataSources$ListDataSourceBase$1);
-var Neptuo$TemplateEngine$Web$DefaultModelPresenter =
-{
-    fullname: "Neptuo.TemplateEngine.Web.DefaultModelPresenter",
-    baseTypeName: "Neptuo.PresentationModels.ModelPresenterBase",
-    assemblyName: "Neptuo.TemplateEngine.Web",
-    Kind: "Class",
-    definition:
-    {
-        ctor: function (modelDefinition, modelView)
-        {
-            Neptuo.PresentationModels.ModelPresenterBase.ctor.call(this);
-            this.SetModel(modelDefinition);
-            this.SetView(modelView);
-            this.Prepare();
-        },
-        Prepare: function ()
-        {
-        }
-    },
-    ctors: [ {name: "ctor", parameters: ["Neptuo.PresentationModels.IModelDefinition", "Neptuo.PresentationModels.IModelView"]}],
-    IsAbstract: false
-};
-JsTypes.push(Neptuo$TemplateEngine$Web$DefaultModelPresenter);
-var Neptuo$TemplateEngine$Web$DictionaryViewStorage =
-{
-    fullname: "Neptuo.TemplateEngine.Web.DictionaryViewStorage",
-    baseTypeName: "System.Object",
-    assemblyName: "Neptuo.TemplateEngine.Web",
-    interfaceNames: ["Neptuo.TemplateEngine.Web.IViewStorage"],
-    Kind: "Class",
-    definition:
-    {
-        ctor: function ()
-        {
-            this.storage = new System.Collections.Generic.Dictionary$2.ctor(System.String.ctor, Neptuo.PresentationModels.IFieldView.ctor);
-            System.Object.ctor.call(this);
-        },
-        Item$$: "Neptuo.PresentationModels.IFieldView",
-        get_Item$$String: function (identifier)
-        {
-            var fieldView;
-            if ((function ()
-            {
-                var $1 = {Value: fieldView};
-                var $res = this.storage.TryGetValue(identifier, $1);
-                fieldView = $1.Value;
-                return $res;
-            }).call(this))
-                return fieldView;
-            return null;
-        },
-        set_Item$$String: function (identifier, value)
-        {
-            this.storage.set_Item$$TKey(identifier, value);
-        }
-    },
-    ctors: [ {name: "ctor", parameters: []}],
-    IsAbstract: false
-};
-JsTypes.push(Neptuo$TemplateEngine$Web$DictionaryViewStorage);
 var Neptuo$TemplateEngine$Web$Extensions$BindingExtension =
 {
     fullname: "Neptuo.TemplateEngine.Web.Extensions.BindingExtension",
@@ -2704,8 +2644,6 @@ var Neptuo$TemplateEngine$Web$Converters$NullToBoolValueConverter =
     IsAbstract: false
 };
 JsTypes.push(Neptuo$TemplateEngine$Web$Converters$NullToBoolValueConverter);
-var Neptuo$TemplateEngine$Web$IViewStorage = {fullname: "Neptuo.TemplateEngine.Web.IViewStorage", baseTypeName: "System.Object", assemblyName: "Neptuo.TemplateEngine.Web", Kind: "Interface", ctors: [], IsAbstract: true};
-JsTypes.push(Neptuo$TemplateEngine$Web$IViewStorage);
 var Neptuo$TemplateEngine$Web$Observers$VisibleObserver =
 {
     fullname: "Neptuo.TemplateEngine.Web.Observers.VisibleObserver",
@@ -2819,37 +2757,6 @@ var Neptuo$TemplateEngine$Web$ValueConverterService =
     IsAbstract: false
 };
 JsTypes.push(Neptuo$TemplateEngine$Web$ValueConverterService);
-var Neptuo$TemplateEngine$Web$FilteredModelDefinition =
-{
-    fullname: "Neptuo.TemplateEngine.Web.FilteredModelDefinition",
-    baseTypeName: "Neptuo.PresentationModels.ProxyModelDefinition",
-    assemblyName: "Neptuo.TemplateEngine.Web",
-    Kind: "Class",
-    definition:
-    {
-        ctor: function (modelDefinition, modelView)
-        {
-            this.modelView = null;
-            Neptuo.PresentationModels.ProxyModelDefinition.ctor.call(this, modelDefinition);
-            this.modelView = modelView;
-        },
-        RefreshFields: function ()
-        {
-            var fields = new System.Collections.Generic.List$1.ctor(Neptuo.PresentationModels.IFieldDefinition.ctor);
-            var $it25 = this.get_ModelDefinition().get_Fields().GetEnumerator();
-            while ($it25.MoveNext())
-            {
-                var field = $it25.get_Current();
-                if (this.modelView.get_Storage().get_Item$$String(field.get_Identifier()) != null)
-                    fields.Add(field);
-            }
-            return fields;
-        }
-    },
-    ctors: [ {name: "ctor", parameters: ["Neptuo.PresentationModels.IModelDefinition", "Neptuo.TemplateEngine.Web.TemplateModelView"]}],
-    IsAbstract: false
-};
-JsTypes.push(Neptuo$TemplateEngine$Web$FilteredModelDefinition);
 var Neptuo$TemplateEngine$Web$Controllers$Binders$RequestBindingValueStorage =
 {
     fullname: "Neptuo.TemplateEngine.Web.Controllers.Binders.RequestBindingValueStorage",
@@ -3613,8 +3520,6 @@ var Neptuo$TemplateEngine$Web$GeneratedViewBase =
     IsAbstract: true
 };
 JsTypes.push(Neptuo$TemplateEngine$Web$GeneratedViewBase);
-var Neptuo$TemplateEngine$Web$IStackStorage$1 = {fullname: "Neptuo.TemplateEngine.Web.IStackStorage$1", baseTypeName: "System.Object", assemblyName: "Neptuo.TemplateEngine.Web", Kind: "Interface", ctors: [], IsAbstract: true};
-JsTypes.push(Neptuo$TemplateEngine$Web$IStackStorage$1);
 var Neptuo$TemplateEngine$Web$Controls$LiteralControl =
 {
     fullname: "Neptuo.TemplateEngine.Web.Controls.LiteralControl",
@@ -3962,99 +3867,6 @@ var Neptuo$TemplateEngine$Web$Observers$IsPlaceholderObserver =
     IsAbstract: false
 };
 JsTypes.push(Neptuo$TemplateEngine$Web$Observers$IsPlaceholderObserver);
-var Neptuo$TemplateEngine$Web$Observers$ViewIdentifierObserver =
-{
-    fullname: "Neptuo.TemplateEngine.Web.Observers.ViewIdentifierObserver",
-    baseTypeName: "System.Object",
-    assemblyName: "Neptuo.TemplateEngine.Web",
-    interfaceNames: ["Neptuo.Templates.Observers.IObserver", "Neptuo.PresentationModels.IFieldView"],
-    Kind: "Class",
-    definition:
-    {
-        ctor: function (viewStorage)
-        {
-            this._ID = null;
-            this._Control = null;
-            this._ViewStorage = null;
-            System.Object.ctor.call(this);
-            if (viewStorage == null)
-                throw $CreateException(new System.ArgumentNullException.ctor$$String("viewStorage"), new Error());
-            this.set_ViewStorage(viewStorage);
-        },
-        ID$$: "System.String",
-        get_ID: function ()
-        {
-            return this._ID;
-        },
-        set_ID: function (value)
-        {
-            this._ID = value;
-        },
-        Control$$: "Neptuo.Templates.Controls.IControl",
-        get_Control: function ()
-        {
-            return this._Control;
-        },
-        set_Control: function (value)
-        {
-            this._Control = value;
-        },
-        ViewStorage$$: "Neptuo.TemplateEngine.Web.IStackStorage`1[[Neptuo.TemplateEngine.Web.IViewStorage]]",
-        get_ViewStorage: function ()
-        {
-            return this._ViewStorage;
-        },
-        set_ViewStorage: function (value)
-        {
-            this._ViewStorage = value;
-        },
-        OnInit: function (e)
-        {
-            var formControl = As(e.get_Target(), Neptuo.TemplateEngine.Web.Controls.IFormControl.ctor);
-            if (formControl != null && System.String.IsNullOrEmpty(formControl.get_Name()))
-                formControl.set_Name(this.get_ID());
-            this.set_Control(e.get_Target());
-            this.get_ViewStorage().Peek().set_Item$$String(this.get_ID(), this);
-        },
-        Render: function (e, writer)
-        {
-        },
-        GetValue: function ()
-        {
-            var textControl = As(this.get_Control(), Neptuo.TemplateEngine.Web.Controls.ITextControl.ctor);
-            if (textControl != null)
-                return textControl.get_Text();
-            var checkBoxControl = As(this.get_Control(), Neptuo.TemplateEngine.Web.Controls.CheckBoxControl.ctor);
-            if (checkBoxControl != null)
-                return checkBoxControl.get_IsChecked();
-            return null;
-        },
-        SetValue: function (value)
-        {
-            var textControl = As(this.get_Control(), Neptuo.TemplateEngine.Web.Controls.ITextControl.ctor);
-            if (textControl != null)
-            {
-                textControl.set_Text(System.String.Format$$String$$Object("{0}", value));
-                return;
-            }
-            var valueControl = As(this.get_Control(), Neptuo.TemplateEngine.Web.Controls.IValueControl.ctor);
-            if (valueControl != null)
-            {
-                valueControl.set_Value(value);
-                return;
-            }
-            var checkBoxControl = As(this.get_Control(), Neptuo.TemplateEngine.Web.Controls.CheckBoxControl.ctor);
-            if (checkBoxControl != null)
-            {
-                checkBoxControl.set_IsChecked(Cast(value, System.Boolean.ctor));
-                return;
-            }
-        }
-    },
-    ctors: [ {name: "ctor", parameters: ["Neptuo.TemplateEngine.Web.IStackStorage"]}],
-    IsAbstract: false
-};
-JsTypes.push(Neptuo$TemplateEngine$Web$Observers$ViewIdentifierObserver);
 var Neptuo$TemplateEngine$Web$PresentationConfiguration =
 {
     fullname: "Neptuo.TemplateEngine.Web.PresentationConfiguration",
@@ -4195,10 +4007,10 @@ var Neptuo$TemplateEngine$Web$Navigation$RedirectNavigateTo =
         Open: function ()
         {
             var queryBuilder = new System.Text.StringBuilder.ctor();
-            var $it26 = this.parameters.GetEnumerator();
-            while ($it26.MoveNext())
+            var $it25 = this.parameters.GetEnumerator();
+            while ($it25.MoveNext())
             {
-                var parameter = $it26.get_Current();
+                var parameter = $it25.get_Current();
                 this.AppendQuery(queryBuilder, parameter.get_Key(), parameter.get_Value());
             }
             this.httpContext.get_Response().Redirect$$String(System.String.Format$$String$$Object$$Object("{0}{1}", this.urlProvider.ResolveUrl(this.formUri.Url()), queryBuilder.ToString()));
@@ -4242,48 +4054,6 @@ var Neptuo$TemplateEngine$Web$Navigation$RedirectNavigator =
     IsAbstract: false
 };
 JsTypes.push(Neptuo$TemplateEngine$Web$Navigation$RedirectNavigator);
-var Neptuo$TemplateEngine$Web$StackStorage$1 =
-{
-    fullname: "Neptuo.TemplateEngine.Web.StackStorage$1",
-    baseTypeName: "System.Object",
-    assemblyName: "Neptuo.TemplateEngine.Web",
-    interfaceNames: ["Neptuo.TemplateEngine.Web.IStackStorage$1"],
-    Kind: "Class",
-    definition:
-    {
-        ctor: function (T)
-        {
-            this.T = T;
-            this._Stack = null;
-            System.Object.ctor.call(this);
-            this.set_Stack(new System.Collections.Generic.Stack$1.ctor(this.T));
-        },
-        Stack$$: "System.Collections.Generic.Stack`1[[`0]]",
-        get_Stack: function ()
-        {
-            return this._Stack;
-        },
-        set_Stack: function (value)
-        {
-            this._Stack = value;
-        },
-        Push: function (storage)
-        {
-            this.get_Stack().Push(storage);
-        },
-        Pop: function ()
-        {
-            return this.get_Stack().Pop();
-        },
-        Peek: function ()
-        {
-            return this.get_Stack().Peek();
-        }
-    },
-    ctors: [ {name: "ctor", parameters: []}],
-    IsAbstract: false
-};
-JsTypes.push(Neptuo$TemplateEngine$Web$StackStorage$1);
 var Neptuo$TemplateEngine$Web$TemplateContentStorage =
 {
     fullname: "Neptuo.TemplateEngine.Web.TemplateContentStorage",
@@ -4307,10 +4077,10 @@ var Neptuo$TemplateEngine$Web$TemplateContentStorage =
         {
             if (contents == null)
                 throw $CreateException(new System.ArgumentNullException.ctor$$String("contents"), new Error());
-            var $it27 = contents.GetEnumerator();
-            while ($it27.MoveNext())
+            var $it26 = contents.GetEnumerator();
+            while ($it26.MoveNext())
             {
-                var content = $it27.get_Current();
+                var content = $it26.get_Current();
                 this.Add(content.get_Name(), content);
             }
         },
@@ -4340,7 +4110,7 @@ var Neptuo$TemplateEngine$Web$TemplateContentStorageStack =
     fullname: "Neptuo.TemplateEngine.Web.TemplateContentStorageStack",
     baseTypeName: "System.Object",
     assemblyName: "Neptuo.TemplateEngine.Web",
-    interfaceNames: ["Neptuo.TemplateEngine.Web.IStackStorage$1"],
+    interfaceNames: ["Neptuo.TemplateEngine.IStackStorage$1"],
     Kind: "Class",
     definition:
     {
@@ -4372,80 +4142,3 @@ var Neptuo$TemplateEngine$Web$TemplateContentStorageStack =
     IsAbstract: false
 };
 JsTypes.push(Neptuo$TemplateEngine$Web$TemplateContentStorageStack);
-var Neptuo$TemplateEngine$Web$TemplateModelView =
-{
-    fullname: "Neptuo.TemplateEngine.Web.TemplateModelView",
-    baseTypeName: "Neptuo.PresentationModels.ModelViewBase",
-    assemblyName: "Neptuo.TemplateEngine.Web",
-    Kind: "Class",
-    definition:
-    {
-        ctor: function (componentManager, viewStorage)
-        {
-            this._ComponentManager = null;
-            this._Template = null;
-            this._ViewStorage = null;
-            this._Storage = null;
-            Neptuo.PresentationModels.ModelViewBase.ctor.call(this);
-            if (componentManager == null)
-                throw $CreateException(new System.ArgumentNullException.ctor$$String("componentManager"), new Error());
-            if (viewStorage == null)
-                throw $CreateException(new System.ArgumentNullException.ctor$$String("viewStorage"), new Error());
-            this.set_ComponentManager(componentManager);
-            this.set_ViewStorage(viewStorage);
-            this.set_Storage(new Neptuo.TemplateEngine.Web.DictionaryViewStorage.ctor());
-        },
-        ComponentManager$$: "Neptuo.Templates.IComponentManager",
-        get_ComponentManager: function ()
-        {
-            return this._ComponentManager;
-        },
-        set_ComponentManager: function (value)
-        {
-            this._ComponentManager = value;
-        },
-        Template$$: "Neptuo.TemplateEngine.Web.Controls.ITemplateContent",
-        get_Template: function ()
-        {
-            return this._Template;
-        },
-        set_Template: function (value)
-        {
-            this._Template = value;
-        },
-        ViewStorage$$: "Neptuo.TemplateEngine.Web.IStackStorage`1[[Neptuo.TemplateEngine.Web.IViewStorage]]",
-        get_ViewStorage: function ()
-        {
-            return this._ViewStorage;
-        },
-        set_ViewStorage: function (value)
-        {
-            this._ViewStorage = value;
-        },
-        Storage$$: "Neptuo.TemplateEngine.Web.IViewStorage",
-        get_Storage: function ()
-        {
-            return this._Storage;
-        },
-        set_Storage: function (value)
-        {
-            this._Storage = value;
-        },
-        OnInit: function (innerInit)
-        {
-            if (System.MulticastDelegate.op_Inequality$$MulticastDelegate$$MulticastDelegate(innerInit, null))
-            {
-                this.get_ViewStorage().Push(this.get_Storage());
-                innerInit();
-                this.get_ViewStorage().Pop();
-            }
-        },
-        GetFieldViewByIdentifier: function (identifier)
-        {
-            return this.get_Storage().get_Item$$String(identifier);
-        }
-    },
-    ctors: [ {name: "ctor", parameters: ["Neptuo.Templates.IComponentManager", "Neptuo.TemplateEngine.Web.IStackStorage"]}],
-    IsAbstract: false
-};
-JsTypes.push(Neptuo$TemplateEngine$Web$TemplateModelView);
