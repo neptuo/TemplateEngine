@@ -124,7 +124,15 @@
     <Content Include="Design\Scripts\Generated\Neptuo.Bootstrap.js" />
     <Content Include="Design\Scripts\Generated\Neptuo.js" />
     <Content Include="Design\Scripts\Generated\Neptuo.ObjectBuilder.js" />
+    <Content Include="Design\Scripts\Generated\Neptuo.PresentationModels.BindingConverters.js" />
+    <Content Include="Design\Scripts\Generated\Neptuo.PresentationModels.js" />
+    <Content Include="Design\Scripts\Generated\Neptuo.PresentationModels.TypeModels.DataAnnotations.js" />
+    <Content Include="Design\Scripts\Generated\Neptuo.PresentationModels.TypeModels.js" />
+    <Content Include="Design\Scripts\Generated\Neptuo.PresentationModels.Validation.js" />
     <Content Include="Design\Scripts\Generated\Neptuo.System.Client.js" />
+    <Content Include="Design\Scripts\Generated\TemplateEngine\Neptuo.TemplateEngine.js" />
+    <Content Include="Design\Scripts\Generated\TemplateEngine\Neptuo.TemplateEngine.Navigation.js" />
+    <Content Include="Design\Scripts\Generated\TemplateEngine\Neptuo.TemplateEngine.Web.js" />
     <Content Include="Design\Scripts\Generated\TemplateEngine\Neptuo.TemplateEngine.Web.Client.js" />
     <Content Include="Design\Scripts\Generated\Neptuo.Templates.Components.js" />
     <Content Include="Design\Scripts\Generated\StringWriter.js" />

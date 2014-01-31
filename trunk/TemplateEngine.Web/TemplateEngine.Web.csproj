@@ -168,13 +168,13 @@
     <EmbeddedResource Include="Views\SelectControl.Template.view" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Neptuo.TemplateEngine.Web.js" />
+    <Content Include="Neptuo.TemplateEngine.Web.xml" />
+  </ItemGroup>
+  <ItemGroup>
     <SkcPlugin Include="Neptuo.SharpKit.Exugin.ExuginPlugin, Neptuo.SharpKit.Exugin">
       <InProject>false</InProject>
     </SkcPlugin>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Neptuo.TemplateEngine.Web.js" />
-    <Content Include="Neptuo.TemplateEngine.Web.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildBinPath)\SharpKit\5\SharpKit.Build.targets" />
