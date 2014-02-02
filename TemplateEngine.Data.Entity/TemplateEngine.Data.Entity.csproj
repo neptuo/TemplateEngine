@@ -7,8 +7,8 @@
     <ProjectGuid>{176A5378-45BE-4132-99BF-2F24B94712A4}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>TemplateEngine.Data.Entity</RootNamespace>
-    <AssemblyName>TemplateEngine.Data.Entity</AssemblyName>
+    <RootNamespace>Neptuo.TemplateEngine.Data.Entity</RootNamespace>
+    <AssemblyName>Neptuo.TemplateEngine.Data.Entity</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
