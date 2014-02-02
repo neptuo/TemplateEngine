@@ -135,7 +135,6 @@
     <Content Include="Design\Scripts\Generated\TemplateEngine\Neptuo.TemplateEngine.Web.js" />
     <Content Include="Design\Scripts\Generated\TemplateEngine\Neptuo.TemplateEngine.Web.Client.js" />
     <Content Include="Design\Scripts\Generated\Neptuo.Templates.Components.js" />
-    <Content Include="Design\Scripts\Generated\StringWriter.js" />
     <Content Include="Design\Styles\bootstrap-theme.css" />
     <Content Include="Design\Styles\bootstrap-theme.min.css" />
     <Content Include="Design\Styles\bootstrap.css" />
