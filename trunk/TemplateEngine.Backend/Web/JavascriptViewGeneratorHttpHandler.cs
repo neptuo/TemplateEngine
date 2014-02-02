@@ -56,6 +56,7 @@ namespace Neptuo.TemplateEngine.Backend.Web
                 try
                 {
                     string javascriptContent = viewService.GenerateJavascript(viewContent, new ViewServiceContext(dependencyProvider), viewService.NamingService.FromContent(viewContent));
+                    javascriptContent = RewriteJavascriptContent(javascriptContent);
                     WriteJavascriptFile(context, viewPath, javascriptContent);
 
                     File.WriteAllText(tempViewPath, javascriptContent);
@@ -65,6 +66,20 @@ namespace Neptuo.TemplateEngine.Backend.Web
                     throw e;
                 }
             }
+        }
+
+        private string RewriteJavascriptContent(string content)
+        {
+            content = content.Replace(
+                "new Neptuo.TemplateEngine.Web.Controls.FileTemplate.ctor(this.dependencyProvider, this.componentManager, (Cast((this.dependencyProvider.Resolve(Typeof(Neptuo.Templates.Compilation.IViewService.ctor), null)), Neptuo.Templates.Compilation.IViewService.ctor)))", 
+                "new Neptuo.TemplateEngine.Web.Controls.FileTemplate2.ctor(this.dependencyProvider, this.componentManager)"
+            );
+            content = content.Replace(
+                "Neptuo.TemplateEngine.Web.Controls.FileTemplate.ctor", 
+                "Neptuo.TemplateEngine.Web.Controls.FileTemplate2.ctor"
+            );
+
+            return content;
         }
 
         private string GetTempJavascriptFilePath(JavascriptViewGeneratorConfiguration configuration, string viewPath)

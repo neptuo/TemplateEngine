@@ -11,7 +11,7 @@
     <script src="Design/Scripts/bootstrap.js"></script>
 
     <script src="Design/Scripts/Generated/Neptuo.System.Client.js"></script>
-    <script src="Design/Scripts/Generated/StringWriter.js"></script>
+
     <script src="Design/Scripts/Generated/Neptuo.js"></script>
     <script src="Design/Scripts/Generated/Neptuo.ObjectBuilder.js"></script>
     <script src="Design/Scripts/Generated/Neptuo.Bootstrap.js"></script>
@@ -39,22 +39,27 @@
         $(function () {
 
             $("#rerender").click(function () {
+                var start = +new Date;
+
                 var writer = new System.IO.StringWriter.ctor();
                 //var view = new Neptuo.Templates.View_3D09FEDA526F72327E9894F4A68B10A6DDEF92A5.ctor();
-                var view = new Neptuo.Templates.View_169A146015B9683BA3DA19241AEB502786C332B0.ctor();
-                //var view = new Neptuo.Templates.View_4871826135338C3DD897DE2539C817F096C4D1B7.ctor();
+                //var view = new Neptuo.Templates.View_169A146015B9683BA3DA19241AEB502786C332B0.ctor();
+                var view = new Neptuo.Templates.View_4871826135338C3DD897DE2539C817F096C4D1B7.ctor();
                 view.Setup(new Neptuo.Templates.BaseViewPage.ctor(objectBuilder.Resolve(Typeof(Neptuo.Templates.IComponentManager.ctor), null)), objectBuilder.Resolve(Typeof(Neptuo.Templates.IComponentManager.ctor), null), objectBuilder);
                 view.CreateControls();
                 view.Init();
                 view.Render(new Neptuo.Templates.HtmlTextWriter.ctor(writer));
                 view.Dispose();
                 $("#target").html(writer.toString());
+
+                $("#measure").html((+new Date) - start + "ms");
             });
         });
     </script>
 </head>
 <body>
     <div id="target"></div>
-    <input type="button" value="ReRender" id="rerender" />
+    <input type="button" value="Render" id="rerender" />
+    <div id="measure"></div>
 </body>
 </html>

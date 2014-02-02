@@ -18,6 +18,7 @@ namespace Neptuo.TemplateEngine.Web.Client
                 .RegisterType<IVirtualUrlProvider, UrlProvider>()
                 .RegisterType<ICurrentUrlProvider, UrlProvider>()
                 .RegisterType<IParameterProviderFactory, ParameterProviderFactory>()
+                .RegisterType<IParameterProvider, ParameterProvider>()
                 .RegisterInstance(new TemplateContentStorageStack());
         }
     }
@@ -39,9 +40,24 @@ namespace Neptuo.TemplateEngine.Web.Client
     {
         public IParameterProvider Provider(ParameterProviderType providerType)
         {
-            return null;
+            return new ParameterProvider();
         }
     }
+
+    public class ParameterProvider : IParameterProvider
+    {
+        public IEnumerable<string> Keys
+        {
+            get { return new List<string>(); }
+        }
+
+        public bool TryGet(string key, out object value)
+        {
+            value = null;
+            return false;
+        }
+    }
+
 
 
 }

@@ -51,6 +51,7 @@
     <Compile Include="Controls\FileTemplate2.cs" />
     <Compile Include="Controls\ITextControl.cs" />
     <Compile Include="Controls\LiteralControl.cs" />
+    <Compile Include="DataSources\UserAccountDataSource.cs" />
     <Compile Include="GeneratedViewBase.cs" />
     <Compile Include="InitScript.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
