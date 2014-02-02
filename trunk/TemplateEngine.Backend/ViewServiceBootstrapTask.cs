@@ -110,6 +110,7 @@ namespace Neptuo.TemplateEngine.Backend
         protected virtual void SetupCodeDomGenerator(CodeDomGenerator generator)
         {
             IFieldNameProvider fieldNameProvider = new SequenceFieldNameProvider();
+            generator.IsDirectObjectResolve = true;
             generator.RegisterStandartCodeGenerators(fieldNameProvider);
             generator.SetBaseStructureGenerator(new CodeDomStructureGenerator());
 
