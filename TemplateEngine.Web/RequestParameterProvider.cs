@@ -11,6 +11,11 @@ namespace Neptuo.TemplateEngine.Web
     {
         public HttpRequestBase HttpRequest { get; private set; }
 
+        public IEnumerable<string> Keys
+        {
+            get { return HttpRequest.Params.AllKeys; }
+        }
+
         public RequestParameterProvider(HttpRequestBase httpRequest)
         {
             if (httpRequest == null)

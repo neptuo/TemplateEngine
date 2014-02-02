@@ -75,6 +75,7 @@
     <Compile Include="Controls\NavigationControl.cs" />
     <Compile Include="Controls\NavigationItem.cs" />
     <Compile Include="Controls\OptionControl.cs" />
+    <Compile Include="ParameterProviderExtensions.cs" />
     <Compile Include="Controls\SelectControl.cs" />
     <Compile Include="Controls\Templates\ContentTemplate.cs" />
     <Compile Include="Controls\Templates\ContentTemplateContent.cs" />
@@ -109,12 +110,15 @@
     <Compile Include="GlobalNavigationCollection.cs" />
     <Compile Include="ICurrentUrlProvider.cs" />
     <Compile Include="IDataSource.cs" />
+    <Compile Include="IParameterProviderFactory.cs" />
     <Compile Include="NavigationCollection.cs" />
     <Compile Include="IParameterProvider.cs" />
     <Compile Include="IValueConverter.cs" />
     <Compile Include="IValueConverterService.cs" />
     <Compile Include="Converters\NullToBoolValueConverter.cs" />
     <Compile Include="Observers\VisibleObserver.cs" />
+    <Compile Include="RequestParameterProviderFactory.cs" />
+    <Compile Include="ParameterProviderType.cs" />
     <Compile Include="RequestParameterProvider.cs" />
     <Compile Include="ValueConverterService.cs" />
     <Compile Include="Controllers\Binders\RequestBindingValueStorage.cs" />

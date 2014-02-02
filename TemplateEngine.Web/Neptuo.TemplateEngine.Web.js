@@ -779,6 +779,45 @@ var Neptuo$TemplateEngine$Web$Controls$OptionControl =
     IsAbstract: false
 };
 JsTypes.push(Neptuo$TemplateEngine$Web$Controls$OptionControl);
+var Neptuo$TemplateEngine$Web$ParameterProviderExtensions =
+{
+    fullname: "Neptuo.TemplateEngine.Web.ParameterProviderExtensions",
+    baseTypeName: "System.Object",
+    staticDefinition:
+    {
+        GetAllParameters: function (provider)
+        {
+            var result = new System.Collections.Generic.Dictionary$2.ctor(System.String.ctor, System.Object.ctor);
+            var value;
+            var $it9 = provider.get_Keys().GetEnumerator();
+            while ($it9.MoveNext())
+            {
+                var key = $it9.get_Current();
+                if ((function ()
+                {
+                    var $1 = {Value: value};
+                    var $res = provider.TryGet(key, $1);
+                    value = $1.Value;
+                    return $res;
+                })())
+                    result.set_Item$$TKey(key, value);
+            }
+            return result;
+        }
+    },
+    assemblyName: "Neptuo.TemplateEngine.Web",
+    Kind: "Class",
+    definition:
+    {
+        ctor: function ()
+        {
+            System.Object.ctor.call(this);
+        }
+    },
+    ctors: [],
+    IsAbstract: true
+};
+JsTypes.push(Neptuo$TemplateEngine$Web$ParameterProviderExtensions);
 var Neptuo$TemplateEngine$Web$Controls$SelectControl =
 {
     fullname: "Neptuo.TemplateEngine.Web.Controls.SelectControl",
@@ -918,10 +957,10 @@ var Neptuo$TemplateEngine$Web$Controls$ContentTemplateContent =
         {
             if (this.get_Content() != null)
             {
-                var $it9 = this.get_Content().GetEnumerator();
-                while ($it9.MoveNext())
+                var $it10 = this.get_Content().GetEnumerator();
+                while ($it10.MoveNext())
                 {
-                    var item = $it9.get_Current();
+                    var item = $it10.get_Current();
                     this.get_ComponentManager().Init(item);
                 }
             }
@@ -930,10 +969,10 @@ var Neptuo$TemplateEngine$Web$Controls$ContentTemplateContent =
         {
             if (this.get_Content() != null)
             {
-                var $it10 = this.get_Content().GetEnumerator();
-                while ($it10.MoveNext())
+                var $it11 = this.get_Content().GetEnumerator();
+                while ($it11.MoveNext())
                 {
-                    var item = $it10.get_Current();
+                    var item = $it11.get_Current();
                     this.get_ComponentManager().Render(item, writer);
                 }
             }
@@ -942,10 +981,10 @@ var Neptuo$TemplateEngine$Web$Controls$ContentTemplateContent =
         {
             if (this.get_Content() != null)
             {
-                var $it11 = this.get_Content().GetEnumerator();
-                while ($it11.MoveNext())
+                var $it12 = this.get_Content().GetEnumerator();
+                while ($it12.MoveNext())
                 {
-                    var item = $it11.get_Current();
+                    var item = $it12.get_Current();
                     this.get_ComponentManager().Dispose(item);
                 }
             }
@@ -1013,10 +1052,10 @@ var Neptuo$TemplateEngine$Web$Controls$ControlBase =
         {
             if (compoments != null)
             {
-                var $it12 = compoments.GetEnumerator();
-                while ($it12.MoveNext())
+                var $it13 = compoments.GetEnumerator();
+                while ($it13.MoveNext())
                 {
-                    var component = $it12.get_Current();
+                    var component = $it13.get_Current();
                     this.InitComponent(component);
                 }
             }
@@ -1397,10 +1436,10 @@ var Neptuo$TemplateEngine$Web$Controls$FormItemControl =
         {
             if (System.Linq.Enumerable.Any$1$$IEnumerable$1(System.Object.ctor, this.get_Content()))
             {
-                var $it13 = this.get_Content().GetEnumerator();
-                while ($it13.MoveNext())
+                var $it14 = this.get_Content().GetEnumerator();
+                while ($it14.MoveNext())
                 {
-                    var control = $it13.get_Current();
+                    var control = $it14.get_Current();
                     var htmlControl = As(control, Neptuo.TemplateEngine.Web.Controls.HtmlControlBase.ctor);
                     if (htmlControl != null)
                     {
@@ -1507,10 +1546,11 @@ var Neptuo$TemplateEngine$Web$Controls$LinkControl =
     Kind: "Class",
     definition:
     {
-        ctor: function (componentManager, urlProvider, httpRequest)
+        ctor: function (componentManager, urlProvider, currentUrl, parameterFactory)
         {
             this.urlProvider = null;
-            this.httpRequest = null;
+            this.currentUrl = null;
+            this.parameterFactory = null;
             this._Href = null;
             this._Text = null;
             this._CopyParameters = null;
@@ -1518,7 +1558,8 @@ var Neptuo$TemplateEngine$Web$Controls$LinkControl =
             this._AllowActive = false;
             Neptuo.TemplateEngine.Web.Controls.HtmlContentControlBase.ctor.call(this, componentManager, "a", false);
             this.urlProvider = urlProvider;
-            this.httpRequest = httpRequest;
+            this.currentUrl = currentUrl;
+            this.parameterFactory = parameterFactory;
         },
         Href$$: "System.String",
         get_Href: function ()
@@ -1570,7 +1611,7 @@ var Neptuo$TemplateEngine$Web$Controls$LinkControl =
             Neptuo.TemplateEngine.Web.Controls.HtmlContentControlBase.commonPrototype.OnInit.call(this);
             if (this.get_Href() == null)
                 throw $CreateException(new System.ArgumentNullException.ctor$$String("Href"), new Error());
-            if (this.get_AllowActive() && this.httpRequest.get_AppRelativeCurrentExecutionFilePath().EndsWith$$String(this.get_Href()))
+            if (this.get_AllowActive() && this.currentUrl.GetCurrentUrl().EndsWith$$String(this.get_Href()))
                 this.get_Attributes().set_Item$$TKey("class", "active");
             if (!System.String.IsNullOrEmpty(this.get_Text()))
                 this.set_Content((function ()
@@ -1588,28 +1629,28 @@ var Neptuo$TemplateEngine$Web$Controls$LinkControl =
             {
                 var copy = this.get_CopyParameters().ToLowerInvariant();
                 if (copy == "all")
-                    this.CopyParameterCollection(parameters, this.httpRequest.get_QueryString(), this.httpRequest.get_Form());
+                    this.CopyParameterCollection(parameters, Neptuo.TemplateEngine.Web.ParameterProviderExtensions.GetAllParameters(this.parameterFactory.Provider(Neptuo.TemplateEngine.Web.ParameterProviderType.All)));
                 else if (copy == "query")
-                    this.CopyParameterCollection(parameters, this.httpRequest.get_QueryString());
+                    this.CopyParameterCollection(parameters, Neptuo.TemplateEngine.Web.ParameterProviderExtensions.GetAllParameters(this.parameterFactory.Provider(Neptuo.TemplateEngine.Web.ParameterProviderType.Url)));
                 else if (copy == "form")
-                    this.CopyParameterCollection(parameters, this.httpRequest.get_Form());
+                    this.CopyParameterCollection(parameters, Neptuo.TemplateEngine.Web.ParameterProviderExtensions.GetAllParameters(this.parameterFactory.Provider(Neptuo.TemplateEngine.Web.ParameterProviderType.Form)));
                 else
                     this.CopySelectedParameters(parameters, this.get_CopyParameters().Split$$Char$Array$$StringSplitOptions([","], 1));
             }
             var queryBuilder = new System.Text.StringBuilder.ctor();
             if (this.get_Parameters() != null)
             {
-                var $it14 = this.get_Parameters().GetEnumerator();
-                while ($it14.MoveNext())
+                var $it15 = this.get_Parameters().GetEnumerator();
+                while ($it15.MoveNext())
                 {
-                    var parameter = $it14.get_Current();
+                    var parameter = $it15.get_Current();
                     parameters.set_Item$$TKey(parameter.get_Name(), parameter.get_Value());
                 }
             }
-            var $it15 = parameters.GetEnumerator();
-            while ($it15.MoveNext())
+            var $it16 = parameters.GetEnumerator();
+            while ($it16.MoveNext())
             {
-                var parameter = $it15.get_Current();
+                var parameter = $it16.get_Current();
                 this.AppendQuery(queryBuilder, parameter.get_Key(), parameter.get_Value());
             }
             this.get_Attributes().set_Item$$TKey("href", System.String.Format$$String$$Object$$Object("{0}{1}", this.urlProvider.ResolveUrl(this.get_Href()), queryBuilder.ToString()));
@@ -1621,34 +1662,41 @@ var Neptuo$TemplateEngine$Web$Controls$LinkControl =
         },
         CopyParameterCollection: function (parameters, collections)
         {
-            var $it16 = collections.GetEnumerator();
-            while ($it16.MoveNext())
+            var $it17 = collections.GetEnumerator();
+            while ($it17.MoveNext())
             {
-                var collection = $it16.get_Current();
-                var $it17 = collection.get_AllKeys().GetEnumerator();
-                while ($it17.MoveNext())
+                var collection = $it17.get_Current();
+                var $it18 = collection.get_Keys().GetEnumerator();
+                while ($it18.MoveNext())
                 {
-                    var parameter = $it17.get_Current();
-                    parameters.set_Item$$TKey(parameter, collection.Get$$String(parameter));
+                    var parameter = $it18.get_Current();
+                    parameters.set_Item$$TKey(parameter, collection.get_Item$$TKey(parameter));
                 }
             }
         },
         CopySelectedParameters: function (parameters, selectedParameters)
         {
-            var currentNames = new System.Collections.Generic.HashSet$1.ctor$$IEnumerable$1(System.String.ctor, System.Linq.Enumerable.Select$2$$IEnumerable$1$$Func$2(System.String.ctor, System.String.ctor, this.httpRequest.get_Params().get_AllKeys(), $CreateAnonymousDelegate(this, function (p)
+            var currentNames = new System.Collections.Generic.HashSet$1.ctor$$IEnumerable$1(System.String.ctor, System.Linq.Enumerable.Select$2$$IEnumerable$1$$Func$2(System.String.ctor, System.String.ctor, this.parameterFactory.Provider(Neptuo.TemplateEngine.Web.ParameterProviderType.All).get_Keys(), $CreateAnonymousDelegate(this, function (p)
             {
                 return p.ToLowerInvariant();
             })));
-            var $it18 = selectedParameters.GetEnumerator();
-            while ($it18.MoveNext())
+            var value;
+            var $it19 = selectedParameters.GetEnumerator();
+            while ($it19.MoveNext())
             {
-                var paramName = $it18.get_Current();
-                if (currentNames.Contains(paramName.ToLowerInvariant()))
-                    parameters.Add(paramName, this.httpRequest.get_Params().get_Item$$String(paramName));
+                var paramName = $it19.get_Current();
+                if (currentNames.Contains(paramName.ToLowerInvariant()) && (function ()
+                {
+                    var $1 = {Value: value};
+                    var $res = this.parameterFactory.Provider(Neptuo.TemplateEngine.Web.ParameterProviderType.All).TryGet(paramName, $1);
+                    value = $1.Value;
+                    return $res;
+                }).call(this))
+                    parameters.set_Item$$TKey(paramName, value);
             }
         }
     },
-    ctors: [ {name: "ctor", parameters: ["Neptuo.Templates.IComponentManager", "Neptuo.Templates.IVirtualUrlProvider", "System.Web.HttpRequestBase"]}],
+    ctors: [ {name: "ctor", parameters: ["Neptuo.Templates.IComponentManager", "Neptuo.Templates.IVirtualUrlProvider", "Neptuo.TemplateEngine.Web.ICurrentUrlProvider", "Neptuo.TemplateEngine.Web.IParameterProviderFactory"]}],
     IsAbstract: false
 };
 JsTypes.push(Neptuo$TemplateEngine$Web$Controls$LinkControl);
@@ -1705,10 +1753,10 @@ var Neptuo$TemplateEngine$Web$Controls$MessagePanelControl =
             {
                 writer.Tag(this.get_TagName()).Attribute("class", "message-list");
                 this.RenderAttributes(writer);
-                var $it19 = messages.GetEnumerator();
-                while ($it19.MoveNext())
+                var $it20 = messages.GetEnumerator();
+                while ($it20.MoveNext())
                 {
-                    var message = $it19.get_Current();
+                    var message = $it20.get_Current();
                     var cssClass = null;
                     switch (message.get_Type())
                     {
@@ -1817,10 +1865,10 @@ var Neptuo$TemplateEngine$Web$Controls$PresentationListControlBase$1 =
             this.InitComponent(this.get_ItemTemplate());
             var itemTemplates = new System.Collections.Generic.List$1.ctor(System.Object.ctor);
             var models = this.LoadData();
-            var $it20 = models.GetEnumerator();
-            while ($it20.MoveNext())
+            var $it21 = models.GetEnumerator();
+            while ($it21.MoveNext())
             {
-                var model = $it20.get_Current();
+                var model = $it21.get_Current();
                 var provider = this.configuration.get_ValueProviderFactory().Create(model);
                 this.get_DataContext().Push(provider, null);
                 var control = new Neptuo.TemplateEngine.Web.Controls.TemplateControl.ctor(this.get_ComponentManager(), this.configuration.get_TemplateStorage());
@@ -1947,10 +1995,10 @@ var Neptuo$TemplateEngine$Web$DataSources$ListDataSourceBase$1 =
             data = this.ApplyFilter(data);
             if (pageSize != null)
                 data = System.Linq.Queryable.Take$1(this.T, System.Linq.Queryable.Skip$1(this.T, data, (pageIndex != null ? pageIndex : 0) * pageSize.get_Value()), pageSize.get_Value());
-            var $it21 = data.GetEnumerator();
-            while ($it21.MoveNext())
+            var $it22 = data.GetEnumerator();
+            while ($it22.MoveNext())
             {
-                var item = $it21.get_Current();
+                var item = $it22.get_Current();
                 $yield.push(this.get_ProviderFactory().Create(item));
             }
             return $yield;
@@ -2300,6 +2348,8 @@ var Neptuo$TemplateEngine$Web$IListDataSource = {fullname: "Neptuo.TemplateEngin
 JsTypes.push(Neptuo$TemplateEngine$Web$IListDataSource);
 var Neptuo$TemplateEngine$Web$IDataSource = {fullname: "Neptuo.TemplateEngine.Web.IDataSource", baseTypeName: "System.Object", assemblyName: "Neptuo.TemplateEngine.Web", Kind: "Interface", ctors: [], IsAbstract: true};
 JsTypes.push(Neptuo$TemplateEngine$Web$IDataSource);
+var Neptuo$TemplateEngine$Web$IParameterProviderFactory = {fullname: "Neptuo.TemplateEngine.Web.IParameterProviderFactory", baseTypeName: "System.Object", assemblyName: "Neptuo.TemplateEngine.Web", Kind: "Interface", ctors: [], IsAbstract: true};
+JsTypes.push(Neptuo$TemplateEngine$Web$IParameterProviderFactory);
 var Neptuo$TemplateEngine$Web$IParameterProvider = {fullname: "Neptuo.TemplateEngine.Web.IParameterProvider", baseTypeName: "System.Object", assemblyName: "Neptuo.TemplateEngine.Web", Kind: "Interface", ctors: [], IsAbstract: true};
 JsTypes.push(Neptuo$TemplateEngine$Web$IParameterProvider);
 var Neptuo$TemplateEngine$Web$IValueConverter = {fullname: "Neptuo.TemplateEngine.Web.IValueConverter", baseTypeName: "System.Object", assemblyName: "Neptuo.TemplateEngine.Web", Kind: "Interface", ctors: [], IsAbstract: true};
@@ -2366,6 +2416,84 @@ var Neptuo$TemplateEngine$Web$Observers$VisibleObserver =
     IsAbstract: false
 };
 JsTypes.push(Neptuo$TemplateEngine$Web$Observers$VisibleObserver);
+var Neptuo$TemplateEngine$Web$RequestParameterProviderFactory =
+{
+    fullname: "Neptuo.TemplateEngine.Web.RequestParameterProviderFactory",
+    baseTypeName: "System.Object",
+    assemblyName: "Neptuo.TemplateEngine.Web",
+    interfaceNames: ["Neptuo.TemplateEngine.Web.IParameterProviderFactory"],
+    Kind: "Class",
+    definition:
+    {
+        ctor: function (httpRequest)
+        {
+            this.httpRequest = null;
+            System.Object.ctor.call(this);
+            this.httpRequest = httpRequest;
+        },
+        Provider: function (providerType)
+        {
+            switch (providerType)
+            {
+                case Neptuo.TemplateEngine.Web.ParameterProviderType.All:
+                    return new Neptuo.TemplateEngine.Web.RequestParameterProviderFactory.InternalParameterProvider.ctor(this.httpRequest.get_Params());
+                case Neptuo.TemplateEngine.Web.ParameterProviderType.Url:
+                    return new Neptuo.TemplateEngine.Web.RequestParameterProviderFactory.InternalParameterProvider.ctor(this.httpRequest.get_QueryString());
+                case Neptuo.TemplateEngine.Web.ParameterProviderType.Form:
+                    return new Neptuo.TemplateEngine.Web.RequestParameterProviderFactory.InternalParameterProvider.ctor(this.httpRequest.get_Form());
+                default :
+                    throw $CreateException(new System.NotSupportedException.ctor(), new Error());
+            }
+        }
+    },
+    ctors: [ {name: "ctor", parameters: ["System.Web.HttpRequestBase"]}],
+    IsAbstract: false
+};
+JsTypes.push(Neptuo$TemplateEngine$Web$RequestParameterProviderFactory);
+var Neptuo$TemplateEngine$Web$RequestParameterProviderFactory$InternalParameterProvider =
+{
+    fullname: "Neptuo.TemplateEngine.Web.RequestParameterProviderFactory.InternalParameterProvider",
+    baseTypeName: "System.Object",
+    assemblyName: "Neptuo.TemplateEngine.Web",
+    interfaceNames: ["Neptuo.TemplateEngine.Web.IParameterProvider"],
+    Kind: "Class",
+    definition:
+    {
+        ctor: function (parameters)
+        {
+            this.parameters = null;
+            System.Object.ctor.call(this);
+            this.parameters = parameters;
+        },
+        Keys$$: "System.Collections.Generic.IEnumerable`1[[System.String]]",
+        get_Keys: function ()
+        {
+            return this.parameters.get_AllKeys();
+        },
+        TryGet: function (key, value)
+        {
+            if (System.Linq.Enumerable.Contains$1$$IEnumerable$1$$TSource(System.String.ctor, this.parameters.get_AllKeys(), key))
+            {
+                value.Value = this.parameters.Get$$String(key);
+                return true;
+            }
+            value.Value = null;
+            return false;
+        }
+    },
+    ctors: [ {name: "ctor", parameters: ["System.Collections.Specialized.NameValueCollection"]}],
+    IsAbstract: false
+};
+JsTypes.push(Neptuo$TemplateEngine$Web$RequestParameterProviderFactory$InternalParameterProvider);
+var Neptuo$TemplateEngine$Web$ParameterProviderType =
+{
+    fullname: "Neptuo.TemplateEngine.Web.ParameterProviderType",
+    staticDefinition: {All: 0, Url: 1, Form: 2},
+    Kind: "Enum",
+    ctors: [ {name: "ctor", parameters: []}],
+    IsAbstract: false
+};
+JsTypes.push(Neptuo$TemplateEngine$Web$ParameterProviderType);
 var Neptuo$TemplateEngine$Web$ValueConverterService =
 {
     fullname: "Neptuo.TemplateEngine.Web.ValueConverterService",
@@ -3372,10 +3500,10 @@ var Neptuo$TemplateEngine$Web$TemplateContentStorage =
         {
             if (contents == null)
                 throw $CreateException(new System.ArgumentNullException.ctor$$String("contents"), new Error());
-            var $it22 = contents.GetEnumerator();
-            while ($it22.MoveNext())
+            var $it23 = contents.GetEnumerator();
+            while ($it23.MoveNext())
             {
-                var content = $it22.get_Current();
+                var content = $it23.get_Current();
                 this.Add(content.get_Name(), content);
             }
         },

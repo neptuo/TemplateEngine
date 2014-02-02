@@ -197,28 +197,6 @@ var Neptuo$TemplateEngine$Web$Controls$LiteralControl =
     IsAbstract: false
 };
 JsTypes.push(Neptuo$TemplateEngine$Web$Controls$LiteralControl);
-var Neptuo$TemplateEngine$Web$Extensions$CurrentUrlExtension =
-{
-    fullname: "Neptuo.TemplateEngine.Web.Extensions.CurrentUrlExtension",
-    baseTypeName: "System.Object",
-    assemblyName: "Neptuo.TemplateEngine.Web.Client",
-    interfaceNames: ["Neptuo.Templates.Extensions.IValueExtension"],
-    Kind: "Class",
-    definition:
-    {
-        ctor: function ()
-        {
-            System.Object.ctor.call(this);
-        },
-        ProvideValue: function (context)
-        {
-            return location.href;
-        }
-    },
-    ctors: [ {name: "ctor", parameters: []}],
-    IsAbstract: false
-};
-JsTypes.push(Neptuo$TemplateEngine$Web$Extensions$CurrentUrlExtension);
 var Neptuo$TemplateEngine$Web$GeneratedViewBase =
 {
     fullname: "Neptuo.TemplateEngine.Web.GeneratedViewBase",
