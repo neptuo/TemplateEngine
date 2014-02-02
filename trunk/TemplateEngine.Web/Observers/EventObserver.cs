@@ -6,19 +6,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Web;
+//using System.Web;
 
 namespace Neptuo.TemplateEngine.Web.Observers
 {
     public class EventObserver : IObserver
     {
-        protected HttpContextBase HttpContext { get; private set; }
+        //protected HttpContextBase HttpContext { get; private set; }
         //protected IEventHandler EventHandler { get; private set; }
         public string Event { get; set; }
 
-        public EventObserver(HttpContextBase httpContext/*, IEventHandler eventHandler*/)
+        public EventObserver(/*HttpContextBase httpContext, IEventHandler eventHandler*/)
         {
-            HttpContext = httpContext;
+            //HttpContext = httpContext;
             //EventHandler = eventHandler;
         }
 

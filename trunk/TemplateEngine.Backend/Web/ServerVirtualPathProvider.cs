@@ -1,4 +1,5 @@
-﻿using Neptuo.Templates;
+﻿using Neptuo.TemplateEngine.Web;
+using Neptuo.Templates;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +9,7 @@ using System.Web;
 
 namespace Neptuo.TemplateEngine.Backend.Web
 {
-    public class ServerVirtualPathProvider : IVirtualPathProvider, IVirtualUrlProvider
+    public class ServerVirtualPathProvider : IVirtualPathProvider, IVirtualUrlProvider, ICurrentUrlProvider
     {
         public string MapPath(string path)
         {
@@ -24,6 +25,11 @@ namespace Neptuo.TemplateEngine.Backend.Web
         public string ResolveUrl(string path)
         {
             return VirtualPathUtility.ToAbsolute(path);
+        }
+
+        public string GetCurrentUrl()
+        {
+            return HttpContext.Current.Request.RawUrl;
         }
     }
 }
