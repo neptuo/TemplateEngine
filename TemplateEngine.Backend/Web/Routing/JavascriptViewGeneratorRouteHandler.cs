@@ -12,20 +12,22 @@ using System.Web.Routing;
 
 namespace Neptuo.TemplateEngine.Backend.Web.Routing
 {
-    public class ViewGeneratorRouteHandler : IRouteHandler
+    public class JavascriptViewGeneratorRouteHandler : IRouteHandler
     {
+        private JavascriptViewGeneratorConfiguration configuration;
         private IJavascriptSourceViewService viewService;
         private IDependencyProvider dependencyProvider;
 
-        public ViewGeneratorRouteHandler(IJavascriptSourceViewService viewService, IDependencyProvider dependencyProvider)
+        public JavascriptViewGeneratorRouteHandler(JavascriptViewGeneratorConfiguration configuration, IJavascriptSourceViewService viewService, IDependencyProvider dependencyProvider)
         {
+            this.configuration = configuration;
             this.viewService = viewService;
             this.dependencyProvider = dependencyProvider;
         }
 
         public IHttpHandler GetHttpHandler(RequestContext requestContext)
         {
-            return new ViewGeneratorHttpHandler(viewService, dependencyProvider);
+            return new JavascriptViewGeneratorHttpHandler(configuration, viewService, dependencyProvider);
         }
     }
 }
