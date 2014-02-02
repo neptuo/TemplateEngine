@@ -1,4 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Exugin>
   <Export Filename="Neptuo.TemplateEngine.Web.js" FilenameFormat="~/{0}" />
+  <Namespace Target="Neptuo.TemplateEngine.Web.Controllers.*" Export="False" />
+  <Namespace Target="Neptuo.TemplateEngine.Web.Navigation.*" Export="False" />
+  <Type Target="Neptuo.TemplateEngine.Web.RequestParameterProvider" Export="False" />
 </Exugin>

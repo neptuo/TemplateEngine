@@ -10,16 +10,16 @@ namespace Neptuo.TemplateEngine.Web.Extensions
 {
     public class CurrentUrlExtension : IValueExtension
     {
-        private HttpRequestBase httpRequest;
+        private ICurrentUrlProvider provider;
 
-        public CurrentUrlExtension(HttpRequestBase httpRequest)
+        public CurrentUrlExtension(ICurrentUrlProvider provider)
         {
-            this.httpRequest = httpRequest;
+            this.provider = provider;
         }
 
         public object ProvideValue(IValueExtensionContext context)
         {
-            return httpRequest.RawUrl;
+            return provider.GetCurrentUrl();
         }
     }
 }

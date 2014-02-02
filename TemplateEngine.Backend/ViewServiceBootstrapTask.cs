@@ -60,6 +60,7 @@ namespace Neptuo.TemplateEngine.Backend
                 .RegisterInstance<IViewService>(viewService)
                 .RegisterInstance<IJavascriptSourceViewService>(viewService)
                 .RegisterInstance<IVirtualUrlProvider>(new ServerVirtualPathProvider())
+                .RegisterInstance<ICurrentUrlProvider>(new ServerVirtualPathProvider())
                 .RegisterType<IStackStorage<IViewStorage>, StackStorage<IViewStorage>>(new PerRequestLifetime())
                 .RegisterType<TemplateContentStorageStack>(new PerRequestLifetime())
                 //.RegisterType<IEventHandler, SimpleEventHandler>(new PerRequestLifetime())
