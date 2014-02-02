@@ -6,10 +6,8 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Web
 {
-    public interface IParameterProvider
+    public enum ParameterProviderType
     {
-        IEnumerable<string> Keys { get; }
-
-        bool TryGet(string key, out object value);
+        All, Url, Form
     }
 }

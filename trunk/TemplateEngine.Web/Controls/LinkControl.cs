@@ -1,4 +1,5 @@
-﻿using Neptuo.TemplateEngine.Web.Controls.DesignData;
+﻿using Neptuo.TemplateEngine.Web;
+using Neptuo.TemplateEngine.Web.Controls.DesignData;
 using Neptuo.Templates;
 using System;
 using System.Collections.Generic;
@@ -14,7 +15,8 @@ namespace Neptuo.TemplateEngine.Web.Controls
     public class LinkControl : HtmlContentControlBase
     {
         private IVirtualUrlProvider urlProvider;
-        private HttpRequestBase httpRequest;
+        private ICurrentUrlProvider currentUrl;
+        private IParameterProviderFactory parameterFactory;
 
         public string Href { get; set; }
 
@@ -29,11 +31,12 @@ namespace Neptuo.TemplateEngine.Web.Controls
         [DefaultValue(true)]
         public bool AllowActive { get; set; }
 
-        public LinkControl(IComponentManager componentManager, IVirtualUrlProvider urlProvider, HttpRequestBase httpRequest)
+        public LinkControl(IComponentManager componentManager, IVirtualUrlProvider urlProvider, ICurrentUrlProvider currentUrl, IParameterProviderFactory parameterFactory)
             : base(componentManager, "a")
         {
             this.urlProvider = urlProvider;
-            this.httpRequest = httpRequest;
+            this.currentUrl = currentUrl;
+            this.parameterFactory = parameterFactory;
         }
 
         public override void OnInit()
@@ -43,7 +46,7 @@ namespace Neptuo.TemplateEngine.Web.Controls
             if (Href == null)
                 throw new ArgumentNullException("Href");
 
-            if (AllowActive && httpRequest.AppRelativeCurrentExecutionFilePath.EndsWith(Href))
+            if (AllowActive && currentUrl.GetCurrentUrl().EndsWith(Href))
                 Attributes["class"] = "active";
 
             if (!String.IsNullOrEmpty(Text))
@@ -59,11 +62,11 @@ namespace Neptuo.TemplateEngine.Web.Controls
             {
                 string copy = CopyParameters.ToLowerInvariant();
                 if (copy == "all")
-                    CopyParameterCollection(parameters, httpRequest.QueryString, httpRequest.Form);
+                    CopyParameterCollection(parameters, parameterFactory.Provider(ParameterProviderType.All).GetAllParameters());
                 else if (copy == "query")
-                    CopyParameterCollection(parameters, httpRequest.QueryString);
+                    CopyParameterCollection(parameters, parameterFactory.Provider(ParameterProviderType.Url).GetAllParameters());
                 else if (copy == "form")
-                    CopyParameterCollection(parameters, httpRequest.Form);
+                    CopyParameterCollection(parameters, parameterFactory.Provider(ParameterProviderType.Form).GetAllParameters());
                 else
                     CopySelectedParameters(parameters, CopyParameters.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries));
             }
@@ -95,22 +98,23 @@ namespace Neptuo.TemplateEngine.Web.Controls
             );
         }
 
-        private void CopyParameterCollection(Dictionary<string, object> parameters, params NameValueCollection[] collections)
+        private void CopyParameterCollection(Dictionary<string, object> parameters, params Dictionary<string, object>[] collections)
         {
-            foreach (NameValueCollection collection in collections)
+            foreach (Dictionary<string, object> collection in collections)
             {
-                foreach (var parameter in collection.AllKeys)
-                    parameters[parameter] = collection.Get(parameter);
+                foreach (var parameter in collection.Keys)
+                    parameters[parameter] = collection[parameter];
             }
         }
 
         private void CopySelectedParameters(Dictionary<string, object> parameters, IEnumerable<string> selectedParameters)
         {
-            HashSet<string> currentNames = new HashSet<string>(httpRequest.Params.AllKeys.Select(p => p.ToLowerInvariant()));
+            HashSet<string> currentNames = new HashSet<string>(parameterFactory.Provider(ParameterProviderType.All).Keys.Select(p => p.ToLowerInvariant()));
+            object value;
             foreach (string paramName in selectedParameters)
             {
-                if (currentNames.Contains(paramName.ToLowerInvariant()))
-                    parameters.Add(paramName, httpRequest.Params[paramName]);
+                if (currentNames.Contains(paramName.ToLowerInvariant()) && parameterFactory.Provider(ParameterProviderType.All).TryGet(paramName, out value))
+                    parameters[paramName] = value;
             }
         }
     }
