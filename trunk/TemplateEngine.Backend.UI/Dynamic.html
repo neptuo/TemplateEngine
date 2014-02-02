@@ -34,23 +34,27 @@
         var objectBuilder = new Neptuo.ObjectBuilder.DependencyContainer.ctor();
         Neptuo.DependencyContainerExtensions.RegisterInstance$1(Neptuo.Templates.IComponentManager.ctor, objectBuilder, new Neptuo.Templates.ComponentManager.ctor());
         Neptuo.DependencyContainerExtensions.RegisterInstance$1(Neptuo.IDependencyProvider.ctor, objectBuilder, objectBuilder);
+        Neptuo.TemplateEngine.Web.Client.InitScript.Init(objectBuilder);
 
         $(function () {
 
-            var writer = new System.IO.StringWriter.ctor();
-            //var view = new Neptuo.Templates.View_3D09FEDA526F72327E9894F4A68B10A6DDEF92A5.ctor();
-            var view = new Neptuo.Templates.View_80DAA87AF7E7701DF7B03F434DCB9D17B7540026.ctor();
-            view.Setup(new Neptuo.Templates.BaseViewPage.ctor(objectBuilder.Resolve(Typeof(Neptuo.Templates.IComponentManager.ctor), null)), objectBuilder.Resolve(Typeof(Neptuo.Templates.IComponentManager.ctor), null), objectBuilder);
-            view.CreateControls();
-            view.Init();
-            view.Render(new Neptuo.Templates.HtmlTextWriter.ctor(writer));
-            view.Dispose();
-            $("body").html(writer.toString());
-
+            $("#rerender").click(function () {
+                var writer = new System.IO.StringWriter.ctor();
+                //var view = new Neptuo.Templates.View_3D09FEDA526F72327E9894F4A68B10A6DDEF92A5.ctor();
+                var view = new Neptuo.Templates.View_80DAA87AF7E7701DF7B03F434DCB9D17B7540026.ctor();
+                //var view = new Neptuo.Templates.View_4871826135338C3DD897DE2539C817F096C4D1B7.ctor();
+                view.Setup(new Neptuo.Templates.BaseViewPage.ctor(objectBuilder.Resolve(Typeof(Neptuo.Templates.IComponentManager.ctor), null)), objectBuilder.Resolve(Typeof(Neptuo.Templates.IComponentManager.ctor), null), objectBuilder);
+                view.CreateControls();
+                view.Init();
+                view.Render(new Neptuo.Templates.HtmlTextWriter.ctor(writer));
+                view.Dispose();
+                $("#target").html(writer.toString());
+            });
         });
     </script>
 </head>
 <body>
-
+    <div id="target"></div>
+    <input type="button" value="ReRender" id="rerender" />
 </body>
 </html>

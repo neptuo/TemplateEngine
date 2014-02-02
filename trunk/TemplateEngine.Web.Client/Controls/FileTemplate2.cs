@@ -22,10 +22,7 @@ namespace Neptuo.TemplateEngine.Web.Controls
 
         protected BaseGeneratedView CreateView()
         {
-            if(Path == "~/Views/Shared/AdminLayout.view")
-                return new View_B3FB932CB3BBED93A72876CB64C25B2BDE4D0C0E();
-
-            return null;
+            throw new NotSupportedException();
         }
 
         public ITemplateContent CreateInstance()

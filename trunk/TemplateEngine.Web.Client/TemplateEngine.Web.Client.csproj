@@ -52,10 +52,8 @@
     <Compile Include="Controls\ITextControl.cs" />
     <Compile Include="Controls\LiteralControl.cs" />
     <Compile Include="GeneratedViewBase.cs" />
+    <Compile Include="InitScript.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="View_3D09FEDA526F72327E9894F4A68B10A6DDEF92A5.cs" />
-    <Compile Include="View_80DAA87AF7E7701DF7B03F434DCB9D17B7540026.cs" />
-    <Compile Include="View_B3FB932CB3BBED93A72876CB64C25B2BDE4D0C0E.cs" />
   </ItemGroup>
   <ItemGroup>
     <SkcPlugin Include="Neptuo.SharpKit.Exugin.ExuginPlugin, Neptuo.SharpKit.Exugin">
@@ -67,6 +65,10 @@
     <Content Include="Neptuo.TemplateEngine.Web.Client.xml" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\TemplateEngine.PresentationModels\TemplateEngine.PresentationModels.csproj">
+      <Project>{b064bdbc-3755-4110-8eb7-6add2535d9fd}</Project>
+      <Name>TemplateEngine.PresentationModels</Name>
+    </ProjectReference>
     <ProjectReference Include="..\TemplateEngine.Web\TemplateEngine.Web.csproj">
       <Project>{8095932d-ec0b-4990-90f1-951b7b5feeac}</Project>
       <Name>TemplateEngine.Web</Name>
