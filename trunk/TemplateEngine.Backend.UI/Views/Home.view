@@ -1,7 +1,16 @@
 ﻿<ui:AdminLayout Title="Home">
     <ui:TemplateContent Name="Body">
 
-        <h1>Welcome!</h1>
+        <ui:SubHeader>
+            <ui:TemplateContent Name="Left">
+                <h2>
+                    Welcome!
+                </h2>
+            </ui:TemplateContent>
+            <ui:TemplateContent Name="Right">
+                TE
+            </ui:TemplateContent>
+        </ui:SubHeader>
 
     </ui:TemplateContent>
 </ui:AdminLayout>

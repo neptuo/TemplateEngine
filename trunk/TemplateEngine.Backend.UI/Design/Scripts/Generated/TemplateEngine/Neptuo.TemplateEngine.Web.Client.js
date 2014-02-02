@@ -132,7 +132,7 @@ var Neptuo$TemplateEngine$Web$Controls$FileTemplate2 =
             if (this.get_Path() == "~/Views/Shared/SubHeader.view")
                 return new Neptuo.Templates.View_4DDEE9A62BE4F945CAD406C3AEF5F059B5A01614.ctor();
             if (this.get_Path() == "~/Views/Home.view")
-                return new Neptuo.Templates.View_80DAA87AF7E7701DF7B03F434DCB9D17B7540026.ctor();
+                return new Neptuo.Templates.View_169A146015B9683BA3DA19241AEB502786C332B0.ctor();
             return null;
         },
         CreateInstance: function ()
