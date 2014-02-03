@@ -10,7 +10,7 @@ namespace Neptuo.TemplateEngine.Web.Controls
 {
     public class ListViewControl : TemplateControl
     {
-        public IListDataSource Source { get; set; }
+        public DataSources.IListDataSource Source { get; set; }
         public ITemplate ItemTemplate { get; set; }
         public ITemplate EmptyTemplate { get; set; }
         public int? PageSize { get; set; }
@@ -19,7 +19,7 @@ namespace Neptuo.TemplateEngine.Web.Controls
         protected int TotalCount { get; private set; }
 
         public ListViewControl(IComponentManager componentManager, TemplateContentStorageStack storage, DataContextStorage dataContext)
-            : base(componentManager, storage)
+            : base(componentManager, storage) 
         {
             DataContext = dataContext;
         }
@@ -36,7 +36,7 @@ namespace Neptuo.TemplateEngine.Web.Controls
 
             List<object> itemTemplates = new List<object>();
 
-            IEnumerable models = Source.GetData(PageIndex, PageSize);
+            Source.GetData(PageIndex, PageSize, (data) => { });
             TotalCount = Source.GetTotalCount();
             DataContext.Push(this, "Template");
 

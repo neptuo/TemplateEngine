@@ -1,4 +1,4 @@
-﻿using Neptuo.TemplateEngine.Web;
+﻿using Neptuo.TemplateEngine.Web.DataSources;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -13,14 +13,14 @@ namespace Neptuo.TemplateEngine.Accounts.Web.DataSources
         public int? Key { get; set; }
         public string Name { get; set; }
 
-        public IEnumerable GetData(int? pageIndex, int? pageSize)
-        {
-            return new List<object>();
-        }
-
         public int GetTotalCount()
         {
             return 0;
+        }
+
+        public void GetData(int? pageIndex, int? pageSize, Action<IEnumerable> callback)
+        {
+            callback(new List<object>());
         }
     }
 }

@@ -13,134 +13,26 @@ if (typeof($CreateException)=='undefined')
         return error;
     }
 }
+if (typeof ($CreateAnonymousDelegate) == 'undefined') {
+    var $CreateAnonymousDelegate = function (target, func) {
+        if (target == null || func == null)
+            return func;
+        var delegate = function () {
+            return func.apply(target, arguments);
+        };
+        delegate.func = func;
+        delegate.target = target;
+        delegate.isDelegate = true;
+        return delegate;
+    }
+}
 if (typeof(JsTypes) == "undefined")
     var JsTypes = [];
-var Neptuo$TemplateEngine$Web$Controls$ControlBase =
-{
-    fullname: "Neptuo.TemplateEngine.Web.Controls.ControlBase",
-    baseTypeName: "System.Object",
-    assemblyName: "Neptuo.TemplateEngine.Web.Client",
-    interfaceNames: ["Neptuo.Templates.Controls.IControl"],
-    Kind: "Class",
-    definition:
-    {
-        ctor: function (componentManager)
-        {
-            this.defaultPropertyName = null;
-            this._ComponentManager = null;
-            System.Object.ctor.call(this);
-            this.set_ComponentManager(componentManager);
-        },
-        ComponentManager$$: "Neptuo.Templates.IComponentManager",
-        get_ComponentManager: function ()
-        {
-            return this._ComponentManager;
-        },
-        set_ComponentManager: function (value)
-        {
-            this._ComponentManager = value;
-        },
-        DefaultPropertyName$$: "System.String",
-        get_DefaultPropertyName: function ()
-        {
-            if (this.defaultPropertyName == null)
-            {
-                var attr = Neptuo.Reflection.ReflectionHelper.GetAttribute$1(System.ComponentModel.DefaultPropertyAttribute.ctor, this.GetType());
-                if (attr != null)
-                    this.defaultPropertyName = attr.get_Name();
-            }
-            return this.defaultPropertyName;
-        },
-        set_DefaultPropertyName: function (value)
-        {
-            this.defaultPropertyName = value;
-        },
-        OnInit: function ()
-        {
-        },
-        Render: function (writer)
-        {
-        },
-        InitComponent: function (component)
-        {
-            this.get_ComponentManager().Init(component);
-        },
-        RenderComponent: function (component, writer)
-        {
-            this.get_ComponentManager().Render(component, writer);
-        },
-        InitComponents$1: function (T, compoments)
-        {
-            if (compoments != null)
-            {
-                var $it1 = compoments.GetEnumerator();
-                while ($it1.MoveNext())
-                {
-                    var component = $it1.get_Current();
-                    this.InitComponent(component);
-                }
-            }
-        }
-    },
-    ctors: [ {name: "ctor", parameters: ["Neptuo.Templates.IComponentManager"]}],
-    IsAbstract: true
-};
-JsTypes.push(Neptuo$TemplateEngine$Web$Controls$ControlBase);
-var Neptuo$TemplateEngine$Web$Controls$FileTemplate2 =
-{
-    fullname: "Neptuo.TemplateEngine.Web.Controls.FileTemplate2",
-    baseTypeName: "System.Object",
-    assemblyName: "Neptuo.TemplateEngine.Web.Client",
-    interfaceNames: ["Neptuo.TemplateEngine.Web.Controls.ITemplate"],
-    Kind: "Class",
-    definition:
-    {
-        ctor: function (dependencyProvider, componentManager)
-        {
-            this.dependencyProvider = null;
-            this.componentManager = null;
-            this._Path = null;
-            System.Object.ctor.call(this);
-            this.dependencyProvider = dependencyProvider;
-            this.componentManager = componentManager;
-        },
-        Path$$: "System.String",
-        get_Path: function ()
-        {
-            return this._Path;
-        },
-        set_Path: function (value)
-        {
-            this._Path = value;
-        },
-        CreateView: function ()
-        {
-            throw $CreateException(new System.NotSupportedException.ctor(), new Error());
-        },
-        CreateInstance: function ()
-        {
-            var view = this.CreateView();
-            view.Setup(new Neptuo.Templates.BaseViewPage.ctor(this.componentManager), this.componentManager, this.dependencyProvider);
-            view.CreateControls();
-            var templateContent = new Neptuo.TemplateEngine.Web.Controls.ViewTemplateContent.ctor(view);
-            this.componentManager.AddComponent$1(Neptuo.TemplateEngine.Web.Controls.ViewTemplateContent.ctor, templateContent, null);
-            return templateContent;
-        },
-        Dispose: function ()
-        {
-        }
-    },
-    ctors: [ {name: "ctor", parameters: ["Neptuo.IDependencyProvider", "Neptuo.Templates.IComponentManager"]}],
-    IsAbstract: false
-};
-JsTypes.push(Neptuo$TemplateEngine$Web$Controls$FileTemplate2);
-var Neptuo$TemplateEngine$Web$Controls$ITextControl = {fullname: "Neptuo.TemplateEngine.Web.Controls.ITextControl", baseTypeName: "System.Object", assemblyName: "Neptuo.TemplateEngine.Web.Client", Kind: "Interface", ctors: [], IsAbstract: true};
-JsTypes.push(Neptuo$TemplateEngine$Web$Controls$ITextControl);
 var Neptuo$TemplateEngine$Web$Controls$ListViewControl =
 {
     fullname: "Neptuo.TemplateEngine.Web.Controls.ListViewControl",
     baseTypeName: "Neptuo.TemplateEngine.Web.Controls.TemplateControl",
-    assemblyName: "Neptuo.TemplateEngine.Web.Client",
+    assemblyName: "Neptuo.TemplateEngine.Client",
     Kind: "Class",
     definition:
     {
@@ -156,7 +48,7 @@ var Neptuo$TemplateEngine$Web$Controls$ListViewControl =
             Neptuo.TemplateEngine.Web.Controls.TemplateControl.ctor.call(this, componentManager, storage);
             this.set_DataContext(dataContext);
         },
-        Source$$: "Neptuo.TemplateEngine.Web.IListDataSource",
+        Source$$: "Neptuo.TemplateEngine.Web.DataSources.IListDataSource",
         get_Source: function ()
         {
             return this._Source;
@@ -228,7 +120,9 @@ var Neptuo$TemplateEngine$Web$Controls$ListViewControl =
             if (this.get_Source() == null)
                 throw $CreateException(new System.ArgumentException.ctor$$String$$String("Missing data source.", "Source"), new Error());
             var itemTemplates = new System.Collections.Generic.List$1.ctor(System.Object.ctor);
-            var models = this.get_Source().GetData(this.get_PageIndex(), this.get_PageSize());
+            this.get_Source().GetData(this.get_PageIndex(), this.get_PageSize(), $CreateAnonymousDelegate(this, function (data)
+            {
+            }));
             this.set_TotalCount(this.get_Source().GetTotalCount());
             this.get_DataContext().Push(this, "Template");
             var isEmpty = true;
@@ -270,51 +164,8 @@ var Neptuo$TemplateEngine$Web$Controls$ListViewControl =
     IsAbstract: false
 };
 JsTypes.push(Neptuo$TemplateEngine$Web$Controls$ListViewControl);
-var Neptuo$TemplateEngine$Web$Controls$LiteralControl =
-{
-    fullname: "Neptuo.TemplateEngine.Web.Controls.LiteralControl",
-    baseTypeName: "Neptuo.TemplateEngine.Web.Controls.ControlBase",
-    assemblyName: "Neptuo.TemplateEngine.Web.Client",
-    interfaceNames: ["Neptuo.TemplateEngine.Web.Controls.ITextControl"],
-    Kind: "Class",
-    definition:
-    {
-        ctor: function (componentManager)
-        {
-            this._Text = null;
-            this._FormatString = null;
-            Neptuo.TemplateEngine.Web.Controls.ControlBase.ctor.call(this, componentManager);
-        },
-        Text$$: "System.String",
-        get_Text: function ()
-        {
-            return this._Text;
-        },
-        set_Text: function (value)
-        {
-            this._Text = value;
-        },
-        FormatString$$: "System.String",
-        get_FormatString: function ()
-        {
-            return this._FormatString;
-        },
-        set_FormatString: function (value)
-        {
-            this._FormatString = value;
-        },
-        Render: function (writer)
-        {
-            if (!System.String.IsNullOrEmpty(this.get_FormatString()))
-                writer.Content$$String(System.String.Format$$String$$Object(this.get_FormatString(), this.get_Text()));
-            else
-                writer.Content$$String(this.get_Text());
-        }
-    },
-    ctors: [ {name: "ctor", parameters: ["Neptuo.Templates.IComponentManager"]}],
-    IsAbstract: false
-};
-JsTypes.push(Neptuo$TemplateEngine$Web$Controls$LiteralControl);
+var Neptuo$TemplateEngine$Web$DataSources$IListDataSource = {fullname: "Neptuo.TemplateEngine.Web.DataSources.IListDataSource", baseTypeName: "System.Object", assemblyName: "Neptuo.TemplateEngine.Client", Kind: "Interface", ctors: [], IsAbstract: true};
+JsTypes.push(Neptuo$TemplateEngine$Web$DataSources$IListDataSource);
 var Neptuo$TemplateEngine$Web$Client$StaticViewActivator =
 {
     fullname: "Neptuo.TemplateEngine.Web.Client.StaticViewActivator",
@@ -330,7 +181,7 @@ var Neptuo$TemplateEngine$Web$Client$StaticViewActivator =
             Neptuo.TemplateEngine.Web.Client.StaticViewActivator.mappings.set_Item$$TKey(viewPath, viewType);
         }
     },
-    assemblyName: "Neptuo.TemplateEngine.Web.Client",
+    assemblyName: "Neptuo.TemplateEngine.Client",
     interfaceNames: ["Neptuo.TemplateEngine.Web.IViewActivator"],
     Kind: "Class",
     definition:
@@ -359,107 +210,11 @@ var Neptuo$TemplateEngine$Web$Client$StaticViewActivator =
     IsAbstract: false
 };
 JsTypes.push(Neptuo$TemplateEngine$Web$Client$StaticViewActivator);
-var Neptuo$TemplateEngine$Accounts$Web$DataSources$UserAccountDataSource =
-{
-    fullname: "Neptuo.TemplateEngine.Accounts.Web.DataSources.UserAccountDataSource",
-    baseTypeName: "System.Object",
-    assemblyName: "Neptuo.TemplateEngine.Web.Client",
-    interfaceNames: ["Neptuo.TemplateEngine.Web.IListDataSource", "Neptuo.TemplateEngine.Web.IDataSource"],
-    Kind: "Class",
-    definition:
-    {
-        ctor: function ()
-        {
-            this._Key = null;
-            this._Username = null;
-            System.Object.ctor.call(this);
-        },
-        Key$$: "System.Nullable`1[[System.Int32]]",
-        get_Key: function ()
-        {
-            return this._Key;
-        },
-        set_Key: function (value)
-        {
-            this._Key = value;
-        },
-        Username$$: "System.String",
-        get_Username: function ()
-        {
-            return this._Username;
-        },
-        set_Username: function (value)
-        {
-            this._Username = value;
-        },
-        GetItem: function ()
-        {
-            return null;
-        },
-        GetData: function (pageIndex, pageSize)
-        {
-            return new System.Collections.Generic.List$1.ctor(System.Object.ctor);
-        },
-        GetTotalCount: function ()
-        {
-            return 0;
-        }
-    },
-    ctors: [ {name: "ctor", parameters: []}],
-    IsAbstract: false
-};
-JsTypes.push(Neptuo$TemplateEngine$Accounts$Web$DataSources$UserAccountDataSource);
-var Neptuo$TemplateEngine$Accounts$Web$DataSources$UserRoleDataSource =
-{
-    fullname: "Neptuo.TemplateEngine.Accounts.Web.DataSources.UserRoleDataSource",
-    baseTypeName: "System.Object",
-    assemblyName: "Neptuo.TemplateEngine.Web.Client",
-    interfaceNames: ["Neptuo.TemplateEngine.Web.IListDataSource"],
-    Kind: "Class",
-    definition:
-    {
-        ctor: function ()
-        {
-            this._Key = null;
-            this._Name = null;
-            System.Object.ctor.call(this);
-        },
-        Key$$: "System.Nullable`1[[System.Int32]]",
-        get_Key: function ()
-        {
-            return this._Key;
-        },
-        set_Key: function (value)
-        {
-            this._Key = value;
-        },
-        Name$$: "System.String",
-        get_Name: function ()
-        {
-            return this._Name;
-        },
-        set_Name: function (value)
-        {
-            this._Name = value;
-        },
-        GetData: function (pageIndex, pageSize)
-        {
-            return new System.Collections.Generic.List$1.ctor(System.Object.ctor);
-        },
-        GetTotalCount: function ()
-        {
-            return 0;
-        }
-    },
-    ctors: [ {name: "ctor", parameters: []}],
-    IsAbstract: false
-};
-JsTypes.push(Neptuo$TemplateEngine$Accounts$Web$DataSources$UserRoleDataSource);
 var Neptuo$TemplateEngine$Web$GeneratedViewBase =
 {
     fullname: "Neptuo.TemplateEngine.Web.GeneratedViewBase",
     baseTypeName: "Neptuo.Templates.BaseGeneratedView",
-    assemblyName: "Neptuo.TemplateEngine.Web.Client",
+    assemblyName: "Neptuo.TemplateEngine.Client",
     Kind: "Class",
     definition:
     {
@@ -494,7 +249,7 @@ var Neptuo$TemplateEngine$Web$Client$InitScript =
             Neptuo.DependencyContainerExtensions.RegisterInstance$1(Neptuo.TemplateEngine.Web.IViewActivator.ctor, Neptuo.DependencyContainerExtensions.RegisterInstance$1(Neptuo.TemplateEngine.Web.DataContextStorage.ctor, Neptuo.DependencyContainerExtensions.RegisterInstance$1(Neptuo.TemplateEngine.Web.TemplateContentStorageStack.ctor, Neptuo.DependencyContainerExtensions.RegisterType$2$$IDependencyContainer(Neptuo.TemplateEngine.Web.IValueConverterService.ctor, Neptuo.TemplateEngine.Web.ValueConverterService.ctor, Neptuo.DependencyContainerExtensions.RegisterType$2$$IDependencyContainer(Neptuo.TemplateEngine.Web.IBindingManager.ctor, Neptuo.TemplateEngine.Web.BindingManagerBase.ctor, Neptuo.DependencyContainerExtensions.RegisterType$2$$IDependencyContainer(Neptuo.TemplateEngine.Web.IParameterProvider.ctor, Neptuo.TemplateEngine.Web.Client.ParameterProvider.ctor, Neptuo.DependencyContainerExtensions.RegisterType$2$$IDependencyContainer(Neptuo.TemplateEngine.Web.IParameterProviderFactory.ctor, Neptuo.TemplateEngine.Web.Client.ParameterProviderFactory.ctor, Neptuo.DependencyContainerExtensions.RegisterType$2$$IDependencyContainer(Neptuo.TemplateEngine.Web.ICurrentUrlProvider.ctor, Neptuo.TemplateEngine.Web.Client.UrlProvider.ctor, Neptuo.DependencyContainerExtensions.RegisterType$2$$IDependencyContainer(Neptuo.Templates.IVirtualUrlProvider.ctor, Neptuo.TemplateEngine.Web.Client.UrlProvider.ctor, Neptuo.DependencyContainerExtensions.RegisterType$2$$IDependencyContainer(Neptuo.TemplateEngine.IStackStorage$1.ctor, Neptuo.TemplateEngine.StackStorage$1.ctor, container))))))), new Neptuo.TemplateEngine.Web.TemplateContentStorageStack.ctor()), new Neptuo.TemplateEngine.Web.DataContextStorage.ctor()), new Neptuo.TemplateEngine.Web.Client.StaticViewActivator.ctor(container));
         }
     },
-    assemblyName: "Neptuo.TemplateEngine.Web.Client",
+    assemblyName: "Neptuo.TemplateEngine.Client",
     Kind: "Class",
     definition:
     {
@@ -511,7 +266,7 @@ var Neptuo$TemplateEngine$Web$Client$UrlProvider =
 {
     fullname: "Neptuo.TemplateEngine.Web.Client.UrlProvider",
     baseTypeName: "System.Object",
-    assemblyName: "Neptuo.TemplateEngine.Web.Client",
+    assemblyName: "Neptuo.TemplateEngine.Client",
     interfaceNames: ["Neptuo.Templates.IVirtualUrlProvider", "Neptuo.TemplateEngine.Web.ICurrentUrlProvider"],
     Kind: "Class",
     definition:
@@ -537,7 +292,7 @@ var Neptuo$TemplateEngine$Web$Client$ParameterProviderFactory =
 {
     fullname: "Neptuo.TemplateEngine.Web.Client.ParameterProviderFactory",
     baseTypeName: "System.Object",
-    assemblyName: "Neptuo.TemplateEngine.Web.Client",
+    assemblyName: "Neptuo.TemplateEngine.Client",
     interfaceNames: ["Neptuo.TemplateEngine.Web.IParameterProviderFactory"],
     Kind: "Class",
     definition:
@@ -559,7 +314,7 @@ var Neptuo$TemplateEngine$Web$Client$ParameterProvider =
 {
     fullname: "Neptuo.TemplateEngine.Web.Client.ParameterProvider",
     baseTypeName: "System.Object",
-    assemblyName: "Neptuo.TemplateEngine.Web.Client",
+    assemblyName: "Neptuo.TemplateEngine.Client",
     interfaceNames: ["Neptuo.TemplateEngine.Web.IParameterProvider"],
     Kind: "Class",
     definition:
