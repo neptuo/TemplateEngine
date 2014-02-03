@@ -75,6 +75,7 @@
     <Compile Include="Controls\NavigationControl.cs" />
     <Compile Include="Controls\NavigationItem.cs" />
     <Compile Include="Controls\OptionControl.cs" />
+    <Compile Include="Observers\AjaxPartialViewObserver.cs" />
     <Compile Include="ViewServiceViewActivator.cs" />
     <Compile Include="IViewActivator.cs" />
     <Compile Include="ParameterProviderExtensions.cs" />

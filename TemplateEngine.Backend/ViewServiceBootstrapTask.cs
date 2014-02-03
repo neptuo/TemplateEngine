@@ -107,6 +107,8 @@ namespace Neptuo.TemplateEngine.Backend
             registry.RegisterObserverBuilder("form", "*", new FormUriObserverBuiderFactory());
             registry.RegisterObserverBuilder("ui", "IsPlaceholder", new DefaultTypeObserverBuilderFactory(typeof(IsPlaceholderObserver), ObserverBuilderScope.PerElement));
             registry.RegisterObserverBuilder("ui", "IsVisible", new DefaultTypeObserverBuilderFactory(typeof(VisibleObserver), ObserverBuilderScope.PerElement));
+
+            registry.RegisterObserverBuilder("ajax", "PartialView", new DefaultTypeObserverBuilderFactory(typeof(AjaxPartialViewObserver), ObserverBuilderScope.PerElement));
             
             registry.RegisterPropertyBuilder(typeof(ITemplate), new DefaultPropertyBuilderFactory<TemplatePropertyBuilder>());
             registry.RegisterPropertyBuilder(typeof(CssClassCollection), new DefaultPropertyBuilderFactory<CssClassPropertyBuilder>());

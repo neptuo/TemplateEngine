@@ -71,7 +71,7 @@
                                 <th class="w150 action-list"></th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody ajax:PartialView="ListViewControl"><!-- This is not working due to observer.render is called before control.render -->
                             <ui:TemplatePlaceholder Name="Content" />
                         </tbody>
                     </table>

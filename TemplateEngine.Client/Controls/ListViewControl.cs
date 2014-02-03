@@ -42,6 +42,7 @@ namespace Neptuo.TemplateEngine.Web.Controls
             DataContext.Push(this, "Template");
 
             partialGuid = "listviewcontrol"; //TODO: Create guid!
+            DataContext.Push(partialGuid, "ListViewControl");
             TotalCount = Source.GetTotalCount();
             Source.GetData(PageIndex, PageSize, (models) =>
             {
@@ -60,7 +61,6 @@ namespace Neptuo.TemplateEngine.Web.Controls
             }
             else
             {
-
                 TemplateContentControl templateContent = new TemplateContentControl(ComponentManager)
                 {
                     Name = "Content",
@@ -73,13 +73,14 @@ namespace Neptuo.TemplateEngine.Web.Controls
 
             base.OnInit();
             DataContext.Pop("Template");
+            DataContext.Pop("ListViewControlGuid");
         }
 
         public override void Render(IHtmlWriter writer)
         {
-            IExtendedHtmlWriter extendedWriter = writer as IExtendedHtmlWriter;
-            if (extendedWriter != null)
-                extendedWriter.AttributeOnNextTag("data-partial", partialGuid);
+            //IExtendedHtmlWriter extendedWriter = writer as IExtendedHtmlWriter;
+            //if (extendedWriter != null)
+            //    extendedWriter.AttributeOnNextTag("data-partial", partialGuid);
 
             base.Render(writer);
 
