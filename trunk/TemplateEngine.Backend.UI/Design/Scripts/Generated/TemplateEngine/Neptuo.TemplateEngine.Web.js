@@ -636,6 +636,45 @@ var Neptuo$TemplateEngine$Web$Controls$OptionControl =
     IsAbstract: false
 };
 JsTypes.push(Neptuo$TemplateEngine$Web$Controls$OptionControl);
+var Neptuo$TemplateEngine$Web$Observers$AjaxPartialViewObserver =
+{
+    fullname: "Neptuo.TemplateEngine.Web.Observers.AjaxPartialViewObserver",
+    baseTypeName: "System.Object",
+    assemblyName: "Neptuo.TemplateEngine.Web",
+    interfaceNames: ["Neptuo.Templates.Observers.IObserver"],
+    Kind: "Class",
+    definition:
+    {
+        ctor: function (dataContext)
+        {
+            this.dataContext = null;
+            this._PartialView = null;
+            System.Object.ctor.call(this);
+            this.dataContext = dataContext;
+        },
+        PartialView$$: "System.String",
+        get_PartialView: function ()
+        {
+            return this._PartialView;
+        },
+        set_PartialView: function (value)
+        {
+            this._PartialView = value;
+        },
+        OnInit: function (e)
+        {
+        },
+        Render: function (e, writer)
+        {
+            var value = As(this.dataContext.Peek(this.get_PartialView()), System.String.ctor);
+            if (value != null)
+                writer.Attribute("data-partial", value);
+        }
+    },
+    ctors: [ {name: "ctor", parameters: ["Neptuo.TemplateEngine.Web.DataContextStorage"]}],
+    IsAbstract: false
+};
+JsTypes.push(Neptuo$TemplateEngine$Web$Observers$AjaxPartialViewObserver);
 var Neptuo$TemplateEngine$Web$IViewActivator = {fullname: "Neptuo.TemplateEngine.Web.IViewActivator", baseTypeName: "System.Object", assemblyName: "Neptuo.TemplateEngine.Web", Kind: "Interface", ctors: [], IsAbstract: true};
 JsTypes.push(Neptuo$TemplateEngine$Web$IViewActivator);
 var Neptuo$TemplateEngine$Web$ParameterProviderExtensions =

@@ -124,6 +124,7 @@ var Neptuo$TemplateEngine$Web$Controls$ListViewControl =
             var isEmpty = true;
             this.get_DataContext().Push(this, "Template");
             this.partialGuid = "listviewcontrol";
+            this.get_DataContext().Push(this.partialGuid, "ListViewControl");
             this.set_TotalCount(this.get_Source().GetTotalCount());
             this.get_Source().GetData(this.get_PageIndex(), this.get_PageSize(), $CreateAnonymousDelegate(this, function (models)
             {
@@ -156,12 +157,10 @@ var Neptuo$TemplateEngine$Web$Controls$ListViewControl =
             }
             Neptuo.TemplateEngine.Web.Controls.TemplateControl.commonPrototype.OnInit.call(this);
             this.get_DataContext().Pop("Template");
+            this.get_DataContext().Pop("ListViewControlGuid");
         },
         Render: function (writer)
         {
-            var extendedWriter = As(writer, Neptuo.TemplateEngine.Web.IExtendedHtmlWriter.ctor);
-            if (extendedWriter != null)
-                extendedWriter.AttributeOnNextTag("data-partial", this.partialGuid);
             Neptuo.TemplateEngine.Web.Controls.TemplateControl.commonPrototype.Render.call(this, writer);
             if (this.get_PageSize() != null)
             {
