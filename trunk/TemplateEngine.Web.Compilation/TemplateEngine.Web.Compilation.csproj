@@ -77,8 +77,10 @@
     <Compile Include="Parsers\LocalizationObserverBuilder.cs" />
     <Compile Include="Parsers\LocalizationObserverBuilderFactory.cs" />
     <Compile Include="Parsers\TemplatePropertyBuilder.cs" />
+    <Compile Include="Parsers\TemplatePropertyHelper.cs" />
     <Compile Include="Parsers\UserTemplateComponentBuilder.cs" />
     <Compile Include="Parsers\UserTemplateComponentBuilderFactory.cs" />
+    <Compile Include="PreProcessing\TemplatePropertyVisitor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -91,6 +93,7 @@
       <Name>TemplateEngine.Web</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

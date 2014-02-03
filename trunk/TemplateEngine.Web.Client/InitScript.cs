@@ -19,7 +19,10 @@ namespace Neptuo.TemplateEngine.Web.Client
                 .RegisterType<ICurrentUrlProvider, UrlProvider>()
                 .RegisterType<IParameterProviderFactory, ParameterProviderFactory>()
                 .RegisterType<IParameterProvider, ParameterProvider>()
-                .RegisterInstance(new TemplateContentStorageStack());
+                .RegisterType<IBindingManager, BindingManagerBase>()
+                .RegisterType<IValueConverterService, ValueConverterService>()
+                .RegisterInstance(new TemplateContentStorageStack())
+                .RegisterInstance(new DataContextStorage());
         }
     }
 

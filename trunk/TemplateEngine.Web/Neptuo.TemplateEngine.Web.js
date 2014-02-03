@@ -829,11 +829,21 @@ var Neptuo$TemplateEngine$Web$Controls$SelectControl =
     {
         ctor: function (componentManager, storage, dataContext)
         {
+            this._Name = null;
             this._Value = null;
             this._IsAddEmpty = false;
             this._Attributes = null;
             Neptuo.TemplateEngine.Web.Controls.ListViewControl.ctor.call(this, componentManager, storage, dataContext);
             this.set_Attributes(new Neptuo.Templates.HtmlAttributeCollection.ctor());
+        },
+        Name$$: "System.String",
+        get_Name: function ()
+        {
+            return this._Name;
+        },
+        set_Name: function (value)
+        {
+            this._Name = value;
         },
         Value$$: "System.Object",
         get_Value: function ()

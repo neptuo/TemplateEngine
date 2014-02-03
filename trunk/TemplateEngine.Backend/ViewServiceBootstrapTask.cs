@@ -7,12 +7,14 @@ using Neptuo.TemplateEngine.Web.Compilation;
 using Neptuo.TemplateEngine.Web.Compilation.CodeGenerators;
 using Neptuo.TemplateEngine.Web.Compilation.CodeObjects;
 using Neptuo.TemplateEngine.Web.Compilation.Parsers;
+using Neptuo.TemplateEngine.Web.Compilation.PreProcessing;
 using Neptuo.TemplateEngine.Web.Controls;
 using Neptuo.TemplateEngine.Web.Observers;
 using Neptuo.Templates;
 using Neptuo.Templates.Compilation;
 using Neptuo.Templates.Compilation.CodeGenerators;
 using Neptuo.Templates.Compilation.Parsers;
+using Neptuo.Templates.Compilation.PreProcessing;
 using Neptuo.Web;
 using System;
 using System.Collections.Generic;
@@ -84,7 +86,9 @@ namespace Neptuo.TemplateEngine.Backend
             viewService.TempDirectory = currentTemp;
             viewService.DebugMode = CodeDomDebugMode.GeneratePdb | CodeDomDebugMode.GenerateSourceCode;
             viewService.BinDirectories.Add(virtualPathProvider.MapPath("~/Bin"));
+            
             SetupCodeDomGenerator(viewService.CodeDomGenerator);
+            SetupPreProcesssor(viewService.PreProcessorService, viewService);
         }
 
         protected virtual void SetupTypeBuilderRegistry(TypeBuilderRegistry registry)
@@ -123,6 +127,11 @@ namespace Neptuo.TemplateEngine.Backend
             generator.SetPropertyDescriptorGenerator(typeof(CssClassPropertyDescriptor), new CodeDomCssClassPropertyGenerator());
             generator.SetPropertyTypeGenerator(typeof(ITemplate), new CodeDomTemplatePropertyTypeGenerator(fieldNameProvider, "{0}.Views.{1}.view"));
             generator.SetAttributeGenerator(typeof(PropertySetAttribute), new CodeDomPropertySetAttributeGenerator());
+        }
+
+        protected virtual void SetupPreProcesssor(IPreProcessorService preprocessorService, CodeDomViewService viewService)
+        {
+            preprocessorService.AddVisitor(new TemplatePropertyVisitor("{0}.Views.{1}.view", viewService.ParserService));
         }
     }
 }

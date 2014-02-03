@@ -15,6 +15,7 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Web.Compilation.CodeGenerators
 {
+    [Obsolete]
     public class CodeDomTemplatePropertyTypeGenerator : CodeDomComponentGenerator, ICodeDomPropertyTypeGenerator
     {
         public string ViewPathFormat { get; private set; }
@@ -46,7 +47,7 @@ namespace Neptuo.TemplateEngine.Web.Compilation.CodeGenerators
                         new TypePropertyInfo(
                             typeof(StringTemplate).GetProperty(TypeHelper.PropertyName<StringTemplate, string>(t => t.TemplateContent))
                         ),
-                        new PlainValueCodeObject(fileContent)
+                        new PlainValueCodeObject(fileContent) // SPROPAGOVAT SEM IVIEWSERVICE A ZKOMPILOVAT DO ZDEJŠÍ CLASSY ;)
                     )
                 );
                 return GenerateCode(new CodeObjectExtensionContext(context.Context, null), codeObject, new SetPropertyDescriptor(new TypePropertyInfo(propertyInfo)));
