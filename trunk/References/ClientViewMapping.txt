@@ -1,0 +1,19 @@
+if (this.get_Path() == "~/Views/Accounts/Login.view")
+                return new Neptuo.Templates.View_3D09FEDA526F72327E9894F4A68B10A6DDEF92A5.ctor();
+            if (this.get_Path() == "~/Views/Accounts/UserList.view")
+                return new Neptuo.Templates.View_4871826135338C3DD897DE2539C817F096C4D1B7.ctor();
+            if (this.get_Path() == "~/Views/Accounts/UserEdit.view")
+                return new Neptuo.Templates.View_A9765037BA31823A1DE86513A9CB363FC6ED62C6.ctor();
+            if (this.get_Path() == "~/Views/Accounts/RoleList.view")
+                return new Neptuo.Templates.View_5889BF089264D8E71B12E789260799CEAFAF3495.ctor();
+            if (this.get_Path() == "~/Views/Accounts/RoleEdit.view")
+                return new Neptuo.Templates.View_76B4615AA7B3E8A93E8536FE35E7F10DCE4F723E.ctor();
+            if (this.get_Path() == "~/Views/Accounts/SideNav.view")
+                return new Neptuo.Templates.View_7386527D2661E330C28B00144916CF09DD787052.ctor();
+            if (this.get_Path() == "~/Views/Shared/AdminLayout.view")
+                return new Neptuo.Templates.View_B3FB932CB3BBED93A72876CB64C25B2BDE4D0C0E.ctor();
+            if (this.get_Path() == "~/Views/Shared/SubHeader.view")
+                return new Neptuo.Templates.View_4DDEE9A62BE4F945CAD406C3AEF5F059B5A01614.ctor();
+            if (this.get_Path() == "~/Views/Home.view")
+                return new Neptuo.Templates.View_169A146015B9683BA3DA19241AEB502786C332B0.ctor();
+            return null;
