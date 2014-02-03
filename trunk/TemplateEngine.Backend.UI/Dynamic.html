@@ -42,15 +42,25 @@
     <script>
 
         function MapView(url) {
-            if (url == "/Accounts/UserList.aspx") {
-                return "~/Views/Accounts/UserList.view";
-            }
-            if (url == "/Accounts/RoleList.aspx") {
-                return "~/Views/Accounts/RoleList.view";
-            }
-            if (url == "/Home.aspx") {
+            if (url.indexOf("/Home.aspx") != -1) {
                 return "~/Views/Home.view";
             }
+
+            if (url.indexOf("/Accounts/UserList.aspx") != -1) {
+                return "~/Views/Accounts/UserList.view";
+            }
+            if (url.indexOf("/Accounts/UserEdit.aspx") != -1) {
+                return "~/Views/Accounts/UserEdit.view";
+            }
+
+            if (url.indexOf("/Accounts/RoleList.aspx") != -1) {
+                return "~/Views/Accounts/RoleList.view";
+            }
+            if (url.indexOf("/Accounts/RoleEdit.aspx") != -1) {
+                return "~/Views/Accounts/RoleEdit.view";
+            }
+
+            return null;
         }
 
         function OnLinkClick(e) {
@@ -58,7 +68,13 @@
             var start = +new Date;
 
             var newUrl = $this.attr('href');
-            var viewPath = MapView(newUrl)
+            var viewPath = MapView(newUrl);
+
+            if (viewPath == null)
+            {
+                alert("No view for: " + newUrl);
+                return;
+            }
 
             var writer = new System.IO.StringWriter.ctor();
             var view = viewActivator.CreateView(viewPath);
