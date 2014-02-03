@@ -3,5 +3,7 @@
   <Export Filename="Neptuo.TemplateEngine.Web.js" FilenameFormat="~/{0}" />
   <Namespace Target="Neptuo.TemplateEngine.Web.Controllers.*" Export="False" />
   <Namespace Target="Neptuo.TemplateEngine.Web.Navigation.*" Export="False" />
+  <Type Target="Neptuo.TemplateEngine.Web.Controls.ListViewControl" Export="False" />
   <Type Target="Neptuo.TemplateEngine.Web.RequestParameterProvider" Export="False" />
+  <Type Target="Neptuo.TemplateEngine.Web.ViewServiceViewActivator" Export="False" />
 </Exugin>

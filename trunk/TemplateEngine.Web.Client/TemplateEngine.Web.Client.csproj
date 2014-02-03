@@ -50,7 +50,9 @@
     <Compile Include="Controls\ControlBase.cs" />
     <Compile Include="Controls\FileTemplate2.cs" />
     <Compile Include="Controls\ITextControl.cs" />
+    <Compile Include="Controls\ListViewControl.cs" />
     <Compile Include="Controls\LiteralControl.cs" />
+    <Compile Include="StaticViewActivator.cs" />
     <Compile Include="DataSources\UserAccountDataSource.cs" />
     <Compile Include="DataSources\UserRoleDataSource.cs" />
     <Compile Include="GeneratedViewBase.cs" />

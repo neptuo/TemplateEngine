@@ -75,6 +75,8 @@
     <Compile Include="Controls\NavigationControl.cs" />
     <Compile Include="Controls\NavigationItem.cs" />
     <Compile Include="Controls\OptionControl.cs" />
+    <Compile Include="ViewServiceViewActivator.cs" />
+    <Compile Include="IViewActivator.cs" />
     <Compile Include="ParameterProviderExtensions.cs" />
     <Compile Include="Controls\SelectControl.cs" />
     <Compile Include="Controls\Templates\ContentTemplate.cs" />

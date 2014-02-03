@@ -33,6 +33,7 @@ namespace Neptuo.TemplateEngine.Web.Compilation
             SharpKitCompiler sharpKitGenerator = new SharpKitCompiler();
             sharpKitGenerator.AddReference("mscorlib.dll");
             sharpKitGenerator.AddReference("SharpKit.JavaScript.dll", "SharpKit.Html.dll", "SharpKit.jQuery.dll");
+            sharpKitGenerator.AddPlugin("Neptuo.SharpKit.Exugin", "Neptuo.SharpKit.Exugin.ExuginPlugin");
 
             foreach (string folder in BinDirectories)
                 sharpKitGenerator.AddReferenceFolder(folder);

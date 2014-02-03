@@ -12,13 +12,11 @@ namespace Neptuo.TemplateEngine.Web.Controls
     {
         protected IDependencyProvider DependencyProvider { get; private set; }
         protected IComponentManager ComponentManager { get; private set; }
-        protected IViewService ViewService { get; private set; }
 
-        public ViewTemplateBase(IDependencyProvider dependencyProvider, IComponentManager componentManager, IViewService viewService)
+        public ViewTemplateBase(IDependencyProvider dependencyProvider, IComponentManager componentManager)
         {
             DependencyProvider = dependencyProvider;
             ComponentManager = componentManager;
-            ViewService = viewService;
         }
 
         public ITemplateContent CreateInstance()
