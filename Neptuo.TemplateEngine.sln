@@ -44,7 +44,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TemplateEngine.Navigation",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TemplateEngine.Permissions", "TemplateEngine.Permissions\TemplateEngine.Permissions.csproj", "{E5C314FF-89BA-489E-BC2A-DF8701A8C3F1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TemplateEngine.Web.Client", "TemplateEngine.Web.Client\TemplateEngine.Web.Client.csproj", "{7DF11E7B-E7FE-4EBB-A707-C592A230DF54}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TemplateEngine.Client", "TemplateEngine.Client\TemplateEngine.Client.csproj", "{7DF11E7B-E7FE-4EBB-A707-C592A230DF54}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TemplateEngine.PresentationModels", "TemplateEngine.PresentationModels\TemplateEngine.PresentationModels.csproj", "{B064BDBC-3755-4110-8EB7-6ADD2535D9FD}"
 EndProject
