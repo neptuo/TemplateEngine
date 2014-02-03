@@ -13,16 +13,31 @@ if (typeof($CreateException)=='undefined')
         return error;
     }
 }
-if (typeof ($CreateAnonymousDelegate) == 'undefined') {
-    var $CreateAnonymousDelegate = function (target, func) {
-        if (target == null || func == null)
+if (typeof($CreateDelegate)=='undefined'){
+    if(typeof($iKey)=='undefined') var $iKey = 0;
+    if(typeof($pKey)=='undefined') var $pKey = String.fromCharCode(1);
+    var $CreateDelegate = function(target, func){
+        if (target == null || func == null) 
             return func;
-        var delegate = function () {
-            return func.apply(target, arguments);
-        };
-        delegate.func = func;
-        delegate.target = target;
-        delegate.isDelegate = true;
+        if(func.target==target && func.func==func)
+            return func;
+        if (target.$delegateCache == null)
+            target.$delegateCache = {};
+        if (func.$key == null)
+            func.$key = $pKey + String(++$iKey);
+        var delegate;
+        if(target.$delegateCache!=null)
+            delegate = target.$delegateCache[func.$key];
+        if (delegate == null){
+            delegate = function(){
+                return func.apply(target, arguments);
+            };
+            delegate.func = func;
+            delegate.target = target;
+            delegate.isDelegate = true;
+            if(target.$delegateCache!=null)
+                target.$delegateCache[func.$key] = delegate;
+        }
         return delegate;
     }
 }
@@ -39,6 +54,8 @@ var Neptuo$TemplateEngine$Web$Controls$ListViewControl =
         ctor: function (componentManager, storage, dataContext)
         {
             this.partialGuid = null;
+            this.isRenderCalled = false;
+            this.isDataLoaded = false;
             this._Source = null;
             this._ItemTemplate = null;
             this._EmptyTemplate = null;
@@ -120,24 +137,43 @@ var Neptuo$TemplateEngine$Web$Controls$ListViewControl =
             this.InitComponent(this.get_Source());
             if (this.get_Source() == null)
                 throw $CreateException(new System.ArgumentException.ctor$$String$$String("Missing data source.", "Source"), new Error());
-            var itemTemplates = new System.Collections.Generic.List$1.ctor(System.Object.ctor);
-            var isEmpty = true;
-            this.get_DataContext().Push(this, "Template");
-            this.partialGuid = "listviewcontrol";
-            this.get_DataContext().Push(this.partialGuid, "ListViewControl");
-            this.set_TotalCount(this.get_Source().GetTotalCount());
-            this.get_Source().GetData(this.get_PageIndex(), this.get_PageSize(), $CreateAnonymousDelegate(this, function (models)
+            this.get_Source().GetData(this.get_PageIndex(), this.get_PageSize(), $CreateDelegate(this, this.OnLoadData));
+        },
+        Render: function (writer)
+        {
+            if (!this.isDataLoaded)
             {
-                var $it1 = models.GetEnumerator();
-                while ($it1.MoveNext())
+                this.isRenderCalled = true;
+                writer.Content$$String("Loading data...");
+                return;
+            }
+            Neptuo.TemplateEngine.Web.Controls.TemplateControl.commonPrototype.Render.call(this, writer);
+            if (this.get_PageSize() != null)
+            {
+                writer.Tag("ul").Attribute("class", "pagination pagination-sm");
+                for (var i = 0; i < System.Math.Ceiling$$Decimal(this.get_TotalCount() / this.get_PageSize().get_Value()); i++)
                 {
-                    var model = $it1.get_Current();
-                    isEmpty = false;
-                    this.get_DataContext().Push(model, null);
-                    itemTemplates.Add(this.InitTemplate(this.get_ItemTemplate()));
-                    this.get_DataContext().Pop(null);
+                    writer.Tag("li").Attribute("class", ((this.get_PageIndex() != null ? this.get_PageIndex() : 0) == i) ? "active" : "").Tag("a").Attribute("href", (i != 0) ? ("?PageIndex=" + i) : "?").Content$$Object(i + 1).CloseFullTag().CloseFullTag();
                 }
-            }));
+                writer.CloseFullTag();
+            }
+        },
+        OnLoadData: function (models)
+        {
+            this.isDataLoaded = true;
+            var isEmpty = true;
+            var itemTemplates = new System.Collections.Generic.List$1.ctor(System.Object.ctor);
+            this.get_DataContext().Push(this, "Template");
+            this.set_TotalCount(this.get_Source().GetTotalCount());
+            var $it1 = models.GetEnumerator();
+            while ($it1.MoveNext())
+            {
+                var model = $it1.get_Current();
+                isEmpty = false;
+                this.get_DataContext().Push(model, null);
+                itemTemplates.Add(this.InitTemplate(this.get_ItemTemplate()));
+                this.get_DataContext().Pop(null);
+            }
             if (isEmpty && this.get_EmptyTemplate() != null)
             {
                 this.set_Template(this.get_EmptyTemplate());
@@ -158,18 +194,13 @@ var Neptuo$TemplateEngine$Web$Controls$ListViewControl =
             Neptuo.TemplateEngine.Web.Controls.TemplateControl.commonPrototype.OnInit.call(this);
             this.get_DataContext().Pop("Template");
             this.get_DataContext().Pop("ListViewControlGuid");
-        },
-        Render: function (writer)
-        {
-            Neptuo.TemplateEngine.Web.Controls.TemplateControl.commonPrototype.Render.call(this, writer);
-            if (this.get_PageSize() != null)
+            if (this.isRenderCalled)
             {
-                writer.Tag("ul").Attribute("class", "pagination pagination-sm");
-                for (var i = 0; i < System.Math.Ceiling$$Decimal(this.get_TotalCount() / this.get_PageSize().get_Value()); i++)
-                {
-                    writer.Tag("li").Attribute("class", ((this.get_PageIndex() != null ? this.get_PageIndex() : 0) == i) ? "active" : "").Tag("a").Attribute("href", (i != 0) ? ("?PageIndex=" + i) : "?").Content$$Object(i + 1).CloseFullTag().CloseFullTag();
-                }
-                writer.CloseFullTag();
+                var target = $("div[data-partial=listviewcontrol]");
+                var stringWriter = new System.IO.StringWriter.ctor();
+                var writer = new Neptuo.Templates.HtmlTextWriter.ctor(stringWriter);
+                this.Render(writer);
+                target.html(stringWriter.toString());
             }
         }
     },

@@ -1,7 +1,9 @@
 ﻿using Neptuo.Templates;
+using SharpKit.jQuery;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -36,48 +38,17 @@ namespace Neptuo.TemplateEngine.Web.Controls
             if (Source == null)
                 throw new ArgumentException("Missing data source.", "Source");
 
-            List<object> itemTemplates = new List<object>();
-
-            bool isEmpty = true;
-            DataContext.Push(this, "Template");
-
-            partialGuid = "listviewcontrol"; //TODO: Create guid!
-            DataContext.Push(partialGuid, "ListViewControl");
-            TotalCount = Source.GetTotalCount();
-            Source.GetData(PageIndex, PageSize, (models) =>
-            {
-                foreach (object model in models)
-                {
-                    isEmpty = false;
-                    DataContext.Push(model);
-                    itemTemplates.Add(InitTemplate(ItemTemplate));
-                    DataContext.Pop();
-                }
-            });
-
-            if (isEmpty && EmptyTemplate != null)
-            {
-                Template = EmptyTemplate;
-            }
-            else
-            {
-                TemplateContentControl templateContent = new TemplateContentControl(ComponentManager)
-                {
-                    Name = "Content",
-                    Content = itemTemplates
-                };
-                ComponentManager.AddComponent(templateContent, null);
-                InitComponent(templateContent);
-                Content.Add(templateContent);
-            }
-
-            base.OnInit();
-            DataContext.Pop("Template");
-            DataContext.Pop("ListViewControlGuid");
+            Source.GetData(PageIndex, PageSize, OnLoadData);
         }
 
         public override void Render(IHtmlWriter writer)
         {
+            if (!isDataLoaded)
+            {
+                isRenderCalled = true;
+                writer.Content("Loading data...");
+                return;
+            }
             //IExtendedHtmlWriter extendedWriter = writer as IExtendedHtmlWriter;
             //if (extendedWriter != null)
             //    extendedWriter.AttributeOnNextTag("data-partial", partialGuid);
@@ -104,6 +75,63 @@ namespace Neptuo.TemplateEngine.Web.Controls
 
                 writer
                     .CloseFullTag();
+            }
+        }
+
+        private bool isRenderCalled = false;
+        private bool isDataLoaded = false;
+        private void OnLoadData(IEnumerable models)
+        {
+            isDataLoaded = true;
+
+
+
+
+            bool isEmpty = true;
+
+            List<object> itemTemplates = new List<object>();
+
+            DataContext.Push(this, "Template");
+
+            TotalCount = Source.GetTotalCount();
+            foreach (object model in models)
+            {
+                isEmpty = false;
+                DataContext.Push(model);
+                itemTemplates.Add(InitTemplate(ItemTemplate));
+                DataContext.Pop();
+            }
+
+            if (isEmpty && EmptyTemplate != null)
+            {
+                Template = EmptyTemplate;
+            }
+            else
+            {
+                TemplateContentControl templateContent = new TemplateContentControl(ComponentManager)
+                {
+                    Name = "Content",
+                    Content = itemTemplates
+                };
+                ComponentManager.AddComponent(templateContent, null);
+                InitComponent(templateContent);
+                Content.Add(templateContent);
+            }
+
+            base.OnInit();
+            DataContext.Pop("Template");
+            DataContext.Pop("ListViewControlGuid");
+
+            if (isRenderCalled)
+            {
+                //TODO: Render to temp element...
+                jQuery target = new jQuery("div[data-partial=listviewcontrol]");
+
+                StringWriter stringWriter = new StringWriter();
+                HtmlTextWriter writer = new HtmlTextWriter(stringWriter);
+
+                Render(writer);
+                target.html(stringWriter.ToString());
             }
         }
     }
