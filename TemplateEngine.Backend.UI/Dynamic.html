@@ -35,20 +35,20 @@
         Neptuo.DependencyContainerExtensions.RegisterInstance$1(Neptuo.IDependencyProvider.ctor, objectBuilder, objectBuilder);
         Neptuo.TemplateEngine.Web.Client.InitScript.Init(objectBuilder);
 
+        var viewActivator = objectBuilder.Resolve(Typeof(Neptuo.TemplateEngine.Web.Client.StaticViewActivator.ctor), null);
+
     </script>
     <script src="/views.ashx"></script>
     <script>
 
         $(function () {
 
-            $("#rerender").click(function () {
+            $("a").click(function (e) {
+                $this = $(this);
                 var start = +new Date;
 
                 var writer = new System.IO.StringWriter.ctor();
-                //var view = new Neptuo.Templates.View_3D09FEDA526F72327E9894F4A68B10A6DDEF92A5.ctor();
-                //var view = new Neptuo.Templates.View_169A146015B9683BA3DA19241AEB502786C332B0.ctor();
-                //var view = new Neptuo.Templates.View_4871826135338C3DD897DE2539C817F096C4D1B7.ctor();
-                var view = objectBuilder.Resolve(Typeof(Neptuo.TemplateEngine.Web.Client.StaticViewActivator.ctor), null).CreateView("~/Views/Accounts/UserList.view");
+                var view = viewActivator.CreateView($this.data('view'));
                 view.Setup(new Neptuo.Templates.BaseViewPage.ctor(objectBuilder.Resolve(Typeof(Neptuo.Templates.IComponentManager.ctor), null)), objectBuilder.Resolve(Typeof(Neptuo.Templates.IComponentManager.ctor), null), objectBuilder);
                 view.CreateControls();
                 view.Init();
@@ -57,13 +57,17 @@
                 $("#target").html(writer.toString());
 
                 $("#measure").html((+new Date) - start + "ms");
+
+                history.pushState($this.data('view'), $this.html(), $this.attr('href'));
+                e.preventDefault();
             });
         });
     </script>
 </head>
 <body>
     <div id="target"></div>
-    <input type="button" value="Render" id="rerender" />
+    <a href="/Accounts/UserList.aspx" data-view="~/Views/Accounts/UserList.view">User accounts</a>
+    <a href="/Accounts/RoleList.aspx" data-view="~/Views/Accounts/RoleList.view">User Roles</a>
     <div id="measure"></div>
 </body>
 </html>
