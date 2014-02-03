@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Neptuo.TemplateEngine.Accounts.Commands
+namespace Neptuo.TemplateEngine.Accounts
 {
     public class EditUserCommand
     {
@@ -17,14 +17,14 @@ namespace Neptuo.TemplateEngine.Accounts.Commands
         public EditUserCommand()
         { }
 
-        public EditUserCommand(UserAccount userAccount)
-        {
-            if (userAccount != null)
-            {
-                Key = userAccount.Key;
-                Username = userAccount.Username;
-                IsEnabled = userAccount.IsEnabled;
-            }
-        }
+        //public EditUserCommand(UserAccount userAccount)
+        //{
+        //    if (userAccount != null)
+        //    {
+        //        Key = userAccount.Key;
+        //        Username = userAccount.Username;
+        //        IsEnabled = userAccount.IsEnabled;
+        //    }
+        //}
     }
 }

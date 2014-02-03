@@ -1,3 +1,0 @@
-﻿<li>
-    <ui:literal text="{Binding Username}" />
-</li>

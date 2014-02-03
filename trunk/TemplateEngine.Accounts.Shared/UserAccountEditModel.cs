@@ -1,11 +1,10 @@
-﻿using Neptuo.TemplateEngine.Accounts.Commands;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Neptuo.TemplateEngine.Accounts.Web.Models
+namespace Neptuo.TemplateEngine.Accounts
 {
     public class UserAccountEditModel : EditUserCommand
     {
@@ -15,10 +14,6 @@ namespace Neptuo.TemplateEngine.Accounts.Web.Models
         }
 
         public UserAccountEditModel()
-        { }
-
-        public UserAccountEditModel(UserAccount userAccount)
-            : base(userAccount)
         { }
     }
 }
