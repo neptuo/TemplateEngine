@@ -11,11 +11,14 @@ namespace Neptuo.TemplateEngine.Web.Controls
     [Obsolete]
     public class StringTemplate : ViewTemplateBase
     {
+        protected IViewService ViewService { get; private set; }
         public string TemplateContent { get; set; }
 
         public StringTemplate(IDependencyProvider dependencyProvider, IComponentManager componentManager, IViewService viewService)
-            : base(dependencyProvider, componentManager, viewService)
-        { }
+            : base(dependencyProvider, componentManager)
+        {
+            ViewService = viewService;
+        }
 
         protected override BaseGeneratedView CreateView()
         {

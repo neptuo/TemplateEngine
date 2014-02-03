@@ -22,7 +22,8 @@ namespace Neptuo.TemplateEngine.Web.Client
                 .RegisterType<IBindingManager, BindingManagerBase>()
                 .RegisterType<IValueConverterService, ValueConverterService>()
                 .RegisterInstance(new TemplateContentStorageStack())
-                .RegisterInstance(new DataContextStorage());
+                .RegisterInstance(new DataContextStorage())
+                .RegisterInstance<IViewActivator>(new StaticViewActivator(container));
         }
     }
 

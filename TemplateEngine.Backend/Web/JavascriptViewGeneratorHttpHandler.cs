@@ -31,54 +31,58 @@ namespace Neptuo.TemplateEngine.Backend.Web
 
         public void ProcessRequest(HttpContext context)
         {
+            StringBuilder contentBuilder = new StringBuilder();
+            StringBuilder appendBuilder = new StringBuilder();
+
             context.Response.ContentType = "text/javascript";
             foreach (string viewPath in Directory.GetFiles(context.Server.MapPath(configuration.ViewDirectory), "*.view", SearchOption.AllDirectories))
             {
                 DateTime viewLastModified = File.GetLastWriteTime(viewPath);
                 string tempViewPath = GetTempJavascriptFilePath(configuration, viewPath);
-                string viewContent = null;
+                string viewContent = File.ReadAllText(viewPath);
+
+                INaming classNaming = viewService.NamingService.FromContent(viewContent);
+                appendBuilder.AppendFormat(
+                    "Neptuo.TemplateEngine.Web.Client.StaticViewActivator.Add('{0}', Typeof(Neptuo.Templates.{1}.ctor));",
+                    RelativePath(context.Server, viewPath, context.Request), //.Replace("~/Views/", "~/")
+                    classNaming.ClassName
+                );
+                appendBuilder.AppendLine();
+                
                 if (File.Exists(tempViewPath))
                 {
                     DateTime tempLastModified = File.GetLastWriteTime(tempViewPath);
                     if (tempLastModified >= viewLastModified)
                     {
-                        WriteJavascriptFile(
-                            context,
-                            viewPath + " - CACHE",
-                            File.ReadAllText(tempViewPath)
-                        );
+                        contentBuilder.AppendLine("/*" + viewPath + " - CACHE*/");
+                        contentBuilder.AppendLine(File.ReadAllText(tempViewPath));
                         continue;
                     }
                 }
 
-                viewContent = File.ReadAllText(viewPath);
 
-                try
-                {
-                    string javascriptContent = viewService.GenerateJavascript(viewContent, new ViewServiceContext(dependencyProvider), viewService.NamingService.FromContent(viewContent));
-                    javascriptContent = RewriteJavascriptContent(javascriptContent);
-                    WriteJavascriptFile(context, viewPath, javascriptContent);
+                string javascriptContent = viewService.GenerateJavascript(viewContent, new ViewServiceContext(dependencyProvider), classNaming);
+                javascriptContent = RewriteJavascriptContent(javascriptContent);
+                File.WriteAllText(tempViewPath, javascriptContent);
+                contentBuilder.AppendLine(javascriptContent);
 
-                    File.WriteAllText(tempViewPath, javascriptContent);
-                }
-                catch (Exception e)
-                {
-                    throw e;
-                }
             }
+
+            context.Response.Write(contentBuilder.ToString());
+            context.Response.Write("JsRuntime.Start();");
+            context.Response.Write(appendBuilder.ToString());
         }
 
         private string RewriteJavascriptContent(string content)
         {
-            content = content.Replace(
-                "new Neptuo.TemplateEngine.Web.Controls.FileTemplate.ctor(this.dependencyProvider, this.componentManager, (Cast((this.dependencyProvider.Resolve(Typeof(Neptuo.Templates.Compilation.IViewService.ctor), null)), Neptuo.Templates.Compilation.IViewService.ctor)))", 
-                "new Neptuo.TemplateEngine.Web.Controls.FileTemplate2.ctor(this.dependencyProvider, this.componentManager)"
-            );
-            content = content.Replace(
-                "Neptuo.TemplateEngine.Web.Controls.FileTemplate.ctor", 
-                "Neptuo.TemplateEngine.Web.Controls.FileTemplate2.ctor"
-            );
-
+            //content = content.Replace(
+            //    "new Neptuo.TemplateEngine.Web.Controls.FileTemplate.ctor(this.dependencyProvider, this.componentManager, (Cast((this.dependencyProvider.Resolve(Typeof(Neptuo.Templates.Compilation.IViewService.ctor), null)), Neptuo.Templates.Compilation.IViewService.ctor)))", 
+            //    "new Neptuo.TemplateEngine.Web.Controls.FileTemplate2.ctor(this.dependencyProvider, this.componentManager)"
+            //);
+            //content = content.Replace(
+            //    "Neptuo.TemplateEngine.Web.Controls.FileTemplate.ctor", 
+            //    "Neptuo.TemplateEngine.Web.Controls.FileTemplate2.ctor"
+            //);
             return content;
         }
 
@@ -87,12 +91,9 @@ namespace Neptuo.TemplateEngine.Backend.Web
             return Path.Combine(configuration.TempDirectory, HashHelper.Sha1(viewPath) + ".js");
         }
 
-        private void WriteJavascriptFile(HttpContext context, string path, string content)
+        public static string RelativePath(HttpServerUtility srv, string path, HttpRequest context)
         {
-            context.Response.Write("/*" + path + "*/");
-            context.Response.Write(Environment.NewLine);
-            context.Response.Write(content);
-            context.Response.Write(Environment.NewLine);
+            return path.Replace(context.ServerVariables["APPL_PHYSICAL_PATH"], "~/").Replace(@"\", "/");
         }
     }
 }

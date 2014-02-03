@@ -115,25 +115,7 @@ var Neptuo$TemplateEngine$Web$Controls$FileTemplate2 =
         },
         CreateView: function ()
         {
-            if (this.get_Path() == "~/Views/Accounts/Login.view")
-                return new Neptuo.Templates.View_3D09FEDA526F72327E9894F4A68B10A6DDEF92A5.ctor();
-            if (this.get_Path() == "~/Views/Accounts/UserList.view")
-                return new Neptuo.Templates.View_4871826135338C3DD897DE2539C817F096C4D1B7.ctor();
-            if (this.get_Path() == "~/Views/Accounts/UserEdit.view")
-                return new Neptuo.Templates.View_A9765037BA31823A1DE86513A9CB363FC6ED62C6.ctor();
-            if (this.get_Path() == "~/Views/Accounts/RoleList.view")
-                return new Neptuo.Templates.View_5889BF089264D8E71B12E789260799CEAFAF3495.ctor();
-            if (this.get_Path() == "~/Views/Accounts/RoleEdit.view")
-                return new Neptuo.Templates.View_76B4615AA7B3E8A93E8536FE35E7F10DCE4F723E.ctor();
-            if (this.get_Path() == "~/Views/Accounts/SideNav.view")
-                return new Neptuo.Templates.View_7386527D2661E330C28B00144916CF09DD787052.ctor();
-            if (this.get_Path() == "~/Views/Shared/AdminLayout.view")
-                return new Neptuo.Templates.View_B3FB932CB3BBED93A72876CB64C25B2BDE4D0C0E.ctor();
-            if (this.get_Path() == "~/Views/Shared/SubHeader.view")
-                return new Neptuo.Templates.View_4DDEE9A62BE4F945CAD406C3AEF5F059B5A01614.ctor();
-            if (this.get_Path() == "~/Views/Home.view")
-                return new Neptuo.Templates.View_169A146015B9683BA3DA19241AEB502786C332B0.ctor();
-            return null;
+            throw $CreateException(new System.NotSupportedException.ctor(), new Error());
         },
         CreateInstance: function ()
         {
@@ -154,6 +136,140 @@ var Neptuo$TemplateEngine$Web$Controls$FileTemplate2 =
 JsTypes.push(Neptuo$TemplateEngine$Web$Controls$FileTemplate2);
 var Neptuo$TemplateEngine$Web$Controls$ITextControl = {fullname: "Neptuo.TemplateEngine.Web.Controls.ITextControl", baseTypeName: "System.Object", assemblyName: "Neptuo.TemplateEngine.Web.Client", Kind: "Interface", ctors: [], IsAbstract: true};
 JsTypes.push(Neptuo$TemplateEngine$Web$Controls$ITextControl);
+var Neptuo$TemplateEngine$Web$Controls$ListViewControl =
+{
+    fullname: "Neptuo.TemplateEngine.Web.Controls.ListViewControl",
+    baseTypeName: "Neptuo.TemplateEngine.Web.Controls.TemplateControl",
+    assemblyName: "Neptuo.TemplateEngine.Web.Client",
+    Kind: "Class",
+    definition:
+    {
+        ctor: function (componentManager, storage, dataContext)
+        {
+            this._Source = null;
+            this._ItemTemplate = null;
+            this._EmptyTemplate = null;
+            this._PageSize = null;
+            this._PageIndex = null;
+            this._DataContext = null;
+            this._TotalCount = 0;
+            Neptuo.TemplateEngine.Web.Controls.TemplateControl.ctor.call(this, componentManager, storage);
+            this.set_DataContext(dataContext);
+        },
+        Source$$: "Neptuo.TemplateEngine.Web.IListDataSource",
+        get_Source: function ()
+        {
+            return this._Source;
+        },
+        set_Source: function (value)
+        {
+            this._Source = value;
+        },
+        ItemTemplate$$: "Neptuo.TemplateEngine.Web.Controls.ITemplate",
+        get_ItemTemplate: function ()
+        {
+            return this._ItemTemplate;
+        },
+        set_ItemTemplate: function (value)
+        {
+            this._ItemTemplate = value;
+        },
+        EmptyTemplate$$: "Neptuo.TemplateEngine.Web.Controls.ITemplate",
+        get_EmptyTemplate: function ()
+        {
+            return this._EmptyTemplate;
+        },
+        set_EmptyTemplate: function (value)
+        {
+            this._EmptyTemplate = value;
+        },
+        PageSize$$: "System.Nullable`1[[System.Int32]]",
+        get_PageSize: function ()
+        {
+            return this._PageSize;
+        },
+        set_PageSize: function (value)
+        {
+            this._PageSize = value;
+        },
+        PageIndex$$: "System.Nullable`1[[System.Int32]]",
+        get_PageIndex: function ()
+        {
+            return this._PageIndex;
+        },
+        set_PageIndex: function (value)
+        {
+            this._PageIndex = value;
+        },
+        DataContext$$: "Neptuo.TemplateEngine.Web.DataContextStorage",
+        get_DataContext: function ()
+        {
+            return this._DataContext;
+        },
+        set_DataContext: function (value)
+        {
+            this._DataContext = value;
+        },
+        TotalCount$$: "System.Int32",
+        get_TotalCount: function ()
+        {
+            return this._TotalCount;
+        },
+        set_TotalCount: function (value)
+        {
+            this._TotalCount = value;
+        },
+        OnInit: function ()
+        {
+            this.InitComponent(this.get_ItemTemplate());
+            if (this.get_ItemTemplate() == null)
+                throw $CreateException(new System.ArgumentException.ctor$$String$$String("Missing item template.", "ItemTemplate"), new Error());
+            this.InitComponent(this.get_Source());
+            if (this.get_Source() == null)
+                throw $CreateException(new System.ArgumentException.ctor$$String$$String("Missing data source.", "Source"), new Error());
+            var itemTemplates = new System.Collections.Generic.List$1.ctor(System.Object.ctor);
+            var models = this.get_Source().GetData(this.get_PageIndex(), this.get_PageSize());
+            this.set_TotalCount(this.get_Source().GetTotalCount());
+            this.get_DataContext().Push(this, "Template");
+            var isEmpty = true;
+            if (isEmpty && this.get_EmptyTemplate() != null)
+            {
+                this.set_Template(this.get_EmptyTemplate());
+            }
+            else
+            {
+                var templateContent = (function ()
+                {
+                    var $v1 = new Neptuo.TemplateEngine.Web.Controls.TemplateContentControl.ctor(this.get_ComponentManager());
+                    $v1.set_Name("Content");
+                    $v1.set_Content(itemTemplates);
+                    return $v1;
+                }).call(this);
+                this.get_ComponentManager().AddComponent$1(Neptuo.TemplateEngine.Web.Controls.TemplateContentControl.ctor, templateContent, null);
+                this.InitComponent(templateContent);
+                this.get_Content().Add(templateContent);
+            }
+            Neptuo.TemplateEngine.Web.Controls.TemplateControl.commonPrototype.OnInit.call(this);
+            this.get_DataContext().Pop("Template");
+        },
+        Render: function (writer)
+        {
+            Neptuo.TemplateEngine.Web.Controls.TemplateControl.commonPrototype.Render.call(this, writer);
+            if (this.get_PageSize() != null)
+            {
+                writer.Tag("ul").Attribute("class", "pagination pagination-sm");
+                for (var i = 0; i < System.Math.Ceiling$$Decimal(this.get_TotalCount() / this.get_PageSize().get_Value()); i++)
+                {
+                    writer.Tag("li").Attribute("class", ((this.get_PageIndex() != null ? this.get_PageIndex() : 0) == i) ? "active" : "").Tag("a").Attribute("href", (i != 0) ? ("?PageIndex=" + i) : "?").Content$$Object(i + 1).CloseFullTag().CloseFullTag();
+                }
+                writer.CloseFullTag();
+            }
+        }
+    },
+    ctors: [ {name: "ctor", parameters: ["Neptuo.Templates.IComponentManager", "Neptuo.TemplateEngine.Web.TemplateContentStorageStack", "Neptuo.TemplateEngine.Web.DataContextStorage"]}],
+    IsAbstract: false
+};
+JsTypes.push(Neptuo$TemplateEngine$Web$Controls$ListViewControl);
 var Neptuo$TemplateEngine$Web$Controls$LiteralControl =
 {
     fullname: "Neptuo.TemplateEngine.Web.Controls.LiteralControl",
@@ -199,6 +315,50 @@ var Neptuo$TemplateEngine$Web$Controls$LiteralControl =
     IsAbstract: false
 };
 JsTypes.push(Neptuo$TemplateEngine$Web$Controls$LiteralControl);
+var Neptuo$TemplateEngine$Web$Client$StaticViewActivator =
+{
+    fullname: "Neptuo.TemplateEngine.Web.Client.StaticViewActivator",
+    baseTypeName: "System.Object",
+    staticDefinition:
+    {
+        cctor: function ()
+        {
+            Neptuo.TemplateEngine.Web.Client.StaticViewActivator.mappings = new System.Collections.Generic.Dictionary$2.ctor(System.String.ctor, System.Type.ctor);
+        },
+        Add: function (viewPath, viewType)
+        {
+            Neptuo.TemplateEngine.Web.Client.StaticViewActivator.mappings.set_Item$$TKey(viewPath, viewType);
+        }
+    },
+    assemblyName: "Neptuo.TemplateEngine.Web.Client",
+    interfaceNames: ["Neptuo.TemplateEngine.Web.IViewActivator"],
+    Kind: "Class",
+    definition:
+    {
+        ctor: function (dependencyProvider)
+        {
+            this.dependencyProvider = null;
+            System.Object.ctor.call(this);
+            this.dependencyProvider = dependencyProvider;
+        },
+        CreateView: function (path)
+        {
+            var viewType;
+            if ((function ()
+            {
+                var $1 = {Value: viewType};
+                var $res = Neptuo.TemplateEngine.Web.Client.StaticViewActivator.mappings.TryGetValue(path, $1);
+                viewType = $1.Value;
+                return $res;
+            }).call(this))
+                return Cast(Neptuo.DependencyProviderExtensions.Resolve$$IDependencyProvider$$Type(this.dependencyProvider, viewType), Neptuo.Templates.BaseGeneratedView.ctor);
+            throw $CreateException(new System.NotImplementedException.ctor(), new Error());
+        }
+    },
+    ctors: [ {name: "ctor", parameters: ["Neptuo.IDependencyProvider"]}],
+    IsAbstract: false
+};
+JsTypes.push(Neptuo$TemplateEngine$Web$Client$StaticViewActivator);
 var Neptuo$TemplateEngine$Accounts$Web$DataSources$UserAccountDataSource =
 {
     fullname: "Neptuo.TemplateEngine.Accounts.Web.DataSources.UserAccountDataSource",
@@ -331,7 +491,7 @@ var Neptuo$TemplateEngine$Web$Client$InitScript =
     {
         Init: function (container)
         {
-            Neptuo.DependencyContainerExtensions.RegisterInstance$1(Neptuo.TemplateEngine.Web.DataContextStorage.ctor, Neptuo.DependencyContainerExtensions.RegisterInstance$1(Neptuo.TemplateEngine.Web.TemplateContentStorageStack.ctor, Neptuo.DependencyContainerExtensions.RegisterType$2$$IDependencyContainer(Neptuo.TemplateEngine.Web.IValueConverterService.ctor, Neptuo.TemplateEngine.Web.ValueConverterService.ctor, Neptuo.DependencyContainerExtensions.RegisterType$2$$IDependencyContainer(Neptuo.TemplateEngine.Web.IBindingManager.ctor, Neptuo.TemplateEngine.Web.BindingManagerBase.ctor, Neptuo.DependencyContainerExtensions.RegisterType$2$$IDependencyContainer(Neptuo.TemplateEngine.Web.IParameterProvider.ctor, Neptuo.TemplateEngine.Web.Client.ParameterProvider.ctor, Neptuo.DependencyContainerExtensions.RegisterType$2$$IDependencyContainer(Neptuo.TemplateEngine.Web.IParameterProviderFactory.ctor, Neptuo.TemplateEngine.Web.Client.ParameterProviderFactory.ctor, Neptuo.DependencyContainerExtensions.RegisterType$2$$IDependencyContainer(Neptuo.TemplateEngine.Web.ICurrentUrlProvider.ctor, Neptuo.TemplateEngine.Web.Client.UrlProvider.ctor, Neptuo.DependencyContainerExtensions.RegisterType$2$$IDependencyContainer(Neptuo.Templates.IVirtualUrlProvider.ctor, Neptuo.TemplateEngine.Web.Client.UrlProvider.ctor, Neptuo.DependencyContainerExtensions.RegisterType$2$$IDependencyContainer(Neptuo.TemplateEngine.IStackStorage$1.ctor, Neptuo.TemplateEngine.StackStorage$1.ctor, container))))))), new Neptuo.TemplateEngine.Web.TemplateContentStorageStack.ctor()), new Neptuo.TemplateEngine.Web.DataContextStorage.ctor());
+            Neptuo.DependencyContainerExtensions.RegisterInstance$1(Neptuo.TemplateEngine.Web.IViewActivator.ctor, Neptuo.DependencyContainerExtensions.RegisterInstance$1(Neptuo.TemplateEngine.Web.DataContextStorage.ctor, Neptuo.DependencyContainerExtensions.RegisterInstance$1(Neptuo.TemplateEngine.Web.TemplateContentStorageStack.ctor, Neptuo.DependencyContainerExtensions.RegisterType$2$$IDependencyContainer(Neptuo.TemplateEngine.Web.IValueConverterService.ctor, Neptuo.TemplateEngine.Web.ValueConverterService.ctor, Neptuo.DependencyContainerExtensions.RegisterType$2$$IDependencyContainer(Neptuo.TemplateEngine.Web.IBindingManager.ctor, Neptuo.TemplateEngine.Web.BindingManagerBase.ctor, Neptuo.DependencyContainerExtensions.RegisterType$2$$IDependencyContainer(Neptuo.TemplateEngine.Web.IParameterProvider.ctor, Neptuo.TemplateEngine.Web.Client.ParameterProvider.ctor, Neptuo.DependencyContainerExtensions.RegisterType$2$$IDependencyContainer(Neptuo.TemplateEngine.Web.IParameterProviderFactory.ctor, Neptuo.TemplateEngine.Web.Client.ParameterProviderFactory.ctor, Neptuo.DependencyContainerExtensions.RegisterType$2$$IDependencyContainer(Neptuo.TemplateEngine.Web.ICurrentUrlProvider.ctor, Neptuo.TemplateEngine.Web.Client.UrlProvider.ctor, Neptuo.DependencyContainerExtensions.RegisterType$2$$IDependencyContainer(Neptuo.Templates.IVirtualUrlProvider.ctor, Neptuo.TemplateEngine.Web.Client.UrlProvider.ctor, Neptuo.DependencyContainerExtensions.RegisterType$2$$IDependencyContainer(Neptuo.TemplateEngine.IStackStorage$1.ctor, Neptuo.TemplateEngine.StackStorage$1.ctor, container))))))), new Neptuo.TemplateEngine.Web.TemplateContentStorageStack.ctor()), new Neptuo.TemplateEngine.Web.DataContextStorage.ctor()), new Neptuo.TemplateEngine.Web.Client.StaticViewActivator.ctor(container));
         }
     },
     assemblyName: "Neptuo.TemplateEngine.Web.Client",

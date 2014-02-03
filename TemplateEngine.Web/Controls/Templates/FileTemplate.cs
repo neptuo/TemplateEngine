@@ -10,15 +10,18 @@ namespace Neptuo.TemplateEngine.Web.Controls
 {
     public class FileTemplate : ViewTemplateBase
     {
+        protected IViewActivator ViewActivator { get; private set; }
         public string Path { get; set; }
 
-        public FileTemplate(IDependencyProvider dependencyProvider, IComponentManager componentManager, IViewService viewService)
-            : base(dependencyProvider, componentManager, viewService)
-        { }
+        public FileTemplate(IDependencyProvider dependencyProvider, IComponentManager componentManager, IViewActivator viewActivator)
+            : base(dependencyProvider, componentManager)
+        {
+            ViewActivator = viewActivator;
+        }
 
         protected override BaseGeneratedView CreateView()
         {
-            return (BaseGeneratedView)ViewService.Process(Path, new ViewServiceContext(DependencyProvider));
+            return ViewActivator.CreateView(Path);
         }
     }
 }
