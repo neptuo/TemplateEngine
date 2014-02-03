@@ -18,6 +18,8 @@ namespace Neptuo.TemplateEngine.Web.Controls
         protected DataContextStorage DataContext { get; private set; }
         protected int TotalCount { get; private set; }
 
+        private string partialGuid;
+
         public ListViewControl(IComponentManager componentManager, TemplateContentStorageStack storage, DataContextStorage dataContext)
             : base(componentManager, storage) 
         {
@@ -39,6 +41,7 @@ namespace Neptuo.TemplateEngine.Web.Controls
             bool isEmpty = true;
             DataContext.Push(this, "Template");
 
+            partialGuid = "listviewcontrol"; //TODO: Create guid!
             TotalCount = Source.GetTotalCount();
             Source.GetData(PageIndex, PageSize, (models) =>
             {
@@ -74,6 +77,10 @@ namespace Neptuo.TemplateEngine.Web.Controls
 
         public override void Render(IHtmlWriter writer)
         {
+            IExtendedHtmlWriter extendedWriter = writer as IExtendedHtmlWriter;
+            if (extendedWriter != null)
+                extendedWriter.AttributeOnNextTag("data-partial", partialGuid);
+
             base.Render(writer);
 
             if (PageSize != null)

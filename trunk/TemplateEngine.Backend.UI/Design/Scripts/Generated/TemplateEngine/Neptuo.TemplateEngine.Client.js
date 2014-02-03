@@ -38,6 +38,7 @@ var Neptuo$TemplateEngine$Web$Controls$ListViewControl =
     {
         ctor: function (componentManager, storage, dataContext)
         {
+            this.partialGuid = null;
             this._Source = null;
             this._ItemTemplate = null;
             this._EmptyTemplate = null;
@@ -122,6 +123,7 @@ var Neptuo$TemplateEngine$Web$Controls$ListViewControl =
             var itemTemplates = new System.Collections.Generic.List$1.ctor(System.Object.ctor);
             var isEmpty = true;
             this.get_DataContext().Push(this, "Template");
+            this.partialGuid = "listviewcontrol";
             this.set_TotalCount(this.get_Source().GetTotalCount());
             this.get_Source().GetData(this.get_PageIndex(), this.get_PageSize(), $CreateAnonymousDelegate(this, function (models)
             {
@@ -157,6 +159,9 @@ var Neptuo$TemplateEngine$Web$Controls$ListViewControl =
         },
         Render: function (writer)
         {
+            var extendedWriter = As(writer, Neptuo.TemplateEngine.Web.IExtendedHtmlWriter.ctor);
+            if (extendedWriter != null)
+                extendedWriter.AttributeOnNextTag("data-partial", this.partialGuid);
             Neptuo.TemplateEngine.Web.Controls.TemplateControl.commonPrototype.Render.call(this, writer);
             if (this.get_PageSize() != null)
             {
@@ -175,6 +180,71 @@ var Neptuo$TemplateEngine$Web$Controls$ListViewControl =
 JsTypes.push(Neptuo$TemplateEngine$Web$Controls$ListViewControl);
 var Neptuo$TemplateEngine$Web$DataSources$IListDataSource = {fullname: "Neptuo.TemplateEngine.Web.DataSources.IListDataSource", baseTypeName: "System.Object", assemblyName: "Neptuo.TemplateEngine.Client", Kind: "Interface", ctors: [], IsAbstract: true};
 JsTypes.push(Neptuo$TemplateEngine$Web$DataSources$IListDataSource);
+var Neptuo$TemplateEngine$Web$ExtendedHtmlTextWriter =
+{
+    fullname: "Neptuo.TemplateEngine.Web.ExtendedHtmlTextWriter",
+    baseTypeName: "Neptuo.Templates.HtmlTextWriter",
+    assemblyName: "Neptuo.TemplateEngine.Client",
+    interfaceNames: ["Neptuo.TemplateEngine.Web.IExtendedHtmlWriter"],
+    Kind: "Class",
+    definition:
+    {
+        ctor: function (writer)
+        {
+            this.pendingAttributes = new System.Collections.Generic.List$1.ctor(Neptuo.TemplateEngine.Web.ExtendedHtmlTextWriter.HtmlAttribute.ctor);
+            Neptuo.Templates.HtmlTextWriter.ctor.call(this, writer);
+        },
+        AttributeOnNextTag: function (name, value)
+        {
+            this.pendingAttributes.Add(new Neptuo.TemplateEngine.Web.ExtendedHtmlTextWriter.HtmlAttribute.ctor$$String$$String(name, value));
+            return this;
+        },
+        Tag: function (name)
+        {
+            Neptuo.Templates.HtmlTextWriter.commonPrototype.Tag.call(this, name);
+            var $it2 = this.pendingAttributes.GetEnumerator();
+            while ($it2.MoveNext())
+            {
+                var attribute = $it2.get_Current();
+                this.Attribute(attribute.Name, attribute.Value);
+            }
+            this.pendingAttributes.Clear();
+            return this;
+        }
+    },
+    ctors: [ {name: "ctor", parameters: ["System.IO.TextWriter"]}],
+    IsAbstract: false
+};
+JsTypes.push(Neptuo$TemplateEngine$Web$ExtendedHtmlTextWriter);
+var Neptuo$TemplateEngine$Web$ExtendedHtmlTextWriter$HtmlAttribute =
+{
+    fullname: "Neptuo.TemplateEngine.Web.ExtendedHtmlTextWriter.HtmlAttribute",
+    baseTypeName: "System.ValueType",
+    assemblyName: "Neptuo.TemplateEngine.Client",
+    Kind: "Struct",
+    definition:
+    {
+        ctor$$String$$String: function (name, value)
+        {
+            this.Name = null;
+            this.Value = null;
+            System.ValueType.ctor.call(this);
+            this.Name = name;
+            this.Value = value;
+        },
+        ctor: function ()
+        {
+            this.Name = null;
+            this.Value = null;
+            System.ValueType.ctor.call(this);
+        }
+    },
+    ctors: [ {name: "ctor$$String$$String", parameters: ["System.String", "System.String"]}, {name: "ctor", parameters: []}],
+    IsAbstract: false
+};
+JsTypes.push(Neptuo$TemplateEngine$Web$ExtendedHtmlTextWriter$HtmlAttribute);
+var Neptuo$TemplateEngine$Web$IExtendedHtmlWriter = {fullname: "Neptuo.TemplateEngine.Web.IExtendedHtmlWriter", baseTypeName: "System.Object", assemblyName: "Neptuo.TemplateEngine.Client", interfaceNames: ["Neptuo.Templates.IHtmlWriter"], Kind: "Interface", ctors: [], IsAbstract: true};
+JsTypes.push(Neptuo$TemplateEngine$Web$IExtendedHtmlWriter);
 var Neptuo$TemplateEngine$Web$Client$StaticViewActivator =
 {
     fullname: "Neptuo.TemplateEngine.Web.Client.StaticViewActivator",

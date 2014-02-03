@@ -84,7 +84,7 @@
             view.Setup(new Neptuo.Templates.BaseViewPage.ctor(objectBuilder.Resolve(Typeof(Neptuo.Templates.IComponentManager.ctor), null)), objectBuilder.Resolve(Typeof(Neptuo.Templates.IComponentManager.ctor), null), objectBuilder);
             view.CreateControls();
             view.Init();
-            view.Render(new Neptuo.Templates.HtmlTextWriter.ctor(writer));
+            view.Render(new Neptuo.TemplateEngine.Web.ExtendedHtmlTextWriter.ctor(writer));
             view.Dispose();
             $("#target").html(writer.toString()).find('a').click(OnLinkClick);
 
