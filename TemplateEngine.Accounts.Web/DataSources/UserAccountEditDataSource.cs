@@ -2,7 +2,6 @@
 using Neptuo.PresentationModels.TypeModels;
 using Neptuo.TemplateEngine.Accounts.Commands;
 using Neptuo.TemplateEngine.Accounts.Queries;
-using Neptuo.TemplateEngine.Accounts.Web.Models;
 using Neptuo.TemplateEngine.Web;
 using Neptuo.TemplateEngine.Web.Controllers.Binders;
 using System;
@@ -32,10 +31,20 @@ namespace Neptuo.TemplateEngine.Accounts.Web.DataSources
 
         public object GetItem()
         {
-            UserAccountEditModel model = new UserAccountEditModel(userQuery.Get(Key) ?? userFactory.Create());
+            UserAccountEditModel model = MapEntityToModel(userQuery.Get(Key) ?? userFactory.Create());
             model = modelBinder.Bind<UserAccountEditModel>(model);
 
             return providerFactory.Create(model);
+        }
+
+        private UserAccountEditModel MapEntityToModel(UserAccount userAccount)
+        {
+            return new UserAccountEditModel
+            {
+                Key = userAccount.Key,
+                Username = userAccount.Username,
+                IsEnabled = userAccount.IsEnabled
+            };
         }
     }
 }

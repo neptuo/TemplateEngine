@@ -1,14 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{A67F64A5-C62D-491E-8AEE-2B5766668B5E}</ProjectGuid>
+    <ProjectGuid>{F0850D8E-C545-4652-8E66-7CB4B816D1CB}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Neptuo.TemplateEngine.Accounts.Web</RootNamespace>
-    <AssemblyName>Neptuo.TemplateEngine.Accounts.Web</AssemblyName>
+    <RootNamespace>Neptuo.TemplateEngine.Accounts</RootNamespace>
+    <AssemblyName>Neptuo.TemplateEngine.Accounts.Bootstrap</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -30,25 +30,32 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Neptuo, Version=2.2.3.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="Neptuo">
       <HintPath>..\References\Neptuo.dll</HintPath>
+    </Reference>
+    <Reference Include="Neptuo.Bootstrap">
+      <HintPath>..\References\Neptuo.Bootstrap.dll</HintPath>
     </Reference>
     <Reference Include="Neptuo.Commands">
       <HintPath>..\References\Neptuo.Commands.dll</HintPath>
     </Reference>
-    <Reference Include="Neptuo.Data, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="Neptuo.Data">
       <HintPath>..\References\Neptuo.Data.dll</HintPath>
     </Reference>
-    <Reference Include="Neptuo.PresentationModels">
-      <HintPath>..\References\Neptuo.PresentationModels.dll</HintPath>
-    </Reference>
-    <Reference Include="Neptuo.PresentationModels.TypeModels">
-      <HintPath>..\References\Neptuo.PresentationModels.TypeModels.dll</HintPath>
+    <Reference Include="Neptuo.Data.Entity">
+      <HintPath>..\References\Neptuo.Data.Entity.dll</HintPath>
     </Reference>
     <Reference Include="Neptuo.Templates.Components">
       <HintPath>..\References\Neptuo.Templates.Components.dll</HintPath>
+    </Reference>
+    <Reference Include="Neptuo.Templates.Components.Compilation">
+      <HintPath>..\References\Neptuo.Templates.Components.Compilation.dll</HintPath>
+    </Reference>
+    <Reference Include="Neptuo.Web">
+      <HintPath>..\References\Neptuo.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="Neptuo.Web.Routing">
+      <HintPath>..\References\Neptuo.Web.Routing.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -59,16 +66,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controllers\UserRoleController.cs" />
-    <Compile Include="DataSources\UserAccountDataSource.cs" />
-    <Compile Include="DataSources\UserAccountEditDataSource.cs" />
-    <Compile Include="DataSources\UserRoleDataSource.cs" />
-    <Compile Include="DataSources\UserRoleEditDataSource.cs" />
-    <Compile Include="Controllers\UserAccountController.cs" />
+    <Compile Include="AccountBootstrapTask.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ViewDataExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\TemplateEngine.Accounts.Data.Entity\TemplateEngine.Accounts.Data.Entity.csproj">
+      <Project>{6dd08b12-15bd-4eb3-8273-da33c59b71c3}</Project>
+      <Name>TemplateEngine.Accounts.Data.Entity</Name>
+    </ProjectReference>
     <ProjectReference Include="..\TemplateEngine.Accounts.Data\TemplateEngine.Accounts.Data.csproj">
       <Project>{81a511cb-e52e-4fd8-91fc-e0b3fa6eeb3e}</Project>
       <Name>TemplateEngine.Accounts.Data</Name>
@@ -77,21 +82,42 @@
       <Project>{bd9ba2ab-c026-4c9f-8605-920d24987756}</Project>
       <Name>TemplateEngine.Accounts.Shared</Name>
     </ProjectReference>
+    <ProjectReference Include="..\TemplateEngine.Accounts.Web\TemplateEngine.Accounts.Web.csproj">
+      <Project>{a67f64a5-c62d-491e-8aee-2b5766668b5e}</Project>
+      <Name>TemplateEngine.Accounts.Web</Name>
+    </ProjectReference>
     <ProjectReference Include="..\TemplateEngine.Accounts\TemplateEngine.Accounts.csproj">
       <Project>{36f0d8f9-1f8f-409c-9eda-c17644c4c0d8}</Project>
       <Name>TemplateEngine.Accounts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TemplateEngine.Backend\TemplateEngine.Backend.csproj">
+      <Project>{81bf7e93-6af0-4c89-98d5-c66903fedd1b}</Project>
+      <Name>TemplateEngine.Backend</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TemplateEngine.Data.Entity\TemplateEngine.Data.Entity.csproj">
+      <Project>{176a5378-45be-4132-99bf-2f24b94712a4}</Project>
+      <Name>TemplateEngine.Data.Entity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TemplateEngine.Data\TemplateEngine.Data.csproj">
+      <Project>{cfb337ac-4c28-4ccc-98db-860acea11bed}</Project>
+      <Name>TemplateEngine.Data</Name>
     </ProjectReference>
     <ProjectReference Include="..\TemplateEngine.Navigation\TemplateEngine.Navigation.csproj">
       <Project>{f16d8bc8-2191-498f-9950-dc8aa200b0ba}</Project>
       <Name>TemplateEngine.Navigation</Name>
     </ProjectReference>
+    <ProjectReference Include="..\TemplateEngine.Permissions\TemplateEngine.Permissions.csproj">
+      <Project>{e5c314ff-89ba-489e-bc2a-df8701a8c3f1}</Project>
+      <Name>TemplateEngine.Permissions</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TemplateEngine.Web.Compilation\TemplateEngine.Web.Compilation.csproj">
+      <Project>{f116d6f7-e47c-4c73-a802-4f61ba50857f}</Project>
+      <Name>TemplateEngine.Web.Compilation</Name>
+    </ProjectReference>
     <ProjectReference Include="..\TemplateEngine.Web\TemplateEngine.Web.csproj">
       <Project>{8095932d-ec0b-4990-90f1-951b7b5feeac}</Project>
       <Name>TemplateEngine.Web</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Models\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

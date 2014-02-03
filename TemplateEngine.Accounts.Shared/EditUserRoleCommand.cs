@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Neptuo.TemplateEngine.Accounts.Commands
+namespace Neptuo.TemplateEngine.Accounts
 {
     public class EditUserRoleCommand
     {
@@ -15,14 +15,14 @@ namespace Neptuo.TemplateEngine.Accounts.Commands
         public EditUserRoleCommand()
         { }
 
-        public EditUserRoleCommand(UserRole userRole)
-        {
-            if (userRole == null)
-                throw new ArgumentNullException("userRole");
+        //public EditUserRoleCommand(UserRole userRole)
+        //{
+        //    if (userRole == null)
+        //        throw new ArgumentNullException("userRole");
 
-            Key = userRole.Key;
-            Name = userRole.Name;
-            Description = userRole.Description;
-        }
+        //    Key = userRole.Key;
+        //    Name = userRole.Name;
+        //    Description = userRole.Description;
+        //}
     }
 }
