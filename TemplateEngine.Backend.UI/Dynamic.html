@@ -41,33 +41,50 @@
     <script src="/views.ashx"></script>
     <script>
 
+        function MapView(url) {
+            if (url == "/Accounts/UserList.aspx") {
+                return "~/Views/Accounts/UserList.view";
+            }
+            if (url == "/Accounts/RoleList.aspx") {
+                return "~/Views/Accounts/RoleList.view";
+            }
+            if (url == "/Home.aspx") {
+                return "~/Views/Home.view";
+            }
+        }
+
+        function OnLinkClick(e) {
+            $this = $(this);
+            var start = +new Date;
+
+            var newUrl = $this.attr('href');
+            var viewPath = MapView(newUrl)
+
+            var writer = new System.IO.StringWriter.ctor();
+            var view = viewActivator.CreateView(viewPath);
+            view.Setup(new Neptuo.Templates.BaseViewPage.ctor(objectBuilder.Resolve(Typeof(Neptuo.Templates.IComponentManager.ctor), null)), objectBuilder.Resolve(Typeof(Neptuo.Templates.IComponentManager.ctor), null), objectBuilder);
+            view.CreateControls();
+            view.Init();
+            view.Render(new Neptuo.Templates.HtmlTextWriter.ctor(writer));
+            view.Dispose();
+            $("#target").html(writer.toString()).find('a').click(OnLinkClick);
+
+            $("#measure").html((+new Date) - start + "ms");
+
+            history.pushState(viewPath, $this.html(), newUrl);
+            e.preventDefault();
+        }
+
         $(function () {
 
-            $("a").click(function (e) {
-                $this = $(this);
-                var start = +new Date;
-
-                var writer = new System.IO.StringWriter.ctor();
-                var view = viewActivator.CreateView($this.data('view'));
-                view.Setup(new Neptuo.Templates.BaseViewPage.ctor(objectBuilder.Resolve(Typeof(Neptuo.Templates.IComponentManager.ctor), null)), objectBuilder.Resolve(Typeof(Neptuo.Templates.IComponentManager.ctor), null), objectBuilder);
-                view.CreateControls();
-                view.Init();
-                view.Render(new Neptuo.Templates.HtmlTextWriter.ctor(writer));
-                view.Dispose();
-                $("#target").html(writer.toString());
-
-                $("#measure").html((+new Date) - start + "ms");
-
-                history.pushState($this.data('view'), $this.html(), $this.attr('href'));
-                e.preventDefault();
-            });
+            $("a").click(OnLinkClick);
         });
     </script>
 </head>
 <body>
     <div id="target"></div>
-    <a href="/Accounts/UserList.aspx" data-view="~/Views/Accounts/UserList.view">User accounts</a>
-    <a href="/Accounts/RoleList.aspx" data-view="~/Views/Accounts/RoleList.view">User Roles</a>
+    <a href="/Accounts/UserList.aspx">User accounts</a>
+    <a href="/Accounts/RoleList.aspx">User Roles</a>
     <div id="measure"></div>
 </body>
 </html>
