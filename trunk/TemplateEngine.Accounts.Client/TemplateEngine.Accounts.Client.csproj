@@ -53,6 +53,10 @@
     <Content Include="Neptuo.TemplateEngine.Accounts.Client.xml" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\TemplateEngine.Accounts.Shared\TemplateEngine.Accounts.Shared.csproj">
+      <Project>{bd9ba2ab-c026-4c9f-8605-920d24987756}</Project>
+      <Name>TemplateEngine.Accounts.Shared</Name>
+    </ProjectReference>
     <ProjectReference Include="..\TemplateEngine.Client\TemplateEngine.Client.csproj">
       <Project>{7df11e7b-e7fe-4ebb-a707-c592a230df54}</Project>
       <Name>TemplateEngine.Client</Name>

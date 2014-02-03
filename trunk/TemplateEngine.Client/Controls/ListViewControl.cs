@@ -36,18 +36,20 @@ namespace Neptuo.TemplateEngine.Web.Controls
 
             List<object> itemTemplates = new List<object>();
 
-            Source.GetData(PageIndex, PageSize, (data) => { });
-            TotalCount = Source.GetTotalCount();
+            bool isEmpty = true;
             DataContext.Push(this, "Template");
 
-            bool isEmpty = true;
-            //foreach (object model in models)
-            //{
-            //    isEmpty = false;
-            //    DataContext.Push(model);
-            //    itemTemplates.Add(InitTemplate(ItemTemplate));
-            //    DataContext.Pop();
-            //}
+            TotalCount = Source.GetTotalCount();
+            Source.GetData(PageIndex, PageSize, (models) =>
+            {
+                foreach (object model in models)
+                {
+                    isEmpty = false;
+                    DataContext.Push(model);
+                    itemTemplates.Add(InitTemplate(ItemTemplate));
+                    DataContext.Pop();
+                }
+            });
 
             if (isEmpty && EmptyTemplate != null)
             {
