@@ -24,6 +24,7 @@ namespace Neptuo.TemplateEngine.Web.Client
                 .RegisterInstance(new TemplateContentStorageStack())
                 .RegisterInstance(new DataContextStorage())
                 .RegisterInstance<IViewActivator>(new StaticViewActivator(container));
+
         }
     }
 
