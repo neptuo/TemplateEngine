@@ -120,12 +120,21 @@ var Neptuo$TemplateEngine$Web$Controls$ListViewControl =
             if (this.get_Source() == null)
                 throw $CreateException(new System.ArgumentException.ctor$$String$$String("Missing data source.", "Source"), new Error());
             var itemTemplates = new System.Collections.Generic.List$1.ctor(System.Object.ctor);
-            this.get_Source().GetData(this.get_PageIndex(), this.get_PageSize(), $CreateAnonymousDelegate(this, function (data)
-            {
-            }));
-            this.set_TotalCount(this.get_Source().GetTotalCount());
-            this.get_DataContext().Push(this, "Template");
             var isEmpty = true;
+            this.get_DataContext().Push(this, "Template");
+            this.set_TotalCount(this.get_Source().GetTotalCount());
+            this.get_Source().GetData(this.get_PageIndex(), this.get_PageSize(), $CreateAnonymousDelegate(this, function (models)
+            {
+                var $it1 = models.GetEnumerator();
+                while ($it1.MoveNext())
+                {
+                    var model = $it1.get_Current();
+                    isEmpty = false;
+                    this.get_DataContext().Push(model, null);
+                    itemTemplates.Add(this.InitTemplate(this.get_ItemTemplate()));
+                    this.get_DataContext().Pop(null);
+                }
+            }));
             if (isEmpty && this.get_EmptyTemplate() != null)
             {
                 this.set_Template(this.get_EmptyTemplate());
@@ -231,7 +240,15 @@ var Neptuo$TemplateEngine$Web$GeneratedViewBase =
         },
         CastValueTo$1: function (T, value)
         {
-            return Cast(value, T);
+            if (value == null)
+                return null;
+            var sourceType = value.GetType();
+            var targetType = Typeof(T);
+            if (sourceType == targetType)
+                return Cast(value, T);
+            if (targetType == Typeof(System.String.ctor))
+                return value.toString();
+            return value;
         }
     },
     ctors: [ {name: "ctor", parameters: []}],
