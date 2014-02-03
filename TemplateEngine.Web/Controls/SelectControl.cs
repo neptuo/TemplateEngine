@@ -9,6 +9,7 @@ namespace Neptuo.TemplateEngine.Web.Controls
 {
     public class SelectControl : ListViewControl, IHtmlAttributeCollection, IAttributeCollection
     {
+        public string Name { get; set; }
         public object Value { get; set; }
         public bool IsAddEmpty { get; set; }
         public HtmlAttributeCollection Attributes { get; private set; }

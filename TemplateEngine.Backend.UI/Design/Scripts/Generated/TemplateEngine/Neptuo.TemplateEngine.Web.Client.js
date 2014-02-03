@@ -249,6 +249,52 @@ var Neptuo$TemplateEngine$Accounts$Web$DataSources$UserAccountDataSource =
     IsAbstract: false
 };
 JsTypes.push(Neptuo$TemplateEngine$Accounts$Web$DataSources$UserAccountDataSource);
+var Neptuo$TemplateEngine$Accounts$Web$DataSources$UserRoleDataSource =
+{
+    fullname: "Neptuo.TemplateEngine.Accounts.Web.DataSources.UserRoleDataSource",
+    baseTypeName: "System.Object",
+    assemblyName: "Neptuo.TemplateEngine.Web.Client",
+    interfaceNames: ["Neptuo.TemplateEngine.Web.IListDataSource"],
+    Kind: "Class",
+    definition:
+    {
+        ctor: function ()
+        {
+            this._Key = null;
+            this._Name = null;
+            System.Object.ctor.call(this);
+        },
+        Key$$: "System.Nullable`1[[System.Int32]]",
+        get_Key: function ()
+        {
+            return this._Key;
+        },
+        set_Key: function (value)
+        {
+            this._Key = value;
+        },
+        Name$$: "System.String",
+        get_Name: function ()
+        {
+            return this._Name;
+        },
+        set_Name: function (value)
+        {
+            this._Name = value;
+        },
+        GetData: function (pageIndex, pageSize)
+        {
+            return new System.Collections.Generic.List$1.ctor(System.Object.ctor);
+        },
+        GetTotalCount: function ()
+        {
+            return 0;
+        }
+    },
+    ctors: [ {name: "ctor", parameters: []}],
+    IsAbstract: false
+};
+JsTypes.push(Neptuo$TemplateEngine$Accounts$Web$DataSources$UserRoleDataSource);
 var Neptuo$TemplateEngine$Web$GeneratedViewBase =
 {
     fullname: "Neptuo.TemplateEngine.Web.GeneratedViewBase",
@@ -285,7 +331,7 @@ var Neptuo$TemplateEngine$Web$Client$InitScript =
     {
         Init: function (container)
         {
-            Neptuo.DependencyContainerExtensions.RegisterInstance$1(Neptuo.TemplateEngine.Web.TemplateContentStorageStack.ctor, Neptuo.DependencyContainerExtensions.RegisterType$2$$IDependencyContainer(Neptuo.TemplateEngine.Web.IParameterProvider.ctor, Neptuo.TemplateEngine.Web.Client.ParameterProvider.ctor, Neptuo.DependencyContainerExtensions.RegisterType$2$$IDependencyContainer(Neptuo.TemplateEngine.Web.IParameterProviderFactory.ctor, Neptuo.TemplateEngine.Web.Client.ParameterProviderFactory.ctor, Neptuo.DependencyContainerExtensions.RegisterType$2$$IDependencyContainer(Neptuo.TemplateEngine.Web.ICurrentUrlProvider.ctor, Neptuo.TemplateEngine.Web.Client.UrlProvider.ctor, Neptuo.DependencyContainerExtensions.RegisterType$2$$IDependencyContainer(Neptuo.Templates.IVirtualUrlProvider.ctor, Neptuo.TemplateEngine.Web.Client.UrlProvider.ctor, Neptuo.DependencyContainerExtensions.RegisterType$2$$IDependencyContainer(Neptuo.TemplateEngine.IStackStorage$1.ctor, Neptuo.TemplateEngine.StackStorage$1.ctor, container))))), new Neptuo.TemplateEngine.Web.TemplateContentStorageStack.ctor());
+            Neptuo.DependencyContainerExtensions.RegisterInstance$1(Neptuo.TemplateEngine.Web.DataContextStorage.ctor, Neptuo.DependencyContainerExtensions.RegisterInstance$1(Neptuo.TemplateEngine.Web.TemplateContentStorageStack.ctor, Neptuo.DependencyContainerExtensions.RegisterType$2$$IDependencyContainer(Neptuo.TemplateEngine.Web.IValueConverterService.ctor, Neptuo.TemplateEngine.Web.ValueConverterService.ctor, Neptuo.DependencyContainerExtensions.RegisterType$2$$IDependencyContainer(Neptuo.TemplateEngine.Web.IBindingManager.ctor, Neptuo.TemplateEngine.Web.BindingManagerBase.ctor, Neptuo.DependencyContainerExtensions.RegisterType$2$$IDependencyContainer(Neptuo.TemplateEngine.Web.IParameterProvider.ctor, Neptuo.TemplateEngine.Web.Client.ParameterProvider.ctor, Neptuo.DependencyContainerExtensions.RegisterType$2$$IDependencyContainer(Neptuo.TemplateEngine.Web.IParameterProviderFactory.ctor, Neptuo.TemplateEngine.Web.Client.ParameterProviderFactory.ctor, Neptuo.DependencyContainerExtensions.RegisterType$2$$IDependencyContainer(Neptuo.TemplateEngine.Web.ICurrentUrlProvider.ctor, Neptuo.TemplateEngine.Web.Client.UrlProvider.ctor, Neptuo.DependencyContainerExtensions.RegisterType$2$$IDependencyContainer(Neptuo.Templates.IVirtualUrlProvider.ctor, Neptuo.TemplateEngine.Web.Client.UrlProvider.ctor, Neptuo.DependencyContainerExtensions.RegisterType$2$$IDependencyContainer(Neptuo.TemplateEngine.IStackStorage$1.ctor, Neptuo.TemplateEngine.StackStorage$1.ctor, container))))))), new Neptuo.TemplateEngine.Web.TemplateContentStorageStack.ctor()), new Neptuo.TemplateEngine.Web.DataContextStorage.ctor());
         }
     },
     assemblyName: "Neptuo.TemplateEngine.Web.Client",

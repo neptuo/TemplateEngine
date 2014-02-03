@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Web.Controls
 {
+    [Obsolete]
     public class StringTemplate : ViewTemplateBase
     {
         public string TemplateContent { get; set; }

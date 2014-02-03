@@ -20,18 +20,8 @@ namespace Neptuo.TemplateEngine.Web.Compilation.Parsers
             if (String.IsNullOrWhiteSpace(contentText))
                 return true;
 
-            IComponentCodeObject templateCodeObject = new TemplateCodeObject(typeof(ContentTemplate));
-            codeObject.Properties.Add(new SetPropertyDescriptor(propertyInfo, templateCodeObject));
-
-            IPropertyInfo targetProperty = new TypePropertyInfo(
-                typeof(ContentTemplateContent).GetProperty(
-                    TypeHelper.PropertyName<ContentTemplateContent, object>(t => t.Content)
-                )
-            );
-
             //Collection item
-            IPropertyDescriptor propertyDescriptor = new ListAddPropertyDescriptor(targetProperty);
-            templateCodeObject.Properties.Add(propertyDescriptor);
+            IPropertyDescriptor propertyDescriptor = TemplatePropertyHelper.PreparePropertyDescriptor(codeObject, propertyInfo);
             context.Parser.ProcessContent(context, propertyDescriptor, content);
 
             return true;
