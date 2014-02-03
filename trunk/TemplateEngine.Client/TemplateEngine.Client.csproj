@@ -8,7 +8,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Neptuo.TemplateEngine.Web</RootNamespace>
-    <AssemblyName>Neptuo.TemplateEngine.Web.Client</AssemblyName>
+    <AssemblyName>Neptuo.TemplateEngine.Client</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -47,11 +47,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controls\ControlBase.cs" />
-    <Compile Include="Controls\FileTemplate2.cs" />
-    <Compile Include="Controls\ITextControl.cs" />
     <Compile Include="Controls\ListViewControl.cs" />
-    <Compile Include="Controls\LiteralControl.cs" />
+    <Compile Include="DataSources\IListDataSource.cs" />
     <Compile Include="StaticViewActivator.cs" />
     <Compile Include="GeneratedViewBase.cs" />
     <Compile Include="InitScript.cs" />
@@ -61,10 +58,6 @@
     <SkcPlugin Include="Neptuo.SharpKit.Exugin.ExuginPlugin, Neptuo.SharpKit.Exugin">
       <InProject>false</InProject>
     </SkcPlugin>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Neptuo.TemplateEngine.Web.Client.js" />
-    <Content Include="Neptuo.TemplateEngine.Web.Client.xml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\TemplateEngine.PresentationModels\TemplateEngine.PresentationModels.csproj">
@@ -80,7 +73,10 @@
       <Name>TemplateEngine</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Neptuo.TemplateEngine.Client.js" />
+    <Content Include="Neptuo.TemplateEngine.Client.xml" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildBinPath)\SharpKit\5\SharpKit.Build.targets" />
 </Project>
