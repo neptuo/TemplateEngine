@@ -33,6 +33,9 @@
     <Reference Include="Neptuo">
       <HintPath>..\References\Neptuo.dll</HintPath>
     </Reference>
+    <Reference Include="Neptuo.ObjectBuilder.Client">
+      <HintPath>..\References\Neptuo.ObjectBuilder.Client.dll</HintPath>
+    </Reference>
     <Reference Include="Neptuo.Templates.Components">
       <HintPath>..\References\Neptuo.Templates.Components.dll</HintPath>
     </Reference>

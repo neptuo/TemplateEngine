@@ -34,10 +34,7 @@
     <script>
         JsRuntime.Start();
 
-        var objectBuilder = new Neptuo.ObjectBuilder.DependencyContainer.ctor();
-        Neptuo.DependencyContainerExtensions.RegisterInstance$1(Neptuo.Templates.IComponentManager.ctor, objectBuilder, new Neptuo.Templates.ComponentManager.ctor());
-        Neptuo.DependencyContainerExtensions.RegisterInstance$1(Neptuo.IDependencyProvider.ctor, objectBuilder, objectBuilder);
-        Neptuo.TemplateEngine.Web.InitScript.Init(objectBuilder);
+        Neptuo.TemplateEngine.Web.InitScript.Init();
 
     </script>
     <script src="/views.ashx"></script>
