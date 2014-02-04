@@ -75,6 +75,11 @@
     <Compile Include="Controls\NavigationControl.cs" />
     <Compile Include="Controls\NavigationItem.cs" />
     <Compile Include="Controls\OptionControl.cs" />
+    <Compile Include="ExtendedComponentManager.cs" />
+    <Compile Include="ExtendedHtmlTextWriter.cs" />
+    <Compile Include="IExtendedHtmlWriter.cs" />
+    <Compile Include="IPartialUpdateWriter.cs" />
+    <Compile Include="Observers\AjaxPartialObserver.cs" />
     <Compile Include="ViewServiceViewActivator.cs" />
     <Compile Include="IViewActivator.cs" />
     <Compile Include="ParameterProviderExtensions.cs" />

@@ -29,14 +29,15 @@ namespace Neptuo.TemplateEngine.Backend.Web
             if (!HandleUiEvents(context, container))
             {
                 BaseGeneratedView view = (BaseGeneratedView)GetViewService().Process(GetTemplateUrl(), viewServiceContext);
-                IComponentManager componentManager = GetComponentManager(viewServiceContext, context);
+                ExtendedComponentManager componentManager = GetComponentManager(viewServiceContext, context);
 
                 container.RegisterInstance<IComponentManager>(componentManager);
+                container.RegisterInstance<IPartialUpdateWriter>(componentManager);
 
                 view.Setup(new BaseViewPage(componentManager), componentManager, container);
                 view.CreateControls();
                 view.Init();
-                view.Render(new HtmlTextWriter(context.Response.Output));
+                view.Render(new ExtendedHtmlTextWriter(context.Response.Output));
                 view.Dispose();
             }
         }
@@ -75,9 +76,9 @@ namespace Neptuo.TemplateEngine.Backend.Web
             return false;
         }
 
-        protected virtual IComponentManager GetComponentManager(IViewServiceContext viewServiceContext, HttpContext httpContext)
+        protected virtual ExtendedComponentManager GetComponentManager(IViewServiceContext viewServiceContext, HttpContext httpContext)
         {
-            return new ComponentManager();
+            return new ExtendedComponentManager();
         }
 
         protected abstract string GetTemplateUrl();

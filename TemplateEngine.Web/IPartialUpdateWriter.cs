@@ -1,4 +1,4 @@
-﻿using Neptuo.Templates;
+﻿using Neptuo.Templates.Controls;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Web
 {
-    public interface IExtendedHtmlWriter : IHtmlWriter
+    public interface IPartialUpdateWriter
     {
-        IHtmlWriter AttributeOnNextTag(string name, string value);
+        void Update(string partialView, IControl control);
     }
 }
