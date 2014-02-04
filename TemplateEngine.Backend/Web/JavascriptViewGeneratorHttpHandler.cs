@@ -43,7 +43,7 @@ namespace Neptuo.TemplateEngine.Backend.Web
 
                 INaming classNaming = viewService.NamingService.FromContent(viewContent);
                 appendBuilder.AppendFormat(
-                    "Neptuo.TemplateEngine.Web.Client.StaticViewActivator.Add('{0}', Typeof(Neptuo.Templates.{1}.ctor));",
+                    "Neptuo.TemplateEngine.Web.StaticViewActivator.Add('{0}', Typeof(Neptuo.Templates.{1}.ctor));",
                     RelativePath(context.Server, viewPath, context.Request), //.Replace("~/Views/", "~/")
                     classNaming.ClassName
                 );
