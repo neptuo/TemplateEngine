@@ -7,8 +7,9 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Web.DataSources
 {
-    public interface IListDataSource
+    public interface IListResult
     {
-        void GetData(int? pageIndex, int? pageSize, Action<IListResult> callback);
+        IEnumerable Data { get; }
+        int TotalCount { get; }
     }
 }

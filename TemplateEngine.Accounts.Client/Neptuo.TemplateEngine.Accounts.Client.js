@@ -55,7 +55,7 @@ var Neptuo$TemplateEngine$Accounts$Web$DataSources$UserAccountDataSource =
         {
             setTimeout($CreateAnonymousDelegate(this, function ()
             {
-                callback((function ()
+                callback(new Neptuo.TemplateEngine.Web.DataSources.ListResult.ctor((function ()
                 {
                     var $v1 = new System.Collections.Generic.List$1.ctor(System.Object.ctor);
                     $v1.Add((function ()
@@ -147,7 +147,7 @@ var Neptuo$TemplateEngine$Accounts$Web$DataSources$UserAccountDataSource =
                         return $v12;
                     }).call(this));
                     return $v1;
-                }).call(this));
+                }).call(this), 11));
             }), 1000);
         }
     },
@@ -194,7 +194,7 @@ var Neptuo$TemplateEngine$Accounts$Web$DataSources$UserRoleDataSource =
         },
         GetData: function (pageIndex, pageSize, callback)
         {
-            callback(new System.Collections.Generic.List$1.ctor(System.Object.ctor));
+            callback(new Neptuo.TemplateEngine.Web.DataSources.ListResult.ctor(new System.Collections.Generic.List$1.ctor(System.Object.ctor), 0));
         }
     },
     ctors: [ {name: "ctor", parameters: []}],

@@ -50,6 +50,8 @@
   <ItemGroup>
     <Compile Include="Controls\ListViewControl.cs" />
     <Compile Include="DataSources\IListDataSource.cs" />
+    <Compile Include="DataSources\IListResult.cs" />
+    <Compile Include="DataSources\ListResult.cs" />
     <Compile Include="ExtendedHtmlTextWriter.cs" />
     <Compile Include="IExtendedHtmlWriter.cs" />
     <Compile Include="StaticViewActivator.cs" />
