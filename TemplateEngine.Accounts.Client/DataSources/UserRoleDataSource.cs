@@ -1,4 +1,5 @@
 ﻿using Neptuo.TemplateEngine.Web.DataSources;
+using SharpKit.Html;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -20,7 +21,36 @@ namespace Neptuo.TemplateEngine.Accounts.Web.DataSources
 
         public void GetData(int? pageIndex, int? pageSize, Action<IListResult> callback)
         {
-            callback(new ListResult(new List<object>(), 0));
+            HtmlContext.setTimeout(() =>
+            {
+                callback(new ListResult(new List<object>
+                {
+                    new UserRoleEditModel 
+                    {
+                        Key = 1,
+                        Name = "Administrators",
+                        Description = "System admins"
+                    },
+                    new UserRoleEditModel 
+                    {
+                        Key = 2,
+                        Name = "Everyone",
+                        Description = "Public (un-authenticated) users"
+                    },
+                    new UserRoleEditModel 
+                    {
+                        Key = 3,
+                        Name = "WebAdmins",
+                        Description = "Admins of web presentation"
+                    },
+                    new UserRoleEditModel 
+                    {
+                        Key = 4,
+                        Name = "Articles",
+                        Description = "Article writers"
+                    }
+                }, 4));
+            }, 500);
         }
     }
 }

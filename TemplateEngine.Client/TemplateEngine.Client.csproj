@@ -48,7 +48,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\DetailViewControl.cs" />
     <Compile Include="Controls\ListViewControl.cs" />
+    <Compile Include="DataSources\IDataSource.cs" />
     <Compile Include="DataSources\IListDataSource.cs" />
     <Compile Include="DataSources\IListResult.cs" />
     <Compile Include="DataSources\ListResult.cs" />

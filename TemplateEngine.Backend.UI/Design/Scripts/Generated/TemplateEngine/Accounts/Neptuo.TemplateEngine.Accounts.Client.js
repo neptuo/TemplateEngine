@@ -53,8 +53,8 @@ var Neptuo$TemplateEngine$Accounts$Web$DataSources$UserAccountDataSource =
         },
         GetData: function (pageIndex, pageSize, callback)
         {
-            //setTimeout($CreateAnonymousDelegate(this, function ()
-            //{
+            setTimeout($CreateAnonymousDelegate(this, function ()
+            {
                 callback(new Neptuo.TemplateEngine.Web.DataSources.ListResult.ctor((function ()
                 {
                     var $v1 = new System.Collections.Generic.List$1.ctor(System.Object.ctor);
@@ -148,13 +148,55 @@ var Neptuo$TemplateEngine$Accounts$Web$DataSources$UserAccountDataSource =
                     }).call(this));
                     return $v1;
                 }).call(this), 11));
-            //}), 1000);
+            }), 1000);
         }
     },
     ctors: [ {name: "ctor", parameters: []}],
     IsAbstract: false
 };
 JsTypes.push(Neptuo$TemplateEngine$Accounts$Web$DataSources$UserAccountDataSource);
+var Neptuo$TemplateEngine$Accounts$Web$DataSources$UserAccountEditDataSource =
+{
+    fullname: "Neptuo.TemplateEngine.Accounts.Web.DataSources.UserAccountEditDataSource",
+    baseTypeName: "System.Object",
+    assemblyName: "Neptuo.TemplateEngine.Accounts.Client",
+    interfaceNames: ["Neptuo.TemplateEngine.Web.DataSources.IDataSource"],
+    Kind: "Class",
+    definition:
+    {
+        ctor: function ()
+        {
+            this._Key = 0;
+            System.Object.ctor.call(this);
+        },
+        Key$$: "System.Int32",
+        get_Key: function ()
+        {
+            return this._Key;
+        },
+        set_Key: function (value)
+        {
+            this._Key = value;
+        },
+        GetItem: function (callback)
+        {
+            setTimeout($CreateAnonymousDelegate(this, function ()
+            {
+                callback((function ()
+                {
+                    var $v13 = new Neptuo.TemplateEngine.Accounts.UserAccountEditModel.ctor();
+                    $v13.set_Key(this.get_Key());
+                    $v13.set_Username("New user");
+                    $v13.set_IsEnabled(true);
+                    return $v13;
+                }).call(this));
+            }), 1000);
+        }
+    },
+    ctors: [ {name: "ctor", parameters: []}],
+    IsAbstract: false
+};
+JsTypes.push(Neptuo$TemplateEngine$Accounts$Web$DataSources$UserAccountEditDataSource);
 var Neptuo$TemplateEngine$Accounts$Web$DataSources$UserRoleDataSource =
 {
     fullname: "Neptuo.TemplateEngine.Accounts.Web.DataSources.UserRoleDataSource",
@@ -194,7 +236,46 @@ var Neptuo$TemplateEngine$Accounts$Web$DataSources$UserRoleDataSource =
         },
         GetData: function (pageIndex, pageSize, callback)
         {
-            callback(new Neptuo.TemplateEngine.Web.DataSources.ListResult.ctor(new System.Collections.Generic.List$1.ctor(System.Object.ctor), 0));
+            setTimeout($CreateAnonymousDelegate(this, function ()
+            {
+                callback(new Neptuo.TemplateEngine.Web.DataSources.ListResult.ctor((function ()
+                {
+                    var $v14 = new System.Collections.Generic.List$1.ctor(System.Object.ctor);
+                    $v14.Add((function ()
+                    {
+                        var $v15 = new Neptuo.TemplateEngine.Accounts.UserRoleEditModel.ctor();
+                        $v15.set_Key(1);
+                        $v15.set_Name("Administrators");
+                        $v15.set_Description("System admins");
+                        return $v15;
+                    }).call(this));
+                    $v14.Add((function ()
+                    {
+                        var $v16 = new Neptuo.TemplateEngine.Accounts.UserRoleEditModel.ctor();
+                        $v16.set_Key(2);
+                        $v16.set_Name("Everyone");
+                        $v16.set_Description("Public (un-authenticated) users");
+                        return $v16;
+                    }).call(this));
+                    $v14.Add((function ()
+                    {
+                        var $v17 = new Neptuo.TemplateEngine.Accounts.UserRoleEditModel.ctor();
+                        $v17.set_Key(3);
+                        $v17.set_Name("WebAdmins");
+                        $v17.set_Description("Admins of web presentation");
+                        return $v17;
+                    }).call(this));
+                    $v14.Add((function ()
+                    {
+                        var $v18 = new Neptuo.TemplateEngine.Accounts.UserRoleEditModel.ctor();
+                        $v18.set_Key(4);
+                        $v18.set_Name("Articles");
+                        $v18.set_Description("Article writers");
+                        return $v18;
+                    }).call(this));
+                    return $v14;
+                }).call(this), 4));
+            }), 500);
         }
     },
     ctors: [ {name: "ctor", parameters: []}],
