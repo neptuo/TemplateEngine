@@ -1,4 +1,5 @@
-﻿using Neptuo.Templates;
+﻿using Neptuo.TemplateEngine.Web.DataSources;
+using Neptuo.Templates;
 using SharpKit.jQuery;
 using System;
 using System.Collections;
@@ -46,12 +47,15 @@ namespace Neptuo.TemplateEngine.Web.Controls
             if (!isDataLoaded)
             {
                 isRenderCalled = true;
-                writer.Content("Loading data...");
+                
+                writer
+                    .Tag("div")
+                    .Attribute("data-partial", "listviewcontrol")
+                    .Content("Loading data...")
+                    .CloseFullTag();
+
                 return;
             }
-            //IExtendedHtmlWriter extendedWriter = writer as IExtendedHtmlWriter;
-            //if (extendedWriter != null)
-            //    extendedWriter.AttributeOnNextTag("data-partial", partialGuid);
 
             base.Render(writer);
 
@@ -80,7 +84,7 @@ namespace Neptuo.TemplateEngine.Web.Controls
 
         private bool isRenderCalled = false;
         private bool isDataLoaded = false;
-        private void OnLoadData(IEnumerable models)
+        private void OnLoadData(IListResult result)
         {
             isDataLoaded = true;
 
@@ -92,9 +96,8 @@ namespace Neptuo.TemplateEngine.Web.Controls
             List<object> itemTemplates = new List<object>();
 
             DataContext.Push(this, "Template");
-
-            TotalCount = Source.GetTotalCount();
-            foreach (object model in models)
+            TotalCount = result.TotalCount;
+            foreach (object model in result.Data)
             {
                 isEmpty = false;
                 DataContext.Push(model);
@@ -120,7 +123,6 @@ namespace Neptuo.TemplateEngine.Web.Controls
 
             base.OnInit();
             DataContext.Pop("Template");
-            DataContext.Pop("ListViewControlGuid");
 
             if (isRenderCalled)
             {
@@ -131,7 +133,7 @@ namespace Neptuo.TemplateEngine.Web.Controls
                 HtmlTextWriter writer = new HtmlTextWriter(stringWriter);
 
                 Render(writer);
-                target.html(stringWriter.ToString());
+                target.replaceWith(stringWriter.ToString());
             }
         }
     }

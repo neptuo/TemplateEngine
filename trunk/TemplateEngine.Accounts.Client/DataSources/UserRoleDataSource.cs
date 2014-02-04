@@ -18,9 +18,9 @@ namespace Neptuo.TemplateEngine.Accounts.Web.DataSources
             return 0;
         }
 
-        public void GetData(int? pageIndex, int? pageSize, Action<IEnumerable> callback)
+        public void GetData(int? pageIndex, int? pageSize, Action<IListResult> callback)
         {
-            callback(new List<object>());
+            callback(new ListResult(new List<object>(), 0));
         }
     }
 }

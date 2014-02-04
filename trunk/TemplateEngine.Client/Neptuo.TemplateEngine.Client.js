@@ -144,7 +144,7 @@ var Neptuo$TemplateEngine$Web$Controls$ListViewControl =
             if (!this.isDataLoaded)
             {
                 this.isRenderCalled = true;
-                writer.Content$$String("Loading data...");
+                writer.Tag("div").Attribute("data-partial", "listviewcontrol").Content$$String("Loading data...").CloseFullTag();
                 return;
             }
             Neptuo.TemplateEngine.Web.Controls.TemplateControl.commonPrototype.Render.call(this, writer);
@@ -158,14 +158,14 @@ var Neptuo$TemplateEngine$Web$Controls$ListViewControl =
                 writer.CloseFullTag();
             }
         },
-        OnLoadData: function (models)
+        OnLoadData: function (result)
         {
             this.isDataLoaded = true;
             var isEmpty = true;
             var itemTemplates = new System.Collections.Generic.List$1.ctor(System.Object.ctor);
             this.get_DataContext().Push(this, "Template");
-            this.set_TotalCount(this.get_Source().GetTotalCount());
-            var $it1 = models.GetEnumerator();
+            this.set_TotalCount(result.get_TotalCount());
+            var $it1 = result.get_Data().GetEnumerator();
             while ($it1.MoveNext())
             {
                 var model = $it1.get_Current();
@@ -193,14 +193,13 @@ var Neptuo$TemplateEngine$Web$Controls$ListViewControl =
             }
             Neptuo.TemplateEngine.Web.Controls.TemplateControl.commonPrototype.OnInit.call(this);
             this.get_DataContext().Pop("Template");
-            this.get_DataContext().Pop("ListViewControlGuid");
             if (this.isRenderCalled)
             {
                 var target = $("div[data-partial=listviewcontrol]");
                 var stringWriter = new System.IO.StringWriter.ctor();
                 var writer = new Neptuo.Templates.HtmlTextWriter.ctor(stringWriter);
                 this.Render(writer);
-                target.html(stringWriter.toString());
+                target.replaceWith(stringWriter.toString());
             }
         }
     },
@@ -210,6 +209,48 @@ var Neptuo$TemplateEngine$Web$Controls$ListViewControl =
 JsTypes.push(Neptuo$TemplateEngine$Web$Controls$ListViewControl);
 var Neptuo$TemplateEngine$Web$DataSources$IListDataSource = {fullname: "Neptuo.TemplateEngine.Web.DataSources.IListDataSource", baseTypeName: "System.Object", assemblyName: "Neptuo.TemplateEngine.Client", Kind: "Interface", ctors: [], IsAbstract: true};
 JsTypes.push(Neptuo$TemplateEngine$Web$DataSources$IListDataSource);
+var Neptuo$TemplateEngine$Web$DataSources$IListResult = {fullname: "Neptuo.TemplateEngine.Web.DataSources.IListResult", baseTypeName: "System.Object", assemblyName: "Neptuo.TemplateEngine.Client", Kind: "Interface", ctors: [], IsAbstract: true};
+JsTypes.push(Neptuo$TemplateEngine$Web$DataSources$IListResult);
+var Neptuo$TemplateEngine$Web$DataSources$ListResult =
+{
+    fullname: "Neptuo.TemplateEngine.Web.DataSources.ListResult",
+    baseTypeName: "System.Object",
+    assemblyName: "Neptuo.TemplateEngine.Client",
+    interfaceNames: ["Neptuo.TemplateEngine.Web.DataSources.IListResult"],
+    Kind: "Class",
+    definition:
+    {
+        ctor: function (data, totalCount)
+        {
+            this._Data = null;
+            this._TotalCount = 0;
+            System.Object.ctor.call(this);
+            this.set_Data(data);
+            this.set_TotalCount(totalCount);
+        },
+        Data$$: "System.Collections.IEnumerable",
+        get_Data: function ()
+        {
+            return this._Data;
+        },
+        set_Data: function (value)
+        {
+            this._Data = value;
+        },
+        TotalCount$$: "System.Int32",
+        get_TotalCount: function ()
+        {
+            return this._TotalCount;
+        },
+        set_TotalCount: function (value)
+        {
+            this._TotalCount = value;
+        }
+    },
+    ctors: [ {name: "ctor", parameters: ["System.Collections.IEnumerable", "System.Int32"]}],
+    IsAbstract: false
+};
+JsTypes.push(Neptuo$TemplateEngine$Web$DataSources$ListResult);
 var Neptuo$TemplateEngine$Web$ExtendedHtmlTextWriter =
 {
     fullname: "Neptuo.TemplateEngine.Web.ExtendedHtmlTextWriter",

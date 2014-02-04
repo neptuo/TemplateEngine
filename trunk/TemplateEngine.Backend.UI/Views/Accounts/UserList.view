@@ -54,58 +54,56 @@
             </Parameters>
         </ui:Link>-->
  
-        <div data-partial="listviewcontrol">
-            <ui:ListView PageIndex="{Request PageIndex}" PageSize="10"> 
-                <Source>
-                    <data:UserAccountDataSource Username="{Request Username}" Key="{Request Key}" />
-                </Source>
-                <Template>
-                    <div style="padding: 10px;">
-                        <table class="table table-condensed table-hover">
-                            <thead>
-                                <tr>
-                                    <th class="w50">ID</th>
-                                    <th>Username</th>
-                                    <th>Roles</th>
-                                    <th class="w200">Last logged in</th>
-                                    <th class="w150">Is enabled</th>
-                                    <th class="w150 action-list"></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <ui:TemplatePlaceholder Name="Content" />
-                            </tbody>
-                        </table>
-                    </div>
-                </Template>
-                <ItemTemplate>
-                    <tr>
-                        <td>
-                            <ui:Literal Text="{Binding Key}" />
-                        </td>
-                        <td>
-                            <ui:Literal Text="{Binding Username}" />
-                        </td>
-                        <td></td>
-                        <td></td>
-                        <td>
-                            <ui:Literal Text="{Binding IsEnabled}" />
-                        </td>
-                        <td class="action-list">
-                            <ui:Link form:Href="Accounts.User.Edit" Text="Upravit">
-                                <Parameters>
-                                    <ui:Parameter Name="UserKey" Value="{Binding Key}" />
-                                </Parameters>
-                            </ui:Link>
-                            <form method="post" action="{CurrentUrl}" html:Class="form-inline" html:Style="display: inline;">
-                                <ui:HiddenBox Name="UserKey" Text="{Binding Key}" />
-                                <ui:Button l:Text="Delete" ui:Event="Accounts/User/Delete" html:Class="btn btn-xs btn-danger" />
-                            </form>
-                        </td>
-                    </tr>
-                </ItemTemplate>
-            </ui:ListView>
-        </div>
+        <ui:ListView PageIndex="{Request PageIndex}" PageSize="10"> 
+            <Source>
+                <data:UserAccountDataSource Username="{Request Username}" Key="{Request Key}" />
+            </Source>
+            <Template>
+                <div style="padding: 10px;">
+                    <table class="table table-condensed table-hover">
+                        <thead>
+                            <tr>
+                                <th class="w50">ID</th>
+                                <th>Username</th>
+                                <th>Roles</th>
+                                <th class="w200">Last logged in</th>
+                                <th class="w150">Is enabled</th>
+                                <th class="w150 action-list"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <ui:TemplatePlaceholder Name="Content" />
+                        </tbody>
+                    </table>
+                </div>
+            </Template>
+            <ItemTemplate>
+                <tr>
+                    <td>
+                        <ui:Literal Text="{Binding Key}" />
+                    </td>
+                    <td>
+                        <ui:Literal Text="{Binding Username}" />
+                    </td>
+                    <td></td>
+                    <td></td>
+                    <td>
+                        <ui:Literal Text="{Binding IsEnabled}" />
+                    </td>
+                    <td class="action-list">
+                        <ui:Link form:Href="Accounts.User.Edit" Text="Upravit">
+                            <Parameters>
+                                <ui:Parameter Name="UserKey" Value="{Binding Key}" />
+                            </Parameters>
+                        </ui:Link>
+                        <form method="post" action="{CurrentUrl}" html:Class="form-inline" html:Style="display: inline;">
+                            <ui:HiddenBox Name="UserKey" Text="{Binding Key}" />
+                            <ui:Button l:Text="Delete" ui:Event="Accounts/User/Delete" html:Class="btn btn-xs btn-danger" />
+                        </form>
+                    </td>
+                </tr>
+            </ItemTemplate>
+        </ui:ListView>
 
     </ui:TemplateContent>    
 </ui:AdminLayout>
