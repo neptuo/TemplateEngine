@@ -43,6 +43,78 @@ if (typeof($CreateDelegate)=='undefined'){
 }
 if (typeof(JsTypes) == "undefined")
     var JsTypes = [];
+var Neptuo$TemplateEngine$Web$Controls$DetailViewControl =
+{
+    fullname: "Neptuo.TemplateEngine.Web.Controls.DetailViewControl",
+    baseTypeName: "Neptuo.TemplateEngine.Web.Controls.TemplateControl",
+    assemblyName: "Neptuo.TemplateEngine.Client",
+    Kind: "Class",
+    definition:
+    {
+        ctor: function (componentManager, storage, dataContext)
+        {
+            this.isRenderCalled = false;
+            this.isDataLoaded = false;
+            this._Source = null;
+            this._DataContext = null;
+            Neptuo.TemplateEngine.Web.Controls.TemplateControl.ctor.call(this, componentManager, storage);
+            this.set_DataContext(dataContext);
+        },
+        Source$$: "Neptuo.TemplateEngine.Web.DataSources.IDataSource",
+        get_Source: function ()
+        {
+            return this._Source;
+        },
+        set_Source: function (value)
+        {
+            this._Source = value;
+        },
+        DataContext$$: "Neptuo.TemplateEngine.Web.DataContextStorage",
+        get_DataContext: function ()
+        {
+            return this._DataContext;
+        },
+        set_DataContext: function (value)
+        {
+            this._DataContext = value;
+        },
+        OnInit: function ()
+        {
+            this.InitComponent(this.get_Source());
+            if (this.get_Source() == null)
+                throw $CreateException(new System.InvalidOperationException.ctor$$String("Missing data source."), new Error());
+            this.get_Source().GetItem($CreateDelegate(this, this.OnLoadData));
+        },
+        Render: function (writer)
+        {
+            if (!this.isDataLoaded)
+            {
+                this.isRenderCalled = true;
+                writer.Tag("div").Attribute("data-partial", "detailviewcontrol").Content$$String("Loading data...").CloseFullTag();
+                return;
+            }
+            Neptuo.TemplateEngine.Web.Controls.TemplateControl.commonPrototype.Render.call(this, writer);
+        },
+        OnLoadData: function (data)
+        {
+            this.isDataLoaded = true;
+            this.get_DataContext().Push(data, null);
+            Neptuo.TemplateEngine.Web.Controls.TemplateControl.commonPrototype.OnInit.call(this);
+            this.get_DataContext().Pop(null);
+            if (this.isRenderCalled)
+            {
+                var target = $("div[data-partial=detailviewcontrol]");
+                var stringWriter = new System.IO.StringWriter.ctor();
+                var writer = new Neptuo.Templates.HtmlTextWriter.ctor(stringWriter);
+                this.Render(writer);
+                target.replaceWith(stringWriter.toString());
+            }
+        }
+    },
+    ctors: [ {name: "ctor", parameters: ["Neptuo.Templates.IComponentManager", "Neptuo.TemplateEngine.Web.TemplateContentStorageStack", "Neptuo.TemplateEngine.Web.DataContextStorage"]}],
+    IsAbstract: false
+};
+JsTypes.push(Neptuo$TemplateEngine$Web$Controls$DetailViewControl);
 var Neptuo$TemplateEngine$Web$Controls$ListViewControl =
 {
     fullname: "Neptuo.TemplateEngine.Web.Controls.ListViewControl",
@@ -207,6 +279,8 @@ var Neptuo$TemplateEngine$Web$Controls$ListViewControl =
     IsAbstract: false
 };
 JsTypes.push(Neptuo$TemplateEngine$Web$Controls$ListViewControl);
+var Neptuo$TemplateEngine$Web$DataSources$IDataSource = {fullname: "Neptuo.TemplateEngine.Web.DataSources.IDataSource", baseTypeName: "System.Object", assemblyName: "Neptuo.TemplateEngine.Client", Kind: "Interface", ctors: [], IsAbstract: true};
+JsTypes.push(Neptuo$TemplateEngine$Web$DataSources$IDataSource);
 var Neptuo$TemplateEngine$Web$DataSources$IListDataSource = {fullname: "Neptuo.TemplateEngine.Web.DataSources.IListDataSource", baseTypeName: "System.Object", assemblyName: "Neptuo.TemplateEngine.Client", Kind: "Interface", ctors: [], IsAbstract: true};
 JsTypes.push(Neptuo$TemplateEngine$Web$DataSources$IListDataSource);
 var Neptuo$TemplateEngine$Web$DataSources$IListResult = {fullname: "Neptuo.TemplateEngine.Web.DataSources.IListResult", baseTypeName: "System.Object", assemblyName: "Neptuo.TemplateEngine.Client", Kind: "Interface", ctors: [], IsAbstract: true};
