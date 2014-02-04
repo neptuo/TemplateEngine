@@ -6,4 +6,8 @@
   <Type Target="Neptuo.TemplateEngine.Web.Controls.ListViewControl" Export="False" />
   <Type Target="Neptuo.TemplateEngine.Web.RequestParameterProvider" Export="False" />
   <Type Target="Neptuo.TemplateEngine.Web.ViewServiceViewActivator" Export="False" />
+
+  <Type Target="Neptuo.TemplateEngine.Web.Controls.SelectControl" Export="False" />
+  <Type Target="Neptuo.TemplateEngine.Web.Controls.DetailViewControl" Export="False" />
+  <Type Target="Neptuo.TemplateEngine.Web.Controls.ListViewControl" Export="False" />
 </Exugin>

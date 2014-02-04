@@ -50,6 +50,7 @@
   <ItemGroup>
     <Compile Include="Controls\DetailViewControl.cs" />
     <Compile Include="Controls\ListViewControl.cs" />
+    <Compile Include="Controls\SelectControl.cs" />
     <Compile Include="DataSources\IDataSource.cs" />
     <Compile Include="DataSources\IListDataSource.cs" />
     <Compile Include="DataSources\IListResult.cs" />

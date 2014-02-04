@@ -23,6 +23,7 @@ namespace Neptuo.TemplateEngine.Web.Client
                 .RegisterType<IValueConverterService, ValueConverterService>()
                 .RegisterInstance(new TemplateContentStorageStack())
                 .RegisterInstance(new DataContextStorage())
+                .RegisterInstance<IGuidProvider>(new SequenceGuidProvider("guid", 1))
                 .RegisterInstance<IViewActivator>(new StaticViewActivator(container));
 
         }

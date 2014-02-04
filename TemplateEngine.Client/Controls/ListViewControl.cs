@@ -20,13 +20,16 @@ namespace Neptuo.TemplateEngine.Web.Controls
         public int? PageIndex { get; set; }
         protected DataContextStorage DataContext { get; private set; }
         protected int TotalCount { get; private set; }
+        protected IGuidProvider GuidProvider { get; private set; }
+        private string partialElementGuid;
 
         private string partialGuid;
 
-        public ListViewControl(IComponentManager componentManager, TemplateContentStorageStack storage, DataContextStorage dataContext)
+        public ListViewControl(IComponentManager componentManager, TemplateContentStorageStack storage, DataContextStorage dataContext, IGuidProvider guidProvider)
             : base(componentManager, storage) 
         {
             DataContext = dataContext;
+            GuidProvider = guidProvider;
         }
 
         public override void OnInit()
@@ -40,6 +43,7 @@ namespace Neptuo.TemplateEngine.Web.Controls
                 throw new ArgumentException("Missing data source.", "Source");
 
             Source.GetData(PageIndex, PageSize, OnLoadData);
+            partialElementGuid = GuidProvider.Next();
         }
 
         public override void Render(IHtmlWriter writer)
@@ -50,7 +54,7 @@ namespace Neptuo.TemplateEngine.Web.Controls
                 
                 writer
                     .Tag("div")
-                    .Attribute("data-partial", "listviewcontrol")
+                    .Attribute("data-partial", partialElementGuid)
                     .Content("Loading data...")
                     .CloseFullTag();
 
@@ -127,7 +131,7 @@ namespace Neptuo.TemplateEngine.Web.Controls
             if (isRenderCalled)
             {
                 //TODO: Render to temp element...
-                jQuery target = new jQuery("div[data-partial=listviewcontrol]");
+                jQuery target = new jQuery("div[data-partial=" + partialElementGuid + "]");
 
                 StringWriter stringWriter = new StringWriter();
                 HtmlTextWriter writer = new HtmlTextWriter(stringWriter);
