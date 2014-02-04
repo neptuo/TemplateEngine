@@ -1,4 +1,7 @@
-﻿using Neptuo.TemplateEngine.PresentationModels;
+﻿using Neptuo.Lifetimes;
+using Neptuo.ObjectBuilder;
+using Neptuo.ObjectBuilder.Lifetimes.Mapping;
+using Neptuo.TemplateEngine.PresentationModels;
 using Neptuo.Templates;
 using SharpKit.Html;
 using SharpKit.jQuery;
@@ -16,9 +19,13 @@ namespace Neptuo.TemplateEngine.Web
         private static IDependencyContainer objectBuilder;
         private static IViewActivator viewActivator;
 
-        public static void Init(IDependencyContainer objectBuilder)
+        private static IDependencyContainer CreateDependencyContainer()
         {
-            (InitScript.objectBuilder = objectBuilder)
+            DependencyContainer container = new DependencyContainer();
+            container
+                .Map(typeof(SingletonLifetime), new SingletonLifetimeMapper());
+
+            container
                 .RegisterType<IStackStorage<IViewStorage>, StackStorage<IViewStorage>>()
                 .RegisterType<IVirtualUrlProvider, UrlProvider>()
                 .RegisterType<ICurrentUrlProvider, UrlProvider>()
@@ -29,8 +36,14 @@ namespace Neptuo.TemplateEngine.Web
                 .RegisterInstance(new TemplateContentStorageStack())
                 .RegisterInstance(new DataContextStorage())
                 .RegisterInstance<IGuidProvider>(new SequenceGuidProvider("guid", 1))
-                .RegisterInstance<IViewActivator>(new StaticViewActivator(objectBuilder));
+                .RegisterType<IViewActivator, StaticViewActivator>(new SingletonLifetime());
 
+            return container;
+        }
+
+        public static void Init()
+        {
+            objectBuilder = CreateDependencyContainer();
             viewActivator = objectBuilder.Resolve<IViewActivator>();
 
             new jQuery(() => { new jQuery("body").@delegate("a", "click", OnLinkClick); });
@@ -85,9 +98,12 @@ namespace Neptuo.TemplateEngine.Web
 
             HtmlContext.history.pushState(viewPath, link.html(), newUrl);
 
+            IDependencyContainer container = objectBuilder.CreateChildContainer();
+            container.RegisterInstance<IComponentManager>(new ComponentManager());
+
             StringWriter writer = new StringWriter();
             var view = viewActivator.CreateView(viewPath);
-            view.Setup(new BaseViewPage(objectBuilder.Resolve<IComponentManager>()), objectBuilder.Resolve<IComponentManager>(), objectBuilder);
+            view.Setup(new BaseViewPage(container.Resolve<IComponentManager>()), container.Resolve<IComponentManager>(), container);
             view.CreateControls();
             view.Init();
             view.Render(new ExtendedHtmlTextWriter(writer));
