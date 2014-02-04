@@ -51,14 +51,17 @@ var Neptuo$TemplateEngine$Web$Controls$DetailViewControl =
     Kind: "Class",
     definition:
     {
-        ctor: function (componentManager, storage, dataContext)
+        ctor: function (componentManager, storage, dataContext, guidProvider)
         {
+            this.partialElementGuid = null;
             this.isRenderCalled = false;
             this.isDataLoaded = false;
             this._Source = null;
             this._DataContext = null;
+            this._GuidProvider = null;
             Neptuo.TemplateEngine.Web.Controls.TemplateControl.ctor.call(this, componentManager, storage);
             this.set_DataContext(dataContext);
+            this.set_GuidProvider(guidProvider);
         },
         Source$$: "Neptuo.TemplateEngine.Web.DataSources.IDataSource",
         get_Source: function ()
@@ -78,19 +81,29 @@ var Neptuo$TemplateEngine$Web$Controls$DetailViewControl =
         {
             this._DataContext = value;
         },
+        GuidProvider$$: "Neptuo.IGuidProvider",
+        get_GuidProvider: function ()
+        {
+            return this._GuidProvider;
+        },
+        set_GuidProvider: function (value)
+        {
+            this._GuidProvider = value;
+        },
         OnInit: function ()
         {
             this.InitComponent(this.get_Source());
             if (this.get_Source() == null)
                 throw $CreateException(new System.InvalidOperationException.ctor$$String("Missing data source."), new Error());
             this.get_Source().GetItem($CreateDelegate(this, this.OnLoadData));
+            this.partialElementGuid = this.get_GuidProvider().Next();
         },
         Render: function (writer)
         {
             if (!this.isDataLoaded)
             {
                 this.isRenderCalled = true;
-                writer.Tag("div").Attribute("data-partial", "detailviewcontrol").Content$$String("Loading data...").CloseFullTag();
+                writer.Tag("div").Attribute("data-partial", this.partialElementGuid).Content$$String("Loading data...").CloseFullTag();
                 return;
             }
             Neptuo.TemplateEngine.Web.Controls.TemplateControl.commonPrototype.Render.call(this, writer);
@@ -103,7 +116,7 @@ var Neptuo$TemplateEngine$Web$Controls$DetailViewControl =
             this.get_DataContext().Pop(null);
             if (this.isRenderCalled)
             {
-                var target = $("div[data-partial=detailviewcontrol]");
+                var target = $("div[data-partial=" + this.partialElementGuid + "]");
                 var stringWriter = new System.IO.StringWriter.ctor();
                 var writer = new Neptuo.Templates.HtmlTextWriter.ctor(stringWriter);
                 this.Render(writer);
@@ -111,7 +124,7 @@ var Neptuo$TemplateEngine$Web$Controls$DetailViewControl =
             }
         }
     },
-    ctors: [ {name: "ctor", parameters: ["Neptuo.Templates.IComponentManager", "Neptuo.TemplateEngine.Web.TemplateContentStorageStack", "Neptuo.TemplateEngine.Web.DataContextStorage"]}],
+    ctors: [ {name: "ctor", parameters: ["Neptuo.Templates.IComponentManager", "Neptuo.TemplateEngine.Web.TemplateContentStorageStack", "Neptuo.TemplateEngine.Web.DataContextStorage", "Neptuo.IGuidProvider"]}],
     IsAbstract: false
 };
 JsTypes.push(Neptuo$TemplateEngine$Web$Controls$DetailViewControl);
@@ -123,8 +136,9 @@ var Neptuo$TemplateEngine$Web$Controls$ListViewControl =
     Kind: "Class",
     definition:
     {
-        ctor: function (componentManager, storage, dataContext)
+        ctor: function (componentManager, storage, dataContext, guidProvider)
         {
+            this.partialElementGuid = null;
             this.partialGuid = null;
             this.isRenderCalled = false;
             this.isDataLoaded = false;
@@ -135,8 +149,10 @@ var Neptuo$TemplateEngine$Web$Controls$ListViewControl =
             this._PageIndex = null;
             this._DataContext = null;
             this._TotalCount = 0;
+            this._GuidProvider = null;
             Neptuo.TemplateEngine.Web.Controls.TemplateControl.ctor.call(this, componentManager, storage);
             this.set_DataContext(dataContext);
+            this.set_GuidProvider(guidProvider);
         },
         Source$$: "Neptuo.TemplateEngine.Web.DataSources.IListDataSource",
         get_Source: function ()
@@ -201,6 +217,15 @@ var Neptuo$TemplateEngine$Web$Controls$ListViewControl =
         {
             this._TotalCount = value;
         },
+        GuidProvider$$: "Neptuo.IGuidProvider",
+        get_GuidProvider: function ()
+        {
+            return this._GuidProvider;
+        },
+        set_GuidProvider: function (value)
+        {
+            this._GuidProvider = value;
+        },
         OnInit: function ()
         {
             this.InitComponent(this.get_ItemTemplate());
@@ -210,13 +235,14 @@ var Neptuo$TemplateEngine$Web$Controls$ListViewControl =
             if (this.get_Source() == null)
                 throw $CreateException(new System.ArgumentException.ctor$$String$$String("Missing data source.", "Source"), new Error());
             this.get_Source().GetData(this.get_PageIndex(), this.get_PageSize(), $CreateDelegate(this, this.OnLoadData));
+            this.partialElementGuid = this.get_GuidProvider().Next();
         },
         Render: function (writer)
         {
             if (!this.isDataLoaded)
             {
                 this.isRenderCalled = true;
-                writer.Tag("div").Attribute("data-partial", "listviewcontrol").Content$$String("Loading data...").CloseFullTag();
+                writer.Tag("div").Attribute("data-partial", this.partialElementGuid).Content$$String("Loading data...").CloseFullTag();
                 return;
             }
             Neptuo.TemplateEngine.Web.Controls.TemplateControl.commonPrototype.Render.call(this, writer);
@@ -267,7 +293,7 @@ var Neptuo$TemplateEngine$Web$Controls$ListViewControl =
             this.get_DataContext().Pop("Template");
             if (this.isRenderCalled)
             {
-                var target = $("div[data-partial=listviewcontrol]");
+                var target = $("div[data-partial=" + this.partialElementGuid + "]");
                 var stringWriter = new System.IO.StringWriter.ctor();
                 var writer = new Neptuo.Templates.HtmlTextWriter.ctor(stringWriter);
                 this.Render(writer);
@@ -275,10 +301,73 @@ var Neptuo$TemplateEngine$Web$Controls$ListViewControl =
             }
         }
     },
-    ctors: [ {name: "ctor", parameters: ["Neptuo.Templates.IComponentManager", "Neptuo.TemplateEngine.Web.TemplateContentStorageStack", "Neptuo.TemplateEngine.Web.DataContextStorage"]}],
+    ctors: [ {name: "ctor", parameters: ["Neptuo.Templates.IComponentManager", "Neptuo.TemplateEngine.Web.TemplateContentStorageStack", "Neptuo.TemplateEngine.Web.DataContextStorage", "Neptuo.IGuidProvider"]}],
     IsAbstract: false
 };
 JsTypes.push(Neptuo$TemplateEngine$Web$Controls$ListViewControl);
+var Neptuo$TemplateEngine$Web$Controls$SelectControl =
+{
+    fullname: "Neptuo.TemplateEngine.Web.Controls.SelectControl",
+    baseTypeName: "Neptuo.TemplateEngine.Web.Controls.ListViewControl",
+    assemblyName: "Neptuo.TemplateEngine.Client",
+    interfaceNames: ["Neptuo.TemplateEngine.Web.Controls.IHtmlAttributeCollection", "Neptuo.Templates.IAttributeCollection"],
+    Kind: "Class",
+    definition:
+    {
+        ctor: function (componentManager, storage, dataContext, guidProvider)
+        {
+            this._Name = null;
+            this._Value = null;
+            this._IsAddEmpty = false;
+            this._Attributes = null;
+            Neptuo.TemplateEngine.Web.Controls.ListViewControl.ctor.call(this, componentManager, storage, dataContext, guidProvider);
+            this.set_Attributes(new Neptuo.Templates.HtmlAttributeCollection.ctor());
+        },
+        Name$$: "System.String",
+        get_Name: function ()
+        {
+            return this._Name;
+        },
+        set_Name: function (value)
+        {
+            this._Name = value;
+        },
+        Value$$: "System.Object",
+        get_Value: function ()
+        {
+            return this._Value;
+        },
+        set_Value: function (value)
+        {
+            this._Value = value;
+        },
+        IsAddEmpty$$: "System.Boolean",
+        get_IsAddEmpty: function ()
+        {
+            return this._IsAddEmpty;
+        },
+        set_IsAddEmpty: function (value)
+        {
+            this._IsAddEmpty = value;
+        },
+        Attributes$$: "Neptuo.Templates.HtmlAttributeCollection",
+        get_Attributes: function ()
+        {
+            return this._Attributes;
+        },
+        set_Attributes: function (value)
+        {
+            this._Attributes = value;
+        },
+        SetAttribute: function (name, value)
+        {
+            this.get_Attributes().set_Item$$TKey(name, value);
+        }
+    },
+    ctors: [ {name: "ctor", parameters: ["Neptuo.Templates.IComponentManager", "Neptuo.TemplateEngine.Web.TemplateContentStorageStack", "Neptuo.TemplateEngine.Web.DataContextStorage", "Neptuo.IGuidProvider"]}],
+    IsAbstract: false
+};
+JsTypes.push(Neptuo$TemplateEngine$Web$Controls$SelectControl);
 var Neptuo$TemplateEngine$Web$DataSources$IDataSource = {fullname: "Neptuo.TemplateEngine.Web.DataSources.IDataSource", baseTypeName: "System.Object", assemblyName: "Neptuo.TemplateEngine.Client", Kind: "Interface", ctors: [], IsAbstract: true};
 JsTypes.push(Neptuo$TemplateEngine$Web$DataSources$IDataSource);
 var Neptuo$TemplateEngine$Web$DataSources$IListDataSource = {fullname: "Neptuo.TemplateEngine.Web.DataSources.IListDataSource", baseTypeName: "System.Object", assemblyName: "Neptuo.TemplateEngine.Client", Kind: "Interface", ctors: [], IsAbstract: true};
@@ -478,7 +567,7 @@ var Neptuo$TemplateEngine$Web$Client$InitScript =
     {
         Init: function (container)
         {
-            Neptuo.DependencyContainerExtensions.RegisterInstance$1(Neptuo.TemplateEngine.Web.IViewActivator.ctor, Neptuo.DependencyContainerExtensions.RegisterInstance$1(Neptuo.TemplateEngine.Web.DataContextStorage.ctor, Neptuo.DependencyContainerExtensions.RegisterInstance$1(Neptuo.TemplateEngine.Web.TemplateContentStorageStack.ctor, Neptuo.DependencyContainerExtensions.RegisterType$2$$IDependencyContainer(Neptuo.TemplateEngine.Web.IValueConverterService.ctor, Neptuo.TemplateEngine.Web.ValueConverterService.ctor, Neptuo.DependencyContainerExtensions.RegisterType$2$$IDependencyContainer(Neptuo.TemplateEngine.Web.IBindingManager.ctor, Neptuo.TemplateEngine.Web.BindingManagerBase.ctor, Neptuo.DependencyContainerExtensions.RegisterType$2$$IDependencyContainer(Neptuo.TemplateEngine.Web.IParameterProvider.ctor, Neptuo.TemplateEngine.Web.Client.ParameterProvider.ctor, Neptuo.DependencyContainerExtensions.RegisterType$2$$IDependencyContainer(Neptuo.TemplateEngine.Web.IParameterProviderFactory.ctor, Neptuo.TemplateEngine.Web.Client.ParameterProviderFactory.ctor, Neptuo.DependencyContainerExtensions.RegisterType$2$$IDependencyContainer(Neptuo.TemplateEngine.Web.ICurrentUrlProvider.ctor, Neptuo.TemplateEngine.Web.Client.UrlProvider.ctor, Neptuo.DependencyContainerExtensions.RegisterType$2$$IDependencyContainer(Neptuo.Templates.IVirtualUrlProvider.ctor, Neptuo.TemplateEngine.Web.Client.UrlProvider.ctor, Neptuo.DependencyContainerExtensions.RegisterType$2$$IDependencyContainer(Neptuo.TemplateEngine.IStackStorage$1.ctor, Neptuo.TemplateEngine.StackStorage$1.ctor, container))))))), new Neptuo.TemplateEngine.Web.TemplateContentStorageStack.ctor()), new Neptuo.TemplateEngine.Web.DataContextStorage.ctor()), new Neptuo.TemplateEngine.Web.Client.StaticViewActivator.ctor(container));
+            Neptuo.DependencyContainerExtensions.RegisterInstance$1(Neptuo.TemplateEngine.Web.IViewActivator.ctor, Neptuo.DependencyContainerExtensions.RegisterInstance$1(Neptuo.IGuidProvider.ctor, Neptuo.DependencyContainerExtensions.RegisterInstance$1(Neptuo.TemplateEngine.Web.DataContextStorage.ctor, Neptuo.DependencyContainerExtensions.RegisterInstance$1(Neptuo.TemplateEngine.Web.TemplateContentStorageStack.ctor, Neptuo.DependencyContainerExtensions.RegisterType$2$$IDependencyContainer(Neptuo.TemplateEngine.Web.IValueConverterService.ctor, Neptuo.TemplateEngine.Web.ValueConverterService.ctor, Neptuo.DependencyContainerExtensions.RegisterType$2$$IDependencyContainer(Neptuo.TemplateEngine.Web.IBindingManager.ctor, Neptuo.TemplateEngine.Web.BindingManagerBase.ctor, Neptuo.DependencyContainerExtensions.RegisterType$2$$IDependencyContainer(Neptuo.TemplateEngine.Web.IParameterProvider.ctor, Neptuo.TemplateEngine.Web.Client.ParameterProvider.ctor, Neptuo.DependencyContainerExtensions.RegisterType$2$$IDependencyContainer(Neptuo.TemplateEngine.Web.IParameterProviderFactory.ctor, Neptuo.TemplateEngine.Web.Client.ParameterProviderFactory.ctor, Neptuo.DependencyContainerExtensions.RegisterType$2$$IDependencyContainer(Neptuo.TemplateEngine.Web.ICurrentUrlProvider.ctor, Neptuo.TemplateEngine.Web.Client.UrlProvider.ctor, Neptuo.DependencyContainerExtensions.RegisterType$2$$IDependencyContainer(Neptuo.Templates.IVirtualUrlProvider.ctor, Neptuo.TemplateEngine.Web.Client.UrlProvider.ctor, Neptuo.DependencyContainerExtensions.RegisterType$2$$IDependencyContainer(Neptuo.TemplateEngine.IStackStorage$1.ctor, Neptuo.TemplateEngine.StackStorage$1.ctor, container))))))), new Neptuo.TemplateEngine.Web.TemplateContentStorageStack.ctor()), new Neptuo.TemplateEngine.Web.DataContextStorage.ctor()), new Neptuo.SequenceGuidProvider.ctor("guid", 1)), new Neptuo.TemplateEngine.Web.Client.StaticViewActivator.ctor(container));
         }
     },
     assemblyName: "Neptuo.TemplateEngine.Client",

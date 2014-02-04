@@ -13,11 +13,14 @@ namespace Neptuo.TemplateEngine.Web.Controls
     {
         public DataSources.IDataSource Source { get; set; }
         protected DataContextStorage DataContext { get; private set; }
+        protected IGuidProvider GuidProvider { get; private set; }
+        private string partialElementGuid;
 
-        public DetailViewControl(IComponentManager componentManager, TemplateContentStorageStack storage, DataContextStorage dataContext)
+        public DetailViewControl(IComponentManager componentManager, TemplateContentStorageStack storage, DataContextStorage dataContext, IGuidProvider guidProvider)
             : base(componentManager, storage)
         {
             DataContext = dataContext;
+            GuidProvider = guidProvider;
         }
 
         public override void OnInit()
@@ -28,6 +31,7 @@ namespace Neptuo.TemplateEngine.Web.Controls
                 throw new InvalidOperationException("Missing data source.");
 
             Source.GetItem(OnLoadData);
+            partialElementGuid = GuidProvider.Next();
         }
 
         private bool isRenderCalled = false;
@@ -40,7 +44,7 @@ namespace Neptuo.TemplateEngine.Web.Controls
                 
                 writer
                     .Tag("div")
-                    .Attribute("data-partial", "detailviewcontrol")
+                    .Attribute("data-partial", partialElementGuid)
                     .Content("Loading data...")
                     .CloseFullTag();
 
@@ -61,7 +65,7 @@ namespace Neptuo.TemplateEngine.Web.Controls
             if (isRenderCalled)
             {
                 //TODO: Render to temp element...
-                jQuery target = new jQuery("div[data-partial=detailviewcontrol]");
+                jQuery target = new jQuery("div[data-partial=" + partialElementGuid + "]");
 
                 StringWriter stringWriter = new StringWriter();
                 HtmlTextWriter writer = new HtmlTextWriter(stringWriter);

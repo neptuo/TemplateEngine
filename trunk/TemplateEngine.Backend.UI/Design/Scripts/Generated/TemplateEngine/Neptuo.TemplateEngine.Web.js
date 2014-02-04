@@ -271,53 +271,6 @@ var Neptuo$TemplateEngine$Web$Controls$DesignData$HintAttribute =
     IsAbstract: false
 };
 JsTypes.push(Neptuo$TemplateEngine$Web$Controls$DesignData$HintAttribute);
-var Neptuo$TemplateEngine$Web$Controls$DetailViewControl =
-{
-    fullname: "Neptuo.TemplateEngine.Web.Controls.DetailViewControl",
-    baseTypeName: "Neptuo.TemplateEngine.Web.Controls.TemplateControl",
-    assemblyName: "Neptuo.TemplateEngine.Web",
-    Kind: "Class",
-    definition:
-    {
-        ctor: function (componentManager, storage, dataContext)
-        {
-            this._Source = null;
-            this._DataContext = null;
-            Neptuo.TemplateEngine.Web.Controls.TemplateControl.ctor.call(this, componentManager, storage);
-            this.set_DataContext(dataContext);
-        },
-        Source$$: "Neptuo.TemplateEngine.Web.IDataSource",
-        get_Source: function ()
-        {
-            return this._Source;
-        },
-        set_Source: function (value)
-        {
-            this._Source = value;
-        },
-        DataContext$$: "Neptuo.TemplateEngine.Web.DataContextStorage",
-        get_DataContext: function ()
-        {
-            return this._DataContext;
-        },
-        set_DataContext: function (value)
-        {
-            this._DataContext = value;
-        },
-        OnInit: function ()
-        {
-            this.InitComponent(this.get_Source());
-            if (this.get_Source() == null)
-                throw $CreateException(new System.InvalidOperationException.ctor$$String("Missing data source."), new Error());
-            this.get_DataContext().Push(this.get_Source().GetItem(), null);
-            Neptuo.TemplateEngine.Web.Controls.TemplateControl.commonPrototype.OnInit.call(this);
-            this.get_DataContext().Pop(null);
-        }
-    },
-    ctors: [ {name: "ctor", parameters: ["Neptuo.Templates.IComponentManager", "Neptuo.TemplateEngine.Web.TemplateContentStorageStack", "Neptuo.TemplateEngine.Web.DataContextStorage"]}],
-    IsAbstract: false
-};
-JsTypes.push(Neptuo$TemplateEngine$Web$Controls$DetailViewControl);
 var Neptuo$TemplateEngine$Web$Controls$HtmlControlBase =
 {
     fullname: "Neptuo.TemplateEngine.Web.Controls.HtmlControlBase",
@@ -677,69 +630,6 @@ var Neptuo$TemplateEngine$Web$ParameterProviderExtensions =
     IsAbstract: true
 };
 JsTypes.push(Neptuo$TemplateEngine$Web$ParameterProviderExtensions);
-var Neptuo$TemplateEngine$Web$Controls$SelectControl =
-{
-    fullname: "Neptuo.TemplateEngine.Web.Controls.SelectControl",
-    baseTypeName: "Neptuo.TemplateEngine.Web.Controls.ListViewControl",
-    assemblyName: "Neptuo.TemplateEngine.Web",
-    interfaceNames: ["Neptuo.TemplateEngine.Web.Controls.IHtmlAttributeCollection", "Neptuo.Templates.IAttributeCollection"],
-    Kind: "Class",
-    definition:
-    {
-        ctor: function (componentManager, storage, dataContext)
-        {
-            this._Name = null;
-            this._Value = null;
-            this._IsAddEmpty = false;
-            this._Attributes = null;
-            Neptuo.TemplateEngine.Web.Controls.ListViewControl.ctor.call(this, componentManager, storage, dataContext);
-            this.set_Attributes(new Neptuo.Templates.HtmlAttributeCollection.ctor());
-        },
-        Name$$: "System.String",
-        get_Name: function ()
-        {
-            return this._Name;
-        },
-        set_Name: function (value)
-        {
-            this._Name = value;
-        },
-        Value$$: "System.Object",
-        get_Value: function ()
-        {
-            return this._Value;
-        },
-        set_Value: function (value)
-        {
-            this._Value = value;
-        },
-        IsAddEmpty$$: "System.Boolean",
-        get_IsAddEmpty: function ()
-        {
-            return this._IsAddEmpty;
-        },
-        set_IsAddEmpty: function (value)
-        {
-            this._IsAddEmpty = value;
-        },
-        Attributes$$: "Neptuo.Templates.HtmlAttributeCollection",
-        get_Attributes: function ()
-        {
-            return this._Attributes;
-        },
-        set_Attributes: function (value)
-        {
-            this._Attributes = value;
-        },
-        SetAttribute: function (name, value)
-        {
-            this.get_Attributes().set_Item$$TKey(name, value);
-        }
-    },
-    ctors: [ {name: "ctor", parameters: ["Neptuo.Templates.IComponentManager", "Neptuo.TemplateEngine.Web.TemplateContentStorageStack", "Neptuo.TemplateEngine.Web.DataContextStorage"]}],
-    IsAbstract: false
-};
-JsTypes.push(Neptuo$TemplateEngine$Web$Controls$SelectControl);
 var Neptuo$TemplateEngine$Web$Controls$ContentTemplate =
 {
     fullname: "Neptuo.TemplateEngine.Web.Controls.ContentTemplate",
