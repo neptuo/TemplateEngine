@@ -64,14 +64,11 @@ namespace Neptuo.TemplateEngine.Web.Controls
 
             if (isRenderCalled)
             {
-                //TODO: Render to temp element...
-                jQuery target = new jQuery("div[data-partial=" + partialElementGuid + "]");
-
                 StringWriter stringWriter = new StringWriter();
                 HtmlTextWriter writer = new HtmlTextWriter(stringWriter);
 
                 Render(writer);
-                target.replaceWith(stringWriter.ToString());
+                InitScript.UpdateContent(partialElementGuid, stringWriter);
             }
         }
     }
