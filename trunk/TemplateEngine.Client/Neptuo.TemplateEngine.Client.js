@@ -43,6 +43,46 @@ if (typeof($CreateDelegate)=='undefined'){
 }
 if (typeof(JsTypes) == "undefined")
     var JsTypes = [];
+var Neptuo$TemplateEngine$Web$ClientExtendedComponentManager =
+{
+    fullname: "Neptuo.TemplateEngine.Web.ClientExtendedComponentManager",
+    baseTypeName: "Neptuo.TemplateEngine.Web.ExtendedComponentManager",
+    assemblyName: "Neptuo.TemplateEngine.Client",
+    Kind: "Class",
+    definition:
+    {
+        ctor: function (partialsToUpdate)
+        {
+            this.partialsToUpdate = null;
+            Neptuo.TemplateEngine.Web.ExtendedComponentManager.ctor.call(this);
+            Neptuo.Guard.NotNull(partialsToUpdate, "partialsToUpdate");
+            this.partialsToUpdate = partialsToUpdate;
+        },
+        DoRenderControl: function (control, writer)
+        {
+            var partialView;
+            if ((function ()
+            {
+                var $1 = {Value: partialView};
+                var $res = this.get_PartialUpdates().TryGetValue(control, $1);
+                partialView = $1.Value;
+                return $res;
+            }).call(this) && this.partialsToUpdate.Contains(partialView))
+            {
+                var stringWriter = new System.IO.StringWriter.ctor();
+                var extendedWriter = new Neptuo.TemplateEngine.Web.ExtendedHtmlTextWriter.ctor(stringWriter);
+                Neptuo.Templates.ComponentManager.commonPrototype.DoRenderControl.call(this, control, extendedWriter);
+                var target = $("[data-update=" + partialView + "]");
+                target.html(stringWriter.toString());
+                return;
+            }
+            Neptuo.Templates.ComponentManager.commonPrototype.DoRenderControl.call(this, control, writer);
+        }
+    },
+    ctors: [ {name: "ctor", parameters: ["System.Collections.Generic.List"]}],
+    IsAbstract: false
+};
+JsTypes.push(Neptuo$TemplateEngine$Web$ClientExtendedComponentManager);
 var Neptuo$TemplateEngine$Web$Controls$DetailViewControl =
 {
     fullname: "Neptuo.TemplateEngine.Web.Controls.DetailViewControl",
@@ -412,71 +452,6 @@ var Neptuo$TemplateEngine$Web$DataSources$ListResult =
     IsAbstract: false
 };
 JsTypes.push(Neptuo$TemplateEngine$Web$DataSources$ListResult);
-var Neptuo$TemplateEngine$Web$ExtendedHtmlTextWriter =
-{
-    fullname: "Neptuo.TemplateEngine.Web.ExtendedHtmlTextWriter",
-    baseTypeName: "Neptuo.Templates.HtmlTextWriter",
-    assemblyName: "Neptuo.TemplateEngine.Client",
-    interfaceNames: ["Neptuo.TemplateEngine.Web.IExtendedHtmlWriter"],
-    Kind: "Class",
-    definition:
-    {
-        ctor: function (writer)
-        {
-            this.pendingAttributes = new System.Collections.Generic.List$1.ctor(Neptuo.TemplateEngine.Web.ExtendedHtmlTextWriter.HtmlAttribute.ctor);
-            Neptuo.Templates.HtmlTextWriter.ctor.call(this, writer);
-        },
-        AttributeOnNextTag: function (name, value)
-        {
-            this.pendingAttributes.Add(new Neptuo.TemplateEngine.Web.ExtendedHtmlTextWriter.HtmlAttribute.ctor$$String$$String(name, value));
-            return this;
-        },
-        Tag: function (name)
-        {
-            Neptuo.Templates.HtmlTextWriter.commonPrototype.Tag.call(this, name);
-            var $it2 = this.pendingAttributes.GetEnumerator();
-            while ($it2.MoveNext())
-            {
-                var attribute = $it2.get_Current();
-                this.Attribute(attribute.Name, attribute.Value);
-            }
-            this.pendingAttributes.Clear();
-            return this;
-        }
-    },
-    ctors: [ {name: "ctor", parameters: ["System.IO.TextWriter"]}],
-    IsAbstract: false
-};
-JsTypes.push(Neptuo$TemplateEngine$Web$ExtendedHtmlTextWriter);
-var Neptuo$TemplateEngine$Web$ExtendedHtmlTextWriter$HtmlAttribute =
-{
-    fullname: "Neptuo.TemplateEngine.Web.ExtendedHtmlTextWriter.HtmlAttribute",
-    baseTypeName: "System.ValueType",
-    assemblyName: "Neptuo.TemplateEngine.Client",
-    Kind: "Struct",
-    definition:
-    {
-        ctor$$String$$String: function (name, value)
-        {
-            this.Name = null;
-            this.Value = null;
-            System.ValueType.ctor.call(this);
-            this.Name = name;
-            this.Value = value;
-        },
-        ctor: function ()
-        {
-            this.Name = null;
-            this.Value = null;
-            System.ValueType.ctor.call(this);
-        }
-    },
-    ctors: [ {name: "ctor$$String$$String", parameters: ["System.String", "System.String"]}, {name: "ctor", parameters: []}],
-    IsAbstract: false
-};
-JsTypes.push(Neptuo$TemplateEngine$Web$ExtendedHtmlTextWriter$HtmlAttribute);
-var Neptuo$TemplateEngine$Web$IExtendedHtmlWriter = {fullname: "Neptuo.TemplateEngine.Web.IExtendedHtmlWriter", baseTypeName: "System.Object", assemblyName: "Neptuo.TemplateEngine.Client", interfaceNames: ["Neptuo.Templates.IHtmlWriter"], Kind: "Interface", ctors: [], IsAbstract: true};
-JsTypes.push(Neptuo$TemplateEngine$Web$IExtendedHtmlWriter);
 var Neptuo$TemplateEngine$Web$StaticViewActivator =
 {
     fullname: "Neptuo.TemplateEngine.Web.StaticViewActivator",
@@ -613,6 +588,7 @@ var Neptuo$TemplateEngine$Web$InitScript =
         RenderViewFromLink: function (link)
         {
             var newUrl = link.attr("href");
+            var toUpdate = link.data("toupdate");
             var viewPath = Neptuo.TemplateEngine.Web.InitScript.MapView(newUrl);
             if (viewPath == null)
             {
@@ -621,7 +597,18 @@ var Neptuo$TemplateEngine$Web$InitScript =
             }
             history.pushState(viewPath, link.html(), newUrl);
             var container = Neptuo.TemplateEngine.Web.InitScript.objectBuilder.CreateChildContainer();
-            Neptuo.DependencyContainerExtensions.RegisterInstance$1(Neptuo.Templates.IComponentManager.ctor, container, new Neptuo.Templates.ComponentManager.ctor());
+            var partialsToUpdate = new System.Collections.Generic.List$1.ctor(System.String.ctor);
+            if (!System.String.IsNullOrEmpty(toUpdate))
+            {
+                for (var $i3 = 0, $t3 = toUpdate.Split$$Char$Array(","), $l3 = $t3.length, partialToUpdate = $t3[$i3]; $i3 < $l3; $i3++, partialToUpdate = $t3[$i3])
+                    partialsToUpdate.Add(partialToUpdate);
+            }
+            else
+            {
+                partialsToUpdate.Add("Body");
+            }
+            var componentManager = new Neptuo.TemplateEngine.Web.ClientExtendedComponentManager.ctor(partialsToUpdate);
+            Neptuo.DependencyContainerExtensions.RegisterInstance$1(Neptuo.TemplateEngine.Web.IPartialUpdateWriter.ctor, Neptuo.DependencyContainerExtensions.RegisterInstance$1(Neptuo.Templates.IComponentManager.ctor, container, componentManager), componentManager);
             var writer = new System.IO.StringWriter.ctor();
             var view = Neptuo.TemplateEngine.Web.InitScript.viewActivator.CreateView(viewPath);
             view.Setup(new Neptuo.Templates.BaseViewPage.ctor(Neptuo.DependencyProviderExtensions.Resolve$1$$IDependencyProvider(Neptuo.Templates.IComponentManager.ctor, container)), Neptuo.DependencyProviderExtensions.Resolve$1$$IDependencyProvider(Neptuo.Templates.IComponentManager.ctor, container), container);
@@ -629,7 +616,6 @@ var Neptuo$TemplateEngine$Web$InitScript =
             view.Init();
             view.Render(new Neptuo.TemplateEngine.Web.ExtendedHtmlTextWriter.ctor(writer));
             view.Dispose();
-            $("#target").html(writer.toString()).find("a").click(Neptuo.TemplateEngine.Web.InitScript.OnLinkClick);
         }
     },
     assemblyName: "Neptuo.TemplateEngine.Client",

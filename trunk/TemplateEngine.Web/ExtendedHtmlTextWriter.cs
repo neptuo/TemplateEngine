@@ -10,15 +10,17 @@ namespace Neptuo.TemplateEngine.Web
 {
     public class ExtendedHtmlTextWriter : HtmlTextWriter, IExtendedHtmlWriter
     {
-        List<HtmlAttribute> pendingAttributes = new List<HtmlAttribute>();
+        protected List<HtmlAttribute> PendingAttributes { get; private set; }
 
         public ExtendedHtmlTextWriter(TextWriter writer)
             : base(writer)
-        { }
-
-        public IHtmlWriter AttributeOnNextTag(string name, string value)
         {
-            pendingAttributes.Add(new HtmlAttribute(name, value));
+            PendingAttributes = new List<HtmlAttribute>();
+        }
+
+        public IExtendedHtmlWriter AttributeOnNextTag(string name, string value)
+        {
+            PendingAttributes.Add(new HtmlAttribute(name, value));
             return this;
         }
 
@@ -26,14 +28,14 @@ namespace Neptuo.TemplateEngine.Web
         {
             base.Tag(name);
 
-            foreach (HtmlAttribute attribute in pendingAttributes)
+            foreach (HtmlAttribute attribute in PendingAttributes)
                 Attribute(attribute.Name, attribute.Value);
 
-            pendingAttributes.Clear();
+            PendingAttributes.Clear();
             return this;
         }
 
-        public struct HtmlAttribute
+        protected struct HtmlAttribute
         {
             public string Name;
             public string Value;

@@ -4,6 +4,7 @@ using Neptuo.ObjectBuilder.Lifetimes.Mapping;
 using Neptuo.TemplateEngine.PresentationModels;
 using Neptuo.Templates;
 using SharpKit.Html;
+using SharpKit.JavaScript;
 using SharpKit.jQuery;
 using System;
 using System.Collections.Generic;
@@ -88,6 +89,7 @@ namespace Neptuo.TemplateEngine.Web
         private static void RenderViewFromLink(jQuery link)
         {
             string newUrl = link.attr("href");
+            string toUpdate = link.data("toupdate").As<string>();
             string viewPath = MapView(newUrl);
 
             if (viewPath == null)
@@ -99,7 +101,22 @@ namespace Neptuo.TemplateEngine.Web
             HtmlContext.history.pushState(viewPath, link.html(), newUrl);
 
             IDependencyContainer container = objectBuilder.CreateChildContainer();
-            container.RegisterInstance<IComponentManager>(new ComponentManager());
+
+            List<string> partialsToUpdate = new List<string>();
+            if (!String.IsNullOrEmpty(toUpdate))
+            {
+                foreach (string partialToUpdate in toUpdate.Split(','))
+                    partialsToUpdate.Add(partialToUpdate);
+            }
+            else
+            {
+                partialsToUpdate.Add("Body");
+            }
+
+            ClientExtendedComponentManager componentManager = new ClientExtendedComponentManager(partialsToUpdate);
+            container
+                .RegisterInstance<IComponentManager>(componentManager)
+                .RegisterInstance<IPartialUpdateWriter>(componentManager);
 
             StringWriter writer = new StringWriter();
             var view = viewActivator.CreateView(viewPath);
@@ -109,7 +126,7 @@ namespace Neptuo.TemplateEngine.Web
             view.Render(new ExtendedHtmlTextWriter(writer));
             view.Dispose();
 
-            new jQuery("#target").html(writer.ToString()).find('a').click(OnLinkClick);
+            //new jQuery("#target").html(writer.ToString()).find('a').click(OnLinkClick);
         }
     }
 

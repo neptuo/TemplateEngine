@@ -130,13 +130,13 @@
     <Content Include="Design\Scripts\Generated\Neptuo.PresentationModels.TypeModels.js" />
     <Content Include="Design\Scripts\Generated\Neptuo.PresentationModels.Validation.js" />
     <Content Include="Design\Scripts\Generated\Neptuo.System.Client.js" />
+    <Content Include="Design\Scripts\Generated\Neptuo.Templates.Components.js" />
     <Content Include="Design\Scripts\Generated\TemplateEngine\Neptuo.TemplateEngine.Client.js" />
     <Content Include="Design\Scripts\Generated\TemplateEngine\Accounts\Neptuo.TemplateEngine.Accounts.Client.js" />
     <Content Include="Design\Scripts\Generated\TemplateEngine\Accounts\Neptuo.TemplateEngine.Accounts.Shared.js" />
     <Content Include="Design\Scripts\Generated\TemplateEngine\Neptuo.TemplateEngine.js" />
     <Content Include="Design\Scripts\Generated\TemplateEngine\Neptuo.TemplateEngine.Navigation.js" />
     <Content Include="Design\Scripts\Generated\TemplateEngine\Neptuo.TemplateEngine.Web.js" />
-    <Content Include="Design\Scripts\Generated\Neptuo.Templates.Components.js" />
     <Content Include="Design\Styles\bootstrap-theme.css" />
     <Content Include="Design\Styles\bootstrap-theme.min.css" />
     <Content Include="Design\Styles\bootstrap.css" />

@@ -16,7 +16,7 @@
     <ui:TemplatePlaceholder Name="Head" />
 
 </head>
-<body>
+<body ajax:Partial="Body">
 
     <div class="navbar navbar-fixed-top navbar-main">
         <div class="navbar-header">
@@ -27,19 +27,19 @@
         </div>
         <ul class="nav navbar-nav">
             <li>
-                <a form:href="Home">
+                <a form:href="Home" data-toupdate="BodyContainer">
                     <ui:Literal l:Text="Web" />
                 </a>
             </li>
             <li>
-                <a form:href="Accounts.User.List">
+                <a form:href="Accounts.User.List" data-toupdate="BodyContainer">
                     <ui:Literal l:Text="User accounts" />
                 </a>
             </li>
         </ul>
     </div>
 
-    <div class="body-container">
+    <div class="body-container" ajax:Partial="BodyContainer">
         <div class="side-navbar" ui:IsPlaceholder="SideNav">
             <ui:TemplatePlaceholder Name="SideNav" />
         </div>

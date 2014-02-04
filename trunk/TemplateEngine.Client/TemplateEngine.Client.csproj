@@ -51,6 +51,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ClientExtendedComponentManager.cs" />
     <Compile Include="Controls\DetailViewControl.cs" />
     <Compile Include="Controls\ListViewControl.cs" />
     <Compile Include="Controls\SelectControl.cs" />
@@ -58,8 +59,6 @@
     <Compile Include="DataSources\IListDataSource.cs" />
     <Compile Include="DataSources\IListResult.cs" />
     <Compile Include="DataSources\ListResult.cs" />
-    <Compile Include="ExtendedHtmlTextWriter.cs" />
-    <Compile Include="IExtendedHtmlWriter.cs" />
     <Compile Include="StaticViewActivator.cs" />
     <Compile Include="GeneratedViewBase.cs" />
     <Compile Include="InitScript.cs" />
