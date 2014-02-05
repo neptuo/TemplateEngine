@@ -176,7 +176,8 @@ var Neptuo$TemplateEngine$Accounts$Web$DataSources$UserAccountEditDataSource =
         },
         set_Key: function (value)
         {
-            this._Key = value;
+            if (value != null)
+                this._Key = value;
         },
         GetItem: function (callback)
         {

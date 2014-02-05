@@ -88,6 +88,9 @@ namespace Neptuo.TemplateEngine.Backend.Web
 
         private string GetTempJavascriptFilePath(JavascriptViewGeneratorConfiguration configuration, string viewPath)
         {
+            if (!Directory.Exists(configuration.TempDirectory))
+                Directory.CreateDirectory(configuration.TempDirectory);
+
             return Path.Combine(configuration.TempDirectory, HashHelper.Sha1(viewPath) + ".js");
         }
 
