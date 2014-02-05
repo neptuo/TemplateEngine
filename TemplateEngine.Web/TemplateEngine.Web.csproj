@@ -64,6 +64,7 @@
     <Compile Include="Controllers\IViewData.cs" />
     <Compile Include="Controllers\MessageStorageExtensions.cs" />
     <Compile Include="Controllers\ViewDataCollection.cs" />
+    <Compile Include="Controls\Ajax\AjaxView.cs" />
     <Compile Include="Controls\ContentControlBase.cs" />
     <Compile Include="Controls\CssClassCollection.cs" />
     <Compile Include="Controls\HtmlContentControlBase.cs" />

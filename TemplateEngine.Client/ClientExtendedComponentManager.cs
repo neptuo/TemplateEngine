@@ -31,7 +31,7 @@ namespace Neptuo.TemplateEngine.Web
                 base.DoRenderControl(control, extendedWriter);
 
                 jQuery target = new jQuery("[data-update=" + partialView + "]");
-                target.html(stringWriter.ToString());
+                target.replaceWith(stringWriter.ToString());
                 return;
             }
 

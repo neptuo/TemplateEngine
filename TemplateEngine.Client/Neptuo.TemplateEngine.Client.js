@@ -73,7 +73,7 @@ var Neptuo$TemplateEngine$Web$ClientExtendedComponentManager =
                 var extendedWriter = new Neptuo.TemplateEngine.Web.ExtendedHtmlTextWriter.ctor(stringWriter);
                 Neptuo.Templates.ComponentManager.commonPrototype.DoRenderControl.call(this, control, extendedWriter);
                 var target = $("[data-update=" + partialView + "]");
-                target.html(stringWriter.toString());
+                target.replaceWith(stringWriter.toString());
                 return;
             }
             Neptuo.Templates.ComponentManager.commonPrototype.DoRenderControl.call(this, control, writer);
@@ -547,7 +547,7 @@ var Neptuo$TemplateEngine$Web$InitScript =
         {
             var container = new Neptuo.ObjectBuilder.DependencyContainer.ctor();
             container.Map(Typeof(Neptuo.Lifetimes.SingletonLifetime.ctor), new Neptuo.ObjectBuilder.Lifetimes.Mapping.SingletonLifetimeMapper.ctor());
-            Neptuo.DependencyContainerExtensions.RegisterType$2$$IDependencyContainer$$Object(Neptuo.TemplateEngine.Web.IViewActivator.ctor, Neptuo.TemplateEngine.Web.StaticViewActivator.ctor, Neptuo.DependencyContainerExtensions.RegisterInstance$1(Neptuo.IGuidProvider.ctor, Neptuo.DependencyContainerExtensions.RegisterInstance$1(Neptuo.TemplateEngine.Web.DataContextStorage.ctor, Neptuo.DependencyContainerExtensions.RegisterInstance$1(Neptuo.TemplateEngine.Web.TemplateContentStorageStack.ctor, Neptuo.DependencyContainerExtensions.RegisterType$2$$IDependencyContainer(Neptuo.TemplateEngine.Web.IValueConverterService.ctor, Neptuo.TemplateEngine.Web.ValueConverterService.ctor, Neptuo.DependencyContainerExtensions.RegisterType$2$$IDependencyContainer(Neptuo.TemplateEngine.Web.IBindingManager.ctor, Neptuo.TemplateEngine.Web.BindingManagerBase.ctor, Neptuo.DependencyContainerExtensions.RegisterType$2$$IDependencyContainer(Neptuo.TemplateEngine.Web.IParameterProvider.ctor, Neptuo.TemplateEngine.Web.ParameterProvider.ctor, Neptuo.DependencyContainerExtensions.RegisterType$2$$IDependencyContainer(Neptuo.TemplateEngine.Web.IParameterProviderFactory.ctor, Neptuo.TemplateEngine.Web.ParameterProviderFactory.ctor, Neptuo.DependencyContainerExtensions.RegisterType$2$$IDependencyContainer(Neptuo.TemplateEngine.Web.ICurrentUrlProvider.ctor, Neptuo.TemplateEngine.Web.UrlProvider.ctor, Neptuo.DependencyContainerExtensions.RegisterType$2$$IDependencyContainer(Neptuo.Templates.IVirtualUrlProvider.ctor, Neptuo.TemplateEngine.Web.UrlProvider.ctor, Neptuo.DependencyContainerExtensions.RegisterType$2$$IDependencyContainer(Neptuo.TemplateEngine.IStackStorage$1.ctor, Neptuo.TemplateEngine.StackStorage$1.ctor, container))))))), new Neptuo.TemplateEngine.Web.TemplateContentStorageStack.ctor()), new Neptuo.TemplateEngine.Web.DataContextStorage.ctor()), new Neptuo.SequenceGuidProvider.ctor("guid", 1)), new Neptuo.Lifetimes.SingletonLifetime.ctor());
+            Neptuo.DependencyContainerExtensions.RegisterType$2$$IDependencyContainer$$Object(Neptuo.TemplateEngine.Web.IViewActivator.ctor, Neptuo.TemplateEngine.Web.StaticViewActivator.ctor, Neptuo.DependencyContainerExtensions.RegisterInstance$1(Neptuo.IGuidProvider.ctor, Neptuo.DependencyContainerExtensions.RegisterInstance$1(Neptuo.TemplateEngine.Web.DataContextStorage.ctor, Neptuo.DependencyContainerExtensions.RegisterInstance$1(Neptuo.TemplateEngine.Web.TemplateContentStorageStack.ctor, Neptuo.DependencyContainerExtensions.RegisterType$2$$IDependencyContainer(Neptuo.TemplateEngine.Web.IValueConverterService.ctor, Neptuo.TemplateEngine.Web.ValueConverterService.ctor, Neptuo.DependencyContainerExtensions.RegisterType$2$$IDependencyContainer(Neptuo.TemplateEngine.Web.IBindingManager.ctor, Neptuo.TemplateEngine.Web.BindingManagerBase.ctor, Neptuo.DependencyContainerExtensions.RegisterType$2$$IDependencyContainer(Neptuo.TemplateEngine.Web.IParameterProvider.ctor, Neptuo.TemplateEngine.Web.AllParameterProvider.ctor, Neptuo.DependencyContainerExtensions.RegisterType$2$$IDependencyContainer(Neptuo.TemplateEngine.Web.IParameterProviderFactory.ctor, Neptuo.TemplateEngine.Web.ParameterProviderFactory.ctor, Neptuo.DependencyContainerExtensions.RegisterType$2$$IDependencyContainer(Neptuo.TemplateEngine.Web.ICurrentUrlProvider.ctor, Neptuo.TemplateEngine.Web.UrlProvider.ctor, Neptuo.DependencyContainerExtensions.RegisterType$2$$IDependencyContainer(Neptuo.Templates.IVirtualUrlProvider.ctor, Neptuo.TemplateEngine.Web.UrlProvider.ctor, Neptuo.DependencyContainerExtensions.RegisterType$2$$IDependencyContainer(Neptuo.TemplateEngine.IStackStorage$1.ctor, Neptuo.TemplateEngine.StackStorage$1.ctor, container))))))), new Neptuo.TemplateEngine.Web.TemplateContentStorageStack.ctor()), new Neptuo.TemplateEngine.Web.DataContextStorage.ctor()), new Neptuo.SequenceGuidProvider.ctor("guid", 1)), new Neptuo.Lifetimes.SingletonLifetime.ctor());
             return container;
         },
         Init: function ()
@@ -661,6 +661,26 @@ var Neptuo$TemplateEngine$Web$ParameterProviderFactory =
 {
     fullname: "Neptuo.TemplateEngine.Web.ParameterProviderFactory",
     baseTypeName: "System.Object",
+    staticDefinition:
+    {
+        ParseQueryString: function (parameters)
+        {
+            var queryString = location.search;
+            if (System.String.IsNullOrEmpty(queryString))
+                return;
+            if (queryString.StartsWith$$String("?"))
+                queryString = queryString.substr(1);
+            var keyValues = queryString.Split$$Char$Array("&");
+            for (var $i4 = 0, $l4 = keyValues.length, keyValue = keyValues[$i4]; $i4 < $l4; $i4++, keyValue = keyValues[$i4])
+            {
+                var param = keyValue.Split$$Char$Array("=");
+                if (param.length == 2)
+                    parameters.set_Item$$TKey(param[0], param[1]);
+                else
+                    parameters.set_Item$$TKey(param[0], null);
+            }
+        }
+    },
     assemblyName: "Neptuo.TemplateEngine.Client",
     interfaceNames: ["Neptuo.TemplateEngine.Web.IParameterProviderFactory"],
     Kind: "Class",
@@ -672,7 +692,21 @@ var Neptuo$TemplateEngine$Web$ParameterProviderFactory =
         },
         Provider: function (providerType)
         {
-            return new Neptuo.TemplateEngine.Web.ParameterProvider.ctor();
+            var parameters = new System.Collections.Generic.Dictionary$2.ctor(System.String.ctor, System.String.ctor);
+            switch (providerType)
+            {
+                case 0:
+                    Neptuo.TemplateEngine.Web.ParameterProviderFactory.ParseQueryString(parameters);
+                    break;
+                case 1:
+                    Neptuo.TemplateEngine.Web.ParameterProviderFactory.ParseQueryString(parameters);
+                    break;
+                case 2:
+                    break;
+                default :
+                    break;
+            }
+            return new Neptuo.TemplateEngine.Web.ParameterProvider.ctor(parameters);
         }
     },
     ctors: [ {name: "ctor", parameters: []}],
@@ -688,22 +722,63 @@ var Neptuo$TemplateEngine$Web$ParameterProvider =
     Kind: "Class",
     definition:
     {
-        ctor: function ()
+        ctor: function (parameters)
         {
+            this._Parameters = null;
             System.Object.ctor.call(this);
+            this.set_Parameters(parameters);
+        },
+        Parameters$$: "System.Collections.Generic.Dictionary`2[[System.String],[System.String]]",
+        get_Parameters: function ()
+        {
+            return this._Parameters;
+        },
+        set_Parameters: function (value)
+        {
+            this._Parameters = value;
         },
         Keys$$: "System.Collections.Generic.IEnumerable`1[[System.String]]",
         get_Keys: function ()
         {
-            return new System.Collections.Generic.List$1.ctor(System.String.ctor);
+            return this.get_Parameters().get_Keys();
         },
         TryGet: function (key, value)
         {
+            var targetValue;
+            if ((function ()
+            {
+                var $1 = {Value: targetValue};
+                var $res = this.get_Parameters().TryGetValue(key, $1);
+                targetValue = $1.Value;
+                return $res;
+            }).call(this))
+            {
+                value.Value = targetValue;
+                return true;
+            }
             value.Value = null;
             return false;
+        }
+    },
+    ctors: [ {name: "ctor", parameters: ["System.Collections.Generic.Dictionary"]}],
+    IsAbstract: false
+};
+JsTypes.push(Neptuo$TemplateEngine$Web$ParameterProvider);
+var Neptuo$TemplateEngine$Web$AllParameterProvider =
+{
+    fullname: "Neptuo.TemplateEngine.Web.AllParameterProvider",
+    baseTypeName: "Neptuo.TemplateEngine.Web.ParameterProvider",
+    assemblyName: "Neptuo.TemplateEngine.Client",
+    Kind: "Class",
+    definition:
+    {
+        ctor: function ()
+        {
+            Neptuo.TemplateEngine.Web.ParameterProvider.ctor.call(this, new System.Collections.Generic.Dictionary$2.ctor(System.String.ctor, System.String.ctor));
+            Neptuo.TemplateEngine.Web.ParameterProviderFactory.ParseQueryString(this.get_Parameters());
         }
     },
     ctors: [ {name: "ctor", parameters: []}],
     IsAbstract: false
 };
-JsTypes.push(Neptuo$TemplateEngine$Web$ParameterProvider);
+JsTypes.push(Neptuo$TemplateEngine$Web$AllParameterProvider);

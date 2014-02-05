@@ -28,14 +28,15 @@ namespace Neptuo.TemplateEngine.Web.Extensions
             if (!String.IsNullOrEmpty(ConverterKey))
                 Expression = ConverterService.GetConverter(ConverterKey).ConvertTo(Expression);
 
-            bool? value = Expression as bool?;
-            if (value == null)
-                return TrueValue ?? FalseValue;
+            if (Expression is bool)
+            {
+                if ((bool)Expression)
+                    return TrueValue;
 
-            if (value.Value)
-                return TrueValue;
-
-            return FalseValue;
+                return FalseValue;
+            }
+                
+            return TrueValue ?? FalseValue;
         }
     }
 }
