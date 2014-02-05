@@ -31,7 +31,7 @@ namespace Neptuo.TemplateEngine.Web
                 .RegisterType<IVirtualUrlProvider, UrlProvider>()
                 .RegisterType<ICurrentUrlProvider, UrlProvider>()
                 .RegisterType<IParameterProviderFactory, ParameterProviderFactory>()
-                .RegisterType<IParameterProvider, ParameterProvider>()
+                .RegisterType<IParameterProvider, AllParameterProvider>()
                 .RegisterType<IBindingManager, BindingManagerBase>()
                 .RegisterType<IValueConverterService, ValueConverterService>()
                 .RegisterInstance(new TemplateContentStorageStack())
@@ -147,24 +147,79 @@ namespace Neptuo.TemplateEngine.Web
     {
         public IParameterProvider Provider(ParameterProviderType providerType)
         {
-            return new ParameterProvider();
+            Dictionary<string, string> parameters = new Dictionary<string, string>();
+            switch (providerType)
+            {
+                case ParameterProviderType.All:
+                    ParseQueryString(parameters);
+                    break;
+                case ParameterProviderType.Url:
+                    ParseQueryString(parameters);
+                    break;
+                case ParameterProviderType.Form:
+                    break;
+                default:
+                    break;
+            }
+            return new ParameterProvider(parameters);
+        }
+
+        public static void ParseQueryString(Dictionary<string, string> parameters)
+        {
+            string queryString = HtmlContext.location.search;
+            if (String.IsNullOrEmpty(queryString))
+                return;
+
+            if (queryString.StartsWith("?"))
+                queryString = queryString.Substring(1);
+
+            string[] keyValues = queryString.Split('&');
+            foreach (string keyValue in keyValues)
+            {
+                string[] param = keyValue.Split('=');
+                if (param.Length == 2)
+                    parameters[param[0]] = param[1];
+                else
+                    parameters[param[0]] = null;
+            }
         }
     }
 
     public class ParameterProvider : IParameterProvider
     {
+        protected Dictionary<string, string> Parameters { get; private set; }
+
+        public ParameterProvider(Dictionary<string, string> parameters)
+        {
+            Parameters = parameters;
+        }
+
         public IEnumerable<string> Keys
         {
-            get { return new List<string>(); }
+            get { return Parameters.Keys; }
         }
 
         public bool TryGet(string key, out object value)
         {
+            string targetValue;
+            if (Parameters.TryGetValue(key, out targetValue))
+            {
+                value = targetValue;
+                return true;
+            }
+
             value = null;
             return false;
         }
     }
 
-
+    public class AllParameterProvider : ParameterProvider
+    {
+        public AllParameterProvider()
+            : base(new Dictionary<string,string>())
+        {
+            ParameterProviderFactory.ParseQueryString(Parameters);
+        }
+    }
 
 }

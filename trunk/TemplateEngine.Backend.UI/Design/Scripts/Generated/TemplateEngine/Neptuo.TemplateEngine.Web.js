@@ -95,6 +95,51 @@ var Neptuo$TemplateEngine$Web$BindingManagerBase =
     IsAbstract: false
 };
 JsTypes.push(Neptuo$TemplateEngine$Web$BindingManagerBase);
+var Neptuo$TemplateEngine$Web$Controls$AjaxView =
+{
+    fullname: "Neptuo.TemplateEngine.Web.Controls.AjaxView",
+    baseTypeName: "Neptuo.TemplateEngine.Web.Controls.HtmlContentControlBase",
+    assemblyName: "Neptuo.TemplateEngine.Web",
+    Kind: "Class",
+    definition:
+    {
+        ctor: function (componentManager, updateWriter)
+        {
+            this._UpdateWriter = null;
+            this._Partial = null;
+            Neptuo.TemplateEngine.Web.Controls.HtmlContentControlBase.ctor.call(this, componentManager, "div", false);
+            this.set_UpdateWriter(updateWriter);
+        },
+        UpdateWriter$$: "Neptuo.TemplateEngine.Web.IPartialUpdateWriter",
+        get_UpdateWriter: function ()
+        {
+            return this._UpdateWriter;
+        },
+        set_UpdateWriter: function (value)
+        {
+            this._UpdateWriter = value;
+        },
+        Partial$$: "System.String",
+        get_Partial: function ()
+        {
+            return this._Partial;
+        },
+        set_Partial: function (value)
+        {
+            this._Partial = value;
+        },
+        OnInit: function ()
+        {
+            Neptuo.Guard.NotNull(this.get_Partial(), "Partial");
+            Neptuo.TemplateEngine.Web.Controls.HtmlContentControlBase.commonPrototype.OnInit.call(this);
+            this.get_UpdateWriter().Update(this.get_Partial(), this);
+            this.get_Attributes().Add("data-update", this.get_Partial());
+        }
+    },
+    ctors: [ {name: "ctor", parameters: ["Neptuo.Templates.IComponentManager", "Neptuo.TemplateEngine.Web.IPartialUpdateWriter"]}],
+    IsAbstract: false
+};
+JsTypes.push(Neptuo$TemplateEngine$Web$Controls$AjaxView);
 var Neptuo$TemplateEngine$Web$Controls$ContentControlBase =
 {
     fullname: "Neptuo.TemplateEngine.Web.Controls.ContentControlBase",
@@ -2174,12 +2219,13 @@ var Neptuo$TemplateEngine$Web$Extensions$SwitchExtension =
         {
             if (!System.String.IsNullOrEmpty(this.get_ConverterKey()))
                 this.set_Expression(this.get_ConverterService().GetConverter(this.get_ConverterKey()).ConvertTo(this.get_Expression()));
-            var value = As(this.get_Expression(), System.Nullable$1.ctor);
-            if (value == null)
-                return (this.get_TrueValue() != null ? this.get_TrueValue() : this.get_FalseValue());
-            if (value.get_Value())
-                return this.get_TrueValue();
-            return this.get_FalseValue();
+            if (Is(this.get_Expression(), System.Boolean.ctor))
+            {
+                if (Cast(this.get_Expression(), System.Boolean.ctor))
+                    return this.get_TrueValue();
+                return this.get_FalseValue();
+            }
+            return (this.get_TrueValue() != null ? this.get_TrueValue() : this.get_FalseValue());
         }
     },
     ctors: [ {name: "ctor", parameters: ["Neptuo.TemplateEngine.Web.IValueConverterService"]}],

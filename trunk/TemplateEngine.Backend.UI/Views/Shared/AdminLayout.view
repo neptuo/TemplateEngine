@@ -16,47 +16,48 @@
     <ui:TemplatePlaceholder Name="Head" />
 
 </head>
-<body ajax:Partial="Body">
-
-    <div class="navbar navbar-fixed-top navbar-main">
-        <div class="navbar-header">
-            <a form:href="Home" class="navbar-brand">
-                <span class="glyphicon glyphicon-refresh"></span>
-                TemplateEngine
-            </a>
-        </div>
-        <ul class="nav navbar-nav">
-            <li>
-                <a form:href="Home" data-toupdate="BodyContainer">
-                    <ui:Literal l:Text="Web" />
+<body>
+    <ui:AjaxView Partial="Body">
+        <div class="navbar navbar-fixed-top navbar-main">
+            <div class="navbar-header">
+                <a form:href="Home" class="navbar-brand" data-toupdate="BodyContainer">
+                    <span class="glyphicon glyphicon-refresh"></span>
+                    TemplateEngine
                 </a>
-            </li>
-            <li>
-                <a form:href="Accounts.User.List" data-toupdate="BodyContainer">
-                    <ui:Literal l:Text="User accounts" />
-                </a>
-            </li>
-        </ul>
-    </div>
+            </div>
+            <ul class="nav navbar-nav">
+                <li>
+                    <a form:href="Home" data-toupdate="BodyContainer">
+                        <ui:Literal l:Text="Web" />
+                    </a>
+                </li>
+                <li>
+                    <a form:href="Accounts.User.List" data-toupdate="BodyContainer">
+                        <ui:Literal l:Text="User accounts" />
+                    </a>
+                </li>
+            </ul>
+        </div>
 
-    <div class="body-container" ajax:Partial="BodyContainer">
-        <div class="side-navbar" ui:IsPlaceholder="SideNav">
-            <ui:TemplatePlaceholder Name="SideNav" />
-        </div>
-        <div class="body">
-            <ui:MessagePanel Key="" />
-            <ui:TemplatePlaceholder Name="Body" />
-        </div>
-    </div>
+        <ui:AjaxView Partial="BodyContainer" html:Class="body-container">
+            <div class="side-navbar" ui:IsPlaceholder="SideNav">
+                <ui:TemplatePlaceholder Name="SideNav" />
+            </div>
+            <div class="body">
+                <ui:MessagePanel Key="" />
+                <ui:TemplatePlaceholder Name="Body" />
+            </div>
+        </ui:AjaxView>
 
-    <footer class="navbar">
-        <div class="right">
-            <a href="http://www.neptuo.com">Neptuo</a>
-            <a href="http://te.neptuo.com">TemplateEngine</a>
-            © 2013
-        </div>
-        <div class="clear"></div>
-    </footer>
+        <footer class="navbar">
+            <div class="right">
+                <a href="http://www.neptuo.com">Neptuo</a>
+                <a href="http://te.neptuo.com">TemplateEngine</a>
+                © 2013
+            </div>
+            <div class="clear"></div>
+        </footer>
+    </ui:AjaxView>
 
     <script src="../../Design/Scripts/jquery-1.9.1.js"></script>
     <script src="../../Design/Scripts/bootstrap.js"></script>
