@@ -1,4 +1,7 @@
-﻿using Neptuo.Lifetimes;
+﻿using Neptuo.Bootstrap;
+using Neptuo.Bootstrap.Constraints;
+using Neptuo.Client.Compilation;
+using Neptuo.Lifetimes;
 using Neptuo.ObjectBuilder;
 using Neptuo.ObjectBuilder.Lifetimes.Mapping;
 using Neptuo.TemplateEngine.PresentationModels;
@@ -43,10 +46,21 @@ namespace Neptuo.TemplateEngine.Web
             return container;
         }
 
+        private static void RunBootstrapTasks(IDependencyContainer objectBuilder)
+        {
+            Func<Type, IBootstrapTask> taskFactory = (type) => objectBuilder.Resolve(type, null).As<IBootstrapTask>();
+            Func<Type, IBootstrapConstraint> constrainFactory = (type) => objectBuilder.Resolve(type, null).As<IBootstrapConstraint>();
+
+            IBootstrapper bootstrapper = new AutomaticBootstrapper(taskFactory, JsCompiler.NewTypes.As<JsArray<Type>>(), new AttributeConstraintProvider(constrainFactory));
+            bootstrapper.Initialize();
+        }
+
         public static void Init()
         {
             objectBuilder = CreateDependencyContainer();
             viewActivator = objectBuilder.Resolve<IViewActivator>();
+
+            RunBootstrapTasks(objectBuilder);
 
             new jQuery(() => {
                 jQuery body = new jQuery("body");
