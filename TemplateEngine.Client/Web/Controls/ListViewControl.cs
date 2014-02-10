@@ -39,10 +39,10 @@ namespace Neptuo.TemplateEngine.Web.Controls
             if (Source == null)
                 throw new ArgumentException("Missing data source.", "Source");
 
-            Source.GetData(PageIndex, PageSize, OnLoadData);
-
             UpdateHelper.RenderContent += OnRenderContent;
             UpdateHelper.OnInit();
+
+            Source.GetData(PageIndex, PageSize, OnLoadData);
         }
 
         private void OnRenderContent(IHtmlWriter writer)

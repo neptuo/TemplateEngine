@@ -213,9 +213,9 @@ var Neptuo$TemplateEngine$Web$Controls$DetailViewControl =
             this.InitComponent(this.get_Source());
             if (this.get_Source() == null)
                 throw $CreateException(new System.InvalidOperationException.ctor$$String("Missing data source."), new Error());
-            this.get_Source().GetItem($CreateDelegate(this, this.OnLoadData));
             this.get_UpdateHelper().add_RenderContent($CreateDelegate(this, this.OnRenderContent));
             this.get_UpdateHelper().OnInit();
+            this.get_Source().GetItem($CreateDelegate(this, this.OnLoadData));
         },
         OnRenderContent: function (writer)
         {
@@ -339,9 +339,9 @@ var Neptuo$TemplateEngine$Web$Controls$ListViewControl =
             this.InitComponent(this.get_Source());
             if (this.get_Source() == null)
                 throw $CreateException(new System.ArgumentException.ctor$$String$$String("Missing data source.", "Source"), new Error());
-            this.get_Source().GetData(this.get_PageIndex(), this.get_PageSize(), $CreateDelegate(this, this.OnLoadData));
             this.get_UpdateHelper().add_RenderContent($CreateDelegate(this, this.OnRenderContent));
             this.get_UpdateHelper().OnInit();
+            this.get_Source().GetData(this.get_PageIndex(), this.get_PageSize(), $CreateDelegate(this, this.OnLoadData));
         },
         OnRenderContent: function (writer)
         {
@@ -550,6 +550,11 @@ var Neptuo$TemplateEngine$Web$PartialUpdateHelper =
                 this.isRenderCalled = true;
                 writer.Tag("div").Attribute("data-partial", this.partialElementGuid).Content$$String("Loading data...").CloseFullTag();
                 return;
+            }
+            else
+            {
+                if (this.RenderContent != null)
+                    this.RenderContent(writer);
             }
         },
         OnDataLoaded: function ()

@@ -163,26 +163,29 @@ var Neptuo$TemplateEngine$Accounts$Web$DataSources$UserAccountEditDataSource =
         },
         set_Key: function (value)
         {
-            this._Key = value;
+            if (value != null)
+                this._Key = value;
         },
         GetItem: function (callback)
         {
+            if (this.get_Key() == 0)
+            {
+                callback((function ()
+                {
+                    var $v2 = new Neptuo.TemplateEngine.Accounts.UserAccountEditModel.ctor();
+                    $v2.set_Key(0);
+                    $v2.set_IsEnabled(true);
+                    return $v2;
+                }).call(this));
+                return;
+            }
             setTimeout($CreateAnonymousDelegate(this, function ()
             {
-                if (this.get_Key() > 0)
-                    callback(System.Linq.Enumerable.FirstOrDefault$1$$IEnumerable$1$$Func$2(Neptuo.TemplateEngine.Accounts.UserAccountEditModel.ctor, this.userAccounts.GetAll(), $CreateAnonymousDelegate(this, function (u)
-                    {
-                        return u.get_Key() == this.get_Key();
-                    })));
-                else
-                    callback((function ()
-                    {
-                        var $v2 = new Neptuo.TemplateEngine.Accounts.UserAccountEditModel.ctor();
-                        $v2.set_Key(0);
-                        $v2.set_IsEnabled(true);
-                        return $v2;
-                    }).call(this));
-            }), 1000);
+                callback(System.Linq.Enumerable.FirstOrDefault$1$$IEnumerable$1$$Func$2(Neptuo.TemplateEngine.Accounts.UserAccountEditModel.ctor, this.userAccounts.GetAll(), $CreateAnonymousDelegate(this, function (u)
+                {
+                    return u.get_Key() == this.get_Key();
+                })));
+            }), 400);
         }
     },
     ctors: [ {name: "ctor", parameters: ["Neptuo.TemplateEngine.Accounts.Data.UserRepository"]}],
