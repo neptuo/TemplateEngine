@@ -130,13 +130,13 @@
     <Content Include="Design\Scripts\Generated\Neptuo.PresentationModels.TypeModels.js" />
     <Content Include="Design\Scripts\Generated\Neptuo.PresentationModels.Validation.js" />
     <Content Include="Design\Scripts\Generated\Neptuo.System.Client.js" />
+    <Content Include="Design\Scripts\Generated\TemplateEngine\Neptuo.TemplateEngine.Shared.js" />
     <Content Include="Design\Scripts\Generated\Neptuo.Templates.Components.js" />
     <Content Include="Design\Scripts\Generated\TemplateEngine\Neptuo.TemplateEngine.Client.js" />
     <Content Include="Design\Scripts\Generated\TemplateEngine\Accounts\Neptuo.TemplateEngine.Accounts.Client.js" />
     <Content Include="Design\Scripts\Generated\TemplateEngine\Accounts\Neptuo.TemplateEngine.Accounts.Shared.js" />
     <Content Include="Design\Scripts\Generated\TemplateEngine\Neptuo.TemplateEngine.js" />
     <Content Include="Design\Scripts\Generated\TemplateEngine\Neptuo.TemplateEngine.Navigation.js" />
-    <Content Include="Design\Scripts\Generated\TemplateEngine\Neptuo.TemplateEngine.Web.js" />
     <Content Include="Design\Styles\bootstrap-theme.css" />
     <Content Include="Design\Styles\bootstrap-theme.min.css" />
     <Content Include="Design\Styles\bootstrap.css" />
@@ -223,6 +223,10 @@
     <ProjectReference Include="..\TemplateEngine.Permissions\TemplateEngine.Permissions.csproj">
       <Project>{e5c314ff-89ba-489e-bc2a-df8701a8c3f1}</Project>
       <Name>TemplateEngine.Permissions</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TemplateEngine.Shared\TemplateEngine.Shared.csproj">
+      <Project>{a4c6627c-c21b-4bb7-93a4-b40ac748588d}</Project>
+      <Name>TemplateEngine.Shared</Name>
     </ProjectReference>
     <ProjectReference Include="..\TemplateEngine.Web.Compilation\TemplateEngine.Web.Compilation.csproj">
       <Project>{f116d6f7-e47c-4c73-a802-4f61ba50857f}</Project>

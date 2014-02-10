@@ -55,7 +55,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BindingManagerBase.cs" />
     <Compile Include="Controllers\ActionAttribute.cs" />
     <Compile Include="Controllers\ControllerBase.cs" />
     <Compile Include="Controllers\ControllerContext.cs" />
@@ -64,71 +63,16 @@
     <Compile Include="Controllers\IViewData.cs" />
     <Compile Include="Controllers\MessageStorageExtensions.cs" />
     <Compile Include="Controllers\ViewDataCollection.cs" />
-    <Compile Include="Controls\Ajax\AjaxView.cs" />
-    <Compile Include="Controls\ContentControlBase.cs" />
-    <Compile Include="Controls\CssClassCollection.cs" />
-    <Compile Include="Controls\HtmlContentControlBase.cs" />
-    <Compile Include="Controls\DesignData\HintAttribute.cs" />
     <Compile Include="Controls\DetailViewControl.cs" />
-    <Compile Include="Controls\HtmlControlBase.cs" />
-    <Compile Include="Controls\IHtmlAttributeCollection.cs" />
     <Compile Include="Controls\ListViewControl.cs" />
-    <Compile Include="Controls\NavigationControl.cs" />
-    <Compile Include="Controls\NavigationItem.cs" />
-    <Compile Include="Controls\OptionControl.cs" />
-    <Compile Include="ExtendedComponentManager.cs" />
-    <Compile Include="ExtendedHtmlTextWriter.cs" />
-    <Compile Include="IExtendedHtmlWriter.cs" />
-    <Compile Include="IPartialUpdateWriter.cs" />
-    <Compile Include="Observers\AjaxPartialObserver.cs" />
-    <Compile Include="ViewServiceViewActivator.cs" />
-    <Compile Include="IViewActivator.cs" />
-    <Compile Include="ParameterProviderExtensions.cs" />
     <Compile Include="Controls\SelectControl.cs" />
-    <Compile Include="Controls\Templates\ContentTemplate.cs" />
-    <Compile Include="Controls\Templates\ContentTemplateContent.cs" />
-    <Compile Include="Controls\ControlBase.cs" />
-    <Compile Include="Controls\Forms\ButtonControl.cs" />
-    <Compile Include="Controls\Forms\CheckBoxControl.cs" />
-    <Compile Include="Controls\Templates\DefaultTemplateAttribute.cs" />
-    <Compile Include="Controls\DesignData\SupportUiEventAttribute.cs" />
-    <Compile Include="Controls\DoctypeControl.cs" />
-    <Compile Include="Controls\Templates\FileTemplate.cs" />
-    <Compile Include="Controls\Forms\FormControlBase.cs" />
-    <Compile Include="Controls\Forms\FormInputControlBase.cs" />
-    <Compile Include="Controls\FormItemControl.cs" />
-    <Compile Include="Controls\GenericContentControl.cs" />
-    <Compile Include="Controls\Forms\HiddenBoxControl.cs" />
-    <Compile Include="Controls\Forms\IFormControl.cs" />
-    <Compile Include="Controls\Templates\ITemplate.cs" />
-    <Compile Include="Controls\Templates\ITemplateContent.cs" />
-    <Compile Include="Controls\ITextControl.cs" />
-    <Compile Include="Controls\IValueControl.cs" />
-    <Compile Include="Controls\LinkControl.cs" />
-    <Compile Include="Controls\MessagePanelControl.cs" />
-    <Compile Include="Controls\ParameterControl.cs" />
-    <Compile Include="Controls\Presentation\PresentationListControlBase.cs" />
-    <Compile Include="DataContextStorage.cs" />
+    <Compile Include="Controls\Templates\StringTemplate.cs" />
+    <Compile Include="GeneratedViewBase.cs" />
+    <Compile Include="ViewServiceViewActivator.cs" />
     <Compile Include="DataSources\ListDataSourceBase.cs" />
-    <Compile Include="Extensions\BindingExtension.cs" />
-    <Compile Include="Extensions\CurrentUrlExtension.cs" />
-    <Compile Include="Extensions\RequestExtension.cs" />
-    <Compile Include="Extensions\SwitchExtension.cs" />
-    <Compile Include="Extensions\TemplateBindingExtension.cs" />
-    <Compile Include="GlobalNavigationCollection.cs" />
-    <Compile Include="ICurrentUrlProvider.cs" />
     <Compile Include="IDataSource.cs" />
-    <Compile Include="IParameterProviderFactory.cs" />
-    <Compile Include="NavigationCollection.cs" />
-    <Compile Include="IParameterProvider.cs" />
-    <Compile Include="IValueConverter.cs" />
-    <Compile Include="IValueConverterService.cs" />
-    <Compile Include="Converters\NullToBoolValueConverter.cs" />
-    <Compile Include="Observers\VisibleObserver.cs" />
     <Compile Include="RequestParameterProviderFactory.cs" />
-    <Compile Include="ParameterProviderType.cs" />
     <Compile Include="RequestParameterProvider.cs" />
-    <Compile Include="ValueConverterService.cs" />
     <Compile Include="Controllers\Binders\RequestBindingValueStorage.cs" />
     <Compile Include="Controllers\DependencyControllerFactory.cs" />
     <Compile Include="Controllers\Binders\IModelBinder.cs" />
@@ -138,36 +82,18 @@
     <Compile Include="Controllers\Binders\ModelBinderExtensions.cs" />
     <Compile Include="Controllers\Binders\RequestModelBinder.cs" />
     <Compile Include="Controllers\ControllerRegistryBase.cs" />
-    <Compile Include="IBindingManager.cs" />
-    <Compile Include="Message.cs" />
-    <Compile Include="Controls\Forms\PasswordBoxControl.cs" />
-    <Compile Include="Controls\Templates\StringTemplate.cs" />
-    <Compile Include="Controls\Templates\TemplateContentControl.cs" />
-    <Compile Include="Controls\Templates\TemplateControl.cs" />
-    <Compile Include="Controls\Templates\TemplatePlaceholder.cs" />
-    <Compile Include="Controls\Forms\TextBoxControl.cs" />
-    <Compile Include="Controls\Templates\ViewTemplateBase.cs" />
-    <Compile Include="Controls\Templates\ViewTemplateContent.cs" />
-    <Compile Include="GeneratedViewBase.cs" />
-    <Compile Include="Controls\LiteralControl.cs" />
-    <Compile Include="Controls\Presentation\PresentationControlBase.cs" />
-    <Compile Include="LocalizationHelper.cs" />
-    <Compile Include="MessageStorage.cs" />
-    <Compile Include="Observers\EventObserver.cs" />
-    <Compile Include="Observers\HtmlObserver.cs" />
-    <Compile Include="Observers\IsPlaceholderObserver.cs" />
-    <Compile Include="PresentationConfiguration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="PropertySetAttribute.cs" />
     <Compile Include="Navigation\RedirectNavigateTo.cs" />
     <Compile Include="Navigation\RedirectNavigator.cs" />
-    <Compile Include="TemplateContentStorage.cs" />
-    <Compile Include="TemplateContentStorageStack.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\TemplateEngine.Navigation\TemplateEngine.Navigation.csproj">
       <Project>{f16d8bc8-2191-498f-9950-dc8aa200b0ba}</Project>
       <Name>TemplateEngine.Navigation</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TemplateEngine.Shared\TemplateEngine.Shared.csproj">
+      <Project>{a4c6627c-c21b-4bb7-93a4-b40ac748588d}</Project>
+      <Name>TemplateEngine.Shared</Name>
     </ProjectReference>
     <ProjectReference Include="..\TemplateEngine\TemplateEngine.csproj">
       <Project>{0ddeef40-567f-49de-94ec-314309702534}</Project>
@@ -180,15 +106,5 @@
   <ItemGroup>
     <EmbeddedResource Include="Views\SelectControl.Template.view" />
   </ItemGroup>
-  <ItemGroup>
-    <Content Include="Neptuo.TemplateEngine.Web.js" />
-    <Content Include="Neptuo.TemplateEngine.Web.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <SkcPlugin Include="Neptuo.SharpKit.Exugin.ExuginPlugin, Neptuo.SharpKit.Exugin">
-      <InProject>false</InProject>
-    </SkcPlugin>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <Import Project="$(MSBuildBinPath)\SharpKit\5\SharpKit.Build.targets" />
 </Project>

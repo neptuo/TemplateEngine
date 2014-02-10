@@ -74,9 +74,9 @@
       <Project>{b064bdbc-3755-4110-8eb7-6add2535d9fd}</Project>
       <Name>TemplateEngine.PresentationModels</Name>
     </ProjectReference>
-    <ProjectReference Include="..\TemplateEngine.Web\TemplateEngine.Web.csproj">
-      <Project>{8095932d-ec0b-4990-90f1-951b7b5feeac}</Project>
-      <Name>TemplateEngine.Web</Name>
+    <ProjectReference Include="..\TemplateEngine.Shared\TemplateEngine.Shared.csproj">
+      <Project>{a4c6627c-c21b-4bb7-93a4-b40ac748588d}</Project>
+      <Name>TemplateEngine.Shared</Name>
     </ProjectReference>
     <ProjectReference Include="..\TemplateEngine\TemplateEngine.csproj">
       <Project>{0ddeef40-567f-49de-94ec-314309702534}</Project>
