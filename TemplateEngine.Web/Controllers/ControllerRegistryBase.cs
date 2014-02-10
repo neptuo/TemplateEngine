@@ -17,11 +17,8 @@ namespace Neptuo.TemplateEngine.Web.Controllers
 
         public IControllerRegistry Add(string actionName, IControllerFactory factory)
         {
-            if (actionName == null)
-                throw new ArgumentNullException("actionName");
-
-            if (factory == null)
-                throw new ArgumentNullException("factory");
+            Guard.NotNull(actionName, "actionName");
+            Guard.NotNull(factory, "factory");
 
             Storage[actionName] = factory;
             return this;
@@ -29,9 +26,7 @@ namespace Neptuo.TemplateEngine.Web.Controllers
 
         public bool TryGet(string actionName, out IController handler)
         {
-            if (actionName == null)
-                throw new ArgumentNullException("actionName");
-
+            Guard.NotNull(actionName, "actionName");
             IControllerFactory factory;
             if (Storage.TryGetValue(actionName, out factory))
             {
