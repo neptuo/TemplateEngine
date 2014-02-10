@@ -30,10 +30,10 @@ namespace Neptuo.TemplateEngine.Web.Controls
             if (Source == null)
                 throw new InvalidOperationException("Missing data source.");
 
-            Source.GetItem(OnLoadData);
-
             UpdateHelper.RenderContent += OnRenderContent;
             UpdateHelper.OnInit();
+
+            Source.GetItem(OnLoadData);
         }
 
         private void OnRenderContent(IHtmlWriter writer)

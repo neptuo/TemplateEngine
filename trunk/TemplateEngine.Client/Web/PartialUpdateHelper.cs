@@ -45,6 +45,11 @@ namespace Neptuo.TemplateEngine.Web
 
                 return;
             }
+            else
+            {
+                if (RenderContent != null)
+                    RenderContent(writer);
+            }
         }
 
         public void OnDataLoaded()

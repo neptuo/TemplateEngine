@@ -23,13 +23,14 @@ namespace Neptuo.TemplateEngine.Accounts.Web.DataSources
 
         public void GetItem(Action<object> callback)
         {
-            HtmlContext.setTimeout(() =>
+            if (Key == 0)
             {
-                if (Key > 0)
-                    callback(userAccounts.GetAll().FirstOrDefault(u => u.Key == Key));
-                else
-                    callback(new UserAccountEditModel { Key = 0, IsEnabled = true });
-            }, 1000);
+
+                callback(new UserAccountEditModel { Key = 0, IsEnabled = true });
+                return;
+            }
+
+            HtmlContext.setTimeout(() => callback(userAccounts.GetAll().FirstOrDefault(u => u.Key == Key)), 400);
         }
     }
 }
