@@ -139,6 +139,57 @@ var Neptuo$TemplateEngine$Web$BindingManagerBase =
     IsAbstract: false
 };
 JsTypes.push(Neptuo$TemplateEngine$Web$BindingManagerBase);
+var Neptuo$TemplateEngine$Web$CompositeRequestContext =
+{
+    fullname: "Neptuo.TemplateEngine.Web.CompositeRequestContext",
+    baseTypeName: "System.Object",
+    assemblyName: "Neptuo.TemplateEngine.Shared",
+    interfaceNames: ["Neptuo.TemplateEngine.Web.IRequestContext"],
+    Kind: "Class",
+    definition:
+    {
+        ctor: function (componentManager, currentUrl, urlProvider, parameterFactory)
+        {
+            this.currentUrl = null;
+            this.urlProvider = null;
+            this.parameterFactory = null;
+            this._ComponentManager = null;
+            System.Object.ctor.call(this);
+            Neptuo.Guard.NotNull$$Object$$String(componentManager, "componentManager");
+            Neptuo.Guard.NotNull$$Object$$String(currentUrl, "currentUrl");
+            Neptuo.Guard.NotNull$$Object$$String(urlProvider, "urlProvider");
+            Neptuo.Guard.NotNull$$Object$$String(parameterFactory, "parameterFactory");
+            this.set_ComponentManager(componentManager);
+            this.currentUrl = currentUrl;
+            this.urlProvider = urlProvider;
+            this.parameterFactory = parameterFactory;
+        },
+        ComponentManager$$: "Neptuo.Templates.IComponentManager",
+        get_ComponentManager: function ()
+        {
+            return this._ComponentManager;
+        },
+        set_ComponentManager: function (value)
+        {
+            this._ComponentManager = value;
+        },
+        GetCurrentUrl: function ()
+        {
+            return this.currentUrl.GetCurrentUrl();
+        },
+        ResolveUrl: function (path)
+        {
+            return this.urlProvider.ResolveUrl(path);
+        },
+        Provider: function (providerType)
+        {
+            return this.parameterFactory.Provider(providerType);
+        }
+    },
+    ctors: [ {name: "ctor", parameters: ["Neptuo.Templates.IComponentManager", "Neptuo.TemplateEngine.Web.ICurrentUrlProvider", "Neptuo.Templates.IVirtualUrlProvider", "Neptuo.TemplateEngine.Web.IParameterProviderFactory"]}],
+    IsAbstract: false
+};
+JsTypes.push(Neptuo$TemplateEngine$Web$CompositeRequestContext);
 var Neptuo$TemplateEngine$Web$Controls$AjaxView =
 {
     fullname: "Neptuo.TemplateEngine.Web.Controls.AjaxView",
@@ -2679,6 +2730,8 @@ var Neptuo$TemplateEngine$Web$IParameterProviderFactory = {fullname: "Neptuo.Tem
 JsTypes.push(Neptuo$TemplateEngine$Web$IParameterProviderFactory);
 var Neptuo$TemplateEngine$Web$IPartialUpdateWriter = {fullname: "Neptuo.TemplateEngine.Web.IPartialUpdateWriter", baseTypeName: "System.Object", assemblyName: "Neptuo.TemplateEngine.Shared", Kind: "Interface", ctors: [], IsAbstract: true};
 JsTypes.push(Neptuo$TemplateEngine$Web$IPartialUpdateWriter);
+var Neptuo$TemplateEngine$Web$IRequestContext = {fullname: "Neptuo.TemplateEngine.Web.IRequestContext", baseTypeName: "System.Object", assemblyName: "Neptuo.TemplateEngine.Shared", interfaceNames: ["Neptuo.TemplateEngine.Web.ICurrentUrlProvider", "Neptuo.Templates.IVirtualUrlProvider", "Neptuo.TemplateEngine.Web.IParameterProviderFactory"], Kind: "Interface", ctors: [], IsAbstract: true};
+JsTypes.push(Neptuo$TemplateEngine$Web$IRequestContext);
 var Neptuo$TemplateEngine$Web$IValueConverter = {fullname: "Neptuo.TemplateEngine.Web.IValueConverter", baseTypeName: "System.Object", assemblyName: "Neptuo.TemplateEngine.Shared", Kind: "Interface", ctors: [], IsAbstract: true};
 JsTypes.push(Neptuo$TemplateEngine$Web$IValueConverter);
 var Neptuo$TemplateEngine$Web$IValueConverterService = {fullname: "Neptuo.TemplateEngine.Web.IValueConverterService", baseTypeName: "System.Object", assemblyName: "Neptuo.TemplateEngine.Shared", Kind: "Interface", ctors: [], IsAbstract: true};
