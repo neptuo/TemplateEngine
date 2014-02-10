@@ -32,10 +32,10 @@ namespace Neptuo.TemplateEngine.Web.Controls
         {
             if (Value != null)
             {
-                if (SelectedValue != null && SelectedValue.ToString() == Value.ToString())
+                if (SelectedValue != null && SelectedValue.ToString() == ("" + Value))
                     Attributes["selected"] = "selected";
 
-                Attributes["value"] = Value.ToString();
+                Attributes["value"] = ("" + Value);
             }
 
             base.RenderAttributes(writer);
