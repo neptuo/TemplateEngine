@@ -688,7 +688,10 @@ var Neptuo$TemplateEngine$Web$InitScript =
             Neptuo.TemplateEngine.Web.InitScript.viewActivator = Neptuo.DependencyProviderExtensions.Resolve$1$$IDependencyProvider(Neptuo.TemplateEngine.Web.IViewActivator.ctor, Neptuo.TemplateEngine.Web.InitScript.objectBuilder);
             $(function ()
             {
-                $("body").delegate("a", "click", Neptuo.TemplateEngine.Web.InitScript.OnLinkClick);
+                var body = $("body");
+                body.delegate("a", "click", Neptuo.TemplateEngine.Web.InitScript.OnLinkClick);
+                body.delegate("button", "click", Neptuo.TemplateEngine.Web.InitScript.OnButtonClick);
+                body.delegate("form", "submit", Neptuo.TemplateEngine.Web.InitScript.OnFormSubmit);
             });
         },
         UpdateContent: function (partialGuid, content)
@@ -748,6 +751,26 @@ var Neptuo$TemplateEngine$Web$InitScript =
             view.Init();
             view.Render(new Neptuo.TemplateEngine.Web.ExtendedHtmlTextWriter.ctor(writer));
             view.Dispose();
+        },
+        OnFormSubmit: function (e)
+        {
+            var form = $(e.currentTarget);
+            var data = form.serializeArray();
+            var buttonName = form.data("button");
+            if (System.String.IsNullOrEmpty(buttonName))
+                buttonName = form.find("button:first").attr("name");
+            var submitButton = new Object();
+            submitButton["name"] = buttonName;
+            submitButton["value"] = null;
+            data.push(submitButton);
+            console.log(data);
+            e.preventDefault();
+        },
+        OnButtonClick: function (e)
+        {
+            var button = $(e.currentTarget);
+            var buttonName = button.attr("name");
+            button.parents("form").first().data("button", buttonName);
         }
     },
     assemblyName: "Neptuo.TemplateEngine.Client",

@@ -48,7 +48,13 @@ namespace Neptuo.TemplateEngine.Web
             objectBuilder = CreateDependencyContainer();
             viewActivator = objectBuilder.Resolve<IViewActivator>();
 
-            new jQuery(() => { new jQuery("body").@delegate("a", "click", OnLinkClick); });
+            new jQuery(() => {
+                jQuery body = new jQuery("body");
+
+                body.@delegate("a", "click", OnLinkClick);
+                body.@delegate("button", "click", OnButtonClick);
+                body.@delegate("form", "submit", OnFormSubmit);
+            });
         }
 
         public static void UpdateContent(string partialGuid, TextWriter content)
@@ -126,9 +132,34 @@ namespace Neptuo.TemplateEngine.Web
             view.Init();
             view.Render(new ExtendedHtmlTextWriter(writer));
             view.Dispose();
-
-            //new jQuery("#target").html(writer.ToString()).find('a').click(OnLinkClick);
         }
+
+        private static void OnFormSubmit(Event e)
+        {
+            jQuery form = new jQuery(e.currentTarget);
+            JsArray data = form.serializeArray();
+            string buttonName = form.data("button").As<string>();
+            if(String.IsNullOrEmpty(buttonName))
+                buttonName = form.find("button:first").attr("name");
+
+            JsObject submitButton = new JsObject();
+            submitButton["name"] = buttonName;
+            submitButton["value"] = null;
+            data.push(submitButton);
+
+            FormRequestContext context = new FormRequestContext(data, buttonName, form.attr("action") ?? HtmlContext.location.href);
+
+            HtmlContext.console.log(data);
+            e.preventDefault();
+        }
+
+        private static void OnButtonClick(Event e)
+        {
+            jQuery button = new jQuery(e.currentTarget);
+            string buttonName = button.attr("name");
+            button.parents("form").first().data("button", buttonName);
+        }
+
     }
 
     public class UrlProvider : IVirtualUrlProvider, ICurrentUrlProvider
@@ -220,6 +251,20 @@ namespace Neptuo.TemplateEngine.Web
             : base(new Dictionary<string,string>())
         {
             ParameterProviderFactory.ParseQueryString(Parameters);
+        }
+    }
+
+    public class FormRequestContext
+    {
+        public JsArray Parameters { get; private set; }
+        public string Event { get; private set; }
+        public string FormUrl { get; private set; }
+
+        public FormRequestContext(JsArray parameters, string eventName, string formUrl)
+        {
+            Parameters = parameters;
+            Event = eventName;
+            FormUrl = formUrl;
         }
     }
 
