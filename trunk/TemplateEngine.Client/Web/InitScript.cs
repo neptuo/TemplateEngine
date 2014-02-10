@@ -34,6 +34,7 @@ namespace Neptuo.TemplateEngine.Web
                 .RegisterType<IParameterProvider, AllParameterProvider>()
                 .RegisterType<IBindingManager, BindingManagerBase>()
                 .RegisterType<IValueConverterService, ValueConverterService>()
+                .RegisterType<IRequestContext, CompositeRequestContext>()
                 .RegisterInstance(new TemplateContentStorageStack())
                 .RegisterInstance(new DataContextStorage())
                 .RegisterInstance<IGuidProvider>(new SequenceGuidProvider("guid", 1))
