@@ -14,8 +14,8 @@ namespace Neptuo.TemplateEngine.Web.Controls
         public bool IsAddEmpty { get; set; }
         public HtmlAttributeCollection Attributes { get; private set; }
 
-        public SelectControl(IComponentManager componentManager, TemplateContentStorageStack storage, DataContextStorage dataContext, IGuidProvider guidProvider)
-            : base(componentManager, storage, dataContext, guidProvider)
+        public SelectControl(IComponentManager componentManager, TemplateContentStorageStack storage, DataContextStorage dataContext, PartialUpdateHelper updateHelper)
+            : base(componentManager, storage, dataContext, updateHelper)
         {
             Attributes = new HtmlAttributeCollection();
         }

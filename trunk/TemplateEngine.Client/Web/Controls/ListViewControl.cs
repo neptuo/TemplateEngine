@@ -13,23 +13,20 @@ namespace Neptuo.TemplateEngine.Web.Controls
 {
     public class ListViewControl : TemplateControl
     {
-        public DataSources.IListDataSource Source { get; set; }
+        public IListDataSource Source { get; set; }
         public ITemplate ItemTemplate { get; set; }
         public ITemplate EmptyTemplate { get; set; }
         public int? PageSize { get; set; }
         public int? PageIndex { get; set; }
         protected DataContextStorage DataContext { get; private set; }
         protected int TotalCount { get; private set; }
-        protected IGuidProvider GuidProvider { get; private set; }
-        private string partialElementGuid;
+        protected PartialUpdateHelper UpdateHelper { get; private set; }
 
-        private string partialGuid;
-
-        public ListViewControl(IComponentManager componentManager, TemplateContentStorageStack storage, DataContextStorage dataContext, IGuidProvider guidProvider)
+        public ListViewControl(IComponentManager componentManager, TemplateContentStorageStack storage, DataContextStorage dataContext, PartialUpdateHelper updateHelper)
             : base(componentManager, storage) 
         {
             DataContext = dataContext;
-            GuidProvider = guidProvider;
+            UpdateHelper = updateHelper;
         }
 
         public override void OnInit()
@@ -43,24 +40,13 @@ namespace Neptuo.TemplateEngine.Web.Controls
                 throw new ArgumentException("Missing data source.", "Source");
 
             Source.GetData(PageIndex, PageSize, OnLoadData);
-            partialElementGuid = GuidProvider.Next();
+
+            UpdateHelper.RenderContent += OnRenderContent;
+            UpdateHelper.OnInit();
         }
 
-        public override void Render(IHtmlWriter writer)
+        private void OnRenderContent(IHtmlWriter writer)
         {
-            if (!isDataLoaded)
-            {
-                isRenderCalled = true;
-                
-                writer
-                    .Tag("div")
-                    .Attribute("data-partial", partialElementGuid)
-                    .Content("Loading data...")
-                    .CloseFullTag();
-
-                return;
-            }
-
             base.Render(writer);
 
             if (PageSize != null)
@@ -86,15 +72,13 @@ namespace Neptuo.TemplateEngine.Web.Controls
             }
         }
 
-        private bool isRenderCalled = false;
-        private bool isDataLoaded = false;
+        public override void Render(IHtmlWriter writer)
+        {
+            UpdateHelper.Render(writer);
+        }
+
         private void OnLoadData(IListResult result)
         {
-            isDataLoaded = true;
-
-
-
-
             bool isEmpty = true;
 
             List<object> itemTemplates = new List<object>();
@@ -128,14 +112,7 @@ namespace Neptuo.TemplateEngine.Web.Controls
             base.OnInit();
             DataContext.Pop("Template");
 
-            if (isRenderCalled)
-            {
-                StringWriter stringWriter = new StringWriter();
-                HtmlTextWriter writer = new HtmlTextWriter(stringWriter);
-
-                Render(writer);
-                InitScript.UpdateContent(partialElementGuid, stringWriter);
-            }
+            UpdateHelper.OnDataLoaded();
         }
     }
 }
