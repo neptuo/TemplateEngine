@@ -81,19 +81,19 @@ namespace Neptuo.TemplateEngine.Web
 
         public static string MapView(string url)
         {
-            if (url.StartsWith("/Home.aspx"))
+            if (url.Contains("/Home.aspx"))
                 return "~/Views/Home.view";
 
-            if (url.StartsWith("/Accounts/UserList.aspx"))
+            if (url.Contains("/Accounts/UserList.aspx"))
                 return "~/Views/Accounts/UserList.view";
-            
-            if (url.StartsWith("/Accounts/UserEdit.aspx"))
+
+            if (url.Contains("/Accounts/UserEdit.aspx"))
                 return "~/Views/Accounts/UserEdit.view";
 
-            if (url.StartsWith("/Accounts/RoleList.aspx"))
+            if (url.Contains("/Accounts/RoleList.aspx"))
                 return "~/Views/Accounts/RoleList.view";
-            
-            if (url.StartsWith("/Accounts/RoleEdit.aspx"))
+
+            if (url.Contains("/Accounts/RoleEdit.aspx"))
                 return "~/Views/Accounts/RoleEdit.view";
 
             return null;

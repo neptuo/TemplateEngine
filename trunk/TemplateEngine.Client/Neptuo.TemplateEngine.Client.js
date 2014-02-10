@@ -245,17 +245,19 @@ var Neptuo$TemplateEngine$Web$Controls$ListViewControl =
     Kind: "Class",
     definition:
     {
-        ctor: function (componentManager, storage, dataContext, updateHelper)
+        ctor: function (requestContext, storage, dataContext, updateHelper)
         {
             this._Source = null;
             this._ItemTemplate = null;
             this._EmptyTemplate = null;
             this._PageSize = null;
             this._PageIndex = null;
+            this._RequestContext = null;
             this._DataContext = null;
             this._TotalCount = 0;
             this._UpdateHelper = null;
-            Neptuo.TemplateEngine.Web.Controls.TemplateControl.ctor.call(this, componentManager, storage);
+            Neptuo.TemplateEngine.Web.Controls.TemplateControl.ctor.call(this, requestContext.get_ComponentManager(), storage);
+            this.set_RequestContext(requestContext);
             this.set_DataContext(dataContext);
             this.set_UpdateHelper(updateHelper);
         },
@@ -304,6 +306,15 @@ var Neptuo$TemplateEngine$Web$Controls$ListViewControl =
         {
             this._PageIndex = value;
         },
+        RequestContext$$: "Neptuo.TemplateEngine.Web.IRequestContext",
+        get_RequestContext: function ()
+        {
+            return this._RequestContext;
+        },
+        set_RequestContext: function (value)
+        {
+            this._RequestContext = value;
+        },
         DataContext$$: "Neptuo.TemplateEngine.Web.DataContextStorage",
         get_DataContext: function ()
         {
@@ -351,10 +362,18 @@ var Neptuo$TemplateEngine$Web$Controls$ListViewControl =
                 writer.Tag("ul").Attribute("class", "pagination pagination-sm");
                 for (var i = 0; i < System.Math.Ceiling$$Decimal(this.get_TotalCount() / this.get_PageSize().get_Value()); i++)
                 {
-                    writer.Tag("li").Attribute("class", ((this.get_PageIndex() != null ? this.get_PageIndex() : 0) == i) ? "active" : "").Tag("a").Attribute("href", (i != 0) ? ("?PageIndex=" + i) : "?").Content$$Object(i + 1).CloseFullTag().CloseFullTag();
+                    writer.Tag("li").Attribute("class", ((this.get_PageIndex() != null ? this.get_PageIndex() : 0) == i) ? "active" : "").Tag("a").Attribute("href", this.GetBaseUrl() + ((i != 0) ? ("?PageIndex=" + i) : "?")).Content$$Object(i + 1).CloseFullTag().CloseFullTag();
                 }
                 writer.CloseFullTag();
             }
+        },
+        GetBaseUrl: function ()
+        {
+            var currentUrl = this.get_RequestContext().GetCurrentUrl();
+            var indexOfQueryString = currentUrl.indexOf("?");
+            if (indexOfQueryString > 0)
+                currentUrl = currentUrl.substr(0, indexOfQueryString);
+            return currentUrl;
         },
         Render: function (writer)
         {
@@ -397,7 +416,7 @@ var Neptuo$TemplateEngine$Web$Controls$ListViewControl =
             this.get_UpdateHelper().OnDataLoaded();
         }
     },
-    ctors: [ {name: "ctor", parameters: ["Neptuo.Templates.IComponentManager", "Neptuo.TemplateEngine.Web.TemplateContentStorageStack", "Neptuo.TemplateEngine.Web.DataContextStorage", "Neptuo.TemplateEngine.Web.PartialUpdateHelper"]}],
+    ctors: [ {name: "ctor", parameters: ["Neptuo.TemplateEngine.Web.IRequestContext", "Neptuo.TemplateEngine.Web.TemplateContentStorageStack", "Neptuo.TemplateEngine.Web.DataContextStorage", "Neptuo.TemplateEngine.Web.PartialUpdateHelper"]}],
     IsAbstract: false
 };
 JsTypes.push(Neptuo$TemplateEngine$Web$Controls$ListViewControl);
@@ -410,13 +429,13 @@ var Neptuo$TemplateEngine$Web$Controls$SelectControl =
     Kind: "Class",
     definition:
     {
-        ctor: function (componentManager, storage, dataContext, updateHelper)
+        ctor: function (requestContext, storage, dataContext, updateHelper)
         {
             this._Name = null;
             this._Value = null;
             this._IsAddEmpty = false;
             this._Attributes = null;
-            Neptuo.TemplateEngine.Web.Controls.ListViewControl.ctor.call(this, componentManager, storage, dataContext, updateHelper);
+            Neptuo.TemplateEngine.Web.Controls.ListViewControl.ctor.call(this, requestContext, storage, dataContext, updateHelper);
             this.set_Attributes(new Neptuo.Templates.HtmlAttributeCollection.ctor());
         },
         Name$$: "System.String",
@@ -460,7 +479,7 @@ var Neptuo$TemplateEngine$Web$Controls$SelectControl =
             this.get_Attributes().set_Item$$TKey(name, value);
         }
     },
-    ctors: [ {name: "ctor", parameters: ["Neptuo.Templates.IComponentManager", "Neptuo.TemplateEngine.Web.TemplateContentStorageStack", "Neptuo.TemplateEngine.Web.DataContextStorage", "Neptuo.TemplateEngine.Web.PartialUpdateHelper"]}],
+    ctors: [ {name: "ctor", parameters: ["Neptuo.TemplateEngine.Web.IRequestContext", "Neptuo.TemplateEngine.Web.TemplateContentStorageStack", "Neptuo.TemplateEngine.Web.DataContextStorage", "Neptuo.TemplateEngine.Web.PartialUpdateHelper"]}],
     IsAbstract: false
 };
 JsTypes.push(Neptuo$TemplateEngine$Web$Controls$SelectControl);
@@ -721,15 +740,15 @@ var Neptuo$TemplateEngine$Web$InitScript =
         },
         MapView: function (url)
         {
-            if (url.StartsWith$$String("/Home.aspx"))
+            if (url.Contains("/Home.aspx"))
                 return "~/Views/Home.view";
-            if (url.StartsWith$$String("/Accounts/UserList.aspx"))
+            if (url.Contains("/Accounts/UserList.aspx"))
                 return "~/Views/Accounts/UserList.view";
-            if (url.StartsWith$$String("/Accounts/UserEdit.aspx"))
+            if (url.Contains("/Accounts/UserEdit.aspx"))
                 return "~/Views/Accounts/UserEdit.view";
-            if (url.StartsWith$$String("/Accounts/RoleList.aspx"))
+            if (url.Contains("/Accounts/RoleList.aspx"))
                 return "~/Views/Accounts/RoleList.view";
-            if (url.StartsWith$$String("/Accounts/RoleEdit.aspx"))
+            if (url.Contains("/Accounts/RoleEdit.aspx"))
                 return "~/Views/Accounts/RoleEdit.view";
             return null;
         },

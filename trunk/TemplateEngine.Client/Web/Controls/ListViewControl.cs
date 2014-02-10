@@ -18,13 +18,15 @@ namespace Neptuo.TemplateEngine.Web.Controls
         public ITemplate EmptyTemplate { get; set; }
         public int? PageSize { get; set; }
         public int? PageIndex { get; set; }
+        protected IRequestContext RequestContext { get; private set; }
         protected DataContextStorage DataContext { get; private set; }
         protected int TotalCount { get; private set; }
         protected PartialUpdateHelper UpdateHelper { get; private set; }
 
-        public ListViewControl(IComponentManager componentManager, TemplateContentStorageStack storage, DataContextStorage dataContext, PartialUpdateHelper updateHelper)
-            : base(componentManager, storage) 
+        public ListViewControl(IRequestContext requestContext, TemplateContentStorageStack storage, DataContextStorage dataContext, PartialUpdateHelper updateHelper)
+            : base(requestContext.ComponentManager, storage) 
         {
+            RequestContext = requestContext;
             DataContext = dataContext;
             UpdateHelper = updateHelper;
         }
@@ -61,7 +63,7 @@ namespace Neptuo.TemplateEngine.Web.Controls
                         .Tag("li")
                         .Attribute("class", ((PageIndex ?? 0) == i) ? "active" : "")
                             .Tag("a")
-                            .Attribute("href", (i != 0) ? ("?PageIndex=" + i) : "?")
+                            .Attribute("href", GetBaseUrl() + ((i != 0) ? ("?PageIndex=" + i) : "?"))
                             .Content(i + 1)
                             .CloseFullTag()
                         .CloseFullTag();
@@ -70,6 +72,16 @@ namespace Neptuo.TemplateEngine.Web.Controls
                 writer
                     .CloseFullTag();
             }
+        }
+
+        private string GetBaseUrl()
+        {
+            string currentUrl = RequestContext.GetCurrentUrl();
+            int indexOfQueryString = currentUrl.IndexOf('?');
+            if (indexOfQueryString > 0)
+                currentUrl = currentUrl.Substring(0, indexOfQueryString);
+
+            return currentUrl;
         }
 
         public override void Render(IHtmlWriter writer)
