@@ -39,7 +39,7 @@ namespace Neptuo.TemplateEngine.Backend
                 .RegisterInstance<IMetadataValidatorCollection>(validators)
                 .RegisterInstance(bindingConverters)
                 .RegisterInstance<IBindingConverterCollection>(bindingConverters)
-                .RegisterType<IModelBinder, RequestModelBinder>()
+                .RegisterType<IModelBinder, ModelBinder>()
                 .RegisterType<IModelDefinitionFactory, ReflectionModelDefinitionFactory>(new SingletonLifetime())
                 .RegisterType<IModelValueProviderFactory, ReflectionModelValueProviderFactory>(new SingletonLifetime());
         }

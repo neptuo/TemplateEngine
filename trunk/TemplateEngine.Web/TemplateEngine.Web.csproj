@@ -73,14 +73,14 @@
     <Compile Include="IDataSource.cs" />
     <Compile Include="RequestParameterProviderFactory.cs" />
     <Compile Include="RequestParameterProvider.cs" />
-    <Compile Include="Controllers\Binders\RequestBindingValueStorage.cs" />
+    <Compile Include="Controllers\Binders\BindingValueStorage.cs" />
     <Compile Include="Controllers\DependencyControllerFactory.cs" />
     <Compile Include="Controllers\Binders\IModelBinder.cs" />
     <Compile Include="Controllers\IController.cs" />
     <Compile Include="Controllers\IControllerFactory.cs" />
     <Compile Include="Controllers\IControllerRegistry.cs" />
     <Compile Include="Controllers\Binders\ModelBinderExtensions.cs" />
-    <Compile Include="Controllers\Binders\RequestModelBinder.cs" />
+    <Compile Include="Controllers\Binders\ModelBinder.cs" />
     <Compile Include="Controllers\ControllerRegistryBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Navigation\RedirectNavigateTo.cs" />
