@@ -110,6 +110,10 @@
       <Project>{e5c314ff-89ba-489e-bc2a-df8701a8c3f1}</Project>
       <Name>TemplateEngine.Permissions</Name>
     </ProjectReference>
+    <ProjectReference Include="..\TemplateEngine.Shared\TemplateEngine.Shared.csproj">
+      <Project>{a4c6627c-c21b-4bb7-93a4-b40ac748588d}</Project>
+      <Name>TemplateEngine.Shared</Name>
+    </ProjectReference>
     <ProjectReference Include="..\TemplateEngine.Web.Compilation\TemplateEngine.Web.Compilation.csproj">
       <Project>{f116d6f7-e47c-4c73-a802-4f61ba50857f}</Project>
       <Name>TemplateEngine.Web.Compilation</Name>

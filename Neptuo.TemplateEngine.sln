@@ -56,6 +56,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TemplateEngine.Accounts.Boo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TemplateEngine.Accounts.Client", "TemplateEngine.Accounts.Client\TemplateEngine.Accounts.Client.csproj", "{D9B6611D-C5D5-4652-99A7-4152775E16CA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TemplateEngine.Shared", "TemplateEngine.Shared\TemplateEngine.Shared.csproj", "{A4C6627C-C21B-4BB7-93A4-B40AC748588D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -142,6 +144,10 @@ Global
 		{D9B6611D-C5D5-4652-99A7-4152775E16CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D9B6611D-C5D5-4652-99A7-4152775E16CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D9B6611D-C5D5-4652-99A7-4152775E16CA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A4C6627C-C21B-4BB7-93A4-B40AC748588D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A4C6627C-C21B-4BB7-93A4-B40AC748588D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A4C6627C-C21B-4BB7-93A4-B40AC748588D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A4C6627C-C21B-4BB7-93A4-B40AC748588D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -94,6 +94,9 @@ namespace Neptuo.TemplateEngine.Backend
 
         protected virtual void SetupTypeBuilderRegistry(TypeBuilderRegistry registry)
         {
+            registry.RegisterNamespace(new NamespaceDeclaration("ui", "Neptuo.TemplateEngine.Web.Controls, Neptuo.TemplateEngine.Shared"));
+            registry.RegisterNamespace(new NamespaceDeclaration("", "Neptuo.TemplateEngine.Web.Extensions, Neptuo.TemplateEngine.Shared"));
+
             registry.RegisterNamespace(new NamespaceDeclaration("ui", "Neptuo.TemplateEngine.Web.Controls, Neptuo.TemplateEngine.Web"));
             registry.RegisterNamespace(new NamespaceDeclaration("", "Neptuo.TemplateEngine.Web.Extensions, Neptuo.TemplateEngine.Web"));
 

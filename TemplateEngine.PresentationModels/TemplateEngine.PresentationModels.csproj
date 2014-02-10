@@ -54,6 +54,10 @@
     <Compile Include="TemplateModelView.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\TemplateEngine.Shared\TemplateEngine.Shared.csproj">
+      <Project>{a4c6627c-c21b-4bb7-93a4-b40ac748588d}</Project>
+      <Name>TemplateEngine.Shared</Name>
+    </ProjectReference>
     <ProjectReference Include="..\TemplateEngine\TemplateEngine.csproj">
       <Project>{0ddeef40-567f-49de-94ec-314309702534}</Project>
       <Name>TemplateEngine</Name>

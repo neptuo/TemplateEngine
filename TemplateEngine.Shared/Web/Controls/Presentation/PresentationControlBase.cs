@@ -1,5 +1,4 @@
 ﻿using Neptuo.PresentationModels;
-using Neptuo.PresentationModels.TypeModels;
 using Neptuo.TemplateEngine.Web.Controls;
 using Neptuo.Templates;
 using System;
