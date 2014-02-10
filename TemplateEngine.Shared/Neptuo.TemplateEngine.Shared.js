@@ -1503,9 +1503,9 @@ var Neptuo$TemplateEngine$Web$Controls$OptionControl =
         {
             if (this.get_Value() != null)
             {
-                if (this.get_SelectedValue() != null && this.get_SelectedValue().ToString() == this.get_Value().ToString())
+                if (this.get_SelectedValue() != null && this.get_SelectedValue().ToString() == ("" + this.get_Value()))
                     this.get_Attributes().set_Item$$TKey("selected", "selected");
-                this.get_Attributes().set_Item$$TKey("value", this.get_Value().ToString());
+                this.get_Attributes().set_Item$$TKey("value", ("" + this.get_Value()));
             }
             Neptuo.TemplateEngine.Web.Controls.HtmlControlBase.commonPrototype.RenderAttributes.call(this, writer);
         }
