@@ -1,4 +1,5 @@
-﻿using Neptuo.Templates;
+﻿using Neptuo.TemplateEngine.Web.DataSources;
+using Neptuo.Templates;
 using SharpKit.jQuery;
 using System;
 using System.Collections.Generic;
@@ -11,7 +12,7 @@ namespace Neptuo.TemplateEngine.Web.Controls
 {
     public class DetailViewControl : TemplateControl
     {
-        public DataSources.IDataSource Source { get; set; }
+        public IDataSource Source { get; set; }
         protected DataContextStorage DataContext { get; private set; }
         protected PartialUpdateHelper UpdateHelper { get; private set; }
 
