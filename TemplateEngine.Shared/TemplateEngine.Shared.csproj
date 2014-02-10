@@ -55,6 +55,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StackStorage.cs" />
     <Compile Include="Web\BindingManagerBase.cs" />
+    <Compile Include="Web\CompositeRequestContext.cs" />
     <Compile Include="Web\Controls\Ajax\AjaxView.cs" />
     <Compile Include="Web\Controls\ContentControlBase.cs" />
     <Compile Include="Web\Controls\ControlBase.cs" />
@@ -113,6 +114,7 @@
     <Compile Include="Web\IParameterProvider.cs" />
     <Compile Include="Web\IParameterProviderFactory.cs" />
     <Compile Include="Web\IPartialUpdateWriter.cs" />
+    <Compile Include="Web\IRequestContext.cs" />
     <Compile Include="Web\IValueConverter.cs" />
     <Compile Include="Web\IValueConverterService.cs" />
     <Compile Include="Web\IViewActivator.cs" />
