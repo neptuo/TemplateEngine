@@ -163,6 +163,7 @@ namespace Neptuo.TemplateEngine.Web
 
             FormRequestContext context = new FormRequestContext(data, buttonName, form.attr("action") ?? HtmlContext.location.href);
 
+            HtmlContext.alert("Event: " + buttonName);
             HtmlContext.console.log(data);
             e.preventDefault();
         }

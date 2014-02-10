@@ -802,6 +802,7 @@ var Neptuo$TemplateEngine$Web$InitScript =
             submitButton["value"] = null;
             data.push(submitButton);
             var context = new Neptuo.TemplateEngine.Web.FormRequestContext.ctor(data, buttonName, (form.attr("action") != null ? form.attr("action") : location.href));
+            alert("Event: " + buttonName);
             console.log(data);
             e.preventDefault();
         },
