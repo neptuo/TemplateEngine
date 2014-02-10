@@ -174,7 +174,7 @@ var Neptuo$TemplateEngine$Web$Controls$AjaxView =
         },
         OnInit: function ()
         {
-            Neptuo.Guard.NotNull(this.get_Partial(), "Partial");
+            Neptuo.Guard.NotNull$$Object$$String(this.get_Partial(), "Partial");
             Neptuo.TemplateEngine.Web.Controls.HtmlContentControlBase.commonPrototype.OnInit.call(this);
             this.get_UpdateWriter().Update(this.get_Partial(), this);
             this.get_Attributes().Add("data-update", this.get_Partial());
@@ -2870,7 +2870,7 @@ var Neptuo$TemplateEngine$Web$Observers$AjaxPartialObserver =
             this.partialWriter = null;
             this._Partial = null;
             System.Object.ctor.call(this);
-            Neptuo.Guard.NotNull(partialWriter, "partialWriter");
+            Neptuo.Guard.NotNull$$Object$$String(partialWriter, "partialWriter");
             this.partialWriter = partialWriter;
         },
         Partial$$: "System.String",

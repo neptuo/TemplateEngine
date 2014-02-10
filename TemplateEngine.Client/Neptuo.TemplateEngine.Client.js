@@ -136,7 +136,7 @@ var Neptuo$TemplateEngine$Web$ClientExtendedComponentManager =
         {
             this.partialsToUpdate = null;
             Neptuo.TemplateEngine.Web.ExtendedComponentManager.ctor.call(this);
-            Neptuo.Guard.NotNull(partialsToUpdate, "partialsToUpdate");
+            Neptuo.Guard.NotNull$$Object$$String(partialsToUpdate, "partialsToUpdate");
             this.partialsToUpdate = partialsToUpdate;
         },
         DoRenderControl: function (control, writer)
@@ -527,7 +527,7 @@ var Neptuo$TemplateEngine$Web$PartialUpdateHelper =
             this.isDataLoaded = false;
             this.RenderContent = null;
             System.Object.ctor.call(this);
-            Neptuo.Guard.NotNull(guidProvider, "guidProvider");
+            Neptuo.Guard.NotNull$$Object$$String(guidProvider, "guidProvider");
             this.guidProvider = guidProvider;
         },
         add_RenderContent: function (value)
@@ -540,7 +540,7 @@ var Neptuo$TemplateEngine$Web$PartialUpdateHelper =
         },
         OnInit: function ()
         {
-            Neptuo.Guard.NotNull(this.RenderContent, "RenderContent");
+            Neptuo.Guard.NotNull$$Object$$String(this.RenderContent, "RenderContent");
             this.partialElementGuid = this.guidProvider.Next();
         },
         Render: function (writer)
