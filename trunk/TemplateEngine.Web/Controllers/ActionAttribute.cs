@@ -13,9 +13,7 @@ namespace Neptuo.TemplateEngine.Web.Controllers
 
         public ActionAttribute(string actionName)
         {
-            if (actionName == null)
-                throw new ArgumentNullException("actionName");
-
+            Guard.NotNull(actionName, "actionName");
             ActionName = actionName;
         }
     }

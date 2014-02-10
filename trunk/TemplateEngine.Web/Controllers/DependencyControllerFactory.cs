@@ -13,6 +13,8 @@ namespace Neptuo.TemplateEngine.Web.Controllers
 
         public DependencyControllerFactory(IDependencyContainer dependencyContainer, Type handlerType)
         {
+            Guard.NotNull(dependencyContainer, "dependencyContainer");
+            Guard.NotNull(handlerType, "handlerType");
             DependencyContainer = dependencyContainer;
             HandlerType = handlerType;
         }

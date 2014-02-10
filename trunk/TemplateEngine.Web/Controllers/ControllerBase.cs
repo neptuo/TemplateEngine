@@ -14,6 +14,7 @@ namespace Neptuo.TemplateEngine.Web.Controllers
 
         public void Execute(IControllerContext context)
         {
+            Guard.NotNull(context, "context");
             Context = context;
 
             Type type = GetType();

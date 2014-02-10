@@ -28,9 +28,7 @@ namespace Neptuo.TemplateEngine.Web.Controllers
 
         public void Set(string key, object data)
         {
-            if (key == null)
-                throw new ArgumentNullException("key");
-
+            Guard.NotNull(key, "key");
             Data[key] = data;
         }
     }

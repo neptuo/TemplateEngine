@@ -16,6 +16,11 @@ namespace Neptuo.TemplateEngine.Web.Controllers
 
         public ControllerContext(string action, IViewData viewData, IModelBinder modelBinder, NavigationCollection navigations)
         {
+            Guard.NotNull(action, "action");
+            Guard.NotNull(viewData, "viewData");
+            Guard.NotNull(modelBinder, "modelBinder");
+            Guard.NotNull(navigations, "navigations");
+
             ActionName = action;
             ViewData = viewData;
             ModelBinder = modelBinder;
