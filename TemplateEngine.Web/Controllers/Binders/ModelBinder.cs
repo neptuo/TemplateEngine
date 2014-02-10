@@ -9,22 +9,22 @@ using System.Web;
 
 namespace Neptuo.TemplateEngine.Web.Controllers.Binders
 {
-    public class RequestModelBinder : IModelBinder
+    public class ModelBinder : IModelBinder
     {
-        protected HttpContextBase HttpContext { get; private set; }
+        protected IParameterProvider ParameterProvider { get; private set; }
         protected IModelDefinitionFactory ModelFactory { get; private set; }
         protected IModelValueProviderFactory ValueProviderFactory { get; private set; }
         protected IBindingConverterCollection BindingConverters { get; private set; }
         protected IDependencyContainer DependencyContainer { get; private set; }
 
-        public RequestModelBinder(
-            HttpContextBase httpContext, 
+        public ModelBinder(
+            IParameterProvider parameterProvider, 
             IModelDefinitionFactory modelFactory, 
             IModelValueProviderFactory valueProviderFactory, 
             IBindingConverterCollection bindingConverters, 
             IDependencyContainer dependencyContainer)
         {
-            HttpContext = httpContext;
+            ParameterProvider = parameterProvider;
             ModelFactory = modelFactory;
             ValueProviderFactory = valueProviderFactory;
             BindingConverters = bindingConverters;
@@ -46,7 +46,7 @@ namespace Neptuo.TemplateEngine.Web.Controllers.Binders
                 throw new ArgumentNullException("instance");
 
             IModelDefinition modelDefinition = ModelFactory.Create(instance.GetType());
-            IBindingModelValueStorage storage = new RequestBindingValueStorage(HttpContext.Request);
+            IBindingModelValueStorage storage = new BindingValueStorage(ParameterProvider);
             CopyModelValueProvider copyProvider = new CopyModelValueProvider(modelDefinition);
             IModelValueSetter model = ValueProviderFactory.Create(instance);
 

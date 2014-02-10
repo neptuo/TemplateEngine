@@ -763,6 +763,7 @@ var Neptuo$TemplateEngine$Web$InitScript =
             submitButton["name"] = buttonName;
             submitButton["value"] = null;
             data.push(submitButton);
+            var context = new Neptuo.TemplateEngine.Web.FormRequestContext.ctor(data, buttonName, (form.attr("action") != null ? form.attr("action") : location.href));
             console.log(data);
             e.preventDefault();
         },
@@ -937,3 +938,53 @@ var Neptuo$TemplateEngine$Web$AllParameterProvider =
     IsAbstract: false
 };
 JsTypes.push(Neptuo$TemplateEngine$Web$AllParameterProvider);
+var Neptuo$TemplateEngine$Web$FormRequestContext =
+{
+    fullname: "Neptuo.TemplateEngine.Web.FormRequestContext",
+    baseTypeName: "System.Object",
+    assemblyName: "Neptuo.TemplateEngine.Client",
+    Kind: "Class",
+    definition:
+    {
+        ctor: function (parameters, eventName, formUrl)
+        {
+            this._Parameters = null;
+            this._Event = null;
+            this._FormUrl = null;
+            System.Object.ctor.call(this);
+            this.set_Parameters(parameters);
+            this.set_Event(eventName);
+            this.set_FormUrl(formUrl);
+        },
+        Parameters$$: "SharpKit.JavaScript.JsArray",
+        get_Parameters: function ()
+        {
+            return this._Parameters;
+        },
+        set_Parameters: function (value)
+        {
+            this._Parameters = value;
+        },
+        Event$$: "System.String",
+        get_Event: function ()
+        {
+            return this._Event;
+        },
+        set_Event: function (value)
+        {
+            this._Event = value;
+        },
+        FormUrl$$: "System.String",
+        get_FormUrl: function ()
+        {
+            return this._FormUrl;
+        },
+        set_FormUrl: function (value)
+        {
+            this._FormUrl = value;
+        }
+    },
+    ctors: [ {name: "ctor", parameters: ["SharpKit.JavaScript.JsArray", "System.String", "System.String"]}],
+    IsAbstract: false
+};
+JsTypes.push(Neptuo$TemplateEngine$Web$FormRequestContext);
