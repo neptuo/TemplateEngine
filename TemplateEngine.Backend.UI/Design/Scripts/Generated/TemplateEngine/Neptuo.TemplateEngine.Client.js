@@ -41,6 +41,87 @@ if (typeof($CreateDelegate)=='undefined'){
         return delegate;
     }
 }
+function $CombineDelegates(del1,del2)
+{
+    if(del1 == null)
+        return del2;
+    if(del2 == null)
+        return del1;
+    var del=$CreateMulticastDelegateFunction();
+    del.delegates = [];
+    if(del1.isMulticastDelegate)
+    {
+        for(var i=0;i < del1.delegates.length;i++)
+            del.delegates.push(del1.delegates[i]);
+    }
+    else
+    {
+        del.delegates.push(del1);
+    }
+    if(del2.isMulticastDelegate)
+    {
+        for(var i=0;i < del2.delegates.length;i++)
+            del.delegates.push(del2.delegates[i]);
+    }
+    else
+    {
+        del.delegates.push(del2);
+    }
+    return del;
+};
+function $CreateMulticastDelegateFunction()
+{
+    var del2 = null;
+    
+    var del=function()
+    {
+        var x=undefined;
+        for(var i=0;i < del2.delegates.length;i++)
+        {
+            var del3=del2.delegates[i];
+            x = del3.apply(null,arguments);
+        }
+        return x;
+    };
+    del.isMulticastDelegate = true;
+    del2 = del;   
+    
+    return del;
+};
+function $RemoveDelegate(delOriginal,delToRemove)
+{
+    if(delToRemove == null || delOriginal == null)
+        return delOriginal;
+    if(delOriginal.isMulticastDelegate)
+    {
+        if(delToRemove.isMulticastDelegate)
+            throw new Error("Multicast to multicast delegate removal is not implemented yet");
+        var del=$CreateMulticastDelegateFunction();
+        for(var i=0;i < delOriginal.delegates.length;i++)
+        {
+            var del2=delOriginal.delegates[i];
+            if(del2 != delToRemove)
+            {
+                if(del.delegates == null)
+                    del.delegates = [];
+                del.delegates.push(del2);
+            }
+        }
+        if(del.delegates == null)
+            return null;
+        if(del.delegates.length == 1)
+            return del.delegates[0];
+        return del;
+    }
+    else
+    {
+        if(delToRemove.isMulticastDelegate)
+            throw new Error("single to multicast delegate removal is not supported");
+        if(delOriginal == delToRemove)
+            return null;
+        return delOriginal;
+    }
+};
 if (typeof(JsTypes) == "undefined")
     var JsTypes = [];
 var Neptuo$TemplateEngine$Web$ClientExtendedComponentManager =
@@ -91,17 +172,14 @@ var Neptuo$TemplateEngine$Web$Controls$DetailViewControl =
     Kind: "Class",
     definition:
     {
-        ctor: function (componentManager, storage, dataContext, guidProvider)
+        ctor: function (componentManager, storage, dataContext, updateHelper)
         {
-            this.partialElementGuid = null;
-            this.isRenderCalled = false;
-            this.isDataLoaded = false;
             this._Source = null;
             this._DataContext = null;
-            this._GuidProvider = null;
+            this._UpdateHelper = null;
             Neptuo.TemplateEngine.Web.Controls.TemplateControl.ctor.call(this, componentManager, storage);
             this.set_DataContext(dataContext);
-            this.set_GuidProvider(guidProvider);
+            this.set_UpdateHelper(updateHelper);
         },
         Source$$: "Neptuo.TemplateEngine.Web.DataSources.IDataSource",
         get_Source: function ()
@@ -121,14 +199,14 @@ var Neptuo$TemplateEngine$Web$Controls$DetailViewControl =
         {
             this._DataContext = value;
         },
-        GuidProvider$$: "Neptuo.IGuidProvider",
-        get_GuidProvider: function ()
+        UpdateHelper$$: "Neptuo.TemplateEngine.Web.PartialUpdateHelper",
+        get_UpdateHelper: function ()
         {
-            return this._GuidProvider;
+            return this._UpdateHelper;
         },
-        set_GuidProvider: function (value)
+        set_UpdateHelper: function (value)
         {
-            this._GuidProvider = value;
+            this._UpdateHelper = value;
         },
         OnInit: function ()
         {
@@ -136,34 +214,26 @@ var Neptuo$TemplateEngine$Web$Controls$DetailViewControl =
             if (this.get_Source() == null)
                 throw $CreateException(new System.InvalidOperationException.ctor$$String("Missing data source."), new Error());
             this.get_Source().GetItem($CreateDelegate(this, this.OnLoadData));
-            this.partialElementGuid = this.get_GuidProvider().Next();
+            this.get_UpdateHelper().add_RenderContent($CreateDelegate(this, this.OnRenderContent));
+            this.get_UpdateHelper().OnInit();
+        },
+        OnRenderContent: function (writer)
+        {
+            Neptuo.TemplateEngine.Web.Controls.TemplateControl.commonPrototype.Render.call(this, writer);
         },
         Render: function (writer)
         {
-            if (!this.isDataLoaded)
-            {
-                this.isRenderCalled = true;
-                writer.Tag("div").Attribute("data-partial", this.partialElementGuid).Content$$String("Loading data...").CloseFullTag();
-                return;
-            }
-            Neptuo.TemplateEngine.Web.Controls.TemplateControl.commonPrototype.Render.call(this, writer);
+            this.get_UpdateHelper().Render(writer);
         },
         OnLoadData: function (data)
         {
-            this.isDataLoaded = true;
             this.get_DataContext().Push(data, null);
             Neptuo.TemplateEngine.Web.Controls.TemplateControl.commonPrototype.OnInit.call(this);
             this.get_DataContext().Pop(null);
-            if (this.isRenderCalled)
-            {
-                var stringWriter = new System.IO.StringWriter.ctor();
-                var writer = new Neptuo.Templates.HtmlTextWriter.ctor(stringWriter);
-                this.Render(writer);
-                Neptuo.TemplateEngine.Web.InitScript.UpdateContent(this.partialElementGuid, stringWriter);
-            }
+            this.get_UpdateHelper().OnDataLoaded();
         }
     },
-    ctors: [ {name: "ctor", parameters: ["Neptuo.Templates.IComponentManager", "Neptuo.TemplateEngine.Web.TemplateContentStorageStack", "Neptuo.TemplateEngine.Web.DataContextStorage", "Neptuo.IGuidProvider"]}],
+    ctors: [ {name: "ctor", parameters: ["Neptuo.Templates.IComponentManager", "Neptuo.TemplateEngine.Web.TemplateContentStorageStack", "Neptuo.TemplateEngine.Web.DataContextStorage", "Neptuo.TemplateEngine.Web.PartialUpdateHelper"]}],
     IsAbstract: false
 };
 JsTypes.push(Neptuo$TemplateEngine$Web$Controls$DetailViewControl);
@@ -175,12 +245,8 @@ var Neptuo$TemplateEngine$Web$Controls$ListViewControl =
     Kind: "Class",
     definition:
     {
-        ctor: function (componentManager, storage, dataContext, guidProvider)
+        ctor: function (componentManager, storage, dataContext, updateHelper)
         {
-            this.partialElementGuid = null;
-            this.partialGuid = null;
-            this.isRenderCalled = false;
-            this.isDataLoaded = false;
             this._Source = null;
             this._ItemTemplate = null;
             this._EmptyTemplate = null;
@@ -188,10 +254,10 @@ var Neptuo$TemplateEngine$Web$Controls$ListViewControl =
             this._PageIndex = null;
             this._DataContext = null;
             this._TotalCount = 0;
-            this._GuidProvider = null;
+            this._UpdateHelper = null;
             Neptuo.TemplateEngine.Web.Controls.TemplateControl.ctor.call(this, componentManager, storage);
             this.set_DataContext(dataContext);
-            this.set_GuidProvider(guidProvider);
+            this.set_UpdateHelper(updateHelper);
         },
         Source$$: "Neptuo.TemplateEngine.Web.DataSources.IListDataSource",
         get_Source: function ()
@@ -256,14 +322,14 @@ var Neptuo$TemplateEngine$Web$Controls$ListViewControl =
         {
             this._TotalCount = value;
         },
-        GuidProvider$$: "Neptuo.IGuidProvider",
-        get_GuidProvider: function ()
+        UpdateHelper$$: "Neptuo.TemplateEngine.Web.PartialUpdateHelper",
+        get_UpdateHelper: function ()
         {
-            return this._GuidProvider;
+            return this._UpdateHelper;
         },
-        set_GuidProvider: function (value)
+        set_UpdateHelper: function (value)
         {
-            this._GuidProvider = value;
+            this._UpdateHelper = value;
         },
         OnInit: function ()
         {
@@ -274,16 +340,11 @@ var Neptuo$TemplateEngine$Web$Controls$ListViewControl =
             if (this.get_Source() == null)
                 throw $CreateException(new System.ArgumentException.ctor$$String$$String("Missing data source.", "Source"), new Error());
             this.get_Source().GetData(this.get_PageIndex(), this.get_PageSize(), $CreateDelegate(this, this.OnLoadData));
-            this.partialElementGuid = this.get_GuidProvider().Next();
+            this.get_UpdateHelper().add_RenderContent($CreateDelegate(this, this.OnRenderContent));
+            this.get_UpdateHelper().OnInit();
         },
-        Render: function (writer)
+        OnRenderContent: function (writer)
         {
-            if (!this.isDataLoaded)
-            {
-                this.isRenderCalled = true;
-                writer.Tag("div").Attribute("data-partial", this.partialElementGuid).Content$$String("Loading data...").CloseFullTag();
-                return;
-            }
             Neptuo.TemplateEngine.Web.Controls.TemplateControl.commonPrototype.Render.call(this, writer);
             if (this.get_PageSize() != null)
             {
@@ -295,9 +356,12 @@ var Neptuo$TemplateEngine$Web$Controls$ListViewControl =
                 writer.CloseFullTag();
             }
         },
+        Render: function (writer)
+        {
+            this.get_UpdateHelper().Render(writer);
+        },
         OnLoadData: function (result)
         {
-            this.isDataLoaded = true;
             var isEmpty = true;
             var itemTemplates = new System.Collections.Generic.List$1.ctor(System.Object.ctor);
             this.get_DataContext().Push(this, "Template");
@@ -330,16 +394,10 @@ var Neptuo$TemplateEngine$Web$Controls$ListViewControl =
             }
             Neptuo.TemplateEngine.Web.Controls.TemplateControl.commonPrototype.OnInit.call(this);
             this.get_DataContext().Pop("Template");
-            if (this.isRenderCalled)
-            {
-                var stringWriter = new System.IO.StringWriter.ctor();
-                var writer = new Neptuo.Templates.HtmlTextWriter.ctor(stringWriter);
-                this.Render(writer);
-                Neptuo.TemplateEngine.Web.InitScript.UpdateContent(this.partialElementGuid, stringWriter);
-            }
+            this.get_UpdateHelper().OnDataLoaded();
         }
     },
-    ctors: [ {name: "ctor", parameters: ["Neptuo.Templates.IComponentManager", "Neptuo.TemplateEngine.Web.TemplateContentStorageStack", "Neptuo.TemplateEngine.Web.DataContextStorage", "Neptuo.IGuidProvider"]}],
+    ctors: [ {name: "ctor", parameters: ["Neptuo.Templates.IComponentManager", "Neptuo.TemplateEngine.Web.TemplateContentStorageStack", "Neptuo.TemplateEngine.Web.DataContextStorage", "Neptuo.TemplateEngine.Web.PartialUpdateHelper"]}],
     IsAbstract: false
 };
 JsTypes.push(Neptuo$TemplateEngine$Web$Controls$ListViewControl);
@@ -352,13 +410,13 @@ var Neptuo$TemplateEngine$Web$Controls$SelectControl =
     Kind: "Class",
     definition:
     {
-        ctor: function (componentManager, storage, dataContext, guidProvider)
+        ctor: function (componentManager, storage, dataContext, updateHelper)
         {
             this._Name = null;
             this._Value = null;
             this._IsAddEmpty = false;
             this._Attributes = null;
-            Neptuo.TemplateEngine.Web.Controls.ListViewControl.ctor.call(this, componentManager, storage, dataContext, guidProvider);
+            Neptuo.TemplateEngine.Web.Controls.ListViewControl.ctor.call(this, componentManager, storage, dataContext, updateHelper);
             this.set_Attributes(new Neptuo.Templates.HtmlAttributeCollection.ctor());
         },
         Name$$: "System.String",
@@ -402,7 +460,7 @@ var Neptuo$TemplateEngine$Web$Controls$SelectControl =
             this.get_Attributes().set_Item$$TKey(name, value);
         }
     },
-    ctors: [ {name: "ctor", parameters: ["Neptuo.Templates.IComponentManager", "Neptuo.TemplateEngine.Web.TemplateContentStorageStack", "Neptuo.TemplateEngine.Web.DataContextStorage", "Neptuo.IGuidProvider"]}],
+    ctors: [ {name: "ctor", parameters: ["Neptuo.Templates.IComponentManager", "Neptuo.TemplateEngine.Web.TemplateContentStorageStack", "Neptuo.TemplateEngine.Web.DataContextStorage", "Neptuo.TemplateEngine.Web.PartialUpdateHelper"]}],
     IsAbstract: false
 };
 JsTypes.push(Neptuo$TemplateEngine$Web$Controls$SelectControl);
@@ -452,6 +510,80 @@ var Neptuo$TemplateEngine$Web$DataSources$ListResult =
     IsAbstract: false
 };
 JsTypes.push(Neptuo$TemplateEngine$Web$DataSources$ListResult);
+var Neptuo$TemplateEngine$Web$PartialUpdateHelper =
+{
+    fullname: "Neptuo.TemplateEngine.Web.PartialUpdateHelper",
+    baseTypeName: "System.Object",
+    assemblyName: "Neptuo.TemplateEngine.Client",
+    interfaceNames: ["Neptuo.Templates.Controls.IControl"],
+    Kind: "Class",
+    definition:
+    {
+        ctor: function (guidProvider)
+        {
+            this.guidProvider = null;
+            this.partialElementGuid = null;
+            this.isRenderCalled = false;
+            this.isDataLoaded = false;
+            this.RenderContent = null;
+            System.Object.ctor.call(this);
+            Neptuo.Guard.NotNull(guidProvider, "guidProvider");
+            this.guidProvider = guidProvider;
+        },
+        add_RenderContent: function (value)
+        {
+            this.RenderContent = $CombineDelegates(this.RenderContent, value);
+        },
+        remove_RenderContent: function (value)
+        {
+            this.RenderContent = $RemoveDelegate(this.RenderContent, value);
+        },
+        OnInit: function ()
+        {
+            Neptuo.Guard.NotNull(this.RenderContent, "RenderContent");
+            this.partialElementGuid = this.guidProvider.Next();
+        },
+        Render: function (writer)
+        {
+            if (!this.isDataLoaded)
+            {
+                this.isRenderCalled = true;
+                writer.Tag("div").Attribute("data-partial", this.partialElementGuid).Content$$String("Loading data...").CloseFullTag();
+                return;
+            }
+        },
+        OnDataLoaded: function ()
+        {
+            this.isDataLoaded = true;
+            if (this.isRenderCalled)
+            {
+                var stringWriter = new System.IO.StringWriter.ctor();
+                var writer = new Neptuo.Templates.HtmlTextWriter.ctor(stringWriter);
+                if (this.RenderContent != null)
+                    this.RenderContent(writer);
+                Neptuo.TemplateEngine.Web.InitScript.UpdateContent(this.partialElementGuid, stringWriter);
+            }
+        }
+    },
+    ctors: [ {name: "ctor", parameters: ["Neptuo.IGuidProvider"]}],
+    IsAbstract: false
+};
+JsTypes.push(Neptuo$TemplateEngine$Web$PartialUpdateHelper);
+var Neptuo$TemplateEngine$Web$RenderEventHandler =
+{
+    fullname: "Neptuo.TemplateEngine.Web.RenderEventHandler",
+    Kind: "Delegate",
+    definition:
+    {
+        ctor: function (obj, func)
+        {
+            System.MulticastDelegate.ctor.call(this, obj, func);
+        }
+    },
+    ctors: [ {name: "ctor", parameters: ["System.Object", "System.IntPtr"]}],
+    IsAbstract: false
+};
+JsTypes.push(Neptuo$TemplateEngine$Web$RenderEventHandler);
 var Neptuo$TemplateEngine$Web$StaticViewActivator =
 {
     fullname: "Neptuo.TemplateEngine.Web.StaticViewActivator",

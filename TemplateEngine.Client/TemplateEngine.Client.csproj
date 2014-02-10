@@ -7,7 +7,7 @@
     <ProjectGuid>{7DF11E7B-E7FE-4EBB-A707-C592A230DF54}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Neptuo.TemplateEngine.Web</RootNamespace>
+    <RootNamespace>Neptuo.TemplateEngine</RootNamespace>
     <AssemblyName>Neptuo.TemplateEngine.Client</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -51,17 +51,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ClientExtendedComponentManager.cs" />
-    <Compile Include="Controls\DetailViewControl.cs" />
-    <Compile Include="Controls\ListViewControl.cs" />
-    <Compile Include="Controls\SelectControl.cs" />
-    <Compile Include="DataSources\IDataSource.cs" />
-    <Compile Include="DataSources\IListDataSource.cs" />
-    <Compile Include="DataSources\IListResult.cs" />
-    <Compile Include="DataSources\ListResult.cs" />
-    <Compile Include="StaticViewActivator.cs" />
-    <Compile Include="GeneratedViewBase.cs" />
-    <Compile Include="InitScript.cs" />
+    <Compile Include="Web\ClientExtendedComponentManager.cs" />
+    <Compile Include="Web\Controls\DetailViewControl.cs" />
+    <Compile Include="Web\Controls\ListViewControl.cs" />
+    <Compile Include="Web\Controls\SelectControl.cs" />
+    <Compile Include="Web\DataSources\IDataSource.cs" />
+    <Compile Include="Web\DataSources\IListDataSource.cs" />
+    <Compile Include="Web\DataSources\IListResult.cs" />
+    <Compile Include="Web\DataSources\ListResult.cs" />
+    <Compile Include="Web\PartialUpdateHelper.cs" />
+    <Compile Include="Web\StaticViewActivator.cs" />
+    <Compile Include="Web\GeneratedViewBase.cs" />
+    <Compile Include="Web\InitScript.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
