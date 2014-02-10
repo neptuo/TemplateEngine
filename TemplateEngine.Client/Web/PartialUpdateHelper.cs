@@ -59,7 +59,7 @@ namespace Neptuo.TemplateEngine.Web
                 if (RenderContent != null)
                     RenderContent(writer);
 
-                InitScript.UpdateContent(partialElementGuid, stringWriter);
+                _InitScript.UpdateContent(partialElementGuid, stringWriter);
             }
         }
     }

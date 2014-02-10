@@ -62,7 +62,7 @@
     <Compile Include="Web\PartialUpdateHelper.cs" />
     <Compile Include="Web\StaticViewActivator.cs" />
     <Compile Include="Web\GeneratedViewBase.cs" />
-    <Compile Include="Web\InitScript.cs" />
+    <Compile Include="Web\_InitScript.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
