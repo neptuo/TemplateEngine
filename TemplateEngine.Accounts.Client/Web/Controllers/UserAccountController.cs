@@ -17,7 +17,7 @@ namespace Neptuo.TemplateEngine.Accounts.Web.Controllers
         public void Create()
         {
             EditUserCommand model = Context.ModelBinder.Bind<EditUserCommand>(new EditUserCommand());
-            HtmlContext.alert(model);
+            HtmlContext.console.log(model);
         }
 
         public void Execute(IControllerContext context)

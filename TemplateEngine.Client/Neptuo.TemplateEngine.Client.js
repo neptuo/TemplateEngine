@@ -866,7 +866,9 @@ var Neptuo$TemplateEngine$Web$InitScript =
         },
         InvokeControllers: function (data)
         {
-            var controllerRegistry = Neptuo.DependencyProviderExtensions.Resolve$1$$IDependencyProvider(Neptuo.TemplateEngine.Web.Controllers.IControllerRegistry.ctor, Neptuo.TemplateEngine.Web.InitScript.dependencyContainer);
+            var container = Neptuo.TemplateEngine.Web.InitScript.dependencyContainer.CreateChildContainer();
+            Neptuo.DependencyContainerExtensions.RegisterInstance$1(Neptuo.TemplateEngine.Web.IParameterProvider.ctor, container, new Neptuo.TemplateEngine.Web.ParameterProvider.ctor(Neptuo.TemplateEngine.Web.InitScript.TransformParameters(data)));
+            var controllerRegistry = Neptuo.DependencyProviderExtensions.Resolve$1$$IDependencyProvider(Neptuo.TemplateEngine.Web.Controllers.IControllerRegistry.ctor, container);
             for (var i = 0; i < data.length; i++)
             {
                 var key = data[i]["name"];
@@ -878,8 +880,15 @@ var Neptuo$TemplateEngine$Web$InitScript =
                     controller = $1.Value;
                     return $res;
                 })())
-                    controller.Execute(new Neptuo.TemplateEngine.Web.Controllers.ControllerContext.ctor(key, new Neptuo.TemplateEngine.Web.Controllers.ViewDataCollection.ctor(), Neptuo.DependencyProviderExtensions.Resolve$1$$IDependencyProvider(Neptuo.TemplateEngine.Web.Controllers.Binders.IModelBinder.ctor, Neptuo.TemplateEngine.Web.InitScript.dependencyContainer), new Neptuo.TemplateEngine.Web.NavigationCollection.ctor()));
+                    controller.Execute(new Neptuo.TemplateEngine.Web.Controllers.ControllerContext.ctor(key, new Neptuo.TemplateEngine.Web.Controllers.ViewDataCollection.ctor(), Neptuo.DependencyProviderExtensions.Resolve$1$$IDependencyProvider(Neptuo.TemplateEngine.Web.Controllers.Binders.IModelBinder.ctor, container), new Neptuo.TemplateEngine.Web.NavigationCollection.ctor()));
             }
+        },
+        TransformParameters: function (data)
+        {
+            var parameters = new System.Collections.Generic.Dictionary$2.ctor(System.String.ctor, System.String.ctor);
+            for (var i = 0; i < data.length; i++)
+                parameters.set_Item$$TKey(data[i]["name"], data[i]["value"]);
+            return parameters;
         }
     },
     assemblyName: "Neptuo.TemplateEngine.Client",
