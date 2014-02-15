@@ -4,7 +4,12 @@ using Neptuo.Client.Compilation;
 using Neptuo.Lifetimes;
 using Neptuo.ObjectBuilder;
 using Neptuo.ObjectBuilder.Lifetimes.Mapping;
+using Neptuo.TemplateEngine.Navigation;
+using Neptuo.TemplateEngine.Navigation.Bootstrap;
+using Neptuo.TemplateEngine.Permissions;
 using Neptuo.TemplateEngine.PresentationModels;
+using Neptuo.TemplateEngine.Web.Controllers;
+using Neptuo.TemplateEngine.Web.Controllers.Binders;
 using Neptuo.Templates;
 using SharpKit.Html;
 using SharpKit.JavaScript;
@@ -20,7 +25,7 @@ namespace Neptuo.TemplateEngine.Web
 {
     public static class InitScript
     {
-        private static IDependencyContainer objectBuilder;
+        private static IDependencyContainer dependencyContainer;
         private static IViewActivator viewActivator;
 
         private static IDependencyContainer CreateDependencyContainer()
@@ -28,6 +33,9 @@ namespace Neptuo.TemplateEngine.Web
             DependencyContainer container = new DependencyContainer();
             container
                 .Map(typeof(SingletonLifetime), new SingletonLifetimeMapper());
+
+            DefaultFormUriService formService = new DefaultFormUriService();
+            FormUriServiceRegistration.SetInstance(formService);
 
             container
                 .RegisterType<IStackStorage<IViewStorage>, StackStorage<IViewStorage>>()
@@ -42,7 +50,14 @@ namespace Neptuo.TemplateEngine.Web
                 .RegisterInstance(new DataContextStorage())
                 .RegisterInstance<IGuidProvider>(new SequenceGuidProvider("guid", 1))
                 .RegisterType<IViewActivator, StaticViewActivator>(new SingletonLifetime())
-                .RegisterInstance(new GlobalNavigationCollection());
+                
+                .RegisterInstance(new GlobalNavigationCollection())
+
+                .RegisterInstance<IFormUriService>(formService)
+                .RegisterInstance<IFormUriRegistry>(formService)
+
+                .RegisterInstance<IControllerRegistry>(new ControllerRegistryBase())
+                .RegisterInstance<IPermissionProvider>(new OptimisticPermissionProvider());
 
             return container;
         }
@@ -58,10 +73,10 @@ namespace Neptuo.TemplateEngine.Web
 
         public static void Init()
         {
-            objectBuilder = CreateDependencyContainer();
-            viewActivator = objectBuilder.Resolve<IViewActivator>();
+            dependencyContainer = CreateDependencyContainer();
+            viewActivator = dependencyContainer.Resolve<IViewActivator>();
 
-            RunBootstrapTasks(objectBuilder);
+            RunBootstrapTasks(dependencyContainer);
 
             new jQuery(() => {
                 jQuery body = new jQuery("body");
@@ -122,7 +137,7 @@ namespace Neptuo.TemplateEngine.Web
 
             HtmlContext.history.pushState(viewPath, link.html(), newUrl);
 
-            IDependencyContainer container = objectBuilder.CreateChildContainer();
+            IDependencyContainer container = dependencyContainer.CreateChildContainer();
 
             List<string> partialsToUpdate = new List<string>();
             if (!String.IsNullOrEmpty(toUpdate))
@@ -138,11 +153,12 @@ namespace Neptuo.TemplateEngine.Web
             ClientExtendedComponentManager componentManager = new ClientExtendedComponentManager(partialsToUpdate);
             container
                 .RegisterInstance<IComponentManager>(componentManager)
-                .RegisterInstance<IPartialUpdateWriter>(componentManager);
+                .RegisterInstance<IPartialUpdateWriter>(componentManager)
+                .RegisterInstance<NavigationCollection>(new NavigationCollection());
 
             StringWriter writer = new StringWriter();
             var view = viewActivator.CreateView(viewPath);
-            view.Setup(new BaseViewPage(container.Resolve<IComponentManager>()), container.Resolve<IComponentManager>(), container);
+            view.Setup(new BaseViewPage(componentManager), componentManager, container);
             view.CreateControls();
             view.Init();
             view.Render(new ExtendedHtmlTextWriter(writer));
@@ -164,6 +180,8 @@ namespace Neptuo.TemplateEngine.Web
 
             FormRequestContext context = new FormRequestContext(data, buttonName, form.attr("action") ?? HtmlContext.location.href);
 
+            InvokeControllers(data);
+
             HtmlContext.alert("Event: " + buttonName);
             HtmlContext.console.log(data);
             e.preventDefault();
@@ -176,6 +194,19 @@ namespace Neptuo.TemplateEngine.Web
             button.parents("form").first().data("button", buttonName);
         }
 
+        private static void InvokeControllers(JsArray data)
+        {
+            IControllerRegistry controllerRegistry = dependencyContainer.Resolve<IControllerRegistry>();
+
+            for (int i = 0; i < data.length; i++)
+            {
+                string key = data[i].As<JsObject>()["name"].As<string>();
+
+                IController controller;
+                if(controllerRegistry.TryGet(key, out controller))
+                    controller.Execute(new ControllerContext(key, new ViewDataCollection(), dependencyContainer.Resolve<IModelBinder>(), new NavigationCollection()));
+            }
+        }
     }
 
     public class UrlProvider : IVirtualUrlProvider, ICurrentUrlProvider

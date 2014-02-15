@@ -35,6 +35,12 @@ namespace Neptuo.TemplateEngine.Accounts.Bootstrap
 
         public AccountBootstrapTask(IDependencyContainer dependencyContainer, TypeBuilderRegistry registry, IFormUriRegistry formRegistry, IControllerRegistry controllerRegistry, GlobalNavigationCollection globalNavigations)
         {
+            Guard.NotNull(dependencyContainer, "dependencyContainer");
+            Guard.NotNull(registry, "registry");
+            Guard.NotNull(formRegistry, "formRegistry");
+            Guard.NotNull(controllerRegistry, "controllerRegistry");
+            Guard.NotNull(globalNavigations, "globalNavigations");
+
             this.dependencyContainer = dependencyContainer;
             this.registry = registry;
             this.formRegistry = formRegistry;

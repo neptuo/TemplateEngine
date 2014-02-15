@@ -17,25 +17,37 @@ if (typeof(JsTypes) == "undefined")
 var Neptuo$TemplateEngine$Accounts$Bootstrap$AccountBootstrapTask =
 {
     fullname: "Neptuo.TemplateEngine.Accounts.Bootstrap.AccountBootstrapTask",
-    baseTypeName: "System.Object",
+    baseTypeName: "Neptuo.TemplateEngine.Accounts.Bootstrap.AccountBootstrapTaskBase",
     assemblyName: "Neptuo.TemplateEngine.Accounts.Client",
     interfaceNames: ["Neptuo.Bootstrap.IBootstrapTask"],
     Kind: "Class",
     definition:
     {
-        ctor: function (container)
+        ctor: function (dependencyContainer, formRegistry, controllerRegistry, globalNavigations)
         {
-            this.container = null;
-            System.Object.ctor.call(this);
-            Neptuo.Guard.NotNull$$Object$$String(container, "container");
-            this.container = container;
+            this.dependencyContainer = null;
+            this.formRegistry = null;
+            this.controllerRegistry = null;
+            this.globalNavigations = null;
+            Neptuo.TemplateEngine.Accounts.Bootstrap.AccountBootstrapTaskBase.ctor.call(this);
+            Neptuo.Guard.NotNull$$Object$$String(dependencyContainer, "dependencyContainer");
+            Neptuo.Guard.NotNull$$Object$$String(formRegistry, "formRegistry");
+            Neptuo.Guard.NotNull$$Object$$String(controllerRegistry, "controllerRegistry");
+            Neptuo.Guard.NotNull$$Object$$String(globalNavigations, "globalNavigations");
+            this.dependencyContainer = dependencyContainer;
+            this.formRegistry = formRegistry;
+            this.controllerRegistry = controllerRegistry;
+            this.globalNavigations = globalNavigations;
         },
         Initialize: function ()
         {
-            Neptuo.DependencyContainerExtensions.RegisterInstance$1(Neptuo.TemplateEngine.Accounts.Data.UserRepository.ctor, this.container, new Neptuo.TemplateEngine.Accounts.Data.UserRepository.ctor());
+            Neptuo.DependencyContainerExtensions.RegisterInstance$1(Neptuo.TemplateEngine.Accounts.Data.UserRepository.ctor, this.dependencyContainer, new Neptuo.TemplateEngine.Accounts.Data.UserRepository.ctor());
+            this.controllerRegistry.Add("Accounts/User/Create", new Neptuo.TemplateEngine.Web.Controllers.DependencyControllerFactory.ctor(this.dependencyContainer, Typeof(Neptuo.TemplateEngine.Accounts.Web.Controllers.UserAccountController.ctor)));
+            this.RegisterForms(this.formRegistry);
+            this.RegisterGlobalNavigations(this.globalNavigations);
         }
     },
-    ctors: [ {name: "ctor", parameters: ["Neptuo.IDependencyContainer"]}],
+    ctors: [ {name: "ctor", parameters: ["Neptuo.IDependencyContainer", "Neptuo.TemplateEngine.Navigation.Bootstrap.IFormUriRegistry", "Neptuo.TemplateEngine.Web.Controllers.IControllerRegistry", "Neptuo.TemplateEngine.Web.GlobalNavigationCollection"]}],
     IsAbstract: false
 };
 JsTypes.push(Neptuo$TemplateEngine$Accounts$Bootstrap$AccountBootstrapTask);
@@ -85,6 +97,44 @@ var Neptuo$TemplateEngine$Accounts$Data$UserRepository =
     IsAbstract: false
 };
 JsTypes.push(Neptuo$TemplateEngine$Accounts$Data$UserRepository);
+var Neptuo$TemplateEngine$Accounts$Web$Controllers$UserAccountController =
+{
+    fullname: "Neptuo.TemplateEngine.Accounts.Web.Controllers.UserAccountController",
+    baseTypeName: "System.Object",
+    assemblyName: "Neptuo.TemplateEngine.Accounts.Client",
+    interfaceNames: ["Neptuo.TemplateEngine.Web.Controllers.IController"],
+    Kind: "Class",
+    definition:
+    {
+        ctor: function ()
+        {
+            this._Context = null;
+            System.Object.ctor.call(this);
+        },
+        Context$$: "Neptuo.TemplateEngine.Web.Controllers.IControllerContext",
+        get_Context: function ()
+        {
+            return this._Context;
+        },
+        set_Context: function (value)
+        {
+            this._Context = value;
+        },
+        Create: function ()
+        {
+            var model = Neptuo.TemplateEngine.Web.Controllers.Binders.ModelBinderExtensions.Bind$1$$IModelBinder$$T(Neptuo.TemplateEngine.Accounts.EditUserCommand.ctor, this.get_Context().get_ModelBinder(), new Neptuo.TemplateEngine.Accounts.EditUserCommand.ctor());
+            alert(model);
+        },
+        Execute: function (context)
+        {
+            this.set_Context(context);
+            this.Create();
+        }
+    },
+    ctors: [ {name: "ctor", parameters: []}],
+    IsAbstract: false
+};
+JsTypes.push(Neptuo$TemplateEngine$Accounts$Web$Controllers$UserAccountController);
 var Neptuo$TemplateEngine$Accounts$Web$DataSources$UserAccountDataSource =
 {
     fullname: "Neptuo.TemplateEngine.Accounts.Web.DataSources.UserAccountDataSource",
