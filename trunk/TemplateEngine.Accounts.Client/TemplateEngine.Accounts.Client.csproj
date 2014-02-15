@@ -51,6 +51,7 @@
   <ItemGroup>
     <Compile Include="Bootstrap\AccountBootstrapTask.cs" />
     <Compile Include="Data\UserRepository.cs" />
+    <Compile Include="Web\Controllers\UserAccountController.cs" />
     <Compile Include="Web\DataSources\UserAccountDataSource.cs" />
     <Compile Include="Web\DataSources\UserAccountEditDataSource.cs" />
     <Compile Include="Web\DataSources\UserRoleDataSource.cs" />
@@ -73,6 +74,14 @@
     <ProjectReference Include="..\TemplateEngine.Client\TemplateEngine.Client.csproj">
       <Project>{7df11e7b-e7fe-4ebb-a707-c592a230df54}</Project>
       <Name>TemplateEngine.Client</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TemplateEngine.Navigation\TemplateEngine.Navigation.csproj">
+      <Project>{f16d8bc8-2191-498f-9950-dc8aa200b0ba}</Project>
+      <Name>TemplateEngine.Navigation</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TemplateEngine.Shared\TemplateEngine.Shared.csproj">
+      <Project>{a4c6627c-c21b-4bb7-93a4-b40ac748588d}</Project>
+      <Name>TemplateEngine.Shared</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

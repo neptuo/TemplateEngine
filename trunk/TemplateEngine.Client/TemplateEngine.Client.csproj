@@ -39,6 +39,23 @@
     <Reference Include="Neptuo.ObjectBuilder.Client">
       <HintPath>..\References\Neptuo.ObjectBuilder.Client.dll</HintPath>
     </Reference>
+    <Reference Include="Neptuo.PresentationModels, Version=4.3.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\Neptuo.PresentationModels.dll</HintPath>
+    </Reference>
+    <Reference Include="Neptuo.PresentationModels.BindingConverters">
+      <HintPath>..\References\Neptuo.PresentationModels.BindingConverters.dll</HintPath>
+    </Reference>
+    <Reference Include="Neptuo.PresentationModels.TypeModels, Version=4.3.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\Neptuo.PresentationModels.TypeModels.dll</HintPath>
+    </Reference>
+    <Reference Include="Neptuo.PresentationModels.TypeModels.DataAnnotations">
+      <HintPath>..\References\Neptuo.PresentationModels.TypeModels.DataAnnotations.dll</HintPath>
+    </Reference>
+    <Reference Include="Neptuo.PresentationModels.Validation">
+      <HintPath>..\References\Neptuo.PresentationModels.Validation.dll</HintPath>
+    </Reference>
     <Reference Include="Neptuo.System.Client">
       <HintPath>..\References\Neptuo.System.Client.dll</HintPath>
     </Reference>
@@ -57,6 +74,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Bootstrap\PresentationModelBootstrapTask.cs" />
     <Compile Include="Web\ClientExtendedComponentManager.cs" />
     <Compile Include="Web\Controls\DetailViewControl.cs" />
     <Compile Include="Web\Controls\ListViewControl.cs" />
@@ -77,6 +95,14 @@
     </SkcPlugin>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\TemplateEngine.Navigation\TemplateEngine.Navigation.csproj">
+      <Project>{f16d8bc8-2191-498f-9950-dc8aa200b0ba}</Project>
+      <Name>TemplateEngine.Navigation</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TemplateEngine.Permissions\TemplateEngine.Permissions.csproj">
+      <Project>{e5c314ff-89ba-489e-bc2a-df8701a8c3f1}</Project>
+      <Name>TemplateEngine.Permissions</Name>
+    </ProjectReference>
     <ProjectReference Include="..\TemplateEngine.PresentationModels\TemplateEngine.PresentationModels.csproj">
       <Project>{b064bdbc-3755-4110-8eb7-6add2535d9fd}</Project>
       <Name>TemplateEngine.PresentationModels</Name>
