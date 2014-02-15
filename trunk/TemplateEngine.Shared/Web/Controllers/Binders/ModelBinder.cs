@@ -49,7 +49,8 @@ namespace Neptuo.TemplateEngine.Web.Controllers.Binders
             CopyModelValueProvider copyProvider = new CopyModelValueProvider(modelDefinition);
             IModelValueSetter model = ValueProviderFactory.Create(instance);
 
-            copyProvider.Update(model, new BindingModelValueGetter(storage, BindingConverters, modelDefinition));
+            IModelValueGetter[] getters = new IModelValueGetter[] { new BindingModelValueGetter(storage, BindingConverters, modelDefinition) };
+            copyProvider.Update(model, getters);
             return instance;
         }
     }

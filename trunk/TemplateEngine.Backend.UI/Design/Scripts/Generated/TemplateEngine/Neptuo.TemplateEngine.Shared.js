@@ -348,7 +348,8 @@ var Neptuo$TemplateEngine$Web$Controllers$Binders$ModelBinder =
             var storage = new Neptuo.TemplateEngine.Web.Controllers.Binders.BindingValueStorage.ctor(this.get_ParameterProvider());
             var copyProvider = new Neptuo.PresentationModels.CopyModelValueProvider.ctor(modelDefinition);
             var model = this.get_ValueProviderFactory().Create(instance);
-            copyProvider.Update(model, new Neptuo.PresentationModels.BindingModelValueGetter.ctor(storage, this.get_BindingConverters(), modelDefinition));
+            var getters = [new Neptuo.PresentationModels.BindingModelValueGetter.ctor(storage, this.get_BindingConverters(), modelDefinition)];
+            copyProvider.Update(model, getters);
             return instance;
         }
     },

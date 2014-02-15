@@ -196,7 +196,10 @@ namespace Neptuo.TemplateEngine.Web
 
         private static void InvokeControllers(JsArray data)
         {
-            IControllerRegistry controllerRegistry = dependencyContainer.Resolve<IControllerRegistry>();
+            IDependencyContainer container = dependencyContainer.CreateChildContainer();
+            container.RegisterInstance<IParameterProvider>(new ParameterProvider(TransformParameters(data)));
+
+            IControllerRegistry controllerRegistry = container.Resolve<IControllerRegistry>();
 
             for (int i = 0; i < data.length; i++)
             {
@@ -204,8 +207,17 @@ namespace Neptuo.TemplateEngine.Web
 
                 IController controller;
                 if(controllerRegistry.TryGet(key, out controller))
-                    controller.Execute(new ControllerContext(key, new ViewDataCollection(), dependencyContainer.Resolve<IModelBinder>(), new NavigationCollection()));
+                    controller.Execute(new ControllerContext(key, new ViewDataCollection(), container.Resolve<IModelBinder>(), new NavigationCollection()));
             }
+        }
+
+        private static Dictionary<string, string> TransformParameters(JsArray data)
+        {
+            Dictionary<string, string> parameters = new Dictionary<string, string>();
+            for (int i = 0; i < data.length; i++)
+                parameters[data[i].As<JsObject>()["name"].As<string>()] = data[i].As<JsObject>()["value"].As<string>();
+
+            return parameters;
         }
     }
 

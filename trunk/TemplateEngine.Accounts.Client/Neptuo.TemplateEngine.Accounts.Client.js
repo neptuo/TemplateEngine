@@ -123,7 +123,7 @@ var Neptuo$TemplateEngine$Accounts$Web$Controllers$UserAccountController =
         Create: function ()
         {
             var model = Neptuo.TemplateEngine.Web.Controllers.Binders.ModelBinderExtensions.Bind$1$$IModelBinder$$T(Neptuo.TemplateEngine.Accounts.EditUserCommand.ctor, this.get_Context().get_ModelBinder(), new Neptuo.TemplateEngine.Accounts.EditUserCommand.ctor());
-            alert(model);
+            console.log(model);
         },
         Execute: function (context)
         {
