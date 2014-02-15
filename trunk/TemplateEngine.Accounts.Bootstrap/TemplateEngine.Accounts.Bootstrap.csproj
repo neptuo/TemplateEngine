@@ -90,10 +90,6 @@
       <Project>{36f0d8f9-1f8f-409c-9eda-c17644c4c0d8}</Project>
       <Name>TemplateEngine.Accounts</Name>
     </ProjectReference>
-    <ProjectReference Include="..\TemplateEngine.Backend\TemplateEngine.Backend.csproj">
-      <Project>{81bf7e93-6af0-4c89-98d5-c66903fedd1b}</Project>
-      <Name>TemplateEngine.Backend</Name>
-    </ProjectReference>
     <ProjectReference Include="..\TemplateEngine.Data.Entity\TemplateEngine.Data.Entity.csproj">
       <Project>{176a5378-45be-4132-99bf-2f24b94712a4}</Project>
       <Name>TemplateEngine.Data.Entity</Name>

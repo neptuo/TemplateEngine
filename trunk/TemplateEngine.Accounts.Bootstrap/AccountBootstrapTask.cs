@@ -8,7 +8,6 @@ using Neptuo.TemplateEngine.Accounts.Data;
 using Neptuo.TemplateEngine.Accounts.Data.Entity;
 using Neptuo.TemplateEngine.Accounts.Queries;
 using Neptuo.TemplateEngine.Accounts.Web.Controllers;
-using Neptuo.TemplateEngine.Backend.Web.Routing;
 using Neptuo.TemplateEngine.Navigation;
 using Neptuo.TemplateEngine.Navigation.Bootstrap;
 using Neptuo.TemplateEngine.Web;
@@ -24,9 +23,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Neptuo.TemplateEngine.Backend
+namespace Neptuo.TemplateEngine.Accounts.Bootstrap
 {
-    public class AccountBootstrapTask : IBootstrapTask
+    public class AccountBootstrapTask : AccountBootstrapTaskBase, IBootstrapTask
     {
         private IDependencyContainer dependencyContainer;
         private TypeBuilderRegistry registry;
@@ -64,25 +63,12 @@ namespace Neptuo.TemplateEngine.Backend
             
             registry.RegisterComponentBuilder("ui", "AccountSideNav", new UserTemplateComponentBuilderFactory("~/Views/Accounts/SideNav.view"));
 
-            formRegistry
-                .Register("Accounts.User.List", TemplateRouteParameter.FormatUrl("~/Accounts/UserList"))
-                .Register("Accounts.User.Edit", TemplateRouteParameter.FormatUrl("~/Accounts/UserEdit"))
-
-                .Register("Accounts.Role.List", TemplateRouteParameter.FormatUrl("~/Accounts/RoleList"))
-                .Register("Accounts.Role.Edit", TemplateRouteParameter.FormatUrl("~/Accounts/RoleEdit"));
-
             controllerRegistry
                 .Add(dependencyContainer, typeof(UserAccountController))
                 .Add(dependencyContainer, typeof(UserRoleController));
 
-            globalNavigations
-                .Add("Accounts.User.Deleted", (FormUri)"Accounts.User.List")
-                .Add("Accounts.User.Created", (FormUri)"Accounts.User.List")
-                .Add("Accounts.User.Updated", (FormUri)"Accounts.User.List")
-
-                .Add("Accounts.Role.Deleted", (FormUri)"Accounts.Role.List")
-                .Add("Accounts.Role.Created", (FormUri)"Accounts.Role.List")
-                .Add("Accounts.Role.Updated", (FormUri)"Accounts.Role.List");
+            RegisterForms(formRegistry);
+            RegisterGlobalNavigations(globalNavigations);
 
 //#if DEBUG
             CreateDummyUserAccounts();

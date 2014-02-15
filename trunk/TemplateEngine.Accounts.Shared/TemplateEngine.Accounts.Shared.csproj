@@ -39,6 +39,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Bootstrap\AccountBootstrapTaskBase.cs" />
     <Compile Include="EditUserCommand.cs" />
     <Compile Include="EditUserRoleCommand.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -53,6 +54,16 @@
   <ItemGroup>
     <Content Include="Neptuo.TemplateEngine.Accounts.Shared.js" />
     <Content Include="Neptuo.TemplateEngine.Accounts.Shared.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TemplateEngine.Navigation\TemplateEngine.Navigation.csproj">
+      <Project>{f16d8bc8-2191-498f-9950-dc8aa200b0ba}</Project>
+      <Name>TemplateEngine.Navigation</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TemplateEngine.Shared\TemplateEngine.Shared.csproj">
+      <Project>{a4c6627c-c21b-4bb7-93a4-b40ac748588d}</Project>
+      <Name>TemplateEngine.Shared</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildBinPath)\SharpKit\5\SharpKit.Build.targets" />

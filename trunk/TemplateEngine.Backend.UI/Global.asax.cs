@@ -6,6 +6,7 @@ using Neptuo.Data;
 using Neptuo.Data.Entity;
 using Neptuo.Lifetimes;
 using Neptuo.Lifetimes.Mapping;
+using Neptuo.TemplateEngine.Accounts.Bootstrap;
 using Neptuo.TemplateEngine.Accounts.Data.Entity;
 using Neptuo.TemplateEngine.Permissions;
 using Neptuo.TemplateEngine.Web;

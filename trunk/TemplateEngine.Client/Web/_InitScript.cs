@@ -41,7 +41,8 @@ namespace Neptuo.TemplateEngine.Web
                 .RegisterInstance(new TemplateContentStorageStack())
                 .RegisterInstance(new DataContextStorage())
                 .RegisterInstance<IGuidProvider>(new SequenceGuidProvider("guid", 1))
-                .RegisterType<IViewActivator, StaticViewActivator>(new SingletonLifetime());
+                .RegisterType<IViewActivator, StaticViewActivator>(new SingletonLifetime())
+                .RegisterInstance(new GlobalNavigationCollection());
 
             return container;
         }

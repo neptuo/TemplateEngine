@@ -49,7 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Bootstrap\AccountsBootstrapTask.cs" />
+    <Compile Include="Bootstrap\AccountBootstrapTask.cs" />
     <Compile Include="Data\UserRepository.cs" />
     <Compile Include="Web\DataSources\UserAccountDataSource.cs" />
     <Compile Include="Web\DataSources\UserAccountEditDataSource.cs" />

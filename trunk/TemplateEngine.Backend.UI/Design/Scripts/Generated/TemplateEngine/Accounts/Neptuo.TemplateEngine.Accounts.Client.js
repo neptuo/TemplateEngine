@@ -14,9 +14,9 @@ if (typeof ($CreateAnonymousDelegate) == 'undefined') {
 }
 if (typeof(JsTypes) == "undefined")
     var JsTypes = [];
-var Neptuo$TemplateEngine$Accounts$Bootstrap$AccountsBootstrapTask =
+var Neptuo$TemplateEngine$Accounts$Bootstrap$AccountBootstrapTask =
 {
-    fullname: "Neptuo.TemplateEngine.Accounts.Bootstrap.AccountsBootstrapTask",
+    fullname: "Neptuo.TemplateEngine.Accounts.Bootstrap.AccountBootstrapTask",
     baseTypeName: "System.Object",
     assemblyName: "Neptuo.TemplateEngine.Accounts.Client",
     interfaceNames: ["Neptuo.Bootstrap.IBootstrapTask"],
@@ -38,7 +38,7 @@ var Neptuo$TemplateEngine$Accounts$Bootstrap$AccountsBootstrapTask =
     ctors: [ {name: "ctor", parameters: ["Neptuo.IDependencyContainer"]}],
     IsAbstract: false
 };
-JsTypes.push(Neptuo$TemplateEngine$Accounts$Bootstrap$AccountsBootstrapTask);
+JsTypes.push(Neptuo$TemplateEngine$Accounts$Bootstrap$AccountBootstrapTask);
 var Neptuo$TemplateEngine$Accounts$Data$UserRepository =
 {
     fullname: "Neptuo.TemplateEngine.Accounts.Data.UserRepository",
@@ -163,8 +163,7 @@ var Neptuo$TemplateEngine$Accounts$Web$DataSources$UserAccountEditDataSource =
         },
         set_Key: function (value)
         {
-            if (value != null)
-                this._Key = value;
+            this._Key = value;
         },
         GetItem: function (callback)
         {
