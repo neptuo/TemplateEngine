@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Accounts.Bootstrap
 {
-    public class AccountsBootstrapTask : IBootstrapTask
+    public class AccountBootstrapTask : IBootstrapTask
     {
         private IDependencyContainer container;
 
-        public AccountsBootstrapTask(IDependencyContainer container)
+        public AccountBootstrapTask(IDependencyContainer container)
         {
             Guard.NotNull(container, "container");
             this.container = container;

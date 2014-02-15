@@ -1,4 +1,5 @@
-﻿using Neptuo.Web.Routing;
+﻿using Neptuo.TemplateEngine.Web.Routing;
+using Neptuo.Web.Routing;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -9,11 +10,8 @@ using System.Web;
 
 namespace Neptuo.TemplateEngine.Backend.Web.Routing
 {
-    public class TemplateRouteParameter : IRouteParameter
+    public class TemplateRouteParameter : TemplateRouteParameterBase, IRouteParameter
     {
-        public const string TemplateUrlSuffix = ".aspx";
-        public const string TemplatePathSuffix = ".view";
-
         private HttpContextBase httpContext;
 
         public TemplateRouteParameter(HttpContextBase httpContext)
@@ -40,14 +38,6 @@ namespace Neptuo.TemplateEngine.Backend.Web.Routing
             }
 
             return false;
-        }
-
-        public static string FormatUrl(string path)
-        {
-            if (path == null)
-                throw new ArgumentNullException("path");
-
-            return String.Format("{0}{1}", path, TemplateUrlSuffix);
         }
     }
 }

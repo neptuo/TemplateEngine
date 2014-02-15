@@ -3869,6 +3869,37 @@ var Neptuo$TemplateEngine$Web$PropertySetAttribute =
     IsAbstract: false
 };
 JsTypes.push(Neptuo$TemplateEngine$Web$PropertySetAttribute);
+var Neptuo$TemplateEngine$Web$Routing$TemplateRouteParameterBase =
+{
+    fullname: "Neptuo.TemplateEngine.Web.Routing.TemplateRouteParameterBase",
+    baseTypeName: "System.Object",
+    staticDefinition:
+    {
+        cctor: function ()
+        {
+            Neptuo.TemplateEngine.Web.Routing.TemplateRouteParameterBase.TemplateUrlSuffix = ".aspx";
+            Neptuo.TemplateEngine.Web.Routing.TemplateRouteParameterBase.TemplatePathSuffix = ".view";
+        },
+        FormatUrl: function (path)
+        {
+            if (path == null)
+                throw $CreateException(new System.ArgumentNullException.ctor$$String("path"), new Error());
+            return System.String.Format$$String$$Object$$Object("{0}{1}", path, ".aspx");
+        }
+    },
+    assemblyName: "Neptuo.TemplateEngine.Shared",
+    Kind: "Class",
+    definition:
+    {
+        ctor: function ()
+        {
+            System.Object.ctor.call(this);
+        }
+    },
+    ctors: [ {name: "ctor", parameters: []}],
+    IsAbstract: false
+};
+JsTypes.push(Neptuo$TemplateEngine$Web$Routing$TemplateRouteParameterBase);
 var Neptuo$TemplateEngine$Web$TemplateContentStorage =
 {
     fullname: "Neptuo.TemplateEngine.Web.TemplateContentStorage",
