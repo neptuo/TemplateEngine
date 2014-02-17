@@ -26,7 +26,7 @@ namespace Neptuo.TemplateEngine.Backend.Web
             IViewServiceContext viewServiceContext = GetViewServiceContext();
             IDependencyContainer container = viewServiceContext.DependencyProvider.CreateChildContainer();
 
-            if (!HandleUiEvents(context, container))
+            if (!HandleUiEvents(context, container) && context.Request.Headers["X-EngineRequestType"] != "Partial")
             {
                 BaseGeneratedView view = (BaseGeneratedView)GetViewService().Process(GetTemplateUrl(), viewServiceContext);
                 ExtendedComponentManager componentManager = GetComponentManager(viewServiceContext, context);

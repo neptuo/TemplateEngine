@@ -180,11 +180,29 @@ namespace Neptuo.TemplateEngine.Web
 
             FormRequestContext context = new FormRequestContext(data, buttonName, form.attr("action") ?? HtmlContext.location.href);
 
-            InvokeControllers(data);
+            if (!InvokeControllers(data))
+            {
+                HtmlContext.alert("Event: " + buttonName);
+                HtmlContext.console.log(data);
 
-            HtmlContext.alert("Event: " + buttonName);
-            HtmlContext.console.log(data);
+                JsObject headers = new JsObject();
+                headers["X-EngineRequestType"] = "Partial";
+                jQuery.ajax(new AjaxSettings
+                {
+                    url = form.attr("action"),
+                    type = form.attr("method"),
+                    data = data,
+                    headers = headers,
+                    success = OnFormSubmitSuccess
+                });
+            }
+
             e.preventDefault();
+        }
+
+        private static void OnFormSubmitSuccess(object response, JsString status, jqXHR sender)
+        {
+            HtmlContext.alert(status);
         }
 
         private static void OnButtonClick(Event e)
@@ -194,21 +212,30 @@ namespace Neptuo.TemplateEngine.Web
             button.parents("form").first().data("button", buttonName);
         }
 
-        private static void InvokeControllers(JsArray data)
+        private static bool InvokeControllers(JsArray data)
         {
             IDependencyContainer container = dependencyContainer.CreateChildContainer();
             container.RegisterInstance<IParameterProvider>(new ParameterProvider(TransformParameters(data)));
 
             IControllerRegistry controllerRegistry = container.Resolve<IControllerRegistry>();
+            ViewDataCollection viewData = new ViewDataCollection();
+            IModelBinder modelBinder = container.Resolve<IModelBinder>();
+            NavigationCollection localNavigations = new NavigationCollection();
+            bool isControllerExecuted = false;
 
             for (int i = 0; i < data.length; i++)
             {
                 string key = data[i].As<JsObject>()["name"].As<string>();
 
                 IController controller;
-                if(controllerRegistry.TryGet(key, out controller))
-                    controller.Execute(new ControllerContext(key, new ViewDataCollection(), container.Resolve<IModelBinder>(), new NavigationCollection()));
+                if (controllerRegistry.TryGet(key, out controller))
+                {
+                    controller.Execute(new ControllerContext(key, viewData, modelBinder, localNavigations));
+                    isControllerExecuted = true;
+                }
             }
+
+            return isControllerExecuted;
         }
 
         private static Dictionary<string, string> TransformParameters(JsArray data)
