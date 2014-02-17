@@ -29,13 +29,13 @@ var Neptuo$PresentationModels$BindingConverters$BindingConverterBase$1 =
             this.T = T;
             System.Object.ctor.call(this);
         },
-        TryConvert$$String$$IFieldDefinition$$Object: function (sourceValue, targetField, targetValue)
+        TryConvert: function (sourceValue, targetField, targetValue)
         {
             var target;
             if ((function ()
             {
                 var $1 = {Value: target};
-                var $res = this.TryConvert$$String$$IFieldDefinition$$T(sourceValue, targetField, $1);
+                var $res = this.TryConvertTo(sourceValue, targetField, $1);
                 target = $1.Value;
                 return $res;
             }).call(this))
@@ -57,8 +57,7 @@ var Neptuo$PresentationModels$BindingConverters$BindingConverterCollectionExtens
     baseTypeName: "System.Object",
     staticDefinition:
     {
-        AddStandart: function (bindingConverters)
-        {
+        AddStandart: function (bindingConverters) {
             bindingConverters.Add(new Neptuo.PresentationModels.TypeFieldType.ctor(Typeof(System.Boolean.ctor)), new Neptuo.PresentationModels.BindingConverters.BoolBindingConverter.ctor())
             bindingConverters.Add(new Neptuo.PresentationModels.TypeFieldType.ctor(Typeof(System.Int32.ctor)), new Neptuo.PresentationModels.BindingConverters.IntBindingConverter.ctor())
             //bindingConverters.Add(new Neptuo.PresentationModels.TypeFieldType.ctor(Typeof(System.Double.ctor)), new Neptuo.PresentationModels.BindingConverters.DoubleBindingConverter.ctor())
@@ -73,8 +72,7 @@ var Neptuo$PresentationModels$BindingConverters$BindingConverterCollectionExtens
     Kind: "Class",
     definition:
     {
-        ctor: function ()
-        {
+        ctor: function () {
             System.Object.ctor.call(this);
         }
     },
@@ -94,7 +92,7 @@ var Neptuo$PresentationModels$BindingConverters$BoolBindingConverter =
         {
             Neptuo.PresentationModels.BindingConverters.BindingConverterBase$1.ctor.call(this, System.Boolean.ctor);
         },
-        TryConvert$$String$$IFieldDefinition$$Boolean: function (sourceValue, targetField, targetValue)
+        TryConvertTo: function (sourceValue, targetField, targetValue)
         {
             if (sourceValue == null)
             {
@@ -169,7 +167,7 @@ var Neptuo$PresentationModels$BindingConverters$FuncBindingConverter$1 =
         {
             this._Converter = value;
         },
-        TryConvert$$String$$IFieldDefinition$$T: function (sourceValue, targetField, targetValue)
+        TryConvertTo: function (sourceValue, targetField, targetValue)
         {
             return this.get_Converter()(sourceValue, targetValue);
         }
@@ -221,7 +219,7 @@ var Neptuo$PresentationModels$BindingConverters$NullBindingConverter$1 =
         {
             this._Converter = value;
         },
-        TryConvert$$String$$IFieldDefinition$$Nullable$1: function (sourceValue, targetField, targetValue)
+        TryConvertTo: function (sourceValue, targetField, targetValue)
         {
             if (System.String.IsNullOrEmpty(sourceValue))
             {
@@ -232,7 +230,7 @@ var Neptuo$PresentationModels$BindingConverters$NullBindingConverter$1 =
             if ((function ()
             {
                 var $1 = {Value: notNullValue};
-                var $res = this.get_Converter().TryConvert$$String$$IFieldDefinition$$T(sourceValue, targetField, $1);
+                var $res = this.get_Converter().TryConvertTo(sourceValue, targetField, $1);
                 notNullValue = $1.Value;
                 return $res;
             }).call(this))

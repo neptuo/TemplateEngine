@@ -853,10 +853,19 @@ var Neptuo$TemplateEngine$Web$InitScript =
             submitButton["value"] = null;
             data.push(submitButton);
             var context = new Neptuo.TemplateEngine.Web.FormRequestContext.ctor(data, buttonName, (form.attr("action") != null ? form.attr("action") : location.href));
-            Neptuo.TemplateEngine.Web.InitScript.InvokeControllers(data);
-            alert("Event: " + buttonName);
-            console.log(data);
+            if (!Neptuo.TemplateEngine.Web.InitScript.InvokeControllers(data))
+            {
+                alert("Event: " + buttonName);
+                console.log(data);
+                var headers = new Object();
+                headers["X-EngineRequestType"] = "Partial";
+                $.ajax( {url: form.attr("action"), type: form.attr("method"), data: data, headers: headers, success: Neptuo.TemplateEngine.Web.InitScript.OnFormSubmitSuccess});
+            }
             e.preventDefault();
+        },
+        OnFormSubmitSuccess: function (response, status, sender)
+        {
+            alert(status);
         },
         OnButtonClick: function (e)
         {
@@ -869,6 +878,10 @@ var Neptuo$TemplateEngine$Web$InitScript =
             var container = Neptuo.TemplateEngine.Web.InitScript.dependencyContainer.CreateChildContainer();
             Neptuo.DependencyContainerExtensions.RegisterInstance$1(Neptuo.TemplateEngine.Web.IParameterProvider.ctor, container, new Neptuo.TemplateEngine.Web.ParameterProvider.ctor(Neptuo.TemplateEngine.Web.InitScript.TransformParameters(data)));
             var controllerRegistry = Neptuo.DependencyProviderExtensions.Resolve$1$$IDependencyProvider(Neptuo.TemplateEngine.Web.Controllers.IControllerRegistry.ctor, container);
+            var viewData = new Neptuo.TemplateEngine.Web.Controllers.ViewDataCollection.ctor();
+            var modelBinder = Neptuo.DependencyProviderExtensions.Resolve$1$$IDependencyProvider(Neptuo.TemplateEngine.Web.Controllers.Binders.IModelBinder.ctor, container);
+            var localNavigations = new Neptuo.TemplateEngine.Web.NavigationCollection.ctor();
+            var isControllerExecuted = false;
             for (var i = 0; i < data.length; i++)
             {
                 var key = data[i]["name"];
@@ -880,8 +893,12 @@ var Neptuo$TemplateEngine$Web$InitScript =
                     controller = $1.Value;
                     return $res;
                 })())
-                    controller.Execute(new Neptuo.TemplateEngine.Web.Controllers.ControllerContext.ctor(key, new Neptuo.TemplateEngine.Web.Controllers.ViewDataCollection.ctor(), Neptuo.DependencyProviderExtensions.Resolve$1$$IDependencyProvider(Neptuo.TemplateEngine.Web.Controllers.Binders.IModelBinder.ctor, container), new Neptuo.TemplateEngine.Web.NavigationCollection.ctor()));
+                {
+                    controller.Execute(new Neptuo.TemplateEngine.Web.Controllers.ControllerContext.ctor(key, viewData, modelBinder, localNavigations));
+                    isControllerExecuted = true;
+                }
             }
+            return isControllerExecuted;
         },
         TransformParameters: function (data)
         {
