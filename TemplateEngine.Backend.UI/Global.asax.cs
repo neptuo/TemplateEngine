@@ -4,6 +4,7 @@ using Neptuo.Bootstrap;
 using Neptuo.Commands;
 using Neptuo.Data;
 using Neptuo.Data.Entity;
+using Neptuo.Events;
 using Neptuo.Lifetimes;
 using Neptuo.Lifetimes.Mapping;
 using Neptuo.TemplateEngine.Accounts.Bootstrap;
@@ -63,6 +64,7 @@ namespace Neptuo.TemplateEngine.Backend.UI
                 .RegisterType<HttpContextBase>(new GetterLifetime(() => new HttpContextWrapper(HttpContext.Current)))
                 .RegisterType<HttpRequestBase>(new GetterLifetime(() => new HttpRequestWrapper(HttpContext.Current.Request)))
                 .RegisterType<DataContext>(new PerRequestLifetime())
+                .RegisterType<IEventDispatcher, EventDispatcher>(new SingletonLifetime())
                 .RegisterType<IParameterProvider, RequestParameterProvider>(new PerRequestLifetime())
                 .RegisterType<IUnitOfWorkFactory, DataContextUnitOfWorkFactory>(new PerRequestLifetime())
                 .RegisterType<IAccountDbContext, DataContext>(new PerRequestLifetime())

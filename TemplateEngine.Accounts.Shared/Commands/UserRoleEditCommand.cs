@@ -4,15 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Neptuo.TemplateEngine.Accounts
+namespace Neptuo.TemplateEngine.Accounts.Commands
 {
-    public class EditUserRoleCommand
+    public class UserRoleEditCommand
     {
         public int Key { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
 
-        public EditUserRoleCommand()
+        public UserRoleEditCommand()
         { }
 
         //public EditUserRoleCommand(UserRole userRole)

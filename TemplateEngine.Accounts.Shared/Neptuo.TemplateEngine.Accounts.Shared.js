@@ -26,9 +26,66 @@ var Neptuo$TemplateEngine$Accounts$Bootstrap$AccountBootstrapTaskBase =
     IsAbstract: true
 };
 JsTypes.push(Neptuo$TemplateEngine$Accounts$Bootstrap$AccountBootstrapTaskBase);
-var Neptuo$TemplateEngine$Accounts$EditUserCommand =
+var Neptuo$TemplateEngine$Accounts$Commands$UserAccountCreateCommand =
 {
-    fullname: "Neptuo.TemplateEngine.Accounts.EditUserCommand",
+    fullname: "Neptuo.TemplateEngine.Accounts.Commands.UserAccountCreateCommand",
+    baseTypeName: "System.Object",
+    assemblyName: "Neptuo.TemplateEngine.Accounts.Shared",
+    Kind: "Class",
+    definition:
+    {
+        ctor: function ()
+        {
+            this._Username = null;
+            this._Password = null;
+            this._PasswordAgain = null;
+            this._IsEnabled = false;
+            System.Object.ctor.call(this);
+        },
+        Username$$: "System.String",
+        get_Username: function ()
+        {
+            return this._Username;
+        },
+        set_Username: function (value)
+        {
+            this._Username = value;
+        },
+        Password$$: "System.String",
+        get_Password: function ()
+        {
+            return this._Password;
+        },
+        set_Password: function (value)
+        {
+            this._Password = value;
+        },
+        PasswordAgain$$: "System.String",
+        get_PasswordAgain: function ()
+        {
+            return this._PasswordAgain;
+        },
+        set_PasswordAgain: function (value)
+        {
+            this._PasswordAgain = value;
+        },
+        IsEnabled$$: "System.Boolean",
+        get_IsEnabled: function ()
+        {
+            return this._IsEnabled;
+        },
+        set_IsEnabled: function (value)
+        {
+            this._IsEnabled = value;
+        }
+    },
+    ctors: [ {name: "ctor", parameters: []}],
+    IsAbstract: false
+};
+JsTypes.push(Neptuo$TemplateEngine$Accounts$Commands$UserAccountCreateCommand);
+var Neptuo$TemplateEngine$Accounts$Commands$UserAccountEditCommand =
+{
+    fullname: "Neptuo.TemplateEngine.Accounts.Commands.UserAccountEditCommand",
     baseTypeName: "System.Object",
     assemblyName: "Neptuo.TemplateEngine.Accounts.Shared",
     Kind: "Class",
@@ -92,10 +149,10 @@ var Neptuo$TemplateEngine$Accounts$EditUserCommand =
     ctors: [ {name: "ctor", parameters: []}],
     IsAbstract: false
 };
-JsTypes.push(Neptuo$TemplateEngine$Accounts$EditUserCommand);
-var Neptuo$TemplateEngine$Accounts$EditUserRoleCommand =
+JsTypes.push(Neptuo$TemplateEngine$Accounts$Commands$UserAccountEditCommand);
+var Neptuo$TemplateEngine$Accounts$Commands$UserRoleEditCommand =
 {
-    fullname: "Neptuo.TemplateEngine.Accounts.EditUserRoleCommand",
+    fullname: "Neptuo.TemplateEngine.Accounts.Commands.UserRoleEditCommand",
     baseTypeName: "System.Object",
     assemblyName: "Neptuo.TemplateEngine.Accounts.Shared",
     Kind: "Class",
@@ -139,18 +196,18 @@ var Neptuo$TemplateEngine$Accounts$EditUserRoleCommand =
     ctors: [ {name: "ctor", parameters: []}],
     IsAbstract: false
 };
-JsTypes.push(Neptuo$TemplateEngine$Accounts$EditUserRoleCommand);
+JsTypes.push(Neptuo$TemplateEngine$Accounts$Commands$UserRoleEditCommand);
 var Neptuo$TemplateEngine$Accounts$UserAccountEditModel =
 {
     fullname: "Neptuo.TemplateEngine.Accounts.UserAccountEditModel",
-    baseTypeName: "Neptuo.TemplateEngine.Accounts.EditUserCommand",
+    baseTypeName: "Neptuo.TemplateEngine.Accounts.Commands.UserAccountEditCommand",
     assemblyName: "Neptuo.TemplateEngine.Accounts.Shared",
     Kind: "Class",
     definition:
     {
         ctor: function ()
         {
-            Neptuo.TemplateEngine.Accounts.EditUserCommand.ctor.call(this);
+            Neptuo.TemplateEngine.Accounts.Commands.UserAccountEditCommand.ctor.call(this);
         },
         IsNew$$: "System.Boolean",
         get_IsNew: function ()
@@ -165,14 +222,14 @@ JsTypes.push(Neptuo$TemplateEngine$Accounts$UserAccountEditModel);
 var Neptuo$TemplateEngine$Accounts$UserRoleEditModel =
 {
     fullname: "Neptuo.TemplateEngine.Accounts.UserRoleEditModel",
-    baseTypeName: "Neptuo.TemplateEngine.Accounts.EditUserRoleCommand",
+    baseTypeName: "Neptuo.TemplateEngine.Accounts.Commands.UserRoleEditCommand",
     assemblyName: "Neptuo.TemplateEngine.Accounts.Shared",
     Kind: "Class",
     definition:
     {
         ctor: function ()
         {
-            Neptuo.TemplateEngine.Accounts.EditUserRoleCommand.ctor.call(this);
+            Neptuo.TemplateEngine.Accounts.Commands.UserRoleEditCommand.ctor.call(this);
         },
         IsNew$$: "System.Boolean",
         get_IsNew: function ()

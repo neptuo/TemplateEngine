@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Accounts.Commands.Handlers
 {
-    public class EditUserRoleCommandHandler : ICommandHandler<EditUserRoleCommand>, IValidator<EditUserRoleCommand>
+    public class EditUserRoleCommandHandler : ICommandHandler<UserRoleEditCommand>, IValidator<UserRoleEditCommand>
     {
         protected IUserRoleRepository UserRoles { get; private set; }
         protected IUnitOfWorkFactory TransactionFactory { get; private set; }
@@ -23,7 +23,7 @@ namespace Neptuo.TemplateEngine.Accounts.Commands.Handlers
             TransactionFactory = transactionFactory;
         }
 
-        public void Handle(EditUserRoleCommand command)
+        public void Handle(UserRoleEditCommand command)
         {
             IValidationResult validation = Validate(command);
             if (!validation.IsValid)
@@ -50,12 +50,12 @@ namespace Neptuo.TemplateEngine.Accounts.Commands.Handlers
             }
         }
 
-        public IValidationResult Validate(EditUserRoleCommand model)
+        public IValidationResult Validate(UserRoleEditCommand model)
         {
             List<IValidationMessage> messages = new List<IValidationMessage>();
 
             if (String.IsNullOrEmpty(model.Name))
-                messages.Add(new TextValidationMessage(TypeHelper.PropertyName<EditUserRoleCommand, string>(c => c.Name), "Name can't be empty!"));
+                messages.Add(new TextValidationMessage(TypeHelper.PropertyName<UserRoleEditCommand, string>(c => c.Name), "Name can't be empty!"));
 
             return new ValidationResultBase(!messages.Any(), messages);
         }

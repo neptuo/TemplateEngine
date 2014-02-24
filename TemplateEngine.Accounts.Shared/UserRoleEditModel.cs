@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Neptuo.TemplateEngine.Accounts.Commands;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Accounts
 {
-    public class UserRoleEditModel : EditUserRoleCommand
+    public class UserRoleEditModel : UserRoleEditCommand
     {
         public bool IsNew
         {

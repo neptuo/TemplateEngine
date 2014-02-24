@@ -17,10 +17,10 @@ namespace Neptuo.TemplateEngine.Accounts.Web.Controllers
     {
         protected IUserAccountRepository UserAccounts { get; private set; }
         protected ICommandDispatcher CommandDispatcher { get; private set; }
-        protected IValidator<EditUserCommand> Validator { get; private set; }
+        protected IValidator<UserAccountEditCommand> Validator { get; private set; }
         protected MessageStorage MessageStorage { get; private set; }
 
-        public UserAccountController(IUserAccountRepository userAccounts, ICommandDispatcher commandDispatcher, IValidator<EditUserCommand> validator, MessageStorage messageStorage)
+        public UserAccountController(IUserAccountRepository userAccounts, ICommandDispatcher commandDispatcher, IValidator<UserAccountEditCommand> validator, MessageStorage messageStorage)
         {
             UserAccounts = userAccounts;
             CommandDispatcher = commandDispatcher;
@@ -66,7 +66,7 @@ namespace Neptuo.TemplateEngine.Accounts.Web.Controllers
 
         protected void CreateUpdate()
         {
-            EditUserCommand model = Context.ModelBinder.Bind<EditUserCommand>(new EditUserCommand());
+            UserAccountEditCommand model = Context.ModelBinder.Bind<UserAccountEditCommand>(new UserAccountEditCommand());
             IValidationResult validationResult = Validator.Validate(model);
             if (!validationResult.IsValid)
             {
