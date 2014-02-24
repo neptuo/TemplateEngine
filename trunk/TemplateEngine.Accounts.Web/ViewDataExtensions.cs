@@ -12,12 +12,12 @@ namespace Neptuo.TemplateEngine.Accounts.Web
     {
         #region EditUserCommand
 
-        public static EditUserCommand GetEditUserAccount(this IViewData viewData)
+        public static UserAccountEditCommand GetEditUserAccount(this IViewData viewData)
         {
-            return viewData.Get<EditUserCommand>("EditUserCommnad");
+            return viewData.Get<UserAccountEditCommand>("EditUserCommnad");
         }
 
-        public static void SetEditUserAccount(this IViewData viewData, EditUserCommand model)
+        public static void SetEditUserAccount(this IViewData viewData, UserAccountEditCommand model)
         {
             viewData.Set("EditUserCommnad", model);
         }
@@ -26,12 +26,12 @@ namespace Neptuo.TemplateEngine.Accounts.Web
 
         #region EditUserRoleCommand
 
-        public static EditUserRoleCommand GetEditUserRole(this IViewData viewData)
+        public static UserRoleEditCommand GetEditUserRole(this IViewData viewData)
         {
-            return viewData.Get<EditUserRoleCommand>("EditUserRoleCommand");
+            return viewData.Get<UserRoleEditCommand>("EditUserRoleCommand");
         }
 
-        public static void SetEditUserRole(this IViewData viewData, EditUserRoleCommand model)
+        public static void SetEditUserRole(this IViewData viewData, UserRoleEditCommand model)
         {
             viewData.Set("EditUserRoleCommand", model);
         }

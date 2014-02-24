@@ -40,8 +40,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Bootstrap\AccountBootstrapTaskBase.cs" />
-    <Compile Include="EditUserCommand.cs" />
-    <Compile Include="EditUserRoleCommand.cs" />
+    <Compile Include="Commands\UserAccountCreateCommand.cs" />
+    <Compile Include="Commands\UserAccountEditCommand.cs" />
+    <Compile Include="Commands\UserRoleEditCommand.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UserAccountEditModel.cs" />
     <Compile Include="UserRoleEditModel.cs" />

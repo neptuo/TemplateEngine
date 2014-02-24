@@ -17,10 +17,10 @@ namespace Neptuo.TemplateEngine.Accounts.Web.Controllers
     {
         protected IUserRoleRepository UserRoles { get; private set; }
         protected ICommandDispatcher CommandDispatcher { get; private set; }
-        protected IValidator<EditUserRoleCommand> Validator { get; private set; }
+        protected IValidator<UserRoleEditCommand> Validator { get; private set; }
         protected MessageStorage MessageStorage { get; private set; }
 
-        public UserRoleController(IUserRoleRepository userRoles, ICommandDispatcher commandDispatcher, IValidator<EditUserRoleCommand> validator, MessageStorage messageStorage)
+        public UserRoleController(IUserRoleRepository userRoles, ICommandDispatcher commandDispatcher, IValidator<UserRoleEditCommand> validator, MessageStorage messageStorage)
         {
             UserRoles = userRoles;
             CommandDispatcher = commandDispatcher;
@@ -66,7 +66,7 @@ namespace Neptuo.TemplateEngine.Accounts.Web.Controllers
 
         protected void CreateUpdate()
         {
-            EditUserRoleCommand model = Context.ModelBinder.Bind<EditUserRoleCommand>(new EditUserRoleCommand());
+            UserRoleEditCommand model = Context.ModelBinder.Bind<UserRoleEditCommand>(new UserRoleEditCommand());
             IValidationResult validationResult = Validator.Validate(model);
             if (!validationResult.IsValid)
             {

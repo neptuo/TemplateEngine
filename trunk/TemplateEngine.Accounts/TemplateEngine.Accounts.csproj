@@ -54,8 +54,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Commands\Handlers\EditUserCommandHandler.cs" />
+    <Compile Include="Commands\Handlers\UserAccountCreateCommandHandler.cs" />
     <Compile Include="Commands\Handlers\EditUserRoleCommandHandler.cs" />
+    <Compile Include="Commands\Handlers\UserAccountEditCommandHandler.cs" />
     <Compile Include="Data\IUserAccountRepository.cs" />
     <Compile Include="Data\IUserRoleRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -68,6 +69,10 @@
     <ProjectReference Include="..\TemplateEngine.Accounts.Shared\TemplateEngine.Accounts.Shared.csproj">
       <Project>{bd9ba2ab-c026-4c9f-8605-920d24987756}</Project>
       <Name>TemplateEngine.Accounts.Shared</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TemplateEngine\TemplateEngine.csproj">
+      <Project>{0ddeef40-567f-49de-94ec-314309702534}</Project>
+      <Name>TemplateEngine</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

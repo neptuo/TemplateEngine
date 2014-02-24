@@ -1,4 +1,5 @@
-﻿using Neptuo.TemplateEngine.Web.Controllers;
+﻿using Neptuo.TemplateEngine.Accounts.Commands;
+using Neptuo.TemplateEngine.Web.Controllers;
 using Neptuo.TemplateEngine.Web.Controllers.Binders;
 using SharpKit.Html;
 using System;
@@ -16,7 +17,7 @@ namespace Neptuo.TemplateEngine.Accounts.Web.Controllers
         [Action("Accounts/User/Create")]
         public void Create()
         {
-            EditUserCommand model = Context.ModelBinder.Bind<EditUserCommand>(new EditUserCommand());
+            UserAccountCreateCommand model = Context.ModelBinder.Bind<UserAccountCreateCommand>(new UserAccountCreateCommand());
             HtmlContext.console.log(model);
         }
 

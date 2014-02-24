@@ -1,8 +1,9 @@
-﻿using Neptuo.Commands.Handlers;
-using Neptuo.Commands.Validation;
+﻿using Neptuo.Commands.Events;
 using Neptuo.Data;
+using Neptuo.Events;
 using Neptuo.Linq.Expressions;
 using Neptuo.TemplateEngine.Accounts.Data;
+using Neptuo.TemplateEngine.Commands.Handlers;
 using Neptuo.Validation;
 using System;
 using System.Collections.Generic;
@@ -12,23 +13,21 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Accounts.Commands.Handlers
 {
-    public class EditUserCommandHandler : ICommandHandler<EditUserCommand>, IValidator<EditUserCommand>
+    public class UserAccountEditCommandHandler : CommandHandlerBase<UserAccountEditCommand>
     {
+        protected IEventDispatcher EventDispatcher { get; private set; }
         protected IUserAccountRepository UserAccounts { get; private set; }
         protected IUnitOfWorkFactory TransactionFactory { get; private set; }
 
-        public EditUserCommandHandler(IUnitOfWorkFactory transactionFactory, IUserAccountRepository userAccounts)
+        public UserAccountEditCommandHandler(IEventDispatcher eventDispatcher, IUnitOfWorkFactory transactionFactory, IUserAccountRepository userAccounts)
         {
+            EventDispatcher = eventDispatcher;
             UserAccounts = userAccounts;
             TransactionFactory = transactionFactory;
         }
 
-        public void Handle(EditUserCommand command)
+        protected override void HandleValidCommand(UserAccountEditCommand command)
         {
-            IValidationResult validation = Validate(command);
-            if (!validation.IsValid)
-                throw new InvalidOperationException("Command is not valid.");//TODO: Do it better!
-
             using (IUnitOfWork transaction = TransactionFactory.Create())
             {
                 UserAccount userAccount = UserAccounts.Get(command.Key);
@@ -50,23 +49,21 @@ namespace Neptuo.TemplateEngine.Accounts.Commands.Handlers
                     UserAccounts.Update(userAccount);
 
                 transaction.SaveChanges();
+                EventDispatcher.Publish(new CommandHandled(command));
             }
         }
 
-        public IValidationResult Validate(EditUserCommand command)
+        protected override void ValidateCommand(UserAccountEditCommand command, List<IValidationMessage> messages)
         {
-            List<IValidationMessage> messages = new List<IValidationMessage>();
-
             if (String.IsNullOrEmpty(command.Username))
-                messages.Add(new TextValidationMessage(TypeHelper.PropertyName<EditUserCommand, string>(c => c.Username), "Username can't be empty!"));
+                messages.Add(new TextValidationMessage(TypeHelper.PropertyName<UserAccountEditCommand, string>(c => c.Username), "Username can't be empty!"));
 
-            if (String.IsNullOrEmpty(command.Password))
-                messages.Add(new TextValidationMessage(TypeHelper.PropertyName<EditUserCommand, string>(c => c.Password), "Password can't be empty!"));
-
-            if (command.Password != command.PasswordAgain)
-                messages.Add(new TextValidationMessage(TypeHelper.PropertyName<EditUserCommand, string>(c => c.PasswordAgain), "Passwords must match!"));
-
-            return new ValidationResultBase(!messages.Any(), messages);
+            if (!String.IsNullOrEmpty(command.Password))
+            {
+                //messages.Add(new TextValidationMessage(TypeHelper.PropertyName<UserAccountEditCommand, string>(c => c.Password), "Password can't be empty!"));
+                if (command.Password != command.PasswordAgain)
+                    messages.Add(new TextValidationMessage(TypeHelper.PropertyName<UserAccountEditCommand, string>(c => c.PasswordAgain), "Passwords must match!"));
+            }
         }
     }
 }
