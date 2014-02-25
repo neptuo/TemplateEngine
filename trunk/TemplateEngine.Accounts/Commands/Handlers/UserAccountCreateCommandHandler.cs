@@ -5,6 +5,7 @@ using Neptuo.Data;
 using Neptuo.Events;
 using Neptuo.Linq.Expressions;
 using Neptuo.TemplateEngine.Accounts.Data;
+using Neptuo.TemplateEngine.Accounts.Events;
 using Neptuo.TemplateEngine.Commands.Handlers;
 using Neptuo.Validation;
 using System;
@@ -19,28 +20,23 @@ namespace Neptuo.TemplateEngine.Accounts.Commands.Handlers
     {
         protected IEventDispatcher EventDispatcher { get; private set; }
         protected IUserAccountRepository UserAccounts { get; private set; }
-        protected IUnitOfWorkFactory TransactionFactory { get; private set; }
 
-        public UserAccountCreateCommandHandler(IEventDispatcher eventDispatcher, IUnitOfWorkFactory transactionFactory, IUserAccountRepository userAccounts)
+        public UserAccountCreateCommandHandler(IEventDispatcher eventDispatcher, IUserAccountRepository userAccounts)
         {
             EventDispatcher = eventDispatcher;
             UserAccounts = userAccounts;
-            TransactionFactory = transactionFactory;
         }
 
         protected override void HandleValidCommand(UserAccountCreateCommand command)
         {
-            using (IUnitOfWork transaction = TransactionFactory.Create())
-            {
-                UserAccount userAccount = UserAccounts.Create();
-                userAccount.Username = command.Username;
-                userAccount.Password = command.Password;
-                userAccount.IsEnabled = command.IsEnabled;
+            UserAccount userAccount = UserAccounts.Create();
+            userAccount.Username = command.Username;
+            userAccount.Password = command.Password;
+            userAccount.IsEnabled = command.IsEnabled;
 
-                UserAccounts.Insert(userAccount);
-                transaction.SaveChanges();
-                EventDispatcher.Publish(new CommandHandled(command));
-            }
+            UserAccounts.Insert(userAccount);
+            EventDispatcher.Publish(new CommandHandled(command));
+            EventDispatcher.Publish(new UserAccountCreated(userAccount.Key, userAccount.Username));
         }
 
         protected override void ValidateCommand(UserAccountCreateCommand command, List<IValidationMessage> messages)
