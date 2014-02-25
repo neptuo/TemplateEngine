@@ -1,4 +1,5 @@
 ﻿using Neptuo.Commands;
+using Neptuo.Data;
 using Neptuo.TemplateEngine.Accounts.Commands;
 using Neptuo.TemplateEngine.Accounts.Data;
 using Neptuo.TemplateEngine.Web;
@@ -15,16 +16,20 @@ namespace Neptuo.TemplateEngine.Accounts.Web.Controllers
 {
     public class UserAccountController : ControllerBase
     {
+        protected IUnitOfWorkFactory UnitOfWorkFactory { get; private set; }
         protected IUserAccountRepository UserAccounts { get; private set; }
         protected ICommandDispatcher CommandDispatcher { get; private set; }
-        protected IValidator<UserAccountEditCommand> Validator { get; private set; }
+        protected IValidator<UserAccountCreateCommand> CreateValidator { get; private set; }
+        protected IValidator<UserAccountEditCommand> EditValidator { get; private set; }
         protected MessageStorage MessageStorage { get; private set; }
 
-        public UserAccountController(IUserAccountRepository userAccounts, ICommandDispatcher commandDispatcher, IValidator<UserAccountEditCommand> validator, MessageStorage messageStorage)
+        public UserAccountController(IUnitOfWorkFactory unitOfWorkFactory, IUserAccountRepository userAccounts, ICommandDispatcher commandDispatcher, IValidator<UserAccountEditCommand> editValidator, IValidator<UserAccountCreateCommand> createValidator, MessageStorage messageStorage)
         {
+            UnitOfWorkFactory = unitOfWorkFactory;
             UserAccounts = userAccounts;
             CommandDispatcher = commandDispatcher;
-            Validator = validator;
+            EditValidator = editValidator;
+            CreateValidator = createValidator;
             MessageStorage = messageStorage;
         }
 
@@ -36,11 +41,14 @@ namespace Neptuo.TemplateEngine.Accounts.Web.Controllers
             UserDeleteModel model = Context.ModelBinder.Bind<UserDeleteModel>(new UserDeleteModel());
             if (model.UserKey != 0)
             {
-                UserAccounts.Delete(UserAccounts.Get(model.UserKey));
-                Context.Navigations.Add("Accounts.User.Deleted");
-                MessageStorage.Add(null, String.Empty, "User account deleted", MessageType.Info);
+                using (IUnitOfWork transaction = UnitOfWorkFactory.Create())
+                {
+                    CommandDispatcher.Handle(new UserAccountDeleteCommand(model.UserKey));
+                    Context.Navigations.Add("Accounts.User.Deleted");
+                    MessageStorage.Add(null, String.Empty, "User account deleted", MessageType.Info);
+                    transaction.SaveChanges();
+                }
             }
-
         }
 
         public class UserDeleteModel
@@ -55,35 +63,42 @@ namespace Neptuo.TemplateEngine.Accounts.Web.Controllers
         [Action("Accounts/User/Create")]
         public void Create()
         {
-            CreateUpdate();
+            UserAccountCreateCommand model = Context.ModelBinder.Bind<UserAccountCreateCommand>(new UserAccountCreateCommand());
+            IValidationResult validationResult = CreateValidator.Validate(model);
+            if (!validationResult.IsValid)
+            {
+                MessageStorage.AddValidationResult(validationResult, "UserEdit");
+                Context.ViewData.SetUserAccountCreate(model);
+                return;
+            }
+
+            using (IUnitOfWork transaction = UnitOfWorkFactory.Create())
+            {
+                CommandDispatcher.Handle(model);
+                transaction.SaveChanges();
+
+                MessageStorage.Add(null, String.Empty, "User account created.", MessageType.Info);
+                Context.Navigations.Add("Accounts.User.Created");
+            }
         }
 
         [Action("Accounts/User/Update")]
         public void Update()
         {
-            CreateUpdate();
-        }
-
-        protected void CreateUpdate()
-        {
             UserAccountEditCommand model = Context.ModelBinder.Bind<UserAccountEditCommand>(new UserAccountEditCommand());
-            IValidationResult validationResult = Validator.Validate(model);
+            IValidationResult validationResult = EditValidator.Validate(model);
             if (!validationResult.IsValid)
             {
                 MessageStorage.AddValidationResult(validationResult, "UserEdit");
-                Context.ViewData.SetEditUserAccount(model);
+                Context.ViewData.SetUserAccountEdit(model);
                 return;
             }
 
-            CommandDispatcher.Handle(model);
+            using (IUnitOfWork transaction = UnitOfWorkFactory.Create())
+            {
+                CommandDispatcher.Handle(model);
+                transaction.SaveChanges();
 
-            if (model.Key == 0)
-            {
-                MessageStorage.Add(null, String.Empty, "User account created.", MessageType.Info);
-                Context.Navigations.Add("Accounts.User.Created");
-            }
-            else
-            {
                 MessageStorage.Add(null, String.Empty, "User account modified.", MessageType.Info);
                 Context.Navigations.Add("Accounts.User.Updated");
             }

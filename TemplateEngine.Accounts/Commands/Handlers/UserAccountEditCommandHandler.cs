@@ -3,6 +3,7 @@ using Neptuo.Data;
 using Neptuo.Events;
 using Neptuo.Linq.Expressions;
 using Neptuo.TemplateEngine.Accounts.Data;
+using Neptuo.TemplateEngine.Accounts.Events;
 using Neptuo.TemplateEngine.Commands.Handlers;
 using Neptuo.Validation;
 using System;
@@ -28,29 +29,26 @@ namespace Neptuo.TemplateEngine.Accounts.Commands.Handlers
 
         protected override void HandleValidCommand(UserAccountEditCommand command)
         {
-            using (IUnitOfWork transaction = TransactionFactory.Create())
-            {
-                UserAccount userAccount = UserAccounts.Get(command.Key);
-                if (userAccount == null)
-                    userAccount = UserAccounts.Create();
+            UserAccount userAccount = UserAccounts.Get(command.Key);
+            if (userAccount == null)
+                userAccount = UserAccounts.Create();
 
-                if (userAccount.Username != command.Username)
-                    userAccount.Username = command.Username;
+            if (userAccount.Username != command.Username)
+                userAccount.Username = command.Username;
 
-                if (userAccount.Password != command.Password && !String.IsNullOrEmpty(command.Password))
-                    userAccount.Password = command.Password;
+            if (userAccount.Password != command.Password && !String.IsNullOrEmpty(command.Password))
+                userAccount.Password = command.Password;
 
-                if (userAccount.IsEnabled != command.IsEnabled)
-                    userAccount.IsEnabled = command.IsEnabled;
+            if (userAccount.IsEnabled != command.IsEnabled)
+                userAccount.IsEnabled = command.IsEnabled;
 
-                if (userAccount.Key == 0)
-                    UserAccounts.Insert(userAccount);
-                else
-                    UserAccounts.Update(userAccount);
+            if (userAccount.Key == 0)
+                UserAccounts.Insert(userAccount);
+            else
+                UserAccounts.Update(userAccount);
 
-                transaction.SaveChanges();
-                EventDispatcher.Publish(new CommandHandled(command));
-            }
+            EventDispatcher.Publish(new CommandHandled(command));
+            EventDispatcher.Publish(new UserAccountUpdated(userAccount.Key));
         }
 
         protected override void ValidateCommand(UserAccountEditCommand command, List<IValidationMessage> messages)

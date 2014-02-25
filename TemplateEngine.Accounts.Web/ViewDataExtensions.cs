@@ -10,16 +10,30 @@ namespace Neptuo.TemplateEngine.Accounts.Web
 {
     public static class ViewDataExtensions
     {
-        #region EditUserCommand
+        #region UserAccountEditCommand
 
-        public static UserAccountEditCommand GetEditUserAccount(this IViewData viewData)
+        public static UserAccountEditCommand GetUserAccountEdit(this IViewData viewData)
         {
-            return viewData.Get<UserAccountEditCommand>("EditUserCommnad");
+            return viewData.Get<UserAccountEditCommand>("UserAccountEditCommand");
         }
 
-        public static void SetEditUserAccount(this IViewData viewData, UserAccountEditCommand model)
+        public static void SetUserAccountEdit(this IViewData viewData, UserAccountEditCommand model)
         {
-            viewData.Set("EditUserCommnad", model);
+            viewData.Set("UserAccountEditCommand", model);
+        }
+
+        #endregion
+
+        #region UserAccountCreateCommand
+
+        public static UserAccountCreateCommand GetUserAccountCreate(this IViewData viewData)
+        {
+            return viewData.Get<UserAccountCreateCommand>("UserAccountCreateCommand");
+        }
+
+        public static void SetUserAccountCreate(this IViewData viewData, UserAccountCreateCommand model)
+        {
+            viewData.Set("UserAccountCreateCommand", model);
         }
 
         #endregion

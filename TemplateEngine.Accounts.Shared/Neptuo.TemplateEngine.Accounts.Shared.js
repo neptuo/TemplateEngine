@@ -83,6 +83,35 @@ var Neptuo$TemplateEngine$Accounts$Commands$UserAccountCreateCommand =
     IsAbstract: false
 };
 JsTypes.push(Neptuo$TemplateEngine$Accounts$Commands$UserAccountCreateCommand);
+var Neptuo$TemplateEngine$Accounts$Commands$UserAccountDeleteCommand =
+{
+    fullname: "Neptuo.TemplateEngine.Accounts.Commands.UserAccountDeleteCommand",
+    baseTypeName: "System.Object",
+    assemblyName: "Neptuo.TemplateEngine.Accounts.Shared",
+    Kind: "Class",
+    definition:
+    {
+        ctor: function (userKey)
+        {
+            this._UserKey = 0;
+            System.Object.ctor.call(this);
+            Neptuo.Guard.Positive(userKey, "userKey");
+            this.set_UserKey(userKey);
+        },
+        UserKey$$: "System.Int32",
+        get_UserKey: function ()
+        {
+            return this._UserKey;
+        },
+        set_UserKey: function (value)
+        {
+            this._UserKey = value;
+        }
+    },
+    ctors: [ {name: "ctor", parameters: ["System.Int32"]}],
+    IsAbstract: false
+};
+JsTypes.push(Neptuo$TemplateEngine$Accounts$Commands$UserAccountDeleteCommand);
 var Neptuo$TemplateEngine$Accounts$Commands$UserAccountEditCommand =
 {
     fullname: "Neptuo.TemplateEngine.Accounts.Commands.UserAccountEditCommand",
@@ -197,6 +226,105 @@ var Neptuo$TemplateEngine$Accounts$Commands$UserRoleEditCommand =
     IsAbstract: false
 };
 JsTypes.push(Neptuo$TemplateEngine$Accounts$Commands$UserRoleEditCommand);
+var Neptuo$TemplateEngine$Accounts$Events$UserAccountCreated =
+{
+    fullname: "Neptuo.TemplateEngine.Accounts.Events.UserAccountCreated",
+    baseTypeName: "System.Object",
+    assemblyName: "Neptuo.TemplateEngine.Accounts.Shared",
+    Kind: "Class",
+    definition:
+    {
+        ctor: function (userKey, username)
+        {
+            this._UserKey = 0;
+            this._Username = null;
+            System.Object.ctor.call(this);
+            Neptuo.Guard.Positive(userKey, "userKey");
+            Neptuo.Guard.NotNullOrEmpty(username, "username");
+            this.set_UserKey(userKey);
+            this.set_Username(username);
+        },
+        UserKey$$: "System.Int32",
+        get_UserKey: function ()
+        {
+            return this._UserKey;
+        },
+        set_UserKey: function (value)
+        {
+            this._UserKey = value;
+        },
+        Username$$: "System.String",
+        get_Username: function ()
+        {
+            return this._Username;
+        },
+        set_Username: function (value)
+        {
+            this._Username = value;
+        }
+    },
+    ctors: [ {name: "ctor", parameters: ["System.Int32", "System.String"]}],
+    IsAbstract: false
+};
+JsTypes.push(Neptuo$TemplateEngine$Accounts$Events$UserAccountCreated);
+var Neptuo$TemplateEngine$Accounts$Events$UserAccountDeleted =
+{
+    fullname: "Neptuo.TemplateEngine.Accounts.Events.UserAccountDeleted",
+    baseTypeName: "System.Object",
+    assemblyName: "Neptuo.TemplateEngine.Accounts.Shared",
+    Kind: "Class",
+    definition:
+    {
+        ctor: function (userKey)
+        {
+            this._UserKey = 0;
+            System.Object.ctor.call(this);
+            Neptuo.Guard.Positive(userKey, "userKey");
+            this.set_UserKey(userKey);
+        },
+        UserKey$$: "System.Int32",
+        get_UserKey: function ()
+        {
+            return this._UserKey;
+        },
+        set_UserKey: function (value)
+        {
+            this._UserKey = value;
+        }
+    },
+    ctors: [ {name: "ctor", parameters: ["System.Int32"]}],
+    IsAbstract: false
+};
+JsTypes.push(Neptuo$TemplateEngine$Accounts$Events$UserAccountDeleted);
+var Neptuo$TemplateEngine$Accounts$Events$UserAccountUpdated =
+{
+    fullname: "Neptuo.TemplateEngine.Accounts.Events.UserAccountUpdated",
+    baseTypeName: "System.Object",
+    assemblyName: "Neptuo.TemplateEngine.Accounts.Shared",
+    Kind: "Class",
+    definition:
+    {
+        ctor: function (userKey)
+        {
+            this._UserKey = 0;
+            System.Object.ctor.call(this);
+            Neptuo.Guard.Positive(userKey, "userKey");
+            this.set_UserKey(userKey);
+        },
+        UserKey$$: "System.Int32",
+        get_UserKey: function ()
+        {
+            return this._UserKey;
+        },
+        set_UserKey: function (value)
+        {
+            this._UserKey = value;
+        }
+    },
+    ctors: [ {name: "ctor", parameters: ["System.Int32"]}],
+    IsAbstract: false
+};
+JsTypes.push(Neptuo$TemplateEngine$Accounts$Events$UserAccountUpdated);
 var Neptuo$TemplateEngine$Accounts$UserAccountEditModel =
 {
     fullname: "Neptuo.TemplateEngine.Accounts.UserAccountEditModel",

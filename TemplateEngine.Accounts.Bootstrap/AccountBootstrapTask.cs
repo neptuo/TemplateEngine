@@ -55,8 +55,9 @@ namespace Neptuo.TemplateEngine.Accounts.Bootstrap
                 .RegisterType<IUserAccountRepository, MemoryUserAccountRepository>(new SingletonLifetime())
                 .RegisterType<IActivator<UserAccount>, MemoryUserAccountRepository>(new SingletonLifetime())
                 .RegisterType<IUserAccountQuery, MemoryUserAccountRepository>(new SingletonLifetime())
-                .RegisterCommandHandler<UserAccountEditCommand, UserAccountEditCommandHandler>()
                 .RegisterCommandHandler<UserAccountCreateCommand, UserAccountCreateCommandHandler>()
+                .RegisterCommandHandler<UserAccountEditCommand, UserAccountEditCommandHandler>()
+                .RegisterCommandHandler<UserAccountDeleteCommand, UserAccountDeleteCommandHandler>()
 
                 .RegisterType<IUserRoleRepository, MemoryUserRoleRepository>(new SingletonLifetime())
                 .RegisterType<IActivator<UserRole>, MemoryUserRoleRepository>(new SingletonLifetime())
