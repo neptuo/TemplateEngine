@@ -55,16 +55,13 @@ namespace Neptuo.TemplateEngine.Accounts.Bootstrap
                 .RegisterType<IUserAccountRepository, MemoryUserAccountRepository>(new SingletonLifetime())
                 .RegisterType<IActivator<UserAccount>, MemoryUserAccountRepository>(new SingletonLifetime())
                 .RegisterType<IUserAccountQuery, MemoryUserAccountRepository>(new SingletonLifetime())
-                .RegisterType<ICommandHandler<UserAccountEditCommand>, UserAccountEditCommandHandler>(new PerRequestLifetime())
-                .RegisterType<ICommandHandler<UserAccountCreateCommand>, UserAccountCreateCommandHandler>(new PerRequestLifetime())
-                .RegisterType<IValidator<UserAccountEditCommand>, UserAccountEditCommandHandler>(new PerRequestLifetime())
-                .RegisterType<IValidator<UserAccountCreateCommand>, UserAccountCreateCommandHandler>(new PerRequestLifetime())
+                .RegisterCommandHandler<UserAccountEditCommand, UserAccountEditCommandHandler>()
+                .RegisterCommandHandler<UserAccountCreateCommand, UserAccountCreateCommandHandler>()
 
                 .RegisterType<IUserRoleRepository, MemoryUserRoleRepository>(new SingletonLifetime())
                 .RegisterType<IActivator<UserRole>, MemoryUserRoleRepository>(new SingletonLifetime())
                 .RegisterType<IUserRoleQuery, MemoryUserRoleRepository>(new SingletonLifetime())
-                .RegisterType<ICommandHandler<UserRoleEditCommand>, EditUserRoleCommandHandler>(new PerRequestLifetime())
-                .RegisterType<IValidator<UserRoleEditCommand>, EditUserRoleCommandHandler>(new PerRequestLifetime());
+                .RegisterCommandHandler<UserRoleEditCommand, EditUserRoleCommandHandler>();
 
             registry.RegisterNamespace(new NamespaceDeclaration("ui", "Neptuo.TemplateEngine.Accounts.Web.Presenters, Neptuo.TemplateEngine.Accounts.Web"));
             registry.RegisterNamespace(new NamespaceDeclaration("data", "Neptuo.TemplateEngine.Accounts.Web.DataSources, Neptuo.TemplateEngine.Accounts.Web"));
