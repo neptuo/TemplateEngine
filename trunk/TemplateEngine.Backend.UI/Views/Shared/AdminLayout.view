@@ -17,8 +17,8 @@
     <script src="../../Design/Scripts/bootstrap.js"></script>
     <ui:Bundle Path="~/dynamic" />
     <script>
-      <!--JsRuntime.Start();
-      Neptuo.TemplateEngine.Web.InitScript.Init();-->
+      JsRuntime.Start();
+      Neptuo.TemplateEngine.Web.InitScript.Init();
     </script>
     <script src="/views.ashx"></script>
   
