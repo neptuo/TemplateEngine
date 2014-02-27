@@ -25,7 +25,7 @@ using System.Threading.Tasks;
 using System.Web;
 using CodeDomStructureGenerator = Neptuo.TemplateEngine.Web.Compilation.CodeGenerators.CodeDomStructureGenerator;
 
-namespace Neptuo.TemplateEngine.Backend
+namespace Neptuo.TemplateEngine.Backend.Bootstrap
 {
     public class ViewServiceBootstrapTask : IBootstrapTask
     {

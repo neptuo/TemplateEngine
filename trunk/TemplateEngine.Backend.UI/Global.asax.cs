@@ -9,6 +9,7 @@ using Neptuo.Lifetimes;
 using Neptuo.Lifetimes.Mapping;
 using Neptuo.TemplateEngine.Accounts.Bootstrap;
 using Neptuo.TemplateEngine.Accounts.Data.Entity;
+using Neptuo.TemplateEngine.Backend.Bootstrap;
 using Neptuo.TemplateEngine.Permissions;
 using Neptuo.TemplateEngine.Web;
 using Neptuo.TemplateEngine.Web.Controllers;
@@ -47,6 +48,7 @@ namespace Neptuo.TemplateEngine.Backend.UI
             bootstrapper.Register<BindingBootstrapTask>();
             bootstrapper.Register<JavascriptBootstrapTask>();
 
+            //TODO: Bootstrap as independent module
             bootstrapper.Register<AccountBootstrapTask>();
         }
 
@@ -58,6 +60,7 @@ namespace Neptuo.TemplateEngine.Backend.UI
                 .Map(typeof(PerRequestLifetime), new PerRequestLifetimeMapper())
                 .Map(typeof(PerSessionLifetime), new PerSessionLifetimeMapper());
 
+            //TODO: Temp...
             DataContext dataContext = new DataContext();
 
             dependencyContainer
@@ -67,12 +70,13 @@ namespace Neptuo.TemplateEngine.Backend.UI
                 .RegisterType<IEventDispatcher, EventDispatcher>(new SingletonLifetime())
                 .RegisterType<IParameterProvider, RequestParameterProvider>(new PerRequestLifetime())
                 .RegisterType<IUnitOfWorkFactory, DataContextUnitOfWorkFactory>(new PerRequestLifetime())
-                .RegisterType<IAccountDbContext, DataContext>(new PerRequestLifetime())
                 .RegisterType<ICommandDispatcher, DependencyCommandDispatcher>()
                 .RegisterType<IControllerRegistry>(new SingletonLifetime(new ControllerRegistryBase()))
-                .RegisterType<IPermissionProvider, OptimisticPermissionProvider>(new PerRequestLifetime())
-                .RegisterInstance<IDependencyProvider>(dependencyContainer)
-                .RegisterInstance<IDependencyContainer>(dependencyContainer);
+                .RegisterType<IPermissionProvider, OptimisticPermissionProvider>(new PerRequestLifetime());
+
+            //TODO: Move to accounts
+            dependencyContainer
+                .RegisterType<IAccountDbContext, DataContext>(new PerRequestLifetime());
 
             return dependencyContainer;
         }

@@ -74,6 +74,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Navigation\RedirectNavigateTo.cs" />
     <Compile Include="Navigation\RedirectNavigator.cs" />
+    <Compile Include="Web\TemplateHttpHandler.cs" />
+    <Compile Include="Web\TemplateHttpHandlerBase.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\TemplateEngine.Navigation\TemplateEngine.Navigation.csproj">
