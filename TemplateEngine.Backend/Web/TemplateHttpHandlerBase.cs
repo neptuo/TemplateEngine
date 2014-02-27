@@ -16,6 +16,9 @@ namespace Neptuo.TemplateEngine.Backend.Web
 {
     public abstract class TemplateHttpHandlerBase : IHttpHandler, IRequiresSessionState
     {
+        public const string EngineRequestType = "X-EngineRequestType";
+        public const string EngineRequestTypePartial = "Partial";
+
         public bool IsReusable
         {
             get { return false; }
@@ -23,13 +26,13 @@ namespace Neptuo.TemplateEngine.Backend.Web
 
         public void ProcessRequest(HttpContext context)
         {
-            IViewServiceContext viewServiceContext = GetViewServiceContext();
-            IDependencyContainer container = viewServiceContext.DependencyProvider.CreateChildContainer();
+            Guard.NotNull(context, "context");
 
-            if (!HandleUiEvents(context, container) && context.Request.Headers["X-EngineRequestType"] != "Partial")
+            IDependencyContainer container = GetDependencyContainer().CreateChildContainer();
+            if (!HandleUiEvents(context, container) && context.Request.Headers[EngineRequestType] != EngineRequestTypePartial)
             {
-                BaseGeneratedView view = (BaseGeneratedView)GetViewService().Process(GetTemplateUrl(), viewServiceContext);
-                ExtendedComponentManager componentManager = GetComponentManager(viewServiceContext, context);
+                BaseGeneratedView view = GetCurrentView();
+                ExtendedComponentManager componentManager = GetComponentManager(context);
 
                 container.RegisterInstance<IComponentManager>(componentManager);
                 container.RegisterInstance<IPartialUpdateWriter>(componentManager);
@@ -76,15 +79,13 @@ namespace Neptuo.TemplateEngine.Backend.Web
             return false;
         }
 
-        protected virtual ExtendedComponentManager GetComponentManager(IViewServiceContext viewServiceContext, HttpContext httpContext)
+        protected virtual ExtendedComponentManager GetComponentManager(HttpContext httpContext)
         {
             return new ExtendedComponentManager();
         }
 
-        protected abstract string GetTemplateUrl();
+        protected abstract BaseGeneratedView GetCurrentView();
 
-        protected abstract IViewService GetViewService();
-
-        protected abstract IViewServiceContext GetViewServiceContext();
+        protected abstract IDependencyContainer GetDependencyContainer();
     }
 }

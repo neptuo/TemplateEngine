@@ -18,29 +18,27 @@ namespace Neptuo.TemplateEngine.Backend.Web
 
         public TemplateHttpHandler(string templateUrl, IViewService viewService, IViewServiceContext viewServiceContext)
         {
+            Guard.NotNullOrEmpty(templateUrl, "templateUrl");
+            Guard.NotNull(viewService, "viewService");
+            Guard.NotNull(viewServiceContext, "viewServiceContext");
             TemplateUrl = templateUrl;
             ViewService = viewService;
             ViewServiceContext = viewServiceContext;
-        }
-
-        protected override string GetTemplateUrl()
-        {
-            return TemplateUrl;
-        }
-
-        protected override IViewService GetViewService()
-        {
-            return ViewService;
-        }
-
-        protected override IViewServiceContext GetViewServiceContext()
-        {
-            return ViewServiceContext;
         }
 
         //protected override IComponentManager GetComponentManager(IViewServiceContext viewServiceContext, HttpContext httpContext)
         //{
         //    return new RequestComponentManager(httpContext.Request.Form);
         //}
+
+        protected override BaseGeneratedView GetCurrentView()
+        {
+            return (BaseGeneratedView)ViewService.Process(TemplateUrl, ViewServiceContext);
+        }
+
+        protected override IDependencyContainer GetDependencyContainer()
+        {
+            return ViewServiceContext.DependencyProvider.CreateChildContainer();
+        }
     }
 }
