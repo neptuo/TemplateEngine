@@ -22,8 +22,9 @@ namespace Neptuo.TemplateEngine.Accounts.Web.Controllers
         protected IValidator<UserAccountCreateCommand> CreateValidator { get; private set; }
         protected IValidator<UserAccountEditCommand> EditValidator { get; private set; }
         protected MessageStorage MessageStorage { get; private set; }
+        protected UserAccountService AccountService { get; private set; }
 
-        public UserAccountController(IUnitOfWorkFactory unitOfWorkFactory, IUserAccountRepository userAccounts, ICommandDispatcher commandDispatcher, IValidator<UserAccountEditCommand> editValidator, IValidator<UserAccountCreateCommand> createValidator, MessageStorage messageStorage)
+        public UserAccountController(IUnitOfWorkFactory unitOfWorkFactory, IUserAccountRepository userAccounts, ICommandDispatcher commandDispatcher, IValidator<UserAccountEditCommand> editValidator, IValidator<UserAccountCreateCommand> createValidator, MessageStorage messageStorage, UserAccountService accountService)
         {
             UnitOfWorkFactory = unitOfWorkFactory;
             UserAccounts = userAccounts;
@@ -31,6 +32,7 @@ namespace Neptuo.TemplateEngine.Accounts.Web.Controllers
             EditValidator = editValidator;
             CreateValidator = createValidator;
             MessageStorage = messageStorage;
+            AccountService = accountService;
         }
 
         #region Delete
@@ -43,7 +45,8 @@ namespace Neptuo.TemplateEngine.Accounts.Web.Controllers
             {
                 using (IUnitOfWork transaction = UnitOfWorkFactory.Create())
                 {
-                    CommandDispatcher.Handle(new UserAccountDeleteCommand(model.UserKey));
+                    //CommandDispatcher.Handle(new UserAccountDeleteCommand(model.UserKey));
+                    AccountService.DeleteAccount(model.UserKey);
                     Context.Navigations.Add("Accounts.User.Deleted");
                     MessageStorage.Add(null, String.Empty, "User account deleted", MessageType.Info);
                     transaction.SaveChanges();
@@ -63,7 +66,7 @@ namespace Neptuo.TemplateEngine.Accounts.Web.Controllers
         [Action("Accounts/User/Create")]
         public void Create()
         {
-            UserAccountCreateCommand model = Context.ModelBinder.Bind<UserAccountCreateCommand>(new UserAccountCreateCommand());
+            UserAccountCreateCommand model = Context.ModelBinder.Bind<UserAccountCreateCommand>();
             IValidationResult validationResult = CreateValidator.Validate(model);
             if (!validationResult.IsValid)
             {
@@ -74,7 +77,8 @@ namespace Neptuo.TemplateEngine.Accounts.Web.Controllers
 
             using (IUnitOfWork transaction = UnitOfWorkFactory.Create())
             {
-                CommandDispatcher.Handle(model);
+                //CommandDispatcher.Handle(model);
+                AccountService.CreateAccount(model.Username, model.Password, model.IsEnabled);
                 transaction.SaveChanges();
 
                 MessageStorage.Add(null, String.Empty, "User account created.", MessageType.Info);

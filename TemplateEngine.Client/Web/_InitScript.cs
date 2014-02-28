@@ -127,6 +127,12 @@ namespace Neptuo.TemplateEngine.Web
         {
             string newUrl = link.attr("href");
             string toUpdate = link.data("toupdate").As<string>();
+            string title = link.html();
+            NavigateToUrl(newUrl, toUpdate, title);
+        }
+
+        private static void NavigateToUrl(string newUrl, string toUpdate, string title)
+        {
             string viewPath = MapView(newUrl);
 
             if (viewPath == null)
@@ -135,7 +141,7 @@ namespace Neptuo.TemplateEngine.Web
                 return;
             }
 
-            HtmlContext.history.pushState(viewPath, link.html(), newUrl);
+            HtmlContext.history.pushState(viewPath, title, newUrl);
 
             IDependencyContainer container = dependencyContainer.CreateChildContainer();
 
@@ -202,7 +208,10 @@ namespace Neptuo.TemplateEngine.Web
 
         private static void OnFormSubmitSuccess(object response, JsString status, jqXHR sender)
         {
-            HtmlContext.alert(status);
+            if (response != null && response.As<JsObject>()["Navigation"] != null)
+                NavigateToUrl(response.As<JsObject>()["Navigation"].As<string>(), "Body", "Form submitted");
+            else
+                HtmlContext.alert(status);
         }
 
         private static void OnButtonClick(Event e)

@@ -15,7 +15,30 @@
 
     <script src="../../Design/Scripts/jquery-1.9.1.js"></script>
     <script src="../../Design/Scripts/bootstrap.js"></script>
-    <ui:Bundle Path="~/dynamic" />
+    <!--<ui:Bundle Path="~/dynamic" />-->
+    <script src="../../Design/Scripts/Generated/Neptuo.System.Client.js"></script>
+
+    <script src="../../Design/Scripts/Generated/Neptuo.js"></script>
+    <script src="../../Design/Scripts/Generated/Neptuo.ObjectBuilder.js"></script>
+    <script src="../../Design/Scripts/Generated/Neptuo.Bootstrap.js"></script>
+
+    <script src="../../Design/Scripts/Generated/Neptuo.PresentationModels.js"></script>
+    <script src="../../Design/Scripts/Generated/Neptuo.PresentationModels.BindingConverters.js"></script>
+    <script src="../../Design/Scripts/Generated/Neptuo.PresentationModels.TypeModels.DataAnnotations.js"></script>
+    <script src="../../Design/Scripts/Generated/Neptuo.PresentationModels.TypeModels.js"></script>
+    <script src="../../Design/Scripts/Generated/Neptuo.PresentationModels.Validation.js"></script>
+
+    <script src="../../Design/Scripts/Generated/Neptuo.Templates.Components.js"></script>
+
+    <script src="../../Design/Scripts/Generated/TemplateEngine/Neptuo.TemplateEngine.js"></script>
+    <script src="../../Design/Scripts/Generated/TemplateEngine/Neptuo.TemplateEngine.Navigation.js"></script>
+    <script src="../../Design/Scripts/Generated/TemplateEngine/Neptuo.TemplateEngine.Permissions.js"></script>
+    <script src="../../Design/Scripts/Generated/TemplateEngine/Neptuo.TemplateEngine.Shared.js"></script>
+    <script src="../../Design/Scripts/Generated/TemplateEngine/Neptuo.TemplateEngine.Client.js"></script>
+
+    <script src="../../Design/Scripts/Generated/TemplateEngine/Accounts/Neptuo.TemplateEngine.Accounts.Shared.js"></script>
+    <script src="../../Design/Scripts/Generated/TemplateEngine/Accounts/Neptuo.TemplateEngine.Accounts.Client.js"></script>
+  
     <script>
       JsRuntime.Start();
       Neptuo.TemplateEngine.Web.InitScript.Init();

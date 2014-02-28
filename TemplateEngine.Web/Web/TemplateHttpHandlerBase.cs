@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web;
+using System.Web.Script.Serialization;
 using System.Web.SessionState;
 
 namespace Neptuo.TemplateEngine.Backend.Web
@@ -24,33 +25,56 @@ namespace Neptuo.TemplateEngine.Backend.Web
             get { return false; }
         }
 
-        public void ProcessRequest(HttpContext context)
+        public void ProcessRequest(HttpContext httpContext)
         {
-            Guard.NotNull(context, "context");
+            Guard.NotNull(httpContext, "context");
 
-            IDependencyContainer container = GetDependencyContainer().CreateChildContainer();
-            if (!HandleUiEvents(context, container) && context.Request.Headers[EngineRequestType] != EngineRequestTypePartial)
+            IDependencyContainer dependencyContainer = GetDependencyContainer().CreateChildContainer();
+            NavigationCollection navigations = dependencyContainer.Resolve<NavigationCollection>();
+            GlobalNavigationCollection globalNavigations = dependencyContainer.Resolve<GlobalNavigationCollection>();
+            HandleUiEvents(httpContext, dependencyContainer, navigations);
+
+            if (httpContext.Request.Headers[EngineRequestType] == EngineRequestTypePartial)
             {
-                BaseGeneratedView view = GetCurrentView();
-                ExtendedComponentManager componentManager = GetComponentManager(context);
+                // Partial ajax request - serialize messages and navigations
+                MessageStorage messageStorage = dependencyContainer.Resolve<MessageStorage>();
+                
+                string redirectUrl = null;
+                FormUri to;
+                if (globalNavigations.TryGetValue(navigations.FirstOrDefault(), out to))
+                    redirectUrl = to.Url();
 
-                container.RegisterInstance<IComponentManager>(componentManager);
-                container.RegisterInstance<IPartialUpdateWriter>(componentManager);
+                JavaScriptSerializer javaScriptSerializer = new JavaScriptSerializer();
+                string response = javaScriptSerializer.Serialize(new PartialResponse(messageStorage, redirectUrl));
+                httpContext.Response.ContentType = "application/json";
+                httpContext.Response.Write(response);
+            }
+            else
+            {
+                // Standart request - process redirects and eventually rerender current view
+                INavigator navigator = dependencyContainer.Resolve<INavigator>();
+                if (!ProcessNavigationRules(navigations, globalNavigations, navigator))
+                {
+                    BaseGeneratedView view = GetCurrentView(httpContext);
+                    ExtendedComponentManager componentManager = GetComponentManager(httpContext);
 
-                view.Setup(new BaseViewPage(componentManager), componentManager, container);
-                view.CreateControls();
-                view.Init();
-                view.Render(new ExtendedHtmlTextWriter(context.Response.Output));
-                view.Dispose();
+                    dependencyContainer.RegisterInstance<IComponentManager>(componentManager);
+                    dependencyContainer.RegisterInstance<IPartialUpdateWriter>(componentManager);
+
+                    view.Setup(new BaseViewPage(componentManager), componentManager, dependencyContainer);
+                    view.CreateControls();
+                    view.Init();
+                    view.Render(new ExtendedHtmlTextWriter(httpContext.Response.Output));
+                    view.Dispose();
+                }
             }
         }
 
-        protected virtual bool HandleUiEvents(HttpContext httpContext, IDependencyContainer dependencyContainer)
+        protected virtual void HandleUiEvents(HttpContext httpContext, IDependencyContainer dependencyContainer, NavigationCollection navigations)
         {
             IControllerRegistry registry = dependencyContainer.Resolve<IControllerRegistry>();
             IModelBinder modelBinder = dependencyContainer.Resolve<IModelBinder>();
             ViewDataCollection viewData = new ViewDataCollection();
-            NavigationCollection navigations = dependencyContainer.Resolve<NavigationCollection>();
 
             foreach (string key in httpContext.Request.Form.AllKeys)
             {
@@ -59,10 +83,6 @@ namespace Neptuo.TemplateEngine.Backend.Web
                     handler.Execute(new ControllerContext(key, viewData, modelBinder, navigations));
             }
 
-            GlobalNavigationCollection globalNavigations = dependencyContainer.Resolve<GlobalNavigationCollection>();
-            INavigator navigator = dependencyContainer.Resolve<INavigator>();
-
-            return ProcessNavigationRules(navigations, globalNavigations, navigator);
         }
 
         protected virtual bool ProcessNavigationRules(NavigationCollection navigations, GlobalNavigationCollection globalNavigations, INavigator navigator)
@@ -84,8 +104,21 @@ namespace Neptuo.TemplateEngine.Backend.Web
             return new ExtendedComponentManager();
         }
 
-        protected abstract BaseGeneratedView GetCurrentView();
+        protected abstract BaseGeneratedView GetCurrentView(HttpContext context);
 
         protected abstract IDependencyContainer GetDependencyContainer();
+
+
+        public class PartialResponse
+        {
+            public MessageStorage Messages { get; set; }
+            public string Navigation { get; set; }
+
+            public PartialResponse(MessageStorage messages, string navigation)
+            {
+                Messages = messages;
+                Navigation = navigation;
+            }
+        }
     }
 }

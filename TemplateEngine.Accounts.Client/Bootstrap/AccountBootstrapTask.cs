@@ -37,8 +37,8 @@ namespace Neptuo.TemplateEngine.Accounts.Bootstrap
             dependencyContainer
                 .RegisterInstance(new UserRepository());
 
-            controllerRegistry
-                .Add("Accounts/User/Create", new DependencyControllerFactory(dependencyContainer, typeof(UserAccountController)));
+            //controllerRegistry
+            //    .Add("Accounts/User/Create", new DependencyControllerFactory(dependencyContainer, typeof(UserAccountController)));
                 //.Add(dependencyContainer, typeof(UserAccountController));
 
             RegisterForms(formRegistry);
