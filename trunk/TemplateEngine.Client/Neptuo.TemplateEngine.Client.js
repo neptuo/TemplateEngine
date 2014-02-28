@@ -813,13 +813,18 @@ var Neptuo$TemplateEngine$Web$InitScript =
         {
             var newUrl = link.attr("href");
             var toUpdate = link.data("toupdate");
+            var title = link.html();
+            Neptuo.TemplateEngine.Web.InitScript.NavigateToUrl(newUrl, toUpdate, title);
+        },
+        NavigateToUrl: function (newUrl, toUpdate, title)
+        {
             var viewPath = Neptuo.TemplateEngine.Web.InitScript.MapView(newUrl);
             if (viewPath == null)
             {
                 alert("No view for: " + newUrl);
                 return;
             }
-            history.pushState(viewPath, link.html(), newUrl);
+            history.pushState(viewPath, title, newUrl);
             var container = Neptuo.TemplateEngine.Web.InitScript.dependencyContainer.CreateChildContainer();
             var partialsToUpdate = new System.Collections.Generic.List$1.ctor(System.String.ctor);
             if (!System.String.IsNullOrEmpty(toUpdate))
@@ -865,7 +870,10 @@ var Neptuo$TemplateEngine$Web$InitScript =
         },
         OnFormSubmitSuccess: function (response, status, sender)
         {
-            alert(status);
+            if (response != null && response["Navigation"] != null)
+                Neptuo.TemplateEngine.Web.InitScript.NavigateToUrl(response["Navigation"], "Body", "Form submitted");
+            else
+                alert(status);
         },
         OnButtonClick: function (e)
         {

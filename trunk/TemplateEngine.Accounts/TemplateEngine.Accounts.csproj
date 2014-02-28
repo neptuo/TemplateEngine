@@ -64,6 +64,7 @@
     <Compile Include="Queries\IUserRoleQuery.cs" />
     <Compile Include="Queries\IUserAccountQuery.cs" />
     <Compile Include="UserAccount.cs" />
+    <Compile Include="UserAccountService.cs" />
     <Compile Include="UserRole.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -31,7 +31,7 @@ namespace Neptuo.TemplateEngine.Backend.Web
         //    return new RequestComponentManager(httpContext.Request.Form);
         //}
 
-        protected override BaseGeneratedView GetCurrentView()
+        protected override BaseGeneratedView GetCurrentView(HttpContext context)
         {
             return (BaseGeneratedView)ViewService.Process(TemplateUrl, ViewServiceContext);
         }

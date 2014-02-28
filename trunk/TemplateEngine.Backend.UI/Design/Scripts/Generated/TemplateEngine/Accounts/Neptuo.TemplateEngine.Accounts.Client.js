@@ -42,7 +42,6 @@ var Neptuo$TemplateEngine$Accounts$Bootstrap$AccountBootstrapTask =
         Initialize: function ()
         {
             Neptuo.DependencyContainerExtensions.RegisterInstance$1(Neptuo.TemplateEngine.Accounts.Data.UserRepository.ctor, this.dependencyContainer, new Neptuo.TemplateEngine.Accounts.Data.UserRepository.ctor());
-            this.controllerRegistry.Add("Accounts/User/Create", new Neptuo.TemplateEngine.Web.Controllers.DependencyControllerFactory.ctor(this.dependencyContainer, Typeof(Neptuo.TemplateEngine.Accounts.Web.Controllers.UserAccountController.ctor)));
             this.RegisterForms(this.formRegistry);
             this.RegisterGlobalNavigations(this.globalNavigations);
         }
