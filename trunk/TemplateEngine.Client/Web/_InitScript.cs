@@ -76,6 +76,9 @@ namespace Neptuo.TemplateEngine.Web
             dependencyContainer = CreateDependencyContainer();
             viewActivator = dependencyContainer.Resolve<IViewActivator>();
 
+            Converts.Repository
+                .Add(typeof(JsObject), typeof(PartialResponse), new PartialResponseConverter());
+
             RunBootstrapTasks(dependencyContainer);
 
             new jQuery(() => {
@@ -208,10 +211,20 @@ namespace Neptuo.TemplateEngine.Web
 
         private static void OnFormSubmitSuccess(object response, JsString status, jqXHR sender)
         {
-            if (response != null && response.As<JsObject>()["Navigation"] != null)
-                NavigateToUrl(response.As<JsObject>()["Navigation"].As<string>(), "Body", "Form submitted");
+            //if (response != null && response.As<JsObject>()["Navigation"] != null)
+            //    NavigateToUrl(response.As<JsObject>()["Navigation"].As<string>(), "Body", "Form submitted");
+            //else
+            //    HtmlContext.alert(status);
+
+            PartialResponse partialResponse;
+            if (Converts.Try<JsObject, PartialResponse>(response.As<JsObject>(), out partialResponse))
+            {
+                NavigateToUrl(partialResponse.Navigation, "Body", "Form submitted");
+            }
             else
+            {
                 HtmlContext.alert(status);
+            }
         }
 
         private static void OnButtonClick(Event e)

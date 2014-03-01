@@ -578,6 +578,68 @@ var Neptuo$TemplateEngine$Web$DataSources$ListResult =
     IsAbstract: false
 };
 JsTypes.push(Neptuo$TemplateEngine$Web$DataSources$ListResult);
+var Neptuo$TemplateEngine$Web$PartialResponseConverter =
+{
+    fullname: "Neptuo.TemplateEngine.Web.PartialResponseConverter",
+    baseTypeName: "System.Object",
+    assemblyName: "Neptuo.TemplateEngine.Client",
+    interfaceNames: ["Neptuo.ComponentModel.Converters.IConverter$2"],
+    Kind: "Class",
+    definition:
+    {
+        ctor: function ()
+        {
+            System.Object.ctor.call(this);
+        },
+        TryConvert: function (sourceValue, targetValue)
+        {
+            if (sourceValue == null)
+            {
+                targetValue.Value = null;
+                return false;
+            }
+            var messageStorage = new Neptuo.TemplateEngine.Web.MessageStorage.ctor();
+            if (sourceValue["Messages"] != null)
+            {
+                var messages = sourceValue["Messages"];
+                for (var key in messages)
+                {
+                    var messageList = messages[key];
+                    for (var i = 0; i < messageList.length; i++)
+                    {
+                        var message = messageList[i];
+                        messageStorage.Add(key, message["Key"], message["Text"], message["Type"]);
+                    }
+                }
+            }
+            targetValue.Value = new Neptuo.TemplateEngine.Web.PartialResponse.ctor(messageStorage, sourceValue["Navigation"]);
+            return true;
+        },
+        TryConvertGeneral: function (sourceType, targetType, sourceValue, targetValue)
+        {
+            var target;
+            if ((function ()
+            {
+                var $1 = {Value: target};
+                var $res = this.TryConvert(sourceValue instanceof Object || sourceValue == null ? sourceValue : (function ()
+                {
+                    throw new Error("InvalidCastException");
+                }()), $1);
+                target = $1.Value;
+                return $res;
+            }).call(this))
+            {
+                targetValue.Value = target;
+                return true;
+            }
+            targetValue.Value = null;
+            return false;
+        }
+    },
+    ctors: [ {name: "ctor", parameters: []}],
+    IsAbstract: false
+};
+JsTypes.push(Neptuo$TemplateEngine$Web$PartialResponseConverter);
 var Neptuo$TemplateEngine$Web$PartialUpdateHelper =
 {
     fullname: "Neptuo.TemplateEngine.Web.PartialUpdateHelper",
@@ -774,6 +836,7 @@ var Neptuo$TemplateEngine$Web$InitScript =
         {
             Neptuo.TemplateEngine.Web.InitScript.dependencyContainer = Neptuo.TemplateEngine.Web.InitScript.CreateDependencyContainer();
             Neptuo.TemplateEngine.Web.InitScript.viewActivator = Neptuo.DependencyProviderExtensions.Resolve$1$$IDependencyProvider(Neptuo.TemplateEngine.Web.IViewActivator.ctor, Neptuo.TemplateEngine.Web.InitScript.dependencyContainer);
+            Neptuo.Converts.get_Repository().Add(Typeof(Object), Typeof(Neptuo.TemplateEngine.Web.PartialResponse.ctor), new Neptuo.TemplateEngine.Web.PartialResponseConverter.ctor());
             Neptuo.TemplateEngine.Web.InitScript.RunBootstrapTasks(Neptuo.TemplateEngine.Web.InitScript.dependencyContainer);
             $(function ()
             {
@@ -870,10 +933,21 @@ var Neptuo$TemplateEngine$Web$InitScript =
         },
         OnFormSubmitSuccess: function (response, status, sender)
         {
-            if (response != null && response["Navigation"] != null)
-                Neptuo.TemplateEngine.Web.InitScript.NavigateToUrl(response["Navigation"], "Body", "Form submitted");
+            var partialResponse;
+            if ((function ()
+            {
+                var $1 = {Value: partialResponse};
+                var $res = Neptuo.Converts.Try$2$$TSource$$TTarget(Object, Neptuo.TemplateEngine.Web.PartialResponse.ctor, response, $1);
+                partialResponse = $1.Value;
+                return $res;
+            })())
+            {
+                Neptuo.TemplateEngine.Web.InitScript.NavigateToUrl(partialResponse.get_Navigation(), "Body", "Form submitted");
+            }
             else
+            {
                 alert(status);
+            }
         },
         OnButtonClick: function (e)
         {

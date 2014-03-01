@@ -26,7 +26,10 @@ namespace Neptuo.TemplateEngine.Web
         public bool TryGetValue(string name, out FormUri to)
         {
             if (name == null)
-                throw new ArgumentNullException("name");
+            {
+                to = null;
+                return false;
+            }
 
             return storage.TryGetValue(name, out to);
         }

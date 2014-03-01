@@ -30,6 +30,45 @@ if (typeof(JsTypes) == "undefined")
     var JsTypes = [];
 var Neptuo$TemplateEngine$IStackStorage$1 = {fullname: "Neptuo.TemplateEngine.IStackStorage$1", baseTypeName: "System.Object", assemblyName: "Neptuo.TemplateEngine.Shared", Kind: "Interface", ctors: [], IsAbstract: true};
 JsTypes.push(Neptuo$TemplateEngine$IStackStorage$1);
+var Neptuo$TemplateEngine$Web$PartialResponse =
+{
+    fullname: "Neptuo.TemplateEngine.Web.PartialResponse",
+    baseTypeName: "System.Object",
+    assemblyName: "Neptuo.TemplateEngine.Shared",
+    Kind: "Class",
+    definition:
+    {
+        ctor: function (messages, navigation)
+        {
+            this._Messages = null;
+            this._Navigation = null;
+            System.Object.ctor.call(this);
+            this.set_Messages(messages);
+            this.set_Navigation(navigation);
+        },
+        Messages$$: "Neptuo.TemplateEngine.Web.MessageStorage",
+        get_Messages: function ()
+        {
+            return this._Messages;
+        },
+        set_Messages: function (value)
+        {
+            this._Messages = value;
+        },
+        Navigation$$: "System.String",
+        get_Navigation: function ()
+        {
+            return this._Navigation;
+        },
+        set_Navigation: function (value)
+        {
+            this._Navigation = value;
+        }
+    },
+    ctors: [ {name: "ctor", parameters: ["Neptuo.TemplateEngine.Web.MessageStorage", "System.String"]}],
+    IsAbstract: false
+};
+JsTypes.push(Neptuo$TemplateEngine$Web$PartialResponse);
 var Neptuo$TemplateEngine$StackStorage$1 =
 {
     fullname: "Neptuo.TemplateEngine.StackStorage$1",

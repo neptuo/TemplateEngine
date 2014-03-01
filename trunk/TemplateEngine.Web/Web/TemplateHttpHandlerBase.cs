@@ -4,6 +4,7 @@ using Neptuo.TemplateEngine.Web.Controllers;
 using Neptuo.TemplateEngine.Web.Controllers.Binders;
 using Neptuo.Templates;
 using Neptuo.Templates.Compilation;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -44,8 +45,10 @@ namespace Neptuo.TemplateEngine.Backend.Web
                 if (globalNavigations.TryGetValue(navigations.FirstOrDefault(), out to))
                     redirectUrl = to.Url();
 
-                JavaScriptSerializer javaScriptSerializer = new JavaScriptSerializer();
-                string response = javaScriptSerializer.Serialize(new PartialResponse(messageStorage, redirectUrl));
+                //JavaScriptSerializer javaScriptSerializer = new JavaScriptSerializer();
+                //string response = javaScriptSerializer.Serialize(new PartialResponse(messageStorage, redirectUrl));
+
+                string response = JsonConvert.SerializeObject(new PartialResponse(messageStorage, redirectUrl));
                 httpContext.Response.ContentType = "application/json";
                 httpContext.Response.Write(response);
             }
@@ -107,18 +110,5 @@ namespace Neptuo.TemplateEngine.Backend.Web
         protected abstract BaseGeneratedView GetCurrentView(HttpContext context);
 
         protected abstract IDependencyContainer GetDependencyContainer();
-
-
-        public class PartialResponse
-        {
-            public MessageStorage Messages { get; set; }
-            public string Navigation { get; set; }
-
-            public PartialResponse(MessageStorage messages, string navigation)
-            {
-                Messages = messages;
-                Navigation = navigation;
-            }
-        }
     }
 }
