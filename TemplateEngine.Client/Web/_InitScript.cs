@@ -89,6 +89,15 @@ namespace Neptuo.TemplateEngine.Web
                 body.@delegate("button", "click", OnButtonClick);
                 body.@delegate("form", "submit", OnFormSubmit);
             });
+
+            HtmlContext.window.addEventListener("popstate", OnPopState);
+        }
+
+        private static void OnPopState(DOMEvent e)
+        {
+            PopStateEvent state = e.As<PopStateEvent>();
+            RenderUrl(HtmlContext.location.href, "Body");
+            //NavigateToUrl(HtmlContext.location.href, "Body", "Go back");
         }
 
         public static void UpdateContent(string partialGuid, TextWriter content)
@@ -138,14 +147,18 @@ namespace Neptuo.TemplateEngine.Web
         private static void NavigateToUrl(string newUrl, string toUpdate, string title, Action<IDependencyContainer> initContainer = null)
         {
             string viewPath = MapView(newUrl);
+            HtmlContext.history.pushState(viewPath, title, newUrl);
+            RenderUrl(newUrl, toUpdate, initContainer);
+        }
 
+        private static void RenderUrl(string newUrl, string toUpdate, Action<IDependencyContainer> initContainer = null)
+        {
+            string viewPath = MapView(newUrl);
             if (viewPath == null)
             {
                 HtmlContext.alert("No view for: " + newUrl);
                 return;
             }
-
-            HtmlContext.history.pushState(viewPath, title, newUrl);
 
             IDependencyContainer container = dependencyContainer.CreateChildContainer();
 
