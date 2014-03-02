@@ -4148,3 +4148,31 @@ var Neptuo$TemplateEngine$Web$ValueConverterService =
     IsAbstract: false
 };
 JsTypes.push(Neptuo$TemplateEngine$Web$ValueConverterService);
+var Neptuo$TemplateEngine$Web$ViewAttribute =
+{
+    fullname: "Neptuo.TemplateEngine.Web.ViewAttribute",
+    baseTypeName: "System.Attribute",
+    assemblyName: "Neptuo.TemplateEngine.Shared",
+    Kind: "Class",
+    definition:
+    {
+        ctor: function (viewPath)
+        {
+            this._ViewPath = null;
+            System.Attribute.ctor.call(this);
+            this.set_ViewPath(viewPath);
+        },
+        ViewPath$$: "System.String",
+        get_ViewPath: function ()
+        {
+            return this._ViewPath;
+        },
+        set_ViewPath: function (value)
+        {
+            this._ViewPath = value;
+        }
+    },
+    ctors: [ {name: "ctor", parameters: ["System.String"]}],
+    IsAbstract: false
+};
+JsTypes.push(Neptuo$TemplateEngine$Web$ViewAttribute);

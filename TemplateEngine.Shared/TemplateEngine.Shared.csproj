@@ -155,6 +155,7 @@
     <Compile Include="Web\TemplateContentStorage.cs" />
     <Compile Include="Web\TemplateContentStorageStack.cs" />
     <Compile Include="Web\ValueConverterService.cs" />
+    <Compile Include="Web\ViewAttribute.cs" />
   </ItemGroup>
   <ItemGroup>
     <SkcPlugin Include="Neptuo.SharpKit.Exugin.ExuginPlugin, Neptuo.SharpKit.Exugin">

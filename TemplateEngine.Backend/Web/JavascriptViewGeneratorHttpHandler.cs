@@ -40,11 +40,12 @@ namespace Neptuo.TemplateEngine.Backend.Web
                 DateTime viewLastModified = File.GetLastWriteTime(viewPath);
                 string tempViewPath = GetTempJavascriptFilePath(configuration, viewPath);
                 string viewContent = File.ReadAllText(viewPath);
+                string virtualViewPath = RelativePath(context.Server, viewPath, context.Request);
 
                 INaming classNaming = viewService.NamingService.FromContent(viewContent);
                 appendBuilder.AppendFormat(
                     "Neptuo.TemplateEngine.Web.StaticViewActivator.Add('{0}', Typeof(Neptuo.Templates.{1}.ctor));",
-                    RelativePath(context.Server, viewPath, context.Request), //.Replace("~/Views/", "~/")
+                    virtualViewPath, //.Replace("~/Views/", "~/")
                     classNaming.ClassName
                 );
                 appendBuilder.AppendLine();
@@ -60,8 +61,7 @@ namespace Neptuo.TemplateEngine.Backend.Web
                     }
                 }
 
-
-                string javascriptContent = viewService.GenerateJavascript(viewContent, new ViewServiceContext(dependencyProvider), classNaming);
+                string javascriptContent = viewService.GenerateJavascript(viewContent, new ViewServiceContext(dependencyProvider), classNaming, virtualViewPath);
                 javascriptContent = RewriteJavascriptContent(javascriptContent);
                 File.WriteAllText(tempViewPath, javascriptContent);
                 contentBuilder.AppendLine(javascriptContent);

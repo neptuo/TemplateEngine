@@ -22,10 +22,15 @@ namespace Neptuo.TemplateEngine.Web.Compilation
             base.CompileView(viewContent, context, naming);
         }
 
-        public string GenerateJavascript(string viewContent, IViewServiceContext context, INaming naming)
+        public string GenerateJavascript(string viewContent, IViewServiceContext context, INaming naming, string optionalViewPath)
         {
             string sourceCode = GenerateSourceCode(viewContent, context, naming);
-            sourceCode = sourceCode.Replace("public sealed class ", "[SharpKit.JavaScript.JsType(SharpKit.JavaScript.JsMode.Clr)] public sealed class ");
+            string replaceClassDefinition = String.Format(
+                "[SharpKit.JavaScript.JsType(SharpKit.JavaScript.JsMode.Clr)] {0} public sealed class ", 
+                GetViewAttributeSourceCode(optionalViewPath)
+            );
+
+            sourceCode = sourceCode.Replace("public sealed class ", replaceClassDefinition);
 
             StringWriter output = new StringWriter();
             StringReader input = new StringReader(sourceCode);
@@ -43,6 +48,14 @@ namespace Neptuo.TemplateEngine.Web.Compilation
             sharpKitGenerator.TempDirectory = TempDirectory;
             sharpKitGenerator.Generate(new SharpKitCompilerContext(input, output));
             return output.ToString();
+        }
+
+        private string GetViewAttributeSourceCode(string optionalViewPath)
+        {
+            if (String.IsNullOrEmpty(optionalViewPath))
+                return String.Empty;
+
+            return String.Format("[Neptuo.TemplateEngine.Web.View(\"{0}\")]", optionalViewPath);
         }
     }
 }
