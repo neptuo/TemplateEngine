@@ -848,6 +848,34 @@ var Neptuo$TemplateEngine$Web$GeneratedViewBase =
     IsAbstract: true
 };
 JsTypes.push(Neptuo$TemplateEngine$Web$GeneratedViewBase);
+var Neptuo$TemplateEngine$Web$ViewAttribute =
+{
+    fullname: "Neptuo.TemplateEngine.Web.ViewAttribute",
+    baseTypeName: "System.Attribute",
+    assemblyName: "Neptuo.TemplateEngine.Client",
+    Kind: "Class",
+    definition:
+    {
+        ctor: function (viewPath)
+        {
+            this._ViewPath = null;
+            System.Attribute.ctor.call(this);
+            this.set_ViewPath(viewPath);
+        },
+        ViewPath$$: "System.String",
+        get_ViewPath: function ()
+        {
+            return this._ViewPath;
+        },
+        set_ViewPath: function (value)
+        {
+            this._ViewPath = value;
+        }
+    },
+    ctors: [ {name: "ctor", parameters: ["System.String"]}],
+    IsAbstract: false
+};
+JsTypes.push(Neptuo$TemplateEngine$Web$ViewAttribute);
 var Neptuo$TemplateEngine$Web$InitScript =
 {
     fullname: "Neptuo.TemplateEngine.Web.InitScript",
