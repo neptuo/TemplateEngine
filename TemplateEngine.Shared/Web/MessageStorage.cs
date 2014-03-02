@@ -10,16 +10,6 @@ namespace Neptuo.TemplateEngine.Web
     {
         private Dictionary<string, List<Message>> storage = new Dictionary<string, List<Message>>();
 
-        //public MessageStorage()
-        //    : this(new Dictionary<string, List<Message>>())
-        //{ }
-
-        //public MessageStorage(Dictionary<string, List<Message>> storage)
-        //{
-        //    Guard.NotNull(storage, "storage");
-        //    this.storage = storage;
-        //}
-
         public void Add(string group, string key, string text, MessageType type = MessageType.Error)
         {
             if(group == null)
@@ -45,6 +35,11 @@ namespace Neptuo.TemplateEngine.Web
                 return new List<Message>();
 
             return list;
+        }
+
+        public Dictionary<string, List<Message>> GetStorage()
+        {
+            return storage;
         }
     }
 }

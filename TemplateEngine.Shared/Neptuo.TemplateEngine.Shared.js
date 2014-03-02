@@ -3506,6 +3506,10 @@ var Neptuo$TemplateEngine$Web$MessageStorage =
             }).call(this))
                 return new System.Collections.Generic.List$1.ctor(Neptuo.TemplateEngine.Web.Message.ctor);
             return list;
+        },
+        GetStorage: function ()
+        {
+            return this.storage;
         }
     },
     ctors: [ {name: "ctor", parameters: []}],

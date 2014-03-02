@@ -807,6 +807,7 @@ var Neptuo$TemplateEngine$Web$InitScript =
     {
         cctor: function ()
         {
+            Neptuo.TemplateEngine.Web.InitScript.FormRequestContext = null;
             Neptuo.TemplateEngine.Web.InitScript.dependencyContainer = null;
             Neptuo.TemplateEngine.Web.InitScript.viewActivator = null;
         },
@@ -877,9 +878,9 @@ var Neptuo$TemplateEngine$Web$InitScript =
             var newUrl = link.attr("href");
             var toUpdate = link.data("toupdate");
             var title = link.html();
-            Neptuo.TemplateEngine.Web.InitScript.NavigateToUrl(newUrl, toUpdate, title);
+            Neptuo.TemplateEngine.Web.InitScript.NavigateToUrl(newUrl, toUpdate, title, null);
         },
-        NavigateToUrl: function (newUrl, toUpdate, title)
+        NavigateToUrl: function (newUrl, toUpdate, title, initContainer)
         {
             var viewPath = Neptuo.TemplateEngine.Web.InitScript.MapView(newUrl);
             if (viewPath == null)
@@ -901,6 +902,8 @@ var Neptuo$TemplateEngine$Web$InitScript =
             }
             var componentManager = new Neptuo.TemplateEngine.Web.ClientExtendedComponentManager.ctor(partialsToUpdate);
             Neptuo.DependencyContainerExtensions.RegisterInstance$1(Neptuo.TemplateEngine.Web.NavigationCollection.ctor, Neptuo.DependencyContainerExtensions.RegisterInstance$1(Neptuo.TemplateEngine.Web.IPartialUpdateWriter.ctor, Neptuo.DependencyContainerExtensions.RegisterInstance$1(Neptuo.Templates.IComponentManager.ctor, container, componentManager), componentManager), new Neptuo.TemplateEngine.Web.NavigationCollection.ctor());
+            if (initContainer != null)
+                initContainer(container);
             var writer = new System.IO.StringWriter.ctor();
             var view = Neptuo.TemplateEngine.Web.InitScript.viewActivator.CreateView(viewPath);
             view.Setup(new Neptuo.Templates.BaseViewPage.ctor(componentManager), componentManager, container);
@@ -921,6 +924,7 @@ var Neptuo$TemplateEngine$Web$InitScript =
             submitButton["value"] = null;
             data.push(submitButton);
             var context = new Neptuo.TemplateEngine.Web.FormRequestContext.ctor(data, buttonName, (form.attr("action") != null ? form.attr("action") : location.href));
+            Neptuo.TemplateEngine.Web.InitScript.FormRequestContext = context;
             if (!Neptuo.TemplateEngine.Web.InitScript.InvokeControllers(data))
             {
                 alert("Event: " + buttonName);
@@ -942,7 +946,16 @@ var Neptuo$TemplateEngine$Web$InitScript =
                 return $res;
             })())
             {
-                Neptuo.TemplateEngine.Web.InitScript.NavigateToUrl(partialResponse.get_Navigation(), "Body", "Form submitted");
+                var navigationUrl = null;
+                if (partialResponse.get_Navigation() != null)
+                    navigationUrl = Neptuo.DependencyProviderExtensions.Resolve$1$$IDependencyProvider(Neptuo.Templates.IVirtualUrlProvider.ctor, Neptuo.TemplateEngine.Web.InitScript.dependencyContainer).ResolveUrl(partialResponse.get_Navigation());
+                else
+                    navigationUrl = location.pathname;
+                Neptuo.TemplateEngine.Web.InitScript.NavigateToUrl(navigationUrl, "Body", "Form submitted", function (container)
+                {
+                    Neptuo.DependencyContainerExtensions.RegisterInstance$1(Neptuo.TemplateEngine.Web.MessageStorage.ctor, container, partialResponse.get_Messages());
+                });
+                Neptuo.TemplateEngine.Web.InitScript.FormRequestContext = null;
             }
             else
             {
@@ -1051,6 +1064,18 @@ var Neptuo$TemplateEngine$Web$ParameterProviderFactory =
                 else
                     parameters.set_Item$$TKey(param[0], null);
             }
+        },
+        ParseFormRequest: function (parameters)
+        {
+            if (Neptuo.TemplateEngine.Web.InitScript.FormRequestContext != null)
+            {
+                var source = Neptuo.TemplateEngine.Web.InitScript.FormRequestContext.get_Parameters();
+                for (var i = 0; i < source.length; i++)
+                {
+                    var parameter = source[i];
+                    parameters.set_Item$$TKey(parameter["name"], parameter["value"]);
+                }
+            }
         }
     },
     assemblyName: "Neptuo.TemplateEngine.Client",
@@ -1069,11 +1094,13 @@ var Neptuo$TemplateEngine$Web$ParameterProviderFactory =
             {
                 case 0:
                     Neptuo.TemplateEngine.Web.ParameterProviderFactory.ParseQueryString(parameters);
+                    Neptuo.TemplateEngine.Web.ParameterProviderFactory.ParseFormRequest(parameters);
                     break;
                 case 1:
                     Neptuo.TemplateEngine.Web.ParameterProviderFactory.ParseQueryString(parameters);
                     break;
                 case 2:
+                    Neptuo.TemplateEngine.Web.ParameterProviderFactory.ParseFormRequest(parameters);
                     break;
                 default :
                     break;
@@ -1148,6 +1175,7 @@ var Neptuo$TemplateEngine$Web$AllParameterProvider =
         {
             Neptuo.TemplateEngine.Web.ParameterProvider.ctor.call(this, new System.Collections.Generic.Dictionary$2.ctor(System.String.ctor, System.String.ctor));
             Neptuo.TemplateEngine.Web.ParameterProviderFactory.ParseQueryString(this.get_Parameters());
+            Neptuo.TemplateEngine.Web.ParameterProviderFactory.ParseFormRequest(this.get_Parameters());
         }
     },
     ctors: [ {name: "ctor", parameters: []}],
