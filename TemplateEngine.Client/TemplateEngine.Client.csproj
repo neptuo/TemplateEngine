@@ -79,6 +79,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Bootstrap\PresentationModelBootstrapTask.cs" />
+    <Compile Include="Navigation\ClientNavigateTo.cs" />
+    <Compile Include="Navigation\ClientNavigator.cs" />
     <Compile Include="Web\ClientExtendedComponentManager.cs" />
     <Compile Include="Web\Controls\DetailViewControl.cs" />
     <Compile Include="Web\Controls\ListViewControl.cs" />
