@@ -173,6 +173,55 @@ var Neptuo$TemplateEngine$Bootstrap$PresentationModelBootstrapTask =
     IsAbstract: false
 };
 JsTypes.push(Neptuo$TemplateEngine$Bootstrap$PresentationModelBootstrapTask);
+var Neptuo$TemplateEngine$Navigation$ClientNavigateTo =
+{
+    fullname: "Neptuo.TemplateEngine.Navigation.ClientNavigateTo",
+    baseTypeName: "Neptuo.TemplateEngine.Navigation.QueryStringNavigateTo",
+    assemblyName: "Neptuo.TemplateEngine.Client",
+    Kind: "Class",
+    definition:
+    {
+        ctor: function (urlProvider, formUri)
+        {
+            Neptuo.TemplateEngine.Navigation.QueryStringNavigateTo.ctor.call(this, urlProvider, formUri);
+        },
+        NavigateToUrl: function (url)
+        {
+            throw $CreateException(new System.NotImplementedException.ctor(), new Error());
+        }
+    },
+    ctors: [ {name: "ctor", parameters: ["Neptuo.Templates.IVirtualUrlProvider", "Neptuo.TemplateEngine.Navigation.FormUri"]}],
+    IsAbstract: false
+};
+JsTypes.push(Neptuo$TemplateEngine$Navigation$ClientNavigateTo);
+var Neptuo$TemplateEngine$Navigation$ClientNavigator =
+{
+    fullname: "Neptuo.TemplateEngine.Navigation.ClientNavigator",
+    baseTypeName: "System.Object",
+    assemblyName: "Neptuo.TemplateEngine.Client",
+    interfaceNames: ["Neptuo.TemplateEngine.Navigation.INavigator"],
+    Kind: "Class",
+    definition:
+    {
+        ctor: function (urlProvider)
+        {
+            this.urlProvider = null;
+            System.Object.ctor.call(this);
+            this.urlProvider = urlProvider;
+        },
+        Open: function (formUri)
+        {
+            this.NavigateTo(formUri).Open();
+        },
+        NavigateTo: function (formUri)
+        {
+            return new Neptuo.TemplateEngine.Navigation.ClientNavigateTo.ctor(this.urlProvider, formUri);
+        }
+    },
+    ctors: [ {name: "ctor", parameters: ["Neptuo.Templates.IVirtualUrlProvider"]}],
+    IsAbstract: false
+};
+JsTypes.push(Neptuo$TemplateEngine$Navigation$ClientNavigator);
 var Neptuo$TemplateEngine$Web$ClientExtendedComponentManager =
 {
     fullname: "Neptuo.TemplateEngine.Web.ClientExtendedComponentManager",
@@ -846,6 +895,12 @@ var Neptuo$TemplateEngine$Web$InitScript =
                 body.delegate("button", "click", Neptuo.TemplateEngine.Web.InitScript.OnButtonClick);
                 body.delegate("form", "submit", Neptuo.TemplateEngine.Web.InitScript.OnFormSubmit);
             });
+            window.addEventListener("popstate", Neptuo.TemplateEngine.Web.InitScript.OnPopState);
+        },
+        OnPopState: function (e)
+        {
+            var state = e;
+            Neptuo.TemplateEngine.Web.InitScript.RenderUrl(location.href, "Body", null);
         },
         UpdateContent: function (partialGuid, content)
         {
@@ -883,12 +938,17 @@ var Neptuo$TemplateEngine$Web$InitScript =
         NavigateToUrl: function (newUrl, toUpdate, title, initContainer)
         {
             var viewPath = Neptuo.TemplateEngine.Web.InitScript.MapView(newUrl);
+            history.pushState(viewPath, title, newUrl);
+            Neptuo.TemplateEngine.Web.InitScript.RenderUrl(newUrl, toUpdate, initContainer);
+        },
+        RenderUrl: function (newUrl, toUpdate, initContainer)
+        {
+            var viewPath = Neptuo.TemplateEngine.Web.InitScript.MapView(newUrl);
             if (viewPath == null)
             {
                 alert("No view for: " + newUrl);
                 return;
             }
-            history.pushState(viewPath, title, newUrl);
             var container = Neptuo.TemplateEngine.Web.InitScript.dependencyContainer.CreateChildContainer();
             var partialsToUpdate = new System.Collections.Generic.List$1.ctor(System.String.ctor);
             if (!System.String.IsNullOrEmpty(toUpdate))

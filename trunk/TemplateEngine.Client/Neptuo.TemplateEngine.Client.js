@@ -895,6 +895,12 @@ var Neptuo$TemplateEngine$Web$InitScript =
                 body.delegate("button", "click", Neptuo.TemplateEngine.Web.InitScript.OnButtonClick);
                 body.delegate("form", "submit", Neptuo.TemplateEngine.Web.InitScript.OnFormSubmit);
             });
+            window.addEventListener("popstate", Neptuo.TemplateEngine.Web.InitScript.OnPopState);
+        },
+        OnPopState: function (e)
+        {
+            var state = e;
+            Neptuo.TemplateEngine.Web.InitScript.RenderUrl(location.href, "Body", null);
         },
         UpdateContent: function (partialGuid, content)
         {
@@ -932,12 +938,17 @@ var Neptuo$TemplateEngine$Web$InitScript =
         NavigateToUrl: function (newUrl, toUpdate, title, initContainer)
         {
             var viewPath = Neptuo.TemplateEngine.Web.InitScript.MapView(newUrl);
+            history.pushState(viewPath, title, newUrl);
+            Neptuo.TemplateEngine.Web.InitScript.RenderUrl(newUrl, toUpdate, initContainer);
+        },
+        RenderUrl: function (newUrl, toUpdate, initContainer)
+        {
+            var viewPath = Neptuo.TemplateEngine.Web.InitScript.MapView(newUrl);
             if (viewPath == null)
             {
                 alert("No view for: " + newUrl);
                 return;
             }
-            history.pushState(viewPath, title, newUrl);
             var container = Neptuo.TemplateEngine.Web.InitScript.dependencyContainer.CreateChildContainer();
             var partialsToUpdate = new System.Collections.Generic.List$1.ctor(System.String.ctor);
             if (!System.String.IsNullOrEmpty(toUpdate))
