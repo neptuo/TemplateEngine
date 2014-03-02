@@ -25,6 +25,7 @@ namespace Neptuo.TemplateEngine.Web
 {
     public static class InitScript
     {
+        public static FormRequestContext FormRequestContext;
         private static IDependencyContainer dependencyContainer;
         private static IViewActivator viewActivator;
 
@@ -134,7 +135,7 @@ namespace Neptuo.TemplateEngine.Web
             NavigateToUrl(newUrl, toUpdate, title);
         }
 
-        private static void NavigateToUrl(string newUrl, string toUpdate, string title)
+        private static void NavigateToUrl(string newUrl, string toUpdate, string title, Action<IDependencyContainer> initContainer = null)
         {
             string viewPath = MapView(newUrl);
 
@@ -165,6 +166,9 @@ namespace Neptuo.TemplateEngine.Web
                 .RegisterInstance<IPartialUpdateWriter>(componentManager)
                 .RegisterInstance<NavigationCollection>(new NavigationCollection());
 
+            if (initContainer != null)
+                initContainer(container);
+
             StringWriter writer = new StringWriter();
             var view = viewActivator.CreateView(viewPath);
             view.Setup(new BaseViewPage(componentManager), componentManager, container);
@@ -188,6 +192,7 @@ namespace Neptuo.TemplateEngine.Web
             data.push(submitButton);
 
             FormRequestContext context = new FormRequestContext(data, buttonName, form.attr("action") ?? HtmlContext.location.href);
+            FormRequestContext = context;
 
             if (!InvokeControllers(data))
             {
@@ -219,7 +224,14 @@ namespace Neptuo.TemplateEngine.Web
             PartialResponse partialResponse;
             if (Converts.Try<JsObject, PartialResponse>(response.As<JsObject>(), out partialResponse))
             {
-                NavigateToUrl(partialResponse.Navigation, "Body", "Form submitted");
+                string navigationUrl = null;
+                if (partialResponse.Navigation != null)
+                    navigationUrl = dependencyContainer.Resolve<IVirtualUrlProvider>().ResolveUrl(partialResponse.Navigation);
+                else
+                    navigationUrl = HtmlContext.location.pathname;
+                
+                NavigateToUrl(navigationUrl, "Body", "Form submitted", container => container.RegisterInstance<MessageStorage>(partialResponse.Messages));
+                FormRequestContext = null;
             }
             else
             {
@@ -292,11 +304,13 @@ namespace Neptuo.TemplateEngine.Web
             {
                 case ParameterProviderType.All:
                     ParseQueryString(parameters);
+                    ParseFormRequest(parameters);
                     break;
                 case ParameterProviderType.Url:
                     ParseQueryString(parameters);
                     break;
                 case ParameterProviderType.Form:
+                    ParseFormRequest(parameters);
                     break;
                 default:
                     break;
@@ -321,6 +335,19 @@ namespace Neptuo.TemplateEngine.Web
                     parameters[param[0]] = param[1];
                 else
                     parameters[param[0]] = null;
+            }
+        }
+
+        public static void ParseFormRequest(Dictionary<string, string> parameters)
+        {
+            if (InitScript.FormRequestContext != null)
+            {
+                JsArray source = InitScript.FormRequestContext.Parameters;
+                for (int i = 0; i < source.length; i++)
+                {
+                    JsObject parameter = source[i].As<JsObject>();
+                    parameters[parameter["name"].As<string>()] = parameter["value"].As<string>();
+                }
             }
         }
     }
@@ -359,6 +386,7 @@ namespace Neptuo.TemplateEngine.Web
             : base(new Dictionary<string,string>())
         {
             ParameterProviderFactory.ParseQueryString(Parameters);
+            ParameterProviderFactory.ParseFormRequest(Parameters);
         }
     }
 

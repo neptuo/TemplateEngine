@@ -197,13 +197,19 @@ var Neptuo$TemplateEngine$Accounts$Web$DataSources$UserAccountEditDataSource =
     Kind: "Class",
     definition:
     {
-        ctor: function (userAccounts)
+        ctor: function (userAccounts, providerFactory, modelBinder)
         {
             this.userAccounts = null;
+            this.providerFactory = null;
+            this.modelBinder = null;
             this._Key = 0;
             System.Object.ctor.call(this);
             Neptuo.Guard.NotNull$$Object$$String(userAccounts, "userAccounts");
+            Neptuo.Guard.NotNull$$Object$$String(providerFactory, "providerFactory");
+            Neptuo.Guard.NotNull$$Object$$String(modelBinder, "modelBinder");
             this.userAccounts = userAccounts;
+            this.providerFactory = providerFactory;
+            this.modelBinder = modelBinder;
         },
         Key$$: "System.Int32",
         get_Key: function ()
@@ -218,25 +224,29 @@ var Neptuo$TemplateEngine$Accounts$Web$DataSources$UserAccountEditDataSource =
         {
             if (this.get_Key() == 0)
             {
-                callback((function ()
+                var model = (function ()
                 {
                     var $v2 = new Neptuo.TemplateEngine.Accounts.UserAccountEditModel.ctor();
                     $v2.set_Key(0);
                     $v2.set_IsEnabled(true);
                     return $v2;
-                }).call(this));
+                }).call(this);
+                model = Neptuo.TemplateEngine.Web.Controllers.Binders.ModelBinderExtensions.Bind$1$$IModelBinder$$T(Neptuo.TemplateEngine.Accounts.UserAccountEditModel.ctor, this.modelBinder, model);
+                callback(this.providerFactory.Create(model));
                 return;
             }
             setTimeout($CreateAnonymousDelegate(this, function ()
             {
-                callback(System.Linq.Enumerable.FirstOrDefault$1$$IEnumerable$1$$Func$2(Neptuo.TemplateEngine.Accounts.UserAccountEditModel.ctor, this.userAccounts.GetAll(), $CreateAnonymousDelegate(this, function (u)
+                var model = System.Linq.Enumerable.FirstOrDefault$1$$IEnumerable$1$$Func$2(Neptuo.TemplateEngine.Accounts.UserAccountEditModel.ctor, this.userAccounts.GetAll(), $CreateAnonymousDelegate(this, function (u)
                 {
                     return u.get_Key() == this.get_Key();
-                })));
+                }));
+                model = Neptuo.TemplateEngine.Web.Controllers.Binders.ModelBinderExtensions.Bind$1$$IModelBinder$$T(Neptuo.TemplateEngine.Accounts.UserAccountEditModel.ctor, this.modelBinder, model);
+                callback(this.providerFactory.Create(model));
             }), 400);
         }
     },
-    ctors: [ {name: "ctor", parameters: ["Neptuo.TemplateEngine.Accounts.Data.UserRepository"]}],
+    ctors: [ {name: "ctor", parameters: ["Neptuo.TemplateEngine.Accounts.Data.UserRepository", "Neptuo.PresentationModels.TypeModels.IModelValueProviderFactory", "Neptuo.TemplateEngine.Web.Controllers.Binders.IModelBinder"]}],
     IsAbstract: false
 };
 JsTypes.push(Neptuo$TemplateEngine$Accounts$Web$DataSources$UserAccountEditDataSource);

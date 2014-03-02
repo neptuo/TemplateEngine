@@ -48,7 +48,7 @@ namespace Neptuo.TemplateEngine.Backend.Web
                 //JavaScriptSerializer javaScriptSerializer = new JavaScriptSerializer();
                 //string response = javaScriptSerializer.Serialize(new PartialResponse(messageStorage, redirectUrl));
 
-                string response = JsonConvert.SerializeObject(new PartialResponse(messageStorage, redirectUrl));
+                string response = JsonConvert.SerializeObject(new ServerPartialResponse(messageStorage.GetStorage(), redirectUrl));
                 httpContext.Response.ContentType = "application/json";
                 httpContext.Response.Write(response);
             }
