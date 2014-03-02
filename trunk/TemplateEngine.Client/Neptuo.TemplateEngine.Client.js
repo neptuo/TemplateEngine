@@ -173,6 +173,55 @@ var Neptuo$TemplateEngine$Bootstrap$PresentationModelBootstrapTask =
     IsAbstract: false
 };
 JsTypes.push(Neptuo$TemplateEngine$Bootstrap$PresentationModelBootstrapTask);
+var Neptuo$TemplateEngine$Navigation$ClientNavigateTo =
+{
+    fullname: "Neptuo.TemplateEngine.Navigation.ClientNavigateTo",
+    baseTypeName: "Neptuo.TemplateEngine.Navigation.QueryStringNavigateTo",
+    assemblyName: "Neptuo.TemplateEngine.Client",
+    Kind: "Class",
+    definition:
+    {
+        ctor: function (urlProvider, formUri)
+        {
+            Neptuo.TemplateEngine.Navigation.QueryStringNavigateTo.ctor.call(this, urlProvider, formUri);
+        },
+        NavigateToUrl: function (url)
+        {
+            throw $CreateException(new System.NotImplementedException.ctor(), new Error());
+        }
+    },
+    ctors: [ {name: "ctor", parameters: ["Neptuo.Templates.IVirtualUrlProvider", "Neptuo.TemplateEngine.Navigation.FormUri"]}],
+    IsAbstract: false
+};
+JsTypes.push(Neptuo$TemplateEngine$Navigation$ClientNavigateTo);
+var Neptuo$TemplateEngine$Navigation$ClientNavigator =
+{
+    fullname: "Neptuo.TemplateEngine.Navigation.ClientNavigator",
+    baseTypeName: "System.Object",
+    assemblyName: "Neptuo.TemplateEngine.Client",
+    interfaceNames: ["Neptuo.TemplateEngine.Navigation.INavigator"],
+    Kind: "Class",
+    definition:
+    {
+        ctor: function (urlProvider)
+        {
+            this.urlProvider = null;
+            System.Object.ctor.call(this);
+            this.urlProvider = urlProvider;
+        },
+        Open: function (formUri)
+        {
+            this.NavigateTo(formUri).Open();
+        },
+        NavigateTo: function (formUri)
+        {
+            return new Neptuo.TemplateEngine.Navigation.ClientNavigateTo.ctor(this.urlProvider, formUri);
+        }
+    },
+    ctors: [ {name: "ctor", parameters: ["Neptuo.Templates.IVirtualUrlProvider"]}],
+    IsAbstract: false
+};
+JsTypes.push(Neptuo$TemplateEngine$Navigation$ClientNavigator);
 var Neptuo$TemplateEngine$Web$ClientExtendedComponentManager =
 {
     fullname: "Neptuo.TemplateEngine.Web.ClientExtendedComponentManager",
