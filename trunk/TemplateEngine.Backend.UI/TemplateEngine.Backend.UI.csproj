@@ -183,6 +183,7 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Views\Shared\SubHeader.view" />
+    <Content Include="Neptuo.TemplateEngine.Backend.UI.xml" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -289,12 +290,11 @@
       </FlavorProperties>
     </VisualStudio>
   </ProjectExtensions>
+  <ItemGroup>
+    <SkcPlugin Include="Neptuo.SharpKit.Exugin.ExuginPlugin, Neptuo.SharpKit.Exugin">
+      <InProject>false</InProject>
+    </SkcPlugin>
+  </ItemGroup>
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
+  <Import Project="$(MSBuildBinPath)\SharpKit\5\SharpKit.Build.targets" />
 </Project>
