@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Exugin>
+  <Type Target="Neptuo.TemplateEngine.Backend.UI.Global" Export="false" />
+  <Merge Filename="Design/Scripts/Generated/TemplateEngine/Neptuo.TemplateEngine.Client.js" Sources="../TemplateEngine.Client/Neptuo.TemplateEngine.Client.js" />
+</Exugin>
