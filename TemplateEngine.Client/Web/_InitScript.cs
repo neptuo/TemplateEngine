@@ -96,8 +96,18 @@ namespace Neptuo.TemplateEngine.Web
         private static void OnPopState(DOMEvent e)
         {
             PopStateEvent state = e.As<PopStateEvent>();
-            RenderUrl(HtmlContext.location.href, "Body");
-            //NavigateToUrl(HtmlContext.location.href, "Body", "Go back");
+            HistoryItem historyItem = state.state.As<HistoryItem>();
+
+            if (historyItem != null)
+            {
+                FormRequestContext = historyItem.FormData;
+                RenderUrl(historyItem.Url, "Body");
+            }
+            else
+            {
+                FormRequestContext = null;
+                RenderUrl(HtmlContext.location.href, "Body");
+            }
         }
 
         public static void UpdateContent(string partialGuid, TextWriter content)
@@ -147,7 +157,7 @@ namespace Neptuo.TemplateEngine.Web
         private static void NavigateToUrl(string newUrl, string toUpdate, string title, Action<IDependencyContainer> initContainer = null)
         {
             string viewPath = MapView(newUrl);
-            HtmlContext.history.pushState(viewPath, title, newUrl);
+            HtmlContext.history.pushState(new HistoryItem(newUrl, FormRequestContext), title, newUrl);
             RenderUrl(newUrl, toUpdate, initContainer);
         }
 
@@ -194,34 +204,54 @@ namespace Neptuo.TemplateEngine.Web
         private static void OnFormSubmit(Event e)
         {
             jQuery form = new jQuery(e.currentTarget);
-            JsArray data = form.serializeArray();
+
             string buttonName = form.data("button").As<string>();
-            if(String.IsNullOrEmpty(buttonName))
+            if (String.IsNullOrEmpty(buttonName))
                 buttonName = form.find("button:first").attr("name");
 
-            JsObject submitButton = new JsObject();
-            submitButton["name"] = buttonName;
-            submitButton["value"] = null;
-            data.push(submitButton);
+            string formUrl = form.attr("action") ?? HtmlContext.location.href;
 
-            FormRequestContext context = new FormRequestContext(data, buttonName, form.attr("action") ?? HtmlContext.location.href);
-            FormRequestContext = context;
-
-            if (!InvokeControllers(data))
+            if (form.@is("[method]") && form.attr("method").toLocaleLowerCase() == "post")
             {
-                HtmlContext.alert("Event: " + buttonName);
-                HtmlContext.console.log(data);
-
-                JsObject headers = new JsObject();
-                headers["X-EngineRequestType"] = "Partial";
-                jQuery.ajax(new AjaxSettings
+                JsArray formData = form.serializeArray();
+                if (!String.IsNullOrEmpty(buttonName))
                 {
-                    url = form.attr("action"),
-                    type = form.attr("method"),
-                    data = data,
-                    headers = headers,
-                    success = OnFormSubmitSuccess
-                });
+                    JsObject submitButton = new JsObject();
+                    submitButton["name"] = buttonName;
+                    submitButton["value"] = null;
+                    formData.push(submitButton);
+                }
+
+                FormRequestContext context = new FormRequestContext(formData, buttonName, formUrl);
+                FormRequestContext = context;
+
+                if (!InvokeControllers(formData))
+                {
+                    HtmlContext.alert("Event: " + buttonName);
+                    HtmlContext.console.log(formData);
+
+                    JsObject headers = new JsObject();
+                    headers["X-EngineRequestType"] = "Partial";
+                    jQuery.ajax(new AjaxSettings
+                    {
+                        url = form.attr("action"),
+                        type = form.attr("method"),
+                        data = formData,
+                        headers = headers,
+                        success = OnFormSubmitSuccess
+                    });
+                }
+            }
+            else
+            {
+                // For "get" forms, serialize to url and redirect
+                string formData = form.serialize();
+                int queryIndex = formUrl.IndexOf("?");
+                if (queryIndex > 0)
+                    formUrl = formUrl.Substring(0, queryIndex);
+
+                formUrl += "?" + formData;
+                NavigateToUrl(formUrl, "Body", "Get form submitted");
             }
 
             e.preventDefault();

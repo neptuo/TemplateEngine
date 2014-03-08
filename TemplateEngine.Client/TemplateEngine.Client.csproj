@@ -89,6 +89,7 @@
     <Compile Include="Web\DataSources\IListDataSource.cs" />
     <Compile Include="Web\DataSources\IListResult.cs" />
     <Compile Include="Web\DataSources\ListResult.cs" />
+    <Compile Include="Web\HistoryItem.cs" />
     <Compile Include="Web\PartialResponseConverter.cs" />
     <Compile Include="Web\PartialUpdateHelper.cs" />
     <Compile Include="Web\StaticViewActivator.cs" />

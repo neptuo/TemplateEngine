@@ -602,6 +602,28 @@ var Neptuo$TemplateEngine$Web$DataSources$ListResult = {
     IsAbstract: false
 };
 JsTypes.push(Neptuo$TemplateEngine$Web$DataSources$ListResult);
+var Neptuo$TemplateEngine$Web$HistoryItem = {
+    fullname: "Neptuo.TemplateEngine.Web.HistoryItem",
+    baseTypeName: "System.Object",
+    assemblyName: "Neptuo.TemplateEngine.Client",
+    Kind: "Class",
+    definition: {
+        ctor: function (url, formData){
+            this.Url = null;
+            this.FormData = null;
+            System.Object.ctor.call(this);
+            this.Url = url;
+            this.FormData = formData;
+        }
+    },
+    ctors: [{
+        name: "ctor",
+        parameters: ["System.String", "Neptuo.TemplateEngine.Web.FormRequestContext"]
+    }
+    ],
+    IsAbstract: false
+};
+JsTypes.push(Neptuo$TemplateEngine$Web$HistoryItem);
 var Neptuo$TemplateEngine$Web$PartialResponseConverter = {
     fullname: "Neptuo.TemplateEngine.Web.PartialResponseConverter",
     baseTypeName: "System.Object",
@@ -851,7 +873,15 @@ var Neptuo$TemplateEngine$Web$InitScript = {
         },
         OnPopState: function (e){
             var state = e;
-            Neptuo.TemplateEngine.Web.InitScript.RenderUrl(location.href, "Body", null);
+            var historyItem = state.state;
+            if (historyItem != null){
+                Neptuo.TemplateEngine.Web.InitScript.FormRequestContext = historyItem.FormData;
+                Neptuo.TemplateEngine.Web.InitScript.RenderUrl(historyItem.Url, "Body", null);
+            }
+            else {
+                Neptuo.TemplateEngine.Web.InitScript.FormRequestContext = null;
+                Neptuo.TemplateEngine.Web.InitScript.RenderUrl(location.href, "Body", null);
+            }
         },
         UpdateContent: function (partialGuid, content){
             var target = $("div[data-partial=" + partialGuid + "]");
@@ -884,7 +914,7 @@ var Neptuo$TemplateEngine$Web$InitScript = {
         },
         NavigateToUrl: function (newUrl, toUpdate, title, initContainer){
             var viewPath = Neptuo.TemplateEngine.Web.InitScript.MapView(newUrl);
-            history.pushState(viewPath, title, newUrl);
+            history.pushState(new Neptuo.TemplateEngine.Web.HistoryItem.ctor(newUrl, Neptuo.TemplateEngine.Web.InitScript.FormRequestContext), title, newUrl);
             Neptuo.TemplateEngine.Web.InitScript.RenderUrl(newUrl, toUpdate, initContainer);
         },
         RenderUrl: function (newUrl, toUpdate, initContainer){
@@ -916,28 +946,41 @@ var Neptuo$TemplateEngine$Web$InitScript = {
         },
         OnFormSubmit: function (e){
             var form = $(e.currentTarget);
-            var data = form.serializeArray();
             var buttonName = form.data("button");
             if (System.String.IsNullOrEmpty(buttonName))
                 buttonName = form.find("button:first").attr("name");
-            var submitButton = new Object();
-            submitButton["name"] = buttonName;
-            submitButton["value"] = null;
-            data.push(submitButton);
-            var context = new Neptuo.TemplateEngine.Web.FormRequestContext.ctor(data, buttonName, (form.attr("action") != null ? form.attr("action") : location.href));
-            Neptuo.TemplateEngine.Web.InitScript.FormRequestContext = context;
-            if (!Neptuo.TemplateEngine.Web.InitScript.InvokeControllers(data)){
-                alert("Event: " + buttonName);
-                console.log(data);
-                var headers = new Object();
-                headers["X-EngineRequestType"] = "Partial";
-                $.ajax({
-                    url: form.attr("action"),
-                    type: form.attr("method"),
-                    data: data,
-                    headers: headers,
-                    success: Neptuo.TemplateEngine.Web.InitScript.OnFormSubmitSuccess
-                });
+            var formUrl = (form.attr("action") != null ? form.attr("action") : location.href);
+            if (form.is("[method]") && form.attr("method").toLocaleLowerCase() == "post"){
+                var formData = form.serializeArray();
+                if (!System.String.IsNullOrEmpty(buttonName)){
+                    var submitButton = new Object();
+                    submitButton["name"] = buttonName;
+                    submitButton["value"] = null;
+                    formData.push(submitButton);
+                }
+                var context = new Neptuo.TemplateEngine.Web.FormRequestContext.ctor(formData, buttonName, formUrl);
+                Neptuo.TemplateEngine.Web.InitScript.FormRequestContext = context;
+                if (!Neptuo.TemplateEngine.Web.InitScript.InvokeControllers(formData)){
+                    alert("Event: " + buttonName);
+                    console.log(formData);
+                    var headers = new Object();
+                    headers["X-EngineRequestType"] = "Partial";
+                    $.ajax({
+                        url: form.attr("action"),
+                        type: form.attr("method"),
+                        data: formData,
+                        headers: headers,
+                        success: Neptuo.TemplateEngine.Web.InitScript.OnFormSubmitSuccess
+                    });
+                }
+            }
+            else {
+                var formData = form.serialize();
+                var queryIndex = formUrl.indexOf("?");
+                if (queryIndex > 0)
+                    formUrl = formUrl.substr(0, queryIndex);
+                formUrl += "?" + formData;
+                Neptuo.TemplateEngine.Web.InitScript.NavigateToUrl(formUrl, "Body", "Get form submitted", null);
             }
             e.preventDefault();
         },
@@ -1059,7 +1102,7 @@ var Neptuo$TemplateEngine$Web$ParameterProviderFactory = {
         },
         ParseFormRequest: function (parameters){
             if (Neptuo.TemplateEngine.Web.InitScript.FormRequestContext != null){
-                var source = Neptuo.TemplateEngine.Web.InitScript.FormRequestContext.get_Parameters();
+                var source = Neptuo.TemplateEngine.Web.InitScript.FormRequestContext.Parameters;
                 for (var i = 0; i < source.length; i++){
                     var parameter = source[i];
                     parameters.set_Item$$TKey(parameter["name"], parameter["value"]);
@@ -1176,34 +1219,13 @@ var Neptuo$TemplateEngine$Web$FormRequestContext = {
     Kind: "Class",
     definition: {
         ctor: function (parameters, eventName, formUrl){
-            this._Parameters = null;
-            this._Event = null;
-            this._FormUrl = null;
+            this.Parameters = null;
+            this.Event = null;
+            this.FormUrl = null;
             System.Object.ctor.call(this);
-            this.set_Parameters(parameters);
-            this.set_Event(eventName);
-            this.set_FormUrl(formUrl);
-        },
-        Parameters$$: "SharpKit.JavaScript.JsArray",
-        get_Parameters: function (){
-            return this._Parameters;
-        },
-        set_Parameters: function (value){
-            this._Parameters = value;
-        },
-        Event$$: "System.String",
-        get_Event: function (){
-            return this._Event;
-        },
-        set_Event: function (value){
-            this._Event = value;
-        },
-        FormUrl$$: "System.String",
-        get_FormUrl: function (){
-            return this._FormUrl;
-        },
-        set_FormUrl: function (value){
-            this._FormUrl = value;
+            this.Parameters = parameters;
+            this.Event = eventName;
+            this.FormUrl = formUrl;
         }
     },
     ctors: [{

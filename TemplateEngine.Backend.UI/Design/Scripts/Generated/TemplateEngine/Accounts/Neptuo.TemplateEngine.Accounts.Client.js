@@ -200,8 +200,10 @@ var Neptuo$TemplateEngine$Accounts$Web$DataSources$UserAccountEditDataSource = {
         get_Key: function (){
             return this._Key;
         },
-        set_Key: function (value){
-            this._Key = value;
+        set_Key: function (value) {
+            if (value != null) {
+                this._Key = value;
+            }
         },
         GetItem: function (callback){
             if (this.get_Key() == 0){

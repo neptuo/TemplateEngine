@@ -3,11 +3,11 @@
   <Type Target="Neptuo.TemplateEngine.Backend.UI.Global" Export="false" />
   
   
-  <Merge Filename="Design/Scripts/Generated/TemplateEngine/Neptuo.TemplateEngine.Shared.js" Sources="../TemplateEngine.Client/Neptuo.TemplateEngine.Shared.js" />
+  <Merge Filename="Design/Scripts/Generated/TemplateEngine/Neptuo.TemplateEngine.Shared.js" Sources="../TemplateEngine.Shared/Neptuo.TemplateEngine.Shared.js" />
   <Merge Filename="Design/Scripts/Generated/TemplateEngine/Neptuo.TemplateEngine.Client.js" Sources="../TemplateEngine.Client/Neptuo.TemplateEngine.Client.js" />
-  <Merge Filename="Design/Scripts/Generated/TemplateEngine/Neptuo.TemplateEngine.Navigation.js" Sources="../TemplateEngine.Client/Neptuo.TemplateEngine.Navigation.js" />
-  <Merge Filename="Design/Scripts/Generated/TemplateEngine/Neptuo.TemplateEngine.Permissions.js" Sources="../TemplateEngine.Client/Neptuo.TemplateEngine.Permissions.js" />
+  <Merge Filename="Design/Scripts/Generated/TemplateEngine/Neptuo.TemplateEngine.Navigation.js" Sources="../TemplateEngine.Navigation/Neptuo.TemplateEngine.Navigation.js" />
+  <Merge Filename="Design/Scripts/Generated/TemplateEngine/Neptuo.TemplateEngine.Permissions.js" Sources="../TemplateEngine.Permissions/Neptuo.TemplateEngine.Permissions.js" />
 
-  <Merge Filename="Design/Scripts/Generated/TemplateEngine/Neptuo.TemplateEngine.Accounts.Shared.js" Sources="../TemplateEngine.Client/Neptuo.TemplateEngine.Accounts.Shared.js" />
-  <Merge Filename="Design/Scripts/Generated/TemplateEngine/Neptuo.TemplateEngine.Accounts.Client.js" Sources="../TemplateEngine.Client/Neptuo.TemplateEngine.Accounts.Client.js" />
+  <Merge Filename="Design/Scripts/Generated/TemplateEngine/Accounts/Neptuo.TemplateEngine.Accounts.Shared.js" Sources="../TemplateEngine.Accounts.Shared/Neptuo.TemplateEngine.Accounts.Shared.js" />
+  <Merge Filename="Design/Scripts/Generated/TemplateEngine/Accounts/Neptuo.TemplateEngine.Accounts.Client.js" Sources="../TemplateEngine.Accounts.Client/Neptuo.TemplateEngine.Accounts.Client.js" />
 </Exugin>
