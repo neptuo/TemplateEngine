@@ -29,7 +29,7 @@ namespace Neptuo.TemplateEngine.Web
         private static IDependencyContainer dependencyContainer;
         private static IViewActivator viewActivator;
         private static IHistoryState historyState;
-        private static IMainView mainView;
+        private static MainView mainView;
 
         private static IDependencyContainer CreateDependencyContainer()
         {
@@ -67,7 +67,8 @@ namespace Neptuo.TemplateEngine.Web
                 .RegisterInstance<IPermissionProvider>(new OptimisticPermissionProvider())
                 
                 .RegisterInstance<IHistoryState>(historyState)
-                .RegisterInstance<IMainView>(mainView);
+                .RegisterInstance<IMainView>(mainView)
+                .RegisterInstance<IPartialWriter>(mainView);
 
             return container;
         }
@@ -113,12 +114,6 @@ namespace Neptuo.TemplateEngine.Web
                 FormRequestContext = null;
                 RenderUrl(HtmlContext.location.href, "Body");
             }
-        }
-
-        public static void UpdateContent(string partialGuid, TextWriter content)
-        {
-            jQuery target = new jQuery("div[data-partial=" + partialGuid + "]");
-            target.replaceWith(content.ToString());
         }
 
         //TODO: Router...

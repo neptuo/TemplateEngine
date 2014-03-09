@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Web
 {
-    public class MainView : IMainView
+    public class MainView : IMainView, IPartialWriter
     {
         protected IViewActivator ViewActivator { get; private set; }
 
@@ -130,6 +130,22 @@ namespace Neptuo.TemplateEngine.Web
             view.Dispose();
         }
 
+        public void UpdateView(string partialGuid, TextWriter content)
+        {
+            jQuery target = new jQuery("div[data-partial=" + partialGuid + "]");
+            target.replaceWith(content.ToString());
+        }
+
+        public void WritePlaceholder(IHtmlWriter writer, string partialGuid)
+        {
+            writer
+                .Tag("div")
+                .Attribute("data-partial", partialGuid)
+                .Content("Loading data...")
+                .CloseFullTag();
+        }
+
         #endregion
+
     }
 }

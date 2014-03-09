@@ -97,6 +97,7 @@
     <Compile Include="Web\IApplication.cs" />
     <Compile Include="Web\IHistoryState.cs" />
     <Compile Include="Web\IMainView.cs" />
+    <Compile Include="Web\IPartialWriter.cs" />
     <Compile Include="Web\MainView.cs" />
     <Compile Include="Web\PartialResponseConverter.cs" />
     <Compile Include="Web\PartialUpdateHelper.cs" />
