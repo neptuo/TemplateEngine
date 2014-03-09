@@ -100,7 +100,11 @@ namespace Neptuo.TemplateEngine.Web
 
             if (historyItem != null)
             {
-                FormRequestContext = historyItem.FormData;
+                if (historyItem.FormData != null)
+                    FormRequestContext = new FormRequestContext(historyItem.FormData, historyItem.EventName, historyItem.Url);
+                else
+                    FormRequestContext = null;
+
                 RenderUrl(historyItem.Url, "Body");
             }
             else
@@ -157,7 +161,12 @@ namespace Neptuo.TemplateEngine.Web
         private static void NavigateToUrl(string newUrl, string toUpdate, string title, Action<IDependencyContainer> initContainer = null)
         {
             string viewPath = MapView(newUrl);
-            HtmlContext.history.pushState(new HistoryItem(newUrl, FormRequestContext), title, newUrl);
+            //object state = null;
+            //if (FormRequestContext != null)
+            //    state = FormRequestContext.Parameters;
+
+            HtmlContext.history.pushState(new HistoryItem(newUrl, null), title, newUrl);
+            //HtmlContext.history.pushState(JSON.stringify(state), title, newUrl);
             RenderUrl(newUrl, toUpdate, initContainer);
         }
 
@@ -224,6 +233,8 @@ namespace Neptuo.TemplateEngine.Web
 
                 FormRequestContext context = new FormRequestContext(formData, buttonName, formUrl);
                 FormRequestContext = context;
+
+                HtmlContext.history.replaceState(new HistoryItem(formUrl, context), "");
 
                 if (!InvokeControllers(formData))
                 {
@@ -436,13 +447,13 @@ namespace Neptuo.TemplateEngine.Web
     public class FormRequestContext
     {
         public JsArray Parameters { get; private set; }
-        public string Event { get; private set; }
+        public string EventName { get; private set; }
         public string FormUrl { get; private set; }
 
         public FormRequestContext(JsArray parameters, string eventName, string formUrl)
         {
             Parameters = parameters;
-            Event = eventName;
+            EventName = eventName;
             FormUrl = formUrl;
         }
     }
