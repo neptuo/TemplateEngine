@@ -42,6 +42,80 @@ var Neptuo$TemplateEngine$IStackStorage$1 = {
     IsAbstract: true
 };
 JsTypes.push(Neptuo$TemplateEngine$IStackStorage$1);
+var Neptuo$TemplateEngine$Web$Controls$BundleControlBase = {
+    fullname: "Neptuo.TemplateEngine.Web.Controls.BundleControlBase",
+    baseTypeName: "System.Object",
+    assemblyName: "Neptuo.TemplateEngine.Shared",
+    interfaceNames: ["Neptuo.Templates.Controls.IControl"],
+    Kind: "Class",
+    definition: {
+        ctor: function (urlProvider){
+            this.urlProvider = null;
+            this._IsStyle = false;
+            this._Path = null;
+            System.Object.ctor.call(this);
+            this.urlProvider = urlProvider;
+        },
+        IsStyle$$: "System.Boolean",
+        get_IsStyle: function (){
+            return this._IsStyle;
+        },
+        set_IsStyle: function (value){
+            this._IsStyle = value;
+        },
+        Path$$: "System.String",
+        get_Path: function (){
+            return this._Path;
+        },
+        set_Path: function (value){
+            this._Path = value;
+        },
+        OnInit: function (){
+            Neptuo.Guard.NotNull$$Object$$String(this.get_Path(), "Path");
+        },
+        Render: function (writer){
+            if (this.get_IsStyle())
+                this.RenderStyle(writer);
+            else
+                this.RenderScript(writer);
+        },
+        RenderScript: function (writer){
+            Neptuo.TemplateEngine.Web.HtmlWriterExtensions.Script(writer, this.urlProvider.ResolveUrl(this.get_Path()));
+        },
+        RenderStyle: function (writer){
+            Neptuo.TemplateEngine.Web.HtmlWriterExtensions.Style(writer, this.urlProvider.ResolveUrl(this.get_Path()));
+        }
+    },
+    ctors: [{
+        name: "ctor",
+        parameters: ["Neptuo.Templates.IVirtualUrlProvider"]
+    }
+    ],
+    IsAbstract: false
+};
+JsTypes.push(Neptuo$TemplateEngine$Web$Controls$BundleControlBase);
+var Neptuo$TemplateEngine$Web$HtmlWriterExtensions = {
+    fullname: "Neptuo.TemplateEngine.Web.HtmlWriterExtensions",
+    baseTypeName: "System.Object",
+    staticDefinition: {
+        Script: function (writer, path){
+            return writer.Tag("script").Attribute("src", path).CloseFullTag();
+        },
+        Style: function (writer, path){
+            return writer.Tag("link").Attribute("href", path).Attribute("rel", "stylesheet").CloseTag();
+        }
+    },
+    assemblyName: "Neptuo.TemplateEngine.Shared",
+    Kind: "Class",
+    definition: {
+        ctor: function (){
+            System.Object.ctor.call(this);
+        }
+    },
+    ctors: [],
+    IsAbstract: true
+};
+JsTypes.push(Neptuo$TemplateEngine$Web$HtmlWriterExtensions);
 var Neptuo$TemplateEngine$Navigation$QueryStringNavigateTo = {
     fullname: "Neptuo.TemplateEngine.Navigation.QueryStringNavigateTo",
     baseTypeName: "System.Object",
@@ -804,8 +878,8 @@ var Neptuo$TemplateEngine$Web$Controllers$ViewDataCollection = {
     IsAbstract: false
 };
 JsTypes.push(Neptuo$TemplateEngine$Web$Controllers$ViewDataCollection);
-var Neptuo$TemplateEngine$Web$Controls$Ajax$PartialView = {
-    fullname: "Neptuo.TemplateEngine.Web.Controls.Ajax.PartialView",
+var Neptuo$TemplateEngine$Web$Controls$Ajax$PartialViewControl = {
+    fullname: "Neptuo.TemplateEngine.Web.Controls.Ajax.PartialViewControl",
     baseTypeName: "Neptuo.TemplateEngine.Web.Controls.HtmlContentControlBase",
     assemblyName: "Neptuo.TemplateEngine.Shared",
     Kind: "Class",
@@ -844,7 +918,7 @@ var Neptuo$TemplateEngine$Web$Controls$Ajax$PartialView = {
     ],
     IsAbstract: false
 };
-JsTypes.push(Neptuo$TemplateEngine$Web$Controls$Ajax$PartialView);
+JsTypes.push(Neptuo$TemplateEngine$Web$Controls$Ajax$PartialViewControl);
 var Neptuo$TemplateEngine$Web$Controls$ContentControlBase = {
     fullname: "Neptuo.TemplateEngine.Web.Controls.ContentControlBase",
     baseTypeName: "Neptuo.TemplateEngine.Web.Controls.ControlBase",

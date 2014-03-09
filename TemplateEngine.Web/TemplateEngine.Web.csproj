@@ -79,6 +79,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\Ajax\PartialStartUpControl.cs" />
     <Compile Include="Controls\BundleControl.cs" />
     <Compile Include="Controls\DetailViewControl.cs" />
     <Compile Include="Controls\ListViewControl.cs" />

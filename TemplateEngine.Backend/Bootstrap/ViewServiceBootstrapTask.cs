@@ -101,7 +101,8 @@ namespace Neptuo.TemplateEngine.Backend.Bootstrap
 
             registry.RegisterNamespace(new NamespaceDeclaration("ui", "Neptuo.TemplateEngine.Web.Controls, Neptuo.TemplateEngine.Web"));
             registry.RegisterNamespace(new NamespaceDeclaration("", "Neptuo.TemplateEngine.Web.Extensions, Neptuo.TemplateEngine.Web"));
-            registry.RegisterComponentBuilder("ajax", "View", new DefaultTypeComponentBuilderFactory(typeof(PartialView)));
+            registry.RegisterComponentBuilder("ajax", "View", new DefaultTypeComponentBuilderFactory(typeof(PartialViewControl)));
+            registry.RegisterComponentBuilder("ajax", "StartUp", new DefaultTypeComponentBuilderFactory(typeof(PartialStartUpControl)));
 
             registry.RegisterComponentBuilder("ui", "AdminLayout", new UserTemplateComponentBuilderFactory("~/Views/Shared/AdminLayout.view"));
             registry.RegisterComponentBuilder("ui", "SubHeader", new UserTemplateComponentBuilderFactory("~/Views/Shared/SubHeader.view"));
