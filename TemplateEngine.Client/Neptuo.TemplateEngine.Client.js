@@ -606,17 +606,33 @@ var Neptuo$TemplateEngine$Web$HistoryItem = {
     assemblyName: "Neptuo.TemplateEngine.Client",
     Kind: "Class",
     definition: {
-        ctor: function (url, formData){
+        ctor$$String$$FormRequestContext: function (url, context){
             this.Url = null;
             this.FormData = null;
+            this.EventName = null;
+            System.Object.ctor.call(this);
+            this.Url = url;
+            if (context != null){
+                this.FormData = context.Parameters;
+                this.EventName = context.EventName;
+            }
+        },
+        ctor$$String$$Array$$String: function (url, formData, eventName){
+            this.Url = null;
+            this.FormData = null;
+            this.EventName = null;
             System.Object.ctor.call(this);
             this.Url = url;
             this.FormData = formData;
+            this.EventName = eventName;
         }
     },
     ctors: [{
-        name: "ctor",
+        name: "ctor$$String$$FormRequestContext",
         parameters: ["System.String", "Neptuo.TemplateEngine.Web.FormRequestContext"]
+    }, {
+        name: "ctor$$String$$JsArray$$String",
+        parameters: ["System.String", "SharpKit.JavaScript.JsArray", "System.String"]
     }
     ],
     IsAbstract: false
@@ -873,7 +889,10 @@ var Neptuo$TemplateEngine$Web$InitScript = {
             var state = e;
             var historyItem = state.state;
             if (historyItem != null){
-                Neptuo.TemplateEngine.Web.InitScript.FormRequestContext = historyItem.FormData;
+                if (historyItem.FormData != null)
+                    Neptuo.TemplateEngine.Web.InitScript.FormRequestContext = new Neptuo.TemplateEngine.Web.FormRequestContext.ctor(historyItem.FormData, historyItem.EventName, historyItem.Url);
+                else
+                    Neptuo.TemplateEngine.Web.InitScript.FormRequestContext = null;
                 Neptuo.TemplateEngine.Web.InitScript.RenderUrl(historyItem.Url, "Body", null);
             }
             else {
@@ -912,7 +931,7 @@ var Neptuo$TemplateEngine$Web$InitScript = {
         },
         NavigateToUrl: function (newUrl, toUpdate, title, initContainer){
             var viewPath = Neptuo.TemplateEngine.Web.InitScript.MapView(newUrl);
-            history.pushState(new Neptuo.TemplateEngine.Web.HistoryItem.ctor(newUrl, Neptuo.TemplateEngine.Web.InitScript.FormRequestContext), title, newUrl);
+            history.pushState(new Neptuo.TemplateEngine.Web.HistoryItem.ctor$$String$$FormRequestContext(newUrl, null), title, newUrl);
             Neptuo.TemplateEngine.Web.InitScript.RenderUrl(newUrl, toUpdate, initContainer);
         },
         RenderUrl: function (newUrl, toUpdate, initContainer){
@@ -958,6 +977,7 @@ var Neptuo$TemplateEngine$Web$InitScript = {
                 }
                 var context = new Neptuo.TemplateEngine.Web.FormRequestContext.ctor(formData, buttonName, formUrl);
                 Neptuo.TemplateEngine.Web.InitScript.FormRequestContext = context;
+                history.replaceState(new Neptuo.TemplateEngine.Web.HistoryItem.ctor$$String$$FormRequestContext(formUrl, context), "");
                 if (!Neptuo.TemplateEngine.Web.InitScript.InvokeControllers(formData)){
                     alert("Event: " + buttonName);
                     console.log(formData);
@@ -1218,11 +1238,11 @@ var Neptuo$TemplateEngine$Web$FormRequestContext = {
     definition: {
         ctor: function (parameters, eventName, formUrl){
             this.Parameters = null;
-            this.Event = null;
+            this.EventName = null;
             this.FormUrl = null;
             System.Object.ctor.call(this);
             this.Parameters = parameters;
-            this.Event = eventName;
+            this.EventName = eventName;
             this.FormUrl = formUrl;
         }
     },

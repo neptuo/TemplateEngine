@@ -4,6 +4,7 @@ using Neptuo.TemplateEngine.Accounts.Data;
 using Neptuo.TemplateEngine.Web.Controllers.Binders;
 using Neptuo.TemplateEngine.Web.DataSources;
 using SharpKit.Html;
+using SharpKit.JavaScript;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,11 +15,20 @@ namespace Neptuo.TemplateEngine.Accounts.Web.DataSources
 {
     public class UserAccountEditDataSource : IDataSource
     {
+        private int key;
         private UserRepository userAccounts;
         private IModelValueProviderFactory providerFactory;
         private IModelBinder modelBinder;
 
-        public int Key { get; set; }
+        public int Key
+        {
+            get { return key; }
+            set
+            {
+                if (value.As<object>() != null)
+                    key = value;
+            }
+        }
 
         public UserAccountEditDataSource(UserRepository userAccounts, IModelValueProviderFactory providerFactory, IModelBinder modelBinder)
         {
