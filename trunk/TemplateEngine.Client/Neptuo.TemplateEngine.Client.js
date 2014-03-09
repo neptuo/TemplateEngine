@@ -273,6 +273,10 @@ var Neptuo$TemplateEngine$Web$Application = {
             this.set_ApplicationPath(applicationPath);
             this.set_DefaultToUpdate(defaultToUpdate);
             this.get_HistoryState().add_OnPop($CreateDelegate(this, this.OnHistoryStatePop));
+            Neptuo.Converts.get_Repository().Add(Typeof(Object), Typeof(Neptuo.TemplateEngine.Web.PartialResponse.ctor), new Neptuo.TemplateEngine.Web.PartialResponseConverter.ctor());
+            this.get_MainView().add_OnLinkClick($CreateDelegate(this, this.OnNavigation));
+            this.get_MainView().add_OnGetFormSubmit($CreateDelegate(this, this.OnNavigation));
+            this.get_MainView().add_OnPostFormSubmit($CreateDelegate(this, this.OnFormSubmit));
             this.RunBootstrapTasks(this.get_DependencyContainer());
         },
         ApplicationPath$$: "System.String",
@@ -310,9 +314,6 @@ var Neptuo$TemplateEngine$Web$Application = {
         set_DependencyContainer: function (value){
             this._DependencyContainer = value;
         },
-        ResolveUrl: function (path){
-            return path.Replace$$String$$String("~/", this.get_ApplicationPath());
-        },
         CreateDependencyContainer: function (){
             var container = new Neptuo.ObjectBuilder.DependencyContainer.ctor();
             container.Map(Typeof(Neptuo.Lifetimes.SingletonLifetime.ctor), new Neptuo.ObjectBuilder.Lifetimes.Mapping.SingletonLifetimeMapper.ctor());
@@ -335,7 +336,41 @@ var Neptuo$TemplateEngine$Web$Application = {
             bootstrapper.Initialize();
         },
         OnHistoryStatePop: function (historyItem){
-            throw $CreateException(new System.NotImplementedException.ctor(), new Error());
+        },
+        OnNavigation: function (url, toUpdate){
+            this.get_MainView().RenderView(url, toUpdate, this.get_DependencyContainer().CreateChildContainer());
+        },
+        OnFormSubmit: function (context){
+        },
+        TryInvokeControllers: function (parameters){
+            var container = this.get_DependencyContainer().CreateChildContainer();
+            Neptuo.DependencyContainerExtensions.RegisterInstance$1(Neptuo.TemplateEngine.Web.IParameterProvider.ctor, container, new Neptuo.TemplateEngine.Web.DictionaryParameterProvider.ctor(parameters));
+            var controllerRegistry = Neptuo.DependencyProviderExtensions.Resolve$1$$IDependencyProvider(Neptuo.TemplateEngine.Web.Controllers.IControllerRegistry.ctor, container);
+            var viewData = new Neptuo.TemplateEngine.Web.Controllers.ViewDataCollection.ctor();
+            var modelBinder = Neptuo.DependencyProviderExtensions.Resolve$1$$IDependencyProvider(Neptuo.TemplateEngine.Web.Controllers.Binders.IModelBinder.ctor, container);
+            var localNavigations = new Neptuo.TemplateEngine.Web.NavigationCollection.ctor();
+            var isControllerExecuted = false;
+            var $it1 = parameters.GetEnumerator();
+            while ($it1.MoveNext()){
+                var parameter = $it1.get_Current();
+                var key = parameter.get_Key();
+                var controller;
+                if ((function (){
+                    var $1 = {
+                        Value: controller
+                    };
+                    var $res = controllerRegistry.TryGet(key, $1);
+                    controller = $1.Value;
+                    return $res;
+                }).call(this)){
+                    controller.Execute(new Neptuo.TemplateEngine.Web.Controllers.ControllerContext.ctor(key, viewData, modelBinder, localNavigations));
+                    isControllerExecuted = true;
+                }
+            }
+            return isControllerExecuted;
+        },
+        ResolveUrl: function (path){
+            return path.Replace$$String$$String("~/", this.get_ApplicationPath());
         }
     },
     ctors: [{
@@ -620,9 +655,9 @@ var Neptuo$TemplateEngine$Web$Controls$ListViewControl = {
             var itemTemplates = new System.Collections.Generic.List$1.ctor(System.Object.ctor);
             this.get_DataContext().Push(this, "Template");
             this.set_TotalCount(result.get_TotalCount());
-            var $it1 = result.get_Data().GetEnumerator();
-            while ($it1.MoveNext()){
-                var model = $it1.get_Current();
+            var $it2 = result.get_Data().GetEnumerator();
+            while ($it2.MoveNext()){
+                var model = $it2.get_Current();
                 isEmpty = false;
                 this.get_DataContext().Push(model, null);
                 itemTemplates.Add(this.InitTemplate(this.get_ItemTemplate()));
@@ -1315,6 +1350,7 @@ var Neptuo$TemplateEngine$Web$InitScript = {
             var viewPath = Neptuo.TemplateEngine.Web.InitScript.MapView(newUrl);
             if (viewPath == null){
                 alert("No view for: " + newUrl);
+                window.location.href = newUrl;
                 return;
             }
             var container = Neptuo.TemplateEngine.Web.InitScript.dependencyContainer.CreateChildContainer();
@@ -1322,7 +1358,7 @@ var Neptuo$TemplateEngine$Web$InitScript = {
                 initContainer(container);
             var partialsToUpdate = new System.Collections.Generic.List$1.ctor(System.String.ctor);
             if (!System.String.IsNullOrEmpty(toUpdate)){
-                for (var $i3 = 0,$t3 = toUpdate.Split$$Char$Array(","),$l3 = $t3.length,partialToUpdate = $t3[$i3]; $i3 < $l3; $i3++, partialToUpdate = $t3[$i3])
+                for (var $i4 = 0,$t4 = toUpdate.Split$$Char$Array(","),$l4 = $t4.length,partialToUpdate = $t4[$i4]; $i4 < $l4; $i4++, partialToUpdate = $t4[$i4])
                     partialsToUpdate.Add(partialToUpdate);
             }
             else {
@@ -1433,7 +1469,7 @@ var Neptuo$TemplateEngine$Web$ParameterProviderFactory = {
             if (queryString.StartsWith$$String("?"))
                 queryString = queryString.substr(1);
             var keyValues = queryString.Split$$Char$Array("&");
-            for (var $i4 = 0,$l4 = keyValues.length,keyValue = keyValues[$i4]; $i4 < $l4; $i4++, keyValue = keyValues[$i4]){
+            for (var $i5 = 0,$l5 = keyValues.length,keyValue = keyValues[$i5]; $i5 < $l5; $i5++, keyValue = keyValues[$i5]){
                 var param = keyValue.Split$$Char$Array("=");
                 if (param.length == 2)
                     parameters.set_Item$$TKey(param[0], param[1]);

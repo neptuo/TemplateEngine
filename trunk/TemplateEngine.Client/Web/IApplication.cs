@@ -35,5 +35,14 @@ namespace Neptuo.TemplateEngine.Web
         /// Root dependecy container.
         /// </summary>
         IDependencyContainer DependencyContainer { get; }
+
+
+        /// <summary>
+        /// Tries to find client controller.
+        /// TODO: Very temp version!!
+        /// </summary>
+        /// <param name="parameters">Form parameters.</param>
+        /// <returns>Whether controller was executed.</returns>
+        bool TryInvokeControllers(Dictionary<string, string> parameters);
     }
 }
