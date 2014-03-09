@@ -29,6 +29,7 @@ namespace Neptuo.TemplateEngine.Web
         private static IDependencyContainer dependencyContainer;
         private static IViewActivator viewActivator;
         private static IHistoryState historyState;
+        private static IMainView mainView;
 
         private static IDependencyContainer CreateDependencyContainer()
         {
@@ -39,7 +40,9 @@ namespace Neptuo.TemplateEngine.Web
             DefaultFormUriService formService = new DefaultFormUriService();
             FormUriServiceRegistration.SetInstance(formService);
 
+            viewActivator = new StaticViewActivator(container);
             historyState = new HistoryState();
+            mainView = new MainView(viewActivator);
 
             container
                 .RegisterType<IStackStorage<IViewStorage>, StackStorage<IViewStorage>>()
@@ -53,7 +56,7 @@ namespace Neptuo.TemplateEngine.Web
                 .RegisterInstance(new TemplateContentStorageStack())
                 .RegisterInstance(new DataContextStorage())
                 .RegisterInstance<IGuidProvider>(new SequenceGuidProvider("guid", 1))
-                .RegisterType<IViewActivator, StaticViewActivator>(new SingletonLifetime())
+                .RegisterInstance<IViewActivator>(viewActivator)
                 
                 .RegisterInstance(new GlobalNavigationCollection())
 
@@ -63,7 +66,8 @@ namespace Neptuo.TemplateEngine.Web
                 .RegisterInstance<IControllerRegistry>(new ControllerRegistryBase())
                 .RegisterInstance<IPermissionProvider>(new OptimisticPermissionProvider())
                 
-                .RegisterInstance<IHistoryState>(historyState);
+                .RegisterInstance<IHistoryState>(historyState)
+                .RegisterInstance<IMainView>(mainView);
 
             return container;
         }
@@ -80,29 +84,21 @@ namespace Neptuo.TemplateEngine.Web
         public static void Init()
         {
             dependencyContainer = CreateDependencyContainer();
-            viewActivator = dependencyContainer.Resolve<IViewActivator>();
 
             Converts.Repository
                 .Add(typeof(JsObject), typeof(PartialResponse), new PartialResponseConverter());
 
             RunBootstrapTasks(dependencyContainer);
 
-            new jQuery(() => {
-                jQuery body = new jQuery("body");
+            historyState.OnPop += historyState_OnPop;
 
-                body.@delegate("a", "click", OnLinkClick);
-                body.@delegate("button", "click", OnButtonClick);
-                body.@delegate("form", "submit", OnFormSubmit);
-            });
-
-            HtmlContext.window.addEventListener("popstate", OnPopState);
+            mainView.OnLinkClick += mainView_OnLinkClick;
+            mainView.OnGetFormSubmit += mainView_OnGetFormSubmit;
+            mainView.OnPostFormSubmit += mainView_OnPostFormSubmit;
         }
 
-        private static void OnPopState(DOMEvent e)
+        private static void historyState_OnPop(HistoryItem historyItem)
         {
-            PopStateEvent state = e.As<PopStateEvent>();
-            HistoryItem historyItem = state.state.As<HistoryItem>();
-
             if (historyItem != null)
             {
                 if (historyItem.FormData != null)
@@ -123,8 +119,6 @@ namespace Neptuo.TemplateEngine.Web
         {
             jQuery target = new jQuery("div[data-partial=" + partialGuid + "]");
             target.replaceWith(content.ToString());
-
-            target.find("a").click(OnLinkClick);
         }
 
         //TODO: Router...
@@ -148,20 +142,37 @@ namespace Neptuo.TemplateEngine.Web
             return null;
         }
 
-        public static void OnLinkClick(Event e)
+        private static void mainView_OnLinkClick(string newUrl, string[] toUpdate)
         {
-            jQuery link = new jQuery(e.currentTarget);
-            e.preventDefault();
-            
-            RenderViewFromLink(link);
+            NavigateToUrl(newUrl, String.Join(",", toUpdate.As<IEnumerable<string>>()), "");
         }
 
-        private static void RenderViewFromLink(jQuery link)
+        private static void mainView_OnGetFormSubmit(string newUrl, string[] toUpdate)
         {
-            string newUrl = link.attr("href");
-            string toUpdate = link.data("toupdate").As<string>();
-            string title = link.html();
-            NavigateToUrl(newUrl, toUpdate, title);
+            NavigateToUrl(newUrl, String.Join(",", toUpdate.As<IEnumerable<string>>()), "");
+        }
+
+        private static void mainView_OnPostFormSubmit(FormRequestContext context)
+        {
+            FormRequestContext = context;
+            historyState.Replace(new HistoryItem(context.FormUrl, context.ToUpdate, context));
+
+            if (!InvokeControllers(context.Parameters))
+            {
+                HtmlContext.alert("Event: " + context.EventName);
+                HtmlContext.console.log(context.Parameters);
+
+                JsObject headers = new JsObject();
+                headers["X-EngineRequestType"] = "Partial";
+                jQuery.ajax(new AjaxSettings
+                {
+                    url = context.FormUrl,
+                    type = "POST",
+                    data = context.Parameters,
+                    headers = headers,
+                    success = OnFormSubmitSuccess
+                });
+            }
         }
 
         private static void NavigateToUrl(string newUrl, string toUpdate, string title, Action<IDependencyContainer> initContainer = null)
@@ -183,6 +194,8 @@ namespace Neptuo.TemplateEngine.Web
             }
 
             IDependencyContainer container = dependencyContainer.CreateChildContainer();
+            if (initContainer != null)
+                initContainer(container);
 
             List<string> partialsToUpdate = new List<string>();
             if (!String.IsNullOrEmpty(toUpdate))
@@ -195,90 +208,7 @@ namespace Neptuo.TemplateEngine.Web
                 partialsToUpdate.Add("Body");
             }
 
-            ClientExtendedComponentManager componentManager = new ClientExtendedComponentManager(partialsToUpdate);
-            container
-                .RegisterInstance<IComponentManager>(componentManager)
-                .RegisterInstance<IPartialUpdateWriter>(componentManager)
-                .RegisterInstance<NavigationCollection>(new NavigationCollection());
-
-            if (initContainer != null)
-                initContainer(container);
-
-            StringWriter writer = new StringWriter();
-            var view = viewActivator.CreateView(viewPath);
-            view.Setup(new BaseViewPage(componentManager), componentManager, container);
-            view.CreateControls();
-            view.Init();
-            view.Render(new ExtendedHtmlTextWriter(writer));
-            view.Dispose();
-        }
-
-        private static string[] GetToUpdateFromElement(jQuery element)
-        {
-            string value = element.data("toupdate").As<string>();
-            if (String.IsNullOrEmpty(value))
-                return null;
-
-            return value.Split(',');
-        }
-
-        private static void OnFormSubmit(Event e)
-        {
-            jQuery form = new jQuery(e.currentTarget);
-
-            string buttonName = form.data("button").As<string>();
-            if (String.IsNullOrEmpty(buttonName))
-                buttonName = form.find("button:first").attr("name");
-
-            string formUrl = form.attr("action") ?? HtmlContext.location.href;
-            string[] toUpdate = GetToUpdateFromElement(form) ?? new string[] { "Body" };
-
-            if (form.@is("[method]") && form.attr("method").toLocaleLowerCase() == "post")
-            {
-                JsArray formData = form.serializeArray();
-                if (!String.IsNullOrEmpty(buttonName))
-                {
-                    JsObject submitButton = new JsObject();
-                    submitButton["name"] = buttonName;
-                    submitButton["value"] = null;
-                    formData.push(submitButton);
-                }
-
-                FormRequestContext context = new FormRequestContext(toUpdate, formData, buttonName, formUrl);
-                FormRequestContext = context;
-
-                historyState.Replace(new HistoryItem(formUrl, toUpdate, context));
-
-                if (!InvokeControllers(formData))
-                {
-                    HtmlContext.alert("Event: " + buttonName);
-                    HtmlContext.console.log(formData);
-
-                    JsObject headers = new JsObject();
-                    headers["X-EngineRequestType"] = "Partial";
-                    jQuery.ajax(new AjaxSettings
-                    {
-                        url = form.attr("action"),
-                        type = form.attr("method"),
-                        data = formData,
-                        headers = headers,
-                        success = OnFormSubmitSuccess
-                    });
-                }
-            }
-            else
-            {
-                // For "get" forms, serialize to url and redirect
-                string formData = form.serialize();
-                int queryIndex = formUrl.IndexOf("?");
-                if (queryIndex > 0)
-                    formUrl = formUrl.Substring(0, queryIndex);
-
-                formUrl += "?" + formData;
-                NavigateToUrl(formUrl, String.Join(",", toUpdate.As<IEnumerable<string>>()), "Get form submitted");
-            }
-
-            e.preventDefault();
+            mainView.RenderView(viewPath, partialsToUpdate.ToArray(), container);
         }
 
         private static void OnFormSubmitSuccess(object response, JsString status, jqXHR sender)
@@ -304,13 +234,6 @@ namespace Neptuo.TemplateEngine.Web
             {
                 HtmlContext.alert(status);
             }
-        }
-
-        private static void OnButtonClick(Event e)
-        {
-            jQuery button = new jQuery(e.currentTarget);
-            string buttonName = button.attr("name");
-            button.parents("form").first().data("button", buttonName);
         }
 
         private static bool InvokeControllers(JsArray data)

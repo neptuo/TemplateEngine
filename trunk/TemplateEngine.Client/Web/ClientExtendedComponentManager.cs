@@ -12,9 +12,9 @@ namespace Neptuo.TemplateEngine.Web
 {
     public class ClientExtendedComponentManager : ExtendedComponentManager
     {
-        private List<string> partialsToUpdate;
+        private string[] partialsToUpdate;
 
-        public ClientExtendedComponentManager(List<string> partialsToUpdate)
+        public ClientExtendedComponentManager(string[] partialsToUpdate)
         {
             Guard.NotNull(partialsToUpdate, "partialsToUpdate");
             this.partialsToUpdate = partialsToUpdate;
