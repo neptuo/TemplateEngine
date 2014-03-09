@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Neptuo.Templates;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -42,5 +43,12 @@ namespace Neptuo.TemplateEngine.Web
         /// <param name="partialGuid">Guid of element to update.</param>
         /// <param name="content">New content for element with <paramref name="partialGuid"/>.</param>
         void UpdateView(string partialGuid, TextWriter content);
+
+        /// <summary>
+        /// Writes placeholder for future partial update.
+        /// </summary>
+        /// <param name="writer">Html writer.</param>
+        /// <param name="partialGuid">Guid for the element.</param>
+        void WritePlaceholder(IHtmlWriter writer, string partialGuid);
     }
 }

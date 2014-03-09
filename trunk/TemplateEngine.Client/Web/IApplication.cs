@@ -27,6 +27,11 @@ namespace Neptuo.TemplateEngine.Web
         IHistoryState HistoryState { get; }
 
         /// <summary>
+        /// Provides access to whole user interface.
+        /// </summary>
+        IMainView MainView { get; }
+
+        /// <summary>
         /// Root dependecy container.
         /// </summary>
         IDependencyContainer DependencyContainer { get; }
