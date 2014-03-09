@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Web
 {
-    public class MainView : IMainView, IPartialWriter
+    public class MainView : IMainView
     {
         protected IViewActivator ViewActivator { get; private set; }
 

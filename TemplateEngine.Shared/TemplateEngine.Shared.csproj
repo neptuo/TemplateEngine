@@ -53,6 +53,7 @@
   <ItemGroup>
     <Compile Include="IStackStorage.cs" />
     <Compile Include="Web\Controls\BundleControlBase.cs" />
+    <Compile Include="Web\DictionaryParameterProvider.cs" />
     <Compile Include="Web\HtmlWriterExtensions.cs" />
     <Compile Include="Web\Navigation\QueryStringNavigateTo.cs" />
     <Compile Include="Web\PartialResponse.cs" />

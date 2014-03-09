@@ -26,6 +26,7 @@ namespace Neptuo.TemplateEngine.Web
         public string ApplicationPath { get; private set; }
         public string[] DefaultToUpdate { get; private set; }
         public IHistoryState HistoryState { get; private set; }
+        public IMainView MainView { get; private set; }
         public IDependencyContainer DependencyContainer { get; private set; }
 
         public static void Start(string applicationPath, string[] defaultToUpdate)
@@ -52,7 +53,11 @@ namespace Neptuo.TemplateEngine.Web
 
             HistoryState.OnPop += OnHistoryStatePop;
 
+            //TODO: Move
+            Converts.Repository
+                .Add(typeof(JsObject), typeof(PartialResponse), new PartialResponseConverter());
 
+            //TODO: Main view events
 
             // At last...
             RunBootstrapTasks(DependencyContainer);
@@ -67,7 +72,10 @@ namespace Neptuo.TemplateEngine.Web
             DefaultFormUriService formService = new DefaultFormUriService();
             FormUriServiceRegistration.SetInstance(formService);
 
+            IViewActivator viewActivator = new StaticViewActivator(container);
+
             HistoryState = new HistoryState();
+            MainView = new MainView(viewActivator);
 
             container
                 .RegisterType<IStackStorage<IViewStorage>, StackStorage<IViewStorage>>()
@@ -81,7 +89,7 @@ namespace Neptuo.TemplateEngine.Web
                 .RegisterInstance(new TemplateContentStorageStack())
                 .RegisterInstance(new DataContextStorage())
                 .RegisterInstance<IGuidProvider>(new SequenceGuidProvider("guid", 1))
-                .RegisterType<IViewActivator, StaticViewActivator>(new SingletonLifetime())
+                .RegisterInstance<IViewActivator>(viewActivator)
 
                 .RegisterInstance(new GlobalNavigationCollection())
 
@@ -107,7 +115,7 @@ namespace Neptuo.TemplateEngine.Web
 
         private void OnHistoryStatePop(HistoryItem historyItem)
         {
-            throw new NotImplementedException();
+            //TODO: Invoke router
         }
 
     }

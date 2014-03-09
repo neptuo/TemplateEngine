@@ -12,7 +12,6 @@ namespace Neptuo.TemplateEngine.Web
     public class PartialUpdateHelper : IControl
     {
         private IGuidProvider guidProvider;
-        private IPartialWriter partialWriter;
         private IMainView mainView;
         private string partialElementGuid;
 
@@ -21,13 +20,11 @@ namespace Neptuo.TemplateEngine.Web
 
         public event RenderEventHandler RenderContent;
 
-        public PartialUpdateHelper(IGuidProvider guidProvider, IPartialWriter partialWriter, IMainView mainView)
+        public PartialUpdateHelper(IGuidProvider guidProvider, IMainView mainView)
         {
             Guard.NotNull(guidProvider, "guidProvider");
-            Guard.NotNull(partialWriter, "partialWriter");
             Guard.NotNull(mainView, "mainView");
             this.guidProvider = guidProvider;
-            this.partialWriter = partialWriter;
             this.mainView = mainView;
         }
 
@@ -42,7 +39,7 @@ namespace Neptuo.TemplateEngine.Web
             if (!isDataLoaded)
             {
                 isRenderCalled = true;
-                partialWriter.WritePlaceholder(writer, partialElementGuid);
+                mainView.WritePlaceholder(writer, partialElementGuid);
                 return;
             }
             else

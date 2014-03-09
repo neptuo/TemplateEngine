@@ -29,7 +29,7 @@ namespace Neptuo.TemplateEngine.Web
         private static IDependencyContainer dependencyContainer;
         private static IViewActivator viewActivator;
         private static IHistoryState historyState;
-        private static MainView mainView;
+        private static IMainView mainView;
 
         private static IDependencyContainer CreateDependencyContainer()
         {
@@ -57,7 +57,7 @@ namespace Neptuo.TemplateEngine.Web
                 .RegisterInstance(new DataContextStorage())
                 .RegisterInstance<IGuidProvider>(new SequenceGuidProvider("guid", 1))
                 .RegisterInstance<IViewActivator>(viewActivator)
-                
+
                 .RegisterInstance(new GlobalNavigationCollection())
 
                 .RegisterInstance<IFormUriService>(formService)
@@ -65,10 +65,9 @@ namespace Neptuo.TemplateEngine.Web
 
                 .RegisterInstance<IControllerRegistry>(new ControllerRegistryBase())
                 .RegisterInstance<IPermissionProvider>(new OptimisticPermissionProvider())
-                
+
                 .RegisterInstance<IHistoryState>(historyState)
-                .RegisterInstance<IMainView>(mainView)
-                .RegisterInstance<IPartialWriter>(mainView);
+                .RegisterInstance<IMainView>(mainView);
 
             return container;
         }
@@ -234,7 +233,7 @@ namespace Neptuo.TemplateEngine.Web
         private static bool InvokeControllers(JsArray data)
         {
             IDependencyContainer container = dependencyContainer.CreateChildContainer();
-            container.RegisterInstance<IParameterProvider>(new ParameterProvider(TransformParameters(data)));
+            container.RegisterInstance<IParameterProvider>(new DictionaryParameterProvider(TransformParameters(data)));
 
             IControllerRegistry controllerRegistry = container.Resolve<IControllerRegistry>();
             ViewDataCollection viewData = new ViewDataCollection();
@@ -300,7 +299,7 @@ namespace Neptuo.TemplateEngine.Web
                 default:
                     break;
             }
-            return new ParameterProvider(parameters);
+            return new DictionaryParameterProvider(parameters);
         }
 
         public static void ParseQueryString(Dictionary<string, string> parameters)
@@ -337,35 +336,7 @@ namespace Neptuo.TemplateEngine.Web
         }
     }
 
-    public class ParameterProvider : IParameterProvider
-    {
-        protected Dictionary<string, string> Parameters { get; private set; }
-
-        public ParameterProvider(Dictionary<string, string> parameters)
-        {
-            Parameters = parameters;
-        }
-
-        public IEnumerable<string> Keys
-        {
-            get { return Parameters.Keys; }
-        }
-
-        public bool TryGet(string key, out object value)
-        {
-            string targetValue;
-            if (Parameters.TryGetValue(key, out targetValue))
-            {
-                value = targetValue;
-                return true;
-            }
-
-            value = null;
-            return false;
-        }
-    }
-
-    public class AllParameterProvider : ParameterProvider
+    public class AllParameterProvider : DictionaryParameterProvider
     {
         public AllParameterProvider()
             : base(new Dictionary<string,string>())
