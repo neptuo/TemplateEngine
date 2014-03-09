@@ -28,6 +28,7 @@ namespace Neptuo.TemplateEngine.Web
         public static FormRequestContext FormRequestContext;
         private static IDependencyContainer dependencyContainer;
         private static IViewActivator viewActivator;
+        private static IHistoryState historyState;
 
         private static IDependencyContainer CreateDependencyContainer()
         {
@@ -37,6 +38,8 @@ namespace Neptuo.TemplateEngine.Web
 
             DefaultFormUriService formService = new DefaultFormUriService();
             FormUriServiceRegistration.SetInstance(formService);
+
+            historyState = new HistoryState();
 
             container
                 .RegisterType<IStackStorage<IViewStorage>, StackStorage<IViewStorage>>()
@@ -58,7 +61,9 @@ namespace Neptuo.TemplateEngine.Web
                 .RegisterInstance<IFormUriRegistry>(formService)
 
                 .RegisterInstance<IControllerRegistry>(new ControllerRegistryBase())
-                .RegisterInstance<IPermissionProvider>(new OptimisticPermissionProvider());
+                .RegisterInstance<IPermissionProvider>(new OptimisticPermissionProvider())
+                
+                .RegisterInstance<IHistoryState>(historyState);
 
             return container;
         }
@@ -163,7 +168,7 @@ namespace Neptuo.TemplateEngine.Web
         {
             string viewPath = MapView(newUrl);
 
-            HtmlContext.history.pushState(new HistoryItem(newUrl, null), title, newUrl);
+            historyState.Push(new HistoryItem(newUrl, null));
             RenderUrl(newUrl, toUpdate, initContainer);
         }
 
@@ -242,7 +247,7 @@ namespace Neptuo.TemplateEngine.Web
                 FormRequestContext context = new FormRequestContext(toUpdate, formData, buttonName, formUrl);
                 FormRequestContext = context;
 
-                HtmlContext.history.replaceState(new HistoryItem(formUrl, toUpdate, context), "");
+                historyState.Replace(new HistoryItem(formUrl, toUpdate, context));
 
                 if (!InvokeControllers(formData))
                 {
