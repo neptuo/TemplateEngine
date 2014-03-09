@@ -52,6 +52,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IStackStorage.cs" />
+    <Compile Include="Web\Controls\BundleControlBase.cs" />
+    <Compile Include="Web\HtmlWriterExtensions.cs" />
     <Compile Include="Web\Navigation\QueryStringNavigateTo.cs" />
     <Compile Include="Web\PartialResponse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -75,7 +77,7 @@
     <Compile Include="Web\Controllers\IViewData.cs" />
     <Compile Include="Web\Controllers\MessageStorageExtensions.cs" />
     <Compile Include="Web\Controllers\ViewDataCollection.cs" />
-    <Compile Include="Web\Controls\Ajax\PartialView.cs" />
+    <Compile Include="Web\Controls\Ajax\PartialViewControl.cs" />
     <Compile Include="Web\Controls\ContentControlBase.cs" />
     <Compile Include="Web\Controls\ControlBase.cs" />
     <Compile Include="Web\Controls\CssClassCollection.cs" />

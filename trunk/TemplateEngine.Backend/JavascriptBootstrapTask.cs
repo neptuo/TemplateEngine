@@ -19,8 +19,16 @@ namespace Neptuo.TemplateEngine.Backend
 
         public void Initialize()
         {
-            bundles.Add(new ScriptBundle("~/dynamic")
+            bundles.Add(new ScriptBundle("~/js/admin")
+                .Include("~/Design/Scripts/jquery-{version}.js")
+                .Include("~/Design/Scripts/bootstrap.js")
                 .IncludeDirectory("~/Design/Scripts/Generated", "*.js", true)
+            );
+
+            bundles.Add(new StyleBundle("~/css/admin")
+                .Include("~/Design/Styles/bootstrap.css")
+                .Include("~/Design/Styles/bootstrap-theme.css")
+                .IncludeDirectory("~/Design/Styles/My", "*.css")
             );
         }
     }

@@ -10,16 +10,15 @@ using System.Web.Optimization;
 
 namespace Neptuo.TemplateEngine.Web.Controls
 {
-    public class BundleControl : IControl
+    public class BundleControl : BundleControlBase
     {
         private IVirtualUrlProvider urlProvider;
         private HttpContextBase httpContext;
         private BundleCollection bundles;
         private bool enableOptimizations;
 
-        public string Path { get; set; }
-
         public BundleControl(IVirtualUrlProvider urlProvider, HttpContextBase httpContext)
+            : base(urlProvider)
         {
             this.urlProvider = urlProvider;
             this.httpContext = httpContext;
@@ -27,35 +26,37 @@ namespace Neptuo.TemplateEngine.Web.Controls
             this.enableOptimizations = BundleTable.EnableOptimizations;
         }
 
-        public void OnInit()
+        protected IEnumerable<BundleFile> GetBundleContent()
         {
-            Guard.NotNull(Path, "Path");
+            Bundle bundle = bundles.GetBundleFor(Path);
+            if (bundle == null)
+                return Enumerable.Empty<BundleFile>();
+
+            return bundle.EnumerateFiles(new BundleContext(httpContext, bundles, Path));
         }
 
-        public void Render(IHtmlWriter writer)
+        protected override void RenderScript(IHtmlWriter writer)
         {
             if (enableOptimizations)
             {
-                writer
-                    .Tag("script")
-                    .Attribute("src", urlProvider.ResolveUrl(Path))
-                    .CloseFullTag();
+                base.RenderScript(writer);
+                return;
             }
-            else
-            {
-                Bundle bundle = bundles.GetBundleFor(Path);
-                if (bundle != null)
-                {
-                    foreach (BundleFile bundleFile in bundle.EnumerateFiles(new BundleContext(httpContext, bundles, Path)))
-                    {
-                        writer
-                            .Tag("script")
-                            .Attribute("src", urlProvider.ResolveUrl(bundleFile.IncludedVirtualPath))
-                            .CloseFullTag();
-                    }
-                }
 
+            foreach (BundleFile bundleFile in GetBundleContent())
+                writer.Script(urlProvider.ResolveUrl(bundleFile.IncludedVirtualPath));
+        }
+
+        protected override void RenderStyle(IHtmlWriter writer)
+        {
+            if (enableOptimizations)
+            {
+                base.RenderStyle(writer);
+                return;
             }
+
+            foreach (BundleFile bundleFile in GetBundleContent())
+                writer.Style(urlProvider.ResolveUrl(bundleFile.IncludedVirtualPath));
         }
     }
 }
