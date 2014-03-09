@@ -101,11 +101,11 @@ namespace Neptuo.TemplateEngine.Web
             if (historyItem != null)
             {
                 if (historyItem.FormData != null)
-                    FormRequestContext = new FormRequestContext(historyItem.FormData, historyItem.EventName, historyItem.Url);
+                    FormRequestContext = new FormRequestContext(historyItem.ToUpdate, historyItem.FormData, historyItem.EventName, historyItem.Url);
                 else
                     FormRequestContext = null;
 
-                RenderUrl(historyItem.Url, "Body");
+                RenderUrl(historyItem.Url, String.Join(",", historyItem.ToUpdate.As<IEnumerable<string>>()));
             }
             else
             {
@@ -122,6 +122,7 @@ namespace Neptuo.TemplateEngine.Web
             target.find("a").click(OnLinkClick);
         }
 
+        //TODO: Router...
         public static string MapView(string url)
         {
             if (url.Contains("/Home.aspx"))
@@ -161,12 +162,8 @@ namespace Neptuo.TemplateEngine.Web
         private static void NavigateToUrl(string newUrl, string toUpdate, string title, Action<IDependencyContainer> initContainer = null)
         {
             string viewPath = MapView(newUrl);
-            //object state = null;
-            //if (FormRequestContext != null)
-            //    state = FormRequestContext.Parameters;
 
             HtmlContext.history.pushState(new HistoryItem(newUrl, null), title, newUrl);
-            //HtmlContext.history.pushState(JSON.stringify(state), title, newUrl);
             RenderUrl(newUrl, toUpdate, initContainer);
         }
 
@@ -176,6 +173,7 @@ namespace Neptuo.TemplateEngine.Web
             if (viewPath == null)
             {
                 HtmlContext.alert("No view for: " + newUrl);
+                //TODO: Create classic redirect...
                 return;
             }
 
@@ -210,6 +208,15 @@ namespace Neptuo.TemplateEngine.Web
             view.Dispose();
         }
 
+        private static string[] GetToUpdateFromElement(jQuery element)
+        {
+            string value = element.data("toupdate").As<string>();
+            if (String.IsNullOrEmpty(value))
+                return null;
+
+            return value.Split(',');
+        }
+
         private static void OnFormSubmit(Event e)
         {
             jQuery form = new jQuery(e.currentTarget);
@@ -219,6 +226,7 @@ namespace Neptuo.TemplateEngine.Web
                 buttonName = form.find("button:first").attr("name");
 
             string formUrl = form.attr("action") ?? HtmlContext.location.href;
+            string[] toUpdate = GetToUpdateFromElement(form) ?? new string[] { "Body" };
 
             if (form.@is("[method]") && form.attr("method").toLocaleLowerCase() == "post")
             {
@@ -231,10 +239,10 @@ namespace Neptuo.TemplateEngine.Web
                     formData.push(submitButton);
                 }
 
-                FormRequestContext context = new FormRequestContext(formData, buttonName, formUrl);
+                FormRequestContext context = new FormRequestContext(toUpdate, formData, buttonName, formUrl);
                 FormRequestContext = context;
 
-                HtmlContext.history.replaceState(new HistoryItem(formUrl, context), "");
+                HtmlContext.history.replaceState(new HistoryItem(formUrl, toUpdate, context), "");
 
                 if (!InvokeControllers(formData))
                 {
@@ -262,7 +270,7 @@ namespace Neptuo.TemplateEngine.Web
                     formUrl = formUrl.Substring(0, queryIndex);
 
                 formUrl += "?" + formData;
-                NavigateToUrl(formUrl, "Body", "Get form submitted");
+                NavigateToUrl(formUrl, String.Join(",", toUpdate.As<IEnumerable<string>>()), "Get form submitted");
             }
 
             e.preventDefault();
@@ -270,11 +278,6 @@ namespace Neptuo.TemplateEngine.Web
 
         private static void OnFormSubmitSuccess(object response, JsString status, jqXHR sender)
         {
-            //if (response != null && response.As<JsObject>()["Navigation"] != null)
-            //    NavigateToUrl(response.As<JsObject>()["Navigation"].As<string>(), "Body", "Form submitted");
-            //else
-            //    HtmlContext.alert(status);
-
             PartialResponse partialResponse;
             if (Converts.Try<JsObject, PartialResponse>(response.As<JsObject>(), out partialResponse))
             {
@@ -283,8 +286,13 @@ namespace Neptuo.TemplateEngine.Web
                     navigationUrl = dependencyContainer.Resolve<IVirtualUrlProvider>().ResolveUrl(partialResponse.Navigation);
                 else
                     navigationUrl = HtmlContext.location.pathname;
-                
-                NavigateToUrl(navigationUrl, "Body", "Form submitted", container => container.RegisterInstance<MessageStorage>(partialResponse.Messages));
+
+                NavigateToUrl(
+                    navigationUrl, 
+                    String.Join(",", FormRequestContext.ToUpdate.As<IEnumerable<string>>()), 
+                    "Form submitted", 
+                    container => container.RegisterInstance<MessageStorage>(partialResponse.Messages)
+                );
                 FormRequestContext = null;
             }
             else
@@ -446,12 +454,14 @@ namespace Neptuo.TemplateEngine.Web
 
     public class FormRequestContext
     {
+        public string[] ToUpdate { get; private set; }
         public JsArray Parameters { get; private set; }
         public string EventName { get; private set; }
         public string FormUrl { get; private set; }
 
-        public FormRequestContext(JsArray parameters, string eventName, string formUrl)
+        public FormRequestContext(string[] toUpdate, JsArray parameters, string eventName, string formUrl)
         {
+            ToUpdate = toUpdate;
             Parameters = parameters;
             EventName = eventName;
             FormUrl = formUrl;
