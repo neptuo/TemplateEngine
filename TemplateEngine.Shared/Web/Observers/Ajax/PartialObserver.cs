@@ -8,29 +8,18 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Web.Observers
 {
-    public class AjaxPartialObserver : IObserver
+    public class PartialObserver : IObserver
     {
-        private IPartialUpdateWriter partialWriter;
-
-        public string Partial { get; set; }
-
-        public AjaxPartialObserver(IPartialUpdateWriter partialWriter)
-        {
-            Guard.NotNull(partialWriter, "partialWriter");
-
-            this.partialWriter = partialWriter;
-        }
+        public string Update { get; set; }
 
         public void OnInit(ObserverEventArgs e)
         { }
 
         public void Render(ObserverEventArgs e, IHtmlWriter writer)
         {
-            partialWriter.Update(Partial, e.Target);
-
             IExtendedHtmlWriter extendedWriter = writer as IExtendedHtmlWriter;
             if (extendedWriter != null)
-                extendedWriter.AttributeOnNextTag("data-update", Partial);
+                extendedWriter.AttributeOnNextTag("data-toupdate", Update);
         }
     }
 }

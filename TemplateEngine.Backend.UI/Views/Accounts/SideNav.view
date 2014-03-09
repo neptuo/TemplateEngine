@@ -1,11 +1,11 @@
 ﻿<li> <!--class="active"-->
-    <ui:Link form:Href="Accounts.User.List" data-toupdate="BodyContainer">
+    <ui:Link form:Href="Accounts.User.List" ajax:Update="BodyContainer">
         <span class="glyphicon glyphicon-user"></span>
         User accounts
     </ui:Link>
 </li>
 <li>
-    <ui:Link form:Href="Accounts.Role.List" data-toupdate="BodyContainer">
+    <ui:Link form:Href="Accounts.Role.List" ajax:Update="BodyContainer">
         <span class="glyphicon glyphicon-th-large"></span>
         User roles
     </ui:Link>

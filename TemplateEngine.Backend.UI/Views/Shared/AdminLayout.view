@@ -49,37 +49,37 @@
 
 </head>
 <body>
-    <ui:AjaxView Partial="Body">
+    <ajax:View Partial="Body">
         <div class="navbar navbar-fixed-top navbar-main">
             <div class="navbar-header">
-                <a form:href="Home" class="navbar-brand" data-toupdate="BodyContainer">
+                <a form:href="Home" class="navbar-brand" ajax:Update="BodyContainer">
                     <span class="glyphicon glyphicon-refresh"></span>
                     TemplateEngine
                 </a>
             </div>
             <ul class="nav navbar-nav">
                 <li>
-                    <a form:href="Home" data-toupdate="BodyContainer">
+                    <a form:href="Home" ajax:Update="BodyContainer">
                         <ui:Literal l:Text="Web" />
                     </a>
                 </li>
                 <li>
-                    <a form:href="Accounts.User.List" data-toupdate="BodyContainer">
+                    <a form:href="Accounts.User.List" ajax:Update="BodyContainer">
                         <ui:Literal l:Text="User accounts" />
                     </a>
                 </li>
             </ul>
         </div>
 
-        <ui:AjaxView Partial="BodyContainer" html:Class="body-container">
-            <div class="side-navbar" ui:IsPlaceholder="SideNav">
+        <ajax:View Partial="BodyContainer" html:Class="body-container">
+            <div class="side-navbar" ui:IsPlaceHolder="SideNav">
                 <ui:TemplatePlaceholder Name="SideNav" />
             </div>
             <div class="body">
                 <ui:MessagePanel Key="" />
                 <ui:TemplatePlaceholder Name="Body" />
             </div>
-        </ui:AjaxView>
+        </ajax:View>
 
         <footer class="navbar">
             <div class="right">
@@ -89,7 +89,7 @@
             </div>
             <div class="clear"></div>
         </footer>
-    </ui:AjaxView>
+    </ajax:View>
 
     <script src="../../Design/Scripts/jquery-1.9.1.js"></script>
     <script src="../../Design/Scripts/bootstrap.js"></script>

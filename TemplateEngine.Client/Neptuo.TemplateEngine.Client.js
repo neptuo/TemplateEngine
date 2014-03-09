@@ -226,17 +226,37 @@ var Neptuo$TemplateEngine$Web$Application = {
     fullname: "Neptuo.TemplateEngine.Web.Application",
     baseTypeName: "System.Object",
     staticDefinition: {
+        cctor: function (){
+            Neptuo.TemplateEngine.Web.Application._Instance = null;
+        },
+        Instance$$: "Neptuo.TemplateEngine.Web.IApplication",
+        get_Instance: function (){
+            return Neptuo.TemplateEngine.Web.Application._Instance;
+        },
+        set_Instance: function (value){
+            Neptuo.TemplateEngine.Web.Application._Instance = value;
+        },
         Start: function (){
+            if (Neptuo.TemplateEngine.Web.Application.get_Instance() != null)
+                throw $CreateException(new System.ApplicationException.ctor$$String("Application is already started."), new Error());
         }
     },
     assemblyName: "Neptuo.TemplateEngine.Client",
-    interfaceNames: ["Neptuo.TemplateEngine.Web.IApplication"],
+    interfaceNames: ["Neptuo.TemplateEngine.Web.IApplication", "Neptuo.Templates.IVirtualUrlProvider"],
     Kind: "Class",
     definition: {
         ctor: function (){
+            this._ApplicationPath = null;
             this._DefaultToUpdate = null;
             this._HistoryState = null;
             System.Object.ctor.call(this);
+        },
+        ApplicationPath$$: "System.String",
+        get_ApplicationPath: function (){
+            return this._ApplicationPath;
+        },
+        set_ApplicationPath: function (value){
+            this._ApplicationPath = value;
         },
         DefaultToUpdate$$: "System.String[]",
         get_DefaultToUpdate: function (){
@@ -251,6 +271,9 @@ var Neptuo$TemplateEngine$Web$Application = {
         },
         set_HistoryState: function (value){
             this._HistoryState = value;
+        },
+        ResolveUrl: function (path){
+            return path.Replace$$String$$String("~/", this.get_ApplicationPath());
         }
     },
     ctors: [{

@@ -9,6 +9,7 @@ using Neptuo.TemplateEngine.Web.Compilation.CodeObjects;
 using Neptuo.TemplateEngine.Web.Compilation.Parsers;
 using Neptuo.TemplateEngine.Web.Compilation.PreProcessing;
 using Neptuo.TemplateEngine.Web.Controls;
+using Neptuo.TemplateEngine.Web.Controls.Ajax;
 using Neptuo.TemplateEngine.Web.Observers;
 using Neptuo.Templates;
 using Neptuo.Templates.Compilation;
@@ -100,6 +101,7 @@ namespace Neptuo.TemplateEngine.Backend.Bootstrap
 
             registry.RegisterNamespace(new NamespaceDeclaration("ui", "Neptuo.TemplateEngine.Web.Controls, Neptuo.TemplateEngine.Web"));
             registry.RegisterNamespace(new NamespaceDeclaration("", "Neptuo.TemplateEngine.Web.Extensions, Neptuo.TemplateEngine.Web"));
+            registry.RegisterComponentBuilder("ajax", "View", new DefaultTypeComponentBuilderFactory(typeof(PartialView)));
 
             registry.RegisterComponentBuilder("ui", "AdminLayout", new UserTemplateComponentBuilderFactory("~/Views/Shared/AdminLayout.view"));
             registry.RegisterComponentBuilder("ui", "SubHeader", new UserTemplateComponentBuilderFactory("~/Views/Shared/SubHeader.view"));
@@ -112,7 +114,7 @@ namespace Neptuo.TemplateEngine.Backend.Bootstrap
             registry.RegisterObserverBuilder("ui", "IsPlaceholder", new DefaultTypeObserverBuilderFactory(typeof(IsPlaceholderObserver), ObserverBuilderScope.PerElement));
             registry.RegisterObserverBuilder("ui", "IsVisible", new DefaultTypeObserverBuilderFactory(typeof(VisibleObserver), ObserverBuilderScope.PerElement));
 
-            registry.RegisterObserverBuilder("ajax", "Partial", new DefaultTypeObserverBuilderFactory(typeof(AjaxPartialObserver), ObserverBuilderScope.PerElement));
+            registry.RegisterObserverBuilder("ajax", "Update", new DefaultTypeObserverBuilderFactory(typeof(PartialObserver), ObserverBuilderScope.PerElement));
 
             registry.RegisterPropertyBuilder(typeof(ITemplate), new DefaultPropertyBuilderFactory<TemplatePropertyBuilder>());
             registry.RegisterPropertyBuilder(typeof(CssClassCollection), new DefaultPropertyBuilderFactory<CssClassPropertyBuilder>());

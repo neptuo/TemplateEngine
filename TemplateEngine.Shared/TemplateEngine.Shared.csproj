@@ -75,7 +75,7 @@
     <Compile Include="Web\Controllers\IViewData.cs" />
     <Compile Include="Web\Controllers\MessageStorageExtensions.cs" />
     <Compile Include="Web\Controllers\ViewDataCollection.cs" />
-    <Compile Include="Web\Controls\Ajax\AjaxView.cs" />
+    <Compile Include="Web\Controls\Ajax\PartialView.cs" />
     <Compile Include="Web\Controls\BundleControl.cs" />
     <Compile Include="Web\Controls\ContentControlBase.cs" />
     <Compile Include="Web\Controls\ControlBase.cs" />
@@ -142,7 +142,7 @@
     <Compile Include="Web\Message.cs" />
     <Compile Include="Web\MessageStorage.cs" />
     <Compile Include="Web\NavigationCollection.cs" />
-    <Compile Include="Web\Observers\AjaxPartialObserver.cs" />
+    <Compile Include="Web\Observers\Ajax\PartialObserver.cs" />
     <Compile Include="Web\Observers\EventObserver.cs" />
     <Compile Include="Web\Observers\HtmlObserver.cs" />
     <Compile Include="Web\Observers\IsPlaceholderObserver.cs" />

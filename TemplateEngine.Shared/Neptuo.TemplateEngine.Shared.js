@@ -802,8 +802,8 @@ var Neptuo$TemplateEngine$Web$Controllers$ViewDataCollection = {
     IsAbstract: false
 };
 JsTypes.push(Neptuo$TemplateEngine$Web$Controllers$ViewDataCollection);
-var Neptuo$TemplateEngine$Web$Controls$AjaxView = {
-    fullname: "Neptuo.TemplateEngine.Web.Controls.AjaxView",
+var Neptuo$TemplateEngine$Web$Controls$Ajax$PartialView = {
+    fullname: "Neptuo.TemplateEngine.Web.Controls.Ajax.PartialView",
     baseTypeName: "Neptuo.TemplateEngine.Web.Controls.HtmlContentControlBase",
     assemblyName: "Neptuo.TemplateEngine.Shared",
     Kind: "Class",
@@ -842,7 +842,7 @@ var Neptuo$TemplateEngine$Web$Controls$AjaxView = {
     ],
     IsAbstract: false
 };
-JsTypes.push(Neptuo$TemplateEngine$Web$Controls$AjaxView);
+JsTypes.push(Neptuo$TemplateEngine$Web$Controls$Ajax$PartialView);
 var Neptuo$TemplateEngine$Web$Controls$BundleControl = {
     fullname: "Neptuo.TemplateEngine.Web.Controls.BundleControl",
     baseTypeName: "System.Object",
@@ -3469,44 +3469,40 @@ var Neptuo$TemplateEngine$Web$NavigationCollection = {
     IsAbstract: false
 };
 JsTypes.push(Neptuo$TemplateEngine$Web$NavigationCollection);
-var Neptuo$TemplateEngine$Web$Observers$AjaxPartialObserver = {
-    fullname: "Neptuo.TemplateEngine.Web.Observers.AjaxPartialObserver",
+var Neptuo$TemplateEngine$Web$Observers$PartialObserver = {
+    fullname: "Neptuo.TemplateEngine.Web.Observers.PartialObserver",
     baseTypeName: "System.Object",
     assemblyName: "Neptuo.TemplateEngine.Shared",
     interfaceNames: ["Neptuo.Templates.Observers.IObserver"],
     Kind: "Class",
     definition: {
-        ctor: function (partialWriter){
-            this.partialWriter = null;
-            this._Partial = null;
+        ctor: function (){
+            this._Update = null;
             System.Object.ctor.call(this);
-            Neptuo.Guard.NotNull$$Object$$String(partialWriter, "partialWriter");
-            this.partialWriter = partialWriter;
         },
-        Partial$$: "System.String",
-        get_Partial: function (){
-            return this._Partial;
+        Update$$: "System.String",
+        get_Update: function (){
+            return this._Update;
         },
-        set_Partial: function (value){
-            this._Partial = value;
+        set_Update: function (value){
+            this._Update = value;
         },
         OnInit: function (e){
         },
         Render: function (e, writer){
-            this.partialWriter.Update(this.get_Partial(), e.get_Target());
             var extendedWriter = As(writer, Neptuo.TemplateEngine.Web.IExtendedHtmlWriter.ctor);
             if (extendedWriter != null)
-                extendedWriter.AttributeOnNextTag("data-update", this.get_Partial());
+                extendedWriter.AttributeOnNextTag("data-toupdate", this.get_Update());
         }
     },
     ctors: [{
         name: "ctor",
-        parameters: ["Neptuo.TemplateEngine.Web.IPartialUpdateWriter"]
+        parameters: []
     }
     ],
     IsAbstract: false
 };
-JsTypes.push(Neptuo$TemplateEngine$Web$Observers$AjaxPartialObserver);
+JsTypes.push(Neptuo$TemplateEngine$Web$Observers$PartialObserver);
 var Neptuo$TemplateEngine$Web$Observers$EventObserver = {
     fullname: "Neptuo.TemplateEngine.Web.Observers.EventObserver",
     baseTypeName: "System.Object",
