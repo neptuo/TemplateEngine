@@ -25,5 +25,10 @@ namespace Neptuo.TemplateEngine.Web
         /// Provides access to application history state.
         /// </summary>
         IHistoryState HistoryState { get; }
+
+        /// <summary>
+        /// Root dependecy container.
+        /// </summary>
+        IDependencyContainer DependencyContainer { get; }
     }
 }
