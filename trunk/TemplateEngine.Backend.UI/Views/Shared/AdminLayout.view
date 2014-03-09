@@ -15,7 +15,6 @@
     <script src="/views.ashx"></script>
   
     <ui:TemplatePlaceholder Name="Head" />
-
 </head>
 <body>
     <ajax:View Partial="Body">
