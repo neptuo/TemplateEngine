@@ -9,6 +9,14 @@ namespace Neptuo.TemplateEngine.Web
     public interface IApplication
     {
         /// <summary>
+        /// Gets current root app path.
+        /// </summary>
+        /// <example>
+        /// /App/ThisApp
+        /// </example>
+        string ApplicationPath { get; }
+
+        /// <summary>
         /// Name of default region to update.
         /// </summary>
         string[] DefaultToUpdate { get; }
