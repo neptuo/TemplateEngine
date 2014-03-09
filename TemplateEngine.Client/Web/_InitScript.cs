@@ -184,6 +184,7 @@ namespace Neptuo.TemplateEngine.Web
             {
                 HtmlContext.alert("No view for: " + newUrl);
                 //TODO: Create classic redirect...
+                HtmlContext.window.location.href = newUrl;
                 return;
             }
 

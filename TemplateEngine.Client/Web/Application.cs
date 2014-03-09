@@ -9,6 +9,7 @@ using Neptuo.TemplateEngine.Navigation.Bootstrap;
 using Neptuo.TemplateEngine.Permissions;
 using Neptuo.TemplateEngine.PresentationModels;
 using Neptuo.TemplateEngine.Web.Controllers;
+using Neptuo.TemplateEngine.Web.Controllers.Binders;
 using Neptuo.Templates;
 using SharpKit.JavaScript;
 using System;
@@ -29,18 +30,7 @@ namespace Neptuo.TemplateEngine.Web
         public IMainView MainView { get; private set; }
         public IDependencyContainer DependencyContainer { get; private set; }
 
-        public static void Start(string applicationPath, string[] defaultToUpdate)
-        {
-            if (Instance != null)
-                throw new ApplicationException("Application is already started."); //TODO: Ehm, be quiet?
-
-            Instance = new Application(applicationPath, defaultToUpdate);
-        }
-
-        public string ResolveUrl(string path)
-        {
-            return path.Replace("~/", ApplicationPath);
-        }
+        #region Initialization
 
         private Application(string applicationPath, string[] defaultToUpdate)
         {
@@ -58,9 +48,20 @@ namespace Neptuo.TemplateEngine.Web
                 .Add(typeof(JsObject), typeof(PartialResponse), new PartialResponseConverter());
 
             //TODO: Main view events
+            MainView.OnLinkClick += OnNavigation;
+            MainView.OnGetFormSubmit += OnNavigation;
+            MainView.OnPostFormSubmit += OnFormSubmit;
 
             // At last...
             RunBootstrapTasks(DependencyContainer);
+        }
+
+        public static void Start(string applicationPath, string[] defaultToUpdate)
+        {
+            if (Instance != null)
+                throw new ApplicationException("Application is already started."); //TODO: Ehm, be quiet?
+
+            Instance = new Application(applicationPath, defaultToUpdate);
         }
 
         private IDependencyContainer CreateDependencyContainer()
@@ -113,10 +114,58 @@ namespace Neptuo.TemplateEngine.Web
             bootstrapper.Initialize();
         }
 
+        #endregion
+
         private void OnHistoryStatePop(HistoryItem historyItem)
         {
             //TODO: Invoke router
         }
+
+        private void OnNavigation(string url, string[] toUpdate)
+        {
+            MainView.RenderView(url, toUpdate, DependencyContainer.CreateChildContainer());
+        }
+
+        private void OnFormSubmit(FormRequestContext context)
+        {
+            //TODO: Process POST
+        }
+        
+        public bool TryInvokeControllers(Dictionary<string, string> parameters)
+        {
+            IDependencyContainer container = DependencyContainer.CreateChildContainer();
+            container.RegisterInstance<IParameterProvider>(new DictionaryParameterProvider(parameters));
+
+            IControllerRegistry controllerRegistry = container.Resolve<IControllerRegistry>();
+            ViewDataCollection viewData = new ViewDataCollection();
+            IModelBinder modelBinder = container.Resolve<IModelBinder>();
+            NavigationCollection localNavigations = new NavigationCollection();
+            bool isControllerExecuted = false;
+
+            foreach (KeyValuePair<string, string> parameter in parameters)
+            {
+                string key = parameter.Key;
+                IController controller;
+                if (controllerRegistry.TryGet(key, out controller))
+                {
+                    controller.Execute(new ControllerContext(key, viewData, modelBinder, localNavigations));
+                    isControllerExecuted = true;
+                }
+            }
+
+            //TODO: Process navigations
+
+            return isControllerExecuted;
+        }
+
+        #region Url provider
+
+        public string ResolveUrl(string path)
+        {
+            return path.Replace("~/", ApplicationPath);
+        }
+
+        #endregion
 
     }
 }
