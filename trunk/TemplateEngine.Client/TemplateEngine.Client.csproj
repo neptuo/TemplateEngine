@@ -91,7 +91,9 @@
     <Compile Include="Web\DataSources\IListResult.cs" />
     <Compile Include="Web\DataSources\ListResult.cs" />
     <Compile Include="Web\HistoryItem.cs" />
+    <Compile Include="Web\HistoryState.cs" />
     <Compile Include="Web\IApplication.cs" />
+    <Compile Include="Web\IHistoryState.cs" />
     <Compile Include="Web\PartialResponseConverter.cs" />
     <Compile Include="Web\PartialUpdateHelper.cs" />
     <Compile Include="Web\StaticViewActivator.cs" />

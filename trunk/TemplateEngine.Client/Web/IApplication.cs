@@ -12,5 +12,10 @@ namespace Neptuo.TemplateEngine.Web
         /// Name of default region to update.
         /// </summary>
         string[] DefaultToUpdate { get; }
+
+        /// <summary>
+        /// Provides access to application history state.
+        /// </summary>
+        IHistoryState HistoryState { get; }
     }
 }
