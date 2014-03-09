@@ -224,6 +224,37 @@ var Neptuo$TemplateEngine$Navigation$ClientNavigator = {
     IsAbstract: false
 };
 JsTypes.push(Neptuo$TemplateEngine$Navigation$ClientNavigator);
+var Neptuo$TemplateEngine$Web$Application = {
+    fullname: "Neptuo.TemplateEngine.Web.Application",
+    baseTypeName: "System.Object",
+    staticDefinition: {
+        Start: function (){
+        }
+    },
+    assemblyName: "Neptuo.TemplateEngine.Client",
+    interfaceNames: ["Neptuo.TemplateEngine.Web.IApplication"],
+    Kind: "Class",
+    definition: {
+        ctor: function (){
+            this._DefaultToUpdate = null;
+            System.Object.ctor.call(this);
+        },
+        DefaultToUpdate$$: "System.String[]",
+        get_DefaultToUpdate: function (){
+            return this._DefaultToUpdate;
+        },
+        set_DefaultToUpdate: function (value){
+            this._DefaultToUpdate = value;
+        }
+    },
+    ctors: [{
+        name: "ctor",
+        parameters: []
+    }
+    ],
+    IsAbstract: false
+};
+JsTypes.push(Neptuo$TemplateEngine$Web$Application);
 var Neptuo$TemplateEngine$Web$ClientExtendedComponentManager = {
     fullname: "Neptuo.TemplateEngine.Web.ClientExtendedComponentManager",
     baseTypeName: "Neptuo.TemplateEngine.Web.ExtendedComponentManager",
@@ -608,38 +639,37 @@ var Neptuo$TemplateEngine$Web$HistoryItem = {
     assemblyName: "Neptuo.TemplateEngine.Client",
     Kind: "Class",
     definition: {
-        ctor$$String$$FormRequestContext: function (url, context){
+        ctor: function (url, toUpdate, context){
+            this.ToUpdate = null;
             this.Url = null;
             this.FormData = null;
             this.EventName = null;
             System.Object.ctor.call(this);
             this.Url = url;
+            this.ToUpdate = toUpdate;
             if (context != null){
                 this.FormData = context.Parameters;
                 this.EventName = context.EventName;
             }
-        },
-        ctor$$String$$Array$$String: function (url, formData, eventName){
-            this.Url = null;
-            this.FormData = null;
-            this.EventName = null;
-            System.Object.ctor.call(this);
-            this.Url = url;
-            this.FormData = formData;
-            this.EventName = eventName;
         }
     },
     ctors: [{
-        name: "ctor$$String$$FormRequestContext",
-        parameters: ["System.String", "Neptuo.TemplateEngine.Web.FormRequestContext"]
-    }, {
-        name: "ctor$$String$$JsArray$$String",
-        parameters: ["System.String", "SharpKit.JavaScript.JsArray", "System.String"]
+        name: "ctor",
+        parameters: ["System.String", "System.String[]", "Neptuo.TemplateEngine.Web.FormRequestContext"]
     }
     ],
     IsAbstract: false
 };
 JsTypes.push(Neptuo$TemplateEngine$Web$HistoryItem);
+var Neptuo$TemplateEngine$Web$IApplication = {
+    fullname: "Neptuo.TemplateEngine.Web.IApplication",
+    baseTypeName: "System.Object",
+    assemblyName: "Neptuo.TemplateEngine.Client",
+    Kind: "Interface",
+    ctors: [],
+    IsAbstract: true
+};
+JsTypes.push(Neptuo$TemplateEngine$Web$IApplication);
 var Neptuo$TemplateEngine$Web$PartialResponseConverter = {
     fullname: "Neptuo.TemplateEngine.Web.PartialResponseConverter",
     baseTypeName: "System.Object",
@@ -892,10 +922,10 @@ var Neptuo$TemplateEngine$Web$InitScript = {
             var historyItem = state.state;
             if (historyItem != null){
                 if (historyItem.FormData != null)
-                    Neptuo.TemplateEngine.Web.InitScript.FormRequestContext = new Neptuo.TemplateEngine.Web.FormRequestContext.ctor(historyItem.FormData, historyItem.EventName, historyItem.Url);
+                    Neptuo.TemplateEngine.Web.InitScript.FormRequestContext = new Neptuo.TemplateEngine.Web.FormRequestContext.ctor(historyItem.ToUpdate, historyItem.FormData, historyItem.EventName, historyItem.Url);
                 else
                     Neptuo.TemplateEngine.Web.InitScript.FormRequestContext = null;
-                Neptuo.TemplateEngine.Web.InitScript.RenderUrl(historyItem.Url, "Body", null);
+                Neptuo.TemplateEngine.Web.InitScript.RenderUrl(historyItem.Url, System.String.Join$$String$$IEnumerable$1$String(",", historyItem.ToUpdate), null);
             }
             else {
                 Neptuo.TemplateEngine.Web.InitScript.FormRequestContext = null;
@@ -933,7 +963,7 @@ var Neptuo$TemplateEngine$Web$InitScript = {
         },
         NavigateToUrl: function (newUrl, toUpdate, title, initContainer){
             var viewPath = Neptuo.TemplateEngine.Web.InitScript.MapView(newUrl);
-            history.pushState(new Neptuo.TemplateEngine.Web.HistoryItem.ctor$$String$$FormRequestContext(newUrl, null), title, newUrl);
+            history.pushState(new Neptuo.TemplateEngine.Web.HistoryItem.ctor(newUrl, null, null), title, newUrl);
             Neptuo.TemplateEngine.Web.InitScript.RenderUrl(newUrl, toUpdate, initContainer);
         },
         RenderUrl: function (newUrl, toUpdate, initContainer){
@@ -963,12 +993,19 @@ var Neptuo$TemplateEngine$Web$InitScript = {
             view.Render(new Neptuo.TemplateEngine.Web.ExtendedHtmlTextWriter.ctor(writer));
             view.Dispose();
         },
+        GetToUpdateFromElement: function (element){
+            var value = element.data("toupdate");
+            if (System.String.IsNullOrEmpty(value))
+                return null;
+            return value.Split$$Char$Array(",");
+        },
         OnFormSubmit: function (e){
             var form = $(e.currentTarget);
             var buttonName = form.data("button");
             if (System.String.IsNullOrEmpty(buttonName))
                 buttonName = form.find("button:first").attr("name");
             var formUrl = (form.attr("action") != null ? form.attr("action") : location.href);
+            var toUpdate = (Neptuo.TemplateEngine.Web.InitScript.GetToUpdateFromElement(form) != null ? Neptuo.TemplateEngine.Web.InitScript.GetToUpdateFromElement(form) : ["Body"]);
             if (form.is("[method]") && form.attr("method").toLocaleLowerCase() == "post"){
                 var formData = form.serializeArray();
                 if (!System.String.IsNullOrEmpty(buttonName)){
@@ -977,9 +1014,9 @@ var Neptuo$TemplateEngine$Web$InitScript = {
                     submitButton["value"] = null;
                     formData.push(submitButton);
                 }
-                var context = new Neptuo.TemplateEngine.Web.FormRequestContext.ctor(formData, buttonName, formUrl);
+                var context = new Neptuo.TemplateEngine.Web.FormRequestContext.ctor(toUpdate, formData, buttonName, formUrl);
                 Neptuo.TemplateEngine.Web.InitScript.FormRequestContext = context;
-                history.replaceState(new Neptuo.TemplateEngine.Web.HistoryItem.ctor$$String$$FormRequestContext(formUrl, context), "");
+                history.replaceState(new Neptuo.TemplateEngine.Web.HistoryItem.ctor(formUrl, ["Body"], context), "");
                 if (!Neptuo.TemplateEngine.Web.InitScript.InvokeControllers(formData)){
                     alert("Event: " + buttonName);
                     console.log(formData);
@@ -1238,11 +1275,13 @@ var Neptuo$TemplateEngine$Web$FormRequestContext = {
     assemblyName: "Neptuo.TemplateEngine.Client",
     Kind: "Class",
     definition: {
-        ctor: function (parameters, eventName, formUrl){
+        ctor: function (toUpdate, parameters, eventName, formUrl){
+            this.ToUpdate = null;
             this.Parameters = null;
             this.EventName = null;
             this.FormUrl = null;
             System.Object.ctor.call(this);
+            this.ToUpdate = toUpdate;
             this.Parameters = parameters;
             this.EventName = eventName;
             this.FormUrl = formUrl;
@@ -1250,7 +1289,7 @@ var Neptuo$TemplateEngine$Web$FormRequestContext = {
     },
     ctors: [{
         name: "ctor",
-        parameters: ["SharpKit.JavaScript.JsArray", "System.String", "System.String"]
+        parameters: ["System.String[]", "SharpKit.JavaScript.JsArray", "System.String", "System.String"]
     }
     ],
     IsAbstract: false

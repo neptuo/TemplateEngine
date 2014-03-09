@@ -81,6 +81,7 @@
     <Compile Include="Bootstrap\PresentationModelBootstrapTask.cs" />
     <Compile Include="Navigation\ClientNavigateTo.cs" />
     <Compile Include="Navigation\ClientNavigator.cs" />
+    <Compile Include="Web\Application.cs" />
     <Compile Include="Web\ClientExtendedComponentManager.cs" />
     <Compile Include="Web\Controls\DetailViewControl.cs" />
     <Compile Include="Web\Controls\ListViewControl.cs" />
@@ -90,6 +91,7 @@
     <Compile Include="Web\DataSources\IListResult.cs" />
     <Compile Include="Web\DataSources\ListResult.cs" />
     <Compile Include="Web\HistoryItem.cs" />
+    <Compile Include="Web\IApplication.cs" />
     <Compile Include="Web\PartialResponseConverter.cs" />
     <Compile Include="Web\PartialUpdateHelper.cs" />
     <Compile Include="Web\StaticViewActivator.cs" />
