@@ -324,6 +324,41 @@ var Neptuo$TemplateEngine$Web$ClientExtendedComponentManager = {
     IsAbstract: false
 };
 JsTypes.push(Neptuo$TemplateEngine$Web$ClientExtendedComponentManager);
+var Neptuo$TemplateEngine$Web$Controls$BundleControl = {
+    fullname: "Neptuo.TemplateEngine.Web.Controls.BundleControl",
+    baseTypeName: "System.Object",
+    assemblyName: "Neptuo.TemplateEngine.Client",
+    interfaceNames: ["Neptuo.Templates.Controls.IControl"],
+    Kind: "Class",
+    definition: {
+        ctor: function (urlProvider){
+            this.urlProvider = null;
+            this._Path = null;
+            System.Object.ctor.call(this);
+            this.urlProvider = urlProvider;
+        },
+        Path$$: "System.String",
+        get_Path: function (){
+            return this._Path;
+        },
+        set_Path: function (value){
+            this._Path = value;
+        },
+        OnInit: function (){
+            Neptuo.Guard.NotNull$$Object$$String(this.get_Path(), "Path");
+        },
+        Render: function (writer){
+            writer.Tag("script").Attribute("src", this.urlProvider.ResolveUrl(this.get_Path())).CloseFullTag();
+        }
+    },
+    ctors: [{
+        name: "ctor",
+        parameters: ["Neptuo.Templates.IVirtualUrlProvider"]
+    }
+    ],
+    IsAbstract: false
+};
+JsTypes.push(Neptuo$TemplateEngine$Web$Controls$BundleControl);
 var Neptuo$TemplateEngine$Web$Controls$DetailViewControl = {
     fullname: "Neptuo.TemplateEngine.Web.Controls.DetailViewControl",
     baseTypeName: "Neptuo.TemplateEngine.Web.Controls.TemplateControl",
