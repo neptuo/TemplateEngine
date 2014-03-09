@@ -15,8 +15,8 @@
 
     <script src="../../Design/Scripts/jquery-1.9.1.js"></script>
     <script src="../../Design/Scripts/bootstrap.js"></script>
-    <!--<ui:Bundle Path="~/dynamic" />-->
-    <script src="../../Design/Scripts/Generated/Neptuo.System.Client.js"></script>
+    <ui:Bundle Path="~/dynamic" />
+    <!--<script src="../../Design/Scripts/Generated/Neptuo.System.Client.js"></script>
 
     <script src="../../Design/Scripts/Generated/Neptuo.js"></script>
     <script src="../../Design/Scripts/Generated/Neptuo.ObjectBuilder.js"></script>
@@ -37,7 +37,7 @@
     <script src="../../Design/Scripts/Generated/TemplateEngine/Neptuo.TemplateEngine.Client.js"></script>
 
     <script src="../../Design/Scripts/Generated/TemplateEngine/Accounts/Neptuo.TemplateEngine.Accounts.Shared.js"></script>
-    <script src="../../Design/Scripts/Generated/TemplateEngine/Accounts/Neptuo.TemplateEngine.Accounts.Client.js"></script>
+    <script src="../../Design/Scripts/Generated/TemplateEngine/Accounts/Neptuo.TemplateEngine.Accounts.Client.js"></script>-->
   
     <script>
       JsRuntime.Start();

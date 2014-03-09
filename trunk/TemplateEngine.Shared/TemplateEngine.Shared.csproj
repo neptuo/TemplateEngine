@@ -76,7 +76,6 @@
     <Compile Include="Web\Controllers\MessageStorageExtensions.cs" />
     <Compile Include="Web\Controllers\ViewDataCollection.cs" />
     <Compile Include="Web\Controls\Ajax\PartialView.cs" />
-    <Compile Include="Web\Controls\BundleControl.cs" />
     <Compile Include="Web\Controls\ContentControlBase.cs" />
     <Compile Include="Web\Controls\ControlBase.cs" />
     <Compile Include="Web\Controls\CssClassCollection.cs" />
