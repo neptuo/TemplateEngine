@@ -30,6 +30,7 @@ namespace Neptuo.TemplateEngine.Web
         private static IViewActivator viewActivator;
         private static IHistoryState historyState;
         private static IMainView mainView;
+        private static IFormPostInvokerManager formPostInvokers;
 
         private static IDependencyContainer CreateDependencyContainer()
         {
@@ -43,6 +44,7 @@ namespace Neptuo.TemplateEngine.Web
             viewActivator = new StaticViewActivator(container);
             historyState = new HistoryState();
             mainView = new MainView(viewActivator);
+            formPostInvokers = new QueueFormPostInvokerManager();
 
             container
                 .RegisterType<IStackStorage<IViewStorage>, StackStorage<IViewStorage>>()
@@ -89,6 +91,8 @@ namespace Neptuo.TemplateEngine.Web
                 .Add(typeof(JsObject), typeof(PartialResponse), new PartialResponseConverter());
 
             RunBootstrapTasks(dependencyContainer);
+
+            Application.Start("/", new string[] { "Body" });
 
             historyState.OnPop += historyState_OnPop;
 
@@ -148,24 +152,12 @@ namespace Neptuo.TemplateEngine.Web
 
         private static void mainView_OnPostFormSubmit(FormRequestContext context)
         {
-            FormRequestContext = context;
-            historyState.Replace(new HistoryItem(context.FormUrl, context.ToUpdate, context));
+            //FormRequestContext = context;
+            //historyState.Replace(new HistoryItem(context.FormUrl, context.ToUpdate, context));
 
             if (!InvokeControllers(context.Parameters))
             {
-                HtmlContext.alert("Event: " + context.EventName);
-                HtmlContext.console.log(context.Parameters);
-
-                JsObject headers = new JsObject();
-                headers["X-EngineRequestType"] = "Partial";
-                jQuery.ajax(new AjaxSettings
-                {
-                    url = context.FormUrl,
-                    type = "POST",
-                    data = context.Parameters,
-                    headers = headers,
-                    success = OnFormSubmitSuccess
-                });
+                formPostInvokers.Invoke(new FormPostInvoker(null, dependencyContainer, context));
             }
         }
 
@@ -204,31 +196,6 @@ namespace Neptuo.TemplateEngine.Web
             }
 
             mainView.RenderView(viewPath, partialsToUpdate.ToArray(), container);
-        }
-
-        private static void OnFormSubmitSuccess(object response, JsString status, jqXHR sender)
-        {
-            PartialResponse partialResponse;
-            if (Converts.Try<JsObject, PartialResponse>(response.As<JsObject>(), out partialResponse))
-            {
-                string navigationUrl = null;
-                if (partialResponse.Navigation != null)
-                    navigationUrl = dependencyContainer.Resolve<IVirtualUrlProvider>().ResolveUrl(partialResponse.Navigation);
-                else
-                    navigationUrl = HtmlContext.location.pathname;
-
-                NavigateToUrl(
-                    navigationUrl, 
-                    String.Join(",", FormRequestContext.ToUpdate.As<IEnumerable<string>>()), 
-                    "Form submitted", 
-                    container => container.RegisterInstance<MessageStorage>(partialResponse.Messages)
-                );
-                FormRequestContext = null;
-            }
-            else
-            {
-                HtmlContext.alert(status);
-            }
         }
 
         private static bool InvokeControllers(JsArray data)

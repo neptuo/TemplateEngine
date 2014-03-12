@@ -194,16 +194,19 @@ var Neptuo$TemplateEngine$Navigation$ClientNavigateTo = {
     assemblyName: "Neptuo.TemplateEngine.Client",
     Kind: "Class",
     definition: {
-        ctor: function (urlProvider, formUri){
+        ctor: function (urlProvider, formUri, navigateToUrl){
+            this.navigateToUrl = null;
             Neptuo.TemplateEngine.Navigation.QueryStringNavigateTo.ctor.call(this, urlProvider, formUri);
+            Neptuo.Guard.NotNull$$Object$$String(navigateToUrl, "navigateToUrl");
+            this.navigateToUrl = navigateToUrl;
         },
         NavigateToUrl: function (url){
-            throw $CreateException(new System.NotImplementedException.ctor(), new Error());
+            this.navigateToUrl(url);
         }
     },
     ctors: [{
         name: "ctor",
-        parameters: ["Neptuo.Templates.IVirtualUrlProvider", "Neptuo.TemplateEngine.Navigation.FormUri"]
+        parameters: ["Neptuo.Templates.IVirtualUrlProvider", "Neptuo.TemplateEngine.Navigation.FormUri", "System.Action"]
     }
     ],
     IsAbstract: false
@@ -216,21 +219,25 @@ var Neptuo$TemplateEngine$Navigation$ClientNavigator = {
     interfaceNames: ["Neptuo.TemplateEngine.Navigation.INavigator"],
     Kind: "Class",
     definition: {
-        ctor: function (urlProvider){
+        ctor: function (urlProvider, navigateToUrl){
             this.urlProvider = null;
+            this.navigateToUrl = null;
             System.Object.ctor.call(this);
+            Neptuo.Guard.NotNull$$Object$$String(urlProvider, "urlProvider");
+            Neptuo.Guard.NotNull$$Object$$String(navigateToUrl, "navigateToUrl");
             this.urlProvider = urlProvider;
+            this.navigateToUrl = navigateToUrl;
         },
         Open: function (formUri){
             this.NavigateTo(formUri).Open();
         },
         NavigateTo: function (formUri){
-            return new Neptuo.TemplateEngine.Navigation.ClientNavigateTo.ctor(this.urlProvider, formUri);
+            return new Neptuo.TemplateEngine.Navigation.ClientNavigateTo.ctor(this.urlProvider, formUri, this.navigateToUrl);
         }
     },
     ctors: [{
         name: "ctor",
-        parameters: ["Neptuo.Templates.IVirtualUrlProvider"]
+        parameters: ["Neptuo.Templates.IVirtualUrlProvider", "System.Action"]
     }
     ],
     IsAbstract: false
@@ -266,17 +273,15 @@ var Neptuo$TemplateEngine$Web$Application = {
             this._HistoryState = null;
             this._MainView = null;
             this._DependencyContainer = null;
+            this._FormPostInvokers = null;
             System.Object.ctor.call(this);
             Neptuo.Guard.NotNull$$Object$$String(applicationPath, "applicationPath");
             Neptuo.Guard.NotNull$$Object$$String(defaultToUpdate, "defaultToUpdate");
             this.set_DependencyContainer(this.CreateDependencyContainer());
             this.set_ApplicationPath(applicationPath);
             this.set_DefaultToUpdate(defaultToUpdate);
-            this.get_HistoryState().add_OnPop($CreateDelegate(this, this.OnHistoryStatePop));
             Neptuo.Converts.get_Repository().Add(Typeof(Object), Typeof(Neptuo.TemplateEngine.Web.PartialResponse.ctor), new Neptuo.TemplateEngine.Web.PartialResponseConverter.ctor());
-            this.get_MainView().add_OnLinkClick($CreateDelegate(this, this.OnNavigation));
-            this.get_MainView().add_OnGetFormSubmit($CreateDelegate(this, this.OnNavigation));
-            this.get_MainView().add_OnPostFormSubmit($CreateDelegate(this, this.OnFormSubmit));
+            this.set_FormPostInvokers(new Neptuo.TemplateEngine.Web.QueueFormPostInvokerManager.ctor());
             this.RunBootstrapTasks(this.get_DependencyContainer());
         },
         ApplicationPath$$: "System.String",
@@ -313,6 +318,13 @@ var Neptuo$TemplateEngine$Web$Application = {
         },
         set_DependencyContainer: function (value){
             this._DependencyContainer = value;
+        },
+        FormPostInvokers$$: "Neptuo.TemplateEngine.Web.IFormPostInvokerManager",
+        get_FormPostInvokers: function (){
+            return this._FormPostInvokers;
+        },
+        set_FormPostInvokers: function (value){
+            this._FormPostInvokers = value;
         },
         CreateDependencyContainer: function (){
             var container = new Neptuo.ObjectBuilder.DependencyContainer.ctor();
@@ -368,6 +380,8 @@ var Neptuo$TemplateEngine$Web$Application = {
                 }
             }
             return isControllerExecuted;
+        },
+        NavigateToUrl: function (url, toUpdate){
         },
         ResolveUrl: function (path){
             return path.Replace$$String$$String("~/", this.get_ApplicationPath());
@@ -809,6 +823,100 @@ var Neptuo$TemplateEngine$Web$DataSources$ListResult = {
     IsAbstract: false
 };
 JsTypes.push(Neptuo$TemplateEngine$Web$DataSources$ListResult);
+var Neptuo$TemplateEngine$Web$FormPostInvoker = {
+    fullname: "Neptuo.TemplateEngine.Web.FormPostInvoker",
+    baseTypeName: "System.Object",
+    assemblyName: "Neptuo.TemplateEngine.Client",
+    interfaceNames: ["Neptuo.TemplateEngine.Web.IFormPostInvoker"],
+    Kind: "Class",
+    definition: {
+        ctor: function (application, dependencyContainer, context){
+            this.OnSuccess = null;
+            this._Application = null;
+            this._DependencyContainer = null;
+            this._Context = null;
+            System.Object.ctor.call(this);
+            Neptuo.Guard.NotNull$$Object$$String(application, "application");
+            Neptuo.Guard.NotNull$$Object$$String(dependencyContainer, "dependencyContainer");
+            Neptuo.Guard.NotNull$$Object$$String(context, "context");
+            this.set_Application(application);
+            this.set_DependencyContainer(dependencyContainer);
+            this.set_Context(context);
+        },
+        Application$$: "Neptuo.TemplateEngine.Web.IApplication",
+        get_Application: function (){
+            return this._Application;
+        },
+        set_Application: function (value){
+            this._Application = value;
+        },
+        DependencyContainer$$: "Neptuo.IDependencyContainer",
+        get_DependencyContainer: function (){
+            return this._DependencyContainer;
+        },
+        set_DependencyContainer: function (value){
+            this._DependencyContainer = value;
+        },
+        Context$$: "Neptuo.TemplateEngine.Web.FormRequestContext",
+        get_Context: function (){
+            return this._Context;
+        },
+        set_Context: function (value){
+            this._Context = value;
+        },
+        add_OnSuccess: function (value){
+            this.OnSuccess = $CombineDelegates(this.OnSuccess, value);
+        },
+        remove_OnSuccess: function (value){
+            this.OnSuccess = $RemoveDelegate(this.OnSuccess, value);
+        },
+        Invoke: function (){
+            this.get_Application().get_HistoryState().Replace(new Neptuo.TemplateEngine.Web.HistoryItem.ctor(this.get_Context().FormUrl, this.get_Context().ToUpdate, this.get_Context()));
+            var headers = new Object();
+            headers["X-EngineRequestType"] = "Partial";
+            $.ajax({
+                url: this.get_Context().FormUrl,
+                type: "POST",
+                data: this.get_Context().Parameters,
+                headers: headers,
+                success: $CreateDelegate(this, this.OnSubmitSuccess)
+            });
+        },
+        OnSubmitSuccess: function (response, status, sender){
+            var partialResponse;
+            if ((function (){
+                var $1 = {
+                    Value: partialResponse
+                };
+                var $res = Neptuo.Converts.Try$2$$TSource$$TTarget(Object, Neptuo.TemplateEngine.Web.PartialResponse.ctor, response, $1);
+                partialResponse = $1.Value;
+                return $res;
+            }).call(this)){
+                var navigationUrl = null;
+                if (partialResponse.get_Navigation() != null)
+                    navigationUrl = this.get_Application().ResolveUrl(partialResponse.get_Navigation());
+                else
+                    navigationUrl = location.pathname;
+                var childContainer = this.get_DependencyContainer().CreateChildContainer();
+                Neptuo.TemplateEngine.Web.InitScript.FormRequestContext = this.get_Context();
+                this.get_Application().get_MainView().RenderView(navigationUrl, this.get_Context().ToUpdate, childContainer);
+                if (this.OnSuccess != null)
+                    this.OnSuccess(this);
+                Neptuo.TemplateEngine.Web.InitScript.FormRequestContext = null;
+            }
+            else {
+                alert(status);
+            }
+        }
+    },
+    ctors: [{
+        name: "ctor",
+        parameters: ["Neptuo.TemplateEngine.Web.IApplication", "Neptuo.IDependencyContainer", "Neptuo.TemplateEngine.Web.FormRequestContext"]
+    }
+    ],
+    IsAbstract: false
+};
+JsTypes.push(Neptuo$TemplateEngine$Web$FormPostInvoker);
 var Neptuo$TemplateEngine$Web$HistoryItem = {
     fullname: "Neptuo.TemplateEngine.Web.HistoryItem",
     baseTypeName: "System.Object",
@@ -895,11 +1003,30 @@ var Neptuo$TemplateEngine$Web$IApplication = {
     fullname: "Neptuo.TemplateEngine.Web.IApplication",
     baseTypeName: "System.Object",
     assemblyName: "Neptuo.TemplateEngine.Client",
+    interfaceNames: ["Neptuo.Templates.IVirtualUrlProvider"],
     Kind: "Interface",
     ctors: [],
     IsAbstract: true
 };
 JsTypes.push(Neptuo$TemplateEngine$Web$IApplication);
+var Neptuo$TemplateEngine$Web$IFormPostInvoker = {
+    fullname: "Neptuo.TemplateEngine.Web.IFormPostInvoker",
+    baseTypeName: "System.Object",
+    assemblyName: "Neptuo.TemplateEngine.Client",
+    Kind: "Interface",
+    ctors: [],
+    IsAbstract: true
+};
+JsTypes.push(Neptuo$TemplateEngine$Web$IFormPostInvoker);
+var Neptuo$TemplateEngine$Web$IFormPostInvokerManager = {
+    fullname: "Neptuo.TemplateEngine.Web.IFormPostInvokerManager",
+    baseTypeName: "System.Object",
+    assemblyName: "Neptuo.TemplateEngine.Client",
+    Kind: "Interface",
+    ctors: [],
+    IsAbstract: true
+};
+JsTypes.push(Neptuo$TemplateEngine$Web$IFormPostInvokerManager);
 var Neptuo$TemplateEngine$Web$IHistoryState = {
     fullname: "Neptuo.TemplateEngine.Web.IHistoryState",
     baseTypeName: "System.Object",
@@ -1174,6 +1301,45 @@ var Neptuo$TemplateEngine$Web$RenderEventHandler = {
     IsAbstract: false
 };
 JsTypes.push(Neptuo$TemplateEngine$Web$RenderEventHandler);
+var Neptuo$TemplateEngine$Web$QueueFormPostInvokerManager = {
+    fullname: "Neptuo.TemplateEngine.Web.QueueFormPostInvokerManager",
+    baseTypeName: "System.Object",
+    assemblyName: "Neptuo.TemplateEngine.Client",
+    interfaceNames: ["Neptuo.TemplateEngine.Web.IFormPostInvokerManager"],
+    Kind: "Class",
+    definition: {
+        ctor: function (){
+            this.isRunning = false;
+            this.invokers = new System.Collections.Generic.List$1.ctor(Neptuo.TemplateEngine.Web.IFormPostInvoker.ctor);
+            System.Object.ctor.call(this);
+        },
+        Invoke: function (invoker){
+            invoker.add_OnSuccess($CreateDelegate(this, this.OnSuccess));
+            this.invokers.Add(invoker);
+            if (!this.isRunning)
+                this.InvokeFirst();
+        },
+        OnSuccess: function (invoker){
+            this.invokers.Remove(invoker);
+            this.isRunning = false;
+            this.InvokeFirst();
+        },
+        InvokeFirst: function (){
+            var invoker = System.Linq.Enumerable.FirstOrDefault$1$$IEnumerable$1(Neptuo.TemplateEngine.Web.IFormPostInvoker.ctor, this.invokers);
+            if (invoker != null){
+                invoker.Invoke();
+                this.isRunning = true;
+            }
+        }
+    },
+    ctors: [{
+        name: "ctor",
+        parameters: []
+    }
+    ],
+    IsAbstract: false
+};
+JsTypes.push(Neptuo$TemplateEngine$Web$QueueFormPostInvokerManager);
 var Neptuo$TemplateEngine$Web$StaticViewActivator = {
     fullname: "Neptuo.TemplateEngine.Web.StaticViewActivator",
     baseTypeName: "System.Object",
@@ -1261,6 +1427,7 @@ var Neptuo$TemplateEngine$Web$InitScript = {
             Neptuo.TemplateEngine.Web.InitScript.viewActivator = null;
             Neptuo.TemplateEngine.Web.InitScript.historyState = null;
             Neptuo.TemplateEngine.Web.InitScript.mainView = null;
+            Neptuo.TemplateEngine.Web.InitScript.formPostInvokers = null;
         },
         CreateDependencyContainer: function (){
             var container = new Neptuo.ObjectBuilder.DependencyContainer.ctor();
@@ -1270,6 +1437,7 @@ var Neptuo$TemplateEngine$Web$InitScript = {
             Neptuo.TemplateEngine.Web.InitScript.viewActivator = new Neptuo.TemplateEngine.Web.StaticViewActivator.ctor(container);
             Neptuo.TemplateEngine.Web.InitScript.historyState = new Neptuo.TemplateEngine.Web.HistoryState.ctor();
             Neptuo.TemplateEngine.Web.InitScript.mainView = new Neptuo.TemplateEngine.Web.MainView.ctor(Neptuo.TemplateEngine.Web.InitScript.viewActivator);
+            Neptuo.TemplateEngine.Web.InitScript.formPostInvokers = new Neptuo.TemplateEngine.Web.QueueFormPostInvokerManager.ctor();
             Neptuo.DependencyContainerExtensions.RegisterInstance$1(Neptuo.TemplateEngine.Web.IMainView.ctor, Neptuo.DependencyContainerExtensions.RegisterInstance$1(Neptuo.TemplateEngine.Web.IHistoryState.ctor, Neptuo.DependencyContainerExtensions.RegisterInstance$1(Neptuo.TemplateEngine.Permissions.IPermissionProvider.ctor, Neptuo.DependencyContainerExtensions.RegisterInstance$1(Neptuo.TemplateEngine.Web.Controllers.IControllerRegistry.ctor, Neptuo.DependencyContainerExtensions.RegisterInstance$1(Neptuo.TemplateEngine.Navigation.Bootstrap.IFormUriRegistry.ctor, Neptuo.DependencyContainerExtensions.RegisterInstance$1(Neptuo.TemplateEngine.Navigation.IFormUriService.ctor, Neptuo.DependencyContainerExtensions.RegisterInstance$1(Neptuo.TemplateEngine.Web.GlobalNavigationCollection.ctor, Neptuo.DependencyContainerExtensions.RegisterInstance$1(Neptuo.TemplateEngine.Web.IViewActivator.ctor, Neptuo.DependencyContainerExtensions.RegisterInstance$1(Neptuo.IGuidProvider.ctor, Neptuo.DependencyContainerExtensions.RegisterInstance$1(Neptuo.TemplateEngine.Web.DataContextStorage.ctor, Neptuo.DependencyContainerExtensions.RegisterInstance$1(Neptuo.TemplateEngine.Web.TemplateContentStorageStack.ctor, Neptuo.DependencyContainerExtensions.RegisterType$2$$IDependencyContainer(Neptuo.TemplateEngine.Web.IRequestContext.ctor, Neptuo.TemplateEngine.Web.CompositeRequestContext.ctor, Neptuo.DependencyContainerExtensions.RegisterType$2$$IDependencyContainer(Neptuo.TemplateEngine.Web.IValueConverterService.ctor, Neptuo.TemplateEngine.Web.ValueConverterService.ctor, Neptuo.DependencyContainerExtensions.RegisterType$2$$IDependencyContainer(Neptuo.TemplateEngine.Web.IBindingManager.ctor, Neptuo.TemplateEngine.Web.BindingManagerBase.ctor, Neptuo.DependencyContainerExtensions.RegisterType$2$$IDependencyContainer(Neptuo.TemplateEngine.Web.IParameterProvider.ctor, Neptuo.TemplateEngine.Web.AllParameterProvider.ctor, Neptuo.DependencyContainerExtensions.RegisterType$2$$IDependencyContainer(Neptuo.TemplateEngine.Web.IParameterProviderFactory.ctor, Neptuo.TemplateEngine.Web.ParameterProviderFactory.ctor, Neptuo.DependencyContainerExtensions.RegisterType$2$$IDependencyContainer(Neptuo.TemplateEngine.Web.ICurrentUrlProvider.ctor, Neptuo.TemplateEngine.Web.UrlProvider.ctor, Neptuo.DependencyContainerExtensions.RegisterType$2$$IDependencyContainer(Neptuo.Templates.IVirtualUrlProvider.ctor, Neptuo.TemplateEngine.Web.UrlProvider.ctor, Neptuo.DependencyContainerExtensions.RegisterType$2$$IDependencyContainer(Neptuo.TemplateEngine.IStackStorage$1.ctor, Neptuo.TemplateEngine.StackStorage$1.ctor, container)))))))), new Neptuo.TemplateEngine.Web.TemplateContentStorageStack.ctor()), new Neptuo.TemplateEngine.Web.DataContextStorage.ctor()), new Neptuo.SequenceGuidProvider.ctor("guid", 1)), Neptuo.TemplateEngine.Web.InitScript.viewActivator), new Neptuo.TemplateEngine.Web.GlobalNavigationCollection.ctor()), formService), formService), new Neptuo.TemplateEngine.Web.Controllers.ControllerRegistryBase.ctor()), new Neptuo.TemplateEngine.Permissions.OptimisticPermissionProvider.ctor()), Neptuo.TemplateEngine.Web.InitScript.historyState), Neptuo.TemplateEngine.Web.InitScript.mainView);
             return container;
         },
@@ -1287,6 +1455,7 @@ var Neptuo$TemplateEngine$Web$InitScript = {
             Neptuo.TemplateEngine.Web.InitScript.dependencyContainer = Neptuo.TemplateEngine.Web.InitScript.CreateDependencyContainer();
             Neptuo.Converts.get_Repository().Add(Typeof(Object), Typeof(Neptuo.TemplateEngine.Web.PartialResponse.ctor), new Neptuo.TemplateEngine.Web.PartialResponseConverter.ctor());
             Neptuo.TemplateEngine.Web.InitScript.RunBootstrapTasks(Neptuo.TemplateEngine.Web.InitScript.dependencyContainer);
+            Neptuo.TemplateEngine.Web.Application.Start("/", ["Body"]);
             Neptuo.TemplateEngine.Web.InitScript.historyState.add_OnPop(Neptuo.TemplateEngine.Web.InitScript.historyState_OnPop);
             Neptuo.TemplateEngine.Web.InitScript.mainView.add_OnLinkClick(Neptuo.TemplateEngine.Web.InitScript.mainView_OnLinkClick);
             Neptuo.TemplateEngine.Web.InitScript.mainView.add_OnGetFormSubmit(Neptuo.TemplateEngine.Web.InitScript.mainView_OnGetFormSubmit);
@@ -1325,20 +1494,8 @@ var Neptuo$TemplateEngine$Web$InitScript = {
             Neptuo.TemplateEngine.Web.InitScript.NavigateToUrl(newUrl, System.String.Join$$String$$IEnumerable$1$String(",", toUpdate), "", null);
         },
         mainView_OnPostFormSubmit: function (context){
-            Neptuo.TemplateEngine.Web.InitScript.FormRequestContext = context;
-            Neptuo.TemplateEngine.Web.InitScript.historyState.Replace(new Neptuo.TemplateEngine.Web.HistoryItem.ctor(context.FormUrl, context.ToUpdate, context));
             if (!Neptuo.TemplateEngine.Web.InitScript.InvokeControllers(context.Parameters)){
-                alert("Event: " + context.EventName);
-                console.log(context.Parameters);
-                var headers = new Object();
-                headers["X-EngineRequestType"] = "Partial";
-                $.ajax({
-                    url: context.FormUrl,
-                    type: "POST",
-                    data: context.Parameters,
-                    headers: headers,
-                    success: Neptuo.TemplateEngine.Web.InitScript.OnFormSubmitSuccess
-                });
+                Neptuo.TemplateEngine.Web.InitScript.formPostInvokers.Invoke(new Neptuo.TemplateEngine.Web.FormPostInvoker.ctor(null, Neptuo.TemplateEngine.Web.InitScript.dependencyContainer, context));
             }
         },
         NavigateToUrl: function (newUrl, toUpdate, title, initContainer){
@@ -1365,30 +1522,6 @@ var Neptuo$TemplateEngine$Web$InitScript = {
                 partialsToUpdate.Add("Body");
             }
             Neptuo.TemplateEngine.Web.InitScript.mainView.RenderView(viewPath, partialsToUpdate.ToArray(), container);
-        },
-        OnFormSubmitSuccess: function (response, status, sender){
-            var partialResponse;
-            if ((function (){
-                var $1 = {
-                    Value: partialResponse
-                };
-                var $res = Neptuo.Converts.Try$2$$TSource$$TTarget(Object, Neptuo.TemplateEngine.Web.PartialResponse.ctor, response, $1);
-                partialResponse = $1.Value;
-                return $res;
-            })()){
-                var navigationUrl = null;
-                if (partialResponse.get_Navigation() != null)
-                    navigationUrl = Neptuo.DependencyProviderExtensions.Resolve$1$$IDependencyProvider(Neptuo.Templates.IVirtualUrlProvider.ctor, Neptuo.TemplateEngine.Web.InitScript.dependencyContainer).ResolveUrl(partialResponse.get_Navigation());
-                else
-                    navigationUrl = location.pathname;
-                Neptuo.TemplateEngine.Web.InitScript.NavigateToUrl(navigationUrl, System.String.Join$$String$$IEnumerable$1$String(",", Neptuo.TemplateEngine.Web.InitScript.FormRequestContext.ToUpdate), "Form submitted", function (container){
-                    Neptuo.DependencyContainerExtensions.RegisterInstance$1(Neptuo.TemplateEngine.Web.MessageStorage.ctor, container, partialResponse.get_Messages());
-                });
-                Neptuo.TemplateEngine.Web.InitScript.FormRequestContext = null;
-            }
-            else {
-                alert(status);
-            }
         },
         InvokeControllers: function (data){
             var container = Neptuo.TemplateEngine.Web.InitScript.dependencyContainer.CreateChildContainer();
