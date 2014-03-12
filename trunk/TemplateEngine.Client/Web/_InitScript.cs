@@ -27,78 +27,17 @@ namespace Neptuo.TemplateEngine.Web
     {
         public static FormRequestContext FormRequestContext;
         private static IDependencyContainer dependencyContainer;
-        private static IViewActivator viewActivator;
-        private static IHistoryState historyState;
-        private static IMainView mainView;
-        private static IFormPostInvokerManager formPostInvokers;
-
-        private static IDependencyContainer CreateDependencyContainer()
-        {
-            DependencyContainer container = new DependencyContainer();
-            container
-                .Map(typeof(SingletonLifetime), new SingletonLifetimeMapper());
-
-            DefaultFormUriService formService = new DefaultFormUriService();
-            FormUriServiceRegistration.SetInstance(formService);
-
-            viewActivator = new StaticViewActivator(container);
-            historyState = new HistoryState();
-            mainView = new MainView(viewActivator);
-            formPostInvokers = new QueueFormPostInvokerManager();
-
-            container
-                .RegisterType<IStackStorage<IViewStorage>, StackStorage<IViewStorage>>()
-                .RegisterType<IVirtualUrlProvider, UrlProvider>()
-                .RegisterType<ICurrentUrlProvider, UrlProvider>()
-                .RegisterType<IParameterProviderFactory, ParameterProviderFactory>()
-                .RegisterType<IParameterProvider, AllParameterProvider>()
-                .RegisterType<IBindingManager, BindingManagerBase>()
-                .RegisterType<IValueConverterService, ValueConverterService>()
-                .RegisterType<IRequestContext, CompositeRequestContext>()
-                .RegisterInstance(new TemplateContentStorageStack())
-                .RegisterInstance(new DataContextStorage())
-                .RegisterInstance<IGuidProvider>(new SequenceGuidProvider("guid", 1))
-                .RegisterInstance<IViewActivator>(viewActivator)
-
-                .RegisterInstance(new GlobalNavigationCollection())
-
-                .RegisterInstance<IFormUriService>(formService)
-                .RegisterInstance<IFormUriRegistry>(formService)
-
-                .RegisterInstance<IControllerRegistry>(new ControllerRegistryBase())
-                .RegisterInstance<IPermissionProvider>(new OptimisticPermissionProvider())
-
-                .RegisterInstance<IHistoryState>(historyState)
-                .RegisterInstance<IMainView>(mainView);
-
-            return container;
-        }
-
-        private static void RunBootstrapTasks(IDependencyContainer objectBuilder)
-        {
-            Func<Type, IBootstrapTask> taskFactory = (type) => objectBuilder.Resolve(type, null).As<IBootstrapTask>();
-            Func<Type, IBootstrapConstraint> constrainFactory = (type) => objectBuilder.Resolve(type, null).As<IBootstrapConstraint>();
-
-            IBootstrapper bootstrapper = new AutomaticBootstrapper(taskFactory, JsCompiler.NewTypes.As<JsArray<Type>>(), new AttributeConstraintProvider(constrainFactory));
-            bootstrapper.Initialize();
-        }
 
         public static void Init()
         {
-            dependencyContainer = CreateDependencyContainer();
-
-            Converts.Repository
-                .Add(typeof(JsObject), typeof(PartialResponse), new PartialResponseConverter());
-
-            RunBootstrapTasks(dependencyContainer);
-
             Application.Start("/", new string[] { "Body" });
+            dependencyContainer = Application.Instance.DependencyContainer;
 
-            historyState.OnPop += historyState_OnPop;
+            Application.Instance.HistoryState.OnPop += historyState_OnPop;
 
-            mainView.OnLinkClick += mainView_OnLinkClick;
-            mainView.OnGetFormSubmit += mainView_OnGetFormSubmit;
-            mainView.OnPostFormSubmit += mainView_OnPostFormSubmit;
+            Application.Instance.MainView.OnLinkClick += mainView_OnLinkClick;
+            Application.Instance.MainView.OnGetFormSubmit += mainView_OnGetFormSubmit;
+            Application.Instance.MainView.OnPostFormSubmit += mainView_OnPostFormSubmit;
         }
 
         private static void historyState_OnPop(HistoryItem historyItem)
@@ -156,16 +95,14 @@ namespace Neptuo.TemplateEngine.Web
             //historyState.Replace(new HistoryItem(context.FormUrl, context.ToUpdate, context));
 
             if (!InvokeControllers(context.Parameters))
-            {
-                formPostInvokers.Invoke(new FormPostInvoker(null, dependencyContainer, context));
-            }
+                Application.Instance.FormPostInvokers.Invoke(new FormPostInvoker(Application.Instance, dependencyContainer, context));
         }
 
         private static void NavigateToUrl(string newUrl, string toUpdate, string title, Action<IDependencyContainer> initContainer = null)
         {
             string viewPath = MapView(newUrl);
 
-            historyState.Push(new HistoryItem(newUrl, null));
+            Application.Instance.HistoryState.Push(new HistoryItem(newUrl, null));
             RenderUrl(newUrl, toUpdate, initContainer);
         }
 
@@ -195,7 +132,7 @@ namespace Neptuo.TemplateEngine.Web
                 partialsToUpdate.Add("Body");
             }
 
-            mainView.RenderView(viewPath, partialsToUpdate.ToArray(), container);
+            Application.Instance.MainView.RenderView(viewPath, partialsToUpdate.ToArray(), container);
         }
 
         private static bool InvokeControllers(JsArray data)

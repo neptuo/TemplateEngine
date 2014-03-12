@@ -39,6 +39,13 @@ namespace Neptuo.TemplateEngine.Web
         IDependencyContainer DependencyContainer { get; }
 
         /// <summary>
+        /// Form POST manager.
+        /// </summary>
+        IFormPostInvokerManager FormPostInvokers { get; }
+
+
+
+        /// <summary>
         /// Tries to find client controller.
         /// TODO: Very temp version!!
         /// </summary>

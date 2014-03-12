@@ -102,7 +102,8 @@ namespace Neptuo.TemplateEngine.Web
                 .RegisterInstance<IControllerRegistry>(new ControllerRegistryBase())
                 .RegisterInstance<IPermissionProvider>(new OptimisticPermissionProvider())
 
-                .RegisterInstance<IHistoryState>(HistoryState);
+                .RegisterInstance<IHistoryState>(HistoryState)
+                .RegisterInstance<IMainView>(MainView);
 
             return container;
         }

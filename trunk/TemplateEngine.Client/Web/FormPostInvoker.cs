@@ -55,7 +55,13 @@ namespace Neptuo.TemplateEngine.Web
                     navigationUrl = HtmlContext.location.pathname;
 
                 IDependencyContainer childContainer = DependencyContainer.CreateChildContainer();
-                InitScript.FormRequestContext = Context;
+
+                // Save form request only if there wasn't redirect
+                if (navigationUrl == HtmlContext.location.pathname)
+                    InitScript.FormRequestContext = Context;
+
+                //TODO: Invoke router...
+                navigationUrl = InitScript.MapView(navigationUrl);
 
                 Application.MainView.RenderView(navigationUrl, Context.ToUpdate, childContainer);
 
