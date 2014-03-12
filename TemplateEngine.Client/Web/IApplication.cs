@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Neptuo.TemplateEngine.Navigation;
+using Neptuo.Templates;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Web
 {
-    public interface IApplication
+    public interface IApplication : IVirtualUrlProvider
     {
         /// <summary>
         /// Gets current root app path.
@@ -35,7 +37,6 @@ namespace Neptuo.TemplateEngine.Web
         /// Root dependecy container.
         /// </summary>
         IDependencyContainer DependencyContainer { get; }
-
 
         /// <summary>
         /// Tries to find client controller.

@@ -10,10 +10,15 @@ namespace Neptuo.TemplateEngine.Navigation
     public class ClientNavigator : INavigator
     {
         private IVirtualUrlProvider urlProvider;
+        private Action<string> navigateToUrl;
 
-        public ClientNavigator(IVirtualUrlProvider urlProvider)
+        public ClientNavigator(IVirtualUrlProvider urlProvider, Action<string> navigateToUrl)
         {
+            Guard.NotNull(urlProvider, "urlProvider");
+            Guard.NotNull(navigateToUrl, "navigateToUrl");
+
             this.urlProvider = urlProvider;
+            this.navigateToUrl = navigateToUrl;
         }
 
         public void Open(FormUri formUri)
@@ -23,7 +28,7 @@ namespace Neptuo.TemplateEngine.Navigation
 
         public INavigateTo NavigateTo(FormUri formUri)
         {
-            return new ClientNavigateTo(urlProvider, formUri);
+            return new ClientNavigateTo(urlProvider, formUri, navigateToUrl);
         }
     }
 }

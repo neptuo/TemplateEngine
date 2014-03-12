@@ -29,6 +29,7 @@ namespace Neptuo.TemplateEngine.Web
         public IHistoryState HistoryState { get; private set; }
         public IMainView MainView { get; private set; }
         public IDependencyContainer DependencyContainer { get; private set; }
+        public IFormPostInvokerManager FormPostInvokers { get; private set; }
 
         #region Initialization
 
@@ -41,16 +42,17 @@ namespace Neptuo.TemplateEngine.Web
             ApplicationPath = applicationPath;
             DefaultToUpdate = defaultToUpdate;
 
-            HistoryState.OnPop += OnHistoryStatePop;
-
             //TODO: Move
             Converts.Repository
                 .Add(typeof(JsObject), typeof(PartialResponse), new PartialResponseConverter());
 
-            //TODO: Main view events
-            MainView.OnLinkClick += OnNavigation;
-            MainView.OnGetFormSubmit += OnNavigation;
-            MainView.OnPostFormSubmit += OnFormSubmit;
+            //HistoryState.OnPop += OnHistoryStatePop;
+
+            //MainView.OnLinkClick += OnNavigation;
+            //MainView.OnGetFormSubmit += OnNavigation;
+            //MainView.OnPostFormSubmit += OnFormSubmit;
+
+            FormPostInvokers = new QueueFormPostInvokerManager();
 
             // At last...
             RunBootstrapTasks(DependencyContainer);
@@ -156,6 +158,11 @@ namespace Neptuo.TemplateEngine.Web
             //TODO: Process navigations
 
             return isControllerExecuted;
+        }
+
+        private void NavigateToUrl(string url, string[] toUpdate)
+        {
+            //TODO: Invoke router...
         }
 
         #region Url provider
