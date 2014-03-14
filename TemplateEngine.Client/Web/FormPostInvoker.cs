@@ -1,4 +1,5 @@
-﻿using SharpKit.Html;
+﻿using Neptuo.TemplateEngine.Routing;
+using SharpKit.Html;
 using SharpKit.JavaScript;
 using SharpKit.jQuery;
 using System;
@@ -57,13 +58,32 @@ namespace Neptuo.TemplateEngine.Web
                 IDependencyContainer childContainer = DependencyContainer.CreateChildContainer();
 
                 // Save form request only if there wasn't redirect
-                if (navigationUrl == HtmlContext.location.pathname)
+                if (navigationUrl == Application.GetCurrentUrl())
+                {
+                    Application.Router.RouteTo(
+                        new RequestContext(
+                            navigationUrl,
+                            Context.Parameters.ToRouteParams(),
+                            new RouteValueDictionary()
+                                .AddItem("ToUpdate", Context.ToUpdate)
+                                .AddItem("Messages", partialResponse.Messages)
+                        )
+                    );
                     InitScript.FormRequestContext = Context;
-
-                //TODO: Invoke router...
-                navigationUrl = InitScript.MapView(navigationUrl);
-
-                Application.MainView.RenderView(navigationUrl, Context.ToUpdate, childContainer);
+                }
+                else
+                {
+                    Application.HistoryState.Push(new HistoryItem(navigationUrl, Context.ToUpdate));
+                    Application.Router.RouteTo(
+                        new RequestContext(
+                            navigationUrl, 
+                            new RouteParamDictionary(),
+                            new RouteValueDictionary()
+                                .AddItem("ToUpdate", Context.ToUpdate)
+                                .AddItem("Messages", partialResponse.Messages)
+                        )
+                    );
+                }
 
                 if (OnSuccess != null)
                     OnSuccess(this);

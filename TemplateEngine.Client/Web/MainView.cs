@@ -128,6 +128,8 @@ namespace Neptuo.TemplateEngine.Web
             view.Init();
             view.Render(new ExtendedHtmlTextWriter(writer));
             view.Dispose();
+
+            AutoFocus();
         }
 
         public void UpdateView(string partialGuid, TextWriter content)
@@ -147,5 +149,9 @@ namespace Neptuo.TemplateEngine.Web
 
         #endregion
 
+        public void AutoFocus()
+        {
+            new jQuery("body").find("[autofocus]").focus();
+        }
     }
 }
