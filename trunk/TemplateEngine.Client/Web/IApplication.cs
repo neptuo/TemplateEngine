@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Web
 {
-    public interface IApplication : IVirtualUrlProvider
+    public interface IApplication : IVirtualUrlProvider, ICurrentUrlProvider
     {
         /// <summary>
         /// Gets current root app path.

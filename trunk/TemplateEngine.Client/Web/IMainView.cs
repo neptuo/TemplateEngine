@@ -50,5 +50,10 @@ namespace Neptuo.TemplateEngine.Web
         /// <param name="writer">Html writer.</param>
         /// <param name="partialGuid">Guid for the element.</param>
         void WritePlaceholder(IHtmlWriter writer, string partialGuid);
+
+        /// <summary>
+        /// Moves focus to element with 'auto focus'.
+        /// </summary>
+        void AutoFocus();
     }
 }

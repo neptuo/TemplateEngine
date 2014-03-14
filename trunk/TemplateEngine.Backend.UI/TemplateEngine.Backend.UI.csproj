@@ -174,7 +174,9 @@
     <Content Include="Dynamic.html" />
     <None Include="Views\Accounts\SideNav.view" />
     <None Include="Views\Accounts\RoleEdit.view" />
-    <None Include="Views\Accounts\UserEdit.view" />
+    <None Include="Views\Accounts\UserEdit.view">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Views\Accounts\RoleList.view" />
     <None Include="Views\Accounts\UserList.view" />
     <None Include="Views\Home.view" />

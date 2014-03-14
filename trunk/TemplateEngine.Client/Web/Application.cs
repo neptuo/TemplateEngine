@@ -21,7 +21,7 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Web
 {
-    public class Application : IApplication, IVirtualUrlProvider
+    public class Application : IApplication, IVirtualUrlProvider, ICurrentUrlProvider
     {
         public static IApplication Instance { get; private set; }
 
@@ -40,19 +40,19 @@ namespace Neptuo.TemplateEngine.Web
             Guard.NotNull(applicationPath, "applicationPath");
             Guard.NotNull(defaultToUpdate, "defaultToUpdate");
 
-            DependencyContainer = CreateDependencyContainer();
             ApplicationPath = applicationPath;
             DefaultToUpdate = defaultToUpdate;
+            DependencyContainer = CreateDependencyContainer();
 
             //TODO: Move
             Converts.Repository
                 .Add(typeof(JsObject), typeof(PartialResponse), new PartialResponseConverter());
 
-            //HistoryState.OnPop += OnHistoryStatePop;
+            HistoryState.OnPop += OnHistoryStatePop;
 
-            //MainView.OnLinkClick += OnNavigation;
-            //MainView.OnGetFormSubmit += OnNavigation;
-            //MainView.OnPostFormSubmit += OnFormSubmit;
+            MainView.OnLinkClick += OnNavigation;
+            MainView.OnGetFormSubmit += OnNavigation;
+            MainView.OnPostFormSubmit += OnFormSubmit;
 
             FormPostInvokers = new QueueFormPostInvokerManager();
 
@@ -82,7 +82,8 @@ namespace Neptuo.TemplateEngine.Web
             HistoryState = new HistoryState();
             MainView = new MainView(viewActivator);
 
-            Router = new Router();
+            Router = new ExtendedRouter();
+            Router.AddRoute(new TemplateRoute(this));
 
             container
                 .RegisterType<IStackStorage<IViewStorage>, StackStorage<IViewStorage>>()
@@ -127,17 +128,32 @@ namespace Neptuo.TemplateEngine.Web
 
         private void OnHistoryStatePop(HistoryItem historyItem)
         {
-            //TODO: Invoke router
+            if (historyItem == null)
+                historyItem = new HistoryItem(GetCurrentUrl(), DefaultToUpdate);
+
+            Router.RouteTo(
+                new RequestContext(
+                    historyItem.Url,
+                    historyItem.FormData.ToRouteParams(),
+                    new RouteValueDictionary()
+                        .AddItem("ToUpdate", historyItem.ToUpdate)
+                )
+            );
         }
 
         private void OnNavigation(string url, string[] toUpdate)
         {
-            MainView.RenderView(url, toUpdate, DependencyContainer.CreateChildContainer());
+            toUpdate = toUpdate ?? DefaultToUpdate;
+
+            HistoryState.Push(new HistoryItem(url, toUpdate));
+            Router.RouteTo(new RequestContext(url, new RouteParamDictionary(), new RouteValueDictionary().AddItem("ToUpdate", toUpdate)));
         }
 
         private void OnFormSubmit(FormRequestContext context)
         {
-            //TODO: Process POST
+            //TODO: Invoke controllers
+            //if (!InvokeControllers(context.Parameters))
+            FormPostInvokers.Invoke(new FormPostInvoker(this, DependencyContainer, context));
         }
         
         public bool TryInvokeControllers(Dictionary<string, string> parameters)
@@ -172,11 +188,16 @@ namespace Neptuo.TemplateEngine.Web
             //TODO: Invoke router...
         }
 
-        #region Url provider
+        #region Url
 
         public string ResolveUrl(string path)
         {
             return path.Replace("~/", ApplicationPath);
+        }
+
+        public string GetCurrentUrl()
+        {
+            return SharpKit.Html.HtmlContext.location.pathname;
         }
 
         #endregion

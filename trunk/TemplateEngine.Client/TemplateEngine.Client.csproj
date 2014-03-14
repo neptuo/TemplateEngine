@@ -81,6 +81,8 @@
     <Compile Include="Bootstrap\PresentationModelBootstrapTask.cs" />
     <Compile Include="Navigation\ClientNavigateTo.cs" />
     <Compile Include="Navigation\ClientNavigator.cs" />
+    <Compile Include="Routing\ExtendedRouter.cs" />
+    <Compile Include="Routing\TemplateRoute.cs" />
     <Compile Include="Routing\TemplateRouteHandler.cs" />
     <Compile Include="Web\Application.cs" />
     <Compile Include="Web\ClientExtendedComponentManager.cs" />
@@ -101,6 +103,7 @@
     <Compile Include="Web\IFormPostInvokerManager.cs" />
     <Compile Include="Web\IHistoryState.cs" />
     <Compile Include="Web\IMainView.cs" />
+    <Compile Include="Web\JsArrayExtensions.cs" />
     <Compile Include="Web\MainView.cs" />
     <Compile Include="Web\PartialResponseConverter.cs" />
     <Compile Include="Web\PartialUpdateHelper.cs" />
