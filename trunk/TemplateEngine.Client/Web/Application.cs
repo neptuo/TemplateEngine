@@ -8,6 +8,7 @@ using Neptuo.TemplateEngine.Navigation;
 using Neptuo.TemplateEngine.Navigation.Bootstrap;
 using Neptuo.TemplateEngine.Permissions;
 using Neptuo.TemplateEngine.PresentationModels;
+using Neptuo.TemplateEngine.Routing;
 using Neptuo.TemplateEngine.Web.Controllers;
 using Neptuo.TemplateEngine.Web.Controllers.Binders;
 using Neptuo.Templates;
@@ -30,6 +31,7 @@ namespace Neptuo.TemplateEngine.Web
         public IMainView MainView { get; private set; }
         public IDependencyContainer DependencyContainer { get; private set; }
         public IFormPostInvokerManager FormPostInvokers { get; private set; }
+        public IRouter Router { get; private set; }
 
         #region Initialization
 
@@ -80,6 +82,8 @@ namespace Neptuo.TemplateEngine.Web
             HistoryState = new HistoryState();
             MainView = new MainView(viewActivator);
 
+            Router = new Router();
+
             container
                 .RegisterType<IStackStorage<IViewStorage>, StackStorage<IViewStorage>>()
                 .RegisterType<IVirtualUrlProvider, UrlProvider>()
@@ -103,7 +107,9 @@ namespace Neptuo.TemplateEngine.Web
                 .RegisterInstance<IPermissionProvider>(new OptimisticPermissionProvider())
 
                 .RegisterInstance<IHistoryState>(HistoryState)
-                .RegisterInstance<IMainView>(MainView);
+                .RegisterInstance<IMainView>(MainView)
+                
+                .RegisterInstance<IRouter>(Router);
 
             return container;
         }
