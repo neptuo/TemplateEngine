@@ -81,6 +81,7 @@
     <Compile Include="Bootstrap\PresentationModelBootstrapTask.cs" />
     <Compile Include="Navigation\ClientNavigateTo.cs" />
     <Compile Include="Navigation\ClientNavigator.cs" />
+    <Compile Include="Routing\TemplateRouteHandler.cs" />
     <Compile Include="Web\Application.cs" />
     <Compile Include="Web\ClientExtendedComponentManager.cs" />
     <Compile Include="Web\Controls\Ajax\PartialStartUpControl.cs" />
@@ -126,6 +127,10 @@
     <ProjectReference Include="..\TemplateEngine.PresentationModels\TemplateEngine.PresentationModels.csproj">
       <Project>{b064bdbc-3755-4110-8eb7-6add2535d9fd}</Project>
       <Name>TemplateEngine.PresentationModels</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TemplateEngine.Routing.Client\TemplateEngine.Routing.Client.csproj">
+      <Project>{9432ee8b-1181-43cb-9e8d-e156eac8f7ba}</Project>
+      <Name>TemplateEngine.Routing.Client</Name>
     </ProjectReference>
     <ProjectReference Include="..\TemplateEngine.Shared\TemplateEngine.Shared.csproj">
       <Project>{a4c6627c-c21b-4bb7-93a4-b40ac748588d}</Project>

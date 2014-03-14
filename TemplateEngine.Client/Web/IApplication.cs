@@ -1,4 +1,5 @@
 ﻿using Neptuo.TemplateEngine.Navigation;
+using Neptuo.TemplateEngine.Routing;
 using Neptuo.Templates;
 using System;
 using System.Collections.Generic;
@@ -43,7 +44,10 @@ namespace Neptuo.TemplateEngine.Web
         /// </summary>
         IFormPostInvokerManager FormPostInvokers { get; }
 
-
+        /// <summary>
+        /// Router.
+        /// </summary>
+        IRouter Router { get; }
 
         /// <summary>
         /// Tries to find client controller.
