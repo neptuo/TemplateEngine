@@ -13,18 +13,15 @@ namespace Neptuo.TemplateEngine.Web
     public class FormPostInvoker : IFormPostInvoker
     {
         protected IApplication Application { get; private set; }
-        protected IDependencyContainer DependencyContainer { get; private set; }
         protected FormRequestContext Context { get; private set; }
 
         public event Action<IFormPostInvoker> OnSuccess;
 
-        public FormPostInvoker(IApplication application, IDependencyContainer dependencyContainer, FormRequestContext context)
+        public FormPostInvoker(IApplication application, FormRequestContext context)
         {
             Guard.NotNull(application, "application");
-            Guard.NotNull(dependencyContainer, "dependencyContainer");
             Guard.NotNull(context, "context");
             Application = application;
-            DependencyContainer = dependencyContainer;
             Context = context;
         }
 
@@ -33,7 +30,7 @@ namespace Neptuo.TemplateEngine.Web
             Application.HistoryState.Replace(new HistoryItem(Context.FormUrl, Context.ToUpdate, Context));
 
             JsObject headers = new JsObject();
-            headers["X-EngineRequestType"] = "Partial";
+            headers["X-EngineRequestType"] = "Partial"; //TODO: Shared constant?
             jQuery.ajax(new AjaxSettings
             {
                 url = Context.FormUrl,
@@ -53,23 +50,23 @@ namespace Neptuo.TemplateEngine.Web
                 if (partialResponse.Navigation != null)
                     navigationUrl = Application.ResolveUrl(partialResponse.Navigation);
                 else
-                    navigationUrl = HtmlContext.location.pathname;
+                    navigationUrl = Application.GetCurrentUrl();
 
-                IDependencyContainer childContainer = DependencyContainer.CreateChildContainer();
+                RouteValueDictionary customValues = new RouteValueDictionary()
+                    .AddItem("ToUpdate", Context.ToUpdate)
+                    .AddItem("Messages", partialResponse.Messages);
 
                 // Save form request only if there wasn't redirect
                 if (navigationUrl == Application.GetCurrentUrl())
                 {
+                    InitScript.FormRequestContext = Context;
                     Application.Router.RouteTo(
                         new RequestContext(
                             navigationUrl,
                             Context.Parameters.ToRouteParams(),
-                            new RouteValueDictionary()
-                                .AddItem("ToUpdate", Context.ToUpdate)
-                                .AddItem("Messages", partialResponse.Messages)
+                            customValues
                         )
                     );
-                    InitScript.FormRequestContext = Context;
                 }
                 else
                 {
@@ -78,9 +75,7 @@ namespace Neptuo.TemplateEngine.Web
                         new RequestContext(
                             navigationUrl, 
                             new RouteParamDictionary(),
-                            new RouteValueDictionary()
-                                .AddItem("ToUpdate", Context.ToUpdate)
-                                .AddItem("Messages", partialResponse.Messages)
+                            customValues
                         )
                     );
                 }
@@ -92,6 +87,7 @@ namespace Neptuo.TemplateEngine.Web
             }
             else
             {
+                //TODO: Hmh, how to solve unexpected response?
                 HtmlContext.alert(status);
             }
         }

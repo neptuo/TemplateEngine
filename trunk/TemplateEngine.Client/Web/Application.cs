@@ -153,7 +153,7 @@ namespace Neptuo.TemplateEngine.Web
         {
             //TODO: Invoke controllers
             //if (!InvokeControllers(context.Parameters))
-            FormPostInvokers.Invoke(new FormPostInvoker(this, DependencyContainer, context));
+            FormPostInvokers.Invoke(new FormPostInvoker(this, context));
         }
         
         public bool TryInvokeControllers(Dictionary<string, string> parameters)
