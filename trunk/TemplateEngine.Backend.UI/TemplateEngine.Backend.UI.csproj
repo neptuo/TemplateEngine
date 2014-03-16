@@ -147,6 +147,7 @@
     <Content Include="Design\Scripts\Generated\Neptuo.PresentationModels.TypeModels.js" />
     <Content Include="Design\Scripts\Generated\Neptuo.PresentationModels.Validation.js" />
     <Content Include="Design\Scripts\Generated\Neptuo.System.Client.js" />
+    <Content Include="Design\Scripts\Generated\Neptuo.Tokens.js" />
     <Content Include="Design\Scripts\Generated\TemplateEngine\Neptuo.TemplateEngine.Permissions.js" />
     <Content Include="Design\Scripts\Generated\TemplateEngine\Neptuo.TemplateEngine.Shared.js" />
     <Content Include="Design\Scripts\Generated\Neptuo.Templates.Components.js" />

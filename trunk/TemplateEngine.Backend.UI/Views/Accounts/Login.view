@@ -1,3 +1,7 @@
-﻿<strong>
-    <ui:literal text="Hello [from login]!!" />
-</strong>
+﻿<ui:AdminLayout>
+    <ui:TemplateContent Name="Body">
+        <strong>
+            <ui:literal text="Hello [from login]!!" />
+        </strong>
+    </ui:TemplateContent>
+</ui:AdminLayout>

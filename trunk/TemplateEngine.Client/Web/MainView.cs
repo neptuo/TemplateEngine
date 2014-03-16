@@ -14,15 +14,18 @@ namespace Neptuo.TemplateEngine.Web
     public class MainView : IMainView
     {
         protected IViewActivator ViewActivator { get; private set; }
+        protected IApplication Application { get; private set; }
 
         public event Action<string, string[]> OnLinkClick;
         public event Action<FormRequestContext> OnPostFormSubmit;
         public event Action<string, string[]> OnGetFormSubmit;
 
-        public MainView(IViewActivator viewActivator)
+        public MainView(IViewActivator viewActivator, IApplication application)
         {
             Guard.NotNull(viewActivator, "viewActivator");
+            Guard.NotNull(application, "application");
             ViewActivator = viewActivator;
+            Application = application;
 
             new jQuery(() =>
             {
@@ -73,8 +76,11 @@ namespace Neptuo.TemplateEngine.Web
             if (String.IsNullOrEmpty(buttonName))
                 buttonName = form.find("button:first").attr("name");
 
-            string formUrl = form.attr("action") ?? HtmlContext.location.href;
-            string[] toUpdate = GetToUpdateFromElement(form) ?? new string[] { "Body" };
+            string formUrl = form.attr("action") ?? Application.GetCurrentUrl();
+            if (formUrl.Contains("://")) //TODO: Fix absolute form url in GChrome
+                formUrl = formUrl.Substring(formUrl.IndexOf("/", 10));
+
+            string[] toUpdate = GetToUpdateFromElement(form) ?? Application.DefaultToUpdate;
 
             if (form.@is("[method]") && form.attr("method").toLocaleLowerCase() == "post")
             {
