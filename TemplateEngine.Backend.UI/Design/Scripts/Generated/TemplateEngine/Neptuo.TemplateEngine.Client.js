@@ -517,7 +517,7 @@ var Neptuo$TemplateEngine$Web$Application = {
             this.get_Router().RouteTo(new Neptuo.TemplateEngine.Routing.RequestContext.ctor(url, new Neptuo.TemplateEngine.Routing.RouteParamDictionary.ctor(), new Neptuo.TemplateEngine.Routing.RouteValueDictionary.ctor().AddItem("ToUpdate", toUpdate)));
         },
         OnFormSubmit: function (context){
-            this.get_FormPostInvokers().Invoke(new Neptuo.TemplateEngine.Web.FormPostInvoker.ctor(this, this.get_DependencyContainer(), context));
+            this.get_FormPostInvokers().Invoke(new Neptuo.TemplateEngine.Web.FormPostInvoker.ctor(this, context));
         },
         TryInvokeControllers: function (parameters){
             var container = this.get_DependencyContainer().CreateChildContainer();
@@ -998,17 +998,14 @@ var Neptuo$TemplateEngine$Web$FormPostInvoker = {
     interfaceNames: ["Neptuo.TemplateEngine.Web.IFormPostInvoker"],
     Kind: "Class",
     definition: {
-        ctor: function (application, dependencyContainer, context){
+        ctor: function (application, context){
             this.OnSuccess = null;
             this._Application = null;
-            this._DependencyContainer = null;
             this._Context = null;
             System.Object.ctor.call(this);
             Neptuo.Guard.NotNull$$Object$$String(application, "application");
-            Neptuo.Guard.NotNull$$Object$$String(dependencyContainer, "dependencyContainer");
             Neptuo.Guard.NotNull$$Object$$String(context, "context");
             this.set_Application(application);
-            this.set_DependencyContainer(dependencyContainer);
             this.set_Context(context);
         },
         Application$$: "Neptuo.TemplateEngine.Web.IApplication",
@@ -1017,13 +1014,6 @@ var Neptuo$TemplateEngine$Web$FormPostInvoker = {
         },
         set_Application: function (value){
             this._Application = value;
-        },
-        DependencyContainer$$: "Neptuo.IDependencyContainer",
-        get_DependencyContainer: function (){
-            return this._DependencyContainer;
-        },
-        set_DependencyContainer: function (value){
-            this._DependencyContainer = value;
         },
         Context$$: "Neptuo.TemplateEngine.Web.FormRequestContext",
         get_Context: function (){
@@ -1064,15 +1054,15 @@ var Neptuo$TemplateEngine$Web$FormPostInvoker = {
                 if (partialResponse.get_Navigation() != null)
                     navigationUrl = this.get_Application().ResolveUrl(partialResponse.get_Navigation());
                 else
-                    navigationUrl = location.pathname;
-                var childContainer = this.get_DependencyContainer().CreateChildContainer();
+                    navigationUrl = this.get_Application().GetCurrentUrl();
+                var customValues = new Neptuo.TemplateEngine.Routing.RouteValueDictionary.ctor().AddItem("ToUpdate", this.get_Context().ToUpdate).AddItem("Messages", partialResponse.get_Messages());
                 if (navigationUrl == this.get_Application().GetCurrentUrl()){
-                    this.get_Application().get_Router().RouteTo(new Neptuo.TemplateEngine.Routing.RequestContext.ctor(navigationUrl, Neptuo.TemplateEngine.Web.JsArrayExtensions.ToRouteParams(this.get_Context().Parameters), new Neptuo.TemplateEngine.Routing.RouteValueDictionary.ctor().AddItem("ToUpdate", this.get_Context().ToUpdate).AddItem("Messages", partialResponse.get_Messages())));
                     Neptuo.TemplateEngine.Web.InitScript.FormRequestContext = this.get_Context();
+                    this.get_Application().get_Router().RouteTo(new Neptuo.TemplateEngine.Routing.RequestContext.ctor(navigationUrl, Neptuo.TemplateEngine.Web.JsArrayExtensions.ToRouteParams(this.get_Context().Parameters), customValues));
                 }
                 else {
                     this.get_Application().get_HistoryState().Push(new Neptuo.TemplateEngine.Web.HistoryItem.ctor(navigationUrl, this.get_Context().ToUpdate, null));
-                    this.get_Application().get_Router().RouteTo(new Neptuo.TemplateEngine.Routing.RequestContext.ctor(navigationUrl, new Neptuo.TemplateEngine.Routing.RouteParamDictionary.ctor(), new Neptuo.TemplateEngine.Routing.RouteValueDictionary.ctor().AddItem("ToUpdate", this.get_Context().ToUpdate).AddItem("Messages", partialResponse.get_Messages())));
+                    this.get_Application().get_Router().RouteTo(new Neptuo.TemplateEngine.Routing.RequestContext.ctor(navigationUrl, new Neptuo.TemplateEngine.Routing.RouteParamDictionary.ctor(), customValues));
                 }
                 if (this.OnSuccess != null)
                     this.OnSuccess(this);
@@ -1085,7 +1075,7 @@ var Neptuo$TemplateEngine$Web$FormPostInvoker = {
     },
     ctors: [{
         name: "ctor",
-        parameters: ["Neptuo.TemplateEngine.Web.IApplication", "Neptuo.IDependencyContainer", "Neptuo.TemplateEngine.Web.FormRequestContext"]
+        parameters: ["Neptuo.TemplateEngine.Web.IApplication", "Neptuo.TemplateEngine.Web.FormRequestContext"]
     }
     ],
     IsAbstract: false
@@ -1625,9 +1615,6 @@ var Neptuo$TemplateEngine$Web$InitScript = {
     staticDefinition: {
         cctor: function (){
             Neptuo.TemplateEngine.Web.InitScript.FormRequestContext = null;
-        },
-        Init: function (){
-            Neptuo.TemplateEngine.Web.Application.Start("/", ["Body"]);
         },
         InvokeControllers: function (data){
             var container = Neptuo.TemplateEngine.Web.Application.get_Instance().get_DependencyContainer().CreateChildContainer();
