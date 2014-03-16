@@ -392,6 +392,24 @@ var Neptuo$TemplateEngine$Routing$TemplateRouteHandler = {
     IsAbstract: false
 };
 JsTypes.push(Neptuo$TemplateEngine$Routing$TemplateRouteHandler);
+var Neptuo$TemplateEngine$TempClass = {
+    fullname: "Neptuo.TemplateEngine.TempClass",
+    baseTypeName: "System.Object",
+    assemblyName: "Neptuo.TemplateEngine.Client",
+    Kind: "Class",
+    definition: {
+        ctor: function (){
+            System.Object.ctor.call(this);
+        }
+    },
+    ctors: [{
+        name: "ctor",
+        parameters: []
+    }
+    ],
+    IsAbstract: false
+};
+JsTypes.push(Neptuo$TemplateEngine$TempClass);
 var Neptuo$TemplateEngine$Web$Application = {
     fullname: "Neptuo.TemplateEngine.Web.Application",
     baseTypeName: "System.Object",

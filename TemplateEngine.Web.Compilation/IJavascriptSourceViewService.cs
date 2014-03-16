@@ -10,6 +10,6 @@ namespace Neptuo.TemplateEngine.Web.Compilation
     public interface IJavascriptSourceViewService
     {
         INamingService NamingService { get; }
-        string GenerateJavascript(string viewContent, IViewServiceContext context, INaming naming, string optionalViewPath);
+        string GenerateJavascript(string viewContent, IViewServiceContext context, INaming naming);
     }
 }
