@@ -9,7 +9,9 @@ namespace Neptuo.TemplateEngine.Web.Controllers
     public interface IControllerRegistry
     {
         IControllerRegistry Add(string actionName, IControllerFactory factory);
+        IControllerRegistry Add(string actionName, IAsyncControllerFactory factory);
 
-        bool TryGet(string actionName, out IController handler);
+        bool TryGet(string actionName, out IController controller);
+        bool TryGetAsync(string actionName, out IAsyncController controller);
     }
 }

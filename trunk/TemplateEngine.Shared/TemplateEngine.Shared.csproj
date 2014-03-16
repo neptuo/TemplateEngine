@@ -52,6 +52,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IStackStorage.cs" />
+    <Compile Include="Web\Controllers\DependencyAsyncControllerFactory.cs" />
+    <Compile Include="Web\Controllers\IAsyncController.cs" />
+    <Compile Include="Web\Controllers\IAsyncControllerFactory.cs" />
+    <Compile Include="Web\Controllers\IAsyncResult.cs" />
     <Compile Include="Web\Controls\BundleControlBase.cs" />
     <Compile Include="Web\DictionaryParameterProvider.cs" />
     <Compile Include="Web\HtmlWriterExtensions.cs" />

@@ -541,6 +541,20 @@ var Neptuo$TemplateEngine$Web$Application = {
                     controller.Execute(new Neptuo.TemplateEngine.Web.Controllers.ControllerContext.ctor(key, viewData, modelBinder, localNavigations));
                     isControllerExecuted = true;
                 }
+                else {
+                    var asyncController;
+                    if ((function (){
+                        var $1 = {
+                            Value: asyncController
+                        };
+                        var $res = controllerRegistry.TryGetAsync(key, $1);
+                        asyncController = $1.Value;
+                        return $res;
+                    }).call(this)){
+                        asyncController.ExecuteAsync(new Neptuo.TemplateEngine.Web.Controllers.ControllerContext.ctor(key, viewData, modelBinder, localNavigations));
+                        isControllerExecuted = true;
+                    }
+                }
             }
             return isControllerExecuted;
         },

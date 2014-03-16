@@ -42,6 +42,75 @@ var Neptuo$TemplateEngine$IStackStorage$1 = {
     IsAbstract: true
 };
 JsTypes.push(Neptuo$TemplateEngine$IStackStorage$1);
+var Neptuo$TemplateEngine$Web$Controllers$DependencyAsyncControllerFactory = {
+    fullname: "Neptuo.TemplateEngine.Web.Controllers.DependencyAsyncControllerFactory",
+    baseTypeName: "System.Object",
+    assemblyName: "Neptuo.TemplateEngine.Shared",
+    interfaceNames: ["Neptuo.TemplateEngine.Web.Controllers.IAsyncControllerFactory"],
+    Kind: "Class",
+    definition: {
+        ctor: function (dependencyContainer, handlerType){
+            this._DependencyContainer = null;
+            this._HandlerType = null;
+            System.Object.ctor.call(this);
+            Neptuo.Guard.NotNull$$Object$$String(dependencyContainer, "dependencyContainer");
+            Neptuo.Guard.NotNull$$Object$$String(handlerType, "handlerType");
+            this.set_DependencyContainer(dependencyContainer);
+            this.set_HandlerType(handlerType);
+        },
+        DependencyContainer$$: "Neptuo.IDependencyContainer",
+        get_DependencyContainer: function (){
+            return this._DependencyContainer;
+        },
+        set_DependencyContainer: function (value){
+            this._DependencyContainer = value;
+        },
+        HandlerType$$: "System.Type",
+        get_HandlerType: function (){
+            return this._HandlerType;
+        },
+        set_HandlerType: function (value){
+            this._HandlerType = value;
+        },
+        Create: function (){
+            return Cast(this.get_DependencyContainer().Resolve(this.get_HandlerType(), null), Neptuo.TemplateEngine.Web.Controllers.IAsyncController.ctor);
+        }
+    },
+    ctors: [{
+        name: "ctor",
+        parameters: ["Neptuo.IDependencyContainer", "System.Type"]
+    }
+    ],
+    IsAbstract: false
+};
+JsTypes.push(Neptuo$TemplateEngine$Web$Controllers$DependencyAsyncControllerFactory);
+var Neptuo$TemplateEngine$Web$Controllers$IAsyncController = {
+    fullname: "Neptuo.TemplateEngine.Web.Controllers.IAsyncController",
+    baseTypeName: "System.Object",
+    assemblyName: "Neptuo.TemplateEngine.Shared",
+    Kind: "Interface",
+    ctors: [],
+    IsAbstract: true
+};
+JsTypes.push(Neptuo$TemplateEngine$Web$Controllers$IAsyncController);
+var Neptuo$TemplateEngine$Web$Controllers$IAsyncControllerFactory = {
+    fullname: "Neptuo.TemplateEngine.Web.Controllers.IAsyncControllerFactory",
+    baseTypeName: "System.Object",
+    assemblyName: "Neptuo.TemplateEngine.Shared",
+    Kind: "Interface",
+    ctors: [],
+    IsAbstract: true
+};
+JsTypes.push(Neptuo$TemplateEngine$Web$Controllers$IAsyncControllerFactory);
+var Neptuo$TemplateEngine$Web$Controllers$IAsyncResult = {
+    fullname: "Neptuo.TemplateEngine.Web.Controllers.IAsyncResult",
+    baseTypeName: "System.Object",
+    assemblyName: "Neptuo.TemplateEngine.Shared",
+    Kind: "Interface",
+    ctors: [],
+    IsAbstract: true
+};
+JsTypes.push(Neptuo$TemplateEngine$Web$Controllers$IAsyncResult);
 var Neptuo$TemplateEngine$Web$Controls$BundleControlBase = {
     fullname: "Neptuo.TemplateEngine.Web.Controls.BundleControlBase",
     baseTypeName: "System.Object",
@@ -680,8 +749,10 @@ var Neptuo$TemplateEngine$Web$Controllers$ControllerRegistryBase = {
     definition: {
         ctor: function (){
             this._Storage = null;
+            this._AsyncStorage = null;
             System.Object.ctor.call(this);
             this.set_Storage(new System.Collections.Generic.Dictionary$2.ctor(System.String.ctor, Neptuo.TemplateEngine.Web.Controllers.IControllerFactory.ctor));
+            this.set_AsyncStorage(new System.Collections.Generic.Dictionary$2.ctor(System.String.ctor, Neptuo.TemplateEngine.Web.Controllers.IAsyncControllerFactory.ctor));
         },
         Storage$$: "System.Collections.Generic.Dictionary`2[[System.String],[Neptuo.TemplateEngine.Web.Controllers.IControllerFactory]]",
         get_Storage: function (){
@@ -690,13 +761,26 @@ var Neptuo$TemplateEngine$Web$Controllers$ControllerRegistryBase = {
         set_Storage: function (value){
             this._Storage = value;
         },
-        Add: function (actionName, factory){
+        AsyncStorage$$: "System.Collections.Generic.Dictionary`2[[System.String],[Neptuo.TemplateEngine.Web.Controllers.IAsyncControllerFactory]]",
+        get_AsyncStorage: function (){
+            return this._AsyncStorage;
+        },
+        set_AsyncStorage: function (value){
+            this._AsyncStorage = value;
+        },
+        Add$$String$$IControllerFactory: function (actionName, factory){
             Neptuo.Guard.NotNull$$Object$$String(actionName, "actionName");
             Neptuo.Guard.NotNull$$Object$$String(factory, "factory");
             this.get_Storage().set_Item$$TKey(actionName, factory);
             return this;
         },
-        TryGet: function (actionName, handler){
+        Add$$String$$IAsyncControllerFactory: function (actionName, factory){
+            Neptuo.Guard.NotNull$$Object$$String(actionName, "actionName");
+            Neptuo.Guard.NotNull$$Object$$String(factory, "factory");
+            this.get_AsyncStorage().set_Item$$TKey(actionName, factory);
+            return this;
+        },
+        TryGet: function (actionName, controller){
             Neptuo.Guard.NotNull$$Object$$String(actionName, "actionName");
             var factory;
             if ((function (){
@@ -707,10 +791,27 @@ var Neptuo$TemplateEngine$Web$Controllers$ControllerRegistryBase = {
                 factory = $1.Value;
                 return $res;
             }).call(this)){
-                handler.Value = factory.Create();
+                controller.Value = factory.Create();
                 return true;
             }
-            handler.Value = null;
+            controller.Value = null;
+            return false;
+        },
+        TryGetAsync: function (actionName, controller){
+            Neptuo.Guard.NotNull$$Object$$String(actionName, "actionName");
+            var factory;
+            if ((function (){
+                var $1 = {
+                    Value: factory
+                };
+                var $res = this.get_AsyncStorage().TryGetValue(actionName, $1);
+                factory = $1.Value;
+                return $res;
+            }).call(this)){
+                controller.Value = factory.Create();
+                return true;
+            }
+            controller.Value = null;
             return false;
         }
     },
@@ -737,7 +838,7 @@ var Neptuo$TemplateEngine$Web$Controllers$ControllerRegistryExtensions = {
             return controllerRegistry;
         },
         Add$$IControllerRegistry$$String$$IDependencyContainer$$Type: function (controllerRegistry, actionName, dependencyContainer, controllerType){
-            return controllerRegistry.Add(actionName, new Neptuo.TemplateEngine.Web.Controllers.DependencyControllerFactory.ctor(dependencyContainer, controllerType));
+            return controllerRegistry.Add$$String$$IControllerFactory(actionName, new Neptuo.TemplateEngine.Web.Controllers.DependencyControllerFactory.ctor(dependencyContainer, controllerType));
         }
     },
     assemblyName: "Neptuo.TemplateEngine.Shared",

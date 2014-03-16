@@ -176,10 +176,19 @@ namespace Neptuo.TemplateEngine.Web
                     controller.Execute(new ControllerContext(key, viewData, modelBinder, localNavigations));
                     isControllerExecuted = true;
                 }
+                else
+                {
+                    IAsyncController asyncController;
+                    if (controllerRegistry.TryGetAsync(key, out asyncController))
+                    {
+                        asyncController.ExecuteAsync(new ControllerContext(key, viewData, modelBinder, localNavigations));
+                        isControllerExecuted = true;
+                    }
+                }
+
             }
 
             //TODO: Process navigations
-
             return isControllerExecuted;
         }
 
