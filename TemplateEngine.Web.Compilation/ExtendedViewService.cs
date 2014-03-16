@@ -25,11 +25,7 @@ namespace Neptuo.TemplateEngine.Web.Compilation
         public string GenerateJavascript(string viewContent, IViewServiceContext context, INaming naming, string optionalViewPath)
         {
             string sourceCode = GenerateSourceCode(viewContent, context, naming);
-            string replaceClassDefinition = String.Format(
-                "[SharpKit.JavaScript.JsType(SharpKit.JavaScript.JsMode.Clr)] {0} public sealed class ", 
-                GetViewAttributeSourceCode(optionalViewPath)
-            );
-
+            string replaceClassDefinition = "[SharpKit.JavaScript.JsType(SharpKit.JavaScript.JsMode.Clr)] public sealed class ";
             sourceCode = sourceCode.Replace("public sealed class ", replaceClassDefinition);
 
             StringWriter output = new StringWriter();
