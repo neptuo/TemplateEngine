@@ -42,7 +42,7 @@ namespace Neptuo.TemplateEngine.Backend.Web
                 string viewContent = File.ReadAllText(viewPath);
                 string virtualViewPath = RelativePath(context.Server, viewPath, context.Request);
 
-                INaming classNaming = viewService.NamingService.FromContent(viewContent);
+                INaming classNaming = viewService.NamingService.FromFile(virtualViewPath);
                 appendBuilder.AppendFormat(
                     "Neptuo.TemplateEngine.Web.StaticViewActivator.Add('{0}', Typeof(Neptuo.Templates.{1}.ctor));",
                     virtualViewPath, //.Replace("~/Views/", "~/")
@@ -61,7 +61,7 @@ namespace Neptuo.TemplateEngine.Backend.Web
                     }
                 }
 
-                string javascriptContent = viewService.GenerateJavascript(viewContent, new ViewServiceContext(dependencyProvider), classNaming, virtualViewPath);
+                string javascriptContent = viewService.GenerateJavascript(viewContent, new ViewServiceContext(dependencyProvider), classNaming);
                 javascriptContent = RewriteJavascriptContent(javascriptContent);
                 File.WriteAllText(tempViewPath, javascriptContent);
                 contentBuilder.AppendLine(javascriptContent);
