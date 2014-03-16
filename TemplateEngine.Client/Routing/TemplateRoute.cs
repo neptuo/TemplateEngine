@@ -9,11 +9,13 @@ namespace Neptuo.TemplateEngine.Routing
 {
     public class TemplateRoute : IRoute
     {
+        public string UrlSuffix { get; private set; }
         public IApplication Application { get; private set; }
 
-        public TemplateRoute(IApplication application)
+        public TemplateRoute(string urlSuffix, IApplication application)
         {
             Guard.NotNull(application, "application");
+            UrlSuffix = urlSuffix;
             Application = application;
         }
 
@@ -48,24 +50,18 @@ namespace Neptuo.TemplateEngine.Routing
             );
         }
         
-        public static string MapView(string url)
+        public string MapView(string url)
         {
-            if (url.Contains("/Home.aspx"))
-                return "~/Views/Home.view";
+            if (UrlSuffix != null && !url.EndsWith(UrlSuffix))
+                return null;
 
-            if (url.Contains("/Accounts/UserList.aspx"))
-                return "~/Views/Accounts/UserList.view";
+            if (UrlSuffix != null)
+                url = url.Replace(UrlSuffix, ".view");
+            else
+                url = url + ".view";
 
-            if (url.Contains("/Accounts/UserEdit.aspx"))
-                return "~/Views/Accounts/UserEdit.view";
-
-            if (url.Contains("/Accounts/RoleList.aspx"))
-                return "~/Views/Accounts/RoleList.view";
-
-            if (url.Contains("/Accounts/RoleEdit.aspx"))
-                return "~/Views/Accounts/RoleEdit.view";
-
-            return null;
+            string viewPath = "~/Views" + url;
+            return viewPath;
         }
     }
 }

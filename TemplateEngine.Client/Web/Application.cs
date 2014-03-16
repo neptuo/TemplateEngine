@@ -80,10 +80,10 @@ namespace Neptuo.TemplateEngine.Web
             IViewActivator viewActivator = new StaticViewActivator(container);
 
             HistoryState = new HistoryState();
-            MainView = new MainView(viewActivator);
+            MainView = new MainView(viewActivator, this);
 
             Router = new ExtendedRouter();
-            Router.AddRoute(new TemplateRoute(this));
+            Router.AddRoute(new TemplateRoute(".aspx", this));
 
             container
                 .RegisterType<IStackStorage<IViewStorage>, StackStorage<IViewStorage>>()
