@@ -95,6 +95,7 @@
     <Compile Include="Navigation\RedirectNavigateTo.cs" />
     <Compile Include="Navigation\RedirectNavigator.cs" />
     <Compile Include="Web\ServerPartialResponse.cs" />
+    <Compile Include="Web\ServerVirtualPathProvider.cs" />
     <Compile Include="Web\TemplateHttpHandler.cs" />
     <Compile Include="Web\TemplateHttpHandlerBase.cs" />
   </ItemGroup>
