@@ -37,6 +37,7 @@ var Neptuo$TemplateEngine$Accounts$Commands$UserAccountCreateCommand = {
             this._Password = null;
             this._PasswordAgain = null;
             this._IsEnabled = false;
+            this._RoleIDs = null;
             System.Object.ctor.call(this);
         },
         Username$$: "System.String",
@@ -66,6 +67,13 @@ var Neptuo$TemplateEngine$Accounts$Commands$UserAccountCreateCommand = {
         },
         set_IsEnabled: function (value){
             this._IsEnabled = value;
+        },
+        RoleIDs$$: "System.Collections.Generic.IEnumerable`1[[System.Int32]]",
+        get_RoleIDs: function (){
+            return this._RoleIDs;
+        },
+        set_RoleIDs: function (value){
+            this._RoleIDs = value;
         }
     },
     ctors: [{
