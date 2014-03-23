@@ -78,7 +78,13 @@ namespace Neptuo.TemplateEngine.Accounts.Web.Controllers
             using (IUnitOfWork transaction = UnitOfWorkFactory.Create())
             {
                 //CommandDispatcher.Handle(model);
-                AccountService.CreateAccount(model.Username, model.Password, model.IsEnabled);
+                UserAccount account = AccountService.CreateAccount(model.Username, model.Password, model.IsEnabled);
+                if (model.RoleIDs != null)
+                {
+                    foreach (int userRoleID in model.RoleIDs)
+                        AccountService.AssignAccountToRole(account, userRoleID);
+                }
+
                 transaction.SaveChanges();
 
                 MessageStorage.Add(null, String.Empty, "User account created.", MessageType.Info);

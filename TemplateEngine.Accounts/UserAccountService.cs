@@ -13,11 +13,13 @@ namespace Neptuo.TemplateEngine.Accounts
     {
         protected IEventDispatcher EventDispatcher { get; private set; }
         protected IUserAccountRepository UserAccounts { get; private set; }
+        protected IUserRoleRepository UserRoles { get; private set; }
 
-        public UserAccountService(IEventDispatcher eventDispatcher, IUserAccountRepository userAccounts)
+        public UserAccountService(IEventDispatcher eventDispatcher, IUserAccountRepository userAccounts, IUserRoleRepository userRoles)
         {
             EventDispatcher = eventDispatcher;
             UserAccounts = userAccounts;
+            UserRoles = userRoles;
         }
 
         public UserAccount CreateAccount(string username, string password, bool enabled)
@@ -35,6 +37,15 @@ namespace Neptuo.TemplateEngine.Accounts
         public void DeleteAccount(int userKey)
         {
             UserAccounts.Delete(UserAccounts.Get(userKey));
+        }
+
+        public void AssignAccountToRole(UserAccount account, int userRoleID)
+        {
+            UserRole userRole = UserRoles.Get(userRoleID);
+            if (userRole == null)
+                throw new ArgumentOutOfRangeException("userRoleID", String.Format("No such user role, for id '{0}'.", userRoleID));
+
+            account.Roles.Add(userRole);
         }
     }
 }
