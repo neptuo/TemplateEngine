@@ -31,12 +31,10 @@ namespace Neptuo.TemplateEngine.Backend.Bootstrap
     public class ViewServiceBootstrapTask : IBootstrapTask
     {
         private IDependencyContainer container;
-        private HttpContextBase httpContext;
 
-        public ViewServiceBootstrapTask(IDependencyContainer container, HttpContextBase httpContext)
+        public ViewServiceBootstrapTask(IDependencyContainer container)
         {
             this.container = container;
-            this.httpContext = httpContext;
         }
 
         public void Initialize()
