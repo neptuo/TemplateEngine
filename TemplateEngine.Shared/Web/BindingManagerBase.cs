@@ -66,6 +66,10 @@ namespace Neptuo.TemplateEngine.Web
 
                 if (source != null)
                     source = info.GetValue(source, null);
+
+                provider = source as IModelValueProvider;
+                if (provider != null)
+                    return provider.TryGetValue(String.Join(".", exprs.Skip(i + 1)), out value);
             }
 
             value = source;

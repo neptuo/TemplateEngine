@@ -13,5 +13,6 @@ namespace Neptuo.TemplateEngine.Accounts.Commands
         public string Password { get; set; }
         public string PasswordAgain { get; set; }
         public bool IsEnabled { get; set; }
+        public IEnumerable<int> RoleKeys { get; set; }
     }
 }

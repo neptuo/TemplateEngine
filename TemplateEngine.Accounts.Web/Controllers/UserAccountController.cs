@@ -79,9 +79,9 @@ namespace Neptuo.TemplateEngine.Accounts.Web.Controllers
             {
                 //CommandDispatcher.Handle(model);
                 UserAccount account = AccountService.CreateAccount(model.Username, model.Password, model.IsEnabled);
-                if (model.RoleIDs != null)
+                if (model.RoleKeys != null)
                 {
-                    foreach (int userRoleID in model.RoleIDs)
+                    foreach (int userRoleID in model.RoleKeys)
                         AccountService.AssignAccountToRole(account, userRoleID);
                 }
 

@@ -28,12 +28,12 @@
                 </ui:FormItem>
                 <ui:FormItem>
                     <label for="FilterRole">Role:</label>
-                    <ui:Select Name="RoleKey" Value="{Request RoleKey}" IsAddEmpty="true" html:ID="RoleKey" html:Class="form-control input-sm w200" html:Style="display: block;">
+                    <ui:Select Name="RoleKey" Value="{Request RoleKey}" SelectedValuePath="Key" IsAddEmpty="true" html:ID="RoleKey" html:Class="form-control input-sm w200" html:Style="display: block;">
                         <Source>
                             <data:UserRoleDataSource />
                         </Source>
                         <ItemTemplate>
-                            <ui:Option Text="{Binding Name}" Value="{Binding Key}" SelectedValue="{TemplateBinding Value}" />
+                            <ui:Option Text="{Binding Model.Name}" Value="{Binding Model.Key}" SelectedValue="{TemplateBinding Value}" />
                         </ItemTemplate>
                     </ui:Select>
                 </ui:FormItem>

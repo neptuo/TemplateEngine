@@ -37,7 +37,7 @@ var Neptuo$TemplateEngine$Accounts$Commands$UserAccountCreateCommand = {
             this._Password = null;
             this._PasswordAgain = null;
             this._IsEnabled = false;
-            this._RoleIDs = null;
+            this._RoleKeys = null;
             System.Object.ctor.call(this);
         },
         Username$$: "System.String",
@@ -68,12 +68,12 @@ var Neptuo$TemplateEngine$Accounts$Commands$UserAccountCreateCommand = {
         set_IsEnabled: function (value){
             this._IsEnabled = value;
         },
-        RoleIDs$$: "System.Collections.Generic.IEnumerable`1[[System.Int32]]",
-        get_RoleIDs: function (){
-            return this._RoleIDs;
+        RoleKeys$$: "System.Collections.Generic.IEnumerable`1[[System.Int32]]",
+        get_RoleKeys: function (){
+            return this._RoleKeys;
         },
-        set_RoleIDs: function (value){
-            this._RoleIDs = value;
+        set_RoleKeys: function (value){
+            this._RoleKeys = value;
         }
     },
     ctors: [{
@@ -124,6 +124,7 @@ var Neptuo$TemplateEngine$Accounts$Commands$UserAccountEditCommand = {
             this._Password = null;
             this._PasswordAgain = null;
             this._IsEnabled = false;
+            this._RoleKeys = null;
             System.Object.ctor.call(this);
         },
         Key$$: "System.Int32",
@@ -160,6 +161,13 @@ var Neptuo$TemplateEngine$Accounts$Commands$UserAccountEditCommand = {
         },
         set_IsEnabled: function (value){
             this._IsEnabled = value;
+        },
+        RoleKeys$$: "System.Collections.Generic.IEnumerable`1[[System.Int32]]",
+        get_RoleKeys: function (){
+            return this._RoleKeys;
+        },
+        set_RoleKeys: function (value){
+            this._RoleKeys = value;
         }
     },
     ctors: [{

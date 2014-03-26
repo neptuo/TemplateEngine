@@ -43,7 +43,8 @@ namespace Neptuo.TemplateEngine.Accounts.Web.DataSources
             {
                 Key = userAccount.Key,
                 Username = userAccount.Username,
-                IsEnabled = userAccount.IsEnabled
+                IsEnabled = userAccount.IsEnabled,
+                RoleKeys = userAccount.Roles.Select(r => r.Key)
             };
         }
     }
