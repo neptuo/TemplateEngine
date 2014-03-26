@@ -2,6 +2,7 @@
 using Neptuo.PresentationModels.TypeModels;
 using Neptuo.TemplateEngine.Accounts.Queries;
 using Neptuo.TemplateEngine.Web;
+using Neptuo.TemplateEngine.Web.DataSources;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -11,6 +12,7 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Accounts.Web.DataSources
 {
+    [WebDataSource]
     public class UserAccountDataSource : IListDataSource, IDataSource
     {
         private IUserAccountQuery userQuery;

@@ -5,16 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Neptuo.TemplateEngine.Web
+namespace Neptuo.TemplateEngine.Web.DataSources
 {
     public interface IListDataSource
     {
         IEnumerable GetData(int? pageIndex, int? pageSize);
         int GetTotalCount();
-    }
-
-    public interface IDataSource
-    {
-        object GetItem();
     }
 }
