@@ -85,6 +85,7 @@
     <Compile Include="Controls\ListViewControl.cs" />
     <Compile Include="Controls\SelectControl.cs" />
     <Compile Include="Controls\Templates\StringTemplate.cs" />
+    <Compile Include="DataSources\WebDataSourceAttribute.cs" />
     <Compile Include="GeneratedViewBase.cs" />
     <Compile Include="ViewServiceViewActivator.cs" />
     <Compile Include="DataSources\ListDataSourceBase.cs" />
