@@ -77,20 +77,26 @@ namespace Neptuo.TemplateEngine.Accounts.Bootstrap
             RegisterGlobalNavigations(globalNavigations);
 
 //#if DEBUG
-            CreateDummyUserAccounts();
             CreateDummyUserRoles();
+            CreateDummyUserAccounts();
 //#endif
         }
 
         protected void CreateDummyUserAccounts()
         {
+            IUserRoleRepository userRoles = dependencyContainer.Resolve<IUserRoleRepository>();
             IUserAccountRepository storage = dependencyContainer.Resolve<IUserAccountRepository>();
             for (int i = 0; i < 34; i++)
             {
                 storage.Insert(new MemoryUserAccount
                 {
                     Username = "User " + i,
-                    IsEnabled = (i % 3) == 1
+                    IsEnabled = (i % 3) == 1,
+                    Roles = new List<UserRole>
+                    {
+                        userRoles.Get(1),
+                        userRoles.Get(2)
+                    }
                 });
             }
         }

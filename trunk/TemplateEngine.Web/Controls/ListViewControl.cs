@@ -36,7 +36,7 @@ namespace Neptuo.TemplateEngine.Web.Controls
 
             List<object> itemTemplates = new List<object>();
 
-            IEnumerable models = Source.GetData(PageIndex, PageSize);
+            IEnumerable models = GetModelPage(PageIndex, PageSize);
             TotalCount = Source.GetTotalCount();
             DataContext.Push(this, "Template");
 
@@ -44,9 +44,7 @@ namespace Neptuo.TemplateEngine.Web.Controls
             foreach (object model in models)
             {
                 isEmpty = false;
-                DataContext.Push(model);
-                itemTemplates.Add(InitTemplate(ItemTemplate));
-                DataContext.Pop();
+                ProcessModelItem(itemTemplates, model);
             }
 
             if (isEmpty && EmptyTemplate != null)
@@ -55,7 +53,6 @@ namespace Neptuo.TemplateEngine.Web.Controls
             }
             else
             {
-
                 TemplateContentControl templateContent = new TemplateContentControl(ComponentManager)
                 {
                     Name = "Content",
@@ -68,6 +65,18 @@ namespace Neptuo.TemplateEngine.Web.Controls
 
             base.OnInit();
             DataContext.Pop("Template");
+        }
+
+        protected virtual IEnumerable GetModelPage(int? pageIndex, int? pageSize)
+        {
+            return Source.GetData(pageIndex, pageSize);
+        }
+
+        protected virtual void ProcessModelItem(List<object> itemTemplates, object model)
+        {
+            DataContext.Push(model);
+            itemTemplates.Add(InitTemplate(ItemTemplate));
+            DataContext.Pop();
         }
 
         public override void Render(IHtmlWriter writer)

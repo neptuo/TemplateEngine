@@ -163,6 +163,42 @@ var Neptuo$TemplateEngine$Web$Controls$BundleControlBase = {
     IsAbstract: false
 };
 JsTypes.push(Neptuo$TemplateEngine$Web$Controls$BundleControlBase);
+var Neptuo$TemplateEngine$Web$Controls$SelectItem = {
+    fullname: "Neptuo.TemplateEngine.Web.Controls.SelectItem",
+    baseTypeName: "System.Object",
+    assemblyName: "Neptuo.TemplateEngine.Shared",
+    Kind: "Class",
+    definition: {
+        ctor: function (model){
+            this._Model = null;
+            this._IsSelected = false;
+            System.Object.ctor.call(this);
+            Neptuo.Guard.NotNull$$Object$$String(model, "model");
+            this.set_Model(model);
+        },
+        Model$$: "System.Object",
+        get_Model: function (){
+            return this._Model;
+        },
+        set_Model: function (value){
+            this._Model = value;
+        },
+        IsSelected$$: "System.Boolean",
+        get_IsSelected: function (){
+            return this._IsSelected;
+        },
+        set_IsSelected: function (value){
+            this._IsSelected = value;
+        }
+    },
+    ctors: [{
+        name: "ctor",
+        parameters: ["System.Object"]
+    }
+    ],
+    IsAbstract: false
+};
+JsTypes.push(Neptuo$TemplateEngine$Web$Controls$SelectItem);
 var Neptuo$TemplateEngine$Web$DictionaryParameterProvider = {
     fullname: "Neptuo.TemplateEngine.Web.DictionaryParameterProvider",
     baseTypeName: "System.Object",
@@ -395,6 +431,9 @@ var Neptuo$TemplateEngine$Web$BindingManagerBase = {
                 type = info.get_PropertyType();
                 if (source != null)
                     source = info.GetValue$$Object$$Object$Array(source, null);
+                provider = As(source, Neptuo.PresentationModels.IModelValueProvider.ctor);
+                if (provider != null)
+                    return provider.TryGetValue(System.String.Join$$String$$IEnumerable$1$String(".", System.Linq.Enumerable.Skip$1(System.String.ctor, exprs, i + 1)), value);
             }
             value.Value = source;
             return true;
@@ -516,6 +555,23 @@ var Neptuo$TemplateEngine$Web$Controllers$Binders$BindingValueStorage = {
             }).call(this))
                 return Cast(value, System.String.ctor);
             return null;
+        },
+        TryGetValue: function (identifier, targetValue){
+            Neptuo.Guard.NotNull$$Object$$String(identifier, "identifier");
+            var value;
+            if ((function (){
+                var $1 = {
+                    Value: value
+                };
+                var $res = this.get_ParameterProvider().TryGet(identifier, $1);
+                value = $1.Value;
+                return $res;
+            }).call(this)){
+                targetValue.Value = Cast(value, System.String.ctor);
+                return true;
+            }
+            targetValue.Value = null;
+            return false;
         }
     },
     ctors: [{

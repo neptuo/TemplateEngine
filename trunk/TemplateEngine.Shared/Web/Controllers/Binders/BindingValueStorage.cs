@@ -27,5 +27,20 @@ namespace Neptuo.TemplateEngine.Web.Controllers.Binders
 
             return null;
         }
+
+        public bool TryGetValue(string identifier, out string targetValue)
+        {
+            Guard.NotNull(identifier, "identifier");
+
+            object value;
+            if (ParameterProvider.TryGet(identifier, out value))
+            {
+                targetValue = (string)value;
+                return true;
+            }
+
+            targetValue = null;
+            return false;
+        }
     }
 }
