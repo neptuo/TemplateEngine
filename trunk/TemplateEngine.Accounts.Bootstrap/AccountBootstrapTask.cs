@@ -8,11 +8,13 @@ using Neptuo.TemplateEngine.Accounts.Data;
 using Neptuo.TemplateEngine.Accounts.Data.Entity;
 using Neptuo.TemplateEngine.Accounts.Queries;
 using Neptuo.TemplateEngine.Accounts.Web.Controllers;
+using Neptuo.TemplateEngine.Accounts.Web.DataSources;
 using Neptuo.TemplateEngine.Navigation;
 using Neptuo.TemplateEngine.Navigation.Bootstrap;
 using Neptuo.TemplateEngine.Web;
 using Neptuo.TemplateEngine.Web.Compilation.Parsers;
 using Neptuo.TemplateEngine.Web.Controllers;
+using Neptuo.TemplateEngine.Web.DataSources;
 using Neptuo.Templates.Compilation;
 using Neptuo.Templates.Compilation.Parsers;
 using Neptuo.Validation;
@@ -32,20 +34,23 @@ namespace Neptuo.TemplateEngine.Accounts.Bootstrap
         private IFormUriRegistry formRegistry;
         private IControllerRegistry controllerRegistry;
         private GlobalNavigationCollection globalNavigations;
+        private IWebDataSourceRegistry dataSourceRegistry;
 
-        public AccountBootstrapTask(IDependencyContainer dependencyContainer, TypeBuilderRegistry registry, IFormUriRegistry formRegistry, IControllerRegistry controllerRegistry, GlobalNavigationCollection globalNavigations)
+        public AccountBootstrapTask(IDependencyContainer dependencyContainer, TypeBuilderRegistry registry, IFormUriRegistry formRegistry, IControllerRegistry controllerRegistry, GlobalNavigationCollection globalNavigations, IWebDataSourceRegistry dataSourceRegistry)
         {
             Guard.NotNull(dependencyContainer, "dependencyContainer");
             Guard.NotNull(registry, "registry");
             Guard.NotNull(formRegistry, "formRegistry");
             Guard.NotNull(controllerRegistry, "controllerRegistry");
             Guard.NotNull(globalNavigations, "globalNavigations");
+            Guard.NotNull(dataSourceRegistry, "dataSourceRegistry");
 
             this.dependencyContainer = dependencyContainer;
             this.registry = registry;
             this.formRegistry = formRegistry;
             this.controllerRegistry = controllerRegistry;
             this.globalNavigations = globalNavigations;
+            this.dataSourceRegistry = dataSourceRegistry;
         }
 
         public void Initialize()
@@ -75,6 +80,11 @@ namespace Neptuo.TemplateEngine.Accounts.Bootstrap
 
             RegisterForms(formRegistry);
             RegisterGlobalNavigations(globalNavigations);
+
+            dataSourceRegistry.Add(typeof(UserAccountDataSource).Name, typeof(UserAccountDataSource));
+            dataSourceRegistry.Add(typeof(UserAccountEditDataSource).Name, typeof(UserAccountEditDataSource));
+            dataSourceRegistry.Add(typeof(UserRoleDataSource).Name, typeof(UserRoleDataSource));
+            dataSourceRegistry.Add(typeof(UserRoleEditDataSource).Name, typeof(UserRoleEditDataSource));
 
 //#if DEBUG
             CreateDummyUserRoles();

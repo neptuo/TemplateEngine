@@ -13,6 +13,7 @@ using Neptuo.TemplateEngine.Backend.Bootstrap;
 using Neptuo.TemplateEngine.Permissions;
 using Neptuo.TemplateEngine.Web;
 using Neptuo.TemplateEngine.Web.Controllers;
+using Neptuo.TemplateEngine.Web.DataSources;
 using Neptuo.Unity;
 using Neptuo.Unity.Lifetimes.Mapping;
 using Neptuo.Unity.Web.Lifetimes.Mapping;
@@ -72,7 +73,8 @@ namespace Neptuo.TemplateEngine.Backend.UI
                 .RegisterType<IUnitOfWorkFactory, DataContextUnitOfWorkFactory>(new PerRequestLifetime())
                 .RegisterType<ICommandDispatcher, DependencyCommandDispatcher>()
                 .RegisterType<IControllerRegistry>(new SingletonLifetime(new ControllerRegistryBase()))
-                .RegisterType<IPermissionProvider, OptimisticPermissionProvider>(new PerRequestLifetime());
+                .RegisterType<IPermissionProvider, OptimisticPermissionProvider>(new PerRequestLifetime())
+                .RegisterInstance<IWebDataSourceRegistry>(new DictionaryWebDataSourceRegistry());
 
             //TODO: Move to accounts
             dependencyContainer
