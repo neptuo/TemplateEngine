@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 
-namespace Neptuo.TemplateEngine.Web.Web
+namespace Neptuo.TemplateEngine.Web
 {
     public class WebDataSourceHttpHandler : IHttpHandler
     {
@@ -38,7 +38,7 @@ namespace Neptuo.TemplateEngine.Web.Web
                 IListDataSource listDataSource = dataSourceObject as IListDataSource;
                 if (listDataSource != null)
                 {
-                    data = listDataSource.GetData(null, null);
+                    data = listDataSource.GetData(null, null); //TODO: Add paging
                 }
                 else
                 {
@@ -58,7 +58,12 @@ namespace Neptuo.TemplateEngine.Web.Web
 
         protected virtual Type MapDataSource(string dataSourceName)
         {
-            throw new NotImplementedException();
+            IWebDataSourceRegistry registry = dependencyProvider.Resolve<IWebDataSourceRegistry>();
+            Type dataSourceType;
+            if (registry.TryGet(dataSourceName, out dataSourceType))
+                return dataSourceType;
+
+            return null;
         }
     }
 }
