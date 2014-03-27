@@ -100,6 +100,7 @@
     <Compile Include="Web\ServerVirtualPathProvider.cs" />
     <Compile Include="Web\TemplateHttpHandler.cs" />
     <Compile Include="Web\TemplateHttpHandlerBase.cs" />
+    <Compile Include="Web\WebDataSourceHttpHandler.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\TemplateEngine.Navigation\TemplateEngine.Navigation.csproj">
