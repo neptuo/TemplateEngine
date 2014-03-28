@@ -44,7 +44,19 @@ namespace Neptuo.TemplateEngine.Web.Controls
             UpdateHelper.RenderContent += OnRenderContent;
             UpdateHelper.OnInit();
 
-            Source.GetData(PageIndex, PageSize, OnLoadData);
+            GetModelPage(PageIndex, PageSize, OnLoadData);
+        }
+
+        protected virtual void GetModelPage(int? pageIndex, int? pageSize, Action<IListResult> callback)
+        {
+            Source.GetData(pageIndex, pageSize, callback);
+        }
+
+        protected virtual void ProcessModelItem(List<object> itemTemplates, object model)
+        {
+            DataContext.Push(model);
+            itemTemplates.Add(InitTemplate(ItemTemplate));
+            DataContext.Pop();
         }
 
         private void OnRenderContent(IHtmlWriter writer)
@@ -100,9 +112,7 @@ namespace Neptuo.TemplateEngine.Web.Controls
             foreach (object model in result.Data)
             {
                 isEmpty = false;
-                DataContext.Push(model);
-                itemTemplates.Add(InitTemplate(ItemTemplate));
-                DataContext.Pop();
+                ProcessModelItem(itemTemplates, model);
             }
 
             if (isEmpty && EmptyTemplate != null)

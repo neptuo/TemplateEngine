@@ -1,6 +1,7 @@
 ﻿using Neptuo.Bootstrap;
 using Neptuo.TemplateEngine.Backend.Web;
 using Neptuo.TemplateEngine.Backend.Web.Routing;
+using Neptuo.TemplateEngine.Web;
 using Neptuo.TemplateEngine.Web.Compilation;
 using Neptuo.Templates.Compilation;
 using Neptuo.Web.Routing;
@@ -19,6 +20,7 @@ namespace Neptuo.TemplateEngine.Backend
         private IViewService viewService;
         private IJavascriptSourceViewService javascriptViewService;
         private IDependencyProvider dependencyProvider;
+        private IRouteParameterRegistry routeParameterRegistry;
 
         public RoutingBootstrapTask(IViewService viewService, IJavascriptSourceViewService javascriptViewService, IDependencyProvider dependencyProvider)
         {
@@ -26,17 +28,19 @@ namespace Neptuo.TemplateEngine.Backend
             this.viewService = viewService;
             this.javascriptViewService = javascriptViewService;
             this.dependencyProvider = dependencyProvider;
+            this.routeParameterRegistry = RouteParameters.Registry;
         }
 
         public void Initialize()
         {
             var configuration = new JavascriptViewGeneratorConfiguration("~/Views", @"C:\Temp\NeptuoTemplateEngineJavascript");
 
-            RouteParameters.Registry.Add("path", new TemplateRouteParameterFactory());
+            routeParameterRegistry.Add("path", new TemplateRouteParameterFactory());
 
             routes.Add(new TokenRoute("~/{Path}", new TemplateRouteHandler(viewService, dependencyProvider), TemplateRouteParameter.TemplateUrlSuffix));
             routes.Add(new TokenRoute("~/error", new ErrorRouteHandler(), ".ashx"));
             routes.Add(new TokenRoute("~/views", new JavascriptViewGeneratorRouteHandler(configuration, javascriptViewService, dependencyProvider), ".ashx"));
+            routes.Add(new TokenRoute("~/DataSource", new DependencyRouteHandler<WebDataSourceHttpHandler>(dependencyProvider), ".ashx"));
         }
     }
 }

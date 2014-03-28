@@ -1,9 +1,11 @@
 ﻿using Neptuo.Bootstrap;
+using Neptuo.ComponentModel.Converters;
 using Neptuo.TemplateEngine.Accounts.Data;
 using Neptuo.TemplateEngine.Accounts.Web.Controllers;
 using Neptuo.TemplateEngine.Navigation.Bootstrap;
 using Neptuo.TemplateEngine.Web;
 using Neptuo.TemplateEngine.Web.Controllers;
+using SharpKit.JavaScript;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,6 +20,7 @@ namespace Neptuo.TemplateEngine.Accounts.Bootstrap
         private IFormUriRegistry formRegistry;
         private IControllerRegistry controllerRegistry;
         private GlobalNavigationCollection globalNavigations;
+        private IConverterRepository converterRepository;
 
         public AccountBootstrapTask(IDependencyContainer dependencyContainer, IFormUriRegistry formRegistry, IControllerRegistry controllerRegistry, GlobalNavigationCollection globalNavigations)
         {
@@ -30,6 +33,7 @@ namespace Neptuo.TemplateEngine.Accounts.Bootstrap
             this.formRegistry = formRegistry;
             this.controllerRegistry = controllerRegistry;
             this.globalNavigations = globalNavigations;
+            this.converterRepository = Converts.Repository;
         }
 
         public void Initialize()
@@ -39,7 +43,10 @@ namespace Neptuo.TemplateEngine.Accounts.Bootstrap
 
             //controllerRegistry
             //    .Add("Accounts/User/Create", new DependencyControllerFactory(dependencyContainer, typeof(UserAccountController)));
-                //.Add(dependencyContainer, typeof(UserAccountController));
+            //.Add(dependencyContainer, typeof(UserAccountController));
+
+            converterRepository
+                .Add(typeof(JsObject), typeof(UserAccountEditModel), new UserAccountEditModelConverter());
 
             RegisterForms(formRegistry);
             RegisterGlobalNavigations(globalNavigations);

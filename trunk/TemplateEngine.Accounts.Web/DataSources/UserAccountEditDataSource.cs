@@ -34,8 +34,8 @@ namespace Neptuo.TemplateEngine.Accounts.Web.DataSources
         {
             UserAccountEditModel model = MapEntityToModel(userQuery.Get(Key) ?? userFactory.Create());
             model = modelBinder.Bind<UserAccountEditModel>(model);
-
-            return providerFactory.Create(model);
+            return model;
+            //return providerFactory.Create(model);
         }
 
         private UserAccountEditModel MapEntityToModel(UserAccount userAccount)

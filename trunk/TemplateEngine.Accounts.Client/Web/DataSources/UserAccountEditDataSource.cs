@@ -3,8 +3,10 @@ using Neptuo.PresentationModels.TypeModels;
 using Neptuo.TemplateEngine.Accounts.Data;
 using Neptuo.TemplateEngine.Web.Controllers.Binders;
 using Neptuo.TemplateEngine.Web.DataSources;
+using Neptuo.Templates;
 using SharpKit.Html;
 using SharpKit.JavaScript;
+using SharpKit.jQuery;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,9 +18,8 @@ namespace Neptuo.TemplateEngine.Accounts.Web.DataSources
     public class UserAccountEditDataSource : IDataSource
     {
         private int key;
-        private UserRepository userAccounts;
-        private IModelValueProviderFactory providerFactory;
         private IModelBinder modelBinder;
+        private IVirtualUrlProvider urlProvider;
 
         public int Key
         {
@@ -30,14 +31,12 @@ namespace Neptuo.TemplateEngine.Accounts.Web.DataSources
             }
         }
 
-        public UserAccountEditDataSource(UserRepository userAccounts, IModelValueProviderFactory providerFactory, IModelBinder modelBinder)
+        public UserAccountEditDataSource(IModelBinder modelBinder, IVirtualUrlProvider urlProvider)
         {
-            Guard.NotNull(userAccounts, "userAccounts");
-            Guard.NotNull(providerFactory, "providerFactory");
             Guard.NotNull(modelBinder, "modelBinder");
-            this.userAccounts = userAccounts;
-            this.providerFactory = providerFactory;
+            Guard.NotNull(urlProvider, "urlProvider");
             this.modelBinder = modelBinder;
+            this.urlProvider = urlProvider;
         }
 
         public void GetItem(Action<object> callback)
@@ -47,17 +46,39 @@ namespace Neptuo.TemplateEngine.Accounts.Web.DataSources
                 UserAccountEditModel model = new UserAccountEditModel { Key = 0, IsEnabled = true };
                 model = modelBinder.Bind<UserAccountEditModel>(model);
 
-                callback(providerFactory.Create(model));
+                callback(model);
                 return;
             }
 
-            HtmlContext.setTimeout(() =>
-            {
-                UserAccountEditModel model = userAccounts.GetAll().FirstOrDefault(u => u.Key == Key);
-                model = modelBinder.Bind<UserAccountEditModel>(model);
+            //HtmlContext.setTimeout(() =>
+            //{
+            //    UserAccountEditModel model = userAccounts.GetAll().FirstOrDefault(u => u.Key == Key);
+            //    model = modelBinder.Bind<UserAccountEditModel>(model);
 
-                callback(providerFactory.Create(model));
-            }, 400);
+            //    callback(providerFactory.Create(model));
+            //}, 400);
+
+            jQuery.ajax(new AjaxSettings
+            {
+                url = urlProvider.ResolveUrl(FormatUrl()),
+                type = "GET",
+                success = (object response, JsString status, jqXHR sender) =>
+                {
+                    UserAccountEditModel model;
+                    if (Converts.Try<JsObject, UserAccountEditModel>(response.As<JsObject>(), out model))
+                    {
+                        model = modelBinder.Bind<UserAccountEditModel>(model);
+                        callback(model);
+                        return;
+                    }
+                }
+            });
+
+        }
+
+        protected string FormatUrl()
+        {
+            return String.Format("~/DataSource.ashx?DataSource={0}&Key={1}", "UserAccountEditDataSource", Key);
         }
     }
 }

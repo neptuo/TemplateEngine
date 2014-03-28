@@ -844,7 +844,15 @@ var Neptuo$TemplateEngine$Web$Controls$ListViewControl = {
                 throw $CreateException(new System.ArgumentException.ctor$$String$$String("Missing data source.", "Source"), new Error());
             this.get_UpdateHelper().add_RenderContent($CreateDelegate(this, this.OnRenderContent));
             this.get_UpdateHelper().OnInit();
-            this.get_Source().GetData(this.get_PageIndex(), this.get_PageSize(), $CreateDelegate(this, this.OnLoadData));
+            this.GetModelPage(this.get_PageIndex(), this.get_PageSize(), $CreateDelegate(this, this.OnLoadData));
+        },
+        GetModelPage: function (pageIndex, pageSize, callback){
+            this.get_Source().GetData(pageIndex, pageSize, callback);
+        },
+        ProcessModelItem: function (itemTemplates, model){
+            this.get_DataContext().Push(model, null);
+            itemTemplates.Add(this.InitTemplate(this.get_ItemTemplate()));
+            this.get_DataContext().Pop(null);
         },
         OnRenderContent: function (writer){
             Neptuo.TemplateEngine.Web.Controls.TemplateControl.commonPrototype.Render.call(this, writer);
@@ -875,9 +883,7 @@ var Neptuo$TemplateEngine$Web$Controls$ListViewControl = {
             while ($it2.MoveNext()){
                 var model = $it2.get_Current();
                 isEmpty = false;
-                this.get_DataContext().Push(model, null);
-                itemTemplates.Add(this.InitTemplate(this.get_ItemTemplate()));
-                this.get_DataContext().Pop(null);
+                this.ProcessModelItem(itemTemplates, model);
             }
             if (isEmpty && this.get_EmptyTemplate() != null){
                 this.set_Template(this.get_EmptyTemplate());
@@ -913,13 +919,17 @@ var Neptuo$TemplateEngine$Web$Controls$SelectControl = {
     interfaceNames: ["Neptuo.TemplateEngine.Web.Controls.IHtmlAttributeCollection", "Neptuo.Templates.IAttributeCollection"],
     Kind: "Class",
     definition: {
-        ctor: function (requestContext, storage, dataContext, updateHelper){
+        ctor: function (requestContext, storage, dataContext, updateHelper, bindingManager){
             this._Name = null;
             this._Value = null;
             this._IsAddEmpty = false;
             this._Attributes = null;
+            this._SelectedValuePath = null;
+            this._BindingManager = null;
             Neptuo.TemplateEngine.Web.Controls.ListViewControl.ctor.call(this, requestContext, storage, dataContext, updateHelper);
+            Neptuo.Guard.NotNull$$Object$$String(bindingManager, "bindingManager");
             this.set_Attributes(new Neptuo.Templates.HtmlAttributeCollection.ctor());
+            this.set_BindingManager(bindingManager);
         },
         Name$$: "System.String",
         get_Name: function (){
@@ -949,13 +959,57 @@ var Neptuo$TemplateEngine$Web$Controls$SelectControl = {
         set_Attributes: function (value){
             this._Attributes = value;
         },
+        SelectedValuePath$$: "System.String",
+        get_SelectedValuePath: function (){
+            return this._SelectedValuePath;
+        },
+        set_SelectedValuePath: function (value){
+            this._SelectedValuePath = value;
+        },
+        BindingManager$$: "Neptuo.TemplateEngine.Web.IBindingManager",
+        get_BindingManager: function (){
+            return this._BindingManager;
+        },
+        set_BindingManager: function (value){
+            this._BindingManager = value;
+        },
         SetAttribute: function (name, value){
             this.get_Attributes().set_Item$$TKey(name, value);
+        },
+        OnInit: function (){
+            Neptuo.Guard.NotNullOrEmpty(this.get_SelectedValuePath(), "SelectedValuePath");
+            Neptuo.TemplateEngine.Web.Controls.ListViewControl.commonPrototype.OnInit.call(this);
+        },
+        ProcessModelItem: function (itemTemplates, model){
+            var item = new Neptuo.TemplateEngine.Web.Controls.SelectItem.ctor(model);
+            var targetSelectedValue;
+            if ((function (){
+                var $1 = {
+                    Value: targetSelectedValue
+                };
+                var $res = this.get_BindingManager().TryGetValue(this.get_SelectedValuePath(), model, $1);
+                targetSelectedValue = $1.Value;
+                return $res;
+            }).call(this))
+                item.set_IsSelected(this.IsSelectedValue(targetSelectedValue));
+            Neptuo.TemplateEngine.Web.Controls.ListViewControl.commonPrototype.ProcessModelItem.call(this, itemTemplates, item);
+        },
+        IsSelectedValue: function (targetSelectedValue){
+            var collection = As(this.get_Value(), System.Collections.IEnumerable.ctor);
+            if (collection != null){
+                var $it3 = collection.GetEnumerator();
+                while ($it3.MoveNext()){
+                    var item = $it3.get_Current();
+                    if (System.Object.Equals$$Object$$Object(item, targetSelectedValue))
+                        return true;
+                }
+            }
+            return targetSelectedValue == this.get_Value();
         }
     },
     ctors: [{
         name: "ctor",
-        parameters: ["Neptuo.TemplateEngine.Web.IRequestContext", "Neptuo.TemplateEngine.Web.TemplateContentStorageStack", "Neptuo.TemplateEngine.Web.DataContextStorage", "Neptuo.TemplateEngine.Web.PartialUpdateHelper"]
+        parameters: ["Neptuo.TemplateEngine.Web.IRequestContext", "Neptuo.TemplateEngine.Web.TemplateContentStorageStack", "Neptuo.TemplateEngine.Web.DataContextStorage", "Neptuo.TemplateEngine.Web.PartialUpdateHelper", "Neptuo.TemplateEngine.Web.IBindingManager"]
     }
     ],
     IsAbstract: false
@@ -1741,7 +1795,7 @@ var Neptuo$TemplateEngine$Web$ParameterProviderFactory = {
             if (queryString.StartsWith$$String("?"))
                 queryString = queryString.substr(1);
             var keyValues = queryString.Split$$Char$Array("&");
-            for (var $i4 = 0,$l4 = keyValues.length,keyValue = keyValues[$i4]; $i4 < $l4; $i4++, keyValue = keyValues[$i4]){
+            for (var $i5 = 0,$l5 = keyValues.length,keyValue = keyValues[$i5]; $i5 < $l5; $i5++, keyValue = keyValues[$i5]){
                 var param = keyValue.Split$$Char$Array("=");
                 if (param.length == 2)
                     parameters.set_Item$$TKey(param[0], param[1]);
