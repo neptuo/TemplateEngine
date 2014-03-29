@@ -25,7 +25,7 @@ namespace Neptuo.TemplateEngine.Routing
             if (String.IsNullOrEmpty(viewPath))
                 return null;
 
-            IDependencyContainer childContainer = Application.DependencyContainer;
+            IDependencyContainer childContainer = Application.DependencyContainer.CreateChildContainer();
 
             string[] toUpdate = Application.DefaultToUpdate;
             if (context.CustomValues.ContainsKey("ToUpdate"))
