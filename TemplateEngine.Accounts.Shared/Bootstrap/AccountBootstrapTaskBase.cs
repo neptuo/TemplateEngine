@@ -32,7 +32,9 @@ namespace Neptuo.TemplateEngine.Accounts.Bootstrap
 
                 .Add("Accounts.Role.Deleted", (FormUri)"Accounts.Role.List")
                 .Add("Accounts.Role.Created", (FormUri)"Accounts.Role.List")
-                .Add("Accounts.Role.Updated", (FormUri)"Accounts.Role.List");
+                .Add("Accounts.Role.Updated", (FormUri)"Accounts.Role.List")
+                
+                .Add("Accounts.LoggedIn", (FormUri)"Accounts.User.List");
         }
     }
 }

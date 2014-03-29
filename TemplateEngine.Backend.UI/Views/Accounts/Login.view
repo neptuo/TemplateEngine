@@ -6,11 +6,11 @@
           <div class="col-md-6">
 
             <ui:FormItem l:LabelText="Username" l:HelpText="Your user name">
-              <ui:TextBox Name="Username" Text="{Binding Username}" IsAutoFocus="true" html:ID="Username" html:Class="form-control" />
+              <ui:TextBox Name="Username" Text="{Request Username}" IsAutoFocus="true" html:ID="Username" html:Class="form-control" />
             </ui:FormItem>
 
             <ui:FormItem l:LabelText="Password" l:HelpText="Your password">
-              <ui:TextBox Name="Password" Text="{Binding Password}" IsAutoFocus="true" html:ID="Password" html:Class="form-control" />
+              <ui:TextBox Name="Password" IsAutoFocus="true" html:ID="Password" html:Class="form-control" />
             </ui:FormItem>
 
           </div>
