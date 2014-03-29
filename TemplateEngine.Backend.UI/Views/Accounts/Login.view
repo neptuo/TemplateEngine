@@ -1,9 +1,24 @@
-﻿<ui:AdminLayout>
-    <ui:TemplateContent Name="Body">
+﻿<ui:Doctype Type="Xhtml" />
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Sign to TemplateEngine</title>
 
+    <ui:Bundle Path="~/css/admin" IsStyle="true" />
+    <ui:Bundle Path="~/js/admin" />
+
+    <ajax:StartUp DefaultUpdate="Body" />
+    <script src="/views.ashx"></script>
+
+  </head>
+  <body>
+    
+    <ajax:View Partial="Body">
       <div style="padding: 15px 10px;">
+        <ui:MessagePanel Key="" />
+        
         <form method="post" action="{CurrentUrl}" html:Class="">
-          <div class="col-md-6">
+          <div class="col-md-6" style="margin: 0 auto; float: none;">
 
             <ui:FormItem l:LabelText="Username" l:HelpText="Your user name">
               <ui:TextBox Name="Username" Text="{Request Username}" IsAutoFocus="true" html:ID="Username" html:Class="form-control" />
@@ -28,6 +43,7 @@
           </ui:SubHeader>
         </form>
       </div>
-      
-    </ui:TemplateContent>
-</ui:AdminLayout>
+    </ajax:View>
+    
+  </body>
+</html>

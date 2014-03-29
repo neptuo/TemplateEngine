@@ -59,6 +59,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\UserAccountCreateHandler.cs" />
     <Compile Include="Controllers\UserRoleController.cs" />
     <Compile Include="DataSources\UserAccountDataSource.cs" />
     <Compile Include="DataSources\UserAccountEditDataSource.cs" />
