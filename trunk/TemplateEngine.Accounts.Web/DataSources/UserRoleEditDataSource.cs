@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Accounts.Web.DataSources
 {
+    [WebDataSource]
     public class UserRoleEditDataSource : IDataSource
     {
         private IUserRoleQuery roleQuery;

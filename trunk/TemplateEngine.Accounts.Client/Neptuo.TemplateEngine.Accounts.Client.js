@@ -13,21 +13,6 @@ if (typeof ($CreateAnonymousDelegate) == 'undefined') {
     }
 }
 
-if (typeof($CreateException)=='undefined') 
-{
-    var $CreateException = function(ex, error) 
-    {
-        if(error==null)
-            error = new Error();
-        if(ex==null)
-            ex = new System.Exception.ctor();       
-        error.message = ex.message;
-        for (var p in ex)
-           error[p] = ex[p];
-        return error;
-    }
-}
-
 
 if (typeof(JsTypes) == "undefined")
     var JsTypes = [];
@@ -236,19 +221,15 @@ var Neptuo$TemplateEngine$Accounts$Web$Controllers$UserAccountController = {
 JsTypes.push(Neptuo$TemplateEngine$Accounts$Web$Controllers$UserAccountController);
 var Neptuo$TemplateEngine$Accounts$Web$DataSources$UserAccountDataSource = {
     fullname: "Neptuo.TemplateEngine.Accounts.Web.DataSources.UserAccountDataSource",
-    baseTypeName: "System.Object",
+    baseTypeName: "Neptuo.TemplateEngine.Web.DataSources.ListDataSourceProxy$1",
     assemblyName: "Neptuo.TemplateEngine.Accounts.Client",
-    interfaceNames: ["Neptuo.TemplateEngine.Web.DataSources.IListDataSource"],
     Kind: "Class",
     definition: {
         ctor: function (urlProvider){
-            this.urlProvider = null;
             this._Key = null;
             this._Username = null;
             this._RoleKey = null;
-            System.Object.ctor.call(this);
-            Neptuo.Guard.NotNull$$Object$$String(urlProvider, "urlProvider");
-            this.urlProvider = urlProvider;
+            Neptuo.TemplateEngine.Web.DataSources.ListDataSourceProxy$1.ctor.call(this, Neptuo.TemplateEngine.Accounts.UserAccountListResult.ctor, urlProvider);
         },
         Key$$: "System.Nullable`1[[System.Int32]]",
         get_Key: function (){
@@ -271,30 +252,8 @@ var Neptuo$TemplateEngine$Accounts$Web$DataSources$UserAccountDataSource = {
         set_RoleKey: function (value){
             this._RoleKey = value;
         },
-        GetData: function (pageIndex, pageSize, callback){
-            $.ajax({
-                url: this.urlProvider.ResolveUrl(this.FormatUrl()),
-                type: "GET",
-                data: Neptuo.TemplateEngine.JsObjectBuilder.New("DataSource", "UserAccountDataSource").Set("Key", this.get_Key()).Set("Username", this.get_Username()).Set("RoleKey", this.get_RoleKey()).Set("PageIndex", pageIndex).Set("PageSize", pageSize).ToJsObject(),
-                cache: false,
-                success: $CreateAnonymousDelegate(this, function (response, status, sender){
-                    var model;
-                    if ((function (){
-                        var $1 = {
-                            Value: model
-                        };
-                        var $res = Neptuo.Converts.Try$2$$TSource$$TTarget(Object, Neptuo.TemplateEngine.Accounts.UserAccountListResult.ctor, response, $1);
-                        model = $1.Value;
-                        return $res;
-                    }).call(this))
-                        callback(model);
-                    else
-                        throw $CreateException(new System.NotSupportedException.ctor(), new Error());
-                })
-            });
-        },
-        FormatUrl: function (){
-            return "~/DataSource.ashx";
+        SetParameters: function (parameterBuilder){
+            parameterBuilder.Set("Key", this.get_Key()).Set("Username", this.get_Username()).Set("RoleKey", this.get_RoleKey());
         }
     },
     ctors: [{
