@@ -27,18 +27,19 @@ namespace Neptuo.TemplateEngine.Web
 
         public void ProcessRequest(HttpContext context)
         {
+            IModelBinder modelBinder = dependencyProvider.Resolve<IModelBinder>();
+            WebDataSourceModel model = modelBinder.Bind<WebDataSourceModel>();
+
             object data = null;
-            string dataSourceName = context.Request.Params["DataSource"];
-            Type dataSourceType = MapDataSource(dataSourceName);
+            Type dataSourceType = MapDataSource(model.DataSource);
             if (dataSourceType != null)
             {
-                IModelBinder modelBinder = dependencyProvider.Resolve<IModelBinder>();
                 object dataSourceObject = modelBinder.Bind(dataSourceType);
 
                 IListDataSource listDataSource = dataSourceObject as IListDataSource;
                 if (listDataSource != null)
                 {
-                    data = listDataSource.GetData(null, null); //TODO: Add paging
+                    data = listDataSource.GetData(model.PageIndex, model.PageSize);
                 }
                 else
                 {

@@ -56,7 +56,7 @@
  
         <ui:ListView PageIndex="{Request PageIndex}" PageSize="10"> 
             <Source>
-                <data:UserAccountDataSource Username="{Request Username}" Key="{Request Key}" />
+                <data:UserAccountDataSource Username="{Request Username}" Key="{Request Key}" RoleKey="{Request RoleKey}" />
             </Source>
             <Template>
                 <div style="padding: 10px;">

@@ -15,6 +15,21 @@ if (typeof ($CreateAnonymousDelegate) == 'undefined') {
     }
 }
 
+if (typeof($CreateException)=='undefined') 
+{
+    var $CreateException = function(ex, error) 
+    {
+        if(error==null)
+            error = new Error();
+        if(ex==null)
+            ex = new System.Exception.ctor();       
+        error.message = ex.message;
+        for (var p in ex)
+           error[p] = ex[p];
+        return error;
+    }
+}
+
 
 if (typeof(JsTypes) == "undefined")
     var JsTypes = [];
@@ -44,7 +59,7 @@ var Neptuo$TemplateEngine$Accounts$Bootstrap$AccountBootstrapTask = {
         },
         Initialize: function (){
             Neptuo.DependencyContainerExtensions.RegisterInstance$1(Neptuo.TemplateEngine.Accounts.Data.UserRepository.ctor, this.dependencyContainer, new Neptuo.TemplateEngine.Accounts.Data.UserRepository.ctor());
-            this.converterRepository.Add(Typeof(Object), Typeof(Neptuo.TemplateEngine.Accounts.UserAccountEditModel.ctor), new Neptuo.TemplateEngine.Accounts.UserAccountEditModelConverter.ctor());
+            this.converterRepository.Add(Typeof(Object), Typeof(Neptuo.TemplateEngine.Accounts.UserAccountEditModel.ctor), new Neptuo.TemplateEngine.Accounts.UserAccountEditModelConverter.ctor()).Add(Typeof(Object), Typeof(Neptuo.TemplateEngine.Web.DataSources.IListResult.ctor), new Neptuo.TemplateEngine.Accounts.UserAccountListResultConverter.ctor());
             this.RegisterForms(this.formRegistry);
             this.RegisterGlobalNavigations(this.globalNavigations);
         }
@@ -100,41 +115,22 @@ var Neptuo$TemplateEngine$Accounts$Data$UserRepository = {
 JsTypes.push(Neptuo$TemplateEngine$Accounts$Data$UserRepository);
 var Neptuo$TemplateEngine$Accounts$UserAccountEditModelConverter = {
     fullname: "Neptuo.TemplateEngine.Accounts.UserAccountEditModelConverter",
-    baseTypeName: "System.Object",
+    baseTypeName: "Neptuo.ComponentModel.Converters.ConverterBase$2",
     assemblyName: "Neptuo.TemplateEngine.Accounts.Client",
-    interfaceNames: ["Neptuo.ComponentModel.Converters.IConverter$2"],
     Kind: "Class",
     definition: {
         ctor: function (){
-            System.Object.ctor.call(this);
+            Neptuo.ComponentModel.Converters.ConverterBase$2.ctor.call(this, Object, Neptuo.TemplateEngine.Accounts.UserAccountEditModel.ctor);
         },
         TryConvert: function (sourceValue, targetValue){
             targetValue.Value = new Neptuo.TemplateEngine.Accounts.UserAccountEditModel.ctor();
+            targetValue.Value.set_Key(sourceValue["Key"]);
             targetValue.Value.set_Username(sourceValue["Username"]);
             targetValue.Value.set_Password(sourceValue["Password"]);
             targetValue.Value.set_PasswordAgain(sourceValue["PasswordAgain"]);
             targetValue.Value.set_IsEnabled(sourceValue["IsEnabled"]);
-            targetValue.Value.set_RoleKeys(sourceValue["RoleKeys"]);
+            targetValue.Value.set_RoleKeys(new System.Collections.Generic.List$1.ctor$$IEnumerable$1(System.Int32.ctor, sourceValue["RoleKeys"]));
             return true;
-        },
-        TryConvertGeneral: function (sourceType, targetType, sourceValue, targetValue){
-            var model;
-            if ((function (){
-                var $1 = {
-                    Value: model
-                };
-                var $res = this.TryConvert(sourceValue instanceof Object || sourceValue == null ? sourceValue : (function (){
-                    throw new Error("InvalidCastException");
-                }
-                ()), $1);
-                model = $1.Value;
-                return $res;
-            }).call(this)){
-                targetValue.Value = model;
-                return true;
-            }
-            targetValue.Value = null;
-            return false;
         }
     },
     ctors: [{
@@ -145,6 +141,43 @@ var Neptuo$TemplateEngine$Accounts$UserAccountEditModelConverter = {
     IsAbstract: false
 };
 JsTypes.push(Neptuo$TemplateEngine$Accounts$UserAccountEditModelConverter);
+var Neptuo$TemplateEngine$Accounts$UserAccountListResultConverter = {
+    fullname: "Neptuo.TemplateEngine.Accounts.UserAccountListResultConverter",
+    baseTypeName: "Neptuo.ComponentModel.Converters.ConverterBase$2",
+    assemblyName: "Neptuo.TemplateEngine.Accounts.Client",
+    Kind: "Class",
+    definition: {
+        ctor: function (){
+            Neptuo.ComponentModel.Converters.ConverterBase$2.ctor.call(this, Object, Neptuo.TemplateEngine.Web.DataSources.IListResult.ctor);
+        },
+        TryConvert: function (sourceValue, targetValue){
+            var data = new System.Collections.Generic.List$1.ctor(Neptuo.TemplateEngine.Accounts.UserAccountViewModel.ctor);
+            var array = sourceValue;
+            for (var i = 0; i < array.length; i++){
+                var item = array[i];
+                data.Add(new Neptuo.TemplateEngine.Accounts.UserAccountViewModel.ctor(item["Key"], item["Username"], item["IsEnabled"], this.GetRoles(item)));
+            }
+            targetValue.Value = new Neptuo.TemplateEngine.Web.DataSources.ListResult.ctor(data, data.get_Count());
+            return true;
+        },
+        GetRoles: function (item){
+            var roles = new System.Collections.Generic.List$1.ctor(Neptuo.TemplateEngine.Accounts.UserRoleRowViewModel.ctor);
+            var rolesArray = item["Roles"];
+            for (var i = 0; i < rolesArray.length; i++){
+                var roleItem = rolesArray[i];
+                roles.Add(new Neptuo.TemplateEngine.Accounts.UserRoleRowViewModel.ctor(roleItem["Key"], roleItem["Name"]));
+            }
+            return roles;
+        }
+    },
+    ctors: [{
+        name: "ctor",
+        parameters: []
+    }
+    ],
+    IsAbstract: false
+};
+JsTypes.push(Neptuo$TemplateEngine$Accounts$UserAccountListResultConverter);
 var Neptuo$TemplateEngine$Accounts$Web$Controllers$UserAccountController = {
     fullname: "Neptuo.TemplateEngine.Accounts.Web.Controllers.UserAccountController",
     baseTypeName: "System.Object",
@@ -187,13 +220,14 @@ var Neptuo$TemplateEngine$Accounts$Web$DataSources$UserAccountDataSource = {
     interfaceNames: ["Neptuo.TemplateEngine.Web.DataSources.IListDataSource"],
     Kind: "Class",
     definition: {
-        ctor: function (userAccounts){
-            this.userAccounts = null;
+        ctor: function (urlProvider){
+            this.urlProvider = null;
             this._Key = null;
             this._Username = null;
+            this._RoleKey = null;
             System.Object.ctor.call(this);
-            Neptuo.Guard.NotNull$$Object$$String(userAccounts, "userAccounts");
-            this.userAccounts = userAccounts;
+            Neptuo.Guard.NotNull$$Object$$String(urlProvider, "urlProvider");
+            this.urlProvider = urlProvider;
         },
         Key$$: "System.Nullable`1[[System.Int32]]",
         get_Key: function (){
@@ -209,20 +243,42 @@ var Neptuo$TemplateEngine$Accounts$Web$DataSources$UserAccountDataSource = {
         set_Username: function (value){
             this._Username = value;
         },
+        RoleKey$$: "System.Nullable`1[[System.Int32]]",
+        get_RoleKey: function (){
+            return this._RoleKey;
+        },
+        set_RoleKey: function (value){
+            this._RoleKey = value;
+        },
         GetData: function (pageIndex, pageSize, callback){
-            if (pageSize != null)
-                setTimeout($CreateAnonymousDelegate(this, function (){
-                    callback(new Neptuo.TemplateEngine.Web.DataSources.ListResult.ctor(this.userAccounts.GetPage((pageIndex != null ? pageIndex : 0), pageSize.get_Value()), this.userAccounts.GetCount()));
-                }), 200);
-            else
-                setTimeout($CreateAnonymousDelegate(this, function (){
-                    callback(new Neptuo.TemplateEngine.Web.DataSources.ListResult.ctor(this.userAccounts.GetAll(), this.userAccounts.GetCount()));
-                }), 1000);
+            $.ajax({
+                url: this.urlProvider.ResolveUrl(this.FormatUrl()),
+                type: "GET",
+                data: Neptuo.TemplateEngine.JsObjectBuilder.New("DataSource", "UserAccountDataSource").Set("Key", this.get_Key()).Set("Username", this.get_Username()).Set("RoleKey", this.get_RoleKey()).Set("PageIndex", pageIndex).Set("PageSize", pageSize).ToJsObject(),
+                cache: false,
+                success: $CreateAnonymousDelegate(this, function (response, status, sender){
+                    var model;
+                    if ((function (){
+                        var $1 = {
+                            Value: model
+                        };
+                        var $res = Neptuo.Converts.Try$2$$TSource$$TTarget(Object, Neptuo.TemplateEngine.Web.DataSources.IListResult.ctor, response, $1);
+                        model = $1.Value;
+                        return $res;
+                    }).call(this))
+                        callback(model);
+                    else
+                        throw $CreateException(new System.NotSupportedException.ctor(), new Error());
+                })
+            });
+        },
+        FormatUrl: function (){
+            return "~/DataSource.ashx";
         }
     },
     ctors: [{
         name: "ctor",
-        parameters: ["Neptuo.TemplateEngine.Accounts.Data.UserRepository"]
+        parameters: ["Neptuo.Templates.IVirtualUrlProvider"]
     }
     ],
     IsAbstract: false
@@ -268,6 +324,8 @@ var Neptuo$TemplateEngine$Accounts$Web$DataSources$UserAccountEditDataSource = {
             $.ajax({
                 url: this.urlProvider.ResolveUrl(this.FormatUrl()),
                 type: "GET",
+                data: Neptuo.TemplateEngine.JsObjectBuilder.New("DataSource", "UserAccountEditDataSource").Set("Key", this.get_Key()).ToJsObject(),
+                cache: false,
                 success: $CreateAnonymousDelegate(this, function (response, status, sender){
                     var model;
                     if ((function (){
@@ -286,7 +344,7 @@ var Neptuo$TemplateEngine$Accounts$Web$DataSources$UserAccountEditDataSource = {
             });
         },
         FormatUrl: function (){
-            return System.String.Format$$String$$Object$$Object("~/DataSource.ashx?DataSource={0}&Key={1}", "UserAccountEditDataSource", this.get_Key());
+            return "~/DataSource.ashx";
         }
     },
     ctors: [{

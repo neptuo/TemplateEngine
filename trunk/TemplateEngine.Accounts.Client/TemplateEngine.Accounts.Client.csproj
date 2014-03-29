@@ -65,6 +65,7 @@
     <Compile Include="Bootstrap\AccountBootstrapTask.cs" />
     <Compile Include="Data\UserRepository.cs" />
     <Compile Include="UserAccountEditModelConverter.cs" />
+    <Compile Include="UserAccountListResultConverter.cs" />
     <Compile Include="Web\Controllers\UserAccountController.cs" />
     <Compile Include="Web\DataSources\UserAccountDataSource.cs" />
     <Compile Include="Web\DataSources\UserAccountEditDataSource.cs" />
