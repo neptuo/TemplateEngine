@@ -96,6 +96,7 @@
     <Compile Include="Web\Controls\DetailViewControl.cs" />
     <Compile Include="Web\Controls\ListViewControl.cs" />
     <Compile Include="Web\Controls\SelectControl.cs" />
+    <Compile Include="Web\DataSources\DataSourceProxy.cs" />
     <Compile Include="Web\DataSources\IDataSource.cs" />
     <Compile Include="Web\DataSources\IListDataSource.cs" />
     <Compile Include="Web\DataSources\ListDataSourceProxy.cs" />

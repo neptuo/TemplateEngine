@@ -1049,6 +1049,92 @@ var Neptuo$TemplateEngine$Web$Controls$SelectControl = {
     IsAbstract: false
 };
 JsTypes.push(Neptuo$TemplateEngine$Web$Controls$SelectControl);
+var Neptuo$TemplateEngine$Web$DataSources$DataSourceProxy$1 = {
+    fullname: "Neptuo.TemplateEngine.Web.DataSources.DataSourceProxy$1",
+    baseTypeName: "System.Object",
+    assemblyName: "Neptuo.TemplateEngine.Client",
+    interfaceNames: ["Neptuo.TemplateEngine.Web.DataSources.IDataSource"],
+    Kind: "Class",
+    definition: {
+        ctor: function (TResultModel, modelBinder, urlProvider){
+            this.TResultModel = TResultModel;
+            this._ModelBinder = null;
+            this._UrlProvider = null;
+            this._IsBindModel = false;
+            System.Object.ctor.call(this);
+            Neptuo.Guard.NotNull$$Object$$String(modelBinder, "modelBinder");
+            Neptuo.Guard.NotNull$$Object$$String(urlProvider, "urlProvider");
+            this.set_ModelBinder(modelBinder);
+            this.set_UrlProvider(urlProvider);
+            this.set_IsBindModel(true);
+        },
+        ModelBinder$$: "Neptuo.TemplateEngine.Web.Controllers.Binders.IModelBinder",
+        get_ModelBinder: function (){
+            return this._ModelBinder;
+        },
+        set_ModelBinder: function (value){
+            this._ModelBinder = value;
+        },
+        UrlProvider$$: "Neptuo.Templates.IVirtualUrlProvider",
+        get_UrlProvider: function (){
+            return this._UrlProvider;
+        },
+        set_UrlProvider: function (value){
+            this._UrlProvider = value;
+        },
+        IsBindModel$$: "System.Boolean",
+        get_IsBindModel: function (){
+            return this._IsBindModel;
+        },
+        set_IsBindModel: function (value){
+            this._IsBindModel = value;
+        },
+        GetItem: function (callback){
+            if (!this.OnGetItem(callback)){
+                $.ajax({
+                    url: this.get_UrlProvider().ResolveUrl(this.FormatUrl()),
+                    type: "GET",
+                    data: this.SetParametersInternal(),
+                    cache: false,
+                    success: $CreateAnonymousDelegate(this, function (response, status, sender){
+                        var model;
+                        if ((function (){
+                            var $1 = {
+                                Value: model
+                            };
+                            var $res = Neptuo.Converts.Try$2$$TSource$$TTarget(Object, this.TResultModel, response, $1);
+                            model = $1.Value;
+                            return $res;
+                        }).call(this)){
+                            if (this.get_IsBindModel())
+                                model = Neptuo.TemplateEngine.Web.Controllers.Binders.ModelBinderExtensions.Bind$1$$IModelBinder$$T(this.TResultModel, this.get_ModelBinder(), model);
+                            callback(model);
+                            return;
+                        }
+                    })
+                });
+            }
+        },
+        SetParametersInternal: function (){
+            var parameterBuilder = Neptuo.TemplateEngine.JsObjectBuilder.New("DataSource", this.GetDataSourceName());
+            this.SetParameters(parameterBuilder);
+            return parameterBuilder.ToJsObject();
+        },
+        GetDataSourceName: function (){
+            return this.GetType().get_Name();
+        },
+        FormatUrl: function (){
+            return "~/DataSource.ashx";
+        }
+    },
+    ctors: [{
+        name: "ctor",
+        parameters: ["Neptuo.TemplateEngine.Web.Controllers.Binders.IModelBinder", "Neptuo.Templates.IVirtualUrlProvider"]
+    }
+    ],
+    IsAbstract: true
+};
+JsTypes.push(Neptuo$TemplateEngine$Web$DataSources$DataSourceProxy$1);
 var Neptuo$TemplateEngine$Web$DataSources$IDataSource = {
     fullname: "Neptuo.TemplateEngine.Web.DataSources.IDataSource",
     baseTypeName: "System.Object",
@@ -1076,14 +1162,21 @@ var Neptuo$TemplateEngine$Web$DataSources$ListDataSourceProxy$1 = {
     definition: {
         ctor: function (TResultModel, urlProvider){
             this.TResultModel = TResultModel;
-            this.urlProvider = null;
+            this._UrlProvider = null;
             System.Object.ctor.call(this);
             Neptuo.Guard.NotNull$$Object$$String(urlProvider, "urlProvider");
-            this.urlProvider = urlProvider;
+            this.set_UrlProvider(urlProvider);
+        },
+        UrlProvider$$: "Neptuo.Templates.IVirtualUrlProvider",
+        get_UrlProvider: function (){
+            return this._UrlProvider;
+        },
+        set_UrlProvider: function (value){
+            this._UrlProvider = value;
         },
         GetData: function (pageIndex, pageSize, callback){
             $.ajax({
-                url: this.urlProvider.ResolveUrl(this.FormatUrl()),
+                url: this.get_UrlProvider().ResolveUrl(this.FormatUrl()),
                 type: "GET",
                 data: this.SetParametersInternal(pageIndex, pageSize),
                 cache: false,
