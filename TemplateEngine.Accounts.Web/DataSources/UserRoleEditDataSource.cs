@@ -15,19 +15,17 @@ namespace Neptuo.TemplateEngine.Accounts.Web.DataSources
     {
         private IUserRoleQuery roleQuery;
         private IActivator<UserRole> roleFactory;
-        private IModelValueProviderFactory providerFactory;
         private IModelBinder modelBinder;
 
         public int Key { get; set; }
 
-        public UserRoleEditDataSource(IUserRoleQuery roleQuery, IActivator<UserRole> roleFactory, IModelValueProviderFactory providerFactory, IModelBinder modelBinder)
+        public UserRoleEditDataSource(IUserRoleQuery roleQuery, IActivator<UserRole> roleFactory, IModelBinder modelBinder)
         {
             if (roleQuery == null)
                 throw new ArgumentNullException("roleQuery");
 
             this.roleQuery = roleQuery;
             this.roleFactory = roleFactory;
-            this.providerFactory = providerFactory;
             this.modelBinder = modelBinder;
         }
 
@@ -36,7 +34,7 @@ namespace Neptuo.TemplateEngine.Accounts.Web.DataSources
             UserRoleEditModel model = MapEntityToModel(roleQuery.Get(Key) ?? roleFactory.Create());
             model = modelBinder.Bind<UserRoleEditModel>(model);
 
-            return providerFactory.Create(model);
+            return model;
         }
 
         private UserRoleEditModel MapEntityToModel(UserRole userRole)

@@ -12,22 +12,24 @@ namespace Neptuo.TemplateEngine.Web
 {
     public class WebDataSourceHttpHandler : IHttpHandler
     {
-        private IDependencyProvider dependencyProvider;
+        private IModelBinder modelBinder;
+        private IWebDataSourceRegistry registry;
 
         public bool IsReusable
         {
             get { return true; }
         }
 
-        public WebDataSourceHttpHandler(IDependencyProvider dependencyProvider)
+        public WebDataSourceHttpHandler(IModelBinder modelBinder, IWebDataSourceRegistry registry)
         {
-            Guard.NotNull(dependencyProvider, "dependencyProvider");
-            this.dependencyProvider = dependencyProvider;
+            Guard.NotNull(modelBinder, "modelBinder");
+            Guard.NotNull(registry, "registry");
+            this.modelBinder = modelBinder;
+            this.registry = registry;
         }
 
         public void ProcessRequest(HttpContext context)
         {
-            IModelBinder modelBinder = dependencyProvider.Resolve<IModelBinder>();
             WebDataSourceModel model = modelBinder.Bind<WebDataSourceModel>();
 
             object data = null;
@@ -59,7 +61,6 @@ namespace Neptuo.TemplateEngine.Web
 
         protected virtual Type MapDataSource(string dataSourceName)
         {
-            IWebDataSourceRegistry registry = dependencyProvider.Resolve<IWebDataSourceRegistry>();
             Type dataSourceType;
             if (registry.TryGet(dataSourceName, out dataSourceType))
                 return dataSourceType;
