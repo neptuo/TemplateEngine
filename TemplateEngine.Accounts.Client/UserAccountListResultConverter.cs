@@ -9,9 +9,18 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Accounts
 {
-    public class UserAccountListResultConverter : ConverterBase<JsObject, IListResult>
+    public class UserAccountListResultConverter : ConverterBase<JsObject, UserAccountListResult>
     {
-        public override bool TryConvert(JsObject sourceValue, out IListResult targetValue)
+        public override bool TryConvert(JsObject sourceValue, out UserAccountListResult targetValue)
+        {
+            int totalCount = sourceValue["TotalCount"].As<int>();
+            JsObject data = sourceValue["Data"].As<JsObject>();
+
+            targetValue = new UserAccountListResult(GetAccounts(data), totalCount);
+            return true;
+        }
+
+        private IEnumerable<UserAccountViewModel> GetAccounts(JsObject sourceValue)
         {
             List<UserAccountViewModel> data = new List<UserAccountViewModel>();
 
@@ -19,7 +28,7 @@ namespace Neptuo.TemplateEngine.Accounts
             for (int i = 0; i < array.length; i++)
             {
                 JsObject item = array[i].As<JsObject>();
-                
+
                 data.Add(new UserAccountViewModel(
                     item["Key"].As<int>(),
                     item["Username"].As<string>(),
@@ -28,8 +37,7 @@ namespace Neptuo.TemplateEngine.Accounts
                 ));
             }
 
-            targetValue = new ListResult(data, data.Count); //TODO: Total count
-            return true;
+            return data;
         }
 
         private IEnumerable<UserRoleRowViewModel> GetRoles(JsObject item)

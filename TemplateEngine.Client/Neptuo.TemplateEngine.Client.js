@@ -1067,52 +1067,6 @@ var Neptuo$TemplateEngine$Web$DataSources$IListDataSource = {
     IsAbstract: true
 };
 JsTypes.push(Neptuo$TemplateEngine$Web$DataSources$IListDataSource);
-var Neptuo$TemplateEngine$Web$DataSources$IListResult = {
-    fullname: "Neptuo.TemplateEngine.Web.DataSources.IListResult",
-    baseTypeName: "System.Object",
-    assemblyName: "Neptuo.TemplateEngine.Client",
-    Kind: "Interface",
-    ctors: [],
-    IsAbstract: true
-};
-JsTypes.push(Neptuo$TemplateEngine$Web$DataSources$IListResult);
-var Neptuo$TemplateEngine$Web$DataSources$ListResult = {
-    fullname: "Neptuo.TemplateEngine.Web.DataSources.ListResult",
-    baseTypeName: "System.Object",
-    assemblyName: "Neptuo.TemplateEngine.Client",
-    interfaceNames: ["Neptuo.TemplateEngine.Web.DataSources.IListResult"],
-    Kind: "Class",
-    definition: {
-        ctor: function (data, totalCount){
-            this._Data = null;
-            this._TotalCount = 0;
-            System.Object.ctor.call(this);
-            this.set_Data(data);
-            this.set_TotalCount(totalCount);
-        },
-        Data$$: "System.Collections.IEnumerable",
-        get_Data: function (){
-            return this._Data;
-        },
-        set_Data: function (value){
-            this._Data = value;
-        },
-        TotalCount$$: "System.Int32",
-        get_TotalCount: function (){
-            return this._TotalCount;
-        },
-        set_TotalCount: function (value){
-            this._TotalCount = value;
-        }
-    },
-    ctors: [{
-        name: "ctor",
-        parameters: ["System.Collections.IEnumerable", "System.Int32"]
-    }
-    ],
-    IsAbstract: false
-};
-JsTypes.push(Neptuo$TemplateEngine$Web$DataSources$ListResult);
 var Neptuo$TemplateEngine$Web$FormPostInvoker = {
     fullname: "Neptuo.TemplateEngine.Web.FormPostInvoker",
     baseTypeName: "System.Object",

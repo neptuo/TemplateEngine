@@ -39,7 +39,7 @@ namespace Neptuo.TemplateEngine.Web
                 IListDataSource listDataSource = dataSourceObject as IListDataSource;
                 if (listDataSource != null)
                 {
-                    data = listDataSource.GetData(model.PageIndex, model.PageSize);
+                    data = new ListResult(listDataSource.GetData(model.PageIndex, model.PageSize), listDataSource.GetTotalCount());
                 }
                 else
                 {

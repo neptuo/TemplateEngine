@@ -44,8 +44,8 @@ namespace Neptuo.TemplateEngine.Accounts.Web.DataSources
                 cache = false,
                 success = (object response, JsString status, jqXHR sender) =>
                 {
-                    IListResult model;
-                    if (Converts.Try<JsObject, IListResult>(response.As<JsObject>(), out model))
+                    UserAccountListResult model;
+                    if (Converts.Try<JsObject, UserAccountListResult>(response.As<JsObject>(), out model))
                         callback(model);
                     else
                         throw new NotSupportedException();
