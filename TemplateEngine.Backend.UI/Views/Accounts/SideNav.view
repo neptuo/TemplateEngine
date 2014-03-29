@@ -10,12 +10,6 @@
         User roles
     </ui:Link>
 </li>
-<li>
-    <ui:Link Href="/Accounts/Login.aspx" ajax:Update="BodyContainer">
-        <span class="glyphicon glyphicon-th-large"></span>
-        Login
-    </ui:Link>
-</li>
 <li ui:IsVisible="false">
     <a href="#" class="disabled">
         <span class="glyphicon glyphicon-align-left"></span>

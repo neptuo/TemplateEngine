@@ -1069,6 +1069,62 @@ var Neptuo$TemplateEngine$Web$DataSources$IListDataSource = {
     IsAbstract: true
 };
 JsTypes.push(Neptuo$TemplateEngine$Web$DataSources$IListDataSource);
+var Neptuo$TemplateEngine$Web$DataSources$ListDataSourceProxy$1 = {
+    fullname: "Neptuo.TemplateEngine.Web.DataSources.ListDataSourceProxy$1",
+    baseTypeName: "System.Object",
+    assemblyName: "Neptuo.TemplateEngine.Client",
+    interfaceNames: ["Neptuo.TemplateEngine.Web.DataSources.IListDataSource"],
+    Kind: "Class",
+    definition: {
+        ctor: function (TResultModel, urlProvider){
+            this.TResultModel = TResultModel;
+            this.urlProvider = null;
+            System.Object.ctor.call(this);
+            Neptuo.Guard.NotNull$$Object$$String(urlProvider, "urlProvider");
+            this.urlProvider = urlProvider;
+        },
+        GetData: function (pageIndex, pageSize, callback){
+            $.ajax({
+                url: this.urlProvider.ResolveUrl(this.FormatUrl()),
+                type: "GET",
+                data: this.SetParametersInternal(pageIndex, pageSize),
+                cache: false,
+                success: $CreateAnonymousDelegate(this, function (response, status, sender){
+                    var model;
+                    if ((function (){
+                        var $1 = {
+                            Value: model
+                        };
+                        var $res = Neptuo.Converts.Try$2$$TSource$$TTarget(Object, this.TResultModel, response, $1);
+                        model = $1.Value;
+                        return $res;
+                    }).call(this))
+                        callback(model);
+                    else
+                        throw $CreateException(new System.NotSupportedException.ctor(), new Error());
+                })
+            });
+        },
+        SetParametersInternal: function (pageIndex, pageSize){
+            var parameterBuilder = Neptuo.TemplateEngine.JsObjectBuilder.New("DataSource", this.GetDataSourceName()).Set("PageIndex", pageIndex).Set("PageSize", pageSize);
+            this.SetParameters(parameterBuilder);
+            return parameterBuilder.ToJsObject();
+        },
+        GetDataSourceName: function (){
+            return this.GetType().get_Name();
+        },
+        FormatUrl: function (){
+            return "~/DataSource.ashx";
+        }
+    },
+    ctors: [{
+        name: "ctor",
+        parameters: ["Neptuo.Templates.IVirtualUrlProvider"]
+    }
+    ],
+    IsAbstract: true
+};
+JsTypes.push(Neptuo$TemplateEngine$Web$DataSources$ListDataSourceProxy$1);
 var Neptuo$TemplateEngine$Web$FormPostInvoker = {
     fullname: "Neptuo.TemplateEngine.Web.FormPostInvoker",
     baseTypeName: "System.Object",
