@@ -67,11 +67,15 @@
     <Compile Include="UserAccountEditModelConverter.cs" />
     <Compile Include="UserAccountListResult.cs" />
     <Compile Include="UserAccountListResultConverter.cs" />
+    <Compile Include="UserRoleEditModelConverter.cs" />
+    <Compile Include="UserRoleListResult.cs" />
+    <Compile Include="UserRoleListResultConverter.cs" />
     <Compile Include="Web\Controllers\UserAccountController.cs" />
     <Compile Include="Web\DataSources\UserAccountDataSource.cs" />
     <Compile Include="Web\DataSources\UserAccountEditDataSource.cs" />
     <Compile Include="Web\DataSources\UserRoleDataSource.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Web\DataSources\UserRoleEditDataSource.cs" />
   </ItemGroup>
   <ItemGroup>
     <SkcPlugin Include="Neptuo.SharpKit.Exugin.ExuginPlugin, Neptuo.SharpKit.Exugin">

@@ -61,7 +61,7 @@ namespace Neptuo.TemplateEngine.Accounts.Web.Controllers
         [Action("Accounts/Role/Update")]
         public void Update()
         {
-            Update();
+            CreateUpdate();
         }
 
         protected void CreateUpdate()

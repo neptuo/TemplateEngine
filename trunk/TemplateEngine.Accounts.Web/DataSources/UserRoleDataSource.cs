@@ -14,18 +14,16 @@ namespace Neptuo.TemplateEngine.Accounts.Web.DataSources
     public class UserRoleDataSource : IListDataSource
     {
         private IUserRoleQuery roleQuery;
-        private IModelValueProviderFactory factory;
 
         public int? Key { get; set; }
         public string Name { get; set; }
 
-        public UserRoleDataSource(IUserRoleQuery roleQuery, IModelValueProviderFactory factory)
+        public UserRoleDataSource(IUserRoleQuery roleQuery)
         {
             this.roleQuery = roleQuery;
-            this.factory = factory;
         }
 
-        protected IEnumerable<UserRole> GetDataOverride(int? pageIndex, int? pageSize)
+        protected IEnumerable<UserRoleViewModel> GetDataOverride(int? pageIndex, int? pageSize)
         {
             IEnumerable<UserRole> data = roleQuery.Get();
 
@@ -38,13 +36,13 @@ namespace Neptuo.TemplateEngine.Accounts.Web.DataSources
             if (pageSize != null)
                 data = data.Skip((pageIndex ?? 0) * pageSize.Value).Take(pageSize.Value);
 
-            return data;
+            return data.OrderBy(r => r.Key).Select(r => new UserRoleViewModel(r.Key, r.Name, r.Description));
         }
 
         public IEnumerable GetData(int? pageIndex, int? pageSize)
         {
-            foreach (UserRole userRole in GetDataOverride(pageIndex, pageSize))
-                yield return factory.Create(userRole);
+            foreach (UserRoleViewModel userRole in GetDataOverride(pageIndex, pageSize))
+                yield return userRole;
         }
 
         public int GetTotalCount()

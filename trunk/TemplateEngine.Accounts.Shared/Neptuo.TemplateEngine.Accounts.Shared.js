@@ -448,4 +448,49 @@ var Neptuo$TemplateEngine$Accounts$UserRoleRowViewModel = {
     IsAbstract: false
 };
 JsTypes.push(Neptuo$TemplateEngine$Accounts$UserRoleRowViewModel);
+var Neptuo$TemplateEngine$Accounts$UserRoleViewModel = {
+    fullname: "Neptuo.TemplateEngine.Accounts.UserRoleViewModel",
+    baseTypeName: "System.Object",
+    assemblyName: "Neptuo.TemplateEngine.Accounts.Shared",
+    Kind: "Class",
+    definition: {
+        ctor: function (key, name, description){
+            this._Key = 0;
+            this._Name = null;
+            this._Description = null;
+            System.Object.ctor.call(this);
+            this.set_Key(key);
+            this.set_Name(name);
+            this.set_Description(description);
+        },
+        Key$$: "System.Int32",
+        get_Key: function (){
+            return this._Key;
+        },
+        set_Key: function (value){
+            this._Key = value;
+        },
+        Name$$: "System.String",
+        get_Name: function (){
+            return this._Name;
+        },
+        set_Name: function (value){
+            this._Name = value;
+        },
+        Description$$: "System.String",
+        get_Description: function (){
+            return this._Description;
+        },
+        set_Description: function (value){
+            this._Description = value;
+        }
+    },
+    ctors: [{
+        name: "ctor",
+        parameters: ["System.Int32", "System.String", "System.String"]
+    }
+    ],
+    IsAbstract: false
+};
+JsTypes.push(Neptuo$TemplateEngine$Accounts$UserRoleViewModel);
 

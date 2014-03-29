@@ -1,4 +1,5 @@
 ﻿using Neptuo.TemplateEngine.Web.DataSources;
+using Neptuo.Templates;
 using SharpKit.Html;
 using System;
 using System.Collections;
@@ -9,48 +10,20 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Accounts.Web.DataSources
 {
-    public class UserRoleDataSource : IListDataSource
+    public class UserRoleDataSource : ListDataSourceProxy<UserRoleListResult>
     {
         public int? Key { get; set; }
         public string Name { get; set; }
 
-        public int GetTotalCount()
-        {
-            return 0;
-        }
+        public UserRoleDataSource(IVirtualUrlProvider urlProvider)
+            : base(urlProvider)
+        { }
 
-        public void GetData(int? pageIndex, int? pageSize, Action<IListResult> callback)
+        protected override void SetParameters(JsObjectBuilder parameterBuilder)
         {
-            HtmlContext.setTimeout(() =>
-            {
-                callback(new ListResult(new List<object>
-                {
-                    new UserRoleEditModel 
-                    {
-                        Key = 1,
-                        Name = "Administrators",
-                        Description = "System admins"
-                    },
-                    new UserRoleEditModel 
-                    {
-                        Key = 2,
-                        Name = "Everyone",
-                        Description = "Public (un-authenticated) users"
-                    },
-                    new UserRoleEditModel 
-                    {
-                        Key = 3,
-                        Name = "WebAdmins",
-                        Description = "Admins of web presentation"
-                    },
-                    new UserRoleEditModel 
-                    {
-                        Key = 4,
-                        Name = "Articles",
-                        Description = "Article writers"
-                    }
-                }, 4));
-            }, 500);
+            parameterBuilder
+                .Set("Key", Key)
+                .Set("Name", Name);
         }
     }
 }
