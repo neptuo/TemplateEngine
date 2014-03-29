@@ -38,5 +38,10 @@ namespace Neptuo.TemplateEngine.Accounts.Data.Entity
 
             return DbContext.UserAccounts.FirstOrDefault(u => u.Key == key.ID);
         }
+
+        public UserAccount Get(string username, string password)
+        {
+            return DbContext.UserAccounts.FirstOrDefault(u => u.Username == username && u.Password == password);
+        }
     }
 }

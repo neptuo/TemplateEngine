@@ -67,6 +67,7 @@ namespace Neptuo.TemplateEngine.Accounts.Bootstrap
                 .RegisterType<IUserRoleRepository, MemoryUserRoleRepository>(new SingletonLifetime())
                 .RegisterType<IActivator<UserRole>, MemoryUserRoleRepository>(new SingletonLifetime())
                 .RegisterType<IUserRoleQuery, MemoryUserRoleRepository>(new SingletonLifetime())
+                .RegisterType<IAuthenticator, UserAccountService>()
                 .RegisterCommandHandler<UserRoleEditCommand, EditUserRoleCommandHandler>();
 
             registry.RegisterNamespace(new NamespaceDeclaration("ui", "Neptuo.TemplateEngine.Accounts.Web.Presenters, Neptuo.TemplateEngine.Accounts.Web"));

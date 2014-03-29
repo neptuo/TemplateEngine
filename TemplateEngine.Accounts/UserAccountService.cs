@@ -1,6 +1,7 @@
 ﻿using Neptuo.Events;
 using Neptuo.TemplateEngine.Accounts.Data;
 using Neptuo.TemplateEngine.Accounts.Events;
+using Neptuo.TemplateEngine.Accounts.Queries;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,17 +10,19 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Accounts
 {
-    public class UserAccountService
+    public class UserAccountService : IAuthenticator
     {
         protected IEventDispatcher EventDispatcher { get; private set; }
         protected IUserAccountRepository UserAccounts { get; private set; }
         protected IUserRoleRepository UserRoles { get; private set; }
+        protected IUserAccountQuery UserQuery { get; private set; }
 
-        public UserAccountService(IEventDispatcher eventDispatcher, IUserAccountRepository userAccounts, IUserRoleRepository userRoles)
+        public UserAccountService(IEventDispatcher eventDispatcher, IUserAccountRepository userAccounts, IUserRoleRepository userRoles, IUserAccountQuery userQuery)
         {
             EventDispatcher = eventDispatcher;
             UserAccounts = userAccounts;
             UserRoles = userRoles;
+            UserQuery = userQuery;
         }
 
         public UserAccount CreateAccount(string username, string password, bool enabled)
@@ -46,6 +49,14 @@ namespace Neptuo.TemplateEngine.Accounts
                 throw new ArgumentOutOfRangeException("userRoleID", String.Format("No such user role, for id '{0}'.", userRoleID));
 
             account.Roles.Add(userRole);
+        }
+
+        public bool Login(string username, string password)
+        {
+            Guard.NotNullOrEmpty(username, "username");
+            Guard.NotNullOrEmpty(password, "password");
+            UserAccount account = UserQuery.Get(username, password);
+            return account != null;
         }
     }
 }

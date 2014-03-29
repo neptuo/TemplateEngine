@@ -2410,7 +2410,7 @@ var Neptuo$TemplateEngine$Web$Controls$OptionControl = {
         },
         RenderAttributes: function (writer){
             if (this.get_Value() != null){
-                if (this.get_SelectedValue() != null && this.get_SelectedValue() == ("" + this.get_Value()))
+                if (this.get_SelectedValue() != null && this.get_SelectedValue().ToString() == ("" + this.get_Value()))
                     this.get_Attributes().set_Item$$TKey("selected", "selected");
                 this.get_Attributes().set_Item$$TKey("value", ("" + this.get_Value()));
             }

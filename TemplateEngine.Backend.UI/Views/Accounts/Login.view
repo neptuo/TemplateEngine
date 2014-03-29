@@ -1,7 +1,33 @@
 ﻿<ui:AdminLayout>
     <ui:TemplateContent Name="Body">
-        <strong>
-            <ui:literal text="Hello [from login]!!" />
-        </strong>
+
+      <div style="padding: 15px 10px;">
+        <form method="post" action="{CurrentUrl}" html:Class="">
+          <div class="col-md-6">
+
+            <ui:FormItem l:LabelText="Username" l:HelpText="Your user name">
+              <ui:TextBox Name="Username" Text="{Binding Username}" IsAutoFocus="true" html:ID="Username" html:Class="form-control" />
+            </ui:FormItem>
+
+            <ui:FormItem l:LabelText="Password" l:HelpText="Your password">
+              <ui:TextBox Name="Password" Text="{Binding Password}" IsAutoFocus="true" html:ID="Password" html:Class="form-control" />
+            </ui:FormItem>
+
+          </div>
+
+          <ui:SubHeader>
+            <ui:TemplateContent Name="Left">
+              <h2>
+                <span class="glyphicon glyphicon-user"></span>
+                Sign in to TemplateEngine
+              </h2>
+            </ui:TemplateContent>
+            <ui:TemplateContent Name="Right">
+              <ui:Button l:Text="Sign in" ui:Event="Accounts/Login" CssClass="btn btn-primary" />
+            </ui:TemplateContent>
+          </ui:SubHeader>
+        </form>
+      </div>
+      
     </ui:TemplateContent>
 </ui:AdminLayout>

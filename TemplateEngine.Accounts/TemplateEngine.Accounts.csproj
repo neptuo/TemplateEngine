@@ -60,6 +60,7 @@
     <Compile Include="Commands\Handlers\UserAccountEditCommandHandler.cs" />
     <Compile Include="Data\IUserAccountRepository.cs" />
     <Compile Include="Data\IUserRoleRepository.cs" />
+    <Compile Include="IAuthenticator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Queries\IUserRoleQuery.cs" />
     <Compile Include="Queries\IUserAccountQuery.cs" />

@@ -116,5 +116,21 @@ namespace Neptuo.TemplateEngine.Accounts.Web.Controllers
 
         #endregion
 
+        #region Login
+
+        [Action("Accounts/Login")]
+        public void Login()
+        {
+            UserAccountLoginModel model = Context.ModelBinder.Bind<UserAccountLoginModel>();
+            bool result = AccountService.Login(model.Username, model.Password);
+
+            if (result)
+            {
+                MessageStorage.Add(null, String.Empty, "User signed in.", MessageType.Info);
+                Context.Navigations.Add("Accounts.LoggedIn");
+            }
+        }
+
+        #endregion
     }
 }
