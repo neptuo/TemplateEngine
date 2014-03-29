@@ -129,6 +129,10 @@ namespace Neptuo.TemplateEngine.Accounts.Web.Controllers
                 MessageStorage.Add(null, String.Empty, "User signed in.", MessageType.Info);
                 Context.Navigations.Add("Accounts.LoggedIn");
             }
+            else
+            {
+                MessageStorage.Add(null, String.Empty, "Invalid username or password.", MessageType.Error);
+            }
         }
 
         #endregion
