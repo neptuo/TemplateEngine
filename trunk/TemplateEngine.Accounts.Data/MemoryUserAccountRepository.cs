@@ -57,6 +57,11 @@ namespace Neptuo.TemplateEngine.Accounts.Data
         {
             return new MemoryUserAccount();
         }
+
+        public UserAccount Get(string username, string password)
+        {
+            return storage.Values.FirstOrDefault(u => u.Username == username && u.Password == password);
+        }
     }
 
     public class MemoryUserAccount : UserAccount

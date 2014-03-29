@@ -11,8 +11,8 @@
     <ui:Bundle Path="~/css/admin" IsStyle="true" />
     <ui:Bundle Path="~/js/admin" />
   
-    <ajax:StartUp DefaultUpdate="Body" />
-    <script src="/views.ashx"></script>
+    <!--<ajax:StartUp DefaultUpdate="Body" />
+    <script src="/views.ashx"></script>-->
   
     <ui:TemplatePlaceholder Name="Head" />
 </head>

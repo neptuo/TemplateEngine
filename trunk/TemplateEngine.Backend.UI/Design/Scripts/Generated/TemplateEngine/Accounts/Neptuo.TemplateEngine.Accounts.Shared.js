@@ -180,6 +180,40 @@ var Neptuo$TemplateEngine$Accounts$Commands$UserAccountEditCommand = {
     IsAbstract: false
 };
 JsTypes.push(Neptuo$TemplateEngine$Accounts$Commands$UserAccountEditCommand);
+var Neptuo$TemplateEngine$Accounts$UserAccountLoginModel = {
+    fullname: "Neptuo.TemplateEngine.Accounts.UserAccountLoginModel",
+    baseTypeName: "System.Object",
+    assemblyName: "Neptuo.TemplateEngine.Accounts.Shared",
+    Kind: "Class",
+    definition: {
+        ctor: function (){
+            this._Username = null;
+            this._Password = null;
+            System.Object.ctor.call(this);
+        },
+        Username$$: "System.String",
+        get_Username: function (){
+            return this._Username;
+        },
+        set_Username: function (value){
+            this._Username = value;
+        },
+        Password$$: "System.String",
+        get_Password: function (){
+            return this._Password;
+        },
+        set_Password: function (value){
+            this._Password = value;
+        }
+    },
+    ctors: [{
+        name: "ctor",
+        parameters: []
+    }
+    ],
+    IsAbstract: false
+};
+JsTypes.push(Neptuo$TemplateEngine$Accounts$UserAccountLoginModel);
 var Neptuo$TemplateEngine$Accounts$UserAccountViewModel = {
     fullname: "Neptuo.TemplateEngine.Accounts.UserAccountViewModel",
     baseTypeName: "System.Object",

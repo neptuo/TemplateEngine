@@ -9,6 +9,7 @@ namespace Neptuo.TemplateEngine.Accounts.Queries
 {
     public interface IUserAccountQuery
     {
+        UserAccount Get(string username, string password);
         UserAccount Get(Key key);
         IEnumerable<UserAccount> Get();
         IEnumerable<UserAccount> Get(int pageIndex, int pageSize);
