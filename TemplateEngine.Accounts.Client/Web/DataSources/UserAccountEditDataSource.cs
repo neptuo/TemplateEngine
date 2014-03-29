@@ -50,18 +50,12 @@ namespace Neptuo.TemplateEngine.Accounts.Web.DataSources
                 return;
             }
 
-            //HtmlContext.setTimeout(() =>
-            //{
-            //    UserAccountEditModel model = userAccounts.GetAll().FirstOrDefault(u => u.Key == Key);
-            //    model = modelBinder.Bind<UserAccountEditModel>(model);
-
-            //    callback(providerFactory.Create(model));
-            //}, 400);
-
             jQuery.ajax(new AjaxSettings
             {
                 url = urlProvider.ResolveUrl(FormatUrl()),
                 type = "GET",
+                data = JsObjectBuilder.New("DataSource", "UserAccountEditDataSource").Set("Key", Key).ToJsObject(),
+                cache = false,
                 success = (object response, JsString status, jqXHR sender) =>
                 {
                     UserAccountEditModel model;
@@ -78,7 +72,8 @@ namespace Neptuo.TemplateEngine.Accounts.Web.DataSources
 
         protected string FormatUrl()
         {
-            return String.Format("~/DataSource.ashx?DataSource={0}&Key={1}", "UserAccountEditDataSource", Key);
+            return "~/DataSource.ashx";
+            //return String.Format("~/DataSource.ashx?DataSource={0}&Key={1}", "UserAccountEditDataSource", Key);
         }
     }
 }

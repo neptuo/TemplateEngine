@@ -16,15 +16,14 @@ namespace Neptuo.TemplateEngine.Accounts.Web.DataSources
     public class UserAccountDataSource : IListDataSource, IDataSource
     {
         private IUserAccountQuery userQuery;
-        private IModelValueProviderFactory factory;
 
         public int? Key { get; set; }
         public string Username { get; set; }
+        public int? RoleKey { get; set; }
 
-        public UserAccountDataSource(IUserAccountQuery userQuery, IModelValueProviderFactory factory)
+        public UserAccountDataSource(IUserAccountQuery userQuery)
         {
             this.userQuery = userQuery;
-            this.factory = factory;
         }
 
         public object GetItem()
@@ -38,10 +37,10 @@ namespace Neptuo.TemplateEngine.Accounts.Web.DataSources
             if (userAccount == null)
                 return null;
 
-            return factory.Create(userAccount);
+            return new UserAccountViewModel(userAccount.Key, userAccount.Username, userAccount.IsEnabled, userAccount.Roles.Select(r => new UserRoleRowViewModel(r.Key, r.Name)));
         }
 
-        protected IEnumerable<UserAccount> GetDataOverride(int? pageIndex, int? pageSize)
+        protected IEnumerable<UserAccountViewModel> GetDataOverride(int? pageIndex, int? pageSize)
         {
             IEnumerable<UserAccount> data = userQuery.Get();
             if (!String.IsNullOrEmpty(Username))
@@ -50,16 +49,18 @@ namespace Neptuo.TemplateEngine.Accounts.Web.DataSources
             if (Key != null)
                 data = data.Where(u => u.Key == Key);
 
+            if (RoleKey != null)
+                data = data.Where(u => u.Roles.Select(r => r.Key).Contains(RoleKey.Value));
+
             if (pageSize != null)
                 data = data.Skip((pageIndex ?? 0) * pageSize.Value).Take(pageSize.Value);
 
-            return data.OrderBy(u => u.Key);
+            return data.OrderBy(u => u.Key).Select(u => new UserAccountViewModel(u.Key, u.Username, u.IsEnabled, u.Roles.Select(r => new UserRoleRowViewModel(r.Key, r.Name))));
         }
 
         public IEnumerable GetData(int? pageIndex, int? pageSize)
         {
-            foreach (UserAccount userAccount in GetDataOverride(pageIndex, pageSize))
-                yield return factory.Create(userAccount);
+            return GetDataOverride(pageIndex, pageSize);
         }
 
         public int GetTotalCount()

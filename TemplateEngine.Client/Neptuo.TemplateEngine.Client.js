@@ -188,6 +188,40 @@ var Neptuo$TemplateEngine$Bootstrap$PresentationModelBootstrapTask = {
     IsAbstract: false
 };
 JsTypes.push(Neptuo$TemplateEngine$Bootstrap$PresentationModelBootstrapTask);
+var Neptuo$TemplateEngine$JsObjectBuilder = {
+    fullname: "Neptuo.TemplateEngine.JsObjectBuilder",
+    baseTypeName: "System.Object",
+    staticDefinition: {
+        New: function (key, value){
+            var result = new Neptuo.TemplateEngine.JsObjectBuilder.ctor();
+            if (key != null)
+                result.Set(key, value);
+            return result;
+        }
+    },
+    assemblyName: "Neptuo.TemplateEngine.Client",
+    Kind: "Class",
+    definition: {
+        ctor: function (){
+            this.data = new Object();
+            System.Object.ctor.call(this);
+        },
+        Set: function (key, value){
+            this.data[key] = value;
+            return this;
+        },
+        ToJsObject: function (){
+            return this.data;
+        }
+    },
+    ctors: [{
+        name: "ctor",
+        parameters: []
+    }
+    ],
+    IsAbstract: false
+};
+JsTypes.push(Neptuo$TemplateEngine$JsObjectBuilder);
 var Neptuo$TemplateEngine$Navigation$ClientNavigateTo = {
     fullname: "Neptuo.TemplateEngine.Navigation.ClientNavigateTo",
     baseTypeName: "Neptuo.TemplateEngine.Navigation.QueryStringNavigateTo",
@@ -1304,8 +1338,22 @@ var Neptuo$TemplateEngine$Web$JsArrayExtensions = {
         ToRouteParams: function (data){
             var result = new Neptuo.TemplateEngine.Routing.RouteParamDictionary.ctor();
             if (data != null){
-                for (var i = 0; i < data.length; i++)
-                    result.Add(data[i]["name"], data[i]["value"]);
+                for (var i = 0; i < data.length; i++){
+                    var key = data[i]["name"];
+                    var value = data[i]["value"];
+                    var currentValue;
+                    if ((function (){
+                        var $1 = {
+                            Value: currentValue
+                        };
+                        var $res = result.TryGetValue(key, $1);
+                        currentValue = $1.Value;
+                        return $res;
+                    })())
+                        result.set_Item$$TKey(key, currentValue + "," + value);
+                    else
+                        result.Add(key, value);
+                }
             }
             return result;
         }
@@ -1386,11 +1434,11 @@ var Neptuo$TemplateEngine$Web$MainView = {
         },
         OnLinkClickInternal: function (e){
             var link = $(e.currentTarget);
+            e.preventDefault();
             var newUrl = link.attr("href");
             var toUpdate = this.GetToUpdateFromElement(link);
             if (this.OnLinkClick != null)
                 this.OnLinkClick(newUrl, toUpdate);
-            e.preventDefault();
         },
         OnButtonClickInternal: function (e){
             var button = $(e.currentTarget);

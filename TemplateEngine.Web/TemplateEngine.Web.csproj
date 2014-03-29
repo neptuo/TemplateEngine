@@ -98,6 +98,7 @@
     <Compile Include="Navigation\RedirectNavigator.cs" />
     <Compile Include="Web\DataSources\IWebDataSourceRegistry.cs" />
     <Compile Include="Web\DataSources\DictionaryWebDataSourceRegistry.cs" />
+    <Compile Include="Web\WebDataSourceModel.cs" />
     <Compile Include="Web\ServerPartialResponse.cs" />
     <Compile Include="Web\ServerVirtualPathProvider.cs" />
     <Compile Include="Web\TemplateHttpHandler.cs" />

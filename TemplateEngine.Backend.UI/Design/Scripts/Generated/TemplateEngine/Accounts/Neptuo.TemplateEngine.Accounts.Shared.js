@@ -180,6 +180,60 @@ var Neptuo$TemplateEngine$Accounts$Commands$UserAccountEditCommand = {
     IsAbstract: false
 };
 JsTypes.push(Neptuo$TemplateEngine$Accounts$Commands$UserAccountEditCommand);
+var Neptuo$TemplateEngine$Accounts$UserAccountViewModel = {
+    fullname: "Neptuo.TemplateEngine.Accounts.UserAccountViewModel",
+    baseTypeName: "System.Object",
+    assemblyName: "Neptuo.TemplateEngine.Accounts.Shared",
+    Kind: "Class",
+    definition: {
+        ctor: function (key, username, isEnabled, roles){
+            this._Key = 0;
+            this._Username = null;
+            this._IsEnabled = false;
+            this._Roles = null;
+            System.Object.ctor.call(this);
+            this.set_Key(key);
+            this.set_Username(username);
+            this.set_IsEnabled(isEnabled);
+            this.set_Roles(roles);
+        },
+        Key$$: "System.Int32",
+        get_Key: function (){
+            return this._Key;
+        },
+        set_Key: function (value){
+            this._Key = value;
+        },
+        Username$$: "System.String",
+        get_Username: function (){
+            return this._Username;
+        },
+        set_Username: function (value){
+            this._Username = value;
+        },
+        IsEnabled$$: "System.Boolean",
+        get_IsEnabled: function (){
+            return this._IsEnabled;
+        },
+        set_IsEnabled: function (value){
+            this._IsEnabled = value;
+        },
+        Roles$$: "System.Collections.Generic.IEnumerable`1[[Neptuo.TemplateEngine.Accounts.UserRoleRowViewModel]]",
+        get_Roles: function (){
+            return this._Roles;
+        },
+        set_Roles: function (value){
+            this._Roles = value;
+        }
+    },
+    ctors: [{
+        name: "ctor",
+        parameters: ["System.Int32", "System.String", "System.Boolean", "System.Collections.Generic.IEnumerable"]
+    }
+    ],
+    IsAbstract: false
+};
+JsTypes.push(Neptuo$TemplateEngine$Accounts$UserAccountViewModel);
 var Neptuo$TemplateEngine$Accounts$Commands$UserRoleEditCommand = {
     fullname: "Neptuo.TemplateEngine.Accounts.Commands.UserRoleEditCommand",
     baseTypeName: "System.Object",
@@ -360,5 +414,41 @@ var Neptuo$TemplateEngine$Accounts$UserRoleEditModel = {
     IsAbstract: false
 };
 JsTypes.push(Neptuo$TemplateEngine$Accounts$UserRoleEditModel);
+var Neptuo$TemplateEngine$Accounts$UserRoleRowViewModel = {
+    fullname: "Neptuo.TemplateEngine.Accounts.UserRoleRowViewModel",
+    baseTypeName: "System.Object",
+    assemblyName: "Neptuo.TemplateEngine.Accounts.Shared",
+    Kind: "Class",
+    definition: {
+        ctor: function (key, name){
+            this._Key = 0;
+            this._Name = null;
+            System.Object.ctor.call(this);
+            this.set_Key(key);
+            this.set_Name(name);
+        },
+        Key$$: "System.Int32",
+        get_Key: function (){
+            return this._Key;
+        },
+        set_Key: function (value){
+            this._Key = value;
+        },
+        Name$$: "System.String",
+        get_Name: function (){
+            return this._Name;
+        },
+        set_Name: function (value){
+            this._Name = value;
+        }
+    },
+    ctors: [{
+        name: "ctor",
+        parameters: ["System.Int32", "System.String"]
+    }
+    ],
+    IsAbstract: false
+};
+JsTypes.push(Neptuo$TemplateEngine$Accounts$UserRoleRowViewModel);
 
 

@@ -426,9 +426,13 @@ var Neptuo$TemplateEngine$Web$BindingManagerBase = {
                     value.Value = null;
                     return false;
                 }
-                type = info.get_PropertyType();
-                if (source != null)
+                if (source != null){
                     source = info.GetValue$$Object$$Object$Array(source, null);
+                    if (source != null)
+                        type = source.GetType();
+                    else
+                        type = info.get_PropertyType();
+                }
                 provider = As(source, Neptuo.PresentationModels.IModelValueProvider.ctor);
                 if (provider != null)
                     return provider.TryGetValue(System.String.Join$$String$$IEnumerable$1$String(".", System.Linq.Enumerable.Skip$1(System.String.ctor, exprs, i + 1)), value);

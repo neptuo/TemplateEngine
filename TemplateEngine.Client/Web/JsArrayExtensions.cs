@@ -16,7 +16,16 @@ namespace Neptuo.TemplateEngine.Web
             if (data != null)
             {
                 for (int i = 0; i < data.length; i++)
-                    result.Add(data[i].As<JsObject>()["name"].As<string>(), data[i].As<JsObject>()["value"].As<string>());
+                {
+                    string key = data[i].As<JsObject>()["name"].As<string>();
+                    string value = data[i].As<JsObject>()["value"].As<string>();
+
+                    string currentValue;
+                    if (result.TryGetValue(key, out currentValue))
+                        result[key] = currentValue + "," + value;
+                    else
+                        result.Add(key, value);
+                }
             }
 
             return result;

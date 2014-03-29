@@ -5,6 +5,7 @@ using Neptuo.TemplateEngine.Accounts.Web.Controllers;
 using Neptuo.TemplateEngine.Navigation.Bootstrap;
 using Neptuo.TemplateEngine.Web;
 using Neptuo.TemplateEngine.Web.Controllers;
+using Neptuo.TemplateEngine.Web.DataSources;
 using SharpKit.JavaScript;
 using System;
 using System.Collections.Generic;
@@ -46,7 +47,8 @@ namespace Neptuo.TemplateEngine.Accounts.Bootstrap
             //.Add(dependencyContainer, typeof(UserAccountController));
 
             converterRepository
-                .Add(typeof(JsObject), typeof(UserAccountEditModel), new UserAccountEditModelConverter());
+                .Add(typeof(JsObject), typeof(UserAccountEditModel), new UserAccountEditModelConverter())
+                .Add(typeof(JsObject), typeof(IListResult), new UserAccountListResultConverter());
 
             RegisterForms(formRegistry);
             RegisterGlobalNavigations(globalNavigations);

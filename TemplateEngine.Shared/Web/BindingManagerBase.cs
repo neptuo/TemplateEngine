@@ -62,10 +62,15 @@ namespace Neptuo.TemplateEngine.Web
                     return false;
                 }
 
-                type = info.PropertyType;
 
                 if (source != null)
+                {
                     source = info.GetValue(source, null);
+                    if (source != null)
+                        type = source.GetType();
+                    else
+                        type = info.PropertyType;
+                } 
 
                 provider = source as IModelValueProvider;
                 if (provider != null)
