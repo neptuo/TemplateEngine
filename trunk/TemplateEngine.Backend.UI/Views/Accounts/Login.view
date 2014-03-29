@@ -10,7 +10,7 @@
             </ui:FormItem>
 
             <ui:FormItem l:LabelText="Password" l:HelpText="Your password">
-              <ui:TextBox Name="Password" IsAutoFocus="true" html:ID="Password" html:Class="form-control" />
+              <ui:PasswordBox Name="Password" IsAutoFocus="true" html:ID="Password" html:Class="form-control" />
             </ui:FormItem>
 
           </div>
