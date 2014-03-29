@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Web.Controllers
 {
-    [AttributeUsage(AttributeTargets.Method)]
+    [AttributeUsage(AttributeTargets.Method | AttributeTargets.Class)]
     public class ActionAttribute : Attribute
     {
         public string ActionName { get; private set; }

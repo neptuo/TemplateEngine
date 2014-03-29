@@ -71,24 +71,15 @@ namespace Neptuo.TemplateEngine.Accounts.Web.Controllers
             if (!validationResult.IsValid)
             {
                 MessageStorage.AddValidationResult(validationResult, "UserEdit");
-                Context.ViewData.SetUserAccountCreate(model);
                 return;
             }
 
             using (IUnitOfWork transaction = UnitOfWorkFactory.Create())
             {
-                //CommandDispatcher.Handle(model);
-                UserAccount account = AccountService.CreateAccount(model.Username, model.Password, model.IsEnabled);
-                if (model.RoleKeys != null)
-                {
-                    foreach (int userRoleID in model.RoleKeys)
-                        AccountService.AssignAccountToRole(account, userRoleID);
-                }
+                UserAccountCreateHandler handler = new UserAccountCreateHandler(UserAccounts, MessageStorage, AccountService, Context.Navigations);
+                handler.Handle(model);
 
                 transaction.SaveChanges();
-
-                MessageStorage.Add(null, String.Empty, "User account created.", MessageType.Info);
-                Context.Navigations.Add("Accounts.User.Created");
             }
         }
 
@@ -126,7 +117,7 @@ namespace Neptuo.TemplateEngine.Accounts.Web.Controllers
 
             if (result)
             {
-                MessageStorage.Add(null, String.Empty, "User signed in.", MessageType.Info);
+                MessageStorage.Add(null, String.Empty, String.Format("Welcome, {0}.", model.Username), MessageType.Info);
                 Context.Navigations.Add("Accounts.LoggedIn");
             }
             else
