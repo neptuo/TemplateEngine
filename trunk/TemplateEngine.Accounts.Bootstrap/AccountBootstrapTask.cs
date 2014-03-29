@@ -81,10 +81,7 @@ namespace Neptuo.TemplateEngine.Accounts.Bootstrap
             RegisterForms(formRegistry);
             RegisterGlobalNavigations(globalNavigations);
 
-            dataSourceRegistry.Add(typeof(UserAccountDataSource).Name, typeof(UserAccountDataSource));
-            dataSourceRegistry.Add(typeof(UserAccountEditDataSource).Name, typeof(UserAccountEditDataSource));
-            dataSourceRegistry.Add(typeof(UserRoleDataSource).Name, typeof(UserRoleDataSource));
-            dataSourceRegistry.Add(typeof(UserRoleEditDataSource).Name, typeof(UserRoleEditDataSource));
+            dataSourceRegistry.AddFromAssembly(typeof(UserAccountDataSource).Assembly);
 
 //#if DEBUG
             CreateDummyUserRoles();

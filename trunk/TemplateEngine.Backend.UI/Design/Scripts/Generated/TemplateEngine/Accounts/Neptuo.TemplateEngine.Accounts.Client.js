@@ -59,7 +59,7 @@ var Neptuo$TemplateEngine$Accounts$Bootstrap$AccountBootstrapTask = {
         },
         Initialize: function (){
             Neptuo.DependencyContainerExtensions.RegisterInstance$1(Neptuo.TemplateEngine.Accounts.Data.UserRepository.ctor, this.dependencyContainer, new Neptuo.TemplateEngine.Accounts.Data.UserRepository.ctor());
-            this.converterRepository.Add(Typeof(Object), Typeof(Neptuo.TemplateEngine.Accounts.UserAccountEditModel.ctor), new Neptuo.TemplateEngine.Accounts.UserAccountEditModelConverter.ctor()).Add(Typeof(Object), Typeof(Neptuo.TemplateEngine.Web.DataSources.IListResult.ctor), new Neptuo.TemplateEngine.Accounts.UserAccountListResultConverter.ctor());
+            this.converterRepository.Add(Typeof(Object), Typeof(Neptuo.TemplateEngine.Accounts.UserAccountEditModel.ctor), new Neptuo.TemplateEngine.Accounts.UserAccountEditModelConverter.ctor()).Add(Typeof(Object), Typeof(Neptuo.TemplateEngine.Accounts.UserAccountListResult.ctor), new Neptuo.TemplateEngine.Accounts.UserAccountListResultConverter.ctor());
             this.RegisterForms(this.formRegistry);
             this.RegisterGlobalNavigations(this.globalNavigations);
         }
@@ -141,6 +141,24 @@ var Neptuo$TemplateEngine$Accounts$UserAccountEditModelConverter = {
     IsAbstract: false
 };
 JsTypes.push(Neptuo$TemplateEngine$Accounts$UserAccountEditModelConverter);
+var Neptuo$TemplateEngine$Accounts$UserAccountListResult = {
+    fullname: "Neptuo.TemplateEngine.Accounts.UserAccountListResult",
+    baseTypeName: "Neptuo.TemplateEngine.Web.DataSources.ListResult",
+    assemblyName: "Neptuo.TemplateEngine.Accounts.Client",
+    Kind: "Class",
+    definition: {
+        ctor: function (data, totalCount){
+            Neptuo.TemplateEngine.Web.DataSources.ListResult.ctor.call(this, data, totalCount);
+        }
+    },
+    ctors: [{
+        name: "ctor",
+        parameters: ["System.Collections.IEnumerable", "System.Int32"]
+    }
+    ],
+    IsAbstract: false
+};
+JsTypes.push(Neptuo$TemplateEngine$Accounts$UserAccountListResult);
 var Neptuo$TemplateEngine$Accounts$UserAccountListResultConverter = {
     fullname: "Neptuo.TemplateEngine.Accounts.UserAccountListResultConverter",
     baseTypeName: "Neptuo.ComponentModel.Converters.ConverterBase$2",
@@ -148,17 +166,22 @@ var Neptuo$TemplateEngine$Accounts$UserAccountListResultConverter = {
     Kind: "Class",
     definition: {
         ctor: function (){
-            Neptuo.ComponentModel.Converters.ConverterBase$2.ctor.call(this, Object, Neptuo.TemplateEngine.Web.DataSources.IListResult.ctor);
+            Neptuo.ComponentModel.Converters.ConverterBase$2.ctor.call(this, Object, Neptuo.TemplateEngine.Accounts.UserAccountListResult.ctor);
         },
         TryConvert: function (sourceValue, targetValue){
+            var totalCount = sourceValue["TotalCount"];
+            var data = sourceValue["Data"];
+            targetValue.Value = new Neptuo.TemplateEngine.Accounts.UserAccountListResult.ctor(this.GetAccounts(data), totalCount);
+            return true;
+        },
+        GetAccounts: function (sourceValue){
             var data = new System.Collections.Generic.List$1.ctor(Neptuo.TemplateEngine.Accounts.UserAccountViewModel.ctor);
             var array = sourceValue;
             for (var i = 0; i < array.length; i++){
                 var item = array[i];
                 data.Add(new Neptuo.TemplateEngine.Accounts.UserAccountViewModel.ctor(item["Key"], item["Username"], item["IsEnabled"], this.GetRoles(item)));
             }
-            targetValue.Value = new Neptuo.TemplateEngine.Web.DataSources.ListResult.ctor(data, data.get_Count());
-            return true;
+            return data;
         },
         GetRoles: function (item){
             var roles = new System.Collections.Generic.List$1.ctor(Neptuo.TemplateEngine.Accounts.UserRoleRowViewModel.ctor);
@@ -262,7 +285,7 @@ var Neptuo$TemplateEngine$Accounts$Web$DataSources$UserAccountDataSource = {
                         var $1 = {
                             Value: model
                         };
-                        var $res = Neptuo.Converts.Try$2$$TSource$$TTarget(Object, Neptuo.TemplateEngine.Web.DataSources.IListResult.ctor, response, $1);
+                        var $res = Neptuo.Converts.Try$2$$TSource$$TTarget(Object, Neptuo.TemplateEngine.Accounts.UserAccountListResult.ctor, response, $1);
                         model = $1.Value;
                         return $res;
                     }).call(this))

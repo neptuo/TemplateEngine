@@ -58,6 +58,8 @@
     <Compile Include="Web\Controllers\IAsyncResult.cs" />
     <Compile Include="Web\Controls\BundleControlBase.cs" />
     <Compile Include="Web\Controls\SelectItem.cs" />
+    <Compile Include="Web\DataSources\IListResult.cs" />
+    <Compile Include="Web\DataSources\ListResult.cs" />
     <Compile Include="Web\DictionaryParameterProvider.cs" />
     <Compile Include="Web\HtmlWriterExtensions.cs" />
     <Compile Include="Web\Navigation\QueryStringNavigateTo.cs" />
