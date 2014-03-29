@@ -12,19 +12,19 @@ namespace Neptuo.TemplateEngine.Web.DataSources
     public abstract class ListDataSourceProxy<TResultModel> : IListDataSource
         where TResultModel : IListResult
     {
-        private IVirtualUrlProvider urlProvider;
+        protected IVirtualUrlProvider UrlProvider { get; private set; }
 
         public ListDataSourceProxy(IVirtualUrlProvider urlProvider)
         {
             Guard.NotNull(urlProvider, "urlProvider");
-            this.urlProvider = urlProvider;
+            UrlProvider = urlProvider;
         }
 
         public void GetData(int? pageIndex, int? pageSize, Action<IListResult> callback)
         {
             jQuery.ajax(new AjaxSettings
             {
-                url = urlProvider.ResolveUrl(FormatUrl()),
+                url = UrlProvider.ResolveUrl(FormatUrl()),
                 type = "GET",
                 data = SetParametersInternal(pageIndex, pageSize),
                 cache = false,

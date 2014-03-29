@@ -15,11 +15,9 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Accounts.Web.DataSources
 {
-    public class UserAccountEditDataSource : IDataSource
+    public class UserAccountEditDataSource : DataSourceProxy<UserAccountEditModel>
     {
         private int key;
-        private IModelBinder modelBinder;
-        private IVirtualUrlProvider urlProvider;
 
         public int Key
         {
@@ -32,48 +30,26 @@ namespace Neptuo.TemplateEngine.Accounts.Web.DataSources
         }
 
         public UserAccountEditDataSource(IModelBinder modelBinder, IVirtualUrlProvider urlProvider)
+            : base(modelBinder, urlProvider)
+        { }
+
+        protected override void SetParameters(JsObjectBuilder parameterBuilder)
         {
-            Guard.NotNull(modelBinder, "modelBinder");
-            Guard.NotNull(urlProvider, "urlProvider");
-            this.modelBinder = modelBinder;
-            this.urlProvider = urlProvider;
+            parameterBuilder
+                .Set("Key", Key);
         }
 
-        public void GetItem(Action<object> callback)
+        protected override bool OnGetItem(Action<object> callback)
         {
             if (Key == 0)
             {
                 UserAccountEditModel model = new UserAccountEditModel { Key = 0, IsEnabled = true };
-                model = modelBinder.Bind<UserAccountEditModel>(model);
+                model = ModelBinder.Bind<UserAccountEditModel>(model);
 
                 callback(model);
-                return;
+                return true;
             }
-
-            jQuery.ajax(new AjaxSettings
-            {
-                url = urlProvider.ResolveUrl(FormatUrl()),
-                type = "GET",
-                data = JsObjectBuilder.New("DataSource", "UserAccountEditDataSource").Set("Key", Key).ToJsObject(),
-                cache = false,
-                success = (object response, JsString status, jqXHR sender) =>
-                {
-                    UserAccountEditModel model;
-                    if (Converts.Try<JsObject, UserAccountEditModel>(response.As<JsObject>(), out model))
-                    {
-                        model = modelBinder.Bind<UserAccountEditModel>(model);
-                        callback(model);
-                        return;
-                    }
-                }
-            });
-
-        }
-
-        protected string FormatUrl()
-        {
-            return "~/DataSource.ashx";
-            //return String.Format("~/DataSource.ashx?DataSource={0}&Key={1}", "UserAccountEditDataSource", Key);
+            return false;
         }
     }
 }

@@ -266,20 +266,13 @@ var Neptuo$TemplateEngine$Accounts$Web$DataSources$UserAccountDataSource = {
 JsTypes.push(Neptuo$TemplateEngine$Accounts$Web$DataSources$UserAccountDataSource);
 var Neptuo$TemplateEngine$Accounts$Web$DataSources$UserAccountEditDataSource = {
     fullname: "Neptuo.TemplateEngine.Accounts.Web.DataSources.UserAccountEditDataSource",
-    baseTypeName: "System.Object",
+    baseTypeName: "Neptuo.TemplateEngine.Web.DataSources.DataSourceProxy$1",
     assemblyName: "Neptuo.TemplateEngine.Accounts.Client",
-    interfaceNames: ["Neptuo.TemplateEngine.Web.DataSources.IDataSource"],
     Kind: "Class",
     definition: {
         ctor: function (modelBinder, urlProvider){
             this.key = 0;
-            this.modelBinder = null;
-            this.urlProvider = null;
-            System.Object.ctor.call(this);
-            Neptuo.Guard.NotNull$$Object$$String(modelBinder, "modelBinder");
-            Neptuo.Guard.NotNull$$Object$$String(urlProvider, "urlProvider");
-            this.modelBinder = modelBinder;
-            this.urlProvider = urlProvider;
+            Neptuo.TemplateEngine.Web.DataSources.DataSourceProxy$1.ctor.call(this, Neptuo.TemplateEngine.Accounts.UserAccountEditModel.ctor, modelBinder, urlProvider);
         },
         Key$$: "System.Int32",
         get_Key: function (){
@@ -289,7 +282,10 @@ var Neptuo$TemplateEngine$Accounts$Web$DataSources$UserAccountEditDataSource = {
             if (value != null)
                 this.key = value;
         },
-        GetItem: function (callback){
+        SetParameters: function (parameterBuilder){
+            parameterBuilder.Set("Key", this.get_Key());
+        },
+        OnGetItem: function (callback){
             if (this.get_Key() == 0){
                 var model = (function (){
                     var $v2 = new Neptuo.TemplateEngine.Accounts.UserAccountEditModel.ctor();
@@ -297,34 +293,11 @@ var Neptuo$TemplateEngine$Accounts$Web$DataSources$UserAccountEditDataSource = {
                     $v2.set_IsEnabled(true);
                     return $v2;
                 }).call(this);
-                model = Neptuo.TemplateEngine.Web.Controllers.Binders.ModelBinderExtensions.Bind$1$$IModelBinder$$T(Neptuo.TemplateEngine.Accounts.UserAccountEditModel.ctor, this.modelBinder, model);
+                model = Neptuo.TemplateEngine.Web.Controllers.Binders.ModelBinderExtensions.Bind$1$$IModelBinder$$T(Neptuo.TemplateEngine.Accounts.UserAccountEditModel.ctor, this.get_ModelBinder(), model);
                 callback(model);
-                return;
+                return true;
             }
-            $.ajax({
-                url: this.urlProvider.ResolveUrl(this.FormatUrl()),
-                type: "GET",
-                data: Neptuo.TemplateEngine.JsObjectBuilder.New("DataSource", "UserAccountEditDataSource").Set("Key", this.get_Key()).ToJsObject(),
-                cache: false,
-                success: $CreateAnonymousDelegate(this, function (response, status, sender){
-                    var model;
-                    if ((function (){
-                        var $1 = {
-                            Value: model
-                        };
-                        var $res = Neptuo.Converts.Try$2$$TSource$$TTarget(Object, Neptuo.TemplateEngine.Accounts.UserAccountEditModel.ctor, response, $1);
-                        model = $1.Value;
-                        return $res;
-                    }).call(this)){
-                        model = Neptuo.TemplateEngine.Web.Controllers.Binders.ModelBinderExtensions.Bind$1$$IModelBinder$$T(Neptuo.TemplateEngine.Accounts.UserAccountEditModel.ctor, this.modelBinder, model);
-                        callback(model);
-                        return;
-                    }
-                })
-            });
-        },
-        FormatUrl: function (){
-            return "~/DataSource.ashx";
+            return false;
         }
     },
     ctors: [{
