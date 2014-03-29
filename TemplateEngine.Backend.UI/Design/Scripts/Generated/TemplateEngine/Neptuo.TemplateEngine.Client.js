@@ -333,7 +333,7 @@ var Neptuo$TemplateEngine$Routing$TemplateRoute = {
             var viewPath = this.MapView(context.get_Url());
             if (System.String.IsNullOrEmpty(viewPath))
                 return null;
-            var childContainer = this.get_Application().get_DependencyContainer();
+            var childContainer = this.get_Application().get_DependencyContainer().CreateChildContainer();
             var toUpdate = this.get_Application().get_DefaultToUpdate();
             if (context.get_CustomValues().ContainsKey("ToUpdate")){
                 var value = Cast(context.get_CustomValues().get_Item$$TKey("ToUpdate"), Array);
