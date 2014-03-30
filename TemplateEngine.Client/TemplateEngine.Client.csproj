@@ -85,10 +85,9 @@
     <Compile Include="JsObjectBuilder.cs" />
     <Compile Include="Navigation\ClientNavigateTo.cs" />
     <Compile Include="Navigation\ClientNavigator.cs" />
-    <Compile Include="Routing\ExtendedRouter.cs" />
+    <Compile Include="Routing\ApplicationRouter.cs" />
     <Compile Include="Routing\TemplateRoute.cs" />
     <Compile Include="Routing\TemplateRouteHandler.cs" />
-    <Compile Include="TempClass.cs" />
     <Compile Include="Web\Application.cs" />
     <Compile Include="Web\ClientExtendedComponentManager.cs" />
     <Compile Include="Web\Controls\Ajax\PartialStartUpControl.cs" />

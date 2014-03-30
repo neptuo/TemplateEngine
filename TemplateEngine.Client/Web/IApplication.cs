@@ -12,6 +12,11 @@ namespace Neptuo.TemplateEngine.Web
     public interface IApplication : IVirtualUrlProvider, ICurrentUrlProvider
     {
         /// <summary>
+        /// Whether is application in debug mode.
+        /// </summary>
+        bool IsDebug { get; }
+
+        /// <summary>
         /// Gets current root app path.
         /// </summary>
         /// <example>
