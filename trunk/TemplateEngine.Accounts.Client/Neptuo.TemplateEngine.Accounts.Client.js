@@ -353,7 +353,6 @@ var Neptuo$TemplateEngine$Accounts$Web$DataSources$UserAccountEditDataSource = {
                 var model = (function (){
                     var $v2 = new Neptuo.TemplateEngine.Accounts.UserAccountEditModel.ctor();
                     $v2.set_Key(0);
-                    $v2.set_IsEnabled(true);
                     return $v2;
                 }).call(this);
                 model = Neptuo.TemplateEngine.Web.Controllers.Binders.ModelBinderExtensions.Bind$1$$IModelBinder$$T(Neptuo.TemplateEngine.Accounts.UserAccountEditModel.ctor, this.get_ModelBinder(), model);

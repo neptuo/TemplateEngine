@@ -43,7 +43,7 @@ namespace Neptuo.TemplateEngine.Accounts.Web.DataSources
         {
             if (Key == 0)
             {
-                UserAccountEditModel model = new UserAccountEditModel { Key = 0, IsEnabled = true };
+                UserAccountEditModel model = new UserAccountEditModel() { Key = 0 };
                 model = ModelBinder.Bind<UserAccountEditModel>(model);
 
                 callback(model);

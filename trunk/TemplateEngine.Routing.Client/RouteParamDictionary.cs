@@ -44,12 +44,20 @@ namespace Neptuo.TemplateEngine.Routing
             {
                 string[] param = keyValue.Split('=');
                 if (param.Length == 2)
-                    result[param[0]] = param[1];
+                    result[param[0]] = DecodeValueFromUrl(param[1]);
                 else
                     result[param[0]] = null;
             }
 
             return result;
+        }
+
+        public static string DecodeValueFromUrl(string value)
+        {
+            if (value == null)
+                return null;
+
+            return value.Replace("+", " ");
         }
 
         #endregion

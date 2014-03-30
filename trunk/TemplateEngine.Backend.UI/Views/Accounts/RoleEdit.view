@@ -37,9 +37,14 @@
                                 </a>
 
                                 <ui:HiddenBox Name="Key" Text="{Binding Key}" />
-                                
+
                                 <ui:Button l:Text="Save" ui:Event="{Switch {Binding IsNew}, TrueValue=Accounts/Role/Create, FalseValue=Accounts/Role/Update}" CssClass="btn btn-primary" />
                                 <ui:Button l:Text="Delete" ui:Event="Accounts/Role/Delete" html:Class="btn btn-danger" />
+                                <ui:Link form:Href="Accounts.User.List" l:Text="Accounts with role" html:Class="btn btn-default">
+                                  <Parameters>
+                                    <ui:Parameter Name="RoleKey" Value="{Binding Key}" />
+                                  </Parameters>
+                                </ui:Link>
                             </ui:TemplateContent>
                         </ui:SubHeader>
                     </ui:PostForm>
