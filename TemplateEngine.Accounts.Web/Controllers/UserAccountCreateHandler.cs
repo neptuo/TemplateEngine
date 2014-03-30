@@ -14,8 +14,8 @@ using System.Threading.Tasks;
 namespace Neptuo.TemplateEngine.Accounts.Web.Controllers
 {
     [Action("Accounts/User/Create")]
-    //[Transactional]
-    //[ValidationKey("UserEdit")]
+    [Validate("UserEdit")]
+    [Transactional]
     public class UserAccountCreateHandler : ICommandHandler<UserAccountCreateCommand>
     {
         protected IUserAccountRepository UserAccounts { get; private set; }

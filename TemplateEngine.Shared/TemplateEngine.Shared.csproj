@@ -36,6 +36,9 @@
     <Reference Include="Neptuo.Commands">
       <HintPath>..\References\Neptuo.Commands.dll</HintPath>
     </Reference>
+    <Reference Include="Neptuo.Data">
+      <HintPath>..\References\Neptuo.Data.dll</HintPath>
+    </Reference>
     <Reference Include="Neptuo.PresentationModels">
       <HintPath>..\References\Neptuo.PresentationModels.dll</HintPath>
     </Reference>
@@ -55,10 +58,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IStackStorage.cs" />
+    <Compile Include="Web\Controllers\CommandHandlerControllerFactory.cs" />
     <Compile Include="Web\Controllers\DependencyAsyncControllerFactory.cs" />
     <Compile Include="Web\Controllers\IAsyncController.cs" />
     <Compile Include="Web\Controllers\IAsyncControllerFactory.cs" />
     <Compile Include="Web\Controllers\IAsyncResult.cs" />
+    <Compile Include="Web\Controllers\ModelControllerFactory.cs" />
+    <Compile Include="Web\Controllers\TransactionalAttribute.cs" />
+    <Compile Include="Web\Controllers\ValidateAttribute.cs" />
     <Compile Include="Web\Controls\BundleControlBase.cs" />
     <Compile Include="Web\Controls\Forms\GetFormControl.cs" />
     <Compile Include="Web\Controls\Forms\PostFormControl.cs" />

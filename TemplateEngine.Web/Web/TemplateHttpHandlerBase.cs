@@ -85,7 +85,6 @@ namespace Neptuo.TemplateEngine.Backend.Web
                 if (registry.TryGet(key, out handler))
                     handler.Execute(new ControllerContext(key, viewData, modelBinder, navigations));
             }
-
         }
 
         protected virtual bool ProcessNavigationRules(NavigationCollection navigations, GlobalNavigationCollection globalNavigations, INavigator navigator)

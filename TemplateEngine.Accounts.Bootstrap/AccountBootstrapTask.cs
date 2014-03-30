@@ -68,7 +68,10 @@ namespace Neptuo.TemplateEngine.Accounts.Bootstrap
                 .RegisterType<IActivator<UserRole>, MemoryUserRoleRepository>(new SingletonLifetime())
                 .RegisterType<IUserRoleQuery, MemoryUserRoleRepository>(new SingletonLifetime())
                 .RegisterType<IAuthenticator, UserAccountService>()
-                .RegisterCommandHandler<UserRoleEditCommand, EditUserRoleCommandHandler>();
+                .RegisterCommandHandler<UserRoleEditCommand, EditUserRoleCommandHandler>()
+
+
+                .RegisterType<ICommandHandler<UserAccountCreateCommand>, UserAccountCreateHandler>();
 
             registry.RegisterNamespace(new NamespaceDeclaration("ui", "Neptuo.TemplateEngine.Accounts.Web.Presenters, Neptuo.TemplateEngine.Accounts.Web"));
             registry.RegisterNamespace(new NamespaceDeclaration("data", "Neptuo.TemplateEngine.Accounts.Web.DataSources, Neptuo.TemplateEngine.Accounts.Web"));
@@ -77,7 +80,9 @@ namespace Neptuo.TemplateEngine.Accounts.Bootstrap
 
             controllerRegistry
                 .Add(dependencyContainer, typeof(UserAccountController))
-                .Add(dependencyContainer, typeof(UserRoleController));
+                .Add(dependencyContainer, typeof(UserRoleController))
+                //.Add("Accounts/User/Create", new ModelControllerFactory<UserAccountCreateCommand>(dependencyContainer));
+                .AddCommandHandlers(dependencyContainer, typeof(UserAccountCreateHandler).Assembly);
 
             RegisterForms(formRegistry);
             RegisterGlobalNavigations(globalNavigations);

@@ -8,20 +8,20 @@ namespace Neptuo.TemplateEngine.Web.Controllers
 {
     public class DependencyControllerFactory : IControllerFactory
     {
-        protected IDependencyContainer DependencyContainer { get; private set; }
+        protected IDependencyProvider DependencyProvider { get; private set; }
         protected Type HandlerType { get; private set; }
 
-        public DependencyControllerFactory(IDependencyContainer dependencyContainer, Type handlerType)
+        public DependencyControllerFactory(IDependencyProvider dependencyProvider, Type handlerType)
         {
-            Guard.NotNull(dependencyContainer, "dependencyContainer");
+            Guard.NotNull(dependencyProvider, "dependencyContainer");
             Guard.NotNull(handlerType, "handlerType");
-            DependencyContainer = dependencyContainer;
+            DependencyProvider = dependencyProvider;
             HandlerType = handlerType;
         }
 
         public IController Create()
         {
-            return (IController)DependencyContainer.Resolve(HandlerType, null);
+            return (IController)DependencyProvider.Resolve(HandlerType, null);
         }
     }
 }
