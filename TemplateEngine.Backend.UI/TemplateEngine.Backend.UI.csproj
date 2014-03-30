@@ -173,7 +173,6 @@
     <Content Include="Design\Scripts\jquery-1.9.1.js" />
     <Content Include="Design\Scripts\jquery-1.9.1.min.js" />
     <Content Include="Design\Scripts\jquery-1.9.1.min.map" />
-    <Content Include="Dynamic.html" />
     <None Include="Views\Accounts\SideNav.view" />
     <None Include="Views\Accounts\RoleEdit.view" />
     <None Include="Views\Accounts\UserEdit.view">
@@ -267,9 +266,7 @@
       <Name>TemplateEngine.Web</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Design\Scripts\My\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

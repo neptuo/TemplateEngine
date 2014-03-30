@@ -113,10 +113,18 @@ namespace Neptuo.TemplateEngine.Web
             {
                 string[] param = keyValue.Split('=');
                 if (param.Length == 2)
-                    parameters[param[0]] = param[1];
+                    parameters[param[0]] = DecodeValueFromUrl(param[1]);
                 else
                     parameters[param[0]] = null;
             }
+        }
+
+        public static string DecodeValueFromUrl(string value)
+        {
+            if (value == null)
+                return null;
+
+            return value.Replace("+", " ");
         }
 
         public static void ParseFormRequest(Dictionary<string, string> parameters)

@@ -161,6 +161,46 @@ var Neptuo$TemplateEngine$Web$Controls$BundleControlBase = {
     IsAbstract: false
 };
 JsTypes.push(Neptuo$TemplateEngine$Web$Controls$BundleControlBase);
+var Neptuo$TemplateEngine$Web$Controls$GetFormControl = {
+    fullname: "Neptuo.TemplateEngine.Web.Controls.GetFormControl",
+    baseTypeName: "Neptuo.TemplateEngine.Web.Controls.HtmlContentControlBase",
+    assemblyName: "Neptuo.TemplateEngine.Shared",
+    Kind: "Class",
+    definition: {
+        ctor: function (componentManager, urlProvider){
+            Neptuo.TemplateEngine.Web.Controls.HtmlContentControlBase.ctor.call(this, componentManager, "form", false);
+            this.get_Attributes().set_Item$$TKey("method", "get");
+            this.get_Attributes().set_Item$$TKey("action", urlProvider.GetCurrentUrl());
+        }
+    },
+    ctors: [{
+        name: "ctor",
+        parameters: ["Neptuo.Templates.IComponentManager", "Neptuo.TemplateEngine.Web.ICurrentUrlProvider"]
+    }
+    ],
+    IsAbstract: false
+};
+JsTypes.push(Neptuo$TemplateEngine$Web$Controls$GetFormControl);
+var Neptuo$TemplateEngine$Web$Controls$PostFormControl = {
+    fullname: "Neptuo.TemplateEngine.Web.Controls.PostFormControl",
+    baseTypeName: "Neptuo.TemplateEngine.Web.Controls.HtmlContentControlBase",
+    assemblyName: "Neptuo.TemplateEngine.Shared",
+    Kind: "Class",
+    definition: {
+        ctor: function (componentManager, urlProvider){
+            Neptuo.TemplateEngine.Web.Controls.HtmlContentControlBase.ctor.call(this, componentManager, "form", false);
+            this.get_Attributes().set_Item$$TKey("method", "post");
+            this.get_Attributes().set_Item$$TKey("action", urlProvider.GetCurrentUrl());
+        }
+    },
+    ctors: [{
+        name: "ctor",
+        parameters: ["Neptuo.Templates.IComponentManager", "Neptuo.TemplateEngine.Web.ICurrentUrlProvider"]
+    }
+    ],
+    IsAbstract: false
+};
+JsTypes.push(Neptuo$TemplateEngine$Web$Controls$PostFormControl);
 var Neptuo$TemplateEngine$Web$Controls$SelectItem = {
     fullname: "Neptuo.TemplateEngine.Web.Controls.SelectItem",
     baseTypeName: "System.Object",

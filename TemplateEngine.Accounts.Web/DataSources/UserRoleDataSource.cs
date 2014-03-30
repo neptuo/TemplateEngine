@@ -11,12 +11,13 @@ using System.Threading.Tasks;
 namespace Neptuo.TemplateEngine.Accounts.Web.DataSources
 {
     [WebDataSource]
-    public class UserRoleDataSource : IListDataSource
+    public class UserRoleDataSource : IListDataSource, IUserRoleFilter
     {
         private IUserRoleQuery roleQuery;
 
         public int? Key { get; set; }
         public string Name { get; set; }
+        public string Description { get; set; }
 
         public UserRoleDataSource(IUserRoleQuery roleQuery)
         {
@@ -29,6 +30,9 @@ namespace Neptuo.TemplateEngine.Accounts.Web.DataSources
 
             if (!String.IsNullOrEmpty(Name))
                 data = data.Where(r => r.Name.Contains(Name));
+
+            if (!String.IsNullOrEmpty(Description))
+                data = data.Where(r => r.Description.Contains(Description));
 
             if (Key != null)
                 data = data.Where(r => r.Key == Key);

@@ -13,7 +13,7 @@
             <Template>
 
                 <div style="padding: 15px 10px;">
-                    <form method="post" action="{CurrentUrl}" html:Class="">
+                    <ui:PostForm>
                         <div class="col-md-6">
                             <ui:FormItem l:LabelText="Username" l:HelpText="Local username, must be unique">
                                 <ui:TextBox Name="Username" Text="{Binding Username}" IsAutoFocus="true" html:ID="Username" html:Class="form-control" />
@@ -67,7 +67,7 @@
                                 <ui:Button l:Text="Delete" ui:Event="Accounts/User/Delete" CssClass="btn btn-danger" />
                             </ui:TemplateContent>
                         </ui:SubHeader>
-                    </form>
+                    </ui:PostForm>
                 </div>
 
             </Template>

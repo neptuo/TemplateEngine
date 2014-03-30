@@ -17,7 +17,7 @@
       <div style="padding: 15px 10px;">
         <ui:MessagePanel Key="" />
         
-        <form method="post" action="{CurrentUrl}" html:Class="">
+        <ui:PostForm>
           <div class="col-md-6" style="margin: 0 auto; float: none;">
 
             <ui:FormItem l:LabelText="Username" l:HelpText="Your user name">
@@ -41,7 +41,7 @@
               <ui:Button l:Text="Sign in" ui:Event="Accounts/Login" CssClass="btn btn-primary" />
             </ui:TemplateContent>
           </ui:SubHeader>
-        </form>
+        </ui:PostForm>
       </div>
     </ajax:View>
     

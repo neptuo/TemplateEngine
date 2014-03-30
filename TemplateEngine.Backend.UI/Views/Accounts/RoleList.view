@@ -19,7 +19,7 @@
         </ui:SubHeader>
 
         <div class="sub-panel">
-            <form action="{CurrentUrl}" html:Class="form-inline">
+            <ui:GetForm html:Class="form-inline">
                 <ui:FormItem l:LabelText="ID:">
                     <ui:TextBox Name="Key" Text="{Request Key}" IsAutoFocus="true" html:Class="form-control input-sm w50" html:Style="display: block;" />
                 </ui:FormItem>
@@ -37,13 +37,13 @@
                     </ui:Button>
                     <ui:Link form:Href="Accounts.Role.List" CssClass="btn btn-default btn-sm" l:Text="Clear" CopyParameters="PageIndex" AllowActive="false" />
                 </div>
-            </form>
+            </ui:GetForm>
         </div>
 
         <ui:ListView PageIndex="{Request PageIndex}" PageSize="10">
             <!--Source="{data:UserRole Name={Request Name}, Key={Request Key}}"-->
             <Source>
-                <data:UserRoleDataSource Name="{Request Name}" Key="{Request Key}" />
+                <data:UserRoleDataSource Name="{Request Name}" Key="{Request Key}" Description="{Request Description}" />
             </Source>
             <Template>
                 <div style="padding: 10px;">
@@ -79,10 +79,10 @@
                                 <ui:Parameter Name="RoleKey" Value="{Binding Key}" />
                             </Parameters>
                         </ui:Link>
-                        <form method="post" action="{CurrentUrl}" html:Class="form-inline" html:Style="display: inline;">
+                        <ui:PostForm html:Class="form-inline" html:Style="display: inline;">
                             <ui:HiddenBox Name="RoleKey" Text="{Binding Key}" />
                             <ui:Button l:Text="Delete" ui:Event="Accounts/Role/Delete" html:Class="btn btn-xs btn-danger" />
-                        </form>
+                        </ui:PostForm>
                     </td>
                 </tr>
             </ItemTemplate>
