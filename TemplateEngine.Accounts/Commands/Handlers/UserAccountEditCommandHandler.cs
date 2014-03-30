@@ -58,7 +58,6 @@ namespace Neptuo.TemplateEngine.Accounts.Commands.Handlers
 
             if (!String.IsNullOrEmpty(command.Password))
             {
-                //messages.Add(new TextValidationMessage(TypeHelper.PropertyName<UserAccountEditCommand, string>(c => c.Password), "Password can't be empty!"));
                 if (command.Password != command.PasswordAgain)
                     messages.Add(new TextValidationMessage(TypeHelper.PropertyName<UserAccountEditCommand, string>(c => c.PasswordAgain), "Passwords must match!"));
             }
