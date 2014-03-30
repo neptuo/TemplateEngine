@@ -25,6 +25,7 @@ namespace Neptuo.TemplateEngine.Web
     {
         public static IApplication Instance { get; private set; }
 
+        public bool IsDebug { get; private set; }
         public string ApplicationPath { get; private set; }
         public string[] DefaultToUpdate { get; private set; }
         public IHistoryState HistoryState { get; private set; }
@@ -35,11 +36,12 @@ namespace Neptuo.TemplateEngine.Web
 
         #region Initialization
 
-        private Application(string applicationPath, string[] defaultToUpdate)
+        private Application(bool isDebug, string applicationPath, string[] defaultToUpdate)
         {
             Guard.NotNull(applicationPath, "applicationPath");
             Guard.NotNull(defaultToUpdate, "defaultToUpdate");
 
+            IsDebug = isDebug;
             ApplicationPath = applicationPath;
             DefaultToUpdate = defaultToUpdate;
             DependencyContainer = CreateDependencyContainer();
@@ -60,12 +62,12 @@ namespace Neptuo.TemplateEngine.Web
             RunBootstrapTasks(DependencyContainer);
         }
 
-        public static void Start(string applicationPath, string[] defaultToUpdate)
+        public static void Start(bool isDebug, string applicationPath, string[] defaultToUpdate)
         {
             if (Instance != null)
                 throw new ApplicationException("Application is already started."); //TODO: Ehm, be quiet?
 
-            Instance = new Application(applicationPath, defaultToUpdate);
+            Instance = new Application(isDebug, applicationPath, defaultToUpdate);
         }
 
         private IDependencyContainer CreateDependencyContainer()
@@ -82,7 +84,7 @@ namespace Neptuo.TemplateEngine.Web
             HistoryState = new HistoryState();
             MainView = new MainView(viewActivator, this);
 
-            Router = new ExtendedRouter();
+            Router = new ApplicationRouter(!IsDebug);
             Router.AddRoute(new TemplateRoute(".aspx", this));
 
             container
