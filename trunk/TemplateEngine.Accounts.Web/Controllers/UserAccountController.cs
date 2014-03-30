@@ -83,27 +83,27 @@ namespace Neptuo.TemplateEngine.Accounts.Web.Controllers
         //    }
         //}
 
-        [Action("Accounts/User/Update")]
-        public void Update()
-        {
-            UserAccountEditCommand model = Context.ModelBinder.Bind<UserAccountEditCommand>(new UserAccountEditCommand());
-            IValidationResult validationResult = EditValidator.Validate(model);
-            if (!validationResult.IsValid)
-            {
-                MessageStorage.AddValidationResult(validationResult, "UserEdit");
-                Context.ViewData.SetUserAccountEdit(model);
-                return;
-            }
+        //[Action("Accounts/User/Update")]
+        //public void Update()
+        //{
+        //    UserAccountEditCommand model = Context.ModelBinder.Bind<UserAccountEditCommand>(new UserAccountEditCommand());
+        //    IValidationResult validationResult = EditValidator.Validate(model);
+        //    if (!validationResult.IsValid)
+        //    {
+        //        MessageStorage.AddValidationResult(validationResult, "UserEdit");
+        //        Context.ViewData.SetUserAccountEdit(model);
+        //        return;
+        //    }
 
-            using (IUnitOfWork transaction = UnitOfWorkFactory.Create())
-            {
-                CommandDispatcher.Handle(model);
-                transaction.SaveChanges();
+        //    using (IUnitOfWork transaction = UnitOfWorkFactory.Create())
+        //    {
+        //        CommandDispatcher.Handle(model);
+        //        transaction.SaveChanges();
 
-                MessageStorage.Add(null, String.Empty, "User account modified.", MessageType.Info);
-                Context.Navigations.Add("Accounts.User.Updated");
-            }
-        }
+        //        MessageStorage.Add(null, String.Empty, "User account modified.", MessageType.Info);
+        //        Context.Navigations.Add("Accounts.User.Updated");
+        //    }
+        //}
 
         #endregion
 

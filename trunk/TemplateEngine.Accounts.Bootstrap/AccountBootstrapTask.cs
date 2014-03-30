@@ -71,7 +71,8 @@ namespace Neptuo.TemplateEngine.Accounts.Bootstrap
                 .RegisterCommandHandler<UserRoleEditCommand, EditUserRoleCommandHandler>()
 
 
-                .RegisterType<ICommandHandler<UserAccountCreateCommand>, UserAccountCreateHandler>();
+                .RegisterType<ICommandHandler<UserAccountCreateCommand>, UserAccountCreateHandler>()
+                .RegisterType<ICommandHandler<UserAccountEditCommand>, UserAccountUpdateHandler>();
 
             registry.RegisterNamespace(new NamespaceDeclaration("ui", "Neptuo.TemplateEngine.Accounts.Web.Presenters, Neptuo.TemplateEngine.Accounts.Web"));
             registry.RegisterNamespace(new NamespaceDeclaration("data", "Neptuo.TemplateEngine.Accounts.Web.DataSources, Neptuo.TemplateEngine.Accounts.Web"));
