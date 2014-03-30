@@ -63,25 +63,25 @@ namespace Neptuo.TemplateEngine.Accounts.Web.Controllers
 
         #region Create/Update
 
-        [Action("Accounts/User/Create")]
-        public void Create()
-        {
-            UserAccountCreateCommand model = Context.ModelBinder.Bind<UserAccountCreateCommand>();
-            IValidationResult validationResult = CreateValidator.Validate(model);
-            if (!validationResult.IsValid)
-            {
-                MessageStorage.AddValidationResult(validationResult, "UserEdit");
-                return;
-            }
+        //[Action("Accounts/User/Create")]
+        //public void Create()
+        //{
+        //    UserAccountCreateCommand model = Context.ModelBinder.Bind<UserAccountCreateCommand>();
+        //    IValidationResult validationResult = CreateValidator.Validate(model);
+        //    if (!validationResult.IsValid)
+        //    {
+        //        MessageStorage.AddValidationResult(validationResult, "UserEdit");
+        //        return;
+        //    }
 
-            using (IUnitOfWork transaction = UnitOfWorkFactory.Create())
-            {
-                UserAccountCreateHandler handler = new UserAccountCreateHandler(UserAccounts, MessageStorage, AccountService, Context.Navigations);
-                handler.Handle(model);
+        //    using (IUnitOfWork transaction = UnitOfWorkFactory.Create())
+        //    {
+        //        UserAccountCreateHandler handler = new UserAccountCreateHandler(UserAccounts, MessageStorage, AccountService, Context.Navigations);
+        //        handler.Handle(model);
 
-                transaction.SaveChanges();
-            }
-        }
+        //        transaction.SaveChanges();
+        //    }
+        //}
 
         [Action("Accounts/User/Update")]
         public void Update()
