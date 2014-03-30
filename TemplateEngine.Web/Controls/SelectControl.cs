@@ -2,6 +2,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,16 +16,16 @@ namespace Neptuo.TemplateEngine.Web.Controls
         public bool IsAddEmpty { get; set; }
         public HtmlAttributeCollection Attributes { get; private set; }
 
+        [DefaultValue("Key")]
         public string SelectedValuePath { get; set; }
 
         protected IBindingManager BindingManager { get; private set; }
 
-        public SelectControl(IComponentManager componentManager, TemplateContentStorageStack storage, DataContextStorage dataContext, IBindingManager bindingManager)
-            : base(componentManager, storage, dataContext)
+        public SelectControl(SelectControlContext context)
+            : base(context.ComponentManager, context.Storage, context.DataContext)
         {
-            Guard.NotNull(bindingManager, "bindingManager");
             Attributes = new HtmlAttributeCollection();
-            BindingManager = bindingManager;
+            BindingManager = context.BindingManager;
         }
 
         public void SetAttribute(string name, string value)
@@ -50,17 +51,46 @@ namespace Neptuo.TemplateEngine.Web.Controls
 
         protected virtual bool IsSelectedValue(object targetSelectedValue)
         {
-            IEnumerable collection = Value as IEnumerable;
-            if (collection != null)
+            if (!(Value is string))
             {
-                foreach (object item in collection)
+                IEnumerable collection = Value as IEnumerable;
+                if (collection != null)
                 {
-                    if (Object.Equals(item, targetSelectedValue))
-                        return true;
+                    foreach (object item in collection)
+                    {
+                        if (IsSelectedSingleValue(item, targetSelectedValue))
+                            return true;
+                    }
                 }
             }
 
-            return targetSelectedValue == Value;
+            return IsSelectedSingleValue(Value, targetSelectedValue);
+        }
+
+        private bool IsSelectedSingleValue(object itemValue, object targetSelectedValue)
+        {
+            if (itemValue == null && targetSelectedValue == null)
+                return true;
+
+            if ((itemValue != null && targetSelectedValue == null) || (itemValue == null && targetSelectedValue != null))
+                return false;
+
+            if (itemValue.GetType() != targetSelectedValue.GetType())
+            {
+                object targetValue;
+                if (Converts.Try(itemValue.GetType(), targetSelectedValue.GetType(), itemValue, out targetValue))
+                {
+                    if (Object.Equals(targetSelectedValue, targetValue))
+                        return true;
+                    else
+                        return false;
+                }
+            }
+
+            if (Object.Equals(itemValue, targetSelectedValue))
+                return true;
+
+            return false;
         }
     }
 }

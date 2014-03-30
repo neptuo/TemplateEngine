@@ -82,6 +82,7 @@
     <Compile Include="Controls\Ajax\PartialStartUpControl.cs" />
     <Compile Include="Controls\BundleControl.cs" />
     <Compile Include="Controls\DetailViewControl.cs" />
+    <Compile Include="Controls\DropDownListControl.cs" />
     <Compile Include="Controls\ListViewControl.cs" />
     <Compile Include="Controls\SelectControl.cs" />
     <Compile Include="Controls\Templates\StringTemplate.cs" />
@@ -124,10 +125,11 @@
     <EmbeddedResource Include="Views\ListViewControl.Template.view" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Views\SelectControl.Template.view" />
+    <EmbeddedResource Include="Views\DropDownListControl.Template.view" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <EmbeddedResource Include="Views\DropDownListControl.ItemTemplate.view" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />

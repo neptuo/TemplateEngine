@@ -30,5 +30,11 @@ namespace Neptuo.TemplateEngine.Web.Controls
         {
             return storage.GetEnumerator();
         }
+
+        public override string ToString()
+        {
+            IEnumerable<string> values = storage;
+            return String.Join(" ", values);
+        }
     }
 }

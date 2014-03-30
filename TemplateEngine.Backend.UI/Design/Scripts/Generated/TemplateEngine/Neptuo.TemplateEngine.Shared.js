@@ -203,6 +203,60 @@ var Neptuo$TemplateEngine$Web$Controls$PostFormControl = {
     IsAbstract: false
 };
 JsTypes.push(Neptuo$TemplateEngine$Web$Controls$PostFormControl);
+var Neptuo$TemplateEngine$Web$Controls$SelectControlContext = {
+    fullname: "Neptuo.TemplateEngine.Web.Controls.SelectControlContext",
+    baseTypeName: "System.Object",
+    assemblyName: "Neptuo.TemplateEngine.Shared",
+    Kind: "Class",
+    definition: {
+        ctor: function (componentManager, storage, dataContext, bindingManager){
+            this._ComponentManager = null;
+            this._Storage = null;
+            this._DataContext = null;
+            this._BindingManager = null;
+            System.Object.ctor.call(this);
+            this.set_ComponentManager(componentManager);
+            this.set_Storage(storage);
+            this.set_DataContext(dataContext);
+            this.set_BindingManager(bindingManager);
+        },
+        ComponentManager$$: "Neptuo.Templates.IComponentManager",
+        get_ComponentManager: function (){
+            return this._ComponentManager;
+        },
+        set_ComponentManager: function (value){
+            this._ComponentManager = value;
+        },
+        Storage$$: "Neptuo.TemplateEngine.Web.TemplateContentStorageStack",
+        get_Storage: function (){
+            return this._Storage;
+        },
+        set_Storage: function (value){
+            this._Storage = value;
+        },
+        DataContext$$: "Neptuo.TemplateEngine.Web.DataContextStorage",
+        get_DataContext: function (){
+            return this._DataContext;
+        },
+        set_DataContext: function (value){
+            this._DataContext = value;
+        },
+        BindingManager$$: "Neptuo.TemplateEngine.Web.IBindingManager",
+        get_BindingManager: function (){
+            return this._BindingManager;
+        },
+        set_BindingManager: function (value){
+            this._BindingManager = value;
+        }
+    },
+    ctors: [{
+        name: "ctor",
+        parameters: ["Neptuo.Templates.IComponentManager", "Neptuo.TemplateEngine.Web.TemplateContentStorageStack", "Neptuo.TemplateEngine.Web.DataContextStorage", "Neptuo.TemplateEngine.Web.IBindingManager"]
+    }
+    ],
+    IsAbstract: false
+};
+JsTypes.push(Neptuo$TemplateEngine$Web$Controls$SelectControlContext);
 var Neptuo$TemplateEngine$Web$Controls$SelectItem = {
     fullname: "Neptuo.TemplateEngine.Web.Controls.SelectItem",
     baseTypeName: "System.Object",
@@ -1342,6 +1396,10 @@ var Neptuo$TemplateEngine$Web$Controls$CssClassCollection = {
         },
         GetEnumerator: function (){
             return this.storage.GetEnumerator();
+        },
+        ToString: function (){
+            var values = this.storage;
+            return System.String.Join$$String$$IEnumerable$1$String(" ", values);
         }
     },
     ctors: [{
@@ -2413,17 +2471,17 @@ var Neptuo$TemplateEngine$Web$Controls$OptionControl = {
     Kind: "Class",
     definition: {
         ctor: function (componentManager){
-            this._SelectedValue = null;
+            this._IsSelected = false;
             this._Value = null;
             this._Text = null;
             Neptuo.TemplateEngine.Web.Controls.HtmlContentControlBase.ctor.call(this, componentManager, "option", false);
         },
-        SelectedValue$$: "System.Object",
-        get_SelectedValue: function (){
-            return this._SelectedValue;
+        IsSelected$$: "System.Boolean",
+        get_IsSelected: function (){
+            return this._IsSelected;
         },
-        set_SelectedValue: function (value){
-            this._SelectedValue = value;
+        set_IsSelected: function (value){
+            this._IsSelected = value;
         },
         Value$$: "System.Object",
         get_Value: function (){
@@ -2450,7 +2508,7 @@ var Neptuo$TemplateEngine$Web$Controls$OptionControl = {
         },
         RenderAttributes: function (writer){
             if (this.get_Value() != null){
-                if (this.get_SelectedValue() != null && this.get_SelectedValue().ToString() == ("" + this.get_Value()))
+                if (this.get_IsSelected())
                     this.get_Attributes().set_Item$$TKey("selected", "selected");
                 this.get_Attributes().set_Item$$TKey("value", ("" + this.get_Value()));
             }
@@ -3372,8 +3430,7 @@ var Neptuo$TemplateEngine$Web$Extensions$RequestExtension = {
             this._Default = value;
         },
         ProvideValue: function (context){
-            if (this.get_Key() == null)
-                throw $CreateException(new System.ArgumentOutOfRangeException.ctor$$String$$String("Key", "Missing key."), new Error());
+            Neptuo.Guard.NotNullOrEmpty(this.get_Key(), "Key");
             var value;
             if ((function (){
                 var $1 = {

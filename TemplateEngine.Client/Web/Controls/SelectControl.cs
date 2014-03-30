@@ -19,12 +19,11 @@ namespace Neptuo.TemplateEngine.Web.Controls
 
         protected IBindingManager BindingManager { get; private set; }
 
-        public SelectControl(IRequestContext requestContext, TemplateContentStorageStack storage, DataContextStorage dataContext, PartialUpdateHelper updateHelper, IBindingManager bindingManager)
-            : base(requestContext, storage, dataContext, updateHelper)
+        public SelectControl(IRequestContext requestContext, PartialUpdateHelper updateHelper, SelectControlContext context)
+            : base(requestContext, context.Storage, context.DataContext, updateHelper)
         {
-            Guard.NotNull(bindingManager, "bindingManager");
             Attributes = new HtmlAttributeCollection();
-            BindingManager = bindingManager;
+            BindingManager = context.BindingManager;
         }
 
         public void SetAttribute(string name, string value)

@@ -38,6 +38,8 @@ namespace Neptuo.TemplateEngine.Backend.UI
 
             RegisterBootstrapTasks(bootstrapper, container);
             bootstrapper.Initialize();
+
+            Converts.Repository.Add(typeof(string), typeof(int), new StringToIntConverter());
         }
 
         protected void RegisterBootstrapTasks(IBootstrapTaskRegistry bootstrapper, IDependencyContainer container)
