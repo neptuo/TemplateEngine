@@ -10,10 +10,11 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Accounts.Web.DataSources
 {
-    public class UserRoleDataSource : ListDataSourceProxy<UserRoleListResult>
+    public class UserRoleDataSource : ListDataSourceProxy<UserRoleListResult>, IUserRoleFilter
     {
         public int? Key { get; set; }
         public string Name { get; set; }
+        public string Description { get; set; }
 
         public UserRoleDataSource(IVirtualUrlProvider urlProvider)
             : base(urlProvider)
@@ -23,7 +24,8 @@ namespace Neptuo.TemplateEngine.Accounts.Web.DataSources
         {
             parameterBuilder
                 .Set("Key", Key)
-                .Set("Name", Name);
+                .Set("Name", Name)
+                .Set("Description", Description);
         }
     }
 }

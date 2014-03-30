@@ -285,6 +285,7 @@ var Neptuo$TemplateEngine$Accounts$Web$DataSources$UserAccountDataSource = {
     fullname: "Neptuo.TemplateEngine.Accounts.Web.DataSources.UserAccountDataSource",
     baseTypeName: "Neptuo.TemplateEngine.Web.DataSources.ListDataSourceProxy$1",
     assemblyName: "Neptuo.TemplateEngine.Accounts.Client",
+    interfaceNames: ["Neptuo.TemplateEngine.Accounts.Web.DataSources.IUserAccountFilter"],
     Kind: "Class",
     definition: {
         ctor: function (urlProvider){
@@ -374,11 +375,13 @@ var Neptuo$TemplateEngine$Accounts$Web$DataSources$UserRoleDataSource = {
     fullname: "Neptuo.TemplateEngine.Accounts.Web.DataSources.UserRoleDataSource",
     baseTypeName: "Neptuo.TemplateEngine.Web.DataSources.ListDataSourceProxy$1",
     assemblyName: "Neptuo.TemplateEngine.Accounts.Client",
+    interfaceNames: ["Neptuo.TemplateEngine.Accounts.Web.DataSources.IUserRoleFilter"],
     Kind: "Class",
     definition: {
         ctor: function (urlProvider){
             this._Key = null;
             this._Name = null;
+            this._Description = null;
             Neptuo.TemplateEngine.Web.DataSources.ListDataSourceProxy$1.ctor.call(this, Neptuo.TemplateEngine.Accounts.UserRoleListResult.ctor, urlProvider);
         },
         Key$$: "System.Nullable`1[[System.Int32]]",
@@ -395,8 +398,15 @@ var Neptuo$TemplateEngine$Accounts$Web$DataSources$UserRoleDataSource = {
         set_Name: function (value){
             this._Name = value;
         },
+        Description$$: "System.String",
+        get_Description: function (){
+            return this._Description;
+        },
+        set_Description: function (value){
+            this._Description = value;
+        },
         SetParameters: function (parameterBuilder){
-            parameterBuilder.Set("Key", this.get_Key()).Set("Name", this.get_Name());
+            parameterBuilder.Set("Key", this.get_Key()).Set("Name", this.get_Name()).Set("Description", this.get_Description());
         }
     },
     ctors: [{

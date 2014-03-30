@@ -13,7 +13,7 @@
             <Template>
 
                 <div style="padding: 15px 10px;">
-                    <form method="post" action="{CurrentUrl}" html:Class="">
+                  <ui:PostForm>
                         <ui:FormItem l:LabelText="Name" l:HelpText="Role name">
                             <ui:TextBox Name="Name" Text="{Binding Name}" IsAutoFocus="true" html:ID="Name" html:Class="form-control" />
                             <ui:MessagePanel Key="Name" />
@@ -42,7 +42,7 @@
                                 <ui:Button l:Text="Delete" ui:Event="Accounts/Role/Delete" html:Class="btn btn-danger" />
                             </ui:TemplateContent>
                         </ui:SubHeader>
-                    </form>
+                    </ui:PostForm>
                 </div>
 
             </Template>

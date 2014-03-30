@@ -1949,10 +1949,15 @@ var Neptuo$TemplateEngine$Web$ParameterProviderFactory = {
             for (var $i5 = 0,$l5 = keyValues.length,keyValue = keyValues[$i5]; $i5 < $l5; $i5++, keyValue = keyValues[$i5]){
                 var param = keyValue.Split$$Char$Array("=");
                 if (param.length == 2)
-                    parameters.set_Item$$TKey(param[0], param[1]);
+                    parameters.set_Item$$TKey(param[0], Neptuo.TemplateEngine.Web.ParameterProviderFactory.DecodeValueFromUrl(param[1]));
                 else
                     parameters.set_Item$$TKey(param[0], null);
             }
+        },
+        DecodeValueFromUrl: function (value){
+            if (value == null)
+                return null;
+            return value.Replace$$String$$String("+", " ");
         },
         ParseFormRequest: function (parameters){
             if (Neptuo.TemplateEngine.Web.InitScript.FormRequestContext != null){

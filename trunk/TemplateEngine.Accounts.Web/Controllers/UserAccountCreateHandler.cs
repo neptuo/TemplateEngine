@@ -33,7 +33,6 @@ namespace Neptuo.TemplateEngine.Accounts.Web.Controllers
 
         public void Handle(UserAccountCreateCommand model)
         {
-            //CommandDispatcher.Handle(model);
             UserAccount account = AccountService.CreateAccount(model.Username, model.Password, model.IsEnabled);
             if (model.RoleKeys != null)
             {
