@@ -87,10 +87,10 @@ namespace Neptuo.TemplateEngine.Web
 
             container
                 .RegisterType<IStackStorage<IViewStorage>, StackStorage<IViewStorage>>()
-                .RegisterType<IVirtualUrlProvider, UrlProvider>()
-                .RegisterType<ICurrentUrlProvider, UrlProvider>()
-                .RegisterType<IParameterProviderFactory, ParameterProviderFactory>()
-                .RegisterType<IParameterProvider, AllParameterProvider>()
+                .RegisterInstance<IVirtualUrlProvider>(this)
+                .RegisterInstance<ICurrentUrlProvider>(this)
+                .RegisterType<IParameterProviderFactory, RouteParameterProviderFactory>()
+                .RegisterType<IParameterProvider, RouteParameterProvider>()
                 .RegisterType<IBindingManager, BindingManagerBase>()
                 .RegisterType<IValueConverterService, ValueConverterService>()
                 .RegisterType<IRequestContext, CompositeRequestContext>()

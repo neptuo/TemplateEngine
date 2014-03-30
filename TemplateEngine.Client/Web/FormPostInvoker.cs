@@ -59,7 +59,6 @@ namespace Neptuo.TemplateEngine.Web
                 // Save form request only if there wasn't redirect
                 if (navigationUrl == Application.GetCurrentUrl())
                 {
-                    InitScript.FormRequestContext = Context;
                     Application.Router.RouteTo(
                         new RequestContext(
                             navigationUrl,
@@ -82,8 +81,6 @@ namespace Neptuo.TemplateEngine.Web
 
                 if (OnSuccess != null)
                     OnSuccess(this);
-
-                InitScript.FormRequestContext = null;
             }
             else
             {

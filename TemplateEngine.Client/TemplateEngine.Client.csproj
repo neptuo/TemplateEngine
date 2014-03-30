@@ -102,6 +102,7 @@
     <Compile Include="Web\DataSources\IListDataSource.cs" />
     <Compile Include="Web\DataSources\ListDataSourceProxy.cs" />
     <Compile Include="Web\FormPostInvoker.cs" />
+    <Compile Include="Web\FormRequestContext.cs" />
     <Compile Include="Web\HistoryItem.cs" />
     <Compile Include="Web\HistoryState.cs" />
     <Compile Include="Web\IApplication.cs" />
@@ -114,6 +115,8 @@
     <Compile Include="Web\PartialResponseConverter.cs" />
     <Compile Include="Web\PartialUpdateHelper.cs" />
     <Compile Include="Web\QueueFormPostInvokerManager.cs" />
+    <Compile Include="Web\RouteParameterProvider.cs" />
+    <Compile Include="Web\RouteParameterProviderFactory.cs" />
     <Compile Include="Web\StaticViewActivator.cs" />
     <Compile Include="Web\GeneratedViewBase.cs" />
     <Compile Include="Web\_InitScript.cs" />

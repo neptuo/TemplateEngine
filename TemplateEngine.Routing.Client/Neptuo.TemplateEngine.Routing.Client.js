@@ -247,11 +247,16 @@ var Neptuo$TemplateEngine$Routing$RouteParamDictionary = {
                 var keyValue = $it1.get_Current();
                 var param = keyValue.Split$$Char$Array("=");
                 if (param.get_Length() == 2)
-                    result.set_Item$$TKey(param[0], param[1]);
+                    result.set_Item$$TKey(param[0], Neptuo.TemplateEngine.Routing.RouteParamDictionary.DecodeValueFromUrl(param[1]));
                 else
                     result.set_Item$$TKey(param[0], null);
             }
             return result;
+        },
+        DecodeValueFromUrl: function (value){
+            if (value == null)
+                return null;
+            return value.Replace$$String$$String("+", " ");
         }
     },
     assemblyName: "Neptuo.TemplateEngine.Routing.Client",
