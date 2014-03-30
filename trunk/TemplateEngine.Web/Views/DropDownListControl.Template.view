@@ -1,0 +1,4 @@
+﻿<select id="{TemplateBinding ID}" name="{TemplateBinding Name}" class="{TemplateBinding CssClass}" style="{TemplateBinding CssStyle}">
+    <option value="" ui:IsVisible="{TemplateBinding IsAddEmpty}">---</option>
+    <ui:TemplatePlaceholder name="Content" />
+</select>

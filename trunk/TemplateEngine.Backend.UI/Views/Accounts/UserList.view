@@ -27,15 +27,12 @@
                     <ui:TextBox Name="Username" Text="{Request Username}" CssClass="form-control input-sm" /> 
                 </ui:FormItem>
                 <ui:FormItem>
-                    <label for="FilterRole">Role:</label>
-                    <ui:Select Name="RoleKey" Value="{Request RoleKey}" SelectedValuePath="Key" IsAddEmpty="true" html:ID="RoleKey" html:Class="form-control input-sm w200" html:Style="display: block;">
+                    <label for="RoleKey">Role:</label>
+                    <ui:DropDownList Name="RoleKey" Value="{Request RoleKey}" IsAddEmpty="true" CssClass="form-control input-sm w200" CssStyle="display: block;">
                         <Source>
                             <data:UserRoleDataSource />
                         </Source>
-                        <ItemTemplate>
-                            <ui:Option Text="{Binding Model.Name}" Value="{Binding Model.Key}" SelectedValue="{TemplateBinding Value}" />
-                        </ItemTemplate>
-                    </ui:Select>
+                    </ui:DropDownList>
                 </ui:FormItem>
 
                 <div class="right">
@@ -107,4 +104,3 @@
 
     </ui:TemplateContent>    
 </ui:AdminLayout>
-  

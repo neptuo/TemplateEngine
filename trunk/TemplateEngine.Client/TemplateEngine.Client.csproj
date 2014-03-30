@@ -94,6 +94,7 @@
     <Compile Include="Web\Controls\Ajax\PartialStartUpControl.cs" />
     <Compile Include="Web\Controls\BundleControl.cs" />
     <Compile Include="Web\Controls\DetailViewControl.cs" />
+    <Compile Include="Web\Controls\DropDownListControl.cs" />
     <Compile Include="Web\Controls\ListViewControl.cs" />
     <Compile Include="Web\Controls\SelectControl.cs" />
     <Compile Include="Web\DataSources\DataSourceProxy.cs" />

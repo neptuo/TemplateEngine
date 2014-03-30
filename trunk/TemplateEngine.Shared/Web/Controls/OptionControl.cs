@@ -10,7 +10,7 @@ namespace Neptuo.TemplateEngine.Web.Controls
 {
     public class OptionControl : HtmlContentControlBase
     {
-        public object SelectedValue { get; set; }
+        public bool IsSelected { get; set; }
         public object Value { get; set; }
 
         [Hint("Replace for Content property for setting via attribute.")]
@@ -32,7 +32,7 @@ namespace Neptuo.TemplateEngine.Web.Controls
         {
             if (Value != null)
             {
-                if (SelectedValue != null && SelectedValue.ToString() == ("" + Value))
+                if (IsSelected)
                     Attributes["selected"] = "selected";
 
                 Attributes["value"] = ("" + Value);
