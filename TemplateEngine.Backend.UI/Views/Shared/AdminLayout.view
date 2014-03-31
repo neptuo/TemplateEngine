@@ -12,7 +12,7 @@
     <ui:Bundle Path="~/js/admin" />
   
     <ajax:StartUp DefaultUpdate="Body" />
-    <script src="/views.ashx"></script>
+    <ui:ViewBundle Path="Default" />
   
     <ui:TemplatePlaceholder Name="Head" />
 </head>

@@ -121,21 +121,9 @@ namespace Neptuo.TemplateEngine.Web
 
         public virtual void RenderView(string viewPath, string[] toUpdate, IDependencyContainer dependencyContainer)
         {
-            ClientExtendedComponentManager componentManager = new ClientExtendedComponentManager(toUpdate);
-            dependencyContainer
-                .RegisterInstance<IComponentManager>(componentManager)
-                .RegisterInstance<IPartialUpdateWriter>(componentManager)
-                .RegisterInstance<NavigationCollection>(new NavigationCollection());
-
-            StringWriter writer = new StringWriter();
-            var view = ViewActivator.CreateView(viewPath);
-            view.Setup(new BaseViewPage(componentManager), componentManager, dependencyContainer);
-            view.CreateControls();
-            view.Init();
-            view.Render(new ExtendedHtmlTextWriter(writer));
-            view.Dispose();
-
-            AutoFocus();
+            IAsyncViewRenderer viewRenderer = new AsyncViewRenderer(viewPath, toUpdate, dependencyContainer, ViewActivator, ViewActivator as StaticViewActivator, Application); //TODO: Use dependency
+            viewRenderer.OnCompleted += AutoFocus;
+            viewRenderer.Render();
         }
 
         public void UpdateView(string partialGuid, TextWriter content)

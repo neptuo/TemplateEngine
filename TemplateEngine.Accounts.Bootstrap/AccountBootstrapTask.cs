@@ -15,6 +15,7 @@ using Neptuo.TemplateEngine.Web;
 using Neptuo.TemplateEngine.Web.Compilation.Parsers;
 using Neptuo.TemplateEngine.Web.Controllers;
 using Neptuo.TemplateEngine.Web.DataSources;
+using Neptuo.TemplateEngine.Web.ViewBundles;
 using Neptuo.Templates.Compilation;
 using Neptuo.Templates.Compilation.Parsers;
 using Neptuo.Validation;
@@ -35,6 +36,7 @@ namespace Neptuo.TemplateEngine.Accounts.Bootstrap
         private IControllerRegistry controllerRegistry;
         private GlobalNavigationCollection globalNavigations;
         private IWebDataSourceRegistry dataSourceRegistry;
+        private IViewBundleCollection viewBundles;
 
         public AccountBootstrapTask(IDependencyContainer dependencyContainer, TypeBuilderRegistry registry, IFormUriRegistry formRegistry, IControllerRegistry controllerRegistry, GlobalNavigationCollection globalNavigations, IWebDataSourceRegistry dataSourceRegistry)
         {
@@ -51,6 +53,7 @@ namespace Neptuo.TemplateEngine.Accounts.Bootstrap
             this.controllerRegistry = controllerRegistry;
             this.globalNavigations = globalNavigations;
             this.dataSourceRegistry = dataSourceRegistry;
+            this.viewBundles = ViewBundleTable.Bundles;
         }
 
         public void Initialize()
@@ -90,10 +93,39 @@ namespace Neptuo.TemplateEngine.Accounts.Bootstrap
 
             dataSourceRegistry.AddFromAssembly(typeof(UserAccountDataSource).Assembly);
 
+            RegisterViewBundles(viewBundles);
+
 //#if DEBUG
             CreateDummyUserRoles();
             CreateDummyUserAccounts();
 //#endif
+        }
+
+        //TODO: Move into Backend.UI
+        protected void RegisterViewBundles(IViewBundleCollection bundles)
+        {
+            List<string> files = new List<string>
+            {
+                "~/Views/Accounts/UserList.view",
+                "~/Views/Accounts/UserEdit.view",
+                "~/Views/Accounts/RoleList.view",
+                "~/Views/Accounts/RoleEdit.view",
+                "~/Views/Accounts/SideNav.view",
+            };
+
+            foreach (string name in files)
+            {
+                IViewBundle bundle = new ViewBundle(name);
+                foreach (string item in files)
+                    bundle.Add(item);
+
+                bundles.Add(bundle);
+            }
+
+            string loginFile = "~/Views/Accounts/Login.view";
+            IViewBundle loginBundle = new ViewBundle(loginFile);
+            loginBundle.Add(loginFile);
+            bundles.Add(loginBundle);
         }
 
         protected void CreateDummyUserAccounts()

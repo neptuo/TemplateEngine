@@ -71,6 +71,7 @@
     <Compile Include="Web\Controls\Forms\PostFormControl.cs" />
     <Compile Include="Web\Controls\SelectControlContext.cs" />
     <Compile Include="Web\Controls\SelectItem.cs" />
+    <Compile Include="Web\Controls\ViewBundleControl.cs" />
     <Compile Include="Web\DataSources\IListResult.cs" />
     <Compile Include="Web\DataSources\ListResult.cs" />
     <Compile Include="Web\DictionaryParameterProvider.cs" />

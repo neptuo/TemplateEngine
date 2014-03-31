@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Web
 {
-    public class StaticViewActivator : IViewActivator
+    public class StaticViewActivator : IViewActivator, IViewLoadedChecker
     {
         private static Dictionary<string, Type> mappings = new Dictionary<string, Type>();
 
@@ -30,6 +30,11 @@ namespace Neptuo.TemplateEngine.Web
                 return (BaseGeneratedView)dependencyProvider.Resolve(viewType);
 
             throw new NotImplementedException();
+        }
+
+        public bool IsViewLoaded(string viewPath)
+        {
+            return mappings.ContainsKey(viewPath);
         }
     }
 }
