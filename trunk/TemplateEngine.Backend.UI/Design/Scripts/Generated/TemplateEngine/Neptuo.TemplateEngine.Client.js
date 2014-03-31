@@ -636,6 +636,116 @@ var Neptuo$TemplateEngine$Web$Application = {
     IsAbstract: false
 };
 JsTypes.push(Neptuo$TemplateEngine$Web$Application);
+var Neptuo$TemplateEngine$Web$AsyncViewRenderer = {
+    fullname: "Neptuo.TemplateEngine.Web.AsyncViewRenderer",
+    baseTypeName: "System.Object",
+    assemblyName: "Neptuo.TemplateEngine.Client",
+    interfaceNames: ["Neptuo.TemplateEngine.Web.IAsyncViewRenderer"],
+    Kind: "Class",
+    definition: {
+        ctor: function (viewPath, toUpdate, dependencyContainer, viewActivator, checker, urlProvider){
+            this.OnCompleted = null;
+            this._ViewPath = null;
+            this._ToUpdate = null;
+            this._DependencyContainer = null;
+            this._ViewActivator = null;
+            this._Checker = null;
+            this._UrlProvider = null;
+            System.Object.ctor.call(this);
+            Neptuo.Guard.NotNullOrEmpty(viewPath, "viewPath");
+            Neptuo.Guard.NotNull$$Object$$String(toUpdate, "toUpdate");
+            Neptuo.Guard.NotNull$$Object$$String(dependencyContainer, "dependencyContainer");
+            Neptuo.Guard.NotNull$$Object$$String(viewActivator, "viewActivator");
+            Neptuo.Guard.NotNull$$Object$$String(checker, "checker");
+            Neptuo.Guard.NotNull$$Object$$String(urlProvider, "urlProvider");
+            this.set_ViewPath(viewPath);
+            this.set_ToUpdate(toUpdate);
+            this.set_DependencyContainer(dependencyContainer);
+            this.set_ViewActivator(viewActivator);
+            this.set_Checker(checker);
+            this.set_UrlProvider(urlProvider);
+        },
+        ViewPath$$: "System.String",
+        get_ViewPath: function (){
+            return this._ViewPath;
+        },
+        set_ViewPath: function (value){
+            this._ViewPath = value;
+        },
+        ToUpdate$$: "System.String[]",
+        get_ToUpdate: function (){
+            return this._ToUpdate;
+        },
+        set_ToUpdate: function (value){
+            this._ToUpdate = value;
+        },
+        DependencyContainer$$: "Neptuo.IDependencyContainer",
+        get_DependencyContainer: function (){
+            return this._DependencyContainer;
+        },
+        set_DependencyContainer: function (value){
+            this._DependencyContainer = value;
+        },
+        ViewActivator$$: "Neptuo.TemplateEngine.Web.IViewActivator",
+        get_ViewActivator: function (){
+            return this._ViewActivator;
+        },
+        set_ViewActivator: function (value){
+            this._ViewActivator = value;
+        },
+        Checker$$: "Neptuo.TemplateEngine.Web.IViewLoadedChecker",
+        get_Checker: function (){
+            return this._Checker;
+        },
+        set_Checker: function (value){
+            this._Checker = value;
+        },
+        UrlProvider$$: "Neptuo.Templates.IVirtualUrlProvider",
+        get_UrlProvider: function (){
+            return this._UrlProvider;
+        },
+        set_UrlProvider: function (value){
+            this._UrlProvider = value;
+        },
+        add_OnCompleted: function (value){
+            this.OnCompleted = $CombineDelegates(this.OnCompleted, value);
+        },
+        remove_OnCompleted: function (value){
+            this.OnCompleted = $RemoveDelegate(this.OnCompleted, value);
+        },
+        Render: function (){
+            if (!this.get_Checker().IsViewLoaded(this.get_ViewPath()))
+                $("body").append("<script src=\'" + this.FormatViewUrl() + "\'></script>");
+            this.RenderView();
+        },
+        FormatViewUrl: function (){
+            var viewPath = this.get_ViewPath();
+            if (viewPath.StartsWith$$String("/"))
+                viewPath = "~" + viewPath;
+            return System.String.Format$$String$$Object$$Object("{0}?Path={1}", this.get_UrlProvider().ResolveUrl("~/Views.ashx"), viewPath);
+        },
+        RenderView: function (){
+            var componentManager = new Neptuo.TemplateEngine.Web.ClientExtendedComponentManager.ctor(this.get_ToUpdate());
+            Neptuo.DependencyContainerExtensions.RegisterInstance$1(Neptuo.TemplateEngine.Web.NavigationCollection.ctor, Neptuo.DependencyContainerExtensions.RegisterInstance$1(Neptuo.TemplateEngine.Web.IPartialUpdateWriter.ctor, Neptuo.DependencyContainerExtensions.RegisterInstance$1(Neptuo.Templates.IComponentManager.ctor, this.get_DependencyContainer(), componentManager), componentManager), new Neptuo.TemplateEngine.Web.NavigationCollection.ctor());
+            var writer = new System.IO.StringWriter.ctor();
+            var view = this.get_ViewActivator().CreateView(this.get_ViewPath());
+            view.Setup(new Neptuo.Templates.BaseViewPage.ctor(componentManager), componentManager, this.get_DependencyContainer());
+            view.CreateControls();
+            view.Init();
+            view.Render(new Neptuo.TemplateEngine.Web.ExtendedHtmlTextWriter.ctor(writer));
+            view.Dispose();
+            if (this.OnCompleted != null)
+                this.OnCompleted();
+        }
+    },
+    ctors: [{
+        name: "ctor",
+        parameters: ["System.String", "System.String[]", "Neptuo.IDependencyContainer", "Neptuo.TemplateEngine.Web.IViewActivator", "Neptuo.TemplateEngine.Web.IViewLoadedChecker", "Neptuo.Templates.IVirtualUrlProvider"]
+    }
+    ],
+    IsAbstract: false
+};
+JsTypes.push(Neptuo$TemplateEngine$Web$AsyncViewRenderer);
 var Neptuo$TemplateEngine$Web$ClientExtendedComponentManager = {
     fullname: "Neptuo.TemplateEngine.Web.ClientExtendedComponentManager",
     baseTypeName: "Neptuo.TemplateEngine.Web.ExtendedComponentManager",
@@ -1473,6 +1583,15 @@ var Neptuo$TemplateEngine$Web$IApplication = {
     IsAbstract: true
 };
 JsTypes.push(Neptuo$TemplateEngine$Web$IApplication);
+var Neptuo$TemplateEngine$Web$IAsyncViewRenderer = {
+    fullname: "Neptuo.TemplateEngine.Web.IAsyncViewRenderer",
+    baseTypeName: "System.Object",
+    assemblyName: "Neptuo.TemplateEngine.Client",
+    Kind: "Interface",
+    ctors: [],
+    IsAbstract: true
+};
+JsTypes.push(Neptuo$TemplateEngine$Web$IAsyncViewRenderer);
 var Neptuo$TemplateEngine$Web$IFormPostInvoker = {
     fullname: "Neptuo.TemplateEngine.Web.IFormPostInvoker",
     baseTypeName: "System.Object",
@@ -1509,6 +1628,15 @@ var Neptuo$TemplateEngine$Web$IMainView = {
     IsAbstract: true
 };
 JsTypes.push(Neptuo$TemplateEngine$Web$IMainView);
+var Neptuo$TemplateEngine$Web$IViewLoadedChecker = {
+    fullname: "Neptuo.TemplateEngine.Web.IViewLoadedChecker",
+    baseTypeName: "System.Object",
+    assemblyName: "Neptuo.TemplateEngine.Client",
+    Kind: "Interface",
+    ctors: [],
+    IsAbstract: true
+};
+JsTypes.push(Neptuo$TemplateEngine$Web$IViewLoadedChecker);
 var Neptuo$TemplateEngine$Web$JsArrayExtensions = {
     fullname: "Neptuo.TemplateEngine.Web.JsArrayExtensions",
     baseTypeName: "System.Object",
@@ -1656,16 +1784,9 @@ var Neptuo$TemplateEngine$Web$MainView = {
             e.preventDefault();
         },
         RenderView: function (viewPath, toUpdate, dependencyContainer){
-            var componentManager = new Neptuo.TemplateEngine.Web.ClientExtendedComponentManager.ctor(toUpdate);
-            Neptuo.DependencyContainerExtensions.RegisterInstance$1(Neptuo.TemplateEngine.Web.NavigationCollection.ctor, Neptuo.DependencyContainerExtensions.RegisterInstance$1(Neptuo.TemplateEngine.Web.IPartialUpdateWriter.ctor, Neptuo.DependencyContainerExtensions.RegisterInstance$1(Neptuo.Templates.IComponentManager.ctor, dependencyContainer, componentManager), componentManager), new Neptuo.TemplateEngine.Web.NavigationCollection.ctor());
-            var writer = new System.IO.StringWriter.ctor();
-            var view = this.get_ViewActivator().CreateView(viewPath);
-            view.Setup(new Neptuo.Templates.BaseViewPage.ctor(componentManager), componentManager, dependencyContainer);
-            view.CreateControls();
-            view.Init();
-            view.Render(new Neptuo.TemplateEngine.Web.ExtendedHtmlTextWriter.ctor(writer));
-            view.Dispose();
-            this.AutoFocus();
+            var viewRenderer = new Neptuo.TemplateEngine.Web.AsyncViewRenderer.ctor(viewPath, toUpdate, dependencyContainer, this.get_ViewActivator(), As(this.get_ViewActivator(), Neptuo.TemplateEngine.Web.StaticViewActivator.ctor), this.get_Application());
+            viewRenderer.add_OnCompleted($CreateDelegate(this, this.AutoFocus));
+            viewRenderer.Render();
         },
         UpdateView: function (partialGuid, content){
             var target = $("div[data-partial=" + partialGuid + "]");
@@ -1932,7 +2053,7 @@ var Neptuo$TemplateEngine$Web$StaticViewActivator = {
         }
     },
     assemblyName: "Neptuo.TemplateEngine.Client",
-    interfaceNames: ["Neptuo.TemplateEngine.Web.IViewActivator"],
+    interfaceNames: ["Neptuo.TemplateEngine.Web.IViewActivator", "Neptuo.TemplateEngine.Web.IViewLoadedChecker"],
     Kind: "Class",
     definition: {
         ctor: function (dependencyProvider){
@@ -1952,6 +2073,9 @@ var Neptuo$TemplateEngine$Web$StaticViewActivator = {
             }).call(this))
                 return Cast(Neptuo.DependencyProviderExtensions.Resolve$$IDependencyProvider$$Type(this.dependencyProvider, viewType), Neptuo.Templates.BaseGeneratedView.ctor);
             throw $CreateException(new System.NotImplementedException.ctor(), new Error());
+        },
+        IsViewLoaded: function (viewPath){
+            return Neptuo.TemplateEngine.Web.StaticViewActivator.mappings.ContainsKey(viewPath);
         }
     },
     ctors: [{

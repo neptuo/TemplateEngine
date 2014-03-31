@@ -1,5 +1,6 @@
 ﻿using Neptuo.Security.Cryptography;
 using Neptuo.TemplateEngine.Web.Compilation;
+using Neptuo.TemplateEngine.Web.ViewBundles;
 using Neptuo.Templates.Compilation;
 using System;
 using System.Collections.Generic;
@@ -16,6 +17,7 @@ namespace Neptuo.TemplateEngine.Backend.Web
         private JavascriptViewGeneratorConfiguration configuration;
         private IJavascriptSourceViewService viewService;
         private IDependencyProvider dependencyProvider;
+        private IViewBundleCollection bundles;
 
         public bool IsReusable
         {
@@ -27,12 +29,18 @@ namespace Neptuo.TemplateEngine.Backend.Web
             this.configuration = configuration;
             this.viewService = viewService;
             this.dependencyProvider = dependencyProvider;
+            this.bundles = ViewBundleTable.Bundles;
         }
 
         public void ProcessRequest(HttpContext context)
         {
             StringBuilder contentBuilder = new StringBuilder();
             StringBuilder appendBuilder = new StringBuilder();
+
+            string bundleName = context.Request.Params["Path"];
+            IViewBundle currentBundle = null;
+            if (String.IsNullOrEmpty(bundleName) || !bundles.TryGet(bundleName, out currentBundle))
+                currentBundle = new GreedyViewBundle();
 
             context.Response.ContentType = "text/javascript";
             foreach (string viewPath in Directory.GetFiles(context.Server.MapPath(configuration.ViewDirectory), "*.view", SearchOption.AllDirectories))
@@ -41,31 +49,32 @@ namespace Neptuo.TemplateEngine.Backend.Web
                 string tempViewPath = GetTempJavascriptFilePath(configuration, viewPath);
                 string viewContent = File.ReadAllText(viewPath);
                 string virtualViewPath = RelativePath(context.Server, viewPath, context.Request);
-
-                INaming classNaming = viewService.NamingService.FromFile(virtualViewPath);
-                appendBuilder.AppendFormat(
-                    "Neptuo.TemplateEngine.Web.StaticViewActivator.Add('{0}', Typeof(Neptuo.Templates.{1}.ctor));",
-                    virtualViewPath, //.Replace("~/Views/", "~/")
-                    classNaming.ClassName
-                );
-                appendBuilder.AppendLine();
-                
-                if (File.Exists(tempViewPath))
+                if (currentBundle.ContainsView(virtualViewPath))
                 {
-                    DateTime tempLastModified = File.GetLastWriteTime(tempViewPath);
-                    if (tempLastModified >= viewLastModified)
+                    INaming classNaming = viewService.NamingService.FromFile(virtualViewPath);
+                    appendBuilder.AppendFormat(
+                        "Neptuo.TemplateEngine.Web.StaticViewActivator.Add('{0}', Typeof(Neptuo.Templates.{1}.ctor));",
+                        virtualViewPath, //.Replace("~/Views/", "~/")
+                        classNaming.ClassName
+                    );
+                    appendBuilder.AppendLine();
+
+                    if (File.Exists(tempViewPath))
                     {
-                        contentBuilder.AppendLine("/*" + viewPath + " - CACHE*/");
-                        contentBuilder.AppendLine(File.ReadAllText(tempViewPath));
-                        continue;
+                        DateTime tempLastModified = File.GetLastWriteTime(tempViewPath);
+                        if (tempLastModified >= viewLastModified)
+                        {
+                            contentBuilder.AppendLine("/*" + viewPath + " - CACHE*/");
+                            contentBuilder.AppendLine(File.ReadAllText(tempViewPath));
+                            continue;
+                        }
                     }
+
+                    string javascriptContent = viewService.GenerateJavascript(viewContent, new ViewServiceContext(dependencyProvider), classNaming);
+                    javascriptContent = RewriteJavascriptContent(javascriptContent);
+                    File.WriteAllText(tempViewPath, javascriptContent);
+                    contentBuilder.AppendLine(javascriptContent);
                 }
-
-                string javascriptContent = viewService.GenerateJavascript(viewContent, new ViewServiceContext(dependencyProvider), classNaming);
-                javascriptContent = RewriteJavascriptContent(javascriptContent);
-                File.WriteAllText(tempViewPath, javascriptContent);
-                contentBuilder.AppendLine(javascriptContent);
-
             }
 
             context.Response.Write(contentBuilder.ToString());

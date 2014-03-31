@@ -89,6 +89,12 @@
     <Compile Include="DataSources\IListDataSource.cs" />
     <Compile Include="DataSources\WebDataSourceAttribute.cs" />
     <Compile Include="GeneratedViewBase.cs" />
+    <Compile Include="ViewBundles\GreedyViewBundle.cs" />
+    <Compile Include="ViewBundles\IViewBundle.cs" />
+    <Compile Include="ViewBundles\IViewBundleCollection.cs" />
+    <Compile Include="ViewBundles\ViewBundle.cs" />
+    <Compile Include="ViewBundles\ViewBundleCollection.cs" />
+    <Compile Include="ViewBundles\ViewBundleTable.cs" />
     <Compile Include="ViewServiceViewActivator.cs" />
     <Compile Include="DataSources\ListDataSourceBase.cs" />
     <Compile Include="DataSources\IDataSource.cs" />

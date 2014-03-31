@@ -112,6 +112,7 @@
     <Compile Include="Bootstrap\PresentationModelBootstrapTask.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RoutingBootstrapTask.cs" />
+    <Compile Include="ViewBundleBootstrapTask.cs" />
     <Compile Include="Web\JavascriptViewGeneratorConfiguration.cs" />
     <Compile Include="Web\Routing\DependencyRouteHandler.cs" />
     <Compile Include="Web\Routing\JavascriptViewGeneratorRouteHandler.cs" />

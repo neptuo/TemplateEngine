@@ -471,6 +471,40 @@ var Neptuo$TemplateEngine$Web$Controls$SelectItem = {
     IsAbstract: false
 };
 JsTypes.push(Neptuo$TemplateEngine$Web$Controls$SelectItem);
+var Neptuo$TemplateEngine$Web$Controls$ViewBundleControl = {
+    fullname: "Neptuo.TemplateEngine.Web.Controls.ViewBundleControl",
+    baseTypeName: "System.Object",
+    assemblyName: "Neptuo.TemplateEngine.Shared",
+    interfaceNames: ["Neptuo.Templates.Controls.IControl"],
+    Kind: "Class",
+    definition: {
+        ctor: function (urlProvider){
+            this.urlProvider = null;
+            this._Path = null;
+            System.Object.ctor.call(this);
+            this.urlProvider = urlProvider;
+        },
+        Path$$: "System.String",
+        get_Path: function (){
+            return this._Path;
+        },
+        set_Path: function (value){
+            this._Path = value;
+        },
+        OnInit: function (){
+        },
+        Render: function (writer){
+            writer.Tag("script").Attribute("src", this.urlProvider.ResolveUrl(System.String.Format$$String$$Object("~/Views.ashx?Path={0}", this.get_Path()))).CloseFullTag();
+        }
+    },
+    ctors: [{
+        name: "ctor",
+        parameters: ["Neptuo.Templates.IVirtualUrlProvider"]
+    }
+    ],
+    IsAbstract: false
+};
+JsTypes.push(Neptuo$TemplateEngine$Web$Controls$ViewBundleControl);
 var Neptuo$TemplateEngine$Web$DataSources$IListResult = {
     fullname: "Neptuo.TemplateEngine.Web.DataSources.IListResult",
     baseTypeName: "System.Object",

@@ -1,0 +1,76 @@
+﻿using Neptuo.Templates;
+using SharpKit.jQuery;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Neptuo.TemplateEngine.Web
+{
+    public class AsyncViewRenderer : IAsyncViewRenderer
+    {
+        public string ViewPath { get; private set; }
+        public string[] ToUpdate { get; private set; }
+        public IDependencyContainer DependencyContainer { get; private set; }
+        public IViewActivator ViewActivator { get; private set; }
+        public IViewLoadedChecker Checker { get; private set; }
+        public IVirtualUrlProvider UrlProvider { get; private set; }
+
+        public event Action OnCompleted;
+
+        public AsyncViewRenderer(string viewPath, string[] toUpdate, IDependencyContainer dependencyContainer, IViewActivator viewActivator, IViewLoadedChecker checker, IVirtualUrlProvider urlProvider)
+        {
+            Guard.NotNullOrEmpty(viewPath, "viewPath");
+            Guard.NotNull(toUpdate, "toUpdate");
+            Guard.NotNull(dependencyContainer, "dependencyContainer");
+            Guard.NotNull(viewActivator, "viewActivator");
+            Guard.NotNull(checker, "checker");
+            Guard.NotNull(urlProvider, "urlProvider");
+            ViewPath = viewPath;
+            ToUpdate = toUpdate;
+            DependencyContainer = dependencyContainer;
+            ViewActivator = viewActivator;
+            Checker = checker;
+            UrlProvider = urlProvider;
+        }
+
+        public void Render()
+        {
+            if (!Checker.IsViewLoaded(ViewPath))
+                new jQuery("body").append("<script src='" + FormatViewUrl() + "'></script>");
+            
+            RenderView();
+        }
+
+        private string FormatViewUrl()
+        {
+            string viewPath = ViewPath;
+            if (viewPath.StartsWith("/"))
+                viewPath = "~" + viewPath;
+
+            return String.Format("{0}?Path={1}", UrlProvider.ResolveUrl("~/Views.ashx"), viewPath);
+        }
+
+        private void RenderView()
+        {
+            ClientExtendedComponentManager componentManager = new ClientExtendedComponentManager(ToUpdate);
+            DependencyContainer
+                .RegisterInstance<IComponentManager>(componentManager)
+                .RegisterInstance<IPartialUpdateWriter>(componentManager)
+                .RegisterInstance<NavigationCollection>(new NavigationCollection());
+
+            StringWriter writer = new StringWriter();
+            var view = ViewActivator.CreateView(ViewPath);
+            view.Setup(new BaseViewPage(componentManager), componentManager, DependencyContainer);
+            view.CreateControls();
+            view.Init();
+            view.Render(new ExtendedHtmlTextWriter(writer));
+            view.Dispose();
+
+            if (OnCompleted != null)
+                OnCompleted();
+        }
+    }
+}

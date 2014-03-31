@@ -89,6 +89,7 @@
     <Compile Include="Routing\TemplateRoute.cs" />
     <Compile Include="Routing\TemplateRouteHandler.cs" />
     <Compile Include="Web\Application.cs" />
+    <Compile Include="Web\AsyncViewRenderer.cs" />
     <Compile Include="Web\ClientExtendedComponentManager.cs" />
     <Compile Include="Web\Controls\Ajax\PartialStartUpControl.cs" />
     <Compile Include="Web\Controls\BundleControl.cs" />
@@ -105,10 +106,12 @@
     <Compile Include="Web\HistoryItem.cs" />
     <Compile Include="Web\HistoryState.cs" />
     <Compile Include="Web\IApplication.cs" />
+    <Compile Include="Web\IAsyncViewRenderer.cs" />
     <Compile Include="Web\IFormPostInvoker.cs" />
     <Compile Include="Web\IFormPostInvokerManager.cs" />
     <Compile Include="Web\IHistoryState.cs" />
     <Compile Include="Web\IMainView.cs" />
+    <Compile Include="Web\IViewLoadedChecker.cs" />
     <Compile Include="Web\JsArrayExtensions.cs" />
     <Compile Include="Web\MainView.cs" />
     <Compile Include="Web\PartialResponseConverter.cs" />
