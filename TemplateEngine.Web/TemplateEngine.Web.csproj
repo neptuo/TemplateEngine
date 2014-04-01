@@ -95,6 +95,7 @@
     <Compile Include="ViewBundles\ViewBundle.cs" />
     <Compile Include="ViewBundles\ViewBundleCollection.cs" />
     <Compile Include="ViewBundles\ViewBundleTable.cs" />
+    <Compile Include="ViewBundles\XmlViewBundleLoader.cs" />
     <Compile Include="ViewServiceViewActivator.cs" />
     <Compile Include="DataSources\ListDataSourceBase.cs" />
     <Compile Include="DataSources\IDataSource.cs" />
