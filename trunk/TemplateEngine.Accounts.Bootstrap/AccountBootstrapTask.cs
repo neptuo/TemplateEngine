@@ -16,6 +16,7 @@ using Neptuo.TemplateEngine.Web.Compilation.Parsers;
 using Neptuo.TemplateEngine.Web.Controllers;
 using Neptuo.TemplateEngine.Web.DataSources;
 using Neptuo.TemplateEngine.Web.ViewBundles;
+using Neptuo.Templates;
 using Neptuo.Templates.Compilation;
 using Neptuo.Templates.Compilation.Parsers;
 using Neptuo.Validation;
@@ -104,28 +105,8 @@ namespace Neptuo.TemplateEngine.Accounts.Bootstrap
         //TODO: Move into Backend.UI
         protected void RegisterViewBundles(IViewBundleCollection bundles)
         {
-            List<string> files = new List<string>
-            {
-                "~/Views/Accounts/UserList.view",
-                "~/Views/Accounts/UserEdit.view",
-                "~/Views/Accounts/RoleList.view",
-                "~/Views/Accounts/RoleEdit.view",
-                "~/Views/Accounts/SideNav.view",
-            };
-
-            foreach (string name in files)
-            {
-                IViewBundle bundle = new ViewBundle(name);
-                foreach (string item in files)
-                    bundle.Add(item);
-
-                bundles.Add(bundle);
-            }
-
-            string loginFile = "~/Views/Accounts/Login.view";
-            IViewBundle loginBundle = new ViewBundle(loginFile);
-            loginBundle.Add(loginFile);
-            bundles.Add(loginBundle);
+            XmlViewBundleLoader loader = new XmlViewBundleLoader(dependencyContainer.Resolve<IVirtualPathProvider>());
+            loader.LoadXml("~/Views/Accounts/AccountsViewBundles.xml", ViewBundleTable.Bundles);
         }
 
         protected void CreateDummyUserAccounts()

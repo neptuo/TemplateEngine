@@ -188,6 +188,7 @@
     <Content Include="Neptuo.TemplateEngine.Backend.UI.xml">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Views\Accounts\AccountsViewBundles.xml" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
