@@ -29,6 +29,7 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Accounts.Bootstrap
 {
+    [Module]
     public class AccountBootstrapTask : AccountBootstrapTaskBase, IBootstrapTask
     {
         private IDependencyContainer dependencyContainer;
