@@ -13,7 +13,7 @@
             <Template>
 
                 <div style="padding: 15px 10px;">
-                    <ui:PostForm>
+                    <ui:PostForm ajax:Update="Content">
                         <div class="col-md-6">
                             <ui:FormItem l:LabelText="Username" l:HelpText="Local username, must be unique">
                                 <ui:TextBox Name="Username" Text="{Binding Username}" IsAutoFocus="true" html:ID="Username" html:Class="form-control" />
@@ -56,7 +56,7 @@
                                 </h2>
                             </ui:TemplateContent>
                             <ui:TemplateContent Name="Right">
-                                <a form:href="Accounts.User.List" class="btn btn-small">
+                                <a form:href="Accounts.User.List" ajax:Update="Content" class="btn btn-small">
                                     <span class="glyphicon glyphicon-arrow-left"></span>
                                     Back to user list
                                 </a>

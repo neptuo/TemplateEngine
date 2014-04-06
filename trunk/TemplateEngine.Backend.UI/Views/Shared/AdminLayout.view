@@ -43,10 +43,10 @@
             <div class="side-navbar" ui:IsPlaceHolder="SideNav">
                 <ui:TemplatePlaceholder Name="SideNav" />
             </div>
-            <div class="body">
+            <ajax:View Partial="Content" html:Class="body">
                 <ui:MessagePanel Key="" />
                 <ui:TemplatePlaceholder Name="Body" />
-            </div>
+            </ajax:View>
         </ajax:View>
 
         <footer class="navbar">

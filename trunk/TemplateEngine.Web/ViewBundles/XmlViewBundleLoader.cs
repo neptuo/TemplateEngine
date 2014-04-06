@@ -26,6 +26,9 @@ namespace Neptuo.TemplateEngine.Web.ViewBundles
             XmlDocument document = new XmlDocument();
             document.Load(PathProvider.MapPath(filePath));
 
+            if (document.DocumentElement.Name != "ViewBundles")
+                return;
+
             foreach (XmlElement bundleElement in document.GetElementsByTagName("ViewBundle"))
             {
                 string bundlePath = bundleElement.GetAttribute("Path");
