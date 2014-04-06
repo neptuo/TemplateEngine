@@ -1,6 +1,7 @@
 ﻿using Neptuo.Templates;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -39,6 +40,14 @@ namespace Neptuo.TemplateEngine.Web.ViewBundles
 
                 viewBundles.Add(bundle);
             }
+        }
+
+        public void LoadDirectory(string directoryPath, IViewBundleCollection viewBundles)
+        {
+            directoryPath = PathProvider.MapPath(directoryPath);
+
+            foreach (string file in Directory.GetFiles(directoryPath, "*.xml", SearchOption.AllDirectories))
+                LoadXml(file, viewBundles);
         }
     }
 }
