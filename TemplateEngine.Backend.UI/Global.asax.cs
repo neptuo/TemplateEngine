@@ -14,6 +14,8 @@ using Neptuo.TemplateEngine.Permissions;
 using Neptuo.TemplateEngine.Web;
 using Neptuo.TemplateEngine.Web.Controllers;
 using Neptuo.TemplateEngine.Web.DataSources;
+using Neptuo.TemplateEngine.Web.ViewBundles;
+using Neptuo.Templates;
 using Neptuo.Unity;
 using Neptuo.Unity.Lifetimes.Mapping;
 using Neptuo.Unity.Web.Lifetimes.Mapping;

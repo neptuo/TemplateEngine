@@ -9,7 +9,7 @@ using System.Web;
 
 namespace Neptuo.TemplateEngine.Backend.Web
 {
-    public class ServerVirtualPathProvider : IVirtualPathProvider, IVirtualUrlProvider, ICurrentUrlProvider
+    public class ServerPathProvider : IVirtualPathProvider, IVirtualUrlProvider, ICurrentUrlProvider
     {
         public string MapPath(string path)
         {

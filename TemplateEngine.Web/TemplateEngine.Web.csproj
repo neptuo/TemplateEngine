@@ -109,7 +109,7 @@
     <Compile Include="Web\DataSources\WebDataSourceRegistryExtensions.cs" />
     <Compile Include="Web\WebDataSourceModel.cs" />
     <Compile Include="Web\ServerPartialResponse.cs" />
-    <Compile Include="Web\ServerVirtualPathProvider.cs" />
+    <Compile Include="Web\ServerPathProvider.cs" />
     <Compile Include="Web\TemplateHttpHandler.cs" />
     <Compile Include="Web\TemplateHttpHandlerBase.cs" />
     <Compile Include="Web\WebDataSourceHttpHandler.cs" />

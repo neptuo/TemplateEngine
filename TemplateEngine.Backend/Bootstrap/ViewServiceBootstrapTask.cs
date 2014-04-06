@@ -11,6 +11,7 @@ using Neptuo.TemplateEngine.Web.Compilation.PreProcessing;
 using Neptuo.TemplateEngine.Web.Controls;
 using Neptuo.TemplateEngine.Web.Controls.Ajax;
 using Neptuo.TemplateEngine.Web.Observers;
+using Neptuo.TemplateEngine.Web.ViewBundles;
 using Neptuo.Templates;
 using Neptuo.Templates.Compilation;
 using Neptuo.Templates.Compilation.CodeGenerators;
@@ -39,12 +40,15 @@ namespace Neptuo.TemplateEngine.Backend.Bootstrap
 
         public void Initialize()
         {
-            IVirtualPathProvider virtualPathProvider = new ServerVirtualPathProvider();
+            IVirtualPathProvider virtualPathProvider = new ServerPathProvider();
             IFileProvider fileProvider = new FileProvider(virtualPathProvider);
             
             container
                 .RegisterInstance<IVirtualPathProvider>(virtualPathProvider)
                 .RegisterInstance<IFileProvider>(fileProvider);
+
+            XmlViewBundleLoader loader = new XmlViewBundleLoader(virtualPathProvider);
+            loader.LoadDirectory("~/Views", ViewBundleTable.Bundles);
 
             TypeBuilderRegistry registry = new TypeBuilderRegistry(
                 new TypeBuilderRegistryConfiguration(container).AddComponentSuffix("presenter"),
@@ -60,8 +64,8 @@ namespace Neptuo.TemplateEngine.Backend.Bootstrap
                 .RegisterInstance<TypeBuilderRegistry>(registry)
                 .RegisterInstance<IViewService>(viewService)
                 .RegisterInstance<IJavascriptSourceViewService>(viewService)
-                .RegisterInstance<IVirtualUrlProvider>(new ServerVirtualPathProvider())
-                .RegisterInstance<ICurrentUrlProvider>(new ServerVirtualPathProvider())
+                .RegisterInstance<IVirtualUrlProvider>(new ServerPathProvider())
+                .RegisterInstance<ICurrentUrlProvider>(new ServerPathProvider())
                 .RegisterType<IParameterProviderFactory, RequestParameterProviderFactory>(new PerRequestLifetime())
                 .RegisterType<IStackStorage<IViewStorage>, StackStorage<IViewStorage>>(new PerRequestLifetime())
                 .RegisterType<IViewActivator, ViewServiceViewActivator>()

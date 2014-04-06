@@ -95,19 +95,10 @@ namespace Neptuo.TemplateEngine.Accounts.Bootstrap
 
             dataSourceRegistry.AddFromAssembly(typeof(UserAccountDataSource).Assembly);
 
-            RegisterViewBundles(viewBundles);
-
 //#if DEBUG
             CreateDummyUserRoles();
             CreateDummyUserAccounts();
 //#endif
-        }
-
-        //TODO: Move into Backend.UI
-        protected void RegisterViewBundles(IViewBundleCollection bundles)
-        {
-            XmlViewBundleLoader loader = new XmlViewBundleLoader(dependencyContainer.Resolve<IVirtualPathProvider>());
-            loader.LoadXml("~/Views/Accounts/AccountsViewBundles.xml", ViewBundleTable.Bundles);
         }
 
         protected void CreateDummyUserAccounts()
