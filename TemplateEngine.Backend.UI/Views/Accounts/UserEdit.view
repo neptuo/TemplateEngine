@@ -52,7 +52,7 @@
                             <ui:TemplateContent Name="Left">
                                 <h2>
                                     <span class="glyphicon glyphicon-user"></span>
-                                    <ui:Literal Text="{Switch {Binding IsNew}, TrueValue=Create, FalseValue=Edit}" l:FormatString="User Accounts - {0} account" />
+                                    <ui:Literal Text="{Switch {Binding IsNew}, TrueValue=Create, FalseValue=Edit}" l:FormatString="User accounts - {0} account" />
                                 </h2>
                             </ui:TemplateContent>
                             <ui:TemplateContent Name="Right">

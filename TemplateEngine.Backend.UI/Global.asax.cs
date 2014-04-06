@@ -69,11 +69,14 @@ namespace Neptuo.TemplateEngine.Backend.UI
             //TODO: Temp...
             DataContext dataContext = new DataContext();
 
+            EventDispatcher eventDispatcher = new EventDispatcher();
+
             dependencyContainer
                 .RegisterType<HttpContextBase>(new GetterLifetime(() => new HttpContextWrapper(HttpContext.Current)))
                 .RegisterType<HttpRequestBase>(new GetterLifetime(() => new HttpRequestWrapper(HttpContext.Current.Request)))
                 .RegisterType<DataContext>(new PerRequestLifetime())
-                .RegisterType<IEventDispatcher, EventDispatcher>(new SingletonLifetime())
+                .RegisterInstance<IEventDispatcher>(eventDispatcher)
+                .RegisterInstance<IEventManager>(eventDispatcher)
                 .RegisterType<IParameterProvider, RequestParameterProvider>(new PerRequestLifetime())
                 .RegisterType<IUnitOfWorkFactory, DataContextUnitOfWorkFactory>(new PerRequestLifetime())
                 .RegisterType<ICommandDispatcher, DependencyCommandDispatcher>()

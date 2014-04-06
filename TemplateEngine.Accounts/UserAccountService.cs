@@ -25,6 +25,11 @@ namespace Neptuo.TemplateEngine.Accounts
             UserQuery = userQuery;
         }
 
+        public UserAccount Get(int userKey)
+        {
+            return UserAccounts.Get(userKey);
+        }
+
         public UserAccount CreateAccount(string username, string password, bool enabled)
         {
             UserAccount userAccount = UserAccounts.Create();
