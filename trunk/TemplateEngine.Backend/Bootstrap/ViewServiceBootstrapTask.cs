@@ -57,13 +57,13 @@ namespace Neptuo.TemplateEngine.Backend.Bootstrap
             );
             SetupTypeBuilderRegistry(registry);
 
-            ExtendedViewService viewService = new ExtendedViewService();
+            ViewService viewService = new ViewService();
             SetupViewService(viewService, registry, fileProvider, virtualPathProvider);
 
             container
                 .RegisterInstance<TypeBuilderRegistry>(registry)
                 .RegisterInstance<IViewService>(viewService)
-                .RegisterInstance<IJavascriptSourceViewService>(viewService)
+                .RegisterInstance<ViewService>(viewService)
                 .RegisterInstance<IVirtualUrlProvider>(new ServerPathProvider())
                 .RegisterInstance<ICurrentUrlProvider>(new ServerPathProvider())
                 .RegisterType<IParameterProviderFactory, RequestParameterProviderFactory>(new PerRequestLifetime())
@@ -93,6 +93,7 @@ namespace Neptuo.TemplateEngine.Backend.Bootstrap
             viewService.BinDirectories.Add(virtualPathProvider.MapPath("~/Bin"));
             
             SetupCodeDomGenerator(viewService.CodeDomGenerator);
+            SetupJavascriptGenerator(viewService.JavascriptGenerator);
             SetupPreProcesssor(viewService.PreProcessorService, viewService);
         }
 
@@ -139,6 +140,11 @@ namespace Neptuo.TemplateEngine.Backend.Bootstrap
             generator.SetPropertyDescriptorGenerator(typeof(CssClassPropertyDescriptor), new CodeDomCssClassPropertyGenerator());
             generator.SetPropertyTypeGenerator(typeof(ITemplate), new CodeDomTemplatePropertyTypeGenerator(fieldNameProvider, "{0}.Views.{1}.view"));
             generator.SetAttributeGenerator(typeof(PropertySetAttribute), new CodeDomPropertySetAttributeGenerator());
+        }
+
+        protected virtual void SetupJavascriptGenerator(SharpKitCodeGenerator generator)
+        {
+            generator.RunCsc = false;
         }
 
         protected virtual void SetupPreProcesssor(IPreProcessorService preprocessorService, CodeDomViewService viewService)

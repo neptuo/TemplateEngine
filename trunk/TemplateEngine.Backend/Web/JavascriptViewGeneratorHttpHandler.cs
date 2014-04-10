@@ -15,7 +15,7 @@ namespace Neptuo.TemplateEngine.Backend.Web
     public class JavascriptViewGeneratorHttpHandler : IHttpHandler
     {
         private JavascriptViewGeneratorConfiguration configuration;
-        private IJavascriptSourceViewService viewService;
+        private ViewService viewService;
         private IDependencyProvider dependencyProvider;
         private IViewBundleCollection bundles;
 
@@ -24,7 +24,7 @@ namespace Neptuo.TemplateEngine.Backend.Web
             get { return false; }
         }
 
-        public JavascriptViewGeneratorHttpHandler(JavascriptViewGeneratorConfiguration configuration, IJavascriptSourceViewService viewService, IDependencyProvider dependencyProvider)
+        public JavascriptViewGeneratorHttpHandler(JavascriptViewGeneratorConfiguration configuration, ViewService viewService, IDependencyProvider dependencyProvider)
         {
             this.configuration = configuration;
             this.viewService = viewService;
@@ -70,7 +70,7 @@ namespace Neptuo.TemplateEngine.Backend.Web
                         }
                     }
 
-                    string javascriptContent = viewService.GenerateJavascript(viewContent, new ViewServiceContext(dependencyProvider), classNaming);
+                    string javascriptContent = viewService.GenerateJavascriptSourceCodeFromView(viewContent, new ViewServiceContext(dependencyProvider), classNaming);
                     javascriptContent = RewriteJavascriptContent(javascriptContent);
                     File.WriteAllText(tempViewPath, javascriptContent);
                     contentBuilder.AppendLine(javascriptContent);

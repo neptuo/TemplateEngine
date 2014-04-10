@@ -18,11 +18,11 @@ namespace Neptuo.TemplateEngine.Backend
     {
         private RouteCollection routes;
         private IViewService viewService;
-        private IJavascriptSourceViewService javascriptViewService;
+        private ViewService javascriptViewService;
         private IDependencyProvider dependencyProvider;
         private IRouteParameterRegistry routeParameterRegistry;
 
-        public RoutingBootstrapTask(IViewService viewService, IJavascriptSourceViewService javascriptViewService, IDependencyProvider dependencyProvider)
+        public RoutingBootstrapTask(IViewService viewService, ViewService javascriptViewService, IDependencyProvider dependencyProvider)
         {
             this.routes = RouteTable.Routes;
             this.viewService = viewService;
