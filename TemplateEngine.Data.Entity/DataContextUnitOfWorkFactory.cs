@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace TemplateEngine.Data.Entity
 {
-    public class DataContextUnitOfWorkFactory : DbContextUnitOfWorkFactory
+    public class DataContextUnitOfWorkFactory : DbContextUnitOfWorkFactory<DataContext>
     {
         public DataContextUnitOfWorkFactory(DataContext dataContext)
             : base(dataContext)

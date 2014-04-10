@@ -15,9 +15,9 @@ namespace Neptuo.TemplateEngine.Accounts
         protected IEventDispatcher EventDispatcher { get; private set; }
         protected IUserAccountRepository UserAccounts { get; private set; }
         protected IUserRoleRepository UserRoles { get; private set; }
-        protected IUserAccountQuery UserQuery { get; private set; }
+        protected IDeprecatedUserAccountQuery UserQuery { get; private set; }
 
-        public UserAccountService(IEventDispatcher eventDispatcher, IUserAccountRepository userAccounts, IUserRoleRepository userRoles, IUserAccountQuery userQuery)
+        public UserAccountService(IEventDispatcher eventDispatcher, IUserAccountRepository userAccounts, IUserRoleRepository userRoles, IDeprecatedUserAccountQuery userQuery)
         {
             EventDispatcher = eventDispatcher;
             UserAccounts = userAccounts;
