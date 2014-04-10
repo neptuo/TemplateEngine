@@ -15,10 +15,10 @@ namespace Neptuo.TemplateEngine.Backend.Web.Routing
     public class JavascriptViewGeneratorRouteHandler : IRouteHandler
     {
         private JavascriptViewGeneratorConfiguration configuration;
-        private IJavascriptSourceViewService viewService;
+        private ViewService viewService;
         private IDependencyProvider dependencyProvider;
 
-        public JavascriptViewGeneratorRouteHandler(JavascriptViewGeneratorConfiguration configuration, IJavascriptSourceViewService viewService, IDependencyProvider dependencyProvider)
+        public JavascriptViewGeneratorRouteHandler(JavascriptViewGeneratorConfiguration configuration, ViewService viewService, IDependencyProvider dependencyProvider)
         {
             this.configuration = configuration;
             this.viewService = viewService;

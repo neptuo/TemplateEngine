@@ -66,8 +66,7 @@
     <Compile Include="CodeObjects\MethodReferenceCodeObject.cs" />
     <Compile Include="CodeObjects\ResolveUrlCodeObject.cs" />
     <Compile Include="CodeObjects\TemplateCodeObject.cs" />
-    <Compile Include="ExtendedViewService.cs" />
-    <Compile Include="IJavascriptSourceViewService.cs" />
+    <Compile Include="ViewService.cs" />
     <Compile Include="Parsers\CssClassPropertyBuilder.cs" />
     <Compile Include="Parsers\FormUriObserverBuider.cs" />
     <Compile Include="Parsers\FormUriObserverBuiderFactory.cs" />
