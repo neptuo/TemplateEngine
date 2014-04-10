@@ -16,14 +16,14 @@ namespace Neptuo.TemplateEngine.Accounts.Web.DataSources
     [WebDataSource]
     public class UserAccountEditDataSource : IDataSource
     {
-        private IUserAccountQuery userQuery;
+        private IDeprecatedUserAccountQuery userQuery;
         private IActivator<UserAccount> userFactory;
         private IModelValueProviderFactory providerFactory;
         private IModelBinder modelBinder;
 
         public int Key { get; set; }
 
-        public UserAccountEditDataSource(IUserAccountQuery userQuery, IActivator<UserAccount> userFactory, IModelValueProviderFactory providerFactory, IModelBinder modelBinder)
+        public UserAccountEditDataSource(IDeprecatedUserAccountQuery userQuery, IActivator<UserAccount> userFactory, IModelValueProviderFactory providerFactory, IModelBinder modelBinder)
         {
             this.userQuery = userQuery;
             this.userFactory = userFactory;

@@ -1,5 +1,7 @@
 ﻿using Neptuo.Data;
+using Neptuo.Data.Queries;
 using Neptuo.PresentationModels.TypeModels;
+using Neptuo.TemplateEngine.Accounts.Data.Queries;
 using Neptuo.TemplateEngine.Accounts.Queries;
 using Neptuo.TemplateEngine.Web;
 using Neptuo.TemplateEngine.Web.DataSources;
@@ -16,23 +18,25 @@ namespace Neptuo.TemplateEngine.Accounts.Web.DataSources
     public class UserAccountDataSource : IListDataSource, IDataSource, IUserAccountFilter
     {
         private IUserAccountQuery userQuery;
+        private IDeprecatedUserAccountQuery userQueryDeprecated;
 
         public int? Key { get; set; }
         public string Username { get; set; }
         public int? RoleKey { get; set; }
 
-        public UserAccountDataSource(IUserAccountQuery userQuery)
+        public UserAccountDataSource(IDeprecatedUserAccountQuery userQueryDeprecated)
         {
-            this.userQuery = userQuery;
+            this.userQuery = null;
+            this.userQueryDeprecated = userQueryDeprecated;
         }
 
         public object GetItem()
         {
             UserAccount userAccount = null;
             if (Key != null)
-                userAccount = userQuery.Get(Key.Value);
+                userAccount = userQueryDeprecated.Get(Key.Value);
             else
-                userQuery.Get().FirstOrDefault();
+                userQueryDeprecated.Get().FirstOrDefault();
 
             if (userAccount == null)
                 return null;
@@ -42,7 +46,14 @@ namespace Neptuo.TemplateEngine.Accounts.Web.DataSources
 
         protected IEnumerable<UserAccountViewModel> GetDataOverride(int? pageIndex, int? pageSize)
         {
-            IEnumerable<UserAccount> data = userQuery.Get();
+            //if(Key != null)
+            //    userQuery.Filter.Key = IntSearch.Create(Key.Value);
+
+            //if(Username != null)
+            //    userQuery.Filter.Username = TextSearch.Create(Username);
+
+
+            IEnumerable<UserAccount> data = userQueryDeprecated.Get();
             if (!String.IsNullOrEmpty(Username))
                 data = data.Where(u => u.Username.Contains(Username));
 

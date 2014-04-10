@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Accounts.Queries
 {
-    public interface IUserAccountQuery
+    public interface IDeprecatedUserAccountQuery
     {
         UserAccount Get(string username, string password);
         UserAccount Get(Key key);

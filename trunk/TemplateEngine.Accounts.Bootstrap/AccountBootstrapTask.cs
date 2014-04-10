@@ -6,6 +6,8 @@ using Neptuo.TemplateEngine.Accounts.Commands;
 using Neptuo.TemplateEngine.Accounts.Commands.Handlers;
 using Neptuo.TemplateEngine.Accounts.Data;
 using Neptuo.TemplateEngine.Accounts.Data.Entity;
+using Neptuo.TemplateEngine.Accounts.Data.Entity.Queries;
+using Neptuo.TemplateEngine.Accounts.Data.Queries;
 using Neptuo.TemplateEngine.Accounts.Queries;
 using Neptuo.TemplateEngine.Accounts.Web.Controllers;
 using Neptuo.TemplateEngine.Accounts.Web.DataSources;
@@ -62,9 +64,11 @@ namespace Neptuo.TemplateEngine.Accounts.Bootstrap
         {
             dependencyContainer
                 //.RegisterInstance<IAccountDbContext>()
-                .RegisterType<IUserAccountRepository, MemoryUserAccountRepository>(new SingletonLifetime())
+                .RegisterType<IUserAccountRepository, EntityUserAccountRepository>(new SingletonLifetime())
+                .RegisterType<IUserAccountQuery, EntityUserAccountQuery>()
                 .RegisterType<IActivator<UserAccount>, MemoryUserAccountRepository>(new SingletonLifetime())
-                .RegisterType<IUserAccountQuery, MemoryUserAccountRepository>(new SingletonLifetime())
+                .RegisterType<IDeprecatedUserAccountQuery, MemoryUserAccountRepository>(new SingletonLifetime())
+
                 .RegisterCommandHandler<UserAccountCreateCommand, UserAccountCreateCommandHandler>()
                 .RegisterCommandHandler<UserAccountEditCommand, UserAccountEditCommandHandler>()
                 .RegisterCommandHandler<UserAccountDeleteCommand, UserAccountDeleteCommandHandler>()
@@ -72,8 +76,9 @@ namespace Neptuo.TemplateEngine.Accounts.Bootstrap
                 .RegisterType<IUserRoleRepository, MemoryUserRoleRepository>(new SingletonLifetime())
                 .RegisterType<IActivator<UserRole>, MemoryUserRoleRepository>(new SingletonLifetime())
                 .RegisterType<IUserRoleQuery, MemoryUserRoleRepository>(new SingletonLifetime())
-                .RegisterType<IAuthenticator, UserAccountService>()
                 .RegisterCommandHandler<UserRoleEditCommand, EditUserRoleCommandHandler>()
+                
+                .RegisterType<IAuthenticator, UserAccountService>()
 
 
                 .RegisterType<ICommandHandler<UserAccountCreateCommand>, UserAccountCreateHandler>()
@@ -96,8 +101,8 @@ namespace Neptuo.TemplateEngine.Accounts.Bootstrap
             dataSourceRegistry.AddFromAssembly(typeof(UserAccountDataSource).Assembly);
 
 //#if DEBUG
-            CreateDummyUserRoles();
-            CreateDummyUserAccounts();
+            //CreateDummyUserRoles();
+            //CreateDummyUserAccounts();
 //#endif
         }
 

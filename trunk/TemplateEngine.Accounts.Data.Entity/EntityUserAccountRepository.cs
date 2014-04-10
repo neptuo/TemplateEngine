@@ -10,9 +10,9 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Accounts.Data.Entity
 {
-    public class UserAccountRepository : MappingEntityRepository<UserAccount, UserAccountEntity, int, IAccountDbContext>, IUserAccountRepository, IUserAccountQuery
+    public class EntityUserAccountRepository : MappingEntityRepository<UserAccount, UserAccountEntity, int, IAccountDbContext>, IUserAccountRepository, IDeprecatedUserAccountQuery
     {
-        public UserAccountRepository(IAccountDbContext dbContext)
+        public EntityUserAccountRepository(IAccountDbContext dbContext)
             : base(dbContext)
         { }
 
