@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Neptuo.TemplateEngine.Accounts
+namespace Neptuo.TemplateEngine.Accounts.Data
 {
     public class UserRole : IKey<int>, IVersion
     {

@@ -1,7 +1,7 @@
 ﻿using Neptuo.Events;
 using Neptuo.TemplateEngine.Accounts.Data;
+using Neptuo.TemplateEngine.Accounts.Data.Queries;
 using Neptuo.TemplateEngine.Accounts.Events;
-using Neptuo.TemplateEngine.Accounts.Queries;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,38 +13,36 @@ namespace Neptuo.TemplateEngine.Accounts
     public class UserAccountService : IAuthenticator
     {
         protected IEventDispatcher EventDispatcher { get; private set; }
-        protected IUserAccountRepository UserAccounts { get; private set; }
         protected IUserRoleRepository UserRoles { get; private set; }
-        protected IDeprecatedUserAccountQuery UserQuery { get; private set; }
+        protected UserAccountDataService UserAccounts { get; private set; }
 
-        public UserAccountService(IEventDispatcher eventDispatcher, IUserAccountRepository userAccounts, IUserRoleRepository userRoles, IDeprecatedUserAccountQuery userQuery)
+        public UserAccountService(IEventDispatcher eventDispatcher, UserAccountDataService userAccounts, IUserRoleRepository userRoles)
         {
             EventDispatcher = eventDispatcher;
             UserAccounts = userAccounts;
             UserRoles = userRoles;
-            UserQuery = userQuery;
         }
 
         public UserAccount Get(int userKey)
         {
-            return UserAccounts.Get(userKey);
+            return UserAccounts.Repository.Get(userKey);
         }
 
         public UserAccount CreateAccount(string username, string password, bool enabled)
         {
-            UserAccount userAccount = UserAccounts.Create();
+            UserAccount userAccount = UserAccounts.Factory.Create();
             userAccount.Username = username;
             userAccount.Password = PasswordProvider.ComputePassword(username, password);
             userAccount.IsEnabled = enabled;
 
-            UserAccounts.Insert(userAccount);
+            UserAccounts.Repository.Insert(userAccount);
             EventDispatcher.Publish(new UserAccountCreated(userAccount.Key, userAccount.Username));
             return userAccount;
         }
 
         public void DeleteAccount(int userKey)
         {
-            UserAccounts.Delete(UserAccounts.Get(userKey));
+            UserAccounts.Repository.Delete(UserAccounts.Repository.Get(userKey));
         }
 
         public void AssignAccountToRole(UserAccount account, int userRoleID)
@@ -57,14 +55,16 @@ namespace Neptuo.TemplateEngine.Accounts
                 account.Roles = new List<UserRole>();
 
             account.Roles.Add(userRole);
-            UserAccounts.Update(account);
+            UserAccounts.Repository.Update(account);
         }
 
         public bool Login(string username, string password)
         {
             Guard.NotNullOrEmpty(username, "username");
             Guard.NotNullOrEmpty(password, "password");
-            UserAccount account = UserQuery.Get(username, password);
+
+            UserAccounts.Query.Filter = new CredentialsAccountFilter(username, password);
+            UserAccount account = UserAccounts.Query.ResultSingle();
             return account != null;
         }
     }
