@@ -38,8 +38,12 @@ namespace Neptuo.TemplateEngine.Accounts.Web.Controllers
             if (account.Username != model.Username)
                 account.Username = model.Username;
 
-            if (account.Password != model.Password && !String.IsNullOrEmpty(model.Password))
-                account.Password = model.Password;
+            if (!String.IsNullOrEmpty(model.Password))
+            {
+                string computedPassword = PasswordProvider.ComputePassword(model.Username, model.Password);
+                if (account.Password != computedPassword)
+                    account.Password = computedPassword;
+            }
 
             if (account.IsEnabled != model.IsEnabled)
                 account.IsEnabled = model.IsEnabled;
@@ -53,6 +57,11 @@ namespace Neptuo.TemplateEngine.Accounts.Web.Controllers
 
                 foreach (int userRoleID in model.RoleKeys)
                     AccountService.AssignAccountToRole(account, userRoleID);
+            }
+            else
+            {
+                if (account.Roles != null)
+                    account.Roles.Clear();
             }
 
             UserAccounts.Update(account);

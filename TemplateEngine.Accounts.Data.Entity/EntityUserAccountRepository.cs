@@ -18,7 +18,13 @@ namespace Neptuo.TemplateEngine.Accounts.Data.Entity
 
         public UserAccount Create()
         {
-            return new UserAccount();
+            return DbContext.UserAccounts.Create();
+        }
+
+        public override void Insert(UserAccount item)
+        {
+            base.Insert(item);
+            //DbContext.UserAccounts.Attach(item);
         }
 
         public IEnumerable<UserAccount> Get()

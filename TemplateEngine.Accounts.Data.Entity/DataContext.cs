@@ -35,7 +35,7 @@ namespace Neptuo.TemplateEngine.Accounts.Data.Entity
             userAccount
                 .HasKey(u => u.Key)
                 .Property(u => u.Version)
-                .IsConcurrencyToken();
+                .IsRowVersion();
 
             userAccount
                 .HasMany(u => u.Roles).WithMany(r => r.Accounts).Map(x => x.ToTable("UserAccount_UserRole"));
@@ -46,7 +46,7 @@ namespace Neptuo.TemplateEngine.Accounts.Data.Entity
             userRole
                 .HasKey(r => r.Key)
                 .Property(r => r.Version)
-                .IsConcurrencyToken();
+                .IsRowVersion();
 
             userRole
                 .HasMany(r => r.Accounts).WithMany(u => u.Roles).Map(x => x.ToTable("UserAccount_UserRole"));

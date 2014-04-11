@@ -34,7 +34,7 @@ namespace Neptuo.TemplateEngine.Accounts
         {
             UserAccount userAccount = UserAccounts.Create();
             userAccount.Username = username;
-            userAccount.Password = password;
+            userAccount.Password = PasswordProvider.ComputePassword(username, password);
             userAccount.IsEnabled = enabled;
 
             UserAccounts.Insert(userAccount);
@@ -57,6 +57,7 @@ namespace Neptuo.TemplateEngine.Accounts
                 account.Roles = new List<UserRole>();
 
             account.Roles.Add(userRole);
+            UserAccounts.Update(account);
         }
 
         public bool Login(string username, string password)

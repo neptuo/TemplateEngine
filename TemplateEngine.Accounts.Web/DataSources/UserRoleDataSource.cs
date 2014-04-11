@@ -38,6 +38,7 @@ namespace Neptuo.TemplateEngine.Accounts.Web.DataSources
             if (Key != null)
                 roleQuery.Filter.Key = IntSearch.Create(Key.Value);
 
+            roleQuery.OrderBy(r => r.Name);
             roleQuery.Page(pageIndex, pageSize);
         }
 
