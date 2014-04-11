@@ -1,5 +1,4 @@
 ﻿using Neptuo.Data;
-using Neptuo.TemplateEngine.Accounts.Queries;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Accounts.Data
 {
-    public class MemoryUserAccountRepository : IUserAccountRepository, IDeprecatedUserAccountQuery
+    public class MemoryUserAccountRepository : IUserAccountRepository
     {
         private int newId = 0;
         private Dictionary<int, UserAccount> storage = new Dictionary<int, UserAccount>();

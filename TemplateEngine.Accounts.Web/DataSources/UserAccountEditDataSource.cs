@@ -3,7 +3,6 @@ using Neptuo.Data.Queries;
 using Neptuo.PresentationModels.TypeModels;
 using Neptuo.TemplateEngine.Accounts.Commands;
 using Neptuo.TemplateEngine.Accounts.Data;
-using Neptuo.TemplateEngine.Accounts.Queries;
 using Neptuo.TemplateEngine.Web;
 using Neptuo.TemplateEngine.Web.Controllers.Binders;
 using Neptuo.TemplateEngine.Web.DataSources;

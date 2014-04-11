@@ -30,6 +30,8 @@ namespace Neptuo.TemplateEngine.Accounts.Data.Entity.Queries
                 if (Filter.Password != null)
                     target = EntityQuerySearch.BuildTextSearch<UserAccount>(target, parameter, u => u.Password, Filter.Password);
 
+                //TODO: Add IsEnabled;
+
                 //if (Filter.RoleKey != null)
                 //    Items.Where(u => u.Roles.Select(r => r.Key).Contains(Filter.RoleKey.Value));
                 //    target = EntityQuerySearch.BuildTextSearch<UserAccountEntity>(target, parameter, u => u.Password, Filter.Password);

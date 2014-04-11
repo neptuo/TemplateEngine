@@ -8,7 +8,6 @@ using Neptuo.TemplateEngine.Accounts.Data;
 using Neptuo.TemplateEngine.Accounts.Data.Entity;
 using Neptuo.TemplateEngine.Accounts.Data.Entity.Queries;
 using Neptuo.TemplateEngine.Accounts.Data.Queries;
-using Neptuo.TemplateEngine.Accounts.Queries;
 using Neptuo.TemplateEngine.Accounts.Web.Controllers;
 using Neptuo.TemplateEngine.Accounts.Web.DataSources;
 using Neptuo.TemplateEngine.Navigation;
@@ -64,19 +63,17 @@ namespace Neptuo.TemplateEngine.Accounts.Bootstrap
         {
             dependencyContainer
                 //.RegisterInstance<IAccountDbContext>()
-                .RegisterType<IUserAccountRepository, EntityUserAccountRepository>(new SingletonLifetime())
+                .RegisterType<IUserAccountRepository, EntityUserAccountRepository>(new PerRequestLifetime())
                 .RegisterType<IUserAccountQuery, EntityUserAccountQuery>()
-                .RegisterType<IActivator<UserAccount>, EntityUserAccountRepository>(new SingletonLifetime())
-                .RegisterType<IDeprecatedUserAccountQuery, MemoryUserAccountRepository>(new SingletonLifetime())
+                .RegisterType<IActivator<UserAccount>, EntityUserAccountRepository>(new PerRequestLifetime())
 
                 .RegisterCommandHandler<UserAccountCreateCommand, UserAccountCreateCommandHandler>()
                 .RegisterCommandHandler<UserAccountEditCommand, UserAccountEditCommandHandler>()
                 .RegisterCommandHandler<UserAccountDeleteCommand, UserAccountDeleteCommandHandler>()
 
-                .RegisterType<IUserRoleRepository, EntityUserRoleRepository>(new SingletonLifetime())
+                .RegisterType<IUserRoleRepository, EntityUserRoleRepository>(new PerRequestLifetime())
                 .RegisterType<IUserRoleQuery, EntityUserRoleQuery>()
-                .RegisterType<IActivator<UserRole>, EntityUserRoleRepository>(new SingletonLifetime())
-                .RegisterType<IDeprecatedUserRoleQuery, MemoryUserRoleRepository>(new SingletonLifetime())
+                .RegisterType<IActivator<UserRole>, EntityUserRoleRepository>(new PerRequestLifetime())
                 .RegisterCommandHandler<UserRoleEditCommand, EditUserRoleCommandHandler>()
                 
                 .RegisterType<IAuthenticator, UserAccountService>()
