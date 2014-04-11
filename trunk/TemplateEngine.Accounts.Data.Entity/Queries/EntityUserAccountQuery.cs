@@ -11,7 +11,7 @@ namespace Neptuo.TemplateEngine.Accounts.Data.Entity.Queries
 {
     public class EntityUserAccountQuery : MappingEntityQuery<UserAccount, UserAccountEntity, IUserAccountFilter>, IUserAccountQuery
     {
-        public EntityUserAccountQuery(IAccountDbContext dbContext)
+        public EntityUserAccountQuery(DataContext dbContext)
             : base(dbContext.UserAccounts)
         { }
 
@@ -29,6 +29,10 @@ namespace Neptuo.TemplateEngine.Accounts.Data.Entity.Queries
 
                 if (Filter.Password != null)
                     target = EntityQuerySearch.BuildTextSearch<UserAccountEntity>(target, parameter, u => u.Password, Filter.Password);
+
+                //if (Filter.RoleKey != null)
+                //    Items.Where(u => u.Roles.Select(r => r.Key).Contains(Filter.RoleKey.Value));
+                //    target = EntityQuerySearch.BuildTextSearch<UserAccountEntity>(target, parameter, u => u.Password, Filter.Password);
             }
 
             return target;

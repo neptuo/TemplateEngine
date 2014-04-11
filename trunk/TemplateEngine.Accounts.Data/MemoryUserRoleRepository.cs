@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Accounts.Data
 {
-    public class MemoryUserRoleRepository : IUserRoleRepository, IUserRoleQuery
+    public class MemoryUserRoleRepository : IUserRoleRepository, IDeprecatedUserRoleQuery
     {
         private int newId = 0;
         private Dictionary<int, UserRole> storage = new Dictionary<int, UserRole>();

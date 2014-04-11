@@ -285,7 +285,7 @@ var Neptuo$TemplateEngine$Accounts$Web$DataSources$UserAccountDataSource = {
     fullname: "Neptuo.TemplateEngine.Accounts.Web.DataSources.UserAccountDataSource",
     baseTypeName: "Neptuo.TemplateEngine.Web.DataSources.ListDataSourceProxy$1",
     assemblyName: "Neptuo.TemplateEngine.Accounts.Client",
-    interfaceNames: ["Neptuo.TemplateEngine.Accounts.Web.DataSources.IUserAccountFilter"],
+    interfaceNames: ["Neptuo.TemplateEngine.Accounts.Web.DataSources.IUserAccountDataSourceFilter"],
     Kind: "Class",
     definition: {
         ctor: function (urlProvider){
@@ -374,7 +374,7 @@ var Neptuo$TemplateEngine$Accounts$Web$DataSources$UserRoleDataSource = {
     fullname: "Neptuo.TemplateEngine.Accounts.Web.DataSources.UserRoleDataSource",
     baseTypeName: "Neptuo.TemplateEngine.Web.DataSources.ListDataSourceProxy$1",
     assemblyName: "Neptuo.TemplateEngine.Accounts.Client",
-    interfaceNames: ["Neptuo.TemplateEngine.Accounts.Web.DataSources.IUserRoleFilter"],
+    interfaceNames: ["Neptuo.TemplateEngine.Accounts.Web.DataSources.IUserRoleDataSourceFilter"],
     Kind: "Class",
     definition: {
         ctor: function (urlProvider){

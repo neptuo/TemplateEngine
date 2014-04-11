@@ -1,4 +1,6 @@
-﻿using Neptuo.PresentationModels.TypeModels;
+﻿using Neptuo.Data.Queries;
+using Neptuo.PresentationModels.TypeModels;
+using Neptuo.TemplateEngine.Accounts.Data.Queries;
 using Neptuo.TemplateEngine.Accounts.Queries;
 using Neptuo.TemplateEngine.Web.Controllers.Binders;
 using Neptuo.TemplateEngine.Web.DataSources;
@@ -31,7 +33,9 @@ namespace Neptuo.TemplateEngine.Accounts.Web.DataSources
 
         public object GetItem()
         {
-            UserRoleEditModel model = MapEntityToModel(roleQuery.Get(Key) ?? roleFactory.Create());
+            roleQuery.Filter.Key = IntSearch.Create(Key);
+
+            UserRoleEditModel model = MapEntityToModel(roleQuery.ResultSingle() ?? roleFactory.Create());
             model = modelBinder.Bind<UserRoleEditModel>(model);
 
             return model;

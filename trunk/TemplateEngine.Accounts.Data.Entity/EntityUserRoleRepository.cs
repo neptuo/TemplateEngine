@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Accounts.Data.Entity
 {
-    public class UserRoleRepository : MappingEntityRepository<UserRole, UserRoleEntity, int, IAccountDbContext>, IUserRoleRepository, IUserRoleQuery
+    public class EntityUserRoleRepository : MappingEntityRepository<UserRole, UserRoleEntity, int, DataContext>, IUserRoleRepository, IDeprecatedUserRoleQuery
     {
-        public UserRoleRepository(IAccountDbContext dbContext)
+        public EntityUserRoleRepository(DataContext dbContext)
             : base(dbContext)
         { }
 

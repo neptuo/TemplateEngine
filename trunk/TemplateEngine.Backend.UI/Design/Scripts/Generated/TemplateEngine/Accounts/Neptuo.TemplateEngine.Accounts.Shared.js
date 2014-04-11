@@ -180,24 +180,24 @@ var Neptuo$TemplateEngine$Accounts$Commands$UserAccountEditCommand = {
     IsAbstract: false
 };
 JsTypes.push(Neptuo$TemplateEngine$Accounts$Commands$UserAccountEditCommand);
-var Neptuo$TemplateEngine$Accounts$Web$DataSources$IUserAccountFilter = {
-    fullname: "Neptuo.TemplateEngine.Accounts.Web.DataSources.IUserAccountFilter",
+var Neptuo$TemplateEngine$Accounts$Web$DataSources$IUserAccountDataSourceFilter = {
+    fullname: "Neptuo.TemplateEngine.Accounts.Web.DataSources.IUserAccountDataSourceFilter",
     baseTypeName: "System.Object",
     assemblyName: "Neptuo.TemplateEngine.Accounts.Shared",
     Kind: "Interface",
     ctors: [],
     IsAbstract: true
 };
-JsTypes.push(Neptuo$TemplateEngine$Accounts$Web$DataSources$IUserAccountFilter);
-var Neptuo$TemplateEngine$Accounts$Web$DataSources$IUserRoleFilter = {
-    fullname: "Neptuo.TemplateEngine.Accounts.Web.DataSources.IUserRoleFilter",
+JsTypes.push(Neptuo$TemplateEngine$Accounts$Web$DataSources$IUserAccountDataSourceFilter);
+var Neptuo$TemplateEngine$Accounts$Web$DataSources$IUserRoleDataSourceFilter = {
+    fullname: "Neptuo.TemplateEngine.Accounts.Web.DataSources.IUserRoleDataSourceFilter",
     baseTypeName: "System.Object",
     assemblyName: "Neptuo.TemplateEngine.Accounts.Shared",
     Kind: "Interface",
     ctors: [],
     IsAbstract: true
 };
-JsTypes.push(Neptuo$TemplateEngine$Accounts$Web$DataSources$IUserRoleFilter);
+JsTypes.push(Neptuo$TemplateEngine$Accounts$Web$DataSources$IUserRoleDataSourceFilter);
 var Neptuo$TemplateEngine$Accounts$UserAccountLoginModel = {
     fullname: "Neptuo.TemplateEngine.Accounts.UserAccountLoginModel",
     baseTypeName: "System.Object",

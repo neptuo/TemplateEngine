@@ -1,4 +1,6 @@
-﻿using Neptuo.PresentationModels.TypeModels;
+﻿using Neptuo.Data.Queries;
+using Neptuo.PresentationModels.TypeModels;
+using Neptuo.TemplateEngine.Accounts.Data.Queries;
 using Neptuo.TemplateEngine.Accounts.Queries;
 using Neptuo.TemplateEngine.Web.DataSources;
 using System;
@@ -11,7 +13,7 @@ using System.Threading.Tasks;
 namespace Neptuo.TemplateEngine.Accounts.Web.DataSources
 {
     [WebDataSource]
-    public class UserRoleDataSource : IListDataSource, IUserRoleFilter
+    public class UserRoleDataSource : IListDataSource, IUserRoleDataSourceFilter
     {
         private IUserRoleQuery roleQuery;
 
@@ -21,37 +23,39 @@ namespace Neptuo.TemplateEngine.Accounts.Web.DataSources
 
         public UserRoleDataSource(IUserRoleQuery roleQuery)
         {
+            Guard.NotNull(roleQuery, "roleQuery");
             this.roleQuery = roleQuery;
         }
 
-        protected IEnumerable<UserRoleViewModel> GetDataOverride(int? pageIndex, int? pageSize)
+        protected void ApplyFilter(int? pageIndex, int? pageSize)
         {
-            IEnumerable<UserRole> data = roleQuery.Get();
-
             if (!String.IsNullOrEmpty(Name))
-                data = data.Where(r => r.Name.Contains(Name));
+                roleQuery.Filter.Name = TextSearch.Create(Name, TextSearchType.Contains, false);
 
             if (!String.IsNullOrEmpty(Description))
-                data = data.Where(r => r.Description.Contains(Description));
+                roleQuery.Filter.Description = TextSearch.Create(Description, TextSearchType.Contains, false);
 
             if (Key != null)
-                data = data.Where(r => r.Key == Key);
+                roleQuery.Filter.Key = IntSearch.Create(Key.Value);
 
-            if (pageSize != null)
-                data = data.Skip((pageIndex ?? 0) * pageSize.Value).Take(pageSize.Value);
-
-            return data.OrderBy(r => r.Key).Select(r => new UserRoleViewModel(r.Key, r.Name, r.Description));
+            roleQuery.Page(pageIndex, pageSize);
         }
 
         public IEnumerable GetData(int? pageIndex, int? pageSize)
         {
-            foreach (UserRoleViewModel userRole in GetDataOverride(pageIndex, pageSize))
-                yield return userRole;
+            ApplyFilter(pageIndex, pageSize);
+
+            List<UserRoleViewModel> result = new List<UserRoleViewModel>();
+            foreach (UserRole role in roleQuery.Result().Items)
+                result.Add(new UserRoleViewModel(role.Key, role.Name, role.Description));
+
+            return result;
         }
 
         public int GetTotalCount()
         {
-            return GetDataOverride(null, null).Count();
+            ApplyFilter(null, null);
+            return roleQuery.Count();
         }
     }
 }

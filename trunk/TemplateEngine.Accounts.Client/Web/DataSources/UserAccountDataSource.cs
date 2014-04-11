@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Accounts.Web.DataSources
 {
-    public class UserAccountDataSource : ListDataSourceProxy<UserAccountListResult>, IUserAccountFilter
+    public class UserAccountDataSource : ListDataSourceProxy<UserAccountListResult>, IUserAccountDataSourceFilter
     {
         public int? Key { get; set; }
         public string Username { get; set; }

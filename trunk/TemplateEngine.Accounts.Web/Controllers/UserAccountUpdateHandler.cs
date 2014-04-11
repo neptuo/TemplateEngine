@@ -46,7 +46,10 @@ namespace Neptuo.TemplateEngine.Accounts.Web.Controllers
 
             if(model.RoleKeys != null)
             {
-                account.Roles.Clear();
+                if (account.Roles != null)
+                    account.Roles.Clear();
+                else
+                    account.Roles = new List<UserRole>();
 
                 foreach (int userRoleID in model.RoleKeys)
                     AccountService.AssignAccountToRole(account, userRoleID);

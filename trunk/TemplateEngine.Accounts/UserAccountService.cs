@@ -53,6 +53,9 @@ namespace Neptuo.TemplateEngine.Accounts
             if (userRole == null)
                 throw new ArgumentOutOfRangeException("userRoleID", String.Format("No such user role, for id '{0}'.", userRoleID));
 
+            if (account.Roles == null)
+                account.Roles = new List<UserRole>();
+
             account.Roles.Add(userRole);
         }
 

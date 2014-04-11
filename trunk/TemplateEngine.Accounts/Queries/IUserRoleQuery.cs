@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Accounts.Queries
 {
-    public interface IUserRoleQuery
+    public interface IDeprecatedUserRoleQuery
     {
         UserRole Get(int key);
         IEnumerable<UserRole> Get();

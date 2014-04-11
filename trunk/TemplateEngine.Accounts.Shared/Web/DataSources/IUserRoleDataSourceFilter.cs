@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Accounts.Web.DataSources
 {
-    public interface IUserAccountFilter
+    public interface IUserRoleDataSourceFilter
     {
         int? Key { get; set; }
-        string Username { get; set; }
-        int? RoleKey { get; set; }
+        string Name { get; set; }
+        string Description { get; set; }
     }
 }
