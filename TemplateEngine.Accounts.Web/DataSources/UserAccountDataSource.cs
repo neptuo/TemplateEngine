@@ -15,28 +15,27 @@ using System.Threading.Tasks;
 namespace Neptuo.TemplateEngine.Accounts.Web.DataSources
 {
     [WebDataSource]
-    public class UserAccountDataSource : IListDataSource, IDataSource, IUserAccountFilter
+    public class UserAccountDataSource : IListDataSource, IDataSource, IUserAccountDataSourceFilter
     {
         private IUserAccountQuery userQuery;
-        private IDeprecatedUserAccountQuery userQueryDeprecated;
 
         public int? Key { get; set; }
         public string Username { get; set; }
         public int? RoleKey { get; set; }
 
-        public UserAccountDataSource(IDeprecatedUserAccountQuery userQueryDeprecated)
+        public UserAccountDataSource(IUserAccountQuery userQuery)
         {
-            this.userQuery = null;
-            this.userQueryDeprecated = userQueryDeprecated;
+            Guard.NotNull(userQuery, "userQuery");
+            this.userQuery = userQuery;
         }
 
         public object GetItem()
         {
             UserAccount userAccount = null;
             if (Key != null)
-                userAccount = userQueryDeprecated.Get(Key.Value);
-            else
-                userQueryDeprecated.Get().FirstOrDefault();
+                userQuery.Filter.Key = IntSearch.Create(Key.Value);
+
+            userAccount = userQuery.ResultSingle();
 
             if (userAccount == null)
                 return null;
@@ -44,39 +43,45 @@ namespace Neptuo.TemplateEngine.Accounts.Web.DataSources
             return new UserAccountViewModel(userAccount.Key, userAccount.Username, userAccount.IsEnabled, userAccount.Roles.Select(r => new UserRoleRowViewModel(r.Key, r.Name)));
         }
 
-        protected IEnumerable<UserAccountViewModel> GetDataOverride(int? pageIndex, int? pageSize)
+        protected void ApplyFilter(int? pageIndex, int? pageSize)
         {
-            //if(Key != null)
-            //    userQuery.Filter.Key = IntSearch.Create(Key.Value);
-
-            //if(Username != null)
-            //    userQuery.Filter.Username = TextSearch.Create(Username);
-
-
-            IEnumerable<UserAccount> data = userQueryDeprecated.Get();
             if (!String.IsNullOrEmpty(Username))
-                data = data.Where(u => u.Username.Contains(Username));
+                userQuery.Filter.Username = TextSearch.Create(Username, TextSearchType.Contains);
 
             if (Key != null)
-                data = data.Where(u => u.Key == Key);
+                userQuery.Filter.Key = IntSearch.Create(Key.Value);
 
             if (RoleKey != null)
-                data = data.Where(u => u.Roles.Select(r => r.Key).Contains(RoleKey.Value));
+                userQuery.Filter.RoleKey = RoleKey;
 
-            if (pageSize != null)
-                data = data.Skip((pageIndex ?? 0) * pageSize.Value).Take(pageSize.Value);
+            userQuery.Page(pageIndex, pageSize);
 
-            return data.OrderBy(u => u.Key).Select(u => new UserAccountViewModel(u.Key, u.Username, u.IsEnabled, u.Roles.Select(r => new UserRoleRowViewModel(r.Key, r.Name))));
+            //userQuery.OrderBy(u => u.Username);
         }
 
         public IEnumerable GetData(int? pageIndex, int? pageSize)
         {
-            return GetDataOverride(pageIndex, pageSize);
+            ApplyFilter(pageIndex, pageSize);
+
+            List<UserAccountViewModel> result = new List<UserAccountViewModel>();
+            foreach (UserAccount account in userQuery.Result().Items)
+                result.Add(new UserAccountViewModel(account.Key, account.Username, account.IsEnabled, GetRoles(account)));
+
+            return result;
+        }
+
+        private IEnumerable<UserRoleRowViewModel> GetRoles(UserAccount account)
+        {
+            if (account.Roles == null)
+                return Enumerable.Empty<UserRoleRowViewModel>();
+
+            return account.Roles.Select(r => new UserRoleRowViewModel(r.Key, r.Name));
         }
 
         public int GetTotalCount()
         {
-            return GetDataOverride(null, null).Count();
+            ApplyFilter(null, null);
+            return userQuery.Count();
         }
     }
 }

@@ -54,7 +54,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Queries\IUserAccountFilter.cs" />
     <Compile Include="Queries\IUserAccountQuery.cs" />
+    <Compile Include="Queries\IUserRoleFilter.cs" />
+    <Compile Include="Queries\IUserRoleQuery.cs" />
     <Compile Include="Queries\UserAccountFilter.cs" />
+    <Compile Include="Queries\UserRoleFilter.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

@@ -66,16 +66,17 @@ namespace Neptuo.TemplateEngine.Accounts.Bootstrap
                 //.RegisterInstance<IAccountDbContext>()
                 .RegisterType<IUserAccountRepository, EntityUserAccountRepository>(new SingletonLifetime())
                 .RegisterType<IUserAccountQuery, EntityUserAccountQuery>()
-                .RegisterType<IActivator<UserAccount>, MemoryUserAccountRepository>(new SingletonLifetime())
+                .RegisterType<IActivator<UserAccount>, EntityUserAccountRepository>(new SingletonLifetime())
                 .RegisterType<IDeprecatedUserAccountQuery, MemoryUserAccountRepository>(new SingletonLifetime())
 
                 .RegisterCommandHandler<UserAccountCreateCommand, UserAccountCreateCommandHandler>()
                 .RegisterCommandHandler<UserAccountEditCommand, UserAccountEditCommandHandler>()
                 .RegisterCommandHandler<UserAccountDeleteCommand, UserAccountDeleteCommandHandler>()
 
-                .RegisterType<IUserRoleRepository, MemoryUserRoleRepository>(new SingletonLifetime())
-                .RegisterType<IActivator<UserRole>, MemoryUserRoleRepository>(new SingletonLifetime())
-                .RegisterType<IUserRoleQuery, MemoryUserRoleRepository>(new SingletonLifetime())
+                .RegisterType<IUserRoleRepository, EntityUserRoleRepository>(new SingletonLifetime())
+                .RegisterType<IUserRoleQuery, EntityUserRoleQuery>()
+                .RegisterType<IActivator<UserRole>, EntityUserRoleRepository>(new SingletonLifetime())
+                .RegisterType<IDeprecatedUserRoleQuery, MemoryUserRoleRepository>(new SingletonLifetime())
                 .RegisterCommandHandler<UserRoleEditCommand, EditUserRoleCommandHandler>()
                 
                 .RegisterType<IAuthenticator, UserAccountService>()

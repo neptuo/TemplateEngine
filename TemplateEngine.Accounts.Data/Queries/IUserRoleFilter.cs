@@ -7,12 +7,10 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Accounts.Data.Queries
 {
-    public interface IUserAccountFilter
+    public interface IUserRoleFilter
     {
         IntSearch Key { get; set; }
-        TextSearch Username { get; set; }
-        TextSearch Password { get; set; }
-        bool? IsEnabled { get; set; }
-        int? RoleKey { get; set; }
+        TextSearch Name { get; set; }
+        TextSearch Description { get; set; }
     }
 }

@@ -24,5 +24,7 @@ namespace Neptuo.TemplateEngine.Accounts.Data.Entity
             get { return base.Version; }
             set { base.Version = value; }
         }
+
+        public List<UserAccountEntity> UserAccounts { get; set; }
     }
 }

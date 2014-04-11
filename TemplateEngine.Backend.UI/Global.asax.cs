@@ -27,7 +27,6 @@ using System.Web;
 using System.Web.Routing;
 using System.Web.Security;
 using System.Web.SessionState;
-using TemplateEngine.Data.Entity;
 
 namespace Neptuo.TemplateEngine.Backend.UI
 {
@@ -66,19 +65,14 @@ namespace Neptuo.TemplateEngine.Backend.UI
                 .Map(typeof(PerRequestLifetime), new PerRequestLifetimeMapper())
                 .Map(typeof(PerSessionLifetime), new PerSessionLifetimeMapper());
 
-            //TODO: Temp...
-            DataContext dataContext = new DataContext();
-
             EventDispatcher eventDispatcher = new EventDispatcher();
 
             dependencyContainer
                 .RegisterType<HttpContextBase>(new GetterLifetime(() => new HttpContextWrapper(HttpContext.Current)))
                 .RegisterType<HttpRequestBase>(new GetterLifetime(() => new HttpRequestWrapper(HttpContext.Current.Request)))
-                .RegisterType<DataContext>(new PerRequestLifetime())
                 .RegisterInstance<IEventDispatcher>(eventDispatcher)
                 .RegisterInstance<IEventManager>(eventDispatcher)
                 .RegisterType<IParameterProvider, RequestParameterProvider>(new PerRequestLifetime())
-                .RegisterType<IUnitOfWorkFactory, DataContextUnitOfWorkFactory>(new PerRequestLifetime())
                 .RegisterType<ICommandDispatcher, DependencyCommandDispatcher>()
                 .RegisterType<IControllerRegistry>(new SingletonLifetime(new ControllerRegistryBase()))
                 .RegisterType<IPermissionProvider, OptimisticPermissionProvider>(new PerRequestLifetime())
@@ -86,7 +80,8 @@ namespace Neptuo.TemplateEngine.Backend.UI
 
             //TODO: Move to accounts
             dependencyContainer
-                .RegisterType<IAccountDbContext, DataContext>(new PerRequestLifetime());
+                .RegisterType<DataContext>(new PerRequestLifetime())
+                .RegisterType<IUnitOfWorkFactory, DbContextUnitOfWorkFactory<DataContext>>(new PerRequestLifetime());
 
             return dependencyContainer;
         }

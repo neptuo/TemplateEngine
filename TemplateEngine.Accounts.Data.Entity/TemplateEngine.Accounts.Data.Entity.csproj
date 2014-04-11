@@ -58,13 +58,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IAccountDbContext.cs" />
+    <Compile Include="DataContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Queries\EntityUserAccountQuery.cs" />
+    <Compile Include="Queries\EntityUserRoleQuery.cs" />
     <Compile Include="UserAccountEntity.cs" />
     <Compile Include="EntityUserAccountRepository.cs" />
     <Compile Include="UserRoleEntity.cs" />
-    <Compile Include="UserRoleRepository.cs" />
+    <Compile Include="EntityUserRoleRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
