@@ -64,7 +64,7 @@ namespace Neptuo.TemplateEngine.Accounts.Web.DataSources
             ApplyFilter(pageIndex, pageSize);
 
             List<UserAccountViewModel> result = new List<UserAccountViewModel>();
-            foreach (UserAccount account in userQuery.Result().Items)
+            foreach (UserAccount account in userQuery.Result().Items.ToList())
                 result.Add(new UserAccountViewModel(account.Key, account.Username, account.IsEnabled, GetRoles(account)));
 
             return result;

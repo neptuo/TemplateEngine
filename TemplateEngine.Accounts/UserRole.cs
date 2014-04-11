@@ -7,11 +7,13 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Accounts
 {
-    public abstract class UserRole : IKey<int>, IVersion
+    public class UserRole : IKey<int>, IVersion
     {
-        public virtual int Key { get; set; }
-        public virtual byte[] Version { get; set; }
-        public virtual string Name { get; set; }
-        public virtual string Description { get; set; }
+        public int Key { get; set; }
+        public byte[] Version { get; set; }
+        public string Name { get; set; }
+        public string Description { get; set; }
+
+        public virtual List<UserAccount> Accounts { get; set; }
     }
 }

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Accounts.Data.Entity.Queries
 {
-    public class EntityUserRoleQuery : MappingEntityQuery<UserRole, UserRoleEntity, IUserRoleFilter>, IUserRoleQuery
+    public class EntityUserRoleQuery : EntityQuery<UserRole, IUserRoleFilter>, IUserRoleQuery
     {
         public EntityUserRoleQuery(DataContext dbContext)
             : base(dbContext.UserRoles)
@@ -22,13 +22,13 @@ namespace Neptuo.TemplateEngine.Accounts.Data.Entity.Queries
             if (Filter != null)
             {
                 if (Filter.Key != null)
-                    target = EntityQuerySearch.BuildIntSearch<UserRoleEntity>(target, parameter, r => r.Key, Filter.Key);
+                    target = EntityQuerySearch.BuildIntSearch<UserRole>(target, parameter, r => r.Key, Filter.Key);
 
                 if (Filter.Name != null)
-                    target = EntityQuerySearch.BuildTextSearch<UserRoleEntity>(target, parameter, r => r.Name, Filter.Name);
+                    target = EntityQuerySearch.BuildTextSearch<UserRole>(target, parameter, r => r.Name, Filter.Name);
 
                 if (Filter.Description != null)
-                    target = EntityQuerySearch.BuildTextSearch<UserRoleEntity>(target, parameter, r => r.Description, Filter.Description);
+                    target = EntityQuerySearch.BuildTextSearch<UserRole>(target, parameter, r => r.Description, Filter.Description);
             }
 
             return target;

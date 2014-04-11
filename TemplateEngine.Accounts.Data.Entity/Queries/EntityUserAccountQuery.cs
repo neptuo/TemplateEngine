@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Accounts.Data.Entity.Queries
 {
-    public class EntityUserAccountQuery : MappingEntityQuery<UserAccount, UserAccountEntity, IUserAccountFilter>, IUserAccountQuery
+    public class EntityUserAccountQuery : EntityQuery<UserAccount, IUserAccountFilter>, IUserAccountQuery
     {
         public EntityUserAccountQuery(DataContext dbContext)
             : base(dbContext.UserAccounts)
@@ -22,13 +22,13 @@ namespace Neptuo.TemplateEngine.Accounts.Data.Entity.Queries
             if (Filter != null)
             {
                 if (Filter.Key != null)
-                    target = EntityQuerySearch.BuildIntSearch<UserAccountEntity>(target, parameter, u => u.Key, Filter.Key);
+                    target = EntityQuerySearch.BuildIntSearch<UserAccount>(target, parameter, u => u.Key, Filter.Key);
 
                 if (Filter.Username != null)
-                    target = EntityQuerySearch.BuildTextSearch<UserAccountEntity>(target, parameter, u => u.Username, Filter.Username);
+                    target = EntityQuerySearch.BuildTextSearch<UserAccount>(target, parameter, u => u.Username, Filter.Username);
 
                 if (Filter.Password != null)
-                    target = EntityQuerySearch.BuildTextSearch<UserAccountEntity>(target, parameter, u => u.Password, Filter.Password);
+                    target = EntityQuerySearch.BuildTextSearch<UserAccount>(target, parameter, u => u.Password, Filter.Password);
 
                 //if (Filter.RoleKey != null)
                 //    Items.Where(u => u.Roles.Select(r => r.Key).Contains(Filter.RoleKey.Value));

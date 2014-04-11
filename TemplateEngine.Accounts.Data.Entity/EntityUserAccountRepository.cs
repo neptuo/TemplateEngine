@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Accounts.Data.Entity
 {
-    public class EntityUserAccountRepository : MappingEntityRepository<UserAccount, UserAccountEntity, int, DataContext>, IUserAccountRepository, IDeprecatedUserAccountQuery
+    public class EntityUserAccountRepository : EntityRepository<UserAccount, int, DataContext>, IUserAccountRepository, IDeprecatedUserAccountQuery
     {
         public EntityUserAccountRepository(DataContext dbContext)
             : base(dbContext)
@@ -18,7 +18,7 @@ namespace Neptuo.TemplateEngine.Accounts.Data.Entity
 
         public UserAccount Create()
         {
-            return new UserAccountEntity();
+            return new UserAccount();
         }
 
         public IEnumerable<UserAccount> Get()
@@ -29,6 +29,11 @@ namespace Neptuo.TemplateEngine.Accounts.Data.Entity
         public IEnumerable<UserAccount> Get(int pageIndex, int pageSize)
         {
             return DbContext.UserAccounts.Skip(pageIndex * pageSize).Take(pageSize);
+        }
+
+        public override UserAccount Get(int key)
+        {
+            return DbContext.UserAccounts.Find(key);
         }
 
         public UserAccount Get(Key key)

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Accounts.Data.Entity
 {
-    public class EntityUserRoleRepository : MappingEntityRepository<UserRole, UserRoleEntity, int, DataContext>, IUserRoleRepository, IDeprecatedUserRoleQuery
+    public class EntityUserRoleRepository : EntityRepository<UserRole, int, DataContext>, IUserRoleRepository, IDeprecatedUserRoleQuery
     {
         public EntityUserRoleRepository(DataContext dbContext)
             : base(dbContext)
@@ -17,7 +17,7 @@ namespace Neptuo.TemplateEngine.Accounts.Data.Entity
 
         public UserRole Create()
         {
-            return new UserRoleEntity();
+            return new UserRole();
         }
 
         public IEnumerable<UserRole> Get()
