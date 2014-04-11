@@ -61,6 +61,7 @@
     <Compile Include="Data\IUserAccountRepository.cs" />
     <Compile Include="Data\IUserRoleRepository.cs" />
     <Compile Include="IAuthenticator.cs" />
+    <Compile Include="PasswordProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Queries\IUserRoleQuery.cs" />
     <Compile Include="Queries\IDeprecatedUserAccountQuery.cs" />
