@@ -145,6 +145,7 @@ namespace Neptuo.TemplateEngine.Web
 
         private void OnNavigation(string url, string[] toUpdate)
         {
+            UpdateViewNotifier.StartUpdate();
             toUpdate = toUpdate ?? DefaultToUpdate;
 
             HistoryState.Push(new HistoryItem(url, toUpdate));
@@ -153,6 +154,7 @@ namespace Neptuo.TemplateEngine.Web
 
         private void OnFormSubmit(FormRequestContext context)
         {
+            UpdateViewNotifier.StartUpdate();
             //TODO: Invoke controllers
             //if (!InvokeControllers(context.Parameters))
             FormPostInvokers.Invoke(new FormPostInvoker(this, context));
