@@ -38,8 +38,6 @@ namespace Neptuo.TemplateEngine.Accounts.Web.Controllers
 
         public void Handle(UserAccountCreateCommand model)
         {
-            throw new Exception();
-
             this.model = model;
             
             using (EventManager.Using(this))
