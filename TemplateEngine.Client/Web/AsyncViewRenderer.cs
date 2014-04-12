@@ -1,4 +1,5 @@
 ﻿using Neptuo.Templates;
+using SharpKit.JavaScript;
 using SharpKit.jQuery;
 using System;
 using System.Collections.Generic;
@@ -43,8 +44,22 @@ namespace Neptuo.TemplateEngine.Web
         public void Render()
         {
             if (!Checker.IsViewLoaded(ViewPath))
-                new jQuery("body").append("<script src='" + FormatViewUrl() + "'></script>");
-            
+            {
+                jQuery.ajax(new AjaxSettings
+                {
+                    url = FormatViewUrl(),
+                    dataType = "script",
+                    success = OnScriptLoaded
+                });
+            }
+            else
+            {
+                RenderView();
+            }
+        }
+
+        private void OnScriptLoaded(object data, JsString status, jqXHR response)
+        {
             RenderView();
         }
 
