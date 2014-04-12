@@ -11,6 +11,7 @@ using Neptuo.TemplateEngine.PresentationModels;
 using Neptuo.TemplateEngine.Routing;
 using Neptuo.TemplateEngine.Web.Controllers;
 using Neptuo.TemplateEngine.Web.Controllers.Binders;
+using Neptuo.TemplateEngine.Web.Routing;
 using Neptuo.Templates;
 using SharpKit.JavaScript;
 using System;
@@ -80,7 +81,7 @@ namespace Neptuo.TemplateEngine.Web
             MainView = new MainView(viewActivator, this);
 
             Router = new ApplicationRouter(!IsDebug);
-            Router.AddRoute(new TemplateRoute(".aspx", this));
+            Router.AddRoute(new TemplateRoute(TemplateRouteParameterBase.TemplateUrlSuffix, this));
 
             UpdateViewNotifier = new UpdateViewNotifier(MainView);
 

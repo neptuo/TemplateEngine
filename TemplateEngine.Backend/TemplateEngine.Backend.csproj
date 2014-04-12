@@ -118,6 +118,7 @@
     <Compile Include="Web\Routing\JavascriptViewGeneratorRouteHandler.cs" />
     <Compile Include="Web\ErrorHttpHandler.cs" />
     <Compile Include="Web\Routing\ErrorRouteHandler.cs" />
+    <Compile Include="Web\Routing\StaticTemplateRouteHandler.cs" />
     <Compile Include="Web\Routing\TemplateRouteParameterFactory.cs" />
     <Compile Include="Web\Routing\TemplateRouteHandler.cs" />
     <Compile Include="Web\Routing\TemplateRouteParameter.cs" />

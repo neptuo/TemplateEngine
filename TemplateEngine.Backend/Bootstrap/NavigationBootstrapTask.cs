@@ -3,6 +3,7 @@ using Neptuo.TemplateEngine.Navigation;
 using Neptuo.TemplateEngine.Navigation.Bootstrap;
 using Neptuo.TemplateEngine.Web;
 using Neptuo.TemplateEngine.Web.Navigation;
+using Neptuo.TemplateEngine.Web.Routing;
 using Neptuo.Web;
 using System;
 using System.Collections.Generic;
@@ -27,7 +28,7 @@ namespace Neptuo.TemplateEngine.Backend.Bootstrap
             FormUriServiceRegistration.SetInstance(formService);
 
             formService
-                .Register("Home", "~/Home.aspx");
+                .Register("Home", TemplateRouteParameterBase.FormatUrl("~/Home"));
 
             dependencyContainer
                 .RegisterInstance<IFormUriService>(formService)
