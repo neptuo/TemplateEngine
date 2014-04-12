@@ -185,7 +185,9 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Views\Accounts\RoleList.view" />
-    <None Include="Views\Accounts\UserList.view" />
+    <None Include="Views\Accounts\UserList.view">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Views\Home.view" />
     <None Include="Views\Shared\AdminLayout.view">
       <SubType>Designer</SubType>

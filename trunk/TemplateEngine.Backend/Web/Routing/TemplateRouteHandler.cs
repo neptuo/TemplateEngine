@@ -22,14 +22,19 @@ namespace Neptuo.TemplateEngine.Backend.Web.Routing
 
         public IHttpHandler GetHttpHandler(RequestContext requestContext)
         {
+            string templateUrl = GetTemplateUrl(requestContext);
+            if (templateUrl == null)
+                throw new InvalidOperationException("TemplateUrl can't be null.");
+
+            return new TemplateHttpHandler(templateUrl, viewService, new ViewServiceContext(dependencyProvider));
+        }
+
+        protected virtual string GetTemplateUrl(RequestContext requestContext)
+        {
             if (!requestContext.RouteData.Values.ContainsKey("TemplateUrl"))
                 throw new InvalidOperationException("Route values must contain 'TemplateUrl' to use TemplateRouteHandler.");
 
-            string templateUrl = requestContext.RouteData.Values["TemplateUrl"] as string;
-            if (templateUrl == null)
-                throw new InvalidOperationException("TemplateUrl can't be null (and must be of string type).");
-
-            return new TemplateHttpHandler(templateUrl, viewService, new ViewServiceContext(dependencyProvider));
+            return requestContext.RouteData.Values["TemplateUrl"] as string;
         }
     }
 }
