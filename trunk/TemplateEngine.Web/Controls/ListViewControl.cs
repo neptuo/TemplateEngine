@@ -14,11 +14,11 @@ namespace Neptuo.TemplateEngine.Web.Controls
         public IListDataSource Source { get; set; }
         public ITemplate ItemTemplate { get; set; }
         public ITemplate EmptyTemplate { get; set; }
-        public IPaginationControl Pagination {get;set;}
+        public IPaginationControl Pagination { get; set; }
         public int? PageSize { get; set; }
         public int? PageIndex { get; set; }
-        protected DataContextStorage DataContext { get; private set; }
         protected int TotalCount { get; private set; }
+        protected DataContextStorage DataContext { get; private set; }
 
         public ListViewControl(IComponentManager componentManager, TemplateContentStorageStack storage, DataContextStorage dataContext)
             : base(componentManager, storage)
@@ -76,7 +76,6 @@ namespace Neptuo.TemplateEngine.Web.Controls
                 Pagination.PageSize = PageSize.Value;
                 Pagination.TotalCount = TotalCount;
                 InitComponent(Pagination);
-                Pagination.OnInit();
             }
 
             DataContext.Pop("Template");
@@ -97,9 +96,7 @@ namespace Neptuo.TemplateEngine.Web.Controls
         public override void Render(IHtmlWriter writer)
         {
             base.Render(writer);
-
-            if (Pagination != null)
-                Pagination.Render(writer);
+            RenderComponent(Pagination, writer);
         }
     }
 }

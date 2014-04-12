@@ -9,10 +9,10 @@
     </title>
 
     <ui:Bundle Path="~/css/admin" IsStyle="true" />
-    <ui:Bundle Path="~/js/admin" />
+    <!--<ui:Bundle Path="~/js/admin" />
   
     <ajax:StartUp DefaultUpdate="Body" />
-    <ui:ViewBundle Path="Default" />
+    <ui:ViewBundle Path="Default" />-->
   
     <ui:TemplatePlaceholder Name="Head" />
 </head>
