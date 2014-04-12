@@ -1,5 +1,5 @@
 ﻿using Neptuo.Security.Cryptography;
-using Neptuo.TemplateEngine.Web.Compilation;
+using Neptuo.TemplateEngine.Templates.Compilation;
 using Neptuo.TemplateEngine.Web.ViewBundles;
 using Neptuo.Templates.Compilation;
 using System;
@@ -53,7 +53,7 @@ namespace Neptuo.TemplateEngine.Backend.Web
                 {
                     INaming classNaming = viewService.NamingService.FromFile(virtualViewPath);
                     appendBuilder.AppendFormat(
-                        "Neptuo.TemplateEngine.Web.StaticViewActivator.Add('{0}', Typeof(Neptuo.Templates.{1}.ctor));",
+                        "Neptuo.TemplateEngine.Templates.StaticViewActivator.Add('{0}', Typeof(Neptuo.Templates.{1}.ctor));",
                         virtualViewPath, //.Replace("~/Views/", "~/")
                         classNaming.ClassName
                     );
@@ -85,12 +85,12 @@ namespace Neptuo.TemplateEngine.Backend.Web
         private string RewriteJavascriptContent(string content)
         {
             //content = content.Replace(
-            //    "new Neptuo.TemplateEngine.Web.Controls.FileTemplate.ctor(this.dependencyProvider, this.componentManager, (Cast((this.dependencyProvider.Resolve(Typeof(Neptuo.Templates.Compilation.IViewService.ctor), null)), Neptuo.Templates.Compilation.IViewService.ctor)))", 
-            //    "new Neptuo.TemplateEngine.Web.Controls.FileTemplate2.ctor(this.dependencyProvider, this.componentManager)"
+            //    "new Neptuo.TemplateEngine.Templates.Controls.FileTemplate.ctor(this.dependencyProvider, this.componentManager, (Cast((this.dependencyProvider.Resolve(Typeof(Neptuo.Templates.Compilation.IViewService.ctor), null)), Neptuo.Templates.Compilation.IViewService.ctor)))", 
+            //    "new Neptuo.TemplateEngine.Templates.Controls.FileTemplate2.ctor(this.dependencyProvider, this.componentManager)"
             //);
             //content = content.Replace(
-            //    "Neptuo.TemplateEngine.Web.Controls.FileTemplate.ctor", 
-            //    "Neptuo.TemplateEngine.Web.Controls.FileTemplate2.ctor"
+            //    "Neptuo.TemplateEngine.Templates.Controls.FileTemplate.ctor", 
+            //    "Neptuo.TemplateEngine.Templates.Controls.FileTemplate2.ctor"
             //);
             return content;
         }

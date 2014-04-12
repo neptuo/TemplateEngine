@@ -1,6 +1,6 @@
 ﻿using Neptuo.Linq.Expressions;
-using Neptuo.TemplateEngine.Web.Compilation.Parsers;
-using Neptuo.TemplateEngine.Web.Controls;
+using Neptuo.TemplateEngine.Templates.Compilation.Parsers;
+using Neptuo.TemplateEngine.Templates.Controls;
 using Neptuo.Templates.Compilation;
 using Neptuo.Templates.Compilation.CodeObjects;
 using Neptuo.Templates.Compilation.Parsers;
@@ -14,7 +14,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Neptuo.TemplateEngine.Web.Compilation.PreProcessing
+namespace Neptuo.TemplateEngine.Templates.Compilation.PreProcessing
 {
     public class TemplatePropertyVisitor : BaseVisitor
     {

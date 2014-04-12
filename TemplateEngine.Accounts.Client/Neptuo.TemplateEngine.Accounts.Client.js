@@ -70,12 +70,12 @@ var Neptuo$TemplateEngine$Accounts$UserAccountEditModelConverter = {
 JsTypes.push(Neptuo$TemplateEngine$Accounts$UserAccountEditModelConverter);
 var Neptuo$TemplateEngine$Accounts$UserAccountListResult = {
     fullname: "Neptuo.TemplateEngine.Accounts.UserAccountListResult",
-    baseTypeName: "Neptuo.TemplateEngine.Web.DataSources.ListResult",
+    baseTypeName: "Neptuo.TemplateEngine.Templates.DataSources.ListResult",
     assemblyName: "Neptuo.TemplateEngine.Accounts.Client",
     Kind: "Class",
     definition: {
         ctor: function (data, totalCount){
-            Neptuo.TemplateEngine.Web.DataSources.ListResult.ctor.call(this, data, totalCount);
+            Neptuo.TemplateEngine.Templates.DataSources.ListResult.ctor.call(this, data, totalCount);
         }
     },
     ctors: [{
@@ -155,12 +155,12 @@ var Neptuo$TemplateEngine$Accounts$UserRoleEditModelConverter = {
 JsTypes.push(Neptuo$TemplateEngine$Accounts$UserRoleEditModelConverter);
 var Neptuo$TemplateEngine$Accounts$UserRoleListResult = {
     fullname: "Neptuo.TemplateEngine.Accounts.UserRoleListResult",
-    baseTypeName: "Neptuo.TemplateEngine.Web.DataSources.ListResult",
+    baseTypeName: "Neptuo.TemplateEngine.Templates.DataSources.ListResult",
     assemblyName: "Neptuo.TemplateEngine.Accounts.Client",
     Kind: "Class",
     definition: {
         ctor: function (data, totalCount){
-            Neptuo.TemplateEngine.Web.DataSources.ListResult.ctor.call(this, data, totalCount);
+            Neptuo.TemplateEngine.Templates.DataSources.ListResult.ctor.call(this, data, totalCount);
         }
     },
     ctors: [{
@@ -239,18 +239,18 @@ var Neptuo$TemplateEngine$Accounts$Web$Controllers$UserAccountController = {
     IsAbstract: false
 };
 JsTypes.push(Neptuo$TemplateEngine$Accounts$Web$Controllers$UserAccountController);
-var Neptuo$TemplateEngine$Accounts$Web$DataSources$UserAccountDataSource = {
-    fullname: "Neptuo.TemplateEngine.Accounts.Web.DataSources.UserAccountDataSource",
-    baseTypeName: "Neptuo.TemplateEngine.Web.DataSources.ListDataSourceProxy$1",
+var Neptuo$TemplateEngine$Accounts$Templates$DataSources$UserAccountDataSource = {
+    fullname: "Neptuo.TemplateEngine.Accounts.Templates.DataSources.UserAccountDataSource",
+    baseTypeName: "Neptuo.TemplateEngine.Templates.DataSources.ListDataSourceProxy$1",
     assemblyName: "Neptuo.TemplateEngine.Accounts.Client",
-    interfaceNames: ["Neptuo.TemplateEngine.Accounts.Web.DataSources.IUserAccountDataSourceFilter"],
+    interfaceNames: ["Neptuo.TemplateEngine.Accounts.Templates.DataSources.IUserAccountDataSourceFilter"],
     Kind: "Class",
     definition: {
         ctor: function (urlProvider){
             this._Key = null;
             this._Username = null;
             this._RoleKey = null;
-            Neptuo.TemplateEngine.Web.DataSources.ListDataSourceProxy$1.ctor.call(this, Neptuo.TemplateEngine.Accounts.UserAccountListResult.ctor, urlProvider);
+            Neptuo.TemplateEngine.Templates.DataSources.ListDataSourceProxy$1.ctor.call(this, Neptuo.TemplateEngine.Accounts.UserAccountListResult.ctor, urlProvider);
         },
         Key$$: "System.Nullable`1[[System.Int32]]",
         get_Key: function (){
@@ -284,16 +284,16 @@ var Neptuo$TemplateEngine$Accounts$Web$DataSources$UserAccountDataSource = {
     ],
     IsAbstract: false
 };
-JsTypes.push(Neptuo$TemplateEngine$Accounts$Web$DataSources$UserAccountDataSource);
-var Neptuo$TemplateEngine$Accounts$Web$DataSources$UserAccountEditDataSource = {
-    fullname: "Neptuo.TemplateEngine.Accounts.Web.DataSources.UserAccountEditDataSource",
-    baseTypeName: "Neptuo.TemplateEngine.Web.DataSources.DataSourceProxy$1",
+JsTypes.push(Neptuo$TemplateEngine$Accounts$Templates$DataSources$UserAccountDataSource);
+var Neptuo$TemplateEngine$Accounts$Templates$DataSources$UserAccountEditDataSource = {
+    fullname: "Neptuo.TemplateEngine.Accounts.Templates.DataSources.UserAccountEditDataSource",
+    baseTypeName: "Neptuo.TemplateEngine.Templates.DataSources.DataSourceProxy$1",
     assemblyName: "Neptuo.TemplateEngine.Accounts.Client",
     Kind: "Class",
     definition: {
         ctor: function (modelBinder, urlProvider){
             this.key = 0;
-            Neptuo.TemplateEngine.Web.DataSources.DataSourceProxy$1.ctor.call(this, Neptuo.TemplateEngine.Accounts.UserAccountEditModel.ctor, modelBinder, urlProvider);
+            Neptuo.TemplateEngine.Templates.DataSources.DataSourceProxy$1.ctor.call(this, Neptuo.TemplateEngine.Accounts.UserAccountEditModel.ctor, modelBinder, urlProvider);
         },
         Key$$: "System.Int32",
         get_Key: function (){
@@ -327,19 +327,19 @@ var Neptuo$TemplateEngine$Accounts$Web$DataSources$UserAccountEditDataSource = {
     ],
     IsAbstract: false
 };
-JsTypes.push(Neptuo$TemplateEngine$Accounts$Web$DataSources$UserAccountEditDataSource);
-var Neptuo$TemplateEngine$Accounts$Web$DataSources$UserRoleDataSource = {
-    fullname: "Neptuo.TemplateEngine.Accounts.Web.DataSources.UserRoleDataSource",
-    baseTypeName: "Neptuo.TemplateEngine.Web.DataSources.ListDataSourceProxy$1",
+JsTypes.push(Neptuo$TemplateEngine$Accounts$Templates$DataSources$UserAccountEditDataSource);
+var Neptuo$TemplateEngine$Accounts$Templates$DataSources$UserRoleDataSource = {
+    fullname: "Neptuo.TemplateEngine.Accounts.Templates.DataSources.UserRoleDataSource",
+    baseTypeName: "Neptuo.TemplateEngine.Templates.DataSources.ListDataSourceProxy$1",
     assemblyName: "Neptuo.TemplateEngine.Accounts.Client",
-    interfaceNames: ["Neptuo.TemplateEngine.Accounts.Web.DataSources.IUserRoleDataSourceFilter"],
+    interfaceNames: ["Neptuo.TemplateEngine.Accounts.Templates.DataSources.IUserRoleDataSourceFilter"],
     Kind: "Class",
     definition: {
         ctor: function (urlProvider){
             this._Key = null;
             this._Name = null;
             this._Description = null;
-            Neptuo.TemplateEngine.Web.DataSources.ListDataSourceProxy$1.ctor.call(this, Neptuo.TemplateEngine.Accounts.UserRoleListResult.ctor, urlProvider);
+            Neptuo.TemplateEngine.Templates.DataSources.ListDataSourceProxy$1.ctor.call(this, Neptuo.TemplateEngine.Accounts.UserRoleListResult.ctor, urlProvider);
         },
         Key$$: "System.Nullable`1[[System.Int32]]",
         get_Key: function (){
@@ -373,16 +373,16 @@ var Neptuo$TemplateEngine$Accounts$Web$DataSources$UserRoleDataSource = {
     ],
     IsAbstract: false
 };
-JsTypes.push(Neptuo$TemplateEngine$Accounts$Web$DataSources$UserRoleDataSource);
-var Neptuo$TemplateEngine$Accounts$Web$DataSources$UserRoleEditDataSource = {
-    fullname: "Neptuo.TemplateEngine.Accounts.Web.DataSources.UserRoleEditDataSource",
-    baseTypeName: "Neptuo.TemplateEngine.Web.DataSources.DataSourceProxy$1",
+JsTypes.push(Neptuo$TemplateEngine$Accounts$Templates$DataSources$UserRoleDataSource);
+var Neptuo$TemplateEngine$Accounts$Templates$DataSources$UserRoleEditDataSource = {
+    fullname: "Neptuo.TemplateEngine.Accounts.Templates.DataSources.UserRoleEditDataSource",
+    baseTypeName: "Neptuo.TemplateEngine.Templates.DataSources.DataSourceProxy$1",
     assemblyName: "Neptuo.TemplateEngine.Accounts.Client",
     Kind: "Class",
     definition: {
         ctor: function (modelBinder, urlProvider){
             this.key = 0;
-            Neptuo.TemplateEngine.Web.DataSources.DataSourceProxy$1.ctor.call(this, Neptuo.TemplateEngine.Accounts.UserRoleEditModel.ctor, modelBinder, urlProvider);
+            Neptuo.TemplateEngine.Templates.DataSources.DataSourceProxy$1.ctor.call(this, Neptuo.TemplateEngine.Accounts.UserRoleEditModel.ctor, modelBinder, urlProvider);
         },
         Key$$: "System.Int32",
         get_Key: function (){
@@ -410,5 +410,5 @@ var Neptuo$TemplateEngine$Accounts$Web$DataSources$UserRoleEditDataSource = {
     ],
     IsAbstract: false
 };
-JsTypes.push(Neptuo$TemplateEngine$Accounts$Web$DataSources$UserRoleEditDataSource);
+JsTypes.push(Neptuo$TemplateEngine$Accounts$Templates$DataSources$UserRoleEditDataSource);
 

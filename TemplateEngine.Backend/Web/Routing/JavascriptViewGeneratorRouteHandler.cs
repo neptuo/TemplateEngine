@@ -1,5 +1,5 @@
 ﻿using Neptuo.TemplateEngine.Backend.Web;
-using Neptuo.TemplateEngine.Web.Compilation;
+using Neptuo.TemplateEngine.Templates.Compilation;
 using Neptuo.Templates.Compilation;
 using System;
 using System.Collections.Generic;

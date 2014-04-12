@@ -1,4 +1,5 @@
 ﻿using Neptuo.TemplateEngine.Navigation;
+using Neptuo.TemplateEngine.Templates;
 using Neptuo.TemplateEngine.Web;
 using Neptuo.TemplateEngine.Web.Controllers;
 using Neptuo.TemplateEngine.Web.Controllers.Binders;

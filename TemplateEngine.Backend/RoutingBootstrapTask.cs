@@ -2,7 +2,7 @@
 using Neptuo.TemplateEngine.Backend.Web;
 using Neptuo.TemplateEngine.Backend.Web.Routing;
 using Neptuo.TemplateEngine.Web;
-using Neptuo.TemplateEngine.Web.Compilation;
+using Neptuo.TemplateEngine.Templates.Compilation;
 using Neptuo.Templates.Compilation;
 using Neptuo.Web.Routing;
 using System;

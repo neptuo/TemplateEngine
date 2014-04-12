@@ -1,4 +1,5 @@
-﻿using Neptuo.Templates;
+﻿using Neptuo.TemplateEngine.Templates;
+using Neptuo.Templates;
 using SharpKit.JavaScript;
 using SharpKit.jQuery;
 using System;
