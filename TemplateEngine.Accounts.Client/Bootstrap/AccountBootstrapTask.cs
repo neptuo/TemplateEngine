@@ -1,6 +1,5 @@
 ﻿using Neptuo.Bootstrap;
 using Neptuo.ComponentModel.Converters;
-using Neptuo.TemplateEngine.Accounts.Data;
 using Neptuo.TemplateEngine.Accounts.Web.Controllers;
 using Neptuo.TemplateEngine.Navigation.Bootstrap;
 using Neptuo.TemplateEngine.Web;
@@ -39,9 +38,6 @@ namespace Neptuo.TemplateEngine.Accounts.Bootstrap
 
         public void Initialize()
         {
-            dependencyContainer
-                .RegisterInstance(new UserRepository());
-
             //controllerRegistry
             //    .Add("Accounts/User/Create", new DependencyControllerFactory(dependencyContainer, typeof(UserAccountController)));
             //.Add(dependencyContainer, typeof(UserAccountController));

@@ -27,7 +27,6 @@ var Neptuo$TemplateEngine$Accounts$Bootstrap$AccountBootstrapTask = {
             this.converterRepository = Neptuo.Converts.get_Repository();
         },
         Initialize: function (){
-            Neptuo.DependencyContainerExtensions.RegisterInstance$1(Neptuo.TemplateEngine.Accounts.Data.UserRepository.ctor, this.dependencyContainer, new Neptuo.TemplateEngine.Accounts.Data.UserRepository.ctor());
             this.converterRepository.Add(Typeof(Object), Typeof(Neptuo.TemplateEngine.Accounts.UserAccountEditModel.ctor), new Neptuo.TemplateEngine.Accounts.UserAccountEditModelConverter.ctor()).Add(Typeof(Object), Typeof(Neptuo.TemplateEngine.Accounts.UserAccountListResult.ctor), new Neptuo.TemplateEngine.Accounts.UserAccountListResultConverter.ctor()).Add(Typeof(Object), Typeof(Neptuo.TemplateEngine.Accounts.UserRoleEditModel.ctor), new Neptuo.TemplateEngine.Accounts.UserRoleEditModelConverter.ctor()).Add(Typeof(Object), Typeof(Neptuo.TemplateEngine.Accounts.UserRoleListResult.ctor), new Neptuo.TemplateEngine.Accounts.UserRoleListResultConverter.ctor());
             this.SetupForms(this.formRegistry);
             this.SetupGlobalNavigations(this.globalNavigations);
@@ -41,47 +40,6 @@ var Neptuo$TemplateEngine$Accounts$Bootstrap$AccountBootstrapTask = {
     IsAbstract: false
 };
 JsTypes.push(Neptuo$TemplateEngine$Accounts$Bootstrap$AccountBootstrapTask);
-var Neptuo$TemplateEngine$Accounts$Data$UserRepository = {
-    fullname: "Neptuo.TemplateEngine.Accounts.Data.UserRepository",
-    baseTypeName: "System.Object",
-    assemblyName: "Neptuo.TemplateEngine.Accounts.Client",
-    Kind: "Class",
-    definition: {
-        ctor: function (){
-            this.data = null;
-            System.Object.ctor.call(this);
-            this.data = new System.Collections.Generic.List$1.ctor(Neptuo.TemplateEngine.Accounts.UserAccountEditModel.ctor);
-            for (var i = 0; i < 34; i++){
-                this.data.Add((function (){
-                    var $v1 = new Neptuo.TemplateEngine.Accounts.UserAccountEditModel.ctor();
-                    $v1.set_Key(i + 1);
-                    $v1.set_Username("User " + i);
-                    $v1.set_IsEnabled((i % 3) == 1);
-                    return $v1;
-                }).call(this));
-            }
-        },
-        GetPage: function (pageIndex, pageSize){
-            return System.Linq.Enumerable.ToList$1(Neptuo.TemplateEngine.Accounts.UserAccountEditModel.ctor, System.Linq.Enumerable.Take$1(Neptuo.TemplateEngine.Accounts.UserAccountEditModel.ctor, System.Linq.Enumerable.Skip$1(Neptuo.TemplateEngine.Accounts.UserAccountEditModel.ctor, this.data, pageIndex * pageSize), pageSize));
-        },
-        GetAll: function (){
-            return this.data;
-        },
-        Add: function (userAccount){
-            this.data.Add(userAccount);
-        },
-        GetCount: function (){
-            return this.data.get_Count();
-        }
-    },
-    ctors: [{
-        name: "ctor",
-        parameters: []
-    }
-    ],
-    IsAbstract: false
-};
-JsTypes.push(Neptuo$TemplateEngine$Accounts$Data$UserRepository);
 var Neptuo$TemplateEngine$Accounts$UserAccountEditModelConverter = {
     fullname: "Neptuo.TemplateEngine.Accounts.UserAccountEditModelConverter",
     baseTypeName: "Neptuo.ComponentModel.Converters.ConverterBase$2",
@@ -351,9 +309,9 @@ var Neptuo$TemplateEngine$Accounts$Web$DataSources$UserAccountEditDataSource = {
         OnGetItem: function (callback){
             if (this.get_Key() == 0){
                 var model = (function (){
-                    var $v2 = new Neptuo.TemplateEngine.Accounts.UserAccountEditModel.ctor();
-                    $v2.set_Key(0);
-                    return $v2;
+                    var $v1 = new Neptuo.TemplateEngine.Accounts.UserAccountEditModel.ctor();
+                    $v1.set_Key(0);
+                    return $v1;
                 }).call(this);
                 model = Neptuo.TemplateEngine.Web.Controllers.Binders.ModelBinderExtensions.Bind$1$$IModelBinder$$T(Neptuo.TemplateEngine.Accounts.UserAccountEditModel.ctor, this.get_ModelBinder(), model);
                 callback(model);
