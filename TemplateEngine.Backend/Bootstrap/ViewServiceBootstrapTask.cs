@@ -77,12 +77,15 @@ namespace Neptuo.TemplateEngine.Backend.Bootstrap
         protected virtual void SetupViewService(CodeDomViewService viewService, TypeBuilderRegistry registry, IFileProvider fileProvider, IVirtualPathProvider virtualPathProvider)
         {
             string tempDirectory = @"C:\Temp\NeptuoTemplateEngine";
-            string currentDirectory = DateTime.Now.Ticks.ToString();
+            string currentDirectory = DateTime.Now.ToString("yyyy-MM-dd HH-mm-ss");
 
-            //string currentTemp = Path.Combine(tempDirectory, currentDirectory);
-            //if (!Directory.Exists(currentTemp))
-            //    Directory.CreateDirectory(currentTemp);
+#if DEBUG
+            string currentTemp = Path.Combine(tempDirectory, currentDirectory);
+            if (!Directory.Exists(currentTemp))
+                Directory.CreateDirectory(currentTemp);
+#else
             string currentTemp = tempDirectory;
+#endif
 
             viewService.ParserService.ContentParsers.Add(new XmlContentParser(registry));
             viewService.ParserService.DefaultValueParser = new PlainValueParser();

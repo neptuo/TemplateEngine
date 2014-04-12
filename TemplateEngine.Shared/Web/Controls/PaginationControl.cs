@@ -9,14 +9,19 @@ namespace Neptuo.TemplateEngine.Web.Controls
 {
     public class PaginationControl : TemplateControl, IPaginationControl
     {
+        private ICurrentUrlProvider urlProvider;
+
         public ITemplate ItemTemplate { get; set; }
         public int PageSize { get; set; }
         public int PageIndex { get; set; }
         public int TotalCount { get; set; }
 
-        public PaginationControl(IComponentManager componentManager, TemplateContentStorageStack storage)
+        public PaginationControl(IComponentManager componentManager, ICurrentUrlProvider urlProvider, TemplateContentStorageStack storage)
             : base(componentManager, storage)
-        { }
+        {
+            Guard.NotNull(urlProvider, "urlProvider");
+            this.urlProvider = urlProvider;
+        }
 
         public override void OnInit()
         {
@@ -26,28 +31,25 @@ namespace Neptuo.TemplateEngine.Web.Controls
         public override void Render(IHtmlWriter writer)
         {
             //base.Render(writer);
+            
+            writer
+                .Tag("ul")
+                .Attribute("class", "pagination pagination-sm");
 
-            if (PageSize != null)
+            for (int i = 0; i < (int)Math.Ceiling((decimal)TotalCount / PageSize); i++)
             {
                 writer
-                    .Tag("ul")
-                    .Attribute("class", "pagination pagination-sm");
-
-                for (int i = 0; i < (int)Math.Ceiling((decimal)TotalCount / PageSize); i++)
-                {
-                    writer
-                        .Tag("li")
-                        .Attribute("class", (PageIndex == i) ? "active" : "")
-                            .Tag("a")
-                            .Attribute("href", (i != 0) ? ("?PageIndex=" + i) : "?")
-                            .Content(i + 1)
-                            .CloseFullTag()
-                        .CloseFullTag();
-                }
-
-                writer
+                    .Tag("li")
+                    .Attribute("class", (PageIndex == i) ? "active" : "")
+                        .Tag("a")
+                        .Attribute("href", urlProvider.GetCurrentUrl() + ((i != 0) ? ("?PageIndex=" + i) : ""))
+                        .Content(i + 1)
+                        .CloseFullTag()
                     .CloseFullTag();
             }
+
+            writer
+                .CloseFullTag();
         }
     }
 }

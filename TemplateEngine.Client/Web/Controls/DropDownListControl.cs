@@ -12,8 +12,8 @@ namespace Neptuo.TemplateEngine.Web.Controls
         public string CssStyle { get; set; }
         public string CssClass { get; set; }
 
-        public DropDownListControl(IRequestContext requestContext, PartialUpdateHelper partialHelper, SelectControlContext context)
-            : base(requestContext, partialHelper, context)
+        public DropDownListControl(PartialUpdateHelper partialHelper, SelectControlContext context)
+            : base(partialHelper, context)
         { }
 
         public override void OnInit()

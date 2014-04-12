@@ -19,8 +19,8 @@ namespace Neptuo.TemplateEngine.Web.Controls
 
         protected IBindingManager BindingManager { get; private set; }
 
-        public SelectControl(IRequestContext requestContext, PartialUpdateHelper updateHelper, SelectControlContext context)
-            : base(requestContext, context.Storage, context.DataContext, updateHelper)
+        public SelectControl(PartialUpdateHelper updateHelper, SelectControlContext context)
+            : base(context.RequestContext, context.Storage, context.DataContext, updateHelper)
         {
             Attributes = new HtmlAttributeCollection();
             BindingManager = context.BindingManager;

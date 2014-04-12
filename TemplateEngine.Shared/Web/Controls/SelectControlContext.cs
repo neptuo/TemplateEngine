@@ -9,14 +9,14 @@ namespace Neptuo.TemplateEngine.Web.Controls
 {
     public class SelectControlContext
     {
-        public IComponentManager ComponentManager { get; private set; }
+        public IRequestContext RequestContext { get; private set; }
         public TemplateContentStorageStack Storage { get; private set; }
         public DataContextStorage DataContext { get; private set; }
         public IBindingManager BindingManager { get; private set; }
 
-        public SelectControlContext(IComponentManager componentManager, TemplateContentStorageStack storage, DataContextStorage dataContext, IBindingManager bindingManager)
+        public SelectControlContext(IRequestContext requestContext, TemplateContentStorageStack storage, DataContextStorage dataContext, IBindingManager bindingManager)
         {
-            ComponentManager = componentManager;
+            RequestContext = requestContext;
             Storage = storage;
             DataContext = dataContext;
             BindingManager = bindingManager;

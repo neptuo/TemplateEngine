@@ -396,12 +396,15 @@ var Neptuo$TemplateEngine$Web$Controls$PaginationControl = {
     interfaceNames: ["Neptuo.TemplateEngine.Web.Controls.IPaginationControl"],
     Kind: "Class",
     definition: {
-        ctor: function (componentManager, storage){
+        ctor: function (componentManager, urlProvider, storage){
+            this.urlProvider = null;
             this._ItemTemplate = null;
             this._PageSize = 0;
             this._PageIndex = 0;
             this._TotalCount = 0;
             Neptuo.TemplateEngine.Web.Controls.TemplateControl.ctor.call(this, componentManager, storage);
+            Neptuo.Guard.NotNull$$Object$$String(urlProvider, "urlProvider");
+            this.urlProvider = urlProvider;
         },
         ItemTemplate$$: "Neptuo.TemplateEngine.Web.Controls.ITemplate",
         get_ItemTemplate: function (){
@@ -434,18 +437,16 @@ var Neptuo$TemplateEngine$Web$Controls$PaginationControl = {
         OnInit: function (){
         },
         Render: function (writer){
-            if (this.get_PageSize() != null){
-                writer.Tag("ul").Attribute("class", "pagination pagination-sm");
-                for (var i = 0; i < Cast(System.Math.Ceiling$$Decimal(this.get_TotalCount() / this.get_PageSize()), System.Int32.ctor); i++){
-                    writer.Tag("li").Attribute("class", (this.get_PageIndex() == i) ? "active" : "").Tag("a").Attribute("href", (i != 0) ? ("?PageIndex=" + i) : "?").Content$$Object(i + 1).CloseFullTag().CloseFullTag();
-                }
-                writer.CloseFullTag();
+            writer.Tag("ul").Attribute("class", "pagination pagination-sm");
+            for (var i = 0; i < Cast(System.Math.Ceiling$$Decimal(this.get_TotalCount() / this.get_PageSize()), System.Int32.ctor); i++){
+                writer.Tag("li").Attribute("class", (this.get_PageIndex() == i) ? "active" : "").Tag("a").Attribute("href", this.urlProvider.GetCurrentUrl() + ((i != 0) ? ("?PageIndex=" + i) : "")).Content$$Object(i + 1).CloseFullTag().CloseFullTag();
             }
+            writer.CloseFullTag();
         }
     },
     ctors: [{
         name: "ctor",
-        parameters: ["Neptuo.Templates.IComponentManager", "Neptuo.TemplateEngine.Web.TemplateContentStorageStack"]
+        parameters: ["Neptuo.Templates.IComponentManager", "Neptuo.TemplateEngine.Web.ICurrentUrlProvider", "Neptuo.TemplateEngine.Web.TemplateContentStorageStack"]
     }
     ],
     IsAbstract: false
@@ -457,23 +458,23 @@ var Neptuo$TemplateEngine$Web$Controls$SelectControlContext = {
     assemblyName: "Neptuo.TemplateEngine.Shared",
     Kind: "Class",
     definition: {
-        ctor: function (componentManager, storage, dataContext, bindingManager){
-            this._ComponentManager = null;
+        ctor: function (requestContext, storage, dataContext, bindingManager){
+            this._RequestContext = null;
             this._Storage = null;
             this._DataContext = null;
             this._BindingManager = null;
             System.Object.ctor.call(this);
-            this.set_ComponentManager(componentManager);
+            this.set_RequestContext(requestContext);
             this.set_Storage(storage);
             this.set_DataContext(dataContext);
             this.set_BindingManager(bindingManager);
         },
-        ComponentManager$$: "Neptuo.Templates.IComponentManager",
-        get_ComponentManager: function (){
-            return this._ComponentManager;
+        RequestContext$$: "Neptuo.TemplateEngine.Web.IRequestContext",
+        get_RequestContext: function (){
+            return this._RequestContext;
         },
-        set_ComponentManager: function (value){
-            this._ComponentManager = value;
+        set_RequestContext: function (value){
+            this._RequestContext = value;
         },
         Storage$$: "Neptuo.TemplateEngine.Web.TemplateContentStorageStack",
         get_Storage: function (){
@@ -499,7 +500,7 @@ var Neptuo$TemplateEngine$Web$Controls$SelectControlContext = {
     },
     ctors: [{
         name: "ctor",
-        parameters: ["Neptuo.Templates.IComponentManager", "Neptuo.TemplateEngine.Web.TemplateContentStorageStack", "Neptuo.TemplateEngine.Web.DataContextStorage", "Neptuo.TemplateEngine.Web.IBindingManager"]
+        parameters: ["Neptuo.TemplateEngine.Web.IRequestContext", "Neptuo.TemplateEngine.Web.TemplateContentStorageStack", "Neptuo.TemplateEngine.Web.DataContextStorage", "Neptuo.TemplateEngine.Web.IBindingManager"]
     }
     ],
     IsAbstract: false
