@@ -1,4 +1,6 @@
-﻿using Microsoft.Practices.Unity;
+﻿using log4net;
+using log4net.Config;
+using Microsoft.Practices.Unity;
 using Neptuo;
 using Neptuo.Bootstrap;
 using Neptuo.Commands;
@@ -41,6 +43,7 @@ namespace Neptuo.TemplateEngine.Backend.UI
             bootstrapper.Initialize();
 
             Converts.Repository.Add(typeof(string), typeof(int), new StringToIntConverter());
+            XmlConfigurator.Configure();
         }
 
         protected void RegisterBootstrapTasks(IBootstrapTaskRegistry bootstrapper, IDependencyContainer container)
@@ -107,7 +110,7 @@ namespace Neptuo.TemplateEngine.Backend.UI
 
         protected void Application_Error(object sender, EventArgs e)
         {
-
+            LogManager.GetLogger("Global").Fatal(null, Server.GetLastError());
         }
 
         //protected void Session_End(object sender, EventArgs e)
