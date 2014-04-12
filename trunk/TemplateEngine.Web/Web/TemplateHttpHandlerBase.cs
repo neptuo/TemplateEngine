@@ -7,6 +7,7 @@ using Neptuo.Templates.Compilation;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -54,6 +55,9 @@ namespace Neptuo.TemplateEngine.Backend.Web
             }
             else
             {
+                Stopwatch stopwatch = new Stopwatch();
+                stopwatch.Start();
+
                 // Standart request - process redirects and eventually rerender current view
                 INavigator navigator = dependencyContainer.Resolve<INavigator>();
                 if (!ProcessNavigationRules(navigations, globalNavigations, navigator))
@@ -64,11 +68,22 @@ namespace Neptuo.TemplateEngine.Backend.Web
                     dependencyContainer.RegisterInstance<IComponentManager>(componentManager);
 
                     view.Setup(new BaseViewPage(componentManager), componentManager, dependencyContainer);
+                    Debug.WriteLine("Template after setup: {0}ms", stopwatch.ElapsedMilliseconds);
+
                     view.CreateControls();
+                    Debug.WriteLine("Template after create controls: {0}ms", stopwatch.ElapsedMilliseconds);
+
                     view.Init();
+                    Debug.WriteLine("Template after init: {0}ms", stopwatch.ElapsedMilliseconds);
+
                     view.Render(new ExtendedHtmlTextWriter(httpContext.Response.Output));
+                    Debug.WriteLine("Template after render: {0}ms", stopwatch.ElapsedMilliseconds);
+
                     view.Dispose();
                 }
+
+                stopwatch.Stop();
+                Debug.WriteLine("Template total: {0}ms", stopwatch.ElapsedMilliseconds);
             }
         }
 
