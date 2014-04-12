@@ -20,6 +20,9 @@ namespace Neptuo.TemplateEngine.Web
         public event Action<FormRequestContext> OnPostFormSubmit;
         public event Action<string, string[]> OnGetFormSubmit;
 
+        public event Action<string, string[]> OnBeforeRenderView;
+        public event Action OnAfterRenderView;
+
         public MainView(IViewActivator viewActivator, IApplication application)
         {
             Guard.NotNull(viewActivator, "viewActivator");
@@ -121,9 +124,20 @@ namespace Neptuo.TemplateEngine.Web
 
         public virtual void RenderView(string viewPath, string[] toUpdate, IDependencyContainer dependencyContainer)
         {
+            if (OnBeforeRenderView != null)
+                OnBeforeRenderView(viewPath, toUpdate);
+
             IAsyncViewRenderer viewRenderer = new AsyncViewRenderer(viewPath, toUpdate, dependencyContainer, ViewActivator, ViewActivator as StaticViewActivator, Application); //TODO: Use dependency
-            viewRenderer.OnCompleted += AutoFocus;
+            viewRenderer.OnCompleted += OnViewRendered;
             viewRenderer.Render();
+        }
+
+        private void OnViewRendered()
+        {
+            if (OnAfterRenderView != null)
+                OnAfterRenderView();
+
+            AutoFocus();
         }
 
         public void UpdateView(string partialGuid, TextWriter content)

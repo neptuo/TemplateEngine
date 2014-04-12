@@ -33,6 +33,7 @@ namespace Neptuo.TemplateEngine.Web
         public IDependencyContainer DependencyContainer { get; private set; }
         public IFormPostInvokerManager FormPostInvokers { get; private set; }
         public IRouter Router { get; private set; }
+        public IUpdateViewNotifier UpdateViewNotifier { get; private set; }
 
         #region Initialization
 
@@ -55,6 +56,7 @@ namespace Neptuo.TemplateEngine.Web
             MainView.OnLinkClick += OnNavigation;
             MainView.OnGetFormSubmit += OnNavigation;
             MainView.OnPostFormSubmit += OnFormSubmit;
+
 
             FormPostInvokers = new QueueFormPostInvokerManager();
 
@@ -86,6 +88,8 @@ namespace Neptuo.TemplateEngine.Web
 
             Router = new ApplicationRouter(!IsDebug);
             Router.AddRoute(new TemplateRoute(".aspx", this));
+
+            UpdateViewNotifier = new UpdateViewNotifier(MainView);
 
             container
                 .RegisterType<IStackStorage<IViewStorage>, StackStorage<IViewStorage>>()

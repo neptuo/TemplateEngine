@@ -29,6 +29,23 @@ namespace Neptuo.TemplateEngine.Web
         event Action<string, string[]> OnGetFormSubmit;
 
         /// <summary>
+        /// Invoked before rendering view (before any action needed to render view).
+        /// First parameter is viewPath, second is array of toUpdate names.
+        /// </summary>
+        /// <remarks>
+        /// Ideal to show loading wheel.
+        /// </remarks>
+        event Action<string, string[]> OnBeforeRenderView;
+
+        /// <summary>
+        /// Invokend after rendering view (doesn't include any after render action - like loading data in List/Detail views).
+        /// </summary>
+        /// <remarks>
+        /// Ideal to hide loading wheel.
+        /// </remarks>
+        event Action OnAfterRenderView;
+
+        /// <summary>
         /// Renders user inteface with <paramref name="viewPath"/> and updates <paramref name="toUpdate"/> parts of view.
         /// Uses <paramref name="dependencyContainer"/> as dependencyContainer for rendering view.
         /// </summary>

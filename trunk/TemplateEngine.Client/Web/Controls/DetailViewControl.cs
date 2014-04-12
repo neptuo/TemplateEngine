@@ -15,12 +15,14 @@ namespace Neptuo.TemplateEngine.Web.Controls
         public IDataSource Source { get; set; }
         protected DataContextStorage DataContext { get; private set; }
         protected PartialUpdateHelper UpdateHelper { get; private set; }
+        protected AsyncNotifyService NotifyService { get; private set; }
 
-        public DetailViewControl(IComponentManager componentManager, TemplateContentStorageStack storage, DataContextStorage dataContext, PartialUpdateHelper updateHelper)
+        public DetailViewControl(IComponentManager componentManager, TemplateContentStorageStack storage, DataContextStorage dataContext, PartialUpdateHelper updateHelper, AsyncNotifyService notifyService)
             : base(componentManager, storage)
         {
             DataContext = dataContext;
             UpdateHelper = updateHelper;
+            NotifyService = notifyService;
         }
 
         public override void OnInit()
@@ -34,6 +36,8 @@ namespace Neptuo.TemplateEngine.Web.Controls
             UpdateHelper.OnInit();
 
             Source.GetItem(OnLoadData);
+
+            NotifyService.Register(this);
         }
 
         private void OnRenderContent(IHtmlWriter writer)
@@ -51,6 +55,7 @@ namespace Neptuo.TemplateEngine.Web.Controls
             DataContext.Push(data);
             base.OnInit();
             DataContext.Pop();
+            NotifyService.NotifyDone(this);
 
             UpdateHelper.OnDataLoaded();
         }

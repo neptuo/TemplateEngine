@@ -112,6 +112,8 @@
     <Compile Include="Web\IFormPostInvokerManager.cs" />
     <Compile Include="Web\IHistoryState.cs" />
     <Compile Include="Web\IMainView.cs" />
+    <Compile Include="Web\IUpdateViewNotifier.cs" />
+    <Compile Include="Web\UpdateViewNotifier.cs" />
     <Compile Include="Web\IViewLoadedChecker.cs" />
     <Compile Include="Web\JsArrayExtensions.cs" />
     <Compile Include="Web\MainView.cs" />
