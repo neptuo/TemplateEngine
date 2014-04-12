@@ -13,15 +13,15 @@ namespace Neptuo.TemplateEngine.Web.Controls
     {
         public ICollection<TemplateContentControl> Content { get; set; }
         public ITemplate Template { get; set; }
-        protected TemplateContentStorageStack Contents { get; private set; }
         protected ITemplateContent TemplateContent { get; set; }
-        protected TemplateContentStorage Storage { get; private set; }
+        protected TemplateContentStorageStack TemplateStorageStack { get; private set; }
+        protected TemplateContentStorage TemplateStorage { get; private set; }
 
         public TemplateControl(IComponentManager componentManager, TemplateContentStorageStack contents)
             : base(componentManager)
         {
-            Contents = contents;
-            Storage = contents.CreateStorage();
+            TemplateStorageStack = contents;
+            TemplateStorage = contents.CreateStorage();
         }
 
         public override void OnInit()
@@ -29,9 +29,9 @@ namespace Neptuo.TemplateEngine.Web.Controls
             InitComponents(Content);
 
             if (Content != null)
-                Storage.AddRange(Content);
+                TemplateStorage.AddRange(Content);
 
-            Contents.Push(Storage);
+            TemplateStorageStack.Push(TemplateStorage);
 
             base.OnInit();
 
@@ -39,19 +39,19 @@ namespace Neptuo.TemplateEngine.Web.Controls
             TemplateContent = Template.CreateInstance();
             InitComponent(TemplateContent);
 
-            Contents.Pop();
+            TemplateStorageStack.Pop();
         }
 
         public override void Render(IHtmlWriter writer)
         {
-            Contents.Push(Storage);
+            TemplateStorageStack.Push(TemplateStorage);
             RenderComponent(TemplateContent, writer);
-            Contents.Pop();
+            TemplateStorageStack.Pop();
         }
 
         protected TemplateControl InitTemplate(ITemplate template)
         {
-            TemplateControl control = new TemplateControl(ComponentManager, Contents);
+            TemplateControl control = new TemplateControl(ComponentManager, TemplateStorageStack);
             control.Template = template;
             ComponentManager.AddComponent(control, null);
             InitComponent(control);

@@ -69,6 +69,8 @@
     <Compile Include="Web\Controls\BundleControlBase.cs" />
     <Compile Include="Web\Controls\Forms\GetFormControl.cs" />
     <Compile Include="Web\Controls\Forms\PostFormControl.cs" />
+    <Compile Include="Web\Controls\IPaginationControl.cs" />
+    <Compile Include="Web\Controls\PaginationControl.cs" />
     <Compile Include="Web\Controls\SelectControlContext.cs" />
     <Compile Include="Web\Controls\SelectItem.cs" />
     <Compile Include="Web\Controls\ViewBundleControl.cs" />

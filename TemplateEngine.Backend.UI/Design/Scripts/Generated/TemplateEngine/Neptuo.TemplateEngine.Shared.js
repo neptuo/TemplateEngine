@@ -381,6 +381,78 @@ var Neptuo$TemplateEngine$Web$Controls$PostFormControl = {
     IsAbstract: false
 };
 JsTypes.push(Neptuo$TemplateEngine$Web$Controls$PostFormControl);
+var Neptuo$TemplateEngine$Web$Controls$IPaginationControl = {
+    fullname: "Neptuo.TemplateEngine.Web.Controls.IPaginationControl",
+    baseTypeName: "System.Object",
+    assemblyName: "Neptuo.TemplateEngine.Shared",
+    interfaceNames: ["Neptuo.Templates.Controls.IControl"],
+    Kind: "Interface",
+    ctors: [],
+    IsAbstract: true
+};
+JsTypes.push(Neptuo$TemplateEngine$Web$Controls$IPaginationControl);
+var Neptuo$TemplateEngine$Web$Controls$PaginationControl = {
+    fullname: "Neptuo.TemplateEngine.Web.Controls.PaginationControl",
+    baseTypeName: "Neptuo.TemplateEngine.Web.Controls.TemplateControl",
+    assemblyName: "Neptuo.TemplateEngine.Shared",
+    interfaceNames: ["Neptuo.TemplateEngine.Web.Controls.IPaginationControl"],
+    Kind: "Class",
+    definition: {
+        ctor: function (componentManager, storage){
+            this._ItemTemplate = null;
+            this._PageSize = 0;
+            this._PageIndex = 0;
+            this._TotalCount = 0;
+            Neptuo.TemplateEngine.Web.Controls.TemplateControl.ctor.call(this, componentManager, storage);
+        },
+        ItemTemplate$$: "Neptuo.TemplateEngine.Web.Controls.ITemplate",
+        get_ItemTemplate: function (){
+            return this._ItemTemplate;
+        },
+        set_ItemTemplate: function (value){
+            this._ItemTemplate = value;
+        },
+        PageSize$$: "System.Int32",
+        get_PageSize: function (){
+            return this._PageSize;
+        },
+        set_PageSize: function (value){
+            this._PageSize = value;
+        },
+        PageIndex$$: "System.Int32",
+        get_PageIndex: function (){
+            return this._PageIndex;
+        },
+        set_PageIndex: function (value){
+            this._PageIndex = value;
+        },
+        TotalCount$$: "System.Int32",
+        get_TotalCount: function (){
+            return this._TotalCount;
+        },
+        set_TotalCount: function (value){
+            this._TotalCount = value;
+        },
+        OnInit: function (){
+        },
+        Render: function (writer){
+            if (this.get_PageSize() != null){
+                writer.Tag("ul").Attribute("class", "pagination pagination-sm");
+                for (var i = 0; i < Cast(System.Math.Ceiling$$Decimal(this.get_TotalCount() / this.get_PageSize()), System.Int32.ctor); i++){
+                    writer.Tag("li").Attribute("class", (this.get_PageIndex() == i) ? "active" : "").Tag("a").Attribute("href", (i != 0) ? ("?PageIndex=" + i) : "?").Content$$Object(i + 1).CloseFullTag().CloseFullTag();
+                }
+                writer.CloseFullTag();
+            }
+        }
+    },
+    ctors: [{
+        name: "ctor",
+        parameters: ["Neptuo.Templates.IComponentManager", "Neptuo.TemplateEngine.Web.TemplateContentStorageStack"]
+    }
+    ],
+    IsAbstract: false
+};
+JsTypes.push(Neptuo$TemplateEngine$Web$Controls$PaginationControl);
 var Neptuo$TemplateEngine$Web$Controls$SelectControlContext = {
     fullname: "Neptuo.TemplateEngine.Web.Controls.SelectControlContext",
     baseTypeName: "System.Object",
@@ -3091,12 +3163,12 @@ var Neptuo$TemplateEngine$Web$Controls$TemplateControl = {
         ctor: function (componentManager, contents){
             this._Content = null;
             this._Template = null;
-            this._Contents = null;
             this._TemplateContent = null;
-            this._Storage = null;
+            this._TemplateStorageStack = null;
+            this._TemplateStorage = null;
             Neptuo.TemplateEngine.Web.Controls.ControlBase.ctor.call(this, componentManager);
-            this.set_Contents(contents);
-            this.set_Storage(contents.CreateStorage());
+            this.set_TemplateStorageStack(contents);
+            this.set_TemplateStorage(contents.CreateStorage());
         },
         Content$$: "System.Collections.Generic.ICollection`1[[Neptuo.TemplateEngine.Web.Controls.TemplateContentControl]]",
         get_Content: function (){
@@ -3112,13 +3184,6 @@ var Neptuo$TemplateEngine$Web$Controls$TemplateControl = {
         set_Template: function (value){
             this._Template = value;
         },
-        Contents$$: "Neptuo.TemplateEngine.Web.TemplateContentStorageStack",
-        get_Contents: function (){
-            return this._Contents;
-        },
-        set_Contents: function (value){
-            this._Contents = value;
-        },
         TemplateContent$$: "Neptuo.TemplateEngine.Web.Controls.ITemplateContent",
         get_TemplateContent: function (){
             return this._TemplateContent;
@@ -3126,31 +3191,38 @@ var Neptuo$TemplateEngine$Web$Controls$TemplateControl = {
         set_TemplateContent: function (value){
             this._TemplateContent = value;
         },
-        Storage$$: "Neptuo.TemplateEngine.Web.TemplateContentStorage",
-        get_Storage: function (){
-            return this._Storage;
+        TemplateStorageStack$$: "Neptuo.TemplateEngine.Web.TemplateContentStorageStack",
+        get_TemplateStorageStack: function (){
+            return this._TemplateStorageStack;
         },
-        set_Storage: function (value){
-            this._Storage = value;
+        set_TemplateStorageStack: function (value){
+            this._TemplateStorageStack = value;
+        },
+        TemplateStorage$$: "Neptuo.TemplateEngine.Web.TemplateContentStorage",
+        get_TemplateStorage: function (){
+            return this._TemplateStorage;
+        },
+        set_TemplateStorage: function (value){
+            this._TemplateStorage = value;
         },
         OnInit: function (){
             this.InitComponents$1(Neptuo.TemplateEngine.Web.Controls.TemplateContentControl.ctor, this.get_Content());
             if (this.get_Content() != null)
-                this.get_Storage().AddRange(this.get_Content());
-            this.get_Contents().Push(this.get_Storage());
+                this.get_TemplateStorage().AddRange(this.get_Content());
+            this.get_TemplateStorageStack().Push(this.get_TemplateStorage());
             Neptuo.TemplateEngine.Web.Controls.ControlBase.commonPrototype.OnInit.call(this);
             this.InitComponent(this.get_Template());
             this.set_TemplateContent(this.get_Template().CreateInstance());
             this.InitComponent(this.get_TemplateContent());
-            this.get_Contents().Pop();
+            this.get_TemplateStorageStack().Pop();
         },
         Render: function (writer){
-            this.get_Contents().Push(this.get_Storage());
+            this.get_TemplateStorageStack().Push(this.get_TemplateStorage());
             this.RenderComponent(this.get_TemplateContent(), writer);
-            this.get_Contents().Pop();
+            this.get_TemplateStorageStack().Pop();
         },
         InitTemplate: function (template){
-            var control = new Neptuo.TemplateEngine.Web.Controls.TemplateControl.ctor(this.get_ComponentManager(), this.get_Contents());
+            var control = new Neptuo.TemplateEngine.Web.Controls.TemplateControl.ctor(this.get_ComponentManager(), this.get_TemplateStorageStack());
             control.set_Template(template);
             this.get_ComponentManager().AddComponent$1(Neptuo.TemplateEngine.Web.Controls.TemplateControl.ctor, control, null);
             this.InitComponent(control);
