@@ -16,6 +16,8 @@ namespace Neptuo.TemplateEngine.Accounts.Bootstrap
         protected void SetupForms(IFormUriRegistry formRegistry)
         {
             formRegistry
+                .Register("Accounts.Login", TemplateRouteParameterBase.FormatUrl("~/Accounts/Login"))
+
                 .Register("Accounts.User.List", TemplateRouteParameterBase.FormatUrl("~/Accounts/UserList"))
                 .Register("Accounts.User.Edit", TemplateRouteParameterBase.FormatUrl("~/Accounts/UserEdit"))
 
@@ -33,8 +35,9 @@ namespace Neptuo.TemplateEngine.Accounts.Bootstrap
                 .Add("Accounts.Role.Deleted", (FormUri)"Accounts.Role.List")
                 .Add("Accounts.Role.Created", (FormUri)"Accounts.Role.List")
                 .Add("Accounts.Role.Updated", (FormUri)"Accounts.Role.List")
-                
-                .Add("Accounts.LoggedIn", (FormUri)"Accounts.User.List");
+
+                .Add("Accounts.LoggedIn", (FormUri)"Accounts.User.List")
+                .Add("Accounts.LoggedOut", (FormUri)"Accounts.Login");
         }
     }
 }
