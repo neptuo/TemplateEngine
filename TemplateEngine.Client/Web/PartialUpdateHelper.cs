@@ -17,6 +17,7 @@ namespace Neptuo.TemplateEngine.Web
 
         private bool isRenderCalled = false;
         private bool isDataLoaded = false;
+        private ErrorModel error = null;
 
         public event RenderEventHandler RenderContent;
 
@@ -44,7 +45,9 @@ namespace Neptuo.TemplateEngine.Web
             }
             else
             {
-                if (RenderContent != null)
+                if (error != null)
+                    mainView.UpdateError(partialElementGuid, error);
+                else if (RenderContent != null)
                     RenderContent(writer);
             }
         }
@@ -63,6 +66,15 @@ namespace Neptuo.TemplateEngine.Web
 
                 mainView.UpdateView(partialElementGuid, stringWriter);
             }
+        }
+
+        public void OnError(ErrorModel error)
+        {
+            isDataLoaded = true;
+            if (isRenderCalled)
+                mainView.UpdateError(partialElementGuid, error);
+            else
+                this.error = error;
         }
     }
 

@@ -62,6 +62,13 @@ namespace Neptuo.TemplateEngine.Web
         void UpdateView(string partialGuid, TextWriter content);
 
         /// <summary>
+        /// Updates content of element with <paramref name="partialGuid"/> with error information.
+        /// </summary>
+        /// <param name="partialGuid">Guid of element to update.</param>
+        /// <param name="model">Error information.</param>
+        void UpdateError(string partialGuid, ErrorModel model);
+
+        /// <summary>
         /// Writes placeholder for future partial update.
         /// </summary>
         /// <param name="writer">Html writer.</param>

@@ -20,7 +20,7 @@ namespace Neptuo.TemplateEngine.Web.DataSources
             UrlProvider = urlProvider;
         }
 
-        public void GetData(int? pageIndex, int? pageSize, Action<IListResult> callback)
+        public void GetData(int? pageIndex, int? pageSize, Action<IListResult> callback, Action<ErrorModel> errorCallback)
         {
             jQuery.ajax(new AjaxSettings
             {
@@ -35,6 +35,10 @@ namespace Neptuo.TemplateEngine.Web.DataSources
                         callback(model);
                     else
                         throw new NotSupportedException();
+                },
+                error = (response, status, error) =>
+                {
+                    errorCallback(new ErrorModel(response.status, response.statusText, response.responseText));
                 }
             });
         }

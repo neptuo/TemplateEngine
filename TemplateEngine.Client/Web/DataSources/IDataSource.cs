@@ -8,6 +8,6 @@ namespace Neptuo.TemplateEngine.Web.DataSources
 {
     public interface IDataSource
     {
-        void GetItem(Action<object> callback);
+        void GetItem(Action<object> callback, Action<ErrorModel> errorCallback);
     }
 }

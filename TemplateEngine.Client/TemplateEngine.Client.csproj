@@ -102,6 +102,7 @@
     <Compile Include="Web\DataSources\IDataSource.cs" />
     <Compile Include="Web\DataSources\IListDataSource.cs" />
     <Compile Include="Web\DataSources\ListDataSourceProxy.cs" />
+    <Compile Include="Web\ErrorModel.cs" />
     <Compile Include="Web\FormPostInvoker.cs" />
     <Compile Include="Web\FormRequestContext.cs" />
     <Compile Include="Web\HistoryItem.cs" />

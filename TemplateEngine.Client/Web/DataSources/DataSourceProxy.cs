@@ -26,7 +26,7 @@ namespace Neptuo.TemplateEngine.Web.DataSources
             IsBindModel = true;
         }
 
-        public void GetItem(Action<object> callback)
+        public void GetItem(Action<object> callback, Action<ErrorModel> errorCallback)
         {
             if (!OnGetItem(callback))
             {
@@ -47,6 +47,10 @@ namespace Neptuo.TemplateEngine.Web.DataSources
                             callback(model);
                             return;
                         }
+                    },
+                    error = (response, status, error) =>
+                    {
+                        errorCallback(new ErrorModel(response.status, response.statusText, response.responseText));
                     }
                 });
             }

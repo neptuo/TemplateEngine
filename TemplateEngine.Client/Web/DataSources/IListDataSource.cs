@@ -9,6 +9,6 @@ namespace Neptuo.TemplateEngine.Web.DataSources
 {
     public interface IListDataSource
     {
-        void GetData(int? pageIndex, int? pageSize, Action<IListResult> callback);
+        void GetData(int? pageIndex, int? pageSize, Action<IListResult> callback, Action<ErrorModel> errorCallback);
     }
 }

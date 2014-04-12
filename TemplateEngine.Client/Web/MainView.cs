@@ -146,6 +146,31 @@ namespace Neptuo.TemplateEngine.Web
             target.replaceWith(content.ToString());
         }
 
+        public void UpdateError(string partialGuid, ErrorModel model)
+        {
+            StringWriter stringWriter = new StringWriter();
+            HtmlTextWriter writer = new HtmlTextWriter(stringWriter);
+
+            if (Application.IsDebug)
+            {
+                writer
+                    .Tag("strong")
+                    .Attribute("class", "error-info")
+                    .Content(model.StatusText)
+                    .CloseFullTag();
+            }
+            else
+            {
+                writer
+                    .Tag("strong")
+                    .Attribute("class", "error-info")
+                    .Content("We are sorry, but there was a problem loading data from server. Please try reloading page...")
+                    .CloseFullTag();
+            }
+
+            UpdateView(partialGuid, stringWriter);
+        }
+
         public void WritePlaceholder(IHtmlWriter writer, string partialGuid)
         {
             writer

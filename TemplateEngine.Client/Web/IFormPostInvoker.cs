@@ -12,9 +12,14 @@ namespace Neptuo.TemplateEngine.Web
     public interface IFormPostInvoker
     {
         /// <summary>
-        /// Executed when POST is successufull.
+        /// Executed when POST is successfull.
         /// </summary>
         event Action<IFormPostInvoker> OnSuccess;
+
+        /// <summary>
+        /// Executed when POST was not successfull;
+        /// </summary>
+        event Action<IFormPostInvoker, ErrorModel> OnError;
 
         /// <summary>
         /// Starts POST request.

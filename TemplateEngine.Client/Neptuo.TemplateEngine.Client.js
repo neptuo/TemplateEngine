@@ -670,11 +670,10 @@ var Neptuo$TemplateEngine$Web$AsyncNotifyService = {
                 this.counter++;
         },
         NotifyDone: function (source){
-            if (this.sources.Remove(source)){
+            if (this.sources.Remove(source))
                 this.counter--;
-                if (this.OnReady != null)
-                    this.OnReady();
-            }
+            if (this.counter == 0 && this.OnReady != null)
+                this.OnReady();
         }
     },
     ctors: [{
@@ -694,6 +693,8 @@ var Neptuo$TemplateEngine$Web$AsyncViewRenderer = {
     definition: {
         ctor: function (viewPath, toUpdate, dependencyContainer, viewActivator, checker, urlProvider){
             this.view = null;
+            this.notifyService = null;
+            this.isNotifyReadyCalled = false;
             this.OnCompleted = null;
             this._ViewPath = null;
             this._ToUpdate = null;
@@ -775,20 +776,23 @@ var Neptuo$TemplateEngine$Web$AsyncViewRenderer = {
             return System.String.Format$$String$$Object$$Object("{0}?Path={1}", this.get_UrlProvider().ResolveUrl("~/Views.ashx"), viewPath);
         },
         RenderView: function (){
-            var notifyService = new Neptuo.TemplateEngine.Web.AsyncNotifyService.ctor();
-            notifyService.add_OnReady($CreateDelegate(this, this.OnAsyncNotifyReady));
+            this.notifyService = new Neptuo.TemplateEngine.Web.AsyncNotifyService.ctor();
             var componentManager = new Neptuo.TemplateEngine.Web.ClientExtendedComponentManager.ctor(this.get_ToUpdate());
-            Neptuo.DependencyContainerExtensions.RegisterInstance$1(Neptuo.TemplateEngine.Web.AsyncNotifyService.ctor, Neptuo.DependencyContainerExtensions.RegisterInstance$1(Neptuo.TemplateEngine.Web.NavigationCollection.ctor, Neptuo.DependencyContainerExtensions.RegisterInstance$1(Neptuo.TemplateEngine.Web.IPartialUpdateWriter.ctor, Neptuo.DependencyContainerExtensions.RegisterInstance$1(Neptuo.Templates.IComponentManager.ctor, this.get_DependencyContainer(), componentManager), componentManager), new Neptuo.TemplateEngine.Web.NavigationCollection.ctor()), notifyService);
+            Neptuo.DependencyContainerExtensions.RegisterInstance$1(Neptuo.TemplateEngine.Web.AsyncNotifyService.ctor, Neptuo.DependencyContainerExtensions.RegisterInstance$1(Neptuo.TemplateEngine.Web.NavigationCollection.ctor, Neptuo.DependencyContainerExtensions.RegisterInstance$1(Neptuo.TemplateEngine.Web.IPartialUpdateWriter.ctor, Neptuo.DependencyContainerExtensions.RegisterInstance$1(Neptuo.Templates.IComponentManager.ctor, this.get_DependencyContainer(), componentManager), componentManager), new Neptuo.TemplateEngine.Web.NavigationCollection.ctor()), this.notifyService);
             this.view = this.get_ViewActivator().CreateView(this.get_ViewPath());
             this.view.Setup(new Neptuo.Templates.BaseViewPage.ctor(componentManager), componentManager, this.get_DependencyContainer());
             this.view.CreateControls();
             this.view.Init();
-            if (notifyService.get_IsReady()){
-                notifyService.remove_OnReady($CreateDelegate(this, this.OnAsyncNotifyReady));
+            if (this.notifyService.get_IsReady())
                 this.OnAsyncNotifyReady();
-            }
+            else
+                this.notifyService.add_OnReady($CreateDelegate(this, this.OnAsyncNotifyReady));
         },
         OnAsyncNotifyReady: function (){
+            if (this.isNotifyReadyCalled)
+                alert("OnReady called twice!!");
+            this.isNotifyReadyCalled = true;
+            this.notifyService.remove_OnReady($CreateDelegate(this, this.OnAsyncNotifyReady));
             var writer = new System.IO.StringWriter.ctor();
             this.view.Render(new Neptuo.TemplateEngine.Web.ExtendedHtmlTextWriter.ctor(writer));
             this.view.Dispose();
@@ -944,8 +948,8 @@ var Neptuo$TemplateEngine$Web$Controls$DetailViewControl = {
                 throw $CreateException(new System.InvalidOperationException.ctor$$String("Missing data source."), new Error());
             this.get_UpdateHelper().add_RenderContent($CreateDelegate(this, this.OnRenderContent));
             this.get_UpdateHelper().OnInit();
-            this.get_Source().GetItem($CreateDelegate(this, this.OnLoadData));
             this.get_NotifyService().Register(this);
+            this.get_Source().GetItem($CreateDelegate(this, this.OnLoadData), $CreateDelegate(this, this.OnError));
         },
         OnRenderContent: function (writer){
             Neptuo.TemplateEngine.Web.Controls.TemplateControl.commonPrototype.Render.call(this, writer);
@@ -957,8 +961,12 @@ var Neptuo$TemplateEngine$Web$Controls$DetailViewControl = {
             this.get_DataContext().Push(data, null);
             Neptuo.TemplateEngine.Web.Controls.TemplateControl.commonPrototype.OnInit.call(this);
             this.get_DataContext().Pop(null);
-            this.get_NotifyService().NotifyDone(this);
             this.get_UpdateHelper().OnDataLoaded();
+            this.get_NotifyService().NotifyDone(this);
+        },
+        OnError: function (model){
+            this.get_UpdateHelper().OnError(model);
+            this.get_NotifyService().NotifyDone(this);
         }
     },
     ctors: [{
@@ -1109,10 +1117,10 @@ var Neptuo$TemplateEngine$Web$Controls$ListViewControl = {
                 throw $CreateException(new System.ArgumentException.ctor$$String$$String("Missing data source.", "Source"), new Error());
             this.get_UpdateHelper().add_RenderContent($CreateDelegate(this, this.OnRenderContent));
             this.get_UpdateHelper().OnInit();
-            this.GetModelPage(this.get_PageIndex(), this.get_PageSize(), $CreateDelegate(this, this.OnLoadData));
+            this.GetModelPage(this.get_PageIndex(), this.get_PageSize(), $CreateDelegate(this, this.OnLoadData), $CreateDelegate(this, this.OnError));
         },
-        GetModelPage: function (pageIndex, pageSize, callback){
-            this.get_Source().GetData(pageIndex, pageSize, callback);
+        GetModelPage: function (pageIndex, pageSize, callback, errorCallback){
+            this.get_Source().GetData(pageIndex, pageSize, callback, errorCallback);
         },
         ProcessModelItem: function (itemTemplates, model){
             this.get_DataContext().Push(model, null);
@@ -1167,6 +1175,9 @@ var Neptuo$TemplateEngine$Web$Controls$ListViewControl = {
             Neptuo.TemplateEngine.Web.Controls.TemplateControl.commonPrototype.OnInit.call(this);
             this.get_DataContext().Pop("Template");
             this.get_UpdateHelper().OnDataLoaded();
+        },
+        OnError: function (model){
+            this.get_UpdateHelper().OnError(model);
         }
     },
     ctors: [{
@@ -1319,7 +1330,7 @@ var Neptuo$TemplateEngine$Web$DataSources$DataSourceProxy$1 = {
         set_IsBindModel: function (value){
             this._IsBindModel = value;
         },
-        GetItem: function (callback){
+        GetItem: function (callback, errorCallback){
             if (!this.OnGetItem(callback)){
                 $.ajax({
                     url: this.get_UrlProvider().ResolveUrl(this.FormatUrl()),
@@ -1341,6 +1352,9 @@ var Neptuo$TemplateEngine$Web$DataSources$DataSourceProxy$1 = {
                             callback(model);
                             return;
                         }
+                    }),
+                    error: $CreateAnonymousDelegate(this, function (response, status, error){
+                        errorCallback(new Neptuo.TemplateEngine.Web.ErrorModel.ctor(response.status, response.statusText, response.responseText));
                     })
                 });
             }
@@ -1404,7 +1418,7 @@ var Neptuo$TemplateEngine$Web$DataSources$ListDataSourceProxy$1 = {
         set_UrlProvider: function (value){
             this._UrlProvider = value;
         },
-        GetData: function (pageIndex, pageSize, callback){
+        GetData: function (pageIndex, pageSize, callback, errorCallback){
             $.ajax({
                 url: this.get_UrlProvider().ResolveUrl(this.FormatUrl()),
                 type: "GET",
@@ -1423,6 +1437,9 @@ var Neptuo$TemplateEngine$Web$DataSources$ListDataSourceProxy$1 = {
                         callback(model);
                     else
                         throw $CreateException(new System.NotSupportedException.ctor(), new Error());
+                }),
+                error: $CreateAnonymousDelegate(this, function (response, status, error){
+                    errorCallback(new Neptuo.TemplateEngine.Web.ErrorModel.ctor(response.status, response.statusText, response.responseText));
                 })
             });
         },
@@ -1446,6 +1463,51 @@ var Neptuo$TemplateEngine$Web$DataSources$ListDataSourceProxy$1 = {
     IsAbstract: true
 };
 JsTypes.push(Neptuo$TemplateEngine$Web$DataSources$ListDataSourceProxy$1);
+var Neptuo$TemplateEngine$Web$ErrorModel = {
+    fullname: "Neptuo.TemplateEngine.Web.ErrorModel",
+    baseTypeName: "System.Object",
+    assemblyName: "Neptuo.TemplateEngine.Client",
+    Kind: "Class",
+    definition: {
+        ctor: function (statusCode, statusText, responseText){
+            this._StatusCode = 0;
+            this._StatusText = null;
+            this._ResponseText = null;
+            System.Object.ctor.call(this);
+            this.set_StatusCode(statusCode);
+            this.set_StatusText(statusText);
+            this.set_ResponseText(responseText);
+        },
+        StatusCode$$: "System.Int32",
+        get_StatusCode: function (){
+            return this._StatusCode;
+        },
+        set_StatusCode: function (value){
+            this._StatusCode = value;
+        },
+        StatusText$$: "System.String",
+        get_StatusText: function (){
+            return this._StatusText;
+        },
+        set_StatusText: function (value){
+            this._StatusText = value;
+        },
+        ResponseText$$: "System.String",
+        get_ResponseText: function (){
+            return this._ResponseText;
+        },
+        set_ResponseText: function (value){
+            this._ResponseText = value;
+        }
+    },
+    ctors: [{
+        name: "ctor",
+        parameters: ["System.Int32", "System.String", "System.String"]
+    }
+    ],
+    IsAbstract: false
+};
+JsTypes.push(Neptuo$TemplateEngine$Web$ErrorModel);
 var Neptuo$TemplateEngine$Web$FormPostInvoker = {
     fullname: "Neptuo.TemplateEngine.Web.FormPostInvoker",
     baseTypeName: "System.Object",
@@ -1455,6 +1517,7 @@ var Neptuo$TemplateEngine$Web$FormPostInvoker = {
     definition: {
         ctor: function (application, context){
             this.OnSuccess = null;
+            this.OnError = null;
             this._Application = null;
             this._Context = null;
             System.Object.ctor.call(this);
@@ -1483,6 +1546,12 @@ var Neptuo$TemplateEngine$Web$FormPostInvoker = {
         remove_OnSuccess: function (value){
             this.OnSuccess = $RemoveDelegate(this.OnSuccess, value);
         },
+        add_OnError: function (value){
+            this.OnError = $CombineDelegates(this.OnError, value);
+        },
+        remove_OnError: function (value){
+            this.OnError = $RemoveDelegate(this.OnError, value);
+        },
         Invoke: function (){
             this.get_Application().get_HistoryState().Replace(new Neptuo.TemplateEngine.Web.HistoryItem.ctor(this.get_Context().FormUrl, this.get_Context().ToUpdate, this.get_Context()));
             var headers = new Object();
@@ -1492,7 +1561,8 @@ var Neptuo$TemplateEngine$Web$FormPostInvoker = {
                 type: "POST",
                 data: this.get_Context().Parameters,
                 headers: headers,
-                success: $CreateDelegate(this, this.OnSubmitSuccess)
+                success: $CreateDelegate(this, this.OnSubmitSuccess),
+                error: $CreateDelegate(this, this.OnSubmitError)
             });
         },
         OnSubmitSuccess: function (response, status, sender){
@@ -1524,6 +1594,10 @@ var Neptuo$TemplateEngine$Web$FormPostInvoker = {
             else {
                 alert(status);
             }
+        },
+        OnSubmitError: function (response, status, error){
+            if (this.OnError != null)
+                this.OnError(this, new Neptuo.TemplateEngine.Web.ErrorModel.ctor(response.status, response.statusText, response.responseText));
         }
     },
     ctors: [{
@@ -1924,6 +1998,17 @@ var Neptuo$TemplateEngine$Web$MainView = {
             var target = $("div[data-partial=" + partialGuid + "]");
             target.replaceWith(content.toString());
         },
+        UpdateError: function (partialGuid, model){
+            var stringWriter = new System.IO.StringWriter.ctor();
+            var writer = new Neptuo.Templates.HtmlTextWriter.ctor(stringWriter);
+            if (this.get_Application().get_IsDebug()){
+                writer.Tag("strong").Attribute("class", "error-info").Content$$String(model.get_StatusText()).CloseFullTag();
+            }
+            else {
+                writer.Tag("strong").Attribute("class", "error-info").Content$$String("We are sorry, but there was a problem loading data from server. Please try reloading page...").CloseFullTag();
+            }
+            this.UpdateView(partialGuid, stringWriter);
+        },
         WritePlaceholder: function (writer, partialGuid){
             writer.Tag("div").Attribute("data-partial", partialGuid).Content$$String("Loading data...").CloseFullTag();
         },
@@ -2009,6 +2094,7 @@ var Neptuo$TemplateEngine$Web$PartialUpdateHelper = {
             this.partialElementGuid = null;
             this.isRenderCalled = false;
             this.isDataLoaded = false;
+            this.error = null;
             this.RenderContent = null;
             System.Object.ctor.call(this);
             Neptuo.Guard.NotNull$$Object$$String(guidProvider, "guidProvider");
@@ -2033,7 +2119,9 @@ var Neptuo$TemplateEngine$Web$PartialUpdateHelper = {
                 return;
             }
             else {
-                if (this.RenderContent != null)
+                if (this.error != null)
+                    this.mainView.UpdateError(this.partialElementGuid, this.error);
+                else if (this.RenderContent != null)
                     this.RenderContent(writer);
             }
         },
@@ -2046,6 +2134,13 @@ var Neptuo$TemplateEngine$Web$PartialUpdateHelper = {
                     this.RenderContent(writer);
                 this.mainView.UpdateView(this.partialElementGuid, stringWriter);
             }
+        },
+        OnError: function (error){
+            this.isDataLoaded = true;
+            if (this.isRenderCalled)
+                this.mainView.UpdateError(this.partialElementGuid, error);
+            else
+                this.error = error;
         }
     },
     ctors: [{
@@ -2086,6 +2181,7 @@ var Neptuo$TemplateEngine$Web$QueueFormPostInvokerManager = {
         },
         Invoke: function (invoker){
             invoker.add_OnSuccess($CreateDelegate(this, this.OnSuccess));
+            invoker.add_OnError($CreateDelegate(this, this.OnError));
             this.invokers.Add(invoker);
             if (!this.isRunning)
                 this.InvokeFirst();
@@ -2094,6 +2190,16 @@ var Neptuo$TemplateEngine$Web$QueueFormPostInvokerManager = {
             this.invokers.Remove(invoker);
             this.isRunning = false;
             this.InvokeFirst();
+        },
+        OnError: function (invoker, error){
+            this.invokers.Remove(invoker);
+            if (confirm("There was an error processing your request. Do you want to try again? If you say no, this page will be reloaded...")){
+                this.invokers.Insert(0, invoker);
+                this.InvokeFirst();
+            }
+            else {
+                location.reload();
+            }
         },
         InvokeFirst: function (){
             var invoker = System.Linq.Enumerable.FirstOrDefault$1$$IEnumerable$1(Neptuo.TemplateEngine.Web.IFormPostInvoker.ctor, this.invokers);
