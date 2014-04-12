@@ -177,22 +177,22 @@
     <Content Include="Design\Scripts\jquery-1.9.1.min.map" />
     <None Include="Properties\PublishProfiles\Localhost.pubxml" />
     <None Include="Properties\PublishProfiles\s1.azure.neptuo.com.pubxml" />
-    <None Include="Views\Accounts\SideNav.view" />
-    <None Include="Views\Accounts\RoleEdit.view">
+    <Content Include="Views\Accounts\SideNav.view" />
+    <Content Include="Views\Accounts\RoleEdit.view">
       <SubType>Designer</SubType>
-    </None>
-    <None Include="Views\Accounts\UserEdit.view">
+    </Content>
+    <Content Include="Views\Accounts\UserEdit.view">
       <SubType>Designer</SubType>
-    </None>
-    <None Include="Views\Accounts\RoleList.view" />
-    <None Include="Views\Accounts\UserList.view">
+    </Content>
+    <Content Include="Views\Accounts\RoleList.view" />
+    <Content Include="Views\Accounts\UserList.view">
       <SubType>Designer</SubType>
-    </None>
-    <None Include="Views\Home.view" />
-    <None Include="Views\Shared\AdminLayout.view">
+    </Content>
+    <Content Include="Views\Home.view" />
+    <Content Include="Views\Shared\AdminLayout.view">
       <SubType>Designer</SubType>
-    </None>
-    <None Include="Views\Shared\SubHeader.view" />
+    </Content>
+    <Content Include="Views\Shared\SubHeader.view" />
     <Content Include="Neptuo.TemplateEngine.Backend.UI.xml">
       <SubType>Designer</SubType>
     </Content>
@@ -208,7 +208,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Views\Accounts\Login.view" />
+    <Content Include="Views\Accounts\Login.view" />
     <Content Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
