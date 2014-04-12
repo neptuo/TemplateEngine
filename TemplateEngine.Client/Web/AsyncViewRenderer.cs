@@ -20,6 +20,8 @@ namespace Neptuo.TemplateEngine.Web
 
         public event Action OnCompleted;
 
+        private BaseGeneratedView view;
+
         public AsyncViewRenderer(string viewPath, string[] toUpdate, IDependencyContainer dependencyContainer, IViewActivator viewActivator, IViewLoadedChecker checker, IVirtualUrlProvider urlProvider)
         {
             Guard.NotNullOrEmpty(viewPath, "viewPath");
@@ -55,17 +57,30 @@ namespace Neptuo.TemplateEngine.Web
 
         private void RenderView()
         {
+            AsyncNotifyService notifyService = new AsyncNotifyService();
+            notifyService.OnReady += OnAsyncNotifyReady;
             ClientExtendedComponentManager componentManager = new ClientExtendedComponentManager(ToUpdate);
             DependencyContainer
                 .RegisterInstance<IComponentManager>(componentManager)
                 .RegisterInstance<IPartialUpdateWriter>(componentManager)
-                .RegisterInstance<NavigationCollection>(new NavigationCollection());
+                .RegisterInstance<NavigationCollection>(new NavigationCollection())
+                .RegisterInstance<AsyncNotifyService>(notifyService);
 
-            StringWriter writer = new StringWriter();
-            var view = ViewActivator.CreateView(ViewPath);
+            view = ViewActivator.CreateView(ViewPath);
             view.Setup(new BaseViewPage(componentManager), componentManager, DependencyContainer);
             view.CreateControls();
             view.Init();
+
+            if (notifyService.IsReady)
+            {
+                notifyService.OnReady -= OnAsyncNotifyReady;
+                OnAsyncNotifyReady();
+            }
+        }
+
+        private void OnAsyncNotifyReady()
+        {
+            StringWriter writer = new StringWriter();
             view.Render(new ExtendedHtmlTextWriter(writer));
             view.Dispose();
 

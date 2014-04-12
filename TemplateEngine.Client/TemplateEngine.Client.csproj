@@ -89,6 +89,7 @@
     <Compile Include="Routing\TemplateRoute.cs" />
     <Compile Include="Routing\TemplateRouteHandler.cs" />
     <Compile Include="Web\Application.cs" />
+    <Compile Include="Web\AsyncNotifyService.cs" />
     <Compile Include="Web\AsyncViewRenderer.cs" />
     <Compile Include="Web\ClientExtendedComponentManager.cs" />
     <Compile Include="Web\Controls\Ajax\PartialStartUpControl.cs" />

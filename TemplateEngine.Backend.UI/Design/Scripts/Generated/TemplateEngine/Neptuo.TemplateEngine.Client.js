@@ -636,6 +636,48 @@ var Neptuo$TemplateEngine$Web$Application = {
     IsAbstract: false
 };
 JsTypes.push(Neptuo$TemplateEngine$Web$Application);
+var Neptuo$TemplateEngine$Web$AsyncNotifyService = {
+    fullname: "Neptuo.TemplateEngine.Web.AsyncNotifyService",
+    baseTypeName: "System.Object",
+    assemblyName: "Neptuo.TemplateEngine.Client",
+    Kind: "Class",
+    definition: {
+        ctor: function (){
+            this.counter = 0;
+            this.sources = new System.Collections.Generic.HashSet$1.ctor(System.Object.ctor);
+            this.OnReady = null;
+            System.Object.ctor.call(this);
+        },
+        add_OnReady: function (value){
+            this.OnReady = $CombineDelegates(this.OnReady, value);
+        },
+        remove_OnReady: function (value){
+            this.OnReady = $RemoveDelegate(this.OnReady, value);
+        },
+        IsReady$$: "System.Boolean",
+        get_IsReady: function (){
+            return this.counter == 0;
+        },
+        Register: function (source){
+            if (this.sources.Add(source))
+                this.counter++;
+        },
+        NotifyDone: function (source){
+            if (this.sources.Remove(this.source)){
+                this.counter--;
+                if (this.OnReady != null)
+                    this.OnReady();
+            }
+        }
+    },
+    ctors: [{
+        name: "ctor",
+        parameters: []
+    }
+    ],
+    IsAbstract: false
+};
+JsTypes.push(Neptuo$TemplateEngine$Web$AsyncNotifyService);
 var Neptuo$TemplateEngine$Web$AsyncViewRenderer = {
     fullname: "Neptuo.TemplateEngine.Web.AsyncViewRenderer",
     baseTypeName: "System.Object",
@@ -644,6 +686,7 @@ var Neptuo$TemplateEngine$Web$AsyncViewRenderer = {
     Kind: "Class",
     definition: {
         ctor: function (viewPath, toUpdate, dependencyContainer, viewActivator, checker, urlProvider){
+            this.view = null;
             this.OnCompleted = null;
             this._ViewPath = null;
             this._ToUpdate = null;
@@ -725,15 +768,23 @@ var Neptuo$TemplateEngine$Web$AsyncViewRenderer = {
             return System.String.Format$$String$$Object$$Object("{0}?Path={1}", this.get_UrlProvider().ResolveUrl("~/Views.ashx"), viewPath);
         },
         RenderView: function (){
+            var notifyService = new Neptuo.TemplateEngine.Web.AsyncNotifyService.ctor();
+            notifyService.add_OnReady($CreateDelegate(this, this.OnAsyncNotifyReady));
             var componentManager = new Neptuo.TemplateEngine.Web.ClientExtendedComponentManager.ctor(this.get_ToUpdate());
-            Neptuo.DependencyContainerExtensions.RegisterInstance$1(Neptuo.TemplateEngine.Web.NavigationCollection.ctor, Neptuo.DependencyContainerExtensions.RegisterInstance$1(Neptuo.TemplateEngine.Web.IPartialUpdateWriter.ctor, Neptuo.DependencyContainerExtensions.RegisterInstance$1(Neptuo.Templates.IComponentManager.ctor, this.get_DependencyContainer(), componentManager), componentManager), new Neptuo.TemplateEngine.Web.NavigationCollection.ctor());
+            Neptuo.DependencyContainerExtensions.RegisterInstance$1(Neptuo.TemplateEngine.Web.AsyncNotifyService.ctor, Neptuo.DependencyContainerExtensions.RegisterInstance$1(Neptuo.TemplateEngine.Web.NavigationCollection.ctor, Neptuo.DependencyContainerExtensions.RegisterInstance$1(Neptuo.TemplateEngine.Web.IPartialUpdateWriter.ctor, Neptuo.DependencyContainerExtensions.RegisterInstance$1(Neptuo.Templates.IComponentManager.ctor, this.get_DependencyContainer(), componentManager), componentManager), new Neptuo.TemplateEngine.Web.NavigationCollection.ctor()), notifyService);
+            this.view = this.get_ViewActivator().CreateView(this.get_ViewPath());
+            this.view.Setup(new Neptuo.Templates.BaseViewPage.ctor(componentManager), componentManager, this.get_DependencyContainer());
+            this.view.CreateControls();
+            this.view.Init();
+            if (notifyService.get_IsReady()){
+                notifyService.remove_OnReady($CreateDelegate(this, this.OnAsyncNotifyReady));
+                this.OnAsyncNotifyReady();
+            }
+        },
+        OnAsyncNotifyReady: function (){
             var writer = new System.IO.StringWriter.ctor();
-            var view = this.get_ViewActivator().CreateView(this.get_ViewPath());
-            view.Setup(new Neptuo.Templates.BaseViewPage.ctor(componentManager), componentManager, this.get_DependencyContainer());
-            view.CreateControls();
-            view.Init();
-            view.Render(new Neptuo.TemplateEngine.Web.ExtendedHtmlTextWriter.ctor(writer));
-            view.Dispose();
+            this.view.Render(new Neptuo.TemplateEngine.Web.ExtendedHtmlTextWriter.ctor(writer));
+            this.view.Dispose();
             if (this.OnCompleted != null)
                 this.OnCompleted();
         }
@@ -842,13 +893,15 @@ var Neptuo$TemplateEngine$Web$Controls$DetailViewControl = {
     assemblyName: "Neptuo.TemplateEngine.Client",
     Kind: "Class",
     definition: {
-        ctor: function (componentManager, storage, dataContext, updateHelper){
+        ctor: function (componentManager, storage, dataContext, updateHelper, notifyService){
             this._Source = null;
             this._DataContext = null;
             this._UpdateHelper = null;
+            this._NotifyService = null;
             Neptuo.TemplateEngine.Web.Controls.TemplateControl.ctor.call(this, componentManager, storage);
             this.set_DataContext(dataContext);
             this.set_UpdateHelper(updateHelper);
+            this.set_NotifyService(notifyService);
         },
         Source$$: "Neptuo.TemplateEngine.Web.DataSources.IDataSource",
         get_Source: function (){
@@ -871,6 +924,13 @@ var Neptuo$TemplateEngine$Web$Controls$DetailViewControl = {
         set_UpdateHelper: function (value){
             this._UpdateHelper = value;
         },
+        NotifyService$$: "Neptuo.TemplateEngine.Web.AsyncNotifyService",
+        get_NotifyService: function (){
+            return this._NotifyService;
+        },
+        set_NotifyService: function (value){
+            this._NotifyService = value;
+        },
         OnInit: function (){
             this.InitComponent(this.get_Source());
             if (this.get_Source() == null)
@@ -878,6 +938,10 @@ var Neptuo$TemplateEngine$Web$Controls$DetailViewControl = {
             this.get_UpdateHelper().add_RenderContent($CreateDelegate(this, this.OnRenderContent));
             this.get_UpdateHelper().OnInit();
             this.get_Source().GetItem($CreateDelegate(this, this.OnLoadData));
+            this.get_NotifyService().Register(this);
+            setTimeout($CreateAnonymousDelegate(this, function (){
+                this.get_NotifyService().NotifyDone(this);
+            }), 500);
         },
         OnRenderContent: function (writer){
             Neptuo.TemplateEngine.Web.Controls.TemplateControl.commonPrototype.Render.call(this, writer);
@@ -894,7 +958,7 @@ var Neptuo$TemplateEngine$Web$Controls$DetailViewControl = {
     },
     ctors: [{
         name: "ctor",
-        parameters: ["Neptuo.Templates.IComponentManager", "Neptuo.TemplateEngine.Web.TemplateContentStorageStack", "Neptuo.TemplateEngine.Web.DataContextStorage", "Neptuo.TemplateEngine.Web.PartialUpdateHelper"]
+        parameters: ["Neptuo.Templates.IComponentManager", "Neptuo.TemplateEngine.Web.TemplateContentStorageStack", "Neptuo.TemplateEngine.Web.DataContextStorage", "Neptuo.TemplateEngine.Web.PartialUpdateHelper", "Neptuo.TemplateEngine.Web.AsyncNotifyService"]
     }
     ],
     IsAbstract: false
