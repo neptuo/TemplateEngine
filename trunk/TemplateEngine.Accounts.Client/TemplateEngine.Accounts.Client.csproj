@@ -63,7 +63,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Bootstrap\AccountBootstrapTask.cs" />
-    <Compile Include="Data\UserRepository.cs" />
     <Compile Include="UserAccountEditModelConverter.cs" />
     <Compile Include="UserAccountListResult.cs" />
     <Compile Include="UserAccountListResultConverter.cs" />
