@@ -173,7 +173,6 @@
     <Compile Include="Web\ParameterProviderExtensions.cs" />
     <Compile Include="Web\ParameterProviderType.cs" />
     <Compile Include="Web\PresentationConfiguration.cs" />
-    <Compile Include="Web\PropertySetAttribute.cs" />
     <Compile Include="Web\Routing\TemplateRouteParameterBase.cs" />
     <Compile Include="Web\TemplateContentStorage.cs" />
     <Compile Include="Web\TemplateContentStorageStack.cs" />

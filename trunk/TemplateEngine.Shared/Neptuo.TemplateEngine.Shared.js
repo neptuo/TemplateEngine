@@ -4418,42 +4418,6 @@ var Neptuo$TemplateEngine$Web$PresentationConfiguration$1 = {
     IsAbstract: false
 };
 JsTypes.push(Neptuo$TemplateEngine$Web$PresentationConfiguration$1);
-var Neptuo$TemplateEngine$Web$PropertySetAttribute = {
-    fullname: "Neptuo.TemplateEngine.Web.PropertySetAttribute",
-    baseTypeName: "System.Attribute",
-    assemblyName: "Neptuo.TemplateEngine.Shared",
-    Kind: "Class",
-    definition: {
-        ctor: function (allowFromRequest, requestKey){
-            this._AllowFromRequest = false;
-            this._RequestKey = null;
-            System.Attribute.ctor.call(this);
-            this.set_AllowFromRequest(allowFromRequest);
-            this.set_RequestKey(requestKey);
-        },
-        AllowFromRequest$$: "System.Boolean",
-        get_AllowFromRequest: function (){
-            return this._AllowFromRequest;
-        },
-        set_AllowFromRequest: function (value){
-            this._AllowFromRequest = value;
-        },
-        RequestKey$$: "System.String",
-        get_RequestKey: function (){
-            return this._RequestKey;
-        },
-        set_RequestKey: function (value){
-            this._RequestKey = value;
-        }
-    },
-    ctors: [{
-        name: "ctor",
-        parameters: ["System.Boolean", "System.String"]
-    }
-    ],
-    IsAbstract: false
-};
-JsTypes.push(Neptuo$TemplateEngine$Web$PropertySetAttribute);
 var Neptuo$TemplateEngine$Web$Routing$TemplateRouteParameterBase = {
     fullname: "Neptuo.TemplateEngine.Web.Routing.TemplateRouteParameterBase",
     baseTypeName: "System.Object",

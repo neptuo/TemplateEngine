@@ -142,7 +142,6 @@ namespace Neptuo.TemplateEngine.Backend.Bootstrap
 
             generator.SetPropertyDescriptorGenerator(typeof(CssClassPropertyDescriptor), new CodeDomCssClassPropertyGenerator());
             //generator.SetPropertyTypeGenerator(typeof(ITemplate), new CodeDomTemplatePropertyTypeGenerator(fieldNameProvider, "{0}.Views.{1}.view"));
-            generator.SetAttributeGenerator(typeof(PropertySetAttribute), new CodeDomPropertySetAttributeGenerator());
         }
 
         protected virtual void SetupJavascriptGenerator(SharpKitCodeGenerator generator)

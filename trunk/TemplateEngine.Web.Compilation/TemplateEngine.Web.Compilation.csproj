@@ -55,7 +55,6 @@
     <Compile Include="CodeGenerators\CodeDomExplicitCastGenerator.cs" />
     <Compile Include="CodeGenerators\CodeDomLocalizationGenerator.cs" />
     <Compile Include="CodeGenerators\CodeDomMethodReferenceGenerator.cs" />
-    <Compile Include="CodeGenerators\CodeDomPropertySetAttributeGenerator.cs" />
     <Compile Include="CodeGenerators\CodeDomResolveUrlGenerator.cs" />
     <Compile Include="CodeGenerators\CodeDomStructureGenerator.cs" />
     <Compile Include="CodeGenerators\CodeDomTemplateGenerator.cs" />
