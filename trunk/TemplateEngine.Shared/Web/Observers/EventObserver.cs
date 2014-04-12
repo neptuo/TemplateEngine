@@ -12,15 +12,7 @@ namespace Neptuo.TemplateEngine.Web.Observers
 {
     public class EventObserver : IObserver
     {
-        //protected HttpContextBase HttpContext { get; private set; }
-        //protected IEventHandler EventHandler { get; private set; }
         public string Event { get; set; }
-
-        public EventObserver(/*HttpContextBase httpContext, IEventHandler eventHandler*/)
-        {
-            //HttpContext = httpContext;
-            //EventHandler = eventHandler;
-        }
 
         public void OnInit(ObserverEventArgs e)
         {
@@ -30,10 +22,6 @@ namespace Neptuo.TemplateEngine.Web.Observers
 
             if (String.IsNullOrEmpty(button.Name))
                 button.Name = Event;
-            //throw new InvalidOperationException("ButtonControl must have a name.");
-
-            //if (HttpContext.Request.Form.AllKeys.Contains(button.Name))
-            //    EventHandler.Publish(Event, new EventHandlerEventArgs(Event));
         }
 
         public void Render(ObserverEventArgs e, IHtmlWriter writer)

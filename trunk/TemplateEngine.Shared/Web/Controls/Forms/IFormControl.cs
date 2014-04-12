@@ -9,7 +9,5 @@ namespace Neptuo.TemplateEngine.Web.Controls
     public interface IFormControl
     {
         string Name { get; set; }
-
-        void HandleValue(string value);
     }
 }

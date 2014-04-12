@@ -69,7 +69,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Neptuo.TemplateEngine.Accounts.Shared.js" />
-    <Content Include="Neptuo.TemplateEngine.Accounts.Shared.xml" />
+    <None Include="Neptuo.TemplateEngine.Accounts.Shared.xml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\TemplateEngine.Navigation\TemplateEngine.Navigation.csproj">

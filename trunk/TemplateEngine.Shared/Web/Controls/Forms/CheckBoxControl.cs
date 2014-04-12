@@ -33,10 +33,5 @@ namespace Neptuo.TemplateEngine.Web.Controls
                 .Content(LabelText)
                 .CloseFullTag();
         }
-
-        public override void HandleValue(string value)
-        {
-            IsChecked = value == "on";
-        }
     }
 }
