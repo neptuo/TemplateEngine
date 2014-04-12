@@ -11,7 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Neptuo.TemplateEngine.Web.Compilation
+namespace Neptuo.TemplateEngine.Templates.Compilation
 {
     public class ViewService : CodeDomViewService
     {

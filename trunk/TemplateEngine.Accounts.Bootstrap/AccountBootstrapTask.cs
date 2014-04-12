@@ -13,7 +13,7 @@ using Neptuo.TemplateEngine.Accounts.Web.DataSources;
 using Neptuo.TemplateEngine.Navigation;
 using Neptuo.TemplateEngine.Navigation.Bootstrap;
 using Neptuo.TemplateEngine.Web;
-using Neptuo.TemplateEngine.Web.Compilation.Parsers;
+using Neptuo.TemplateEngine.Templates.Compilation.Parsers;
 using Neptuo.TemplateEngine.Web.Controllers;
 using Neptuo.TemplateEngine.Web.DataSources;
 using Neptuo.TemplateEngine.Web.ViewBundles;
@@ -27,6 +27,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Neptuo.TemplateEngine.Accounts.Templates.DataSources;
 
 namespace Neptuo.TemplateEngine.Accounts.Bootstrap
 {
@@ -78,8 +79,7 @@ namespace Neptuo.TemplateEngine.Accounts.Bootstrap
 
         protected void SetupTypeBuilderRegistry(TypeBuilderRegistry registry)
         {
-            registry.RegisterNamespace(new NamespaceDeclaration("ui", "Neptuo.TemplateEngine.Accounts.Web.Presenters, Neptuo.TemplateEngine.Accounts.Web"));
-            registry.RegisterNamespace(new NamespaceDeclaration("data", "Neptuo.TemplateEngine.Accounts.Web.DataSources, Neptuo.TemplateEngine.Accounts.Web"));
+            registry.RegisterNamespace(new NamespaceDeclaration("data", "Neptuo.TemplateEngine.Accounts.Templates.DataSources, Neptuo.TemplateEngine.Accounts.Web"));
 
             registry.RegisterComponentBuilder("ui", "AccountSideNav", new UserTemplateComponentBuilderFactory("~/Views/Accounts/SideNav.view"));
         }

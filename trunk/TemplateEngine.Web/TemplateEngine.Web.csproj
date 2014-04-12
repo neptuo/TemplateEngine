@@ -79,16 +79,16 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controls\Ajax\PartialStartUpControl.cs" />
-    <Compile Include="Controls\Ajax\PartialViewControl.cs" />
-    <Compile Include="Controls\BundleControl.cs" />
-    <Compile Include="Controls\DetailViewControl.cs" />
-    <Compile Include="Controls\DropDownListControl.cs" />
-    <Compile Include="Controls\ListViewControl.cs" />
-    <Compile Include="Controls\SelectControl.cs" />
-    <Compile Include="Controls\Templates\StringTemplate.cs" />
-    <Compile Include="DataSources\IListDataSource.cs" />
-    <Compile Include="DataSources\WebDataSourceAttribute.cs" />
+    <Compile Include="Templates\Controls\Ajax\PartialStartUpControl.cs" />
+    <Compile Include="Templates\Controls\Ajax\PartialViewControl.cs" />
+    <Compile Include="Templates\Controls\BundleControl.cs" />
+    <Compile Include="Templates\Controls\DetailViewControl.cs" />
+    <Compile Include="Templates\Controls\DropDownListControl.cs" />
+    <Compile Include="Templates\Controls\ListViewControl.cs" />
+    <Compile Include="Templates\Controls\SelectControl.cs" />
+    <Compile Include="Templates\Controls\Templates\StringTemplate.cs" />
+    <Compile Include="Templates\DataSources\IListDataSource.cs" />
+    <Compile Include="Web\DataSources\WebDataSourceAttribute.cs" />
     <Compile Include="GeneratedViewBase.cs" />
     <Compile Include="ViewBundles\GreedyViewBundle.cs" />
     <Compile Include="ViewBundles\IViewBundle.cs" />
@@ -97,9 +97,9 @@
     <Compile Include="ViewBundles\ViewBundleCollection.cs" />
     <Compile Include="ViewBundles\ViewBundleTable.cs" />
     <Compile Include="ViewBundles\XmlViewBundleLoader.cs" />
-    <Compile Include="ViewServiceViewActivator.cs" />
-    <Compile Include="DataSources\ListDataSourceBase.cs" />
-    <Compile Include="DataSources\IDataSource.cs" />
+    <Compile Include="Templates\ViewServiceViewActivator.cs" />
+    <Compile Include="Templates\DataSources\ListDataSourceBase.cs" />
+    <Compile Include="Templates\DataSources\IDataSource.cs" />
     <Compile Include="RequestParameterProviderFactory.cs" />
     <Compile Include="RequestParameterProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

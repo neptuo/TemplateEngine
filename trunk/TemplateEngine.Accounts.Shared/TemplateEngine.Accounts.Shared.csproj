@@ -48,8 +48,8 @@
     <Compile Include="Commands\UserAccountDeleteCommand.cs" />
     <Compile Include="Commands\UserAccountEditCommand.cs" />
     <Compile Include="Events\UserSignedIn.cs" />
-    <Compile Include="Web\DataSources\IUserAccountDataSourceFilter.cs" />
-    <Compile Include="Web\DataSources\IUserRoleDataSourceFilter.cs" />
+    <Compile Include="Templates\DataSources\IUserAccountDataSourceFilter.cs" />
+    <Compile Include="Templates\DataSources\IUserRoleDataSourceFilter.cs" />
     <Compile Include="UserAccountLoginModel.cs" />
     <Compile Include="UserAccountViewModel.cs" />
     <Compile Include="Commands\UserRoleEditCommand.cs" />

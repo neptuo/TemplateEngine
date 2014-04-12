@@ -1,5 +1,5 @@
 ﻿using Neptuo.Linq.Expressions;
-using Neptuo.TemplateEngine.Web.Controls;
+using Neptuo.TemplateEngine.Templates.Controls;
 using Neptuo.Templates.Compilation.CodeGenerators;
 using Neptuo.Templates.Compilation.CodeObjects;
 using Neptuo.Templates.Compilation.Parsers;
@@ -13,7 +13,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Neptuo.TemplateEngine.Web.Compilation.CodeGenerators
+namespace Neptuo.TemplateEngine.Templates.Compilation.CodeGenerators
 {
     [Obsolete]
     public class CodeDomTemplatePropertyTypeGenerator : CodeDomComponentGenerator, ICodeDomPropertyTypeGenerator

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Neptuo.TemplateEngine.Web.Compilation.Parsers
+namespace Neptuo.TemplateEngine.Templates.Compilation.Parsers
 {
     public class UserTemplateComponentBuilderFactory : IComponentBuilderFactory
     {

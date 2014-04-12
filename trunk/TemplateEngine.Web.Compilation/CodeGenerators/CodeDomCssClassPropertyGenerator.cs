@@ -1,6 +1,6 @@
 ﻿using Neptuo.Linq.Expressions;
-using Neptuo.TemplateEngine.Web.Compilation.CodeObjects;
-using Neptuo.TemplateEngine.Web.Controls;
+using Neptuo.TemplateEngine.Templates.Compilation.CodeObjects;
+using Neptuo.TemplateEngine.Templates.Controls;
 using Neptuo.Templates.Compilation.CodeGenerators;
 using Neptuo.Templates.Compilation.CodeObjects;
 using System;
@@ -10,7 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Neptuo.TemplateEngine.Web.Compilation.CodeGenerators
+namespace Neptuo.TemplateEngine.Templates.Compilation.CodeGenerators
 {
     public class CodeDomCssClassPropertyGenerator : BaseCodeDomPropertyGenerator<CssClassPropertyDescriptor>
     {

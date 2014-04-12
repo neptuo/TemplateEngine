@@ -1,5 +1,6 @@
 ﻿using Neptuo.TemplateEngine.Navigation;
 using Neptuo.TemplateEngine.Routing;
+using Neptuo.TemplateEngine.Templates;
 using Neptuo.Templates;
 using System;
 using System.Collections.Generic;

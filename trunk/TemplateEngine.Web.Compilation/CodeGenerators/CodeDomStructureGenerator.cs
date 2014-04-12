@@ -1,4 +1,6 @@
-﻿using Neptuo.Templates.Compilation.CodeGenerators;
+﻿using Neptuo.TemplateEngine.Templates;
+using Neptuo.TemplateEngine.Web;
+using Neptuo.Templates.Compilation.CodeGenerators;
 using System;
 using System.CodeDom;
 using System.Collections.Generic;
@@ -6,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Neptuo.TemplateEngine.Web.Compilation.CodeGenerators
+namespace Neptuo.TemplateEngine.Templates.Compilation.CodeGenerators
 {
     public class CodeDomStructureGenerator : Neptuo.Templates.Compilation.CodeGenerators.CodeDomStructureGenerator
     {

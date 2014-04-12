@@ -9,6 +9,7 @@ using Neptuo.TemplateEngine.Navigation.Bootstrap;
 using Neptuo.TemplateEngine.Permissions;
 using Neptuo.TemplateEngine.PresentationModels;
 using Neptuo.TemplateEngine.Routing;
+using Neptuo.TemplateEngine.Templates;
 using Neptuo.TemplateEngine.Web.Controllers;
 using Neptuo.TemplateEngine.Web.Controllers.Binders;
 using Neptuo.TemplateEngine.Web.Routing;

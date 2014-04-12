@@ -287,8 +287,8 @@ var Neptuo$TemplateEngine$Web$Controllers$ValidateAttribute = {
     IsAbstract: false
 };
 JsTypes.push(Neptuo$TemplateEngine$Web$Controllers$ValidateAttribute);
-var Neptuo$TemplateEngine$Web$Controls$BundleControlBase = {
-    fullname: "Neptuo.TemplateEngine.Web.Controls.BundleControlBase",
+var Neptuo$TemplateEngine$Templates$Controls$BundleControlBase = {
+    fullname: "Neptuo.TemplateEngine.Templates.Controls.BundleControlBase",
     baseTypeName: "System.Object",
     assemblyName: "Neptuo.TemplateEngine.Shared",
     interfaceNames: ["Neptuo.Templates.Controls.IControl"],
@@ -325,10 +325,10 @@ var Neptuo$TemplateEngine$Web$Controls$BundleControlBase = {
                 this.RenderScript(writer);
         },
         RenderScript: function (writer){
-            Neptuo.TemplateEngine.Web.HtmlWriterExtensions.Script(writer, this.urlProvider.ResolveUrl(this.get_Path()));
+            Neptuo.TemplateEngine.Templates.HtmlWriterExtensions.Script(writer, this.urlProvider.ResolveUrl(this.get_Path()));
         },
         RenderStyle: function (writer){
-            Neptuo.TemplateEngine.Web.HtmlWriterExtensions.Style(writer, this.urlProvider.ResolveUrl(this.get_Path()));
+            Neptuo.TemplateEngine.Templates.HtmlWriterExtensions.Style(writer, this.urlProvider.ResolveUrl(this.get_Path()));
         }
     },
     ctors: [{
@@ -338,49 +338,49 @@ var Neptuo$TemplateEngine$Web$Controls$BundleControlBase = {
     ],
     IsAbstract: false
 };
-JsTypes.push(Neptuo$TemplateEngine$Web$Controls$BundleControlBase);
-var Neptuo$TemplateEngine$Web$Controls$GetFormControl = {
-    fullname: "Neptuo.TemplateEngine.Web.Controls.GetFormControl",
-    baseTypeName: "Neptuo.TemplateEngine.Web.Controls.HtmlContentControlBase",
+JsTypes.push(Neptuo$TemplateEngine$Templates$Controls$BundleControlBase);
+var Neptuo$TemplateEngine$Templates$Controls$GetFormControl = {
+    fullname: "Neptuo.TemplateEngine.Templates.Controls.GetFormControl",
+    baseTypeName: "Neptuo.TemplateEngine.Templates.Controls.HtmlContentControlBase",
     assemblyName: "Neptuo.TemplateEngine.Shared",
     Kind: "Class",
     definition: {
         ctor: function (componentManager, urlProvider){
-            Neptuo.TemplateEngine.Web.Controls.HtmlContentControlBase.ctor.call(this, componentManager, "form", false);
+            Neptuo.TemplateEngine.Templates.Controls.HtmlContentControlBase.ctor.call(this, componentManager, "form", false);
             this.get_Attributes().set_Item$$TKey("method", "get");
             this.get_Attributes().set_Item$$TKey("action", urlProvider.GetCurrentUrl());
         }
     },
     ctors: [{
         name: "ctor",
-        parameters: ["Neptuo.Templates.IComponentManager", "Neptuo.TemplateEngine.Web.ICurrentUrlProvider"]
+        parameters: ["Neptuo.Templates.IComponentManager", "Neptuo.TemplateEngine.Templates.ICurrentUrlProvider"]
     }
     ],
     IsAbstract: false
 };
-JsTypes.push(Neptuo$TemplateEngine$Web$Controls$GetFormControl);
-var Neptuo$TemplateEngine$Web$Controls$PostFormControl = {
-    fullname: "Neptuo.TemplateEngine.Web.Controls.PostFormControl",
-    baseTypeName: "Neptuo.TemplateEngine.Web.Controls.HtmlContentControlBase",
+JsTypes.push(Neptuo$TemplateEngine$Templates$Controls$GetFormControl);
+var Neptuo$TemplateEngine$Templates$Controls$PostFormControl = {
+    fullname: "Neptuo.TemplateEngine.Templates.Controls.PostFormControl",
+    baseTypeName: "Neptuo.TemplateEngine.Templates.Controls.HtmlContentControlBase",
     assemblyName: "Neptuo.TemplateEngine.Shared",
     Kind: "Class",
     definition: {
         ctor: function (componentManager, urlProvider){
-            Neptuo.TemplateEngine.Web.Controls.HtmlContentControlBase.ctor.call(this, componentManager, "form", false);
+            Neptuo.TemplateEngine.Templates.Controls.HtmlContentControlBase.ctor.call(this, componentManager, "form", false);
             this.get_Attributes().set_Item$$TKey("method", "post");
             this.get_Attributes().set_Item$$TKey("action", urlProvider.GetCurrentUrl());
         }
     },
     ctors: [{
         name: "ctor",
-        parameters: ["Neptuo.Templates.IComponentManager", "Neptuo.TemplateEngine.Web.ICurrentUrlProvider"]
+        parameters: ["Neptuo.Templates.IComponentManager", "Neptuo.TemplateEngine.Templates.ICurrentUrlProvider"]
     }
     ],
     IsAbstract: false
 };
-JsTypes.push(Neptuo$TemplateEngine$Web$Controls$PostFormControl);
-var Neptuo$TemplateEngine$Web$Controls$IPaginationControl = {
-    fullname: "Neptuo.TemplateEngine.Web.Controls.IPaginationControl",
+JsTypes.push(Neptuo$TemplateEngine$Templates$Controls$PostFormControl);
+var Neptuo$TemplateEngine$Templates$Controls$IPaginationControl = {
+    fullname: "Neptuo.TemplateEngine.Templates.Controls.IPaginationControl",
     baseTypeName: "System.Object",
     assemblyName: "Neptuo.TemplateEngine.Shared",
     interfaceNames: ["Neptuo.Templates.Controls.IControl"],
@@ -388,12 +388,12 @@ var Neptuo$TemplateEngine$Web$Controls$IPaginationControl = {
     ctors: [],
     IsAbstract: true
 };
-JsTypes.push(Neptuo$TemplateEngine$Web$Controls$IPaginationControl);
-var Neptuo$TemplateEngine$Web$Controls$PaginationControl = {
-    fullname: "Neptuo.TemplateEngine.Web.Controls.PaginationControl",
-    baseTypeName: "Neptuo.TemplateEngine.Web.Controls.TemplateControl",
+JsTypes.push(Neptuo$TemplateEngine$Templates$Controls$IPaginationControl);
+var Neptuo$TemplateEngine$Templates$Controls$PaginationControl = {
+    fullname: "Neptuo.TemplateEngine.Templates.Controls.PaginationControl",
+    baseTypeName: "Neptuo.TemplateEngine.Templates.Controls.TemplateControl",
     assemblyName: "Neptuo.TemplateEngine.Shared",
-    interfaceNames: ["Neptuo.TemplateEngine.Web.Controls.IPaginationControl"],
+    interfaceNames: ["Neptuo.TemplateEngine.Templates.Controls.IPaginationControl"],
     Kind: "Class",
     definition: {
         ctor: function (componentManager, urlProvider, storage){
@@ -402,11 +402,11 @@ var Neptuo$TemplateEngine$Web$Controls$PaginationControl = {
             this._PageSize = 0;
             this._PageIndex = 0;
             this._TotalCount = 0;
-            Neptuo.TemplateEngine.Web.Controls.TemplateControl.ctor.call(this, componentManager, storage);
+            Neptuo.TemplateEngine.Templates.Controls.TemplateControl.ctor.call(this, componentManager, storage);
             Neptuo.Guard.NotNull$$Object$$String(urlProvider, "urlProvider");
             this.urlProvider = urlProvider;
         },
-        ItemTemplate$$: "Neptuo.TemplateEngine.Web.Controls.ITemplate",
+        ItemTemplate$$: "Neptuo.TemplateEngine.Templates.Controls.ITemplate",
         get_ItemTemplate: function (){
             return this._ItemTemplate;
         },
@@ -446,14 +446,14 @@ var Neptuo$TemplateEngine$Web$Controls$PaginationControl = {
     },
     ctors: [{
         name: "ctor",
-        parameters: ["Neptuo.Templates.IComponentManager", "Neptuo.TemplateEngine.Web.ICurrentUrlProvider", "Neptuo.TemplateEngine.Web.TemplateContentStorageStack"]
+        parameters: ["Neptuo.Templates.IComponentManager", "Neptuo.TemplateEngine.Templates.ICurrentUrlProvider", "Neptuo.TemplateEngine.Templates.TemplateContentStorageStack"]
     }
     ],
     IsAbstract: false
 };
-JsTypes.push(Neptuo$TemplateEngine$Web$Controls$PaginationControl);
-var Neptuo$TemplateEngine$Web$Controls$SelectControlContext = {
-    fullname: "Neptuo.TemplateEngine.Web.Controls.SelectControlContext",
+JsTypes.push(Neptuo$TemplateEngine$Templates$Controls$PaginationControl);
+var Neptuo$TemplateEngine$Templates$Controls$SelectControlContext = {
+    fullname: "Neptuo.TemplateEngine.Templates.Controls.SelectControlContext",
     baseTypeName: "System.Object",
     assemblyName: "Neptuo.TemplateEngine.Shared",
     Kind: "Class",
@@ -469,28 +469,28 @@ var Neptuo$TemplateEngine$Web$Controls$SelectControlContext = {
             this.set_DataContext(dataContext);
             this.set_BindingManager(bindingManager);
         },
-        RequestContext$$: "Neptuo.TemplateEngine.Web.IRequestContext",
+        RequestContext$$: "Neptuo.TemplateEngine.Templates.IRequestContext",
         get_RequestContext: function (){
             return this._RequestContext;
         },
         set_RequestContext: function (value){
             this._RequestContext = value;
         },
-        Storage$$: "Neptuo.TemplateEngine.Web.TemplateContentStorageStack",
+        Storage$$: "Neptuo.TemplateEngine.Templates.TemplateContentStorageStack",
         get_Storage: function (){
             return this._Storage;
         },
         set_Storage: function (value){
             this._Storage = value;
         },
-        DataContext$$: "Neptuo.TemplateEngine.Web.DataContextStorage",
+        DataContext$$: "Neptuo.TemplateEngine.Templates.DataContextStorage",
         get_DataContext: function (){
             return this._DataContext;
         },
         set_DataContext: function (value){
             this._DataContext = value;
         },
-        BindingManager$$: "Neptuo.TemplateEngine.Web.IBindingManager",
+        BindingManager$$: "Neptuo.TemplateEngine.Templates.IBindingManager",
         get_BindingManager: function (){
             return this._BindingManager;
         },
@@ -500,14 +500,14 @@ var Neptuo$TemplateEngine$Web$Controls$SelectControlContext = {
     },
     ctors: [{
         name: "ctor",
-        parameters: ["Neptuo.TemplateEngine.Web.IRequestContext", "Neptuo.TemplateEngine.Web.TemplateContentStorageStack", "Neptuo.TemplateEngine.Web.DataContextStorage", "Neptuo.TemplateEngine.Web.IBindingManager"]
+        parameters: ["Neptuo.TemplateEngine.Templates.IRequestContext", "Neptuo.TemplateEngine.Templates.TemplateContentStorageStack", "Neptuo.TemplateEngine.Templates.DataContextStorage", "Neptuo.TemplateEngine.Templates.IBindingManager"]
     }
     ],
     IsAbstract: false
 };
-JsTypes.push(Neptuo$TemplateEngine$Web$Controls$SelectControlContext);
-var Neptuo$TemplateEngine$Web$Controls$SelectItem = {
-    fullname: "Neptuo.TemplateEngine.Web.Controls.SelectItem",
+JsTypes.push(Neptuo$TemplateEngine$Templates$Controls$SelectControlContext);
+var Neptuo$TemplateEngine$Templates$Controls$SelectItem = {
+    fullname: "Neptuo.TemplateEngine.Templates.Controls.SelectItem",
     baseTypeName: "System.Object",
     assemblyName: "Neptuo.TemplateEngine.Shared",
     Kind: "Class",
@@ -541,9 +541,9 @@ var Neptuo$TemplateEngine$Web$Controls$SelectItem = {
     ],
     IsAbstract: false
 };
-JsTypes.push(Neptuo$TemplateEngine$Web$Controls$SelectItem);
-var Neptuo$TemplateEngine$Web$Controls$ViewBundleControl = {
-    fullname: "Neptuo.TemplateEngine.Web.Controls.ViewBundleControl",
+JsTypes.push(Neptuo$TemplateEngine$Templates$Controls$SelectItem);
+var Neptuo$TemplateEngine$Templates$Controls$ViewBundleControl = {
+    fullname: "Neptuo.TemplateEngine.Templates.Controls.ViewBundleControl",
     baseTypeName: "System.Object",
     assemblyName: "Neptuo.TemplateEngine.Shared",
     interfaceNames: ["Neptuo.Templates.Controls.IControl"],
@@ -575,21 +575,21 @@ var Neptuo$TemplateEngine$Web$Controls$ViewBundleControl = {
     ],
     IsAbstract: false
 };
-JsTypes.push(Neptuo$TemplateEngine$Web$Controls$ViewBundleControl);
-var Neptuo$TemplateEngine$Web$DataSources$IListResult = {
-    fullname: "Neptuo.TemplateEngine.Web.DataSources.IListResult",
+JsTypes.push(Neptuo$TemplateEngine$Templates$Controls$ViewBundleControl);
+var Neptuo$TemplateEngine$Templates$DataSources$IListResult = {
+    fullname: "Neptuo.TemplateEngine.Templates.DataSources.IListResult",
     baseTypeName: "System.Object",
     assemblyName: "Neptuo.TemplateEngine.Shared",
     Kind: "Interface",
     ctors: [],
     IsAbstract: true
 };
-JsTypes.push(Neptuo$TemplateEngine$Web$DataSources$IListResult);
-var Neptuo$TemplateEngine$Web$DataSources$ListResult = {
-    fullname: "Neptuo.TemplateEngine.Web.DataSources.ListResult",
+JsTypes.push(Neptuo$TemplateEngine$Templates$DataSources$IListResult);
+var Neptuo$TemplateEngine$Templates$DataSources$ListResult = {
+    fullname: "Neptuo.TemplateEngine.Templates.DataSources.ListResult",
     baseTypeName: "System.Object",
     assemblyName: "Neptuo.TemplateEngine.Shared",
-    interfaceNames: ["Neptuo.TemplateEngine.Web.DataSources.IListResult"],
+    interfaceNames: ["Neptuo.TemplateEngine.Templates.DataSources.IListResult"],
     Kind: "Class",
     definition: {
         ctor: function (data, totalCount){
@@ -621,7 +621,7 @@ var Neptuo$TemplateEngine$Web$DataSources$ListResult = {
     ],
     IsAbstract: false
 };
-JsTypes.push(Neptuo$TemplateEngine$Web$DataSources$ListResult);
+JsTypes.push(Neptuo$TemplateEngine$Templates$DataSources$ListResult);
 var Neptuo$TemplateEngine$Web$DictionaryParameterProvider = {
     fullname: "Neptuo.TemplateEngine.Web.DictionaryParameterProvider",
     baseTypeName: "System.Object",
@@ -670,8 +670,8 @@ var Neptuo$TemplateEngine$Web$DictionaryParameterProvider = {
     IsAbstract: false
 };
 JsTypes.push(Neptuo$TemplateEngine$Web$DictionaryParameterProvider);
-var Neptuo$TemplateEngine$Web$HtmlWriterExtensions = {
-    fullname: "Neptuo.TemplateEngine.Web.HtmlWriterExtensions",
+var Neptuo$TemplateEngine$Templates$HtmlWriterExtensions = {
+    fullname: "Neptuo.TemplateEngine.Templates.HtmlWriterExtensions",
     baseTypeName: "System.Object",
     staticDefinition: {
         Script: function (writer, path){
@@ -691,7 +691,7 @@ var Neptuo$TemplateEngine$Web$HtmlWriterExtensions = {
     ctors: [],
     IsAbstract: true
 };
-JsTypes.push(Neptuo$TemplateEngine$Web$HtmlWriterExtensions);
+JsTypes.push(Neptuo$TemplateEngine$Templates$HtmlWriterExtensions);
 var Neptuo$TemplateEngine$Navigation$QueryStringNavigateTo = {
     fullname: "Neptuo.TemplateEngine.Navigation.QueryStringNavigateTo",
     baseTypeName: "System.Object",
@@ -806,11 +806,11 @@ var Neptuo$TemplateEngine$StackStorage$1 = {
     IsAbstract: false
 };
 JsTypes.push(Neptuo$TemplateEngine$StackStorage$1);
-var Neptuo$TemplateEngine$Web$BindingManagerBase = {
-    fullname: "Neptuo.TemplateEngine.Web.BindingManagerBase",
+var Neptuo$TemplateEngine$Templates$BindingManagerBase = {
+    fullname: "Neptuo.TemplateEngine.Templates.BindingManagerBase",
     baseTypeName: "System.Object",
     assemblyName: "Neptuo.TemplateEngine.Shared",
-    interfaceNames: ["Neptuo.TemplateEngine.Web.IBindingManager"],
+    interfaceNames: ["Neptuo.TemplateEngine.Templates.IBindingManager"],
     Kind: "Class",
     definition: {
         ctor: function (){
@@ -873,12 +873,12 @@ var Neptuo$TemplateEngine$Web$BindingManagerBase = {
     ],
     IsAbstract: false
 };
-JsTypes.push(Neptuo$TemplateEngine$Web$BindingManagerBase);
-var Neptuo$TemplateEngine$Web$CompositeRequestContext = {
-    fullname: "Neptuo.TemplateEngine.Web.CompositeRequestContext",
+JsTypes.push(Neptuo$TemplateEngine$Templates$BindingManagerBase);
+var Neptuo$TemplateEngine$Templates$CompositeRequestContext = {
+    fullname: "Neptuo.TemplateEngine.Templates.CompositeRequestContext",
     baseTypeName: "System.Object",
     assemblyName: "Neptuo.TemplateEngine.Shared",
-    interfaceNames: ["Neptuo.TemplateEngine.Web.IRequestContext"],
+    interfaceNames: ["Neptuo.TemplateEngine.Templates.IRequestContext"],
     Kind: "Class",
     definition: {
         ctor: function (componentManager, currentUrl, urlProvider, parameterFactory){
@@ -915,12 +915,12 @@ var Neptuo$TemplateEngine$Web$CompositeRequestContext = {
     },
     ctors: [{
         name: "ctor",
-        parameters: ["Neptuo.Templates.IComponentManager", "Neptuo.TemplateEngine.Web.ICurrentUrlProvider", "Neptuo.Templates.IVirtualUrlProvider", "Neptuo.TemplateEngine.Web.IParameterProviderFactory"]
+        parameters: ["Neptuo.Templates.IComponentManager", "Neptuo.TemplateEngine.Templates.ICurrentUrlProvider", "Neptuo.Templates.IVirtualUrlProvider", "Neptuo.TemplateEngine.Web.IParameterProviderFactory"]
     }
     ],
     IsAbstract: false
 };
-JsTypes.push(Neptuo$TemplateEngine$Web$CompositeRequestContext);
+JsTypes.push(Neptuo$TemplateEngine$Templates$CompositeRequestContext);
 var Neptuo$TemplateEngine$Web$Controllers$ActionAttribute = {
     fullname: "Neptuo.TemplateEngine.Web.Controllers.ActionAttribute",
     baseTypeName: "System.Attribute",
@@ -1529,16 +1529,16 @@ var Neptuo$TemplateEngine$Web$Controllers$ViewDataCollection = {
     IsAbstract: false
 };
 JsTypes.push(Neptuo$TemplateEngine$Web$Controllers$ViewDataCollection);
-var Neptuo$TemplateEngine$Web$Controls$ContentControlBase = {
-    fullname: "Neptuo.TemplateEngine.Web.Controls.ContentControlBase",
-    baseTypeName: "Neptuo.TemplateEngine.Web.Controls.ControlBase",
+var Neptuo$TemplateEngine$Templates$Controls$ContentControlBase = {
+    fullname: "Neptuo.TemplateEngine.Templates.Controls.ContentControlBase",
+    baseTypeName: "Neptuo.TemplateEngine.Templates.Controls.ControlBase",
     assemblyName: "Neptuo.TemplateEngine.Shared",
     interfaceNames: ["Neptuo.Templates.Controls.IContentControl"],
     Kind: "Class",
     definition: {
         ctor: function (componentManager){
             this._Content = null;
-            Neptuo.TemplateEngine.Web.Controls.ControlBase.ctor.call(this, componentManager);
+            Neptuo.TemplateEngine.Templates.Controls.ControlBase.ctor.call(this, componentManager);
         },
         Content$$: "System.Collections.Generic.ICollection`1[[System.Object]]",
         get_Content: function (){
@@ -1548,7 +1548,7 @@ var Neptuo$TemplateEngine$Web$Controls$ContentControlBase = {
             this._Content = value;
         },
         OnInit: function (){
-            Neptuo.TemplateEngine.Web.Controls.ControlBase.commonPrototype.OnInit.call(this);
+            Neptuo.TemplateEngine.Templates.Controls.ControlBase.commonPrototype.OnInit.call(this);
             if (this.get_Content() != null){
                 var $it7 = this.get_Content().GetEnumerator();
                 while ($it7.MoveNext()){
@@ -1577,9 +1577,9 @@ var Neptuo$TemplateEngine$Web$Controls$ContentControlBase = {
     ],
     IsAbstract: true
 };
-JsTypes.push(Neptuo$TemplateEngine$Web$Controls$ContentControlBase);
-var Neptuo$TemplateEngine$Web$Controls$ControlBase = {
-    fullname: "Neptuo.TemplateEngine.Web.Controls.ControlBase",
+JsTypes.push(Neptuo$TemplateEngine$Templates$Controls$ContentControlBase);
+var Neptuo$TemplateEngine$Templates$Controls$ControlBase = {
+    fullname: "Neptuo.TemplateEngine.Templates.Controls.ControlBase",
     baseTypeName: "System.Object",
     assemblyName: "Neptuo.TemplateEngine.Shared",
     interfaceNames: ["Neptuo.Templates.Controls.IControl"],
@@ -1637,9 +1637,9 @@ var Neptuo$TemplateEngine$Web$Controls$ControlBase = {
     ],
     IsAbstract: true
 };
-JsTypes.push(Neptuo$TemplateEngine$Web$Controls$ControlBase);
-var Neptuo$TemplateEngine$Web$Controls$CssClassCollection = {
-    fullname: "Neptuo.TemplateEngine.Web.Controls.CssClassCollection",
+JsTypes.push(Neptuo$TemplateEngine$Templates$Controls$ControlBase);
+var Neptuo$TemplateEngine$Templates$Controls$CssClassCollection = {
+    fullname: "Neptuo.TemplateEngine.Templates.Controls.CssClassCollection",
     baseTypeName: "System.Object",
     assemblyName: "Neptuo.TemplateEngine.Shared",
     interfaceNames: ["System.Collections.Generic.IEnumerable$1"],
@@ -1670,9 +1670,9 @@ var Neptuo$TemplateEngine$Web$Controls$CssClassCollection = {
     ],
     IsAbstract: false
 };
-JsTypes.push(Neptuo$TemplateEngine$Web$Controls$CssClassCollection);
-var Neptuo$TemplateEngine$Web$Controls$DesignData$HintAttribute = {
-    fullname: "Neptuo.TemplateEngine.Web.Controls.DesignData.HintAttribute",
+JsTypes.push(Neptuo$TemplateEngine$Templates$Controls$CssClassCollection);
+var Neptuo$TemplateEngine$Templates$Controls$DesignData$HintAttribute = {
+    fullname: "Neptuo.TemplateEngine.Templates.Controls.DesignData.HintAttribute",
     baseTypeName: "System.Attribute",
     assemblyName: "Neptuo.TemplateEngine.Shared",
     Kind: "Class",
@@ -1697,9 +1697,9 @@ var Neptuo$TemplateEngine$Web$Controls$DesignData$HintAttribute = {
     ],
     IsAbstract: false
 };
-JsTypes.push(Neptuo$TemplateEngine$Web$Controls$DesignData$HintAttribute);
-var Neptuo$TemplateEngine$Web$Controls$DesignData$SupportUiEventAttribute = {
-    fullname: "Neptuo.TemplateEngine.Web.Controls.DesignData.SupportUiEventAttribute",
+JsTypes.push(Neptuo$TemplateEngine$Templates$Controls$DesignData$HintAttribute);
+var Neptuo$TemplateEngine$Templates$Controls$DesignData$SupportUiEventAttribute = {
+    fullname: "Neptuo.TemplateEngine.Templates.Controls.DesignData.SupportUiEventAttribute",
     baseTypeName: "System.Attribute",
     assemblyName: "Neptuo.TemplateEngine.Shared",
     Kind: "Class",
@@ -1733,19 +1733,19 @@ var Neptuo$TemplateEngine$Web$Controls$DesignData$SupportUiEventAttribute = {
     ],
     IsAbstract: false
 };
-JsTypes.push(Neptuo$TemplateEngine$Web$Controls$DesignData$SupportUiEventAttribute);
-var Neptuo$TemplateEngine$Web$Controls$DoctypeControl = {
-    fullname: "Neptuo.TemplateEngine.Web.Controls.DoctypeControl",
+JsTypes.push(Neptuo$TemplateEngine$Templates$Controls$DesignData$SupportUiEventAttribute);
+var Neptuo$TemplateEngine$Templates$Controls$DoctypeControl = {
+    fullname: "Neptuo.TemplateEngine.Templates.Controls.DoctypeControl",
     baseTypeName: "System.Object",
     assemblyName: "Neptuo.TemplateEngine.Shared",
     interfaceNames: ["Neptuo.Templates.Controls.IControl"],
     Kind: "Class",
     definition: {
         ctor: function (){
-            this._Type = Neptuo.TemplateEngine.Web.Controls.DoctypeType.Html5;
+            this._Type = Neptuo.TemplateEngine.Templates.Controls.DoctypeType.Html5;
             System.Object.ctor.call(this);
         },
-        Type$$: "Neptuo.TemplateEngine.Web.Controls.DoctypeType",
+        Type$$: "Neptuo.TemplateEngine.Templates.Controls.DoctypeType",
         get_Type: function (){
             return this._Type;
         },
@@ -1756,10 +1756,10 @@ var Neptuo$TemplateEngine$Web$Controls$DoctypeControl = {
         },
         Render: function (writer){
             switch (this.get_Type()){
-                case Neptuo.TemplateEngine.Web.Controls.DoctypeType.Xhtml:
+                case Neptuo.TemplateEngine.Templates.Controls.DoctypeType.Xhtml:
                     writer.Content$$String("<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">");
                     break;
-                case Neptuo.TemplateEngine.Web.Controls.DoctypeType.Html5:
+                case Neptuo.TemplateEngine.Templates.Controls.DoctypeType.Html5:
                 default:
                     writer.Content$$String("<!DOCTYPE html>");
                     break;
@@ -1773,9 +1773,9 @@ var Neptuo$TemplateEngine$Web$Controls$DoctypeControl = {
     ],
     IsAbstract: false
 };
-JsTypes.push(Neptuo$TemplateEngine$Web$Controls$DoctypeControl);
-var Neptuo$TemplateEngine$Web$Controls$DoctypeType = {
-    fullname: "Neptuo.TemplateEngine.Web.Controls.DoctypeType",
+JsTypes.push(Neptuo$TemplateEngine$Templates$Controls$DoctypeControl);
+var Neptuo$TemplateEngine$Templates$Controls$DoctypeType = {
+    fullname: "Neptuo.TemplateEngine.Templates.Controls.DoctypeType",
     staticDefinition: {
         Html5: 0,
         Xhtml: 1
@@ -1788,17 +1788,17 @@ var Neptuo$TemplateEngine$Web$Controls$DoctypeType = {
     ],
     IsAbstract: false
 };
-JsTypes.push(Neptuo$TemplateEngine$Web$Controls$DoctypeType);
-var Neptuo$TemplateEngine$Web$Controls$FormItemControl = {
-    fullname: "Neptuo.TemplateEngine.Web.Controls.FormItemControl",
-    baseTypeName: "Neptuo.TemplateEngine.Web.Controls.ContentControlBase",
+JsTypes.push(Neptuo$TemplateEngine$Templates$Controls$DoctypeType);
+var Neptuo$TemplateEngine$Templates$Controls$FormItemControl = {
+    fullname: "Neptuo.TemplateEngine.Templates.Controls.FormItemControl",
+    baseTypeName: "Neptuo.TemplateEngine.Templates.Controls.ContentControlBase",
     assemblyName: "Neptuo.TemplateEngine.Shared",
     Kind: "Class",
     definition: {
         ctor: function (componentManager){
             this._LabelText = null;
             this._HelpText = null;
-            Neptuo.TemplateEngine.Web.Controls.ContentControlBase.ctor.call(this, componentManager);
+            Neptuo.TemplateEngine.Templates.Controls.ContentControlBase.ctor.call(this, componentManager);
         },
         LabelText$$: "System.String",
         get_LabelText: function (){
@@ -1830,7 +1830,7 @@ var Neptuo$TemplateEngine$Web$Controls$FormItemControl = {
                 var $it10 = this.get_Content().GetEnumerator();
                 while ($it10.MoveNext()){
                     var control = $it10.get_Current();
-                    var htmlControl = As(control, Neptuo.TemplateEngine.Web.Controls.HtmlControlBase.ctor);
+                    var htmlControl = As(control, Neptuo.TemplateEngine.Templates.Controls.HtmlControlBase.ctor);
                     if (htmlControl != null){
                         if (!System.String.IsNullOrEmpty(htmlControl.get_ID()))
                             return htmlControl.get_ID();
@@ -1850,17 +1850,17 @@ var Neptuo$TemplateEngine$Web$Controls$FormItemControl = {
     ],
     IsAbstract: false
 };
-JsTypes.push(Neptuo$TemplateEngine$Web$Controls$FormItemControl);
-var Neptuo$TemplateEngine$Web$Controls$ButtonControl = {
-    fullname: "Neptuo.TemplateEngine.Web.Controls.ButtonControl",
-    baseTypeName: "Neptuo.TemplateEngine.Web.Controls.HtmlContentControlBase",
+JsTypes.push(Neptuo$TemplateEngine$Templates$Controls$FormItemControl);
+var Neptuo$TemplateEngine$Templates$Controls$ButtonControl = {
+    fullname: "Neptuo.TemplateEngine.Templates.Controls.ButtonControl",
+    baseTypeName: "Neptuo.TemplateEngine.Templates.Controls.HtmlContentControlBase",
     assemblyName: "Neptuo.TemplateEngine.Shared",
     Kind: "Class",
     definition: {
         ctor: function (componentManager){
             this._Name = null;
             this._Text = null;
-            Neptuo.TemplateEngine.Web.Controls.HtmlContentControlBase.ctor.call(this, componentManager, "button", false);
+            Neptuo.TemplateEngine.Templates.Controls.HtmlContentControlBase.ctor.call(this, componentManager, "button", false);
             this.get_Attributes().set_Item$$TKey("class", "btn");
         },
         Name$$: "System.String",
@@ -1878,7 +1878,7 @@ var Neptuo$TemplateEngine$Web$Controls$ButtonControl = {
             this._Text = value;
         },
         OnInit: function (){
-            Neptuo.TemplateEngine.Web.Controls.HtmlContentControlBase.commonPrototype.OnInit.call(this);
+            Neptuo.TemplateEngine.Templates.Controls.HtmlContentControlBase.commonPrototype.OnInit.call(this);
             if (!System.String.IsNullOrEmpty(this.get_Name()))
                 this.get_Attributes().set_Item$$TKey("name", this.get_Name());
             if (this.get_Content() == null){
@@ -1894,17 +1894,17 @@ var Neptuo$TemplateEngine$Web$Controls$ButtonControl = {
     ],
     IsAbstract: false
 };
-JsTypes.push(Neptuo$TemplateEngine$Web$Controls$ButtonControl);
-var Neptuo$TemplateEngine$Web$Controls$CheckBoxControl = {
-    fullname: "Neptuo.TemplateEngine.Web.Controls.CheckBoxControl",
-    baseTypeName: "Neptuo.TemplateEngine.Web.Controls.FormInputControlBase",
+JsTypes.push(Neptuo$TemplateEngine$Templates$Controls$ButtonControl);
+var Neptuo$TemplateEngine$Templates$Controls$CheckBoxControl = {
+    fullname: "Neptuo.TemplateEngine.Templates.Controls.CheckBoxControl",
+    baseTypeName: "Neptuo.TemplateEngine.Templates.Controls.FormInputControlBase",
     assemblyName: "Neptuo.TemplateEngine.Shared",
     Kind: "Class",
     definition: {
         ctor: function (componentManager){
             this._LabelText = null;
             this._IsChecked = false;
-            Neptuo.TemplateEngine.Web.Controls.FormInputControlBase.ctor.call(this, componentManager);
+            Neptuo.TemplateEngine.Templates.Controls.FormInputControlBase.ctor.call(this, componentManager);
             this.set_Type("checkbox");
         },
         LabelText$$: "System.String",
@@ -1925,7 +1925,7 @@ var Neptuo$TemplateEngine$Web$Controls$CheckBoxControl = {
             if (this.get_IsChecked())
                 this.get_Attributes().set_Item$$TKey("checked", "checked");
             writer.Tag("label").Attribute("class", "checkbox");
-            Neptuo.TemplateEngine.Web.Controls.FormInputControlBase.commonPrototype.Render.call(this, writer);
+            Neptuo.TemplateEngine.Templates.Controls.FormInputControlBase.commonPrototype.Render.call(this, writer);
             writer.Content$$String(this.get_LabelText()).CloseFullTag();
         }
     },
@@ -1936,17 +1936,17 @@ var Neptuo$TemplateEngine$Web$Controls$CheckBoxControl = {
     ],
     IsAbstract: false
 };
-JsTypes.push(Neptuo$TemplateEngine$Web$Controls$CheckBoxControl);
-var Neptuo$TemplateEngine$Web$Controls$FormControlBase = {
-    fullname: "Neptuo.TemplateEngine.Web.Controls.FormControlBase",
-    baseTypeName: "Neptuo.TemplateEngine.Web.Controls.HtmlControlBase",
+JsTypes.push(Neptuo$TemplateEngine$Templates$Controls$CheckBoxControl);
+var Neptuo$TemplateEngine$Templates$Controls$FormControlBase = {
+    fullname: "Neptuo.TemplateEngine.Templates.Controls.FormControlBase",
+    baseTypeName: "Neptuo.TemplateEngine.Templates.Controls.HtmlControlBase",
     assemblyName: "Neptuo.TemplateEngine.Shared",
-    interfaceNames: ["Neptuo.TemplateEngine.Web.Controls.IFormControl"],
+    interfaceNames: ["Neptuo.TemplateEngine.Templates.Controls.IFormControl"],
     Kind: "Class",
     definition: {
         ctor: function (componentManager){
             this._Name = null;
-            Neptuo.TemplateEngine.Web.Controls.HtmlControlBase.ctor.call(this, componentManager, "input", true);
+            Neptuo.TemplateEngine.Templates.Controls.HtmlControlBase.ctor.call(this, componentManager, "input", true);
         },
         Name$$: "System.String",
         get_Name: function (){
@@ -1956,13 +1956,13 @@ var Neptuo$TemplateEngine$Web$Controls$FormControlBase = {
             this._Name = value;
         },
         OnInit: function (){
-            Neptuo.TemplateEngine.Web.Controls.ControlBase.commonPrototype.OnInit.call(this);
+            Neptuo.TemplateEngine.Templates.Controls.ControlBase.commonPrototype.OnInit.call(this);
             if (this.get_ID() == null)
                 this.set_ID(this.get_Name());
         },
         Render: function (writer){
             this.get_Attributes().set_Item$$TKey("name", this.get_Name());
-            Neptuo.TemplateEngine.Web.Controls.HtmlControlBase.commonPrototype.Render.call(this, writer);
+            Neptuo.TemplateEngine.Templates.Controls.HtmlControlBase.commonPrototype.Render.call(this, writer);
         }
     },
     ctors: [{
@@ -1972,16 +1972,16 @@ var Neptuo$TemplateEngine$Web$Controls$FormControlBase = {
     ],
     IsAbstract: true
 };
-JsTypes.push(Neptuo$TemplateEngine$Web$Controls$FormControlBase);
-var Neptuo$TemplateEngine$Web$Controls$FormInputControlBase = {
-    fullname: "Neptuo.TemplateEngine.Web.Controls.FormInputControlBase",
-    baseTypeName: "Neptuo.TemplateEngine.Web.Controls.FormControlBase",
+JsTypes.push(Neptuo$TemplateEngine$Templates$Controls$FormControlBase);
+var Neptuo$TemplateEngine$Templates$Controls$FormInputControlBase = {
+    fullname: "Neptuo.TemplateEngine.Templates.Controls.FormInputControlBase",
+    baseTypeName: "Neptuo.TemplateEngine.Templates.Controls.FormControlBase",
     assemblyName: "Neptuo.TemplateEngine.Shared",
     Kind: "Class",
     definition: {
         ctor: function (componentManager){
             this._Type = null;
-            Neptuo.TemplateEngine.Web.Controls.FormControlBase.ctor.call(this, componentManager);
+            Neptuo.TemplateEngine.Templates.Controls.FormControlBase.ctor.call(this, componentManager);
         },
         Type$$: "System.String",
         get_Type: function (){
@@ -1992,7 +1992,7 @@ var Neptuo$TemplateEngine$Web$Controls$FormInputControlBase = {
         },
         Render: function (writer){
             this.get_Attributes().set_Item$$TKey("type", this.get_Type());
-            Neptuo.TemplateEngine.Web.Controls.FormControlBase.commonPrototype.Render.call(this, writer);
+            Neptuo.TemplateEngine.Templates.Controls.FormControlBase.commonPrototype.Render.call(this, writer);
         }
     },
     ctors: [{
@@ -2002,17 +2002,17 @@ var Neptuo$TemplateEngine$Web$Controls$FormInputControlBase = {
     ],
     IsAbstract: true
 };
-JsTypes.push(Neptuo$TemplateEngine$Web$Controls$FormInputControlBase);
-var Neptuo$TemplateEngine$Web$Controls$HiddenBoxControl = {
-    fullname: "Neptuo.TemplateEngine.Web.Controls.HiddenBoxControl",
-    baseTypeName: "Neptuo.TemplateEngine.Web.Controls.FormInputControlBase",
+JsTypes.push(Neptuo$TemplateEngine$Templates$Controls$FormInputControlBase);
+var Neptuo$TemplateEngine$Templates$Controls$HiddenBoxControl = {
+    fullname: "Neptuo.TemplateEngine.Templates.Controls.HiddenBoxControl",
+    baseTypeName: "Neptuo.TemplateEngine.Templates.Controls.FormInputControlBase",
     assemblyName: "Neptuo.TemplateEngine.Shared",
-    interfaceNames: ["Neptuo.TemplateEngine.Web.Controls.ITextControl"],
+    interfaceNames: ["Neptuo.TemplateEngine.Templates.Controls.ITextControl"],
     Kind: "Class",
     definition: {
         ctor: function (componentManager){
             this._Text = null;
-            Neptuo.TemplateEngine.Web.Controls.FormInputControlBase.ctor.call(this, componentManager);
+            Neptuo.TemplateEngine.Templates.Controls.FormInputControlBase.ctor.call(this, componentManager);
             this.set_Type("hidden");
         },
         Text$$: "System.String",
@@ -2024,7 +2024,7 @@ var Neptuo$TemplateEngine$Web$Controls$HiddenBoxControl = {
         },
         Render: function (writer){
             this.get_Attributes().set_Item$$TKey("value", this.get_Text());
-            Neptuo.TemplateEngine.Web.Controls.FormInputControlBase.commonPrototype.Render.call(this, writer);
+            Neptuo.TemplateEngine.Templates.Controls.FormInputControlBase.commonPrototype.Render.call(this, writer);
         }
     },
     ctors: [{
@@ -2034,24 +2034,24 @@ var Neptuo$TemplateEngine$Web$Controls$HiddenBoxControl = {
     ],
     IsAbstract: false
 };
-JsTypes.push(Neptuo$TemplateEngine$Web$Controls$HiddenBoxControl);
-var Neptuo$TemplateEngine$Web$Controls$IFormControl = {
-    fullname: "Neptuo.TemplateEngine.Web.Controls.IFormControl",
+JsTypes.push(Neptuo$TemplateEngine$Templates$Controls$HiddenBoxControl);
+var Neptuo$TemplateEngine$Templates$Controls$IFormControl = {
+    fullname: "Neptuo.TemplateEngine.Templates.Controls.IFormControl",
     baseTypeName: "System.Object",
     assemblyName: "Neptuo.TemplateEngine.Shared",
     Kind: "Interface",
     ctors: [],
     IsAbstract: true
 };
-JsTypes.push(Neptuo$TemplateEngine$Web$Controls$IFormControl);
-var Neptuo$TemplateEngine$Web$Controls$PasswordBoxControl = {
-    fullname: "Neptuo.TemplateEngine.Web.Controls.PasswordBoxControl",
-    baseTypeName: "Neptuo.TemplateEngine.Web.Controls.TextBoxControl",
+JsTypes.push(Neptuo$TemplateEngine$Templates$Controls$IFormControl);
+var Neptuo$TemplateEngine$Templates$Controls$PasswordBoxControl = {
+    fullname: "Neptuo.TemplateEngine.Templates.Controls.PasswordBoxControl",
+    baseTypeName: "Neptuo.TemplateEngine.Templates.Controls.TextBoxControl",
     assemblyName: "Neptuo.TemplateEngine.Shared",
     Kind: "Class",
     definition: {
         ctor: function (componentManager){
-            Neptuo.TemplateEngine.Web.Controls.TextBoxControl.ctor.call(this, componentManager);
+            Neptuo.TemplateEngine.Templates.Controls.TextBoxControl.ctor.call(this, componentManager);
             this.set_Type("password");
         }
     },
@@ -2062,18 +2062,18 @@ var Neptuo$TemplateEngine$Web$Controls$PasswordBoxControl = {
     ],
     IsAbstract: false
 };
-JsTypes.push(Neptuo$TemplateEngine$Web$Controls$PasswordBoxControl);
-var Neptuo$TemplateEngine$Web$Controls$TextBoxControl = {
-    fullname: "Neptuo.TemplateEngine.Web.Controls.TextBoxControl",
-    baseTypeName: "Neptuo.TemplateEngine.Web.Controls.FormInputControlBase",
+JsTypes.push(Neptuo$TemplateEngine$Templates$Controls$PasswordBoxControl);
+var Neptuo$TemplateEngine$Templates$Controls$TextBoxControl = {
+    fullname: "Neptuo.TemplateEngine.Templates.Controls.TextBoxControl",
+    baseTypeName: "Neptuo.TemplateEngine.Templates.Controls.FormInputControlBase",
     assemblyName: "Neptuo.TemplateEngine.Shared",
-    interfaceNames: ["Neptuo.TemplateEngine.Web.Controls.ITextControl"],
+    interfaceNames: ["Neptuo.TemplateEngine.Templates.Controls.ITextControl"],
     Kind: "Class",
     definition: {
         ctor: function (componentManager){
             this._Text = null;
             this._IsAutoFocus = false;
-            Neptuo.TemplateEngine.Web.Controls.FormInputControlBase.ctor.call(this, componentManager);
+            Neptuo.TemplateEngine.Templates.Controls.FormInputControlBase.ctor.call(this, componentManager);
             this.set_Type("text");
         },
         Text$$: "System.String",
@@ -2094,7 +2094,7 @@ var Neptuo$TemplateEngine$Web$Controls$TextBoxControl = {
             this.get_Attributes().set_Item$$TKey("value", this.get_Text());
             if (this.get_IsAutoFocus())
                 this.get_Attributes().set_Item$$TKey("autofocus", "autofocus");
-            Neptuo.TemplateEngine.Web.Controls.FormInputControlBase.commonPrototype.Render.call(this, writer);
+            Neptuo.TemplateEngine.Templates.Controls.FormInputControlBase.commonPrototype.Render.call(this, writer);
         }
     },
     ctors: [{
@@ -2104,26 +2104,26 @@ var Neptuo$TemplateEngine$Web$Controls$TextBoxControl = {
     ],
     IsAbstract: false
 };
-JsTypes.push(Neptuo$TemplateEngine$Web$Controls$TextBoxControl);
-var Neptuo$TemplateEngine$Web$Controls$GenericContentControl = {
-    fullname: "Neptuo.TemplateEngine.Web.Controls.GenericContentControl",
-    baseTypeName: "Neptuo.TemplateEngine.Web.Controls.HtmlContentControlBase",
+JsTypes.push(Neptuo$TemplateEngine$Templates$Controls$TextBoxControl);
+var Neptuo$TemplateEngine$Templates$Controls$GenericContentControl = {
+    fullname: "Neptuo.TemplateEngine.Templates.Controls.GenericContentControl",
+    baseTypeName: "Neptuo.TemplateEngine.Templates.Controls.HtmlContentControlBase",
     assemblyName: "Neptuo.TemplateEngine.Shared",
     Kind: "Class",
     definition: {
         ctor: function (componentManager){
-            Neptuo.TemplateEngine.Web.Controls.HtmlContentControlBase.ctor.call(this, componentManager, "div", false);
+            Neptuo.TemplateEngine.Templates.Controls.HtmlContentControlBase.ctor.call(this, componentManager, "div", false);
         },
         TagName$$: "System.String",
         get_TagName: function (){
-            return Neptuo.TemplateEngine.Web.Controls.HtmlControlBase.commonPrototype.get_TagName.call(this);
+            return Neptuo.TemplateEngine.Templates.Controls.HtmlControlBase.commonPrototype.get_TagName.call(this);
         },
         set_TagName: function (value){
-            Neptuo.TemplateEngine.Web.Controls.HtmlControlBase.commonPrototype.set_TagName.call(this, value);
+            Neptuo.TemplateEngine.Templates.Controls.HtmlControlBase.commonPrototype.set_TagName.call(this, value);
         },
         Render: function (writer){
             if (!System.String.IsNullOrEmpty(this.get_TagName()))
-                Neptuo.TemplateEngine.Web.Controls.HtmlControlBase.commonPrototype.Render.call(this, writer);
+                Neptuo.TemplateEngine.Templates.Controls.HtmlControlBase.commonPrototype.Render.call(this, writer);
         }
     },
     ctors: [{
@@ -2133,23 +2133,23 @@ var Neptuo$TemplateEngine$Web$Controls$GenericContentControl = {
     ],
     IsAbstract: false
 };
-JsTypes.push(Neptuo$TemplateEngine$Web$Controls$GenericContentControl);
-var Neptuo$TemplateEngine$Web$Controls$HtmlContentControlBase = {
-    fullname: "Neptuo.TemplateEngine.Web.Controls.HtmlContentControlBase",
-    baseTypeName: "Neptuo.TemplateEngine.Web.Controls.HtmlControlBase",
+JsTypes.push(Neptuo$TemplateEngine$Templates$Controls$GenericContentControl);
+var Neptuo$TemplateEngine$Templates$Controls$HtmlContentControlBase = {
+    fullname: "Neptuo.TemplateEngine.Templates.Controls.HtmlContentControlBase",
+    baseTypeName: "Neptuo.TemplateEngine.Templates.Controls.HtmlControlBase",
     assemblyName: "Neptuo.TemplateEngine.Shared",
     interfaceNames: ["Neptuo.Templates.Controls.IContentControl"],
     Kind: "Class",
     definition: {
         ctor: function (componentManager, tagName, isSelfClosing){
             this._Content = null;
-            Neptuo.TemplateEngine.Web.Controls.HtmlControlBase.ctor.call(this, componentManager, tagName, isSelfClosing);
+            Neptuo.TemplateEngine.Templates.Controls.HtmlControlBase.ctor.call(this, componentManager, tagName, isSelfClosing);
         },
         IsSelfClosing$$: "System.Boolean",
         get_IsSelfClosing: function (){
             if (this.get_Content() != null && this.get_Content().get_Count() != 0)
                 return false;
-            return Neptuo.TemplateEngine.Web.Controls.HtmlControlBase.commonPrototype.get_IsSelfClosing.call(this);
+            return Neptuo.TemplateEngine.Templates.Controls.HtmlControlBase.commonPrototype.get_IsSelfClosing.call(this);
         },
         Content$$: "System.Collections.Generic.ICollection`1[[System.Object]]",
         get_Content: function (){
@@ -2159,7 +2159,7 @@ var Neptuo$TemplateEngine$Web$Controls$HtmlContentControlBase = {
             this._Content = value;
         },
         OnInit: function (){
-            Neptuo.TemplateEngine.Web.Controls.ControlBase.commonPrototype.OnInit.call(this);
+            Neptuo.TemplateEngine.Templates.Controls.ControlBase.commonPrototype.OnInit.call(this);
             if (this.get_Content() != null){
                 var $it11 = this.get_Content().GetEnumerator();
                 while ($it11.MoveNext()){
@@ -2185,12 +2185,12 @@ var Neptuo$TemplateEngine$Web$Controls$HtmlContentControlBase = {
     ],
     IsAbstract: true
 };
-JsTypes.push(Neptuo$TemplateEngine$Web$Controls$HtmlContentControlBase);
-var Neptuo$TemplateEngine$Web$Controls$HtmlControlBase = {
-    fullname: "Neptuo.TemplateEngine.Web.Controls.HtmlControlBase",
-    baseTypeName: "Neptuo.TemplateEngine.Web.Controls.ControlBase",
+JsTypes.push(Neptuo$TemplateEngine$Templates$Controls$HtmlContentControlBase);
+var Neptuo$TemplateEngine$Templates$Controls$HtmlControlBase = {
+    fullname: "Neptuo.TemplateEngine.Templates.Controls.HtmlControlBase",
+    baseTypeName: "Neptuo.TemplateEngine.Templates.Controls.ControlBase",
     assemblyName: "Neptuo.TemplateEngine.Shared",
-    interfaceNames: ["Neptuo.Templates.IAttributeCollection", "Neptuo.TemplateEngine.Web.Controls.IHtmlAttributeCollection"],
+    interfaceNames: ["Neptuo.Templates.IAttributeCollection", "Neptuo.TemplateEngine.Templates.Controls.IHtmlAttributeCollection"],
     Kind: "Class",
     definition: {
         ctor: function (componentManager, tagName, isSelfClosing){
@@ -2200,7 +2200,7 @@ var Neptuo$TemplateEngine$Web$Controls$HtmlControlBase = {
             this._Attributes = null;
             this._TagName = null;
             this._IsSelfClosing = false;
-            Neptuo.TemplateEngine.Web.Controls.ControlBase.ctor.call(this, componentManager);
+            Neptuo.TemplateEngine.Templates.Controls.ControlBase.ctor.call(this, componentManager);
             this.set_TagName(tagName);
             this.set_IsSelfClosing(isSelfClosing);
             this.set_Attributes(new Neptuo.Templates.HtmlAttributeCollection.ctor());
@@ -2219,7 +2219,7 @@ var Neptuo$TemplateEngine$Web$Controls$HtmlControlBase = {
         set_CssStyle: function (value){
             this._CssStyle = value;
         },
-        CssClass$$: "Neptuo.TemplateEngine.Web.Controls.CssClassCollection",
+        CssClass$$: "Neptuo.TemplateEngine.Templates.Controls.CssClassCollection",
         get_CssClass: function (){
             return this._CssClass;
         },
@@ -2291,54 +2291,54 @@ var Neptuo$TemplateEngine$Web$Controls$HtmlControlBase = {
     ],
     IsAbstract: true
 };
-JsTypes.push(Neptuo$TemplateEngine$Web$Controls$HtmlControlBase);
-var Neptuo$TemplateEngine$Web$Controls$IHtmlAttributeCollection = {
-    fullname: "Neptuo.TemplateEngine.Web.Controls.IHtmlAttributeCollection",
+JsTypes.push(Neptuo$TemplateEngine$Templates$Controls$HtmlControlBase);
+var Neptuo$TemplateEngine$Templates$Controls$IHtmlAttributeCollection = {
+    fullname: "Neptuo.TemplateEngine.Templates.Controls.IHtmlAttributeCollection",
     baseTypeName: "System.Object",
     assemblyName: "Neptuo.TemplateEngine.Shared",
     Kind: "Interface",
     ctors: [],
     IsAbstract: true
 };
-JsTypes.push(Neptuo$TemplateEngine$Web$Controls$IHtmlAttributeCollection);
-var Neptuo$TemplateEngine$Web$Controls$ITextControl = {
-    fullname: "Neptuo.TemplateEngine.Web.Controls.ITextControl",
+JsTypes.push(Neptuo$TemplateEngine$Templates$Controls$IHtmlAttributeCollection);
+var Neptuo$TemplateEngine$Templates$Controls$ITextControl = {
+    fullname: "Neptuo.TemplateEngine.Templates.Controls.ITextControl",
     baseTypeName: "System.Object",
     assemblyName: "Neptuo.TemplateEngine.Shared",
     Kind: "Interface",
     ctors: [],
     IsAbstract: true
 };
-JsTypes.push(Neptuo$TemplateEngine$Web$Controls$ITextControl);
-var Neptuo$TemplateEngine$Web$Controls$IValueControl = {
-    fullname: "Neptuo.TemplateEngine.Web.Controls.IValueControl",
+JsTypes.push(Neptuo$TemplateEngine$Templates$Controls$ITextControl);
+var Neptuo$TemplateEngine$Templates$Controls$IValueControl = {
+    fullname: "Neptuo.TemplateEngine.Templates.Controls.IValueControl",
     baseTypeName: "System.Object",
     assemblyName: "Neptuo.TemplateEngine.Shared",
     Kind: "Interface",
     ctors: [],
     IsAbstract: true
 };
-JsTypes.push(Neptuo$TemplateEngine$Web$Controls$IValueControl);
-var Neptuo$TemplateEngine$Web$Controls$LinkControl = {
-    fullname: "Neptuo.TemplateEngine.Web.Controls.LinkControl",
-    baseTypeName: "Neptuo.TemplateEngine.Web.Controls.HtmlContentControlBase",
+JsTypes.push(Neptuo$TemplateEngine$Templates$Controls$IValueControl);
+var Neptuo$TemplateEngine$Templates$Controls$LinkControl = {
+    fullname: "Neptuo.TemplateEngine.Templates.Controls.LinkControl",
+    baseTypeName: "Neptuo.TemplateEngine.Templates.Controls.HtmlContentControlBase",
     assemblyName: "Neptuo.TemplateEngine.Shared",
     customAttributes: [{
         targetType: "property",
         targetMemberName: "Text",
-        typeName: "Neptuo.TemplateEngine.Web.Controls.DesignData.HintAttribute",
+        typeName: "Neptuo.TemplateEngine.Templates.Controls.DesignData.HintAttribute",
         ctorName: "ctor",
         positionalArguments: ["Replace for Content property for setting via attribute."]
     }, {
         targetType: "property",
         targetMemberName: "CopyParameters",
-        typeName: "Neptuo.TemplateEngine.Web.Controls.DesignData.HintAttribute",
+        typeName: "Neptuo.TemplateEngine.Templates.Controls.DesignData.HintAttribute",
         ctorName: "ctor",
         positionalArguments: ["Can contain \'All\', \'Query\', \'Form\' or comma separated list of parameter names."]
     }, {
         targetType: "property",
         targetMemberName: "AllowActive",
-        typeName: "Neptuo.TemplateEngine.Web.Controls.DesignData.HintAttribute",
+        typeName: "Neptuo.TemplateEngine.Templates.Controls.DesignData.HintAttribute",
         ctorName: "ctor",
         positionalArguments: ["Setting to false, disable adding \'active\' css class when matching url with current."]
     }
@@ -2354,7 +2354,7 @@ var Neptuo$TemplateEngine$Web$Controls$LinkControl = {
             this._CopyParameters = null;
             this._Parameters = null;
             this._AllowActive = false;
-            Neptuo.TemplateEngine.Web.Controls.HtmlContentControlBase.ctor.call(this, componentManager, "a", false);
+            Neptuo.TemplateEngine.Templates.Controls.HtmlContentControlBase.ctor.call(this, componentManager, "a", false);
             this.urlProvider = urlProvider;
             this.currentUrl = currentUrl;
             this.parameterFactory = parameterFactory;
@@ -2380,7 +2380,7 @@ var Neptuo$TemplateEngine$Web$Controls$LinkControl = {
         set_CopyParameters: function (value){
             this._CopyParameters = value;
         },
-        Parameters$$: "System.Collections.Generic.ICollection`1[[Neptuo.TemplateEngine.Web.Controls.ParameterControl]]",
+        Parameters$$: "System.Collections.Generic.ICollection`1[[Neptuo.TemplateEngine.Templates.Controls.ParameterControl]]",
         get_Parameters: function (){
             return this._Parameters;
         },
@@ -2395,7 +2395,7 @@ var Neptuo$TemplateEngine$Web$Controls$LinkControl = {
             this._AllowActive = value;
         },
         OnInit: function (){
-            Neptuo.TemplateEngine.Web.Controls.HtmlContentControlBase.commonPrototype.OnInit.call(this);
+            Neptuo.TemplateEngine.Templates.Controls.HtmlContentControlBase.commonPrototype.OnInit.call(this);
             if (this.get_Href() == null)
                 throw $CreateException(new System.ArgumentNullException.ctor$$String("Href"), new Error());
             if (this.get_AllowActive() && this.currentUrl.GetCurrentUrl().EndsWith$$String(this.get_Href()))
@@ -2406,7 +2406,7 @@ var Neptuo$TemplateEngine$Web$Controls$LinkControl = {
                     $v1.Add(this.get_Text());
                     return $v1;
                 }).call(this));
-            this.InitComponents$1(Neptuo.TemplateEngine.Web.Controls.ParameterControl.ctor, this.get_Parameters());
+            this.InitComponents$1(Neptuo.TemplateEngine.Templates.Controls.ParameterControl.ctor, this.get_Parameters());
         },
         RenderAttributes: function (writer){
             var parameters = new System.Collections.Generic.Dictionary$2.ctor(System.String.ctor, System.Object.ctor);
@@ -2435,7 +2435,7 @@ var Neptuo$TemplateEngine$Web$Controls$LinkControl = {
                 this.AppendQuery(queryBuilder, parameter.get_Key(), parameter.get_Value());
             }
             this.get_Attributes().set_Item$$TKey("href", System.String.Format$$String$$Object$$Object("{0}{1}", this.urlProvider.ResolveUrl(this.get_Href()), queryBuilder.ToString()));
-            Neptuo.TemplateEngine.Web.Controls.HtmlControlBase.commonPrototype.RenderAttributes.call(this, writer);
+            Neptuo.TemplateEngine.Templates.Controls.HtmlControlBase.commonPrototype.RenderAttributes.call(this, writer);
         },
         AppendQuery: function (builder, key, value){
             builder.AppendFormat$$String$$Object$$Object$$Object("{2}{0}={1}", key, value, builder.get_Length() == 0 ? "?" : "&");
@@ -2473,23 +2473,23 @@ var Neptuo$TemplateEngine$Web$Controls$LinkControl = {
     },
     ctors: [{
         name: "ctor",
-        parameters: ["Neptuo.Templates.IComponentManager", "Neptuo.Templates.IVirtualUrlProvider", "Neptuo.TemplateEngine.Web.ICurrentUrlProvider", "Neptuo.TemplateEngine.Web.IParameterProviderFactory"]
+        parameters: ["Neptuo.Templates.IComponentManager", "Neptuo.Templates.IVirtualUrlProvider", "Neptuo.TemplateEngine.Templates.ICurrentUrlProvider", "Neptuo.TemplateEngine.Web.IParameterProviderFactory"]
     }
     ],
     IsAbstract: false
 };
-JsTypes.push(Neptuo$TemplateEngine$Web$Controls$LinkControl);
-var Neptuo$TemplateEngine$Web$Controls$LiteralControl = {
-    fullname: "Neptuo.TemplateEngine.Web.Controls.LiteralControl",
-    baseTypeName: "Neptuo.TemplateEngine.Web.Controls.ControlBase",
+JsTypes.push(Neptuo$TemplateEngine$Templates$Controls$LinkControl);
+var Neptuo$TemplateEngine$Templates$Controls$LiteralControl = {
+    fullname: "Neptuo.TemplateEngine.Templates.Controls.LiteralControl",
+    baseTypeName: "Neptuo.TemplateEngine.Templates.Controls.ControlBase",
     assemblyName: "Neptuo.TemplateEngine.Shared",
-    interfaceNames: ["Neptuo.TemplateEngine.Web.Controls.ITextControl"],
+    interfaceNames: ["Neptuo.TemplateEngine.Templates.Controls.ITextControl"],
     Kind: "Class",
     definition: {
         ctor: function (componentManager){
             this._Text = null;
             this._FormatString = null;
-            Neptuo.TemplateEngine.Web.Controls.ControlBase.ctor.call(this, componentManager);
+            Neptuo.TemplateEngine.Templates.Controls.ControlBase.ctor.call(this, componentManager);
         },
         Text$$: "System.String",
         get_Text: function (){
@@ -2519,10 +2519,10 @@ var Neptuo$TemplateEngine$Web$Controls$LiteralControl = {
     ],
     IsAbstract: false
 };
-JsTypes.push(Neptuo$TemplateEngine$Web$Controls$LiteralControl);
-var Neptuo$TemplateEngine$Web$Controls$MessagePanelControl = {
-    fullname: "Neptuo.TemplateEngine.Web.Controls.MessagePanelControl",
-    baseTypeName: "Neptuo.TemplateEngine.Web.Controls.HtmlControlBase",
+JsTypes.push(Neptuo$TemplateEngine$Templates$Controls$LiteralControl);
+var Neptuo$TemplateEngine$Templates$Controls$MessagePanelControl = {
+    fullname: "Neptuo.TemplateEngine.Templates.Controls.MessagePanelControl",
+    baseTypeName: "Neptuo.TemplateEngine.Templates.Controls.HtmlControlBase",
     assemblyName: "Neptuo.TemplateEngine.Shared",
     Kind: "Class",
     definition: {
@@ -2530,7 +2530,7 @@ var Neptuo$TemplateEngine$Web$Controls$MessagePanelControl = {
             this._MessageStorage = null;
             this._Group = null;
             this._Key = null;
-            Neptuo.TemplateEngine.Web.Controls.HtmlControlBase.ctor.call(this, componentManager, "ul", false);
+            Neptuo.TemplateEngine.Templates.Controls.HtmlControlBase.ctor.call(this, componentManager, "ul", false);
             this.set_MessageStorage(messageStorage);
         },
         MessageStorage$$: "Neptuo.TemplateEngine.Web.MessageStorage",
@@ -2589,10 +2589,10 @@ var Neptuo$TemplateEngine$Web$Controls$MessagePanelControl = {
     ],
     IsAbstract: false
 };
-JsTypes.push(Neptuo$TemplateEngine$Web$Controls$MessagePanelControl);
-var Neptuo$TemplateEngine$Web$Controls$NavigationControl = {
-    fullname: "Neptuo.TemplateEngine.Web.Controls.NavigationControl",
-    baseTypeName: "Neptuo.TemplateEngine.Web.Controls.ControlBase",
+JsTypes.push(Neptuo$TemplateEngine$Templates$Controls$MessagePanelControl);
+var Neptuo$TemplateEngine$Templates$Controls$NavigationControl = {
+    fullname: "Neptuo.TemplateEngine.Templates.Controls.NavigationControl",
+    baseTypeName: "Neptuo.TemplateEngine.Templates.Controls.ControlBase",
     assemblyName: "Neptuo.TemplateEngine.Shared",
     Kind: "Class",
     definition: {
@@ -2601,7 +2601,7 @@ var Neptuo$TemplateEngine$Web$Controls$NavigationControl = {
             this._GlobalNavigations = null;
             this._Navigator = null;
             this._Items = null;
-            Neptuo.TemplateEngine.Web.Controls.ControlBase.ctor.call(this, componentManager);
+            Neptuo.TemplateEngine.Templates.Controls.ControlBase.ctor.call(this, componentManager);
             this.set_Navigator(navigator);
             this.set_Navigations(navigations);
             this.set_GlobalNavigations(globalNavigations);
@@ -2627,7 +2627,7 @@ var Neptuo$TemplateEngine$Web$Controls$NavigationControl = {
         set_Navigator: function (value){
             this._Navigator = value;
         },
-        Items$$: "System.Collections.Generic.ICollection`1[[Neptuo.TemplateEngine.Web.Controls.NavigationItem]]",
+        Items$$: "System.Collections.Generic.ICollection`1[[Neptuo.TemplateEngine.Templates.Controls.NavigationItem]]",
         get_Items: function (){
             return this._Items;
         },
@@ -2635,7 +2635,7 @@ var Neptuo$TemplateEngine$Web$Controls$NavigationControl = {
             this._Items = value;
         },
         OnInit: function (){
-            this.InitComponents$1(Neptuo.TemplateEngine.Web.Controls.NavigationItem.ctor, this.get_Items());
+            this.InitComponents$1(Neptuo.TemplateEngine.Templates.Controls.NavigationItem.ctor, this.get_Items());
             var $it20 = this.get_Navigations().GetEnumerator();
             while ($it20.MoveNext()){
                 var name = $it20.get_Current();
@@ -2659,21 +2659,21 @@ var Neptuo$TemplateEngine$Web$Controls$NavigationControl = {
     ],
     IsAbstract: false
 };
-JsTypes.push(Neptuo$TemplateEngine$Web$Controls$NavigationControl);
-var Neptuo$TemplateEngine$Web$Controls$NavigationItem = {
-    fullname: "Neptuo.TemplateEngine.Web.Controls.NavigationItem",
+JsTypes.push(Neptuo$TemplateEngine$Templates$Controls$NavigationControl);
+var Neptuo$TemplateEngine$Templates$Controls$NavigationItem = {
+    fullname: "Neptuo.TemplateEngine.Templates.Controls.NavigationItem",
     baseTypeName: "System.Object",
     assemblyName: "Neptuo.TemplateEngine.Shared",
     customAttributes: [{
         targetType: "property",
         targetMemberName: "Name",
-        typeName: "Neptuo.TemplateEngine.Web.Controls.DesignData.HintAttribute",
+        typeName: "Neptuo.TemplateEngine.Templates.Controls.DesignData.HintAttribute",
         ctorName: "ctor",
         positionalArguments: ["Navigation result name"]
     }, {
         targetType: "property",
         targetMemberName: "To",
-        typeName: "Neptuo.TemplateEngine.Web.Controls.DesignData.HintAttribute",
+        typeName: "Neptuo.TemplateEngine.Templates.Controls.DesignData.HintAttribute",
         ctorName: "ctor",
         positionalArguments: ["Form uri to navigate to."]
     }
@@ -2707,15 +2707,15 @@ var Neptuo$TemplateEngine$Web$Controls$NavigationItem = {
     ],
     IsAbstract: false
 };
-JsTypes.push(Neptuo$TemplateEngine$Web$Controls$NavigationItem);
-var Neptuo$TemplateEngine$Web$Controls$OptionControl = {
-    fullname: "Neptuo.TemplateEngine.Web.Controls.OptionControl",
-    baseTypeName: "Neptuo.TemplateEngine.Web.Controls.HtmlContentControlBase",
+JsTypes.push(Neptuo$TemplateEngine$Templates$Controls$NavigationItem);
+var Neptuo$TemplateEngine$Templates$Controls$OptionControl = {
+    fullname: "Neptuo.TemplateEngine.Templates.Controls.OptionControl",
+    baseTypeName: "Neptuo.TemplateEngine.Templates.Controls.HtmlContentControlBase",
     assemblyName: "Neptuo.TemplateEngine.Shared",
     customAttributes: [{
         targetType: "property",
         targetMemberName: "Text",
-        typeName: "Neptuo.TemplateEngine.Web.Controls.DesignData.HintAttribute",
+        typeName: "Neptuo.TemplateEngine.Templates.Controls.DesignData.HintAttribute",
         ctorName: "ctor",
         positionalArguments: ["Replace for Content property for setting via attribute."]
     }
@@ -2726,7 +2726,7 @@ var Neptuo$TemplateEngine$Web$Controls$OptionControl = {
             this._IsSelected = false;
             this._Value = null;
             this._Text = null;
-            Neptuo.TemplateEngine.Web.Controls.HtmlContentControlBase.ctor.call(this, componentManager, "option", false);
+            Neptuo.TemplateEngine.Templates.Controls.HtmlContentControlBase.ctor.call(this, componentManager, "option", false);
         },
         IsSelected$$: "System.Boolean",
         get_IsSelected: function (){
@@ -2756,7 +2756,7 @@ var Neptuo$TemplateEngine$Web$Controls$OptionControl = {
                     $v2.Add(this.get_Text());
                     return $v2;
                 }).call(this));
-            Neptuo.TemplateEngine.Web.Controls.HtmlContentControlBase.commonPrototype.OnInit.call(this);
+            Neptuo.TemplateEngine.Templates.Controls.HtmlContentControlBase.commonPrototype.OnInit.call(this);
         },
         RenderAttributes: function (writer){
             if (this.get_Value() != null){
@@ -2764,7 +2764,7 @@ var Neptuo$TemplateEngine$Web$Controls$OptionControl = {
                     this.get_Attributes().set_Item$$TKey("selected", "selected");
                 this.get_Attributes().set_Item$$TKey("value", ("" + this.get_Value()));
             }
-            Neptuo.TemplateEngine.Web.Controls.HtmlControlBase.commonPrototype.RenderAttributes.call(this, writer);
+            Neptuo.TemplateEngine.Templates.Controls.HtmlControlBase.commonPrototype.RenderAttributes.call(this, writer);
         }
     },
     ctors: [{
@@ -2774,12 +2774,12 @@ var Neptuo$TemplateEngine$Web$Controls$OptionControl = {
     ],
     IsAbstract: false
 };
-JsTypes.push(Neptuo$TemplateEngine$Web$Controls$OptionControl);
-var Neptuo$TemplateEngine$Web$Controls$ParameterControl = {
-    fullname: "Neptuo.TemplateEngine.Web.Controls.ParameterControl",
+JsTypes.push(Neptuo$TemplateEngine$Templates$Controls$OptionControl);
+var Neptuo$TemplateEngine$Templates$Controls$ParameterControl = {
+    fullname: "Neptuo.TemplateEngine.Templates.Controls.ParameterControl",
     baseTypeName: "System.Object",
     assemblyName: "Neptuo.TemplateEngine.Shared",
-    interfaceNames: ["Neptuo.Templates.Controls.IControl", "Neptuo.TemplateEngine.Web.Controls.IValueControl"],
+    interfaceNames: ["Neptuo.Templates.Controls.IControl", "Neptuo.TemplateEngine.Templates.Controls.IValueControl"],
     Kind: "Class",
     definition: {
         ctor: function (){
@@ -2813,20 +2813,20 @@ var Neptuo$TemplateEngine$Web$Controls$ParameterControl = {
     ],
     IsAbstract: false
 };
-JsTypes.push(Neptuo$TemplateEngine$Web$Controls$ParameterControl);
-var Neptuo$TemplateEngine$Web$Controls$PresentationControlBase = {
-    fullname: "Neptuo.TemplateEngine.Web.Controls.PresentationControlBase",
-    baseTypeName: "Neptuo.TemplateEngine.Web.Controls.TemplateControl",
+JsTypes.push(Neptuo$TemplateEngine$Templates$Controls$ParameterControl);
+var Neptuo$TemplateEngine$Templates$Controls$PresentationControlBase = {
+    fullname: "Neptuo.TemplateEngine.Templates.Controls.PresentationControlBase",
+    baseTypeName: "Neptuo.TemplateEngine.Templates.Controls.TemplateControl",
     assemblyName: "Neptuo.TemplateEngine.Shared",
     Kind: "Class",
     definition: {
         ctor: function (componentManager, configuration){
             this._DataContext = null;
             this._ModelGetter = null;
-            Neptuo.TemplateEngine.Web.Controls.TemplateControl.ctor.call(this, componentManager, configuration.get_TemplateStorage());
+            Neptuo.TemplateEngine.Templates.Controls.TemplateControl.ctor.call(this, componentManager, configuration.get_TemplateStorage());
             this.set_DataContext(configuration.get_DataContext());
         },
-        DataContext$$: "Neptuo.TemplateEngine.Web.DataContextStorage",
+        DataContext$$: "Neptuo.TemplateEngine.Templates.DataContextStorage",
         get_DataContext: function (){
             return this._DataContext;
         },
@@ -2845,26 +2845,26 @@ var Neptuo$TemplateEngine$Web$Controls$PresentationControlBase = {
             this.set_TemplateContent(this.get_Template().CreateInstance());
             this.set_ModelGetter(this.CreateModel());
             this.get_DataContext().Push(this.get_ModelGetter(), null);
-            Neptuo.TemplateEngine.Web.Controls.TemplateControl.commonPrototype.OnInit.call(this);
+            Neptuo.TemplateEngine.Templates.Controls.TemplateControl.commonPrototype.OnInit.call(this);
             this.get_DataContext().Pop(null);
         },
         Render: function (writer){
             this.get_DataContext().Push(this.get_ModelGetter(), null);
-            Neptuo.TemplateEngine.Web.Controls.TemplateControl.commonPrototype.Render.call(this, writer);
+            Neptuo.TemplateEngine.Templates.Controls.TemplateControl.commonPrototype.Render.call(this, writer);
             this.get_DataContext().Pop(null);
         }
     },
     ctors: [{
         name: "ctor",
-        parameters: ["Neptuo.Templates.IComponentManager", "Neptuo.TemplateEngine.Web.PresentationConfiguration"]
+        parameters: ["Neptuo.Templates.IComponentManager", "Neptuo.TemplateEngine.Templates.PresentationConfiguration"]
     }
     ],
     IsAbstract: true
 };
-JsTypes.push(Neptuo$TemplateEngine$Web$Controls$PresentationControlBase);
-var Neptuo$TemplateEngine$Web$Controls$PresentationListControlBase$1 = {
-    fullname: "Neptuo.TemplateEngine.Web.Controls.PresentationListControlBase$1",
-    baseTypeName: "Neptuo.TemplateEngine.Web.Controls.TemplateControl",
+JsTypes.push(Neptuo$TemplateEngine$Templates$Controls$PresentationControlBase);
+var Neptuo$TemplateEngine$Templates$Controls$PresentationListControlBase$1 = {
+    fullname: "Neptuo.TemplateEngine.Templates.Controls.PresentationListControlBase$1",
+    baseTypeName: "Neptuo.TemplateEngine.Templates.Controls.TemplateControl",
     assemblyName: "Neptuo.TemplateEngine.Shared",
     Kind: "Class",
     definition: {
@@ -2873,18 +2873,18 @@ var Neptuo$TemplateEngine$Web$Controls$PresentationListControlBase$1 = {
             this.configuration = null;
             this._ItemTemplate = null;
             this._DataContext = null;
-            Neptuo.TemplateEngine.Web.Controls.TemplateControl.ctor.call(this, componentManager, configuration.get_TemplateStorage());
+            Neptuo.TemplateEngine.Templates.Controls.TemplateControl.ctor.call(this, componentManager, configuration.get_TemplateStorage());
             this.configuration = configuration;
             this.set_DataContext(configuration.get_DataContext());
         },
-        ItemTemplate$$: "Neptuo.TemplateEngine.Web.Controls.ITemplate",
+        ItemTemplate$$: "Neptuo.TemplateEngine.Templates.Controls.ITemplate",
         get_ItemTemplate: function (){
             return this._ItemTemplate;
         },
         set_ItemTemplate: function (value){
             this._ItemTemplate = value;
         },
-        DataContext$$: "Neptuo.TemplateEngine.Web.DataContextStorage",
+        DataContext$$: "Neptuo.TemplateEngine.Templates.DataContextStorage",
         get_DataContext: function (){
             return this._DataContext;
         },
@@ -2900,38 +2900,38 @@ var Neptuo$TemplateEngine$Web$Controls$PresentationListControlBase$1 = {
                 var model = $it22.get_Current();
                 var provider = this.configuration.get_ValueProviderFactory().Create(model);
                 this.get_DataContext().Push(provider, null);
-                var control = new Neptuo.TemplateEngine.Web.Controls.TemplateControl.ctor(this.get_ComponentManager(), this.configuration.get_TemplateStorage());
+                var control = new Neptuo.TemplateEngine.Templates.Controls.TemplateControl.ctor(this.get_ComponentManager(), this.configuration.get_TemplateStorage());
                 control.set_Template(this.get_ItemTemplate());
-                this.get_ComponentManager().AddComponent$1(Neptuo.TemplateEngine.Web.Controls.TemplateControl.ctor, control, null);
+                this.get_ComponentManager().AddComponent$1(Neptuo.TemplateEngine.Templates.Controls.TemplateControl.ctor, control, null);
                 this.InitComponent(control);
                 itemTemplates.Add(control);
                 this.get_DataContext().Pop(null);
             }
             var templateContent = (function (){
-                var $v3 = new Neptuo.TemplateEngine.Web.Controls.TemplateContentControl.ctor(this.get_ComponentManager());
+                var $v3 = new Neptuo.TemplateEngine.Templates.Controls.TemplateContentControl.ctor(this.get_ComponentManager());
                 $v3.set_Name("Content");
                 $v3.set_Content(itemTemplates);
                 return $v3;
             }).call(this);
-            this.get_ComponentManager().AddComponent$1(Neptuo.TemplateEngine.Web.Controls.TemplateContentControl.ctor, templateContent, null);
+            this.get_ComponentManager().AddComponent$1(Neptuo.TemplateEngine.Templates.Controls.TemplateContentControl.ctor, templateContent, null);
             this.InitComponent(templateContent);
             this.get_Content().Add(templateContent);
-            Neptuo.TemplateEngine.Web.Controls.TemplateControl.commonPrototype.OnInit.call(this);
+            Neptuo.TemplateEngine.Templates.Controls.TemplateControl.commonPrototype.OnInit.call(this);
         }
     },
     ctors: [{
         name: "ctor",
-        parameters: ["Neptuo.Templates.IComponentManager", "Neptuo.TemplateEngine.Web.PresentationConfiguration"]
+        parameters: ["Neptuo.Templates.IComponentManager", "Neptuo.TemplateEngine.Templates.PresentationConfiguration"]
     }
     ],
     IsAbstract: true
 };
-JsTypes.push(Neptuo$TemplateEngine$Web$Controls$PresentationListControlBase$1);
-var Neptuo$TemplateEngine$Web$Controls$ContentTemplate = {
-    fullname: "Neptuo.TemplateEngine.Web.Controls.ContentTemplate",
+JsTypes.push(Neptuo$TemplateEngine$Templates$Controls$PresentationListControlBase$1);
+var Neptuo$TemplateEngine$Templates$Controls$ContentTemplate = {
+    fullname: "Neptuo.TemplateEngine.Templates.Controls.ContentTemplate",
     baseTypeName: "System.Object",
     assemblyName: "Neptuo.TemplateEngine.Shared",
-    interfaceNames: ["Neptuo.TemplateEngine.Web.Controls.ITemplate"],
+    interfaceNames: ["Neptuo.TemplateEngine.Templates.Controls.ITemplate"],
     Kind: "Class",
     definition: {
         ctor: function (componentManager){
@@ -2947,7 +2947,7 @@ var Neptuo$TemplateEngine$Web$Controls$ContentTemplate = {
         set_ComponentManager: function (value){
             this._ComponentManager = value;
         },
-        BindMethod$$: "System.Action`1[[Neptuo.TemplateEngine.Web.Controls.ContentTemplateContent]]",
+        BindMethod$$: "System.Action`1[[Neptuo.TemplateEngine.Templates.Controls.ContentTemplateContent]]",
         get_BindMethod: function (){
             return this._BindMethod;
         },
@@ -2955,8 +2955,8 @@ var Neptuo$TemplateEngine$Web$Controls$ContentTemplate = {
             this._BindMethod = value;
         },
         CreateInstance: function (){
-            var templateContent = new Neptuo.TemplateEngine.Web.Controls.ContentTemplateContent.ctor(this.get_ComponentManager());
-            this.get_ComponentManager().AddComponent$1(Neptuo.TemplateEngine.Web.Controls.ContentTemplateContent.ctor, templateContent, this.get_BindMethod());
+            var templateContent = new Neptuo.TemplateEngine.Templates.Controls.ContentTemplateContent.ctor(this.get_ComponentManager());
+            this.get_ComponentManager().AddComponent$1(Neptuo.TemplateEngine.Templates.Controls.ContentTemplateContent.ctor, templateContent, this.get_BindMethod());
             return templateContent;
         },
         Dispose: function (){
@@ -2969,12 +2969,12 @@ var Neptuo$TemplateEngine$Web$Controls$ContentTemplate = {
     ],
     IsAbstract: false
 };
-JsTypes.push(Neptuo$TemplateEngine$Web$Controls$ContentTemplate);
-var Neptuo$TemplateEngine$Web$Controls$ContentTemplateContent = {
-    fullname: "Neptuo.TemplateEngine.Web.Controls.ContentTemplateContent",
+JsTypes.push(Neptuo$TemplateEngine$Templates$Controls$ContentTemplate);
+var Neptuo$TemplateEngine$Templates$Controls$ContentTemplateContent = {
+    fullname: "Neptuo.TemplateEngine.Templates.Controls.ContentTemplateContent",
     baseTypeName: "System.Object",
     assemblyName: "Neptuo.TemplateEngine.Shared",
-    interfaceNames: ["Neptuo.TemplateEngine.Web.Controls.ITemplateContent"],
+    interfaceNames: ["Neptuo.TemplateEngine.Templates.Controls.ITemplateContent"],
     Kind: "Class",
     definition: {
         ctor: function (componentManager){
@@ -3032,9 +3032,9 @@ var Neptuo$TemplateEngine$Web$Controls$ContentTemplateContent = {
     ],
     IsAbstract: false
 };
-JsTypes.push(Neptuo$TemplateEngine$Web$Controls$ContentTemplateContent);
-var Neptuo$TemplateEngine$Web$Controls$DefaultTemplateAttribute = {
-    fullname: "Neptuo.TemplateEngine.Web.Controls.DefaultTemplateAttribute",
+JsTypes.push(Neptuo$TemplateEngine$Templates$Controls$ContentTemplateContent);
+var Neptuo$TemplateEngine$Templates$Controls$DefaultTemplateAttribute = {
+    fullname: "Neptuo.TemplateEngine.Templates.Controls.DefaultTemplateAttribute",
     baseTypeName: "System.Attribute",
     assemblyName: "Neptuo.TemplateEngine.Shared",
     Kind: "Class",
@@ -3059,20 +3059,20 @@ var Neptuo$TemplateEngine$Web$Controls$DefaultTemplateAttribute = {
     ],
     IsAbstract: false
 };
-JsTypes.push(Neptuo$TemplateEngine$Web$Controls$DefaultTemplateAttribute);
-var Neptuo$TemplateEngine$Web$Controls$FileTemplate = {
-    fullname: "Neptuo.TemplateEngine.Web.Controls.FileTemplate",
-    baseTypeName: "Neptuo.TemplateEngine.Web.Controls.ViewTemplateBase",
+JsTypes.push(Neptuo$TemplateEngine$Templates$Controls$DefaultTemplateAttribute);
+var Neptuo$TemplateEngine$Templates$Controls$FileTemplate = {
+    fullname: "Neptuo.TemplateEngine.Templates.Controls.FileTemplate",
+    baseTypeName: "Neptuo.TemplateEngine.Templates.Controls.ViewTemplateBase",
     assemblyName: "Neptuo.TemplateEngine.Shared",
     Kind: "Class",
     definition: {
         ctor: function (dependencyProvider, componentManager, viewActivator){
             this._ViewActivator = null;
             this._Path = null;
-            Neptuo.TemplateEngine.Web.Controls.ViewTemplateBase.ctor.call(this, dependencyProvider, componentManager);
+            Neptuo.TemplateEngine.Templates.Controls.ViewTemplateBase.ctor.call(this, dependencyProvider, componentManager);
             this.set_ViewActivator(viewActivator);
         },
-        ViewActivator$$: "Neptuo.TemplateEngine.Web.IViewActivator",
+        ViewActivator$$: "Neptuo.TemplateEngine.Templates.IViewActivator",
         get_ViewActivator: function (){
             return this._ViewActivator;
         },
@@ -3092,14 +3092,14 @@ var Neptuo$TemplateEngine$Web$Controls$FileTemplate = {
     },
     ctors: [{
         name: "ctor",
-        parameters: ["Neptuo.IDependencyProvider", "Neptuo.Templates.IComponentManager", "Neptuo.TemplateEngine.Web.IViewActivator"]
+        parameters: ["Neptuo.IDependencyProvider", "Neptuo.Templates.IComponentManager", "Neptuo.TemplateEngine.Templates.IViewActivator"]
     }
     ],
     IsAbstract: false
 };
-JsTypes.push(Neptuo$TemplateEngine$Web$Controls$FileTemplate);
-var Neptuo$TemplateEngine$Web$Controls$ITemplate = {
-    fullname: "Neptuo.TemplateEngine.Web.Controls.ITemplate",
+JsTypes.push(Neptuo$TemplateEngine$Templates$Controls$FileTemplate);
+var Neptuo$TemplateEngine$Templates$Controls$ITemplate = {
+    fullname: "Neptuo.TemplateEngine.Templates.Controls.ITemplate",
     baseTypeName: "System.Object",
     assemblyName: "Neptuo.TemplateEngine.Shared",
     interfaceNames: ["System.IDisposable"],
@@ -3107,9 +3107,9 @@ var Neptuo$TemplateEngine$Web$Controls$ITemplate = {
     ctors: [],
     IsAbstract: true
 };
-JsTypes.push(Neptuo$TemplateEngine$Web$Controls$ITemplate);
-var Neptuo$TemplateEngine$Web$Controls$ITemplateContent = {
-    fullname: "Neptuo.TemplateEngine.Web.Controls.ITemplateContent",
+JsTypes.push(Neptuo$TemplateEngine$Templates$Controls$ITemplate);
+var Neptuo$TemplateEngine$Templates$Controls$ITemplateContent = {
+    fullname: "Neptuo.TemplateEngine.Templates.Controls.ITemplateContent",
     baseTypeName: "System.Object",
     assemblyName: "Neptuo.TemplateEngine.Shared",
     interfaceNames: ["Neptuo.Templates.Controls.IControl", "System.IDisposable"],
@@ -3117,16 +3117,16 @@ var Neptuo$TemplateEngine$Web$Controls$ITemplateContent = {
     ctors: [],
     IsAbstract: true
 };
-JsTypes.push(Neptuo$TemplateEngine$Web$Controls$ITemplateContent);
-var Neptuo$TemplateEngine$Web$Controls$TemplateContentControl = {
-    fullname: "Neptuo.TemplateEngine.Web.Controls.TemplateContentControl",
-    baseTypeName: "Neptuo.TemplateEngine.Web.Controls.ContentControlBase",
+JsTypes.push(Neptuo$TemplateEngine$Templates$Controls$ITemplateContent);
+var Neptuo$TemplateEngine$Templates$Controls$TemplateContentControl = {
+    fullname: "Neptuo.TemplateEngine.Templates.Controls.TemplateContentControl",
+    baseTypeName: "Neptuo.TemplateEngine.Templates.Controls.ContentControlBase",
     assemblyName: "Neptuo.TemplateEngine.Shared",
     Kind: "Class",
     definition: {
         ctor: function (componentManager){
             this._Name = null;
-            Neptuo.TemplateEngine.Web.Controls.ContentControlBase.ctor.call(this, componentManager);
+            Neptuo.TemplateEngine.Templates.Controls.ContentControlBase.ctor.call(this, componentManager);
         },
         Name$$: "System.String",
         get_Name: function (){
@@ -3143,10 +3143,10 @@ var Neptuo$TemplateEngine$Web$Controls$TemplateContentControl = {
     ],
     IsAbstract: false
 };
-JsTypes.push(Neptuo$TemplateEngine$Web$Controls$TemplateContentControl);
-var Neptuo$TemplateEngine$Web$Controls$TemplateControl = {
-    fullname: "Neptuo.TemplateEngine.Web.Controls.TemplateControl",
-    baseTypeName: "Neptuo.TemplateEngine.Web.Controls.ControlBase",
+JsTypes.push(Neptuo$TemplateEngine$Templates$Controls$TemplateContentControl);
+var Neptuo$TemplateEngine$Templates$Controls$TemplateControl = {
+    fullname: "Neptuo.TemplateEngine.Templates.Controls.TemplateControl",
+    baseTypeName: "Neptuo.TemplateEngine.Templates.Controls.ControlBase",
     assemblyName: "Neptuo.TemplateEngine.Shared",
     Kind: "Class",
     definition: {
@@ -3156,39 +3156,39 @@ var Neptuo$TemplateEngine$Web$Controls$TemplateControl = {
             this._TemplateContent = null;
             this._TemplateStorageStack = null;
             this._TemplateStorage = null;
-            Neptuo.TemplateEngine.Web.Controls.ControlBase.ctor.call(this, componentManager);
+            Neptuo.TemplateEngine.Templates.Controls.ControlBase.ctor.call(this, componentManager);
             this.set_TemplateStorageStack(contents);
             this.set_TemplateStorage(contents.CreateStorage());
         },
-        Content$$: "System.Collections.Generic.ICollection`1[[Neptuo.TemplateEngine.Web.Controls.TemplateContentControl]]",
+        Content$$: "System.Collections.Generic.ICollection`1[[Neptuo.TemplateEngine.Templates.Controls.TemplateContentControl]]",
         get_Content: function (){
             return this._Content;
         },
         set_Content: function (value){
             this._Content = value;
         },
-        Template$$: "Neptuo.TemplateEngine.Web.Controls.ITemplate",
+        Template$$: "Neptuo.TemplateEngine.Templates.Controls.ITemplate",
         get_Template: function (){
             return this._Template;
         },
         set_Template: function (value){
             this._Template = value;
         },
-        TemplateContent$$: "Neptuo.TemplateEngine.Web.Controls.ITemplateContent",
+        TemplateContent$$: "Neptuo.TemplateEngine.Templates.Controls.ITemplateContent",
         get_TemplateContent: function (){
             return this._TemplateContent;
         },
         set_TemplateContent: function (value){
             this._TemplateContent = value;
         },
-        TemplateStorageStack$$: "Neptuo.TemplateEngine.Web.TemplateContentStorageStack",
+        TemplateStorageStack$$: "Neptuo.TemplateEngine.Templates.TemplateContentStorageStack",
         get_TemplateStorageStack: function (){
             return this._TemplateStorageStack;
         },
         set_TemplateStorageStack: function (value){
             this._TemplateStorageStack = value;
         },
-        TemplateStorage$$: "Neptuo.TemplateEngine.Web.TemplateContentStorage",
+        TemplateStorage$$: "Neptuo.TemplateEngine.Templates.TemplateContentStorage",
         get_TemplateStorage: function (){
             return this._TemplateStorage;
         },
@@ -3196,11 +3196,11 @@ var Neptuo$TemplateEngine$Web$Controls$TemplateControl = {
             this._TemplateStorage = value;
         },
         OnInit: function (){
-            this.InitComponents$1(Neptuo.TemplateEngine.Web.Controls.TemplateContentControl.ctor, this.get_Content());
+            this.InitComponents$1(Neptuo.TemplateEngine.Templates.Controls.TemplateContentControl.ctor, this.get_Content());
             if (this.get_Content() != null)
                 this.get_TemplateStorage().AddRange(this.get_Content());
             this.get_TemplateStorageStack().Push(this.get_TemplateStorage());
-            Neptuo.TemplateEngine.Web.Controls.ControlBase.commonPrototype.OnInit.call(this);
+            Neptuo.TemplateEngine.Templates.Controls.ControlBase.commonPrototype.OnInit.call(this);
             this.InitComponent(this.get_Template());
             this.set_TemplateContent(this.get_Template().CreateInstance());
             this.InitComponent(this.get_TemplateContent());
@@ -3212,23 +3212,23 @@ var Neptuo$TemplateEngine$Web$Controls$TemplateControl = {
             this.get_TemplateStorageStack().Pop();
         },
         InitTemplate: function (template){
-            var control = new Neptuo.TemplateEngine.Web.Controls.TemplateControl.ctor(this.get_ComponentManager(), this.get_TemplateStorageStack());
+            var control = new Neptuo.TemplateEngine.Templates.Controls.TemplateControl.ctor(this.get_ComponentManager(), this.get_TemplateStorageStack());
             control.set_Template(template);
-            this.get_ComponentManager().AddComponent$1(Neptuo.TemplateEngine.Web.Controls.TemplateControl.ctor, control, null);
+            this.get_ComponentManager().AddComponent$1(Neptuo.TemplateEngine.Templates.Controls.TemplateControl.ctor, control, null);
             this.InitComponent(control);
             return control;
         }
     },
     ctors: [{
         name: "ctor",
-        parameters: ["Neptuo.Templates.IComponentManager", "Neptuo.TemplateEngine.Web.TemplateContentStorageStack"]
+        parameters: ["Neptuo.Templates.IComponentManager", "Neptuo.TemplateEngine.Templates.TemplateContentStorageStack"]
     }
     ],
     IsAbstract: false
 };
-JsTypes.push(Neptuo$TemplateEngine$Web$Controls$TemplateControl);
-var Neptuo$TemplateEngine$Web$Controls$TemplatePlaceholder = {
-    fullname: "Neptuo.TemplateEngine.Web.Controls.TemplatePlaceholder",
+JsTypes.push(Neptuo$TemplateEngine$Templates$Controls$TemplateControl);
+var Neptuo$TemplateEngine$Templates$Controls$TemplatePlaceholder = {
+    fullname: "Neptuo.TemplateEngine.Templates.Controls.TemplatePlaceholder",
     baseTypeName: "System.Object",
     assemblyName: "Neptuo.TemplateEngine.Shared",
     interfaceNames: ["Neptuo.Templates.Controls.IControl"],
@@ -3240,7 +3240,7 @@ var Neptuo$TemplateEngine$Web$Controls$TemplatePlaceholder = {
             System.Object.ctor.call(this);
             this.set_Contents(contents);
         },
-        Contents$$: "Neptuo.TemplateEngine.Web.TemplateContentStorageStack",
+        Contents$$: "Neptuo.TemplateEngine.Templates.TemplateContentStorageStack",
         get_Contents: function (){
             return this._Contents;
         },
@@ -3266,17 +3266,17 @@ var Neptuo$TemplateEngine$Web$Controls$TemplatePlaceholder = {
     },
     ctors: [{
         name: "ctor",
-        parameters: ["Neptuo.TemplateEngine.Web.TemplateContentStorageStack"]
+        parameters: ["Neptuo.TemplateEngine.Templates.TemplateContentStorageStack"]
     }
     ],
     IsAbstract: false
 };
-JsTypes.push(Neptuo$TemplateEngine$Web$Controls$TemplatePlaceholder);
-var Neptuo$TemplateEngine$Web$Controls$ViewTemplateBase = {
-    fullname: "Neptuo.TemplateEngine.Web.Controls.ViewTemplateBase",
+JsTypes.push(Neptuo$TemplateEngine$Templates$Controls$TemplatePlaceholder);
+var Neptuo$TemplateEngine$Templates$Controls$ViewTemplateBase = {
+    fullname: "Neptuo.TemplateEngine.Templates.Controls.ViewTemplateBase",
     baseTypeName: "System.Object",
     assemblyName: "Neptuo.TemplateEngine.Shared",
-    interfaceNames: ["Neptuo.TemplateEngine.Web.Controls.ITemplate"],
+    interfaceNames: ["Neptuo.TemplateEngine.Templates.Controls.ITemplate"],
     Kind: "Class",
     definition: {
         ctor: function (dependencyProvider, componentManager){
@@ -3304,8 +3304,8 @@ var Neptuo$TemplateEngine$Web$Controls$ViewTemplateBase = {
             var view = this.CreateView();
             view.Setup(new Neptuo.Templates.BaseViewPage.ctor(this.get_ComponentManager()), this.get_ComponentManager(), this.get_DependencyProvider());
             view.CreateControls();
-            var templateContent = new Neptuo.TemplateEngine.Web.Controls.ViewTemplateContent.ctor(view);
-            this.get_ComponentManager().AddComponent$1(Neptuo.TemplateEngine.Web.Controls.ViewTemplateContent.ctor, templateContent, null);
+            var templateContent = new Neptuo.TemplateEngine.Templates.Controls.ViewTemplateContent.ctor(view);
+            this.get_ComponentManager().AddComponent$1(Neptuo.TemplateEngine.Templates.Controls.ViewTemplateContent.ctor, templateContent, null);
             return templateContent;
         },
         Dispose: function (){
@@ -3318,12 +3318,12 @@ var Neptuo$TemplateEngine$Web$Controls$ViewTemplateBase = {
     ],
     IsAbstract: true
 };
-JsTypes.push(Neptuo$TemplateEngine$Web$Controls$ViewTemplateBase);
-var Neptuo$TemplateEngine$Web$Controls$ViewTemplateContent = {
-    fullname: "Neptuo.TemplateEngine.Web.Controls.ViewTemplateContent",
+JsTypes.push(Neptuo$TemplateEngine$Templates$Controls$ViewTemplateBase);
+var Neptuo$TemplateEngine$Templates$Controls$ViewTemplateContent = {
+    fullname: "Neptuo.TemplateEngine.Templates.Controls.ViewTemplateContent",
     baseTypeName: "System.Object",
     assemblyName: "Neptuo.TemplateEngine.Shared",
-    interfaceNames: ["Neptuo.TemplateEngine.Web.Controls.ITemplateContent"],
+    interfaceNames: ["Neptuo.TemplateEngine.Templates.Controls.ITemplateContent"],
     Kind: "Class",
     definition: {
         ctor: function (view){
@@ -3355,12 +3355,12 @@ var Neptuo$TemplateEngine$Web$Controls$ViewTemplateContent = {
     ],
     IsAbstract: false
 };
-JsTypes.push(Neptuo$TemplateEngine$Web$Controls$ViewTemplateContent);
+JsTypes.push(Neptuo$TemplateEngine$Templates$Controls$ViewTemplateContent);
 var Neptuo$TemplateEngine$Web$Converters$NullToBoolValueConverter = {
     fullname: "Neptuo.TemplateEngine.Web.Converters.NullToBoolValueConverter",
     baseTypeName: "System.Object",
     assemblyName: "Neptuo.TemplateEngine.Shared",
-    interfaceNames: ["Neptuo.TemplateEngine.Web.IValueConverter"],
+    interfaceNames: ["Neptuo.TemplateEngine.Templates.IValueConverter"],
     Kind: "Class",
     definition: {
         ctor: function (){
@@ -3378,8 +3378,8 @@ var Neptuo$TemplateEngine$Web$Converters$NullToBoolValueConverter = {
     IsAbstract: false
 };
 JsTypes.push(Neptuo$TemplateEngine$Web$Converters$NullToBoolValueConverter);
-var Neptuo$TemplateEngine$Web$DataContextStorage = {
-    fullname: "Neptuo.TemplateEngine.Web.DataContextStorage",
+var Neptuo$TemplateEngine$Templates$DataContextStorage = {
+    fullname: "Neptuo.TemplateEngine.Templates.DataContextStorage",
     baseTypeName: "System.Object",
     assemblyName: "Neptuo.TemplateEngine.Shared",
     Kind: "Class",
@@ -3443,20 +3443,20 @@ var Neptuo$TemplateEngine$Web$DataContextStorage = {
     ],
     IsAbstract: false
 };
-JsTypes.push(Neptuo$TemplateEngine$Web$DataContextStorage);
-var Neptuo$TemplateEngine$Web$ExtendedHtmlTextWriter = {
-    fullname: "Neptuo.TemplateEngine.Web.ExtendedHtmlTextWriter",
+JsTypes.push(Neptuo$TemplateEngine$Templates$DataContextStorage);
+var Neptuo$TemplateEngine$Templates$ExtendedHtmlTextWriter = {
+    fullname: "Neptuo.TemplateEngine.Templates.ExtendedHtmlTextWriter",
     baseTypeName: "Neptuo.Templates.HtmlTextWriter",
     assemblyName: "Neptuo.TemplateEngine.Shared",
-    interfaceNames: ["Neptuo.TemplateEngine.Web.IExtendedHtmlWriter"],
+    interfaceNames: ["Neptuo.TemplateEngine.Templates.IExtendedHtmlWriter"],
     Kind: "Class",
     definition: {
         ctor: function (writer){
             this._PendingAttributes = null;
             Neptuo.Templates.HtmlTextWriter.ctor.call(this, writer);
-            this.set_PendingAttributes(new System.Collections.Generic.List$1.ctor(Neptuo.TemplateEngine.Web.ExtendedHtmlTextWriter.HtmlAttribute.ctor));
+            this.set_PendingAttributes(new System.Collections.Generic.List$1.ctor(Neptuo.TemplateEngine.Templates.ExtendedHtmlTextWriter.HtmlAttribute.ctor));
         },
-        PendingAttributes$$: "System.Collections.Generic.List`1[[Neptuo.TemplateEngine.Web.ExtendedHtmlTextWriter+HtmlAttribute]]",
+        PendingAttributes$$: "System.Collections.Generic.List`1[[Neptuo.TemplateEngine.Templates.ExtendedHtmlTextWriter+HtmlAttribute]]",
         get_PendingAttributes: function (){
             return this._PendingAttributes;
         },
@@ -3464,7 +3464,7 @@ var Neptuo$TemplateEngine$Web$ExtendedHtmlTextWriter = {
             this._PendingAttributes = value;
         },
         AttributeOnNextTag: function (name, value){
-            this.get_PendingAttributes().Add(new Neptuo.TemplateEngine.Web.ExtendedHtmlTextWriter.HtmlAttribute.ctor$$String$$String(name, value));
+            this.get_PendingAttributes().Add(new Neptuo.TemplateEngine.Templates.ExtendedHtmlTextWriter.HtmlAttribute.ctor$$String$$String(name, value));
             return this;
         },
         Tag: function (name){
@@ -3485,9 +3485,9 @@ var Neptuo$TemplateEngine$Web$ExtendedHtmlTextWriter = {
     ],
     IsAbstract: false
 };
-JsTypes.push(Neptuo$TemplateEngine$Web$ExtendedHtmlTextWriter);
-var Neptuo$TemplateEngine$Web$ExtendedHtmlTextWriter$HtmlAttribute = {
-    fullname: "Neptuo.TemplateEngine.Web.ExtendedHtmlTextWriter.HtmlAttribute",
+JsTypes.push(Neptuo$TemplateEngine$Templates$ExtendedHtmlTextWriter);
+var Neptuo$TemplateEngine$Templates$ExtendedHtmlTextWriter$HtmlAttribute = {
+    fullname: "Neptuo.TemplateEngine.Templates.ExtendedHtmlTextWriter.HtmlAttribute",
     baseTypeName: "System.ValueType",
     assemblyName: "Neptuo.TemplateEngine.Shared",
     Kind: "Struct",
@@ -3515,9 +3515,9 @@ var Neptuo$TemplateEngine$Web$ExtendedHtmlTextWriter$HtmlAttribute = {
     ],
     IsAbstract: false
 };
-JsTypes.push(Neptuo$TemplateEngine$Web$ExtendedHtmlTextWriter$HtmlAttribute);
-var Neptuo$TemplateEngine$Web$Extensions$BindingExtension = {
-    fullname: "Neptuo.TemplateEngine.Web.Extensions.BindingExtension",
+JsTypes.push(Neptuo$TemplateEngine$Templates$ExtendedHtmlTextWriter$HtmlAttribute);
+var Neptuo$TemplateEngine$Templates$Extensions$BindingExtension = {
+    fullname: "Neptuo.TemplateEngine.Templates.Extensions.BindingExtension",
     baseTypeName: "System.Object",
     assemblyName: "Neptuo.TemplateEngine.Shared",
     interfaceNames: ["Neptuo.Templates.Extensions.IValueExtension"],
@@ -3534,21 +3534,21 @@ var Neptuo$TemplateEngine$Web$Extensions$BindingExtension = {
             this.set_BindingManager(bindingManager);
             this.set_ConverterService(converterService);
         },
-        DataContext$$: "Neptuo.TemplateEngine.Web.DataContextStorage",
+        DataContext$$: "Neptuo.TemplateEngine.Templates.DataContextStorage",
         get_DataContext: function (){
             return this._DataContext;
         },
         set_DataContext: function (value){
             this._DataContext = value;
         },
-        ConverterService$$: "Neptuo.TemplateEngine.Web.IValueConverterService",
+        ConverterService$$: "Neptuo.TemplateEngine.Templates.IValueConverterService",
         get_ConverterService: function (){
             return this._ConverterService;
         },
         set_ConverterService: function (value){
             this._ConverterService = value;
         },
-        BindingManager$$: "Neptuo.TemplateEngine.Web.IBindingManager",
+        BindingManager$$: "Neptuo.TemplateEngine.Templates.IBindingManager",
         get_BindingManager: function (){
             return this._BindingManager;
         },
@@ -3592,14 +3592,14 @@ var Neptuo$TemplateEngine$Web$Extensions$BindingExtension = {
     },
     ctors: [{
         name: "ctor",
-        parameters: ["Neptuo.TemplateEngine.Web.DataContextStorage", "Neptuo.TemplateEngine.Web.IBindingManager", "Neptuo.TemplateEngine.Web.IValueConverterService"]
+        parameters: ["Neptuo.TemplateEngine.Templates.DataContextStorage", "Neptuo.TemplateEngine.Templates.IBindingManager", "Neptuo.TemplateEngine.Templates.IValueConverterService"]
     }
     ],
     IsAbstract: false
 };
-JsTypes.push(Neptuo$TemplateEngine$Web$Extensions$BindingExtension);
-var Neptuo$TemplateEngine$Web$Extensions$CurrentUrlExtension = {
-    fullname: "Neptuo.TemplateEngine.Web.Extensions.CurrentUrlExtension",
+JsTypes.push(Neptuo$TemplateEngine$Templates$Extensions$BindingExtension);
+var Neptuo$TemplateEngine$Templates$Extensions$CurrentUrlExtension = {
+    fullname: "Neptuo.TemplateEngine.Templates.Extensions.CurrentUrlExtension",
     baseTypeName: "System.Object",
     assemblyName: "Neptuo.TemplateEngine.Shared",
     interfaceNames: ["Neptuo.Templates.Extensions.IValueExtension"],
@@ -3616,14 +3616,14 @@ var Neptuo$TemplateEngine$Web$Extensions$CurrentUrlExtension = {
     },
     ctors: [{
         name: "ctor",
-        parameters: ["Neptuo.TemplateEngine.Web.ICurrentUrlProvider"]
+        parameters: ["Neptuo.TemplateEngine.Templates.ICurrentUrlProvider"]
     }
     ],
     IsAbstract: false
 };
-JsTypes.push(Neptuo$TemplateEngine$Web$Extensions$CurrentUrlExtension);
-var Neptuo$TemplateEngine$Web$Extensions$RequestExtension = {
-    fullname: "Neptuo.TemplateEngine.Web.Extensions.RequestExtension",
+JsTypes.push(Neptuo$TemplateEngine$Templates$Extensions$CurrentUrlExtension);
+var Neptuo$TemplateEngine$Templates$Extensions$RequestExtension = {
+    fullname: "Neptuo.TemplateEngine.Templates.Extensions.RequestExtension",
     baseTypeName: "System.Object",
     assemblyName: "Neptuo.TemplateEngine.Shared",
     interfaceNames: ["Neptuo.Templates.Extensions.IValueExtension"],
@@ -3672,9 +3672,9 @@ var Neptuo$TemplateEngine$Web$Extensions$RequestExtension = {
     ],
     IsAbstract: false
 };
-JsTypes.push(Neptuo$TemplateEngine$Web$Extensions$RequestExtension);
-var Neptuo$TemplateEngine$Web$Extensions$SwitchExtension = {
-    fullname: "Neptuo.TemplateEngine.Web.Extensions.SwitchExtension",
+JsTypes.push(Neptuo$TemplateEngine$Templates$Extensions$RequestExtension);
+var Neptuo$TemplateEngine$Templates$Extensions$SwitchExtension = {
+    fullname: "Neptuo.TemplateEngine.Templates.Extensions.SwitchExtension",
     baseTypeName: "System.Object",
     assemblyName: "Neptuo.TemplateEngine.Shared",
     interfaceNames: ["Neptuo.Templates.Extensions.IValueExtension"],
@@ -3689,7 +3689,7 @@ var Neptuo$TemplateEngine$Web$Extensions$SwitchExtension = {
             System.Object.ctor.call(this);
             this.set_ConverterService(converterService);
         },
-        ConverterService$$: "Neptuo.TemplateEngine.Web.IValueConverterService",
+        ConverterService$$: "Neptuo.TemplateEngine.Templates.IValueConverterService",
         get_ConverterService: function (){
             return this._ConverterService;
         },
@@ -3737,20 +3737,20 @@ var Neptuo$TemplateEngine$Web$Extensions$SwitchExtension = {
     },
     ctors: [{
         name: "ctor",
-        parameters: ["Neptuo.TemplateEngine.Web.IValueConverterService"]
+        parameters: ["Neptuo.TemplateEngine.Templates.IValueConverterService"]
     }
     ],
     IsAbstract: false
 };
-JsTypes.push(Neptuo$TemplateEngine$Web$Extensions$SwitchExtension);
-var Neptuo$TemplateEngine$Web$Extensions$TemplateBindingExtension = {
-    fullname: "Neptuo.TemplateEngine.Web.Extensions.TemplateBindingExtension",
-    baseTypeName: "Neptuo.TemplateEngine.Web.Extensions.BindingExtension",
+JsTypes.push(Neptuo$TemplateEngine$Templates$Extensions$SwitchExtension);
+var Neptuo$TemplateEngine$Templates$Extensions$TemplateBindingExtension = {
+    fullname: "Neptuo.TemplateEngine.Templates.Extensions.TemplateBindingExtension",
+    baseTypeName: "Neptuo.TemplateEngine.Templates.Extensions.BindingExtension",
     assemblyName: "Neptuo.TemplateEngine.Shared",
     Kind: "Class",
     definition: {
         ctor: function (dataContext, bindingManager, converterService){
-            Neptuo.TemplateEngine.Web.Extensions.BindingExtension.ctor.call(this, dataContext, bindingManager, converterService);
+            Neptuo.TemplateEngine.Templates.Extensions.BindingExtension.ctor.call(this, dataContext, bindingManager, converterService);
         },
         GetData: function (){
             var source = this.get_DataContext().Peek("Template");
@@ -3764,7 +3764,7 @@ var Neptuo$TemplateEngine$Web$Extensions$TemplateBindingExtension = {
                 return $res;
             }).call(this))
                 return value;
-            var attributeSource = As(source, Neptuo.TemplateEngine.Web.Controls.IHtmlAttributeCollection.ctor);
+            var attributeSource = As(source, Neptuo.TemplateEngine.Templates.Controls.IHtmlAttributeCollection.ctor);
             if (attributeSource != null){
                 var attributeValue;
                 if ((function (){
@@ -3782,12 +3782,12 @@ var Neptuo$TemplateEngine$Web$Extensions$TemplateBindingExtension = {
     },
     ctors: [{
         name: "ctor",
-        parameters: ["Neptuo.TemplateEngine.Web.DataContextStorage", "Neptuo.TemplateEngine.Web.IBindingManager", "Neptuo.TemplateEngine.Web.IValueConverterService"]
+        parameters: ["Neptuo.TemplateEngine.Templates.DataContextStorage", "Neptuo.TemplateEngine.Templates.IBindingManager", "Neptuo.TemplateEngine.Templates.IValueConverterService"]
     }
     ],
     IsAbstract: false
 };
-JsTypes.push(Neptuo$TemplateEngine$Web$Extensions$TemplateBindingExtension);
+JsTypes.push(Neptuo$TemplateEngine$Templates$Extensions$TemplateBindingExtension);
 var Neptuo$TemplateEngine$Web$GlobalNavigationCollection = {
     fullname: "Neptuo.TemplateEngine.Web.GlobalNavigationCollection",
     baseTypeName: "System.Object",
@@ -3822,26 +3822,26 @@ var Neptuo$TemplateEngine$Web$GlobalNavigationCollection = {
     IsAbstract: false
 };
 JsTypes.push(Neptuo$TemplateEngine$Web$GlobalNavigationCollection);
-var Neptuo$TemplateEngine$Web$IBindingManager = {
-    fullname: "Neptuo.TemplateEngine.Web.IBindingManager",
+var Neptuo$TemplateEngine$Templates$IBindingManager = {
+    fullname: "Neptuo.TemplateEngine.Templates.IBindingManager",
     baseTypeName: "System.Object",
     assemblyName: "Neptuo.TemplateEngine.Shared",
     Kind: "Interface",
     ctors: [],
     IsAbstract: true
 };
-JsTypes.push(Neptuo$TemplateEngine$Web$IBindingManager);
-var Neptuo$TemplateEngine$Web$ICurrentUrlProvider = {
-    fullname: "Neptuo.TemplateEngine.Web.ICurrentUrlProvider",
+JsTypes.push(Neptuo$TemplateEngine$Templates$IBindingManager);
+var Neptuo$TemplateEngine$Templates$ICurrentUrlProvider = {
+    fullname: "Neptuo.TemplateEngine.Templates.ICurrentUrlProvider",
     baseTypeName: "System.Object",
     assemblyName: "Neptuo.TemplateEngine.Shared",
     Kind: "Interface",
     ctors: [],
     IsAbstract: true
 };
-JsTypes.push(Neptuo$TemplateEngine$Web$ICurrentUrlProvider);
-var Neptuo$TemplateEngine$Web$IExtendedHtmlWriter = {
-    fullname: "Neptuo.TemplateEngine.Web.IExtendedHtmlWriter",
+JsTypes.push(Neptuo$TemplateEngine$Templates$ICurrentUrlProvider);
+var Neptuo$TemplateEngine$Templates$IExtendedHtmlWriter = {
+    fullname: "Neptuo.TemplateEngine.Templates.IExtendedHtmlWriter",
     baseTypeName: "System.Object",
     assemblyName: "Neptuo.TemplateEngine.Shared",
     interfaceNames: ["Neptuo.Templates.IHtmlWriter"],
@@ -3849,7 +3849,7 @@ var Neptuo$TemplateEngine$Web$IExtendedHtmlWriter = {
     ctors: [],
     IsAbstract: true
 };
-JsTypes.push(Neptuo$TemplateEngine$Web$IExtendedHtmlWriter);
+JsTypes.push(Neptuo$TemplateEngine$Templates$IExtendedHtmlWriter);
 var Neptuo$TemplateEngine$Web$IParameterProvider = {
     fullname: "Neptuo.TemplateEngine.Web.IParameterProvider",
     baseTypeName: "System.Object",
@@ -3868,52 +3868,52 @@ var Neptuo$TemplateEngine$Web$IParameterProviderFactory = {
     IsAbstract: true
 };
 JsTypes.push(Neptuo$TemplateEngine$Web$IParameterProviderFactory);
-var Neptuo$TemplateEngine$Web$IPartialUpdateWriter = {
-    fullname: "Neptuo.TemplateEngine.Web.IPartialUpdateWriter",
+var Neptuo$TemplateEngine$Templates$IPartialUpdateWriter = {
+    fullname: "Neptuo.TemplateEngine.Templates.IPartialUpdateWriter",
     baseTypeName: "System.Object",
     assemblyName: "Neptuo.TemplateEngine.Shared",
     Kind: "Interface",
     ctors: [],
     IsAbstract: true
 };
-JsTypes.push(Neptuo$TemplateEngine$Web$IPartialUpdateWriter);
-var Neptuo$TemplateEngine$Web$IRequestContext = {
-    fullname: "Neptuo.TemplateEngine.Web.IRequestContext",
+JsTypes.push(Neptuo$TemplateEngine$Templates$IPartialUpdateWriter);
+var Neptuo$TemplateEngine$Templates$IRequestContext = {
+    fullname: "Neptuo.TemplateEngine.Templates.IRequestContext",
     baseTypeName: "System.Object",
     assemblyName: "Neptuo.TemplateEngine.Shared",
-    interfaceNames: ["Neptuo.TemplateEngine.Web.ICurrentUrlProvider", "Neptuo.Templates.IVirtualUrlProvider", "Neptuo.TemplateEngine.Web.IParameterProviderFactory"],
+    interfaceNames: ["Neptuo.TemplateEngine.Templates.ICurrentUrlProvider", "Neptuo.Templates.IVirtualUrlProvider", "Neptuo.TemplateEngine.Web.IParameterProviderFactory"],
     Kind: "Interface",
     ctors: [],
     IsAbstract: true
 };
-JsTypes.push(Neptuo$TemplateEngine$Web$IRequestContext);
-var Neptuo$TemplateEngine$Web$IValueConverter = {
-    fullname: "Neptuo.TemplateEngine.Web.IValueConverter",
-    baseTypeName: "System.Object",
-    assemblyName: "Neptuo.TemplateEngine.Shared",
-    Kind: "Interface",
-    ctors: [],
-    IsAbstract: true
-};
-JsTypes.push(Neptuo$TemplateEngine$Web$IValueConverter);
-var Neptuo$TemplateEngine$Web$IValueConverterService = {
-    fullname: "Neptuo.TemplateEngine.Web.IValueConverterService",
+JsTypes.push(Neptuo$TemplateEngine$Templates$IRequestContext);
+var Neptuo$TemplateEngine$Templates$IValueConverter = {
+    fullname: "Neptuo.TemplateEngine.Templates.IValueConverter",
     baseTypeName: "System.Object",
     assemblyName: "Neptuo.TemplateEngine.Shared",
     Kind: "Interface",
     ctors: [],
     IsAbstract: true
 };
-JsTypes.push(Neptuo$TemplateEngine$Web$IValueConverterService);
-var Neptuo$TemplateEngine$Web$IViewActivator = {
-    fullname: "Neptuo.TemplateEngine.Web.IViewActivator",
+JsTypes.push(Neptuo$TemplateEngine$Templates$IValueConverter);
+var Neptuo$TemplateEngine$Templates$IValueConverterService = {
+    fullname: "Neptuo.TemplateEngine.Templates.IValueConverterService",
     baseTypeName: "System.Object",
     assemblyName: "Neptuo.TemplateEngine.Shared",
     Kind: "Interface",
     ctors: [],
     IsAbstract: true
 };
-JsTypes.push(Neptuo$TemplateEngine$Web$IViewActivator);
+JsTypes.push(Neptuo$TemplateEngine$Templates$IValueConverterService);
+var Neptuo$TemplateEngine$Templates$IViewActivator = {
+    fullname: "Neptuo.TemplateEngine.Templates.IViewActivator",
+    baseTypeName: "System.Object",
+    assemblyName: "Neptuo.TemplateEngine.Shared",
+    Kind: "Interface",
+    ctors: [],
+    IsAbstract: true
+};
+JsTypes.push(Neptuo$TemplateEngine$Templates$IViewActivator);
 var Neptuo$TemplateEngine$Web$LocalizationHelper = {
     fullname: "Neptuo.TemplateEngine.Web.LocalizationHelper",
     baseTypeName: "System.Object",
@@ -4083,8 +4083,8 @@ var Neptuo$TemplateEngine$Web$NavigationCollection = {
     IsAbstract: false
 };
 JsTypes.push(Neptuo$TemplateEngine$Web$NavigationCollection);
-var Neptuo$TemplateEngine$Web$Observers$PartialObserver = {
-    fullname: "Neptuo.TemplateEngine.Web.Observers.PartialObserver",
+var Neptuo$TemplateEngine$Templates$Observers$PartialObserver = {
+    fullname: "Neptuo.TemplateEngine.Templates.Observers.PartialObserver",
     baseTypeName: "System.Object",
     assemblyName: "Neptuo.TemplateEngine.Shared",
     interfaceNames: ["Neptuo.Templates.Observers.IObserver"],
@@ -4104,7 +4104,7 @@ var Neptuo$TemplateEngine$Web$Observers$PartialObserver = {
         OnInit: function (e){
         },
         Render: function (e, writer){
-            var extendedWriter = As(writer, Neptuo.TemplateEngine.Web.IExtendedHtmlWriter.ctor);
+            var extendedWriter = As(writer, Neptuo.TemplateEngine.Templates.IExtendedHtmlWriter.ctor);
             if (extendedWriter != null)
                 extendedWriter.AttributeOnNextTag("data-toupdate", this.get_Update());
         }
@@ -4116,9 +4116,9 @@ var Neptuo$TemplateEngine$Web$Observers$PartialObserver = {
     ],
     IsAbstract: false
 };
-JsTypes.push(Neptuo$TemplateEngine$Web$Observers$PartialObserver);
-var Neptuo$TemplateEngine$Web$Observers$EventObserver = {
-    fullname: "Neptuo.TemplateEngine.Web.Observers.EventObserver",
+JsTypes.push(Neptuo$TemplateEngine$Templates$Observers$PartialObserver);
+var Neptuo$TemplateEngine$Templates$Observers$EventObserver = {
+    fullname: "Neptuo.TemplateEngine.Templates.Observers.EventObserver",
     baseTypeName: "System.Object",
     assemblyName: "Neptuo.TemplateEngine.Shared",
     interfaceNames: ["Neptuo.Templates.Observers.IObserver"],
@@ -4136,7 +4136,7 @@ var Neptuo$TemplateEngine$Web$Observers$EventObserver = {
             this._Event = value;
         },
         OnInit: function (e){
-            var button = As(e.get_Target(), Neptuo.TemplateEngine.Web.Controls.ButtonControl.ctor);
+            var button = As(e.get_Target(), Neptuo.TemplateEngine.Templates.Controls.ButtonControl.ctor);
             if (button == null)
                 throw $CreateException(new System.InvalidOperationException.ctor$$String("EventObserver must used on ButtonControl."), new Error());
             if (System.String.IsNullOrEmpty(button.get_Name()))
@@ -4152,9 +4152,9 @@ var Neptuo$TemplateEngine$Web$Observers$EventObserver = {
     ],
     IsAbstract: false
 };
-JsTypes.push(Neptuo$TemplateEngine$Web$Observers$EventObserver);
-var Neptuo$TemplateEngine$Web$Observers$HtmlObserver = {
-    fullname: "Neptuo.TemplateEngine.Web.Observers.HtmlObserver",
+JsTypes.push(Neptuo$TemplateEngine$Templates$Observers$EventObserver);
+var Neptuo$TemplateEngine$Templates$Observers$HtmlObserver = {
+    fullname: "Neptuo.TemplateEngine.Templates.Observers.HtmlObserver",
     baseTypeName: "System.Object",
     assemblyName: "Neptuo.TemplateEngine.Shared",
     interfaceNames: ["Neptuo.Templates.Observers.IObserver"],
@@ -4218,9 +4218,9 @@ var Neptuo$TemplateEngine$Web$Observers$HtmlObserver = {
     ],
     IsAbstract: false
 };
-JsTypes.push(Neptuo$TemplateEngine$Web$Observers$HtmlObserver);
-var Neptuo$TemplateEngine$Web$Observers$IsPlaceholderObserver = {
-    fullname: "Neptuo.TemplateEngine.Web.Observers.IsPlaceholderObserver",
+JsTypes.push(Neptuo$TemplateEngine$Templates$Observers$HtmlObserver);
+var Neptuo$TemplateEngine$Templates$Observers$IsPlaceholderObserver = {
+    fullname: "Neptuo.TemplateEngine.Templates.Observers.IsPlaceholderObserver",
     baseTypeName: "System.Object",
     assemblyName: "Neptuo.TemplateEngine.Shared",
     interfaceNames: ["Neptuo.Templates.Observers.IObserver"],
@@ -4239,7 +4239,7 @@ var Neptuo$TemplateEngine$Web$Observers$IsPlaceholderObserver = {
         set_IsPlaceholder: function (value){
             this._IsPlaceholder = value;
         },
-        TemplateStorage$$: "Neptuo.TemplateEngine.Web.TemplateContentStorageStack",
+        TemplateStorage$$: "Neptuo.TemplateEngine.Templates.TemplateContentStorageStack",
         get_TemplateStorage: function (){
             return this._TemplateStorage;
         },
@@ -4257,14 +4257,14 @@ var Neptuo$TemplateEngine$Web$Observers$IsPlaceholderObserver = {
     },
     ctors: [{
         name: "ctor",
-        parameters: ["Neptuo.TemplateEngine.Web.TemplateContentStorageStack"]
+        parameters: ["Neptuo.TemplateEngine.Templates.TemplateContentStorageStack"]
     }
     ],
     IsAbstract: false
 };
-JsTypes.push(Neptuo$TemplateEngine$Web$Observers$IsPlaceholderObserver);
-var Neptuo$TemplateEngine$Web$Observers$VisibleObserver = {
-    fullname: "Neptuo.TemplateEngine.Web.Observers.VisibleObserver",
+JsTypes.push(Neptuo$TemplateEngine$Templates$Observers$IsPlaceholderObserver);
+var Neptuo$TemplateEngine$Templates$Observers$VisibleObserver = {
+    fullname: "Neptuo.TemplateEngine.Templates.Observers.VisibleObserver",
     baseTypeName: "System.Object",
     assemblyName: "Neptuo.TemplateEngine.Shared",
     interfaceNames: ["Neptuo.Templates.Observers.IObserver"],
@@ -4297,7 +4297,7 @@ var Neptuo$TemplateEngine$Web$Observers$VisibleObserver = {
     ],
     IsAbstract: false
 };
-JsTypes.push(Neptuo$TemplateEngine$Web$Observers$VisibleObserver);
+JsTypes.push(Neptuo$TemplateEngine$Templates$Observers$VisibleObserver);
 var Neptuo$TemplateEngine$Web$ParameterProviderExtensions = {
     fullname: "Neptuo.TemplateEngine.Web.ParameterProviderExtensions",
     baseTypeName: "System.Object",
@@ -4348,8 +4348,8 @@ var Neptuo$TemplateEngine$Web$ParameterProviderType = {
     IsAbstract: false
 };
 JsTypes.push(Neptuo$TemplateEngine$Web$ParameterProviderType);
-var Neptuo$TemplateEngine$Web$PresentationConfiguration = {
-    fullname: "Neptuo.TemplateEngine.Web.PresentationConfiguration",
+var Neptuo$TemplateEngine$Templates$PresentationConfiguration = {
+    fullname: "Neptuo.TemplateEngine.Templates.PresentationConfiguration",
     baseTypeName: "System.Object",
     assemblyName: "Neptuo.TemplateEngine.Shared",
     Kind: "Class",
@@ -4369,7 +4369,7 @@ var Neptuo$TemplateEngine$Web$PresentationConfiguration = {
             this.set_ValueProviderFactory(valueProviderFactory);
             this.set_DataContext(dataContext);
         },
-        TemplateStorage$$: "Neptuo.TemplateEngine.Web.TemplateContentStorageStack",
+        TemplateStorage$$: "Neptuo.TemplateEngine.Templates.TemplateContentStorageStack",
         get_TemplateStorage: function (){
             return this._TemplateStorage;
         },
@@ -4383,7 +4383,7 @@ var Neptuo$TemplateEngine$Web$PresentationConfiguration = {
         set_ValueProviderFactory: function (value){
             this._ValueProviderFactory = value;
         },
-        DataContext$$: "Neptuo.TemplateEngine.Web.DataContextStorage",
+        DataContext$$: "Neptuo.TemplateEngine.Templates.DataContextStorage",
         get_DataContext: function (){
             return this._DataContext;
         },
@@ -4393,31 +4393,31 @@ var Neptuo$TemplateEngine$Web$PresentationConfiguration = {
     },
     ctors: [{
         name: "ctor",
-        parameters: ["Neptuo.TemplateEngine.Web.TemplateContentStorageStack", "Neptuo.PresentationModels.TypeModels.IModelValueProviderFactory", "Neptuo.TemplateEngine.Web.DataContextStorage"]
+        parameters: ["Neptuo.TemplateEngine.Templates.TemplateContentStorageStack", "Neptuo.PresentationModels.TypeModels.IModelValueProviderFactory", "Neptuo.TemplateEngine.Templates.DataContextStorage"]
     }
     ],
     IsAbstract: false
 };
-JsTypes.push(Neptuo$TemplateEngine$Web$PresentationConfiguration);
-var Neptuo$TemplateEngine$Web$PresentationConfiguration$1 = {
-    fullname: "Neptuo.TemplateEngine.Web.PresentationConfiguration$1",
-    baseTypeName: "Neptuo.TemplateEngine.Web.PresentationConfiguration",
+JsTypes.push(Neptuo$TemplateEngine$Templates$PresentationConfiguration);
+var Neptuo$TemplateEngine$Templates$PresentationConfiguration$1 = {
+    fullname: "Neptuo.TemplateEngine.Templates.PresentationConfiguration$1",
+    baseTypeName: "Neptuo.TemplateEngine.Templates.PresentationConfiguration",
     assemblyName: "Neptuo.TemplateEngine.Shared",
     Kind: "Class",
     definition: {
         ctor: function (T, templateStorage, valueProviderFactory, dataContext){
             this.T = T;
-            Neptuo.TemplateEngine.Web.PresentationConfiguration.ctor.call(this, templateStorage, valueProviderFactory, dataContext);
+            Neptuo.TemplateEngine.Templates.PresentationConfiguration.ctor.call(this, templateStorage, valueProviderFactory, dataContext);
         }
     },
     ctors: [{
         name: "ctor",
-        parameters: ["Neptuo.TemplateEngine.Web.TemplateContentStorageStack", "Neptuo.PresentationModels.TypeModels.IModelValueProviderFactory", "Neptuo.TemplateEngine.Web.DataContextStorage"]
+        parameters: ["Neptuo.TemplateEngine.Templates.TemplateContentStorageStack", "Neptuo.PresentationModels.TypeModels.IModelValueProviderFactory", "Neptuo.TemplateEngine.Templates.DataContextStorage"]
     }
     ],
     IsAbstract: false
 };
-JsTypes.push(Neptuo$TemplateEngine$Web$PresentationConfiguration$1);
+JsTypes.push(Neptuo$TemplateEngine$Templates$PresentationConfiguration$1);
 var Neptuo$TemplateEngine$Web$Routing$TemplateRouteParameterBase = {
     fullname: "Neptuo.TemplateEngine.Web.Routing.TemplateRouteParameterBase",
     baseTypeName: "System.Object",
@@ -4447,15 +4447,15 @@ var Neptuo$TemplateEngine$Web$Routing$TemplateRouteParameterBase = {
     IsAbstract: false
 };
 JsTypes.push(Neptuo$TemplateEngine$Web$Routing$TemplateRouteParameterBase);
-var Neptuo$TemplateEngine$Web$TemplateContentStorage = {
-    fullname: "Neptuo.TemplateEngine.Web.TemplateContentStorage",
+var Neptuo$TemplateEngine$Templates$TemplateContentStorage = {
+    fullname: "Neptuo.TemplateEngine.Templates.TemplateContentStorage",
     baseTypeName: "System.Object",
     assemblyName: "Neptuo.TemplateEngine.Shared",
     Kind: "Class",
     definition: {
         ctor: function (parent){
             this.parent = null;
-            this.storage = new System.Collections.Generic.Dictionary$2.ctor(System.String.ctor, Neptuo.TemplateEngine.Web.Controls.TemplateContentControl.ctor);
+            this.storage = new System.Collections.Generic.Dictionary$2.ctor(System.String.ctor, Neptuo.TemplateEngine.Templates.Controls.TemplateContentControl.ctor);
             System.Object.ctor.call(this);
             this.parent = parent;
         },
@@ -4488,27 +4488,27 @@ var Neptuo$TemplateEngine$Web$TemplateContentStorage = {
     },
     ctors: [{
         name: "ctor",
-        parameters: ["Neptuo.TemplateEngine.Web.TemplateContentStorage"]
+        parameters: ["Neptuo.TemplateEngine.Templates.TemplateContentStorage"]
     }
     ],
     IsAbstract: false
 };
-JsTypes.push(Neptuo$TemplateEngine$Web$TemplateContentStorage);
-var Neptuo$TemplateEngine$Web$TemplateContentStorageStack = {
-    fullname: "Neptuo.TemplateEngine.Web.TemplateContentStorageStack",
+JsTypes.push(Neptuo$TemplateEngine$Templates$TemplateContentStorage);
+var Neptuo$TemplateEngine$Templates$TemplateContentStorageStack = {
+    fullname: "Neptuo.TemplateEngine.Templates.TemplateContentStorageStack",
     baseTypeName: "System.Object",
     assemblyName: "Neptuo.TemplateEngine.Shared",
     interfaceNames: ["Neptuo.TemplateEngine.IStackStorage$1"],
     Kind: "Class",
     definition: {
         ctor: function (){
-            this.innerStorage = new System.Collections.Generic.Stack$1.ctor(Neptuo.TemplateEngine.Web.TemplateContentStorage.ctor);
+            this.innerStorage = new System.Collections.Generic.Stack$1.ctor(Neptuo.TemplateEngine.Templates.TemplateContentStorage.ctor);
             System.Object.ctor.call(this);
         },
         CreateStorage: function (){
-            if (System.Linq.Enumerable.Any$1$$IEnumerable$1(Neptuo.TemplateEngine.Web.TemplateContentStorage.ctor, this.innerStorage))
-                return new Neptuo.TemplateEngine.Web.TemplateContentStorage.ctor(this.innerStorage.Peek());
-            return new Neptuo.TemplateEngine.Web.TemplateContentStorage.ctor(null);
+            if (System.Linq.Enumerable.Any$1$$IEnumerable$1(Neptuo.TemplateEngine.Templates.TemplateContentStorage.ctor, this.innerStorage))
+                return new Neptuo.TemplateEngine.Templates.TemplateContentStorage.ctor(this.innerStorage.Peek());
+            return new Neptuo.TemplateEngine.Templates.TemplateContentStorage.ctor(null);
         },
         Push: function (storage){
             this.innerStorage.Push(storage);
@@ -4527,16 +4527,16 @@ var Neptuo$TemplateEngine$Web$TemplateContentStorageStack = {
     ],
     IsAbstract: false
 };
-JsTypes.push(Neptuo$TemplateEngine$Web$TemplateContentStorageStack);
-var Neptuo$TemplateEngine$Web$ValueConverterService = {
-    fullname: "Neptuo.TemplateEngine.Web.ValueConverterService",
+JsTypes.push(Neptuo$TemplateEngine$Templates$TemplateContentStorageStack);
+var Neptuo$TemplateEngine$Templates$ValueConverterService = {
+    fullname: "Neptuo.TemplateEngine.Templates.ValueConverterService",
     baseTypeName: "System.Object",
     assemblyName: "Neptuo.TemplateEngine.Shared",
-    interfaceNames: ["Neptuo.TemplateEngine.Web.IValueConverterService"],
+    interfaceNames: ["Neptuo.TemplateEngine.Templates.IValueConverterService"],
     Kind: "Class",
     definition: {
         ctor: function (){
-            this.storage = new System.Collections.Generic.Dictionary$2.ctor(System.String.ctor, Neptuo.TemplateEngine.Web.IValueConverter.ctor);
+            this.storage = new System.Collections.Generic.Dictionary$2.ctor(System.String.ctor, Neptuo.TemplateEngine.Templates.IValueConverter.ctor);
             System.Object.ctor.call(this);
         },
         GetConverter: function (key){
@@ -4558,9 +4558,9 @@ var Neptuo$TemplateEngine$Web$ValueConverterService = {
     ],
     IsAbstract: false
 };
-JsTypes.push(Neptuo$TemplateEngine$Web$ValueConverterService);
-var Neptuo$TemplateEngine$Web$ViewAttribute = {
-    fullname: "Neptuo.TemplateEngine.Web.ViewAttribute",
+JsTypes.push(Neptuo$TemplateEngine$Templates$ValueConverterService);
+var Neptuo$TemplateEngine$Templates$ViewAttribute = {
+    fullname: "Neptuo.TemplateEngine.Templates.ViewAttribute",
     baseTypeName: "System.Attribute",
     assemblyName: "Neptuo.TemplateEngine.Shared",
     Kind: "Class",
@@ -4585,5 +4585,5 @@ var Neptuo$TemplateEngine$Web$ViewAttribute = {
     ],
     IsAbstract: false
 };
-JsTypes.push(Neptuo$TemplateEngine$Web$ViewAttribute);
+JsTypes.push(Neptuo$TemplateEngine$Templates$ViewAttribute);
 

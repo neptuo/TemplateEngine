@@ -1,4 +1,4 @@
-﻿using Neptuo.TemplateEngine.Web.Compilation.CodeObjects;
+﻿using Neptuo.TemplateEngine.Templates.Compilation.CodeObjects;
 using Neptuo.Templates.Compilation.CodeObjects;
 using Neptuo.Templates.Compilation.Parsers;
 using System;
@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Neptuo.TemplateEngine.Web.Compilation.Parsers
+namespace Neptuo.TemplateEngine.Templates.Compilation.Parsers
 {
     public class CssClassPropertyBuilder : IPropertyBuilder
     {

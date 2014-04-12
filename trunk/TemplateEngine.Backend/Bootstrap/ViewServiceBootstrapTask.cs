@@ -2,14 +2,15 @@
 using Neptuo.TemplateEngine.Backend.Web;
 using Neptuo.TemplateEngine.PresentationModels;
 using Neptuo.TemplateEngine.PresentationModels.Observers;
+using Neptuo.TemplateEngine.Templates;
 using Neptuo.TemplateEngine.Web;
-using Neptuo.TemplateEngine.Web.Compilation;
-using Neptuo.TemplateEngine.Web.Compilation.CodeGenerators;
-using Neptuo.TemplateEngine.Web.Compilation.CodeObjects;
-using Neptuo.TemplateEngine.Web.Compilation.Parsers;
-using Neptuo.TemplateEngine.Web.Compilation.PreProcessing;
-using Neptuo.TemplateEngine.Web.Controls;
-using Neptuo.TemplateEngine.Web.Observers;
+using Neptuo.TemplateEngine.Templates.Compilation;
+using Neptuo.TemplateEngine.Templates.Compilation.CodeGenerators;
+using Neptuo.TemplateEngine.Templates.Compilation.CodeObjects;
+using Neptuo.TemplateEngine.Templates.Compilation.Parsers;
+using Neptuo.TemplateEngine.Templates.Compilation.PreProcessing;
+using Neptuo.TemplateEngine.Templates.Controls;
+using Neptuo.TemplateEngine.Templates.Observers;
 using Neptuo.TemplateEngine.Web.ViewBundles;
 using Neptuo.Templates;
 using Neptuo.Templates.Compilation;
@@ -24,7 +25,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web;
-using CodeDomStructureGenerator = Neptuo.TemplateEngine.Web.Compilation.CodeGenerators.CodeDomStructureGenerator;
+using CodeDomStructureGenerator = Neptuo.TemplateEngine.Templates.Compilation.CodeGenerators.CodeDomStructureGenerator;
 
 namespace Neptuo.TemplateEngine.Backend.Bootstrap
 {
@@ -102,11 +103,11 @@ namespace Neptuo.TemplateEngine.Backend.Bootstrap
 
         protected virtual void SetupTypeBuilderRegistry(TypeBuilderRegistry registry)
         {
-            registry.RegisterNamespace(new NamespaceDeclaration("ui", "Neptuo.TemplateEngine.Web.Controls, Neptuo.TemplateEngine.Shared"));
-            registry.RegisterNamespace(new NamespaceDeclaration("", "Neptuo.TemplateEngine.Web.Extensions, Neptuo.TemplateEngine.Shared"));
+            registry.RegisterNamespace(new NamespaceDeclaration("ui", "Neptuo.TemplateEngine.Templates.Controls, Neptuo.TemplateEngine.Shared"));
+            registry.RegisterNamespace(new NamespaceDeclaration("", "Neptuo.TemplateEngine.Templates.Extensions, Neptuo.TemplateEngine.Shared"));
 
-            registry.RegisterNamespace(new NamespaceDeclaration("ui", "Neptuo.TemplateEngine.Web.Controls, Neptuo.TemplateEngine.Web"));
-            registry.RegisterNamespace(new NamespaceDeclaration("", "Neptuo.TemplateEngine.Web.Extensions, Neptuo.TemplateEngine.Web"));
+            registry.RegisterNamespace(new NamespaceDeclaration("ui", "Neptuo.TemplateEngine.Templates.Controls, Neptuo.TemplateEngine.Web"));
+            registry.RegisterNamespace(new NamespaceDeclaration("", "Neptuo.TemplateEngine.Templates.Extensions, Neptuo.TemplateEngine.Web"));
             registry.RegisterComponentBuilder("ajax", "View", new DefaultTypeComponentBuilderFactory(typeof(PartialViewControl)));
             registry.RegisterComponentBuilder("ajax", "StartUp", new DefaultTypeComponentBuilderFactory(typeof(PartialStartUpControl)));
 

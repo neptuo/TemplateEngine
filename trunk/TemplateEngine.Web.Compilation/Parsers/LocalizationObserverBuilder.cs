@@ -1,5 +1,5 @@
-﻿using Neptuo.TemplateEngine.Web.Compilation.CodeObjects;
-using Neptuo.TemplateEngine.Web.Observers;
+﻿using Neptuo.TemplateEngine.Templates.Compilation.CodeObjects;
+using Neptuo.TemplateEngine.Templates.Observers;
 using Neptuo.Templates;
 using Neptuo.Templates.Compilation.CodeObjects;
 using Neptuo.Templates.Compilation.Parsers;
@@ -10,7 +10,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Neptuo.TemplateEngine.Web.Compilation.Parsers
+namespace Neptuo.TemplateEngine.Templates.Compilation.Parsers
 {
     public class LocalizationObserverBuilder : IObserverBuilder
     {

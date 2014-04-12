@@ -1,4 +1,4 @@
-﻿using Neptuo.TemplateEngine.Web.DataSources;
+﻿using Neptuo.TemplateEngine.Templates.DataSources;
 using System;
 using System.Collections;
 using System.Collections.Generic;

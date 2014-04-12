@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Neptuo.TemplateEngine.Web.Compilation.CodeObjects
+namespace Neptuo.TemplateEngine.Templates.Compilation.CodeObjects
 {
     public class CssClassPropertyDescriptor : ListAddPropertyDescriptor
     {
