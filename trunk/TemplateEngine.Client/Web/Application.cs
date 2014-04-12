@@ -47,18 +47,11 @@ namespace Neptuo.TemplateEngine.Web
             DefaultToUpdate = defaultToUpdate;
             DependencyContainer = CreateDependencyContainer();
 
-            //TODO: Move
-            Converts.Repository
-                .Add(typeof(JsObject), typeof(PartialResponse), new PartialResponseConverter());
-
             HistoryState.OnPop += OnHistoryStatePop;
 
             MainView.OnLinkClick += OnNavigation;
             MainView.OnGetFormSubmit += OnNavigation;
             MainView.OnPostFormSubmit += OnFormSubmit;
-
-
-            FormPostInvokers = new QueueFormPostInvokerManager();
 
             // At last...
             RunBootstrapTasks(DependencyContainer);
@@ -90,6 +83,8 @@ namespace Neptuo.TemplateEngine.Web
             Router.AddRoute(new TemplateRoute(".aspx", this));
 
             UpdateViewNotifier = new UpdateViewNotifier(MainView);
+
+            FormPostInvokers = new QueueFormPostInvokerManager();
 
             container
                 .RegisterType<IStackStorage<IViewStorage>, StackStorage<IViewStorage>>()

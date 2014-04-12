@@ -23,9 +23,9 @@ namespace Neptuo.TemplateEngine.Commands.Handlers
         {
             Guard.NotNull(command, "command");
 
-            IValidationResult validation = Validate(command);
-            if (!validation.IsValid)
-                throw new InvalidOperationException("Command is not valid.");//TODO: Do it better!
+            IValidationResult validationResult = Validate(command);
+            if (!validationResult.IsValid)
+                throw new ValidationException(validationResult);
 
             HandleValidCommand(command);
         }

@@ -13,7 +13,7 @@ namespace Neptuo.TemplateEngine.Accounts.Bootstrap
 {
     public abstract class AccountBootstrapTaskBase
     {
-        protected void RegisterForms(IFormUriRegistry formRegistry)
+        protected void SetupForms(IFormUriRegistry formRegistry)
         {
             formRegistry
                 .Register("Accounts.User.List", TemplateRouteParameterBase.FormatUrl("~/Accounts/UserList"))
@@ -23,7 +23,7 @@ namespace Neptuo.TemplateEngine.Accounts.Bootstrap
                 .Register("Accounts.Role.Edit", TemplateRouteParameterBase.FormatUrl("~/Accounts/RoleEdit"));
         }
 
-        protected void RegisterGlobalNavigations(GlobalNavigationCollection globalNavigations)
+        protected void SetupGlobalNavigations(GlobalNavigationCollection globalNavigations)
         {
             globalNavigations
                 .Add("Accounts.User.Deleted", (FormUri)"Accounts.User.List")

@@ -32,7 +32,7 @@ namespace Neptuo.TemplateEngine.Web.Controls
 
             string startupStript = String.Format(
                 "JsRuntime.Start(); Neptuo.TemplateEngine.Web.Application.Start({0}, \"{1}\", [{2}]);", 
-                httpContext.Request.Url.Host == "localhost" ? "true" : "false",
+                httpContext.Request.Url.Host == "localhost" ? "true" : "false", //TODO: Move to configuration
                 httpContext.Request.ApplicationPath, 
                 toUpdate
             );

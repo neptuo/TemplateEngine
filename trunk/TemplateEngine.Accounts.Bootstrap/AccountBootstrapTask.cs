@@ -61,8 +61,34 @@ namespace Neptuo.TemplateEngine.Accounts.Bootstrap
 
         public void Initialize()
         {
+            SetupDependencyContainer(dependencyContainer);
+            SetupTypeBuilderRegistry(registry);
+            SetupControllers(controllerRegistry);
+            SetupDataSources(dataSourceRegistry);
+
+            SetupForms(formRegistry);
+            SetupGlobalNavigations(globalNavigations);
+
+
+//#if DEBUG
+            //CreateDummyUserRoles();
+            //CreateDummyUserAccounts();
+//#endif
+        }
+
+        protected void SetupTypeBuilderRegistry(TypeBuilderRegistry registry)
+        {
+            registry.RegisterNamespace(new NamespaceDeclaration("ui", "Neptuo.TemplateEngine.Accounts.Web.Presenters, Neptuo.TemplateEngine.Accounts.Web"));
+            registry.RegisterNamespace(new NamespaceDeclaration("data", "Neptuo.TemplateEngine.Accounts.Web.DataSources, Neptuo.TemplateEngine.Accounts.Web"));
+
+            registry.RegisterComponentBuilder("ui", "AccountSideNav", new UserTemplateComponentBuilderFactory("~/Views/Accounts/SideNav.view"));
+        }
+
+        protected void SetupDependencyContainer(IDependencyContainer dependencyContainer)
+        {
             dependencyContainer
-                //.RegisterInstance<IAccountDbContext>()
+                .RegisterType<DataContext>(new PerRequestLifetime())
+
                 .RegisterType<IUserAccountRepository, EntityUserAccountRepository>(new PerRequestLifetime())
                 .RegisterType<IUserAccountQuery, EntityUserAccountQuery>()
                 .RegisterType<IActivator<UserAccount>, EntityUserAccountRepository>(new PerRequestLifetime())
@@ -75,34 +101,29 @@ namespace Neptuo.TemplateEngine.Accounts.Bootstrap
                 .RegisterType<IUserRoleQuery, EntityUserRoleQuery>()
                 .RegisterType<IActivator<UserRole>, EntityUserRoleRepository>(new PerRequestLifetime())
                 .RegisterCommandHandler<UserRoleEditCommand, EditUserRoleCommandHandler>()
-                
+
                 .RegisterType<IAuthenticator, UserAccountService>()
 
 
                 .RegisterType<ICommandHandler<UserAccountCreateCommand>, UserAccountCreateHandler>()
                 .RegisterType<ICommandHandler<UserAccountEditCommand>, UserAccountUpdateHandler>();
+        }
 
-            registry.RegisterNamespace(new NamespaceDeclaration("ui", "Neptuo.TemplateEngine.Accounts.Web.Presenters, Neptuo.TemplateEngine.Accounts.Web"));
-            registry.RegisterNamespace(new NamespaceDeclaration("data", "Neptuo.TemplateEngine.Accounts.Web.DataSources, Neptuo.TemplateEngine.Accounts.Web"));
-            
-            registry.RegisterComponentBuilder("ui", "AccountSideNav", new UserTemplateComponentBuilderFactory("~/Views/Accounts/SideNav.view"));
-
+        protected void SetupControllers(IControllerRegistry controllerRegistry)
+        {
             controllerRegistry
                 .Add(dependencyContainer, typeof(UserAccountController))
                 .Add(dependencyContainer, typeof(UserRoleController))
                 //.Add("Accounts/User/Create", new ModelControllerFactory<UserAccountCreateCommand>(dependencyContainer));
                 .AddCommandHandlers(dependencyContainer, typeof(UserAccountCreateHandler).Assembly);
-
-            RegisterForms(formRegistry);
-            RegisterGlobalNavigations(globalNavigations);
-
-            dataSourceRegistry.AddFromAssembly(typeof(UserAccountDataSource).Assembly);
-
-//#if DEBUG
-            //CreateDummyUserRoles();
-            //CreateDummyUserAccounts();
-//#endif
         }
+
+        protected void SetupDataSources(IWebDataSourceRegistry dataSourceRegistry)
+        {
+            dataSourceRegistry.AddFromAssembly(typeof(UserAccountDataSource).Assembly);
+        }
+
+        #region Init data
 
         protected void CreateDummyUserAccounts()
         {
@@ -147,5 +168,7 @@ namespace Neptuo.TemplateEngine.Accounts.Bootstrap
                 Description = "Article writers"
             });
         }
+
+        #endregion
     }
 }
