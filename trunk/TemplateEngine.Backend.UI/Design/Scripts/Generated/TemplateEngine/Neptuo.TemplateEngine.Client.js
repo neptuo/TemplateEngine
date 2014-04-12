@@ -771,8 +771,18 @@ var Neptuo$TemplateEngine$Web$AsyncViewRenderer = {
             this.OnCompleted = $RemoveDelegate(this.OnCompleted, value);
         },
         Render: function (){
-            if (!this.get_Checker().IsViewLoaded(this.get_ViewPath()))
-                $("body").append("<script src=\'" + this.FormatViewUrl() + "\'></script>");
+            if (!this.get_Checker().IsViewLoaded(this.get_ViewPath())){
+                $.ajax({
+                    url: this.FormatViewUrl(),
+                    dataType: "script",
+                    success: $CreateDelegate(this, this.OnScriptLoaded)
+                });
+            }
+            else {
+                this.RenderView();
+            }
+        },
+        OnScriptLoaded: function (data, status, response){
             this.RenderView();
         },
         FormatViewUrl: function (){
