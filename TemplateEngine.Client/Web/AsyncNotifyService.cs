@@ -26,7 +26,7 @@ namespace Neptuo.TemplateEngine.Web
 
         public void NotifyDone(object source)
         {
-            if (sources.Remove(sources))
+            if (sources.Remove(source))
             {
                 counter--;
 

@@ -471,6 +471,7 @@ var Neptuo$TemplateEngine$Web$Application = {
             this._DependencyContainer = null;
             this._FormPostInvokers = null;
             this._Router = null;
+            this._UpdateViewNotifier = null;
             System.Object.ctor.call(this);
             Neptuo.Guard.NotNull$$Object$$String(applicationPath, "applicationPath");
             Neptuo.Guard.NotNull$$Object$$String(defaultToUpdate, "defaultToUpdate");
@@ -542,6 +543,13 @@ var Neptuo$TemplateEngine$Web$Application = {
         set_Router: function (value){
             this._Router = value;
         },
+        UpdateViewNotifier$$: "Neptuo.TemplateEngine.Web.IUpdateViewNotifier",
+        get_UpdateViewNotifier: function (){
+            return this._UpdateViewNotifier;
+        },
+        set_UpdateViewNotifier: function (value){
+            this._UpdateViewNotifier = value;
+        },
         CreateDependencyContainer: function (){
             var container = new Neptuo.ObjectBuilder.DependencyContainer.ctor();
             container.Map(Typeof(Neptuo.Lifetimes.SingletonLifetime.ctor), new Neptuo.ObjectBuilder.Lifetimes.Mapping.SingletonLifetimeMapper.ctor());
@@ -552,6 +560,7 @@ var Neptuo$TemplateEngine$Web$Application = {
             this.set_MainView(new Neptuo.TemplateEngine.Web.MainView.ctor(viewActivator, this));
             this.set_Router(new Neptuo.TemplateEngine.Routing.ApplicationRouter.ctor(!this.get_IsDebug()));
             this.get_Router().AddRoute(new Neptuo.TemplateEngine.Routing.TemplateRoute.ctor(".aspx", this));
+            this.set_UpdateViewNotifier(new Neptuo.TemplateEngine.Web.UpdateViewNotifier.ctor(this.get_MainView()));
             Neptuo.DependencyContainerExtensions.RegisterInstance$1(Neptuo.TemplateEngine.Routing.IRouter.ctor, Neptuo.DependencyContainerExtensions.RegisterInstance$1(Neptuo.TemplateEngine.Web.IMainView.ctor, Neptuo.DependencyContainerExtensions.RegisterInstance$1(Neptuo.TemplateEngine.Web.IHistoryState.ctor, Neptuo.DependencyContainerExtensions.RegisterInstance$1(Neptuo.TemplateEngine.Permissions.IPermissionProvider.ctor, Neptuo.DependencyContainerExtensions.RegisterInstance$1(Neptuo.TemplateEngine.Web.Controllers.IControllerRegistry.ctor, Neptuo.DependencyContainerExtensions.RegisterInstance$1(Neptuo.TemplateEngine.Navigation.Bootstrap.IFormUriRegistry.ctor, Neptuo.DependencyContainerExtensions.RegisterInstance$1(Neptuo.TemplateEngine.Navigation.IFormUriService.ctor, Neptuo.DependencyContainerExtensions.RegisterInstance$1(Neptuo.TemplateEngine.Web.GlobalNavigationCollection.ctor, Neptuo.DependencyContainerExtensions.RegisterInstance$1(Neptuo.TemplateEngine.Web.IViewActivator.ctor, Neptuo.DependencyContainerExtensions.RegisterInstance$1(Neptuo.IGuidProvider.ctor, Neptuo.DependencyContainerExtensions.RegisterInstance$1(Neptuo.TemplateEngine.Web.DataContextStorage.ctor, Neptuo.DependencyContainerExtensions.RegisterInstance$1(Neptuo.TemplateEngine.Web.TemplateContentStorageStack.ctor, Neptuo.DependencyContainerExtensions.RegisterType$2$$IDependencyContainer(Neptuo.TemplateEngine.Web.IRequestContext.ctor, Neptuo.TemplateEngine.Web.CompositeRequestContext.ctor, Neptuo.DependencyContainerExtensions.RegisterType$2$$IDependencyContainer(Neptuo.TemplateEngine.Web.IValueConverterService.ctor, Neptuo.TemplateEngine.Web.ValueConverterService.ctor, Neptuo.DependencyContainerExtensions.RegisterType$2$$IDependencyContainer(Neptuo.TemplateEngine.Web.IBindingManager.ctor, Neptuo.TemplateEngine.Web.BindingManagerBase.ctor, Neptuo.DependencyContainerExtensions.RegisterType$2$$IDependencyContainer(Neptuo.TemplateEngine.Web.IParameterProvider.ctor, Neptuo.TemplateEngine.Web.RouteParameterProvider.ctor, Neptuo.DependencyContainerExtensions.RegisterType$2$$IDependencyContainer(Neptuo.TemplateEngine.Web.IParameterProviderFactory.ctor, Neptuo.TemplateEngine.Web.RouteParameterProviderFactory.ctor, Neptuo.DependencyContainerExtensions.RegisterInstance$1(Neptuo.TemplateEngine.Web.ICurrentUrlProvider.ctor, Neptuo.DependencyContainerExtensions.RegisterInstance$1(Neptuo.Templates.IVirtualUrlProvider.ctor, Neptuo.DependencyContainerExtensions.RegisterType$2$$IDependencyContainer(Neptuo.TemplateEngine.IStackStorage$1.ctor, Neptuo.TemplateEngine.StackStorage$1.ctor, container), this), this)))))), new Neptuo.TemplateEngine.Web.TemplateContentStorageStack.ctor()), new Neptuo.TemplateEngine.Web.DataContextStorage.ctor()), new Neptuo.SequenceGuidProvider.ctor("guid", 1)), viewActivator), new Neptuo.TemplateEngine.Web.GlobalNavigationCollection.ctor()), formService), formService), new Neptuo.TemplateEngine.Web.Controllers.ControllerRegistryBase.ctor()), new Neptuo.TemplateEngine.Permissions.OptimisticPermissionProvider.ctor()), this.get_HistoryState()), this.get_MainView()), this.get_Router());
             return container;
         },
@@ -663,7 +672,7 @@ var Neptuo$TemplateEngine$Web$AsyncNotifyService = {
                 this.counter++;
         },
         NotifyDone: function (source){
-            if (this.sources.Remove(this.source)){
+            if (this.sources.Remove(source)){
                 this.counter--;
                 if (this.OnReady != null)
                     this.OnReady();
@@ -939,9 +948,6 @@ var Neptuo$TemplateEngine$Web$Controls$DetailViewControl = {
             this.get_UpdateHelper().OnInit();
             this.get_Source().GetItem($CreateDelegate(this, this.OnLoadData));
             this.get_NotifyService().Register(this);
-            setTimeout($CreateAnonymousDelegate(this, function (){
-                this.get_NotifyService().NotifyDone(this);
-            }), 500);
         },
         OnRenderContent: function (writer){
             Neptuo.TemplateEngine.Web.Controls.TemplateControl.commonPrototype.Render.call(this, writer);
@@ -953,6 +959,7 @@ var Neptuo$TemplateEngine$Web$Controls$DetailViewControl = {
             this.get_DataContext().Push(data, null);
             Neptuo.TemplateEngine.Web.Controls.TemplateControl.commonPrototype.OnInit.call(this);
             this.get_DataContext().Pop(null);
+            this.get_NotifyService().NotifyDone(this);
             this.get_UpdateHelper().OnDataLoaded();
         }
     },
@@ -1692,6 +1699,48 @@ var Neptuo$TemplateEngine$Web$IMainView = {
     IsAbstract: true
 };
 JsTypes.push(Neptuo$TemplateEngine$Web$IMainView);
+var Neptuo$TemplateEngine$Web$IUpdateViewNotifier = {
+    fullname: "Neptuo.TemplateEngine.Web.IUpdateViewNotifier",
+    baseTypeName: "System.Object",
+    assemblyName: "Neptuo.TemplateEngine.Client",
+    Kind: "Interface",
+    ctors: [],
+    IsAbstract: true
+};
+JsTypes.push(Neptuo$TemplateEngine$Web$IUpdateViewNotifier);
+var Neptuo$TemplateEngine$Web$UpdateViewNotifier = {
+    fullname: "Neptuo.TemplateEngine.Web.UpdateViewNotifier",
+    baseTypeName: "System.Object",
+    assemblyName: "Neptuo.TemplateEngine.Client",
+    interfaceNames: ["Neptuo.TemplateEngine.Web.IUpdateViewNotifier"],
+    Kind: "Class",
+    definition: {
+        ctor: function (mainView){
+            System.Object.ctor.call(this);
+            mainView.add_OnBeforeRenderView($CreateDelegate(this, this.OnBeforeRenderView));
+            mainView.add_OnAfterRenderView($CreateDelegate(this, this.OnAfterRenderView));
+        },
+        OnBeforeRenderView: function (viewPath, toUpdate){
+            this.StartUpdate();
+        },
+        OnAfterRenderView: function (){
+            this.EndUpdate();
+        },
+        StartUpdate: function (){
+            $("body").css("opacity", 0.5);
+        },
+        EndUpdate: function (){
+            $("body").css("opacity", 1);
+        }
+    },
+    ctors: [{
+        name: "ctor",
+        parameters: ["Neptuo.TemplateEngine.Web.IMainView"]
+    }
+    ],
+    IsAbstract: false
+};
+JsTypes.push(Neptuo$TemplateEngine$Web$UpdateViewNotifier);
 var Neptuo$TemplateEngine$Web$IViewLoadedChecker = {
     fullname: "Neptuo.TemplateEngine.Web.IViewLoadedChecker",
     baseTypeName: "System.Object",
@@ -1750,6 +1799,8 @@ var Neptuo$TemplateEngine$Web$MainView = {
             this.OnLinkClick = null;
             this.OnPostFormSubmit = null;
             this.OnGetFormSubmit = null;
+            this.OnBeforeRenderView = null;
+            this.OnAfterRenderView = null;
             this._ViewActivator = null;
             this._Application = null;
             System.Object.ctor.call(this);
@@ -1795,6 +1846,18 @@ var Neptuo$TemplateEngine$Web$MainView = {
         },
         remove_OnGetFormSubmit: function (value){
             this.OnGetFormSubmit = $RemoveDelegate(this.OnGetFormSubmit, value);
+        },
+        add_OnBeforeRenderView: function (value){
+            this.OnBeforeRenderView = $CombineDelegates(this.OnBeforeRenderView, value);
+        },
+        remove_OnBeforeRenderView: function (value){
+            this.OnBeforeRenderView = $RemoveDelegate(this.OnBeforeRenderView, value);
+        },
+        add_OnAfterRenderView: function (value){
+            this.OnAfterRenderView = $CombineDelegates(this.OnAfterRenderView, value);
+        },
+        remove_OnAfterRenderView: function (value){
+            this.OnAfterRenderView = $RemoveDelegate(this.OnAfterRenderView, value);
         },
         GetToUpdateFromElement: function (element){
             var value = element.data("toupdate");
@@ -1848,9 +1911,16 @@ var Neptuo$TemplateEngine$Web$MainView = {
             e.preventDefault();
         },
         RenderView: function (viewPath, toUpdate, dependencyContainer){
+            if (this.OnBeforeRenderView != null)
+                this.OnBeforeRenderView(viewPath, toUpdate);
             var viewRenderer = new Neptuo.TemplateEngine.Web.AsyncViewRenderer.ctor(viewPath, toUpdate, dependencyContainer, this.get_ViewActivator(), As(this.get_ViewActivator(), Neptuo.TemplateEngine.Web.StaticViewActivator.ctor), this.get_Application());
-            viewRenderer.add_OnCompleted($CreateDelegate(this, this.AutoFocus));
+            viewRenderer.add_OnCompleted($CreateDelegate(this, this.OnViewRendered));
             viewRenderer.Render();
+        },
+        OnViewRendered: function (){
+            if (this.OnAfterRenderView != null)
+                this.OnAfterRenderView();
+            this.AutoFocus();
         },
         UpdateView: function (partialGuid, content){
             var target = $("div[data-partial=" + partialGuid + "]");
