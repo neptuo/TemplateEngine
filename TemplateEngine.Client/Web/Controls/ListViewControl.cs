@@ -16,11 +16,12 @@ namespace Neptuo.TemplateEngine.Web.Controls
         public IListDataSource Source { get; set; }
         public ITemplate ItemTemplate { get; set; }
         public ITemplate EmptyTemplate { get; set; }
+        public IPaginationControl Pagination { get; set; }
         public int? PageSize { get; set; }
         public int? PageIndex { get; set; }
+        protected int TotalCount { get; private set; }
         protected IRequestContext RequestContext { get; private set; }
         protected DataContextStorage DataContext { get; private set; }
-        protected int TotalCount { get; private set; }
         protected PartialUpdateHelper UpdateHelper { get; private set; }
 
         public ListViewControl(IRequestContext requestContext, TemplateContentStorageStack storage, DataContextStorage dataContext, PartialUpdateHelper updateHelper)
@@ -62,28 +63,7 @@ namespace Neptuo.TemplateEngine.Web.Controls
         private void OnRenderContent(IHtmlWriter writer)
         {
             base.Render(writer);
-
-            if (PageSize != null)
-            {
-                writer
-                    .Tag("ul")
-                    .Attribute("class", "pagination pagination-sm");
-
-                for (int i = 0; i < (int)Math.Ceiling((decimal)TotalCount / PageSize.Value); i++)
-                {
-                    writer
-                        .Tag("li")
-                        .Attribute("class", ((PageIndex ?? 0) == i) ? "active" : "")
-                            .Tag("a")
-                            .Attribute("href", GetBaseUrl() + ((i != 0) ? ("?PageIndex=" + i) : "?"))
-                            .Content(i + 1)
-                            .CloseFullTag()
-                        .CloseFullTag();
-                }
-
-                writer
-                    .CloseFullTag();
-            }
+            RenderComponent(Pagination, writer);
         }
 
         private string GetBaseUrl()
@@ -132,6 +112,18 @@ namespace Neptuo.TemplateEngine.Web.Controls
             }
 
             base.OnInit();
+
+            if (PageSize != null)
+                Pagination = new PaginationControl(ComponentManager, TemplateStorageStack);
+
+            if (Pagination != null)
+            {
+                Pagination.PageIndex = PageIndex ?? 0;
+                Pagination.PageSize = PageSize.Value;
+                Pagination.TotalCount = TotalCount;
+                InitComponent(Pagination);
+            }
+
             DataContext.Pop("Template");
 
             UpdateHelper.OnDataLoaded();

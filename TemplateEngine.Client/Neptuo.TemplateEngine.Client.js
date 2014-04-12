@@ -1104,11 +1104,12 @@ var Neptuo$TemplateEngine$Web$Controls$ListViewControl = {
             this._Source = null;
             this._ItemTemplate = null;
             this._EmptyTemplate = null;
+            this._Pagination = null;
             this._PageSize = null;
             this._PageIndex = null;
+            this._TotalCount = 0;
             this._RequestContext = null;
             this._DataContext = null;
-            this._TotalCount = 0;
             this._UpdateHelper = null;
             Neptuo.TemplateEngine.Web.Controls.TemplateControl.ctor.call(this, requestContext.get_ComponentManager(), storage);
             this.set_RequestContext(requestContext);
@@ -1136,6 +1137,13 @@ var Neptuo$TemplateEngine$Web$Controls$ListViewControl = {
         set_EmptyTemplate: function (value){
             this._EmptyTemplate = value;
         },
+        Pagination$$: "Neptuo.TemplateEngine.Web.Controls.IPaginationControl",
+        get_Pagination: function (){
+            return this._Pagination;
+        },
+        set_Pagination: function (value){
+            this._Pagination = value;
+        },
         PageSize$$: "System.Nullable`1[[System.Int32]]",
         get_PageSize: function (){
             return this._PageSize;
@@ -1150,6 +1158,13 @@ var Neptuo$TemplateEngine$Web$Controls$ListViewControl = {
         set_PageIndex: function (value){
             this._PageIndex = value;
         },
+        TotalCount$$: "System.Int32",
+        get_TotalCount: function (){
+            return this._TotalCount;
+        },
+        set_TotalCount: function (value){
+            this._TotalCount = value;
+        },
         RequestContext$$: "Neptuo.TemplateEngine.Web.IRequestContext",
         get_RequestContext: function (){
             return this._RequestContext;
@@ -1163,13 +1178,6 @@ var Neptuo$TemplateEngine$Web$Controls$ListViewControl = {
         },
         set_DataContext: function (value){
             this._DataContext = value;
-        },
-        TotalCount$$: "System.Int32",
-        get_TotalCount: function (){
-            return this._TotalCount;
-        },
-        set_TotalCount: function (value){
-            this._TotalCount = value;
         },
         UpdateHelper$$: "Neptuo.TemplateEngine.Web.PartialUpdateHelper",
         get_UpdateHelper: function (){
@@ -1199,13 +1207,7 @@ var Neptuo$TemplateEngine$Web$Controls$ListViewControl = {
         },
         OnRenderContent: function (writer){
             Neptuo.TemplateEngine.Web.Controls.TemplateControl.commonPrototype.Render.call(this, writer);
-            if (this.get_PageSize() != null){
-                writer.Tag("ul").Attribute("class", "pagination pagination-sm");
-                for (var i = 0; i < System.Math.Ceiling$$Decimal(this.get_TotalCount() / this.get_PageSize().get_Value()); i++){
-                    writer.Tag("li").Attribute("class", ((this.get_PageIndex() != null ? this.get_PageIndex() : 0) == i) ? "active" : "").Tag("a").Attribute("href", this.GetBaseUrl() + ((i != 0) ? ("?PageIndex=" + i) : "?")).Content$$Object(i + 1).CloseFullTag().CloseFullTag();
-                }
-                writer.CloseFullTag();
-            }
+            this.RenderComponent(this.get_Pagination(), writer);
         },
         GetBaseUrl: function (){
             var currentUrl = this.get_RequestContext().GetCurrentUrl();
@@ -1243,6 +1245,14 @@ var Neptuo$TemplateEngine$Web$Controls$ListViewControl = {
                 this.get_Content().Add(templateContent);
             }
             Neptuo.TemplateEngine.Web.Controls.TemplateControl.commonPrototype.OnInit.call(this);
+            if (this.get_PageSize() != null)
+                this.set_Pagination(new Neptuo.TemplateEngine.Web.Controls.PaginationControl.ctor(this.get_ComponentManager(), this.get_TemplateStorageStack()));
+            if (this.get_Pagination() != null){
+                this.get_Pagination().set_PageIndex((this.get_PageIndex() != null ? this.get_PageIndex() : 0));
+                this.get_Pagination().set_PageSize(this.get_PageSize().get_Value());
+                this.get_Pagination().set_TotalCount(this.get_TotalCount());
+                this.InitComponent(this.get_Pagination());
+            }
             this.get_DataContext().Pop("Template");
             this.get_UpdateHelper().OnDataLoaded();
         },
