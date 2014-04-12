@@ -10,11 +10,11 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Web
 {
-    public class ClientExtendedComponentManager : ExtendedComponentManager
+    public class PartialUpdateComponentManager : ExtendedComponentManager
     {
         private string[] partialsToUpdate;
 
-        public ClientExtendedComponentManager(string[] partialsToUpdate)
+        public PartialUpdateComponentManager(string[] partialsToUpdate)
         {
             Guard.NotNull(partialsToUpdate, "partialsToUpdate");
             this.partialsToUpdate = partialsToUpdate;
