@@ -249,12 +249,14 @@ var Neptuo$Templates$ComponentManager = {
         Init: function (control){
             if (control == null)
                 return;
-            if (!this.entries.ContainsKey(control)){
+            if (!this.entries.ContainsKey(control)) {
+                this.BeforeInitComponent(control);
                 var targetControl = As(control, Neptuo.Templates.Controls.IControl.ctor);
                 if (targetControl != null){
                     this.BeforeInitControl(targetControl);
                     targetControl.OnInit();
                 }
+                return;
             }
             var entry = this.entries.get_Item$$TKey(control);
             if (entry.get_IsInited())

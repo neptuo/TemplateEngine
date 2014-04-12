@@ -175,6 +175,8 @@
     <Content Include="Design\Scripts\jquery-1.9.1.js" />
     <Content Include="Design\Scripts\jquery-1.9.1.min.js" />
     <Content Include="Design\Scripts\jquery-1.9.1.min.map" />
+    <None Include="Properties\PublishProfiles\Localhost.pubxml" />
+    <None Include="Properties\PublishProfiles\s1.azure.neptuo.com.pubxml" />
     <None Include="Views\Accounts\SideNav.view" />
     <None Include="Views\Accounts\RoleEdit.view">
       <SubType>Designer</SubType>
