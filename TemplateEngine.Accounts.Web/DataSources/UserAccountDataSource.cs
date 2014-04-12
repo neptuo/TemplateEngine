@@ -55,7 +55,6 @@ namespace Neptuo.TemplateEngine.Accounts.Web.DataSources
                 userQuery.Filter.RoleKey = RoleKey;
 
             userQuery.OrderBy(u => u.Username);
-            userQuery.Page(pageIndex, pageSize);
 
             //userQuery.OrderBy(u => u.Username);
         }
@@ -65,7 +64,7 @@ namespace Neptuo.TemplateEngine.Accounts.Web.DataSources
             ApplyFilter(pageIndex, pageSize);
 
             List<UserAccountViewModel> result = new List<UserAccountViewModel>();
-            foreach (UserAccount account in userQuery.Result().Items.ToList())
+            foreach (UserAccount account in userQuery.EnumeratePageItems(pageIndex, pageSize))
                 result.Add(new UserAccountViewModel(account.Key, account.Username, account.IsEnabled, GetRoles(account)));
 
             return result;
