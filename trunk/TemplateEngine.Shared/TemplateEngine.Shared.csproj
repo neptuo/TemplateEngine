@@ -99,7 +99,6 @@
     <Compile Include="Web\Controllers\IViewData.cs" />
     <Compile Include="Web\Controllers\MessageStorageExtensions.cs" />
     <Compile Include="Web\Controllers\ViewDataCollection.cs" />
-    <Compile Include="Web\Controls\Ajax\PartialViewControl.cs" />
     <Compile Include="Web\Controls\ContentControlBase.cs" />
     <Compile Include="Web\Controls\ControlBase.cs" />
     <Compile Include="Web\Controls\CssClassCollection.cs" />
@@ -143,7 +142,6 @@
     <Compile Include="Web\Controls\Templates\ViewTemplateContent.cs" />
     <Compile Include="Web\Converters\NullToBoolValueConverter.cs" />
     <Compile Include="Web\DataContextStorage.cs" />
-    <Compile Include="Web\ExtendedComponentManager.cs" />
     <Compile Include="Web\ExtendedHtmlTextWriter.cs" />
     <Compile Include="Web\Extensions\BindingExtension.cs" />
     <Compile Include="Web\Extensions\CurrentUrlExtension.cs" />
@@ -198,6 +196,9 @@
       <Project>{e5c314ff-89ba-489e-bc2a-df8701a8c3f1}</Project>
       <Name>TemplateEngine.Permissions</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Web\Controls\Ajax\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildBinPath)\SharpKit\5\SharpKit.Build.targets" />

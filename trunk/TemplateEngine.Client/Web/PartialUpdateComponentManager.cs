@@ -10,20 +10,22 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Web
 {
-    public class PartialUpdateComponentManager : ExtendedComponentManager
+    public class PartialUpdateComponentManager : ComponentManager, IPartialUpdateWriter
     {
         private string[] partialsToUpdate;
+        private Dictionary<IControl, string> partialUpdates;
 
         public PartialUpdateComponentManager(string[] partialsToUpdate)
         {
             Guard.NotNull(partialsToUpdate, "partialsToUpdate");
             this.partialsToUpdate = partialsToUpdate;
+            this.partialUpdates = new Dictionary<IControl, string>();
         }
 
         protected override void DoRenderControl(IControl control, IHtmlWriter writer)
         {
             string partialView;
-            if (PartialUpdates.TryGetValue(control, out partialView) && partialsToUpdate.Contains(partialView))
+            if (partialUpdates.TryGetValue(control, out partialView) && partialsToUpdate.Contains(partialView))
             {
                 StringWriter stringWriter = new StringWriter();
                 ExtendedHtmlTextWriter extendedWriter = new ExtendedHtmlTextWriter(stringWriter);
@@ -36,6 +38,11 @@ namespace Neptuo.TemplateEngine.Web
             }
 
             base.DoRenderControl(control, writer);
+        }
+
+        public void Update(string partialView, IControl control)
+        {
+            partialUpdates[control] = partialView;
         }
     }
 }

@@ -1458,47 +1458,6 @@ var Neptuo$TemplateEngine$Web$Controllers$ViewDataCollection = {
     IsAbstract: false
 };
 JsTypes.push(Neptuo$TemplateEngine$Web$Controllers$ViewDataCollection);
-var Neptuo$TemplateEngine$Web$Controls$Ajax$PartialViewControl = {
-    fullname: "Neptuo.TemplateEngine.Web.Controls.Ajax.PartialViewControl",
-    baseTypeName: "Neptuo.TemplateEngine.Web.Controls.HtmlContentControlBase",
-    assemblyName: "Neptuo.TemplateEngine.Shared",
-    Kind: "Class",
-    definition: {
-        ctor: function (componentManager, updateWriter){
-            this._UpdateWriter = null;
-            this._Partial = null;
-            Neptuo.TemplateEngine.Web.Controls.HtmlContentControlBase.ctor.call(this, componentManager, "div", false);
-            this.set_UpdateWriter(updateWriter);
-        },
-        UpdateWriter$$: "Neptuo.TemplateEngine.Web.IPartialUpdateWriter",
-        get_UpdateWriter: function (){
-            return this._UpdateWriter;
-        },
-        set_UpdateWriter: function (value){
-            this._UpdateWriter = value;
-        },
-        Partial$$: "System.String",
-        get_Partial: function (){
-            return this._Partial;
-        },
-        set_Partial: function (value){
-            this._Partial = value;
-        },
-        OnInit: function (){
-            Neptuo.Guard.NotNull$$Object$$String(this.get_Partial(), "Partial");
-            Neptuo.TemplateEngine.Web.Controls.HtmlContentControlBase.commonPrototype.OnInit.call(this);
-            this.get_UpdateWriter().Update(this.get_Partial(), this);
-            this.get_Attributes().Add("data-update", this.get_Partial());
-        }
-    },
-    ctors: [{
-        name: "ctor",
-        parameters: ["Neptuo.Templates.IComponentManager", "Neptuo.TemplateEngine.Web.IPartialUpdateWriter"]
-    }
-    ],
-    IsAbstract: false
-};
-JsTypes.push(Neptuo$TemplateEngine$Web$Controls$Ajax$PartialViewControl);
 var Neptuo$TemplateEngine$Web$Controls$ContentControlBase = {
     fullname: "Neptuo.TemplateEngine.Web.Controls.ContentControlBase",
     baseTypeName: "Neptuo.TemplateEngine.Web.Controls.ControlBase",
@@ -3423,37 +3382,6 @@ var Neptuo$TemplateEngine$Web$DataContextStorage = {
     IsAbstract: false
 };
 JsTypes.push(Neptuo$TemplateEngine$Web$DataContextStorage);
-var Neptuo$TemplateEngine$Web$ExtendedComponentManager = {
-    fullname: "Neptuo.TemplateEngine.Web.ExtendedComponentManager",
-    baseTypeName: "Neptuo.Templates.ComponentManager",
-    assemblyName: "Neptuo.TemplateEngine.Shared",
-    interfaceNames: ["Neptuo.TemplateEngine.Web.IPartialUpdateWriter"],
-    Kind: "Class",
-    definition: {
-        ctor: function (){
-            this._PartialUpdates = null;
-            Neptuo.Templates.ComponentManager.ctor.call(this);
-            this.set_PartialUpdates(new System.Collections.Generic.Dictionary$2.ctor(Neptuo.Templates.Controls.IControl.ctor, System.String.ctor));
-        },
-        PartialUpdates$$: "System.Collections.Generic.Dictionary`2[[Neptuo.Templates.Controls.IControl],[System.String]]",
-        get_PartialUpdates: function (){
-            return this._PartialUpdates;
-        },
-        set_PartialUpdates: function (value){
-            this._PartialUpdates = value;
-        },
-        Update: function (partialView, control){
-            this.get_PartialUpdates().set_Item$$TKey(control, partialView);
-        }
-    },
-    ctors: [{
-        name: "ctor",
-        parameters: []
-    }
-    ],
-    IsAbstract: false
-};
-JsTypes.push(Neptuo$TemplateEngine$Web$ExtendedComponentManager);
 var Neptuo$TemplateEngine$Web$ExtendedHtmlTextWriter = {
     fullname: "Neptuo.TemplateEngine.Web.ExtendedHtmlTextWriter",
     baseTypeName: "Neptuo.Templates.HtmlTextWriter",

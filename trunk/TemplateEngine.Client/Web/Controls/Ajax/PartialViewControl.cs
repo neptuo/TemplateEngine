@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Neptuo.TemplateEngine.Web.Controls.Ajax
+namespace Neptuo.TemplateEngine.Web.Controls
 {
     public class PartialViewControl : HtmlContentControlBase
     {

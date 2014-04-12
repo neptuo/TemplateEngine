@@ -80,6 +80,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controls\Ajax\PartialStartUpControl.cs" />
+    <Compile Include="Controls\Ajax\PartialViewControl.cs" />
     <Compile Include="Controls\BundleControl.cs" />
     <Compile Include="Controls\DetailViewControl.cs" />
     <Compile Include="Controls\DropDownListControl.cs" />
