@@ -31,8 +31,8 @@ var Neptuo$TemplateEngine$Accounts$Bootstrap$AccountBootstrapTask = {
         Initialize: function (){
             Neptuo.DependencyContainerExtensions.RegisterInstance$1(Neptuo.TemplateEngine.Accounts.Data.UserRepository.ctor, this.dependencyContainer, new Neptuo.TemplateEngine.Accounts.Data.UserRepository.ctor());
             this.converterRepository.Add(Typeof(Object), Typeof(Neptuo.TemplateEngine.Accounts.UserAccountEditModel.ctor), new Neptuo.TemplateEngine.Accounts.UserAccountEditModelConverter.ctor()).Add(Typeof(Object), Typeof(Neptuo.TemplateEngine.Accounts.UserAccountListResult.ctor), new Neptuo.TemplateEngine.Accounts.UserAccountListResultConverter.ctor()).Add(Typeof(Object), Typeof(Neptuo.TemplateEngine.Accounts.UserRoleEditModel.ctor), new Neptuo.TemplateEngine.Accounts.UserRoleEditModelConverter.ctor()).Add(Typeof(Object), Typeof(Neptuo.TemplateEngine.Accounts.UserRoleListResult.ctor), new Neptuo.TemplateEngine.Accounts.UserRoleListResultConverter.ctor());
-            this.RegisterForms(this.formRegistry);
-            this.RegisterGlobalNavigations(this.globalNavigations);
+            this.SetupForms(this.formRegistry);
+            this.SetupGlobalNavigations(this.globalNavigations);
         }
     },
     ctors: [{

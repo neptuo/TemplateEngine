@@ -80,7 +80,6 @@ namespace Neptuo.TemplateEngine.Backend.UI
 
             //TODO: Move to accounts
             dependencyContainer
-                .RegisterType<DataContext>(new PerRequestLifetime())
                 .RegisterType<IUnitOfWorkFactory, DbContextUnitOfWorkFactory<DataContext>>(new PerRequestLifetime());
 
             return dependencyContainer;

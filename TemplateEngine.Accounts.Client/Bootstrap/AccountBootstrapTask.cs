@@ -53,8 +53,8 @@ namespace Neptuo.TemplateEngine.Accounts.Bootstrap
                 .Add(typeof(JsObject), typeof(UserRoleEditModel), new UserRoleEditModelConverter())
                 .Add(typeof(JsObject), typeof(UserRoleListResult), new UserRoleListResultConverter());
 
-            RegisterForms(formRegistry);
-            RegisterGlobalNavigations(globalNavigations);
+            SetupForms(formRegistry);
+            SetupGlobalNavigations(globalNavigations);
         }
     }
 }

@@ -54,7 +54,6 @@ namespace Neptuo.TemplateEngine.Web
         private void OnLinkClickInternal(Event e)
         {
             jQuery link = new jQuery(e.currentTarget);
-            e.preventDefault();//TODO: Move back to last line of this method
 
             string newUrl = link.attr("href");
             string[] toUpdate = GetToUpdateFromElement(link);
@@ -62,6 +61,7 @@ namespace Neptuo.TemplateEngine.Web
             if (OnLinkClick != null)
                 OnLinkClick(newUrl, toUpdate);
 
+            e.preventDefault();
         }
 
         private void OnButtonClickInternal(Event e)

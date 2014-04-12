@@ -83,13 +83,10 @@ namespace Neptuo.TemplateEngine.Web.Compilation.PreProcessing
 
                 IPropertyDescriptor propertyDescriptor = TemplatePropertyHelper.PreparePropertyDescriptor(codeObject, new TypePropertyInfo(propertyInfo));
 
-                //TODO: Get template property info and pass it to the parser service
                 ICollection<IErrorInfo> errors = new List<IErrorInfo>();
                 bool parseResult = ParserService.ProcessContent(fileContent, new DefaultParserServiceContext(Context.DependencyProvider, propertyDescriptor, errors));
                 if(!parseResult)
                     throw new CodeDomViewServiceException("Error parsing default template content!", errors, fileContent);
-
-                //codeObject.Properties.Add(new SetPropertyDescriptor(new TypePropertyInfo(propertyInfo), templateCodeObject));
             }
             catch (FileNotFoundException e)
             {
