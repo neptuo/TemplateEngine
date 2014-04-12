@@ -33,7 +33,7 @@ namespace Neptuo.TemplateEngine.Backend.Web
             IDependencyContainer dependencyContainer = GetDependencyContainer().CreateChildContainer();
             NavigationCollection navigations = dependencyContainer.Resolve<NavigationCollection>();
             GlobalNavigationCollection globalNavigations = dependencyContainer.Resolve<GlobalNavigationCollection>();
-            HandleUiEvents(httpContext, dependencyContainer, navigations);
+            ExecuteControllers(httpContext, dependencyContainer, navigations);
 
             if (httpContext.Request.Headers[EngineRequestType] == EngineRequestTypePartial)
             {
@@ -73,7 +73,7 @@ namespace Neptuo.TemplateEngine.Backend.Web
             }
         }
 
-        protected virtual void HandleUiEvents(HttpContext httpContext, IDependencyContainer dependencyContainer, NavigationCollection navigations)
+        protected virtual void ExecuteControllers(HttpContext httpContext, IDependencyContainer dependencyContainer, NavigationCollection navigations)
         {
             IControllerRegistry registry = dependencyContainer.Resolve<IControllerRegistry>();
             IModelBinder modelBinder = dependencyContainer.Resolve<IModelBinder>();
@@ -81,9 +81,9 @@ namespace Neptuo.TemplateEngine.Backend.Web
 
             foreach (string key in httpContext.Request.Form.AllKeys)
             {
-                IController handler;
-                if (registry.TryGet(key, out handler))
-                    handler.Execute(new ControllerContext(key, viewData, modelBinder, navigations));
+                IController controller;
+                if (registry.TryGet(key, out controller))
+                    controller.Execute(new ControllerContext(key, viewData, modelBinder, navigations));
             }
         }
 
