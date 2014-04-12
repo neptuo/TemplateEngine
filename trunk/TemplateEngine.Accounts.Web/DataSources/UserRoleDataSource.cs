@@ -39,7 +39,6 @@ namespace Neptuo.TemplateEngine.Accounts.Web.DataSources
                 roleQuery.Filter.Key = IntSearch.Create(Key.Value);
 
             roleQuery.OrderBy(r => r.Name);
-            roleQuery.Page(pageIndex, pageSize);
         }
 
         public IEnumerable GetData(int? pageIndex, int? pageSize)
@@ -47,7 +46,7 @@ namespace Neptuo.TemplateEngine.Accounts.Web.DataSources
             ApplyFilter(pageIndex, pageSize);
 
             List<UserRoleViewModel> result = new List<UserRoleViewModel>();
-            foreach (UserRole role in roleQuery.Result().Items)
+            foreach (UserRole role in roleQuery.EnumeratePageItems(pageIndex, pageSize))
                 result.Add(new UserRoleViewModel(role.Key, role.Name, role.Description));
 
             return result;

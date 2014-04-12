@@ -32,15 +32,11 @@ namespace Neptuo.TemplateEngine.Accounts.Web.DataSources
 
         public object GetItem()
         {
-            dataService.Query.Filter.Key = IntSearch.Create(Key);
+            UserAccount account = dataService.Repository.Get(Key);
 
-            UserAccount account1 = dataService.Query.Result().Items.ToList().FirstOrDefault();
-            UserAccount account2 = dataService.Repository.Get(Key);
-
-            UserAccountEditModel model1 = MapEntityToModel(account1 ?? dataService.Factory.Create());
-            UserAccountEditModel model2 = MapEntityToModel(account2 ?? dataService.Factory.Create());
-            model1 = modelBinder.Bind<UserAccountEditModel>(model1);
-            return model1;
+            UserAccountEditModel model = MapEntityToModel(account ?? dataService.Factory.Create());
+            model = modelBinder.Bind<UserAccountEditModel>(model);
+            return model;
             //return providerFactory.Create(model);
         }
 
