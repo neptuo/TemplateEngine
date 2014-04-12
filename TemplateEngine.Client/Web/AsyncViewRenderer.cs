@@ -60,7 +60,7 @@ namespace Neptuo.TemplateEngine.Web
         private void RenderView()
         {
             notifyService = new AsyncNotifyService();
-            ClientExtendedComponentManager componentManager = new ClientExtendedComponentManager(ToUpdate);
+            PartialUpdateComponentManager componentManager = new PartialUpdateComponentManager(ToUpdate);
             DependencyContainer
                 .RegisterInstance<IComponentManager>(componentManager)
                 .RegisterInstance<IPartialUpdateWriter>(componentManager)
