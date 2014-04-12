@@ -108,7 +108,7 @@ namespace Neptuo.TemplateEngine.Accounts.Web.Controllers
 
         #endregion
 
-        #region Login
+        #region Sign In/Out
 
         [Action("Accounts/Login")]
         public void Login()
@@ -126,6 +126,13 @@ namespace Neptuo.TemplateEngine.Accounts.Web.Controllers
             {
                 MessageStorage.Add(null, String.Empty, "Invalid username or password.", MessageType.Error);
             }
+        }
+
+        [Action("Accounts/Logout")]
+        public void Logout()
+        {
+            FormsAuthentication.SignOut();
+            Context.Navigations.Add("Accounts.LoggedOut");
         }
 
         #endregion

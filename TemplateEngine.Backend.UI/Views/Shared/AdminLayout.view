@@ -37,6 +37,11 @@
                     </a>
                 </li>
             </ul>
+            <div class="right" style="padding: 9px 0">
+                <ui:PostForm>
+                    <ui:Button l:Text="Sign Out" ui:Event="Accounts/Logout" CssClass="btn btn-default btn-xs" />
+                </ui:PostForm>
+            </div>
         </div>
 
         <ajax:View Partial="BodyContainer" html:Class="body-container">
