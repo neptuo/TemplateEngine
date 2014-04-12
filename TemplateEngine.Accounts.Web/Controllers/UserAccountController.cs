@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Security;
 
 namespace Neptuo.TemplateEngine.Accounts.Web.Controllers
 {
@@ -117,6 +118,7 @@ namespace Neptuo.TemplateEngine.Accounts.Web.Controllers
 
             if (result)
             {
+                FormsAuthentication.SetAuthCookie(model.Username, false);
                 MessageStorage.Add(null, String.Empty, String.Format("Welcome, {0}.", model.Username), MessageType.Info);
                 Context.Navigations.Add("Accounts.LoggedIn");
             }

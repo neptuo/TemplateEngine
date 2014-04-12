@@ -4,8 +4,8 @@
     <meta charset="utf-8" />
     <title>Sign to TemplateEngine</title>
 
-    <ui:Bundle Path="~/css/admin" IsStyle="true" />
-    <ui:Bundle Path="~/js/admin" />
+    <ui:Bundle Path="~/design/css/admin" IsStyle="true" />
+    <ui:Bundle Path="~/design/js/admin" />
 
     <ajax:StartUp DefaultUpdate="Body" />
     <ui:ViewBundle Path="Default" />

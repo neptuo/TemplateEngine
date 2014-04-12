@@ -188,7 +188,7 @@
     <Content Include="Views\Accounts\UserList.view">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Views\Home.view" />
+    <Content Include="Views\Default.view" />
     <Content Include="Views\Shared\AdminLayout.view">
       <SubType>Designer</SubType>
     </Content>

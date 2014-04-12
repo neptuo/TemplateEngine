@@ -65,7 +65,12 @@ namespace Neptuo.TemplateEngine.Accounts
 
             UserAccounts.Query.Filter = new CredentialsAccountFilter(username, password);
             UserAccount account = UserAccounts.Query.ResultSingle();
-            return account != null;
+            if (account != null)
+            {
+                EventDispatcher.Publish(new UserSignedIn(account.Key, account.Username));
+                return true;
+            }
+            return false;
         }
     }
 }
