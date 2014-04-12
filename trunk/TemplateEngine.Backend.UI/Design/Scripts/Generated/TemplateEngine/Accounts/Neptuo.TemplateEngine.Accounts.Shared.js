@@ -180,6 +180,44 @@ var Neptuo$TemplateEngine$Accounts$Commands$UserAccountEditCommand = {
     IsAbstract: false
 };
 JsTypes.push(Neptuo$TemplateEngine$Accounts$Commands$UserAccountEditCommand);
+var Neptuo$TemplateEngine$Accounts$Events$UserSignedIn = {
+    fullname: "Neptuo.TemplateEngine.Accounts.Events.UserSignedIn",
+    baseTypeName: "System.Object",
+    assemblyName: "Neptuo.TemplateEngine.Accounts.Shared",
+    Kind: "Class",
+    definition: {
+        ctor: function (key, username){
+            this._Key = 0;
+            this._Username = null;
+            System.Object.ctor.call(this);
+            Neptuo.Guard.Positive(key, "key");
+            Neptuo.Guard.NotNullOrEmpty(username, "username");
+            this.set_Key(key);
+            this.set_Username(username);
+        },
+        Key$$: "System.Int32",
+        get_Key: function (){
+            return this._Key;
+        },
+        set_Key: function (value){
+            this._Key = value;
+        },
+        Username$$: "System.String",
+        get_Username: function (){
+            return this._Username;
+        },
+        set_Username: function (value){
+            this._Username = value;
+        }
+    },
+    ctors: [{
+        name: "ctor",
+        parameters: ["System.Int32", "System.String"]
+    }
+    ],
+    IsAbstract: false
+};
+JsTypes.push(Neptuo$TemplateEngine$Accounts$Events$UserSignedIn);
 var Neptuo$TemplateEngine$Accounts$Web$DataSources$IUserAccountDataSourceFilter = {
     fullname: "Neptuo.TemplateEngine.Accounts.Web.DataSources.IUserAccountDataSourceFilter",
     baseTypeName: "System.Object",
