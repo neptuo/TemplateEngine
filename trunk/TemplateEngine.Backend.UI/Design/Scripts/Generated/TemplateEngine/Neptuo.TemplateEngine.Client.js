@@ -1058,11 +1058,11 @@ var Neptuo$TemplateEngine$Web$Controls$DropDownListControl = {
     assemblyName: "Neptuo.TemplateEngine.Client",
     Kind: "Class",
     definition: {
-        ctor: function (requestContext, partialHelper, context){
+        ctor: function (partialHelper, context){
             this._ID = null;
             this._CssStyle = null;
             this._CssClass = null;
-            Neptuo.TemplateEngine.Web.Controls.SelectControl.ctor.call(this, requestContext, partialHelper, context);
+            Neptuo.TemplateEngine.Web.Controls.SelectControl.ctor.call(this, partialHelper, context);
         },
         ID$$: "System.String",
         get_ID: function (){
@@ -1093,7 +1093,7 @@ var Neptuo$TemplateEngine$Web$Controls$DropDownListControl = {
     },
     ctors: [{
         name: "ctor",
-        parameters: ["Neptuo.TemplateEngine.Web.IRequestContext", "Neptuo.TemplateEngine.Web.PartialUpdateHelper", "Neptuo.TemplateEngine.Web.Controls.SelectControlContext"]
+        parameters: ["Neptuo.TemplateEngine.Web.PartialUpdateHelper", "Neptuo.TemplateEngine.Web.Controls.SelectControlContext"]
     }
     ],
     IsAbstract: false
@@ -1251,7 +1251,7 @@ var Neptuo$TemplateEngine$Web$Controls$ListViewControl = {
             }
             Neptuo.TemplateEngine.Web.Controls.TemplateControl.commonPrototype.OnInit.call(this);
             if (this.get_PageSize() != null)
-                this.set_Pagination(new Neptuo.TemplateEngine.Web.Controls.PaginationControl.ctor(this.get_ComponentManager(), this.get_TemplateStorageStack()));
+                this.set_Pagination(new Neptuo.TemplateEngine.Web.Controls.PaginationControl.ctor(this.get_ComponentManager(), this.get_RequestContext(), this.get_TemplateStorageStack()));
             if (this.get_Pagination() != null){
                 this.get_Pagination().set_PageIndex((this.get_PageIndex() != null ? this.get_PageIndex() : 0));
                 this.get_Pagination().set_PageSize(this.get_PageSize().get_Value());
@@ -1280,14 +1280,14 @@ var Neptuo$TemplateEngine$Web$Controls$SelectControl = {
     interfaceNames: ["Neptuo.TemplateEngine.Web.Controls.IHtmlAttributeCollection", "Neptuo.Templates.IAttributeCollection"],
     Kind: "Class",
     definition: {
-        ctor: function (requestContext, updateHelper, context){
+        ctor: function (updateHelper, context){
             this._Name = null;
             this._Value = null;
             this._IsAddEmpty = false;
             this._Attributes = null;
             this._SelectedValuePath = null;
             this._BindingManager = null;
-            Neptuo.TemplateEngine.Web.Controls.ListViewControl.ctor.call(this, requestContext, context.get_Storage(), context.get_DataContext(), updateHelper);
+            Neptuo.TemplateEngine.Web.Controls.ListViewControl.ctor.call(this, context.get_RequestContext(), context.get_Storage(), context.get_DataContext(), updateHelper);
             this.set_Attributes(new Neptuo.Templates.HtmlAttributeCollection.ctor());
             this.set_BindingManager(context.get_BindingManager());
         },
@@ -1369,7 +1369,7 @@ var Neptuo$TemplateEngine$Web$Controls$SelectControl = {
     },
     ctors: [{
         name: "ctor",
-        parameters: ["Neptuo.TemplateEngine.Web.IRequestContext", "Neptuo.TemplateEngine.Web.PartialUpdateHelper", "Neptuo.TemplateEngine.Web.Controls.SelectControlContext"]
+        parameters: ["Neptuo.TemplateEngine.Web.PartialUpdateHelper", "Neptuo.TemplateEngine.Web.Controls.SelectControlContext"]
     }
     ],
     IsAbstract: false

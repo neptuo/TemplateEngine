@@ -22,7 +22,7 @@ namespace Neptuo.TemplateEngine.Web.Controls
         protected IBindingManager BindingManager { get; private set; }
 
         public SelectControl(SelectControlContext context)
-            : base(context.ComponentManager, context.Storage, context.DataContext)
+            : base(context.RequestContext, context.Storage, context.DataContext)
         {
             Attributes = new HtmlAttributeCollection();
             BindingManager = context.BindingManager;

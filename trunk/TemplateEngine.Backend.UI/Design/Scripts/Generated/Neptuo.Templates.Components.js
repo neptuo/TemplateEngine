@@ -249,7 +249,7 @@ var Neptuo$Templates$ComponentManager = {
         Init: function (control){
             if (control == null)
                 return;
-            if (!this.entries.ContainsKey(control)) {
+            if (!this.entries.ContainsKey(control)){
                 this.BeforeInitComponent(control);
                 var targetControl = As(control, Neptuo.Templates.Controls.IControl.ctor);
                 if (targetControl != null){
@@ -316,8 +316,15 @@ var Neptuo$Templates$ComponentManager = {
                 writer.Content$$Object(control);
                 return;
             }
-            if (!this.entries.ContainsKey(control))
+            if (!this.entries.ContainsKey(control)){
+                var targetControl = As(control, Neptuo.Templates.Controls.IControl.ctor);
+                if (targetControl != null){
+                    this.BeforeRenderControl(targetControl, writer);
+                    this.DoRenderControl(targetControl, writer);
+                    this.AfterRenderControl(targetControl, writer);
+                }
                 return;
+            }
             var entry = this.entries.get_Item$$TKey(control);
             if (!entry.get_IsInited())
                 this.Init(control);
@@ -1120,10 +1127,10 @@ var Neptuo$Templates$Components$VersionInfo = {
     baseTypeName: "System.Object",
     staticDefinition: {
         cctor: function (){
-            Neptuo.Templates.Components.VersionInfo.Version = "3.0.2";
+            Neptuo.Templates.Components.VersionInfo.Version = "3.0.4";
         },
         GetVersion: function (){
-            return new System.Version.ctor$$String("3.0.2");
+            return new System.Version.ctor$$String("3.0.4");
         }
     },
     assemblyName: "Neptuo.Templates.Components",

@@ -18,11 +18,13 @@ namespace Neptuo.TemplateEngine.Web.Controls
         public int? PageSize { get; set; }
         public int? PageIndex { get; set; }
         protected int TotalCount { get; private set; }
+        protected IRequestContext RequestContext { get; private set; }
         protected DataContextStorage DataContext { get; private set; }
 
-        public ListViewControl(IComponentManager componentManager, TemplateContentStorageStack storage, DataContextStorage dataContext)
-            : base(componentManager, storage)
+        public ListViewControl(IRequestContext requestContext, TemplateContentStorageStack storage, DataContextStorage dataContext)
+            : base(requestContext.ComponentManager, storage)
         {
+            RequestContext = requestContext;
             DataContext = dataContext;
         }
 
@@ -68,7 +70,7 @@ namespace Neptuo.TemplateEngine.Web.Controls
             base.OnInit();
 
             if (PageSize != null)
-                Pagination = new PaginationControl(ComponentManager, TemplateStorageStack);
+                Pagination = new PaginationControl(ComponentManager, RequestContext, TemplateStorageStack);
 
             if (Pagination != null)
             {

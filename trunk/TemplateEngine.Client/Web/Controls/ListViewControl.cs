@@ -114,7 +114,7 @@ namespace Neptuo.TemplateEngine.Web.Controls
             base.OnInit();
 
             if (PageSize != null)
-                Pagination = new PaginationControl(ComponentManager, TemplateStorageStack);
+                Pagination = new PaginationControl(ComponentManager, RequestContext, TemplateStorageStack);
 
             if (Pagination != null)
             {
