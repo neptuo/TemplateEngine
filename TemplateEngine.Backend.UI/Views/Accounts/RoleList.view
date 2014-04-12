@@ -53,7 +53,7 @@
                                 <th class="w50">ID</th>
                                 <th class="w200">Name</th>
                                 <th>Description</th>
-                                <th class="w150 action-list"></th>
+                                <th class="w300 action-list"></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -74,7 +74,12 @@
                         <ui:Literal Text="{Binding Description}" />
                     </td>
                     <td class="action-list">
-                        <ui:Link form:Href="Accounts.Role.Edit" Text="Upravit" ajax:Update="Content">
+                        <ui:Link form:Href="Accounts.User.List" l:Text="Accounts with role" ajax:Update="Content" html:Class="btn btn-default btn-xs">
+                            <Parameters>
+                                <ui:Parameter Name="RoleKey" Value="{Binding Key}" />
+                            </Parameters>
+                        </ui:Link>
+                        <ui:Link form:Href="Accounts.Role.Edit" Text="Edit" ajax:Update="Content" html:Class="btn btn-default btn-xs">
                             <Parameters>
                                 <ui:Parameter Name="RoleKey" Value="{Binding Key}" />
                             </Parameters>

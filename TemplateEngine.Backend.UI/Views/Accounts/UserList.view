@@ -88,7 +88,7 @@
                         <ui:Literal Text="{Binding IsEnabled}" />
                     </td>
                     <td class="action-list">
-                        <ui:Link form:Href="Accounts.User.Edit" ajax:Update="Content" Text="Upravit">
+                        <ui:Link form:Href="Accounts.User.Edit" ajax:Update="Content" Text="Edit" html:Class="btn btn-default btn-xs">
                             <Parameters>
                                 <ui:Parameter Name="UserKey" Value="{Binding Key}" />
                             </Parameters>
