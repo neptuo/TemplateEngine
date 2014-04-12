@@ -577,11 +577,13 @@ var Neptuo$TemplateEngine$Web$Application = {
             this.get_Router().RouteTo(new Neptuo.TemplateEngine.Routing.RequestContext.ctor(historyItem.Url, Neptuo.TemplateEngine.Web.JsArrayExtensions.ToRouteParams(historyItem.FormData), new Neptuo.TemplateEngine.Routing.RouteValueDictionary.ctor().AddItem("ToUpdate", historyItem.ToUpdate)));
         },
         OnNavigation: function (url, toUpdate){
+            this.get_UpdateViewNotifier().StartUpdate();
             toUpdate = (toUpdate != null ? toUpdate : this.get_DefaultToUpdate());
             this.get_HistoryState().Push(new Neptuo.TemplateEngine.Web.HistoryItem.ctor(url, toUpdate, null));
             this.get_Router().RouteTo(new Neptuo.TemplateEngine.Routing.RequestContext.ctor(url, new Neptuo.TemplateEngine.Routing.RouteParamDictionary.ctor(), new Neptuo.TemplateEngine.Routing.RouteValueDictionary.ctor().AddItem("ToUpdate", toUpdate)));
         },
         OnFormSubmit: function (context){
+            this.get_UpdateViewNotifier().StartUpdate();
             this.get_FormPostInvokers().Invoke(new Neptuo.TemplateEngine.Web.FormPostInvoker.ctor(this, context));
         },
         TryInvokeControllers: function (parameters){
