@@ -807,6 +807,47 @@ var Neptuo$TemplateEngine$Web$AsyncViewRenderer = {
     IsAbstract: false
 };
 JsTypes.push(Neptuo$TemplateEngine$Web$AsyncViewRenderer);
+var Neptuo$TemplateEngine$Web$Controls$PartialViewControl = {
+    fullname: "Neptuo.TemplateEngine.Web.Controls.PartialViewControl",
+    baseTypeName: "Neptuo.TemplateEngine.Web.Controls.HtmlContentControlBase",
+    assemblyName: "Neptuo.TemplateEngine.Client",
+    Kind: "Class",
+    definition: {
+        ctor: function (componentManager, updateWriter){
+            this._UpdateWriter = null;
+            this._Partial = null;
+            Neptuo.TemplateEngine.Web.Controls.HtmlContentControlBase.ctor.call(this, componentManager, "div", false);
+            this.set_UpdateWriter(updateWriter);
+        },
+        UpdateWriter$$: "Neptuo.TemplateEngine.Web.IPartialUpdateWriter",
+        get_UpdateWriter: function (){
+            return this._UpdateWriter;
+        },
+        set_UpdateWriter: function (value){
+            this._UpdateWriter = value;
+        },
+        Partial$$: "System.String",
+        get_Partial: function (){
+            return this._Partial;
+        },
+        set_Partial: function (value){
+            this._Partial = value;
+        },
+        OnInit: function (){
+            Neptuo.Guard.NotNull$$Object$$String(this.get_Partial(), "Partial");
+            Neptuo.TemplateEngine.Web.Controls.HtmlContentControlBase.commonPrototype.OnInit.call(this);
+            this.get_UpdateWriter().Update(this.get_Partial(), this);
+            this.get_Attributes().Add("data-update", this.get_Partial());
+        }
+    },
+    ctors: [{
+        name: "ctor",
+        parameters: ["Neptuo.Templates.IComponentManager", "Neptuo.TemplateEngine.Web.IPartialUpdateWriter"]
+    }
+    ],
+    IsAbstract: false
+};
+JsTypes.push(Neptuo$TemplateEngine$Web$Controls$PartialViewControl);
 var Neptuo$TemplateEngine$Web$ConverterBootstrapTask = {
     fullname: "Neptuo.TemplateEngine.Web.ConverterBootstrapTask",
     baseTypeName: "System.Object",
@@ -833,15 +874,18 @@ var Neptuo$TemplateEngine$Web$ConverterBootstrapTask = {
 JsTypes.push(Neptuo$TemplateEngine$Web$ConverterBootstrapTask);
 var Neptuo$TemplateEngine$Web$PartialUpdateComponentManager = {
     fullname: "Neptuo.TemplateEngine.Web.PartialUpdateComponentManager",
-    baseTypeName: "Neptuo.TemplateEngine.Web.ExtendedComponentManager",
+    baseTypeName: "Neptuo.Templates.ComponentManager",
     assemblyName: "Neptuo.TemplateEngine.Client",
+    interfaceNames: ["Neptuo.TemplateEngine.Web.IPartialUpdateWriter"],
     Kind: "Class",
     definition: {
         ctor: function (partialsToUpdate){
             this.partialsToUpdate = null;
-            Neptuo.TemplateEngine.Web.ExtendedComponentManager.ctor.call(this);
+            this.partialUpdates = null;
+            Neptuo.Templates.ComponentManager.ctor.call(this);
             Neptuo.Guard.NotNull$$Object$$String(partialsToUpdate, "partialsToUpdate");
             this.partialsToUpdate = partialsToUpdate;
+            this.partialUpdates = new System.Collections.Generic.Dictionary$2.ctor(Neptuo.Templates.Controls.IControl.ctor, System.String.ctor);
         },
         DoRenderControl: function (control, writer){
             var partialView;
@@ -849,7 +893,7 @@ var Neptuo$TemplateEngine$Web$PartialUpdateComponentManager = {
                 var $1 = {
                     Value: partialView
                 };
-                var $res = this.get_PartialUpdates().TryGetValue(control, $1);
+                var $res = this.partialUpdates.TryGetValue(control, $1);
                 partialView = $1.Value;
                 return $res;
             }).call(this) && System.Linq.Enumerable.Contains$1$$IEnumerable$1$$TSource(System.String.ctor, this.partialsToUpdate, partialView)){
@@ -861,6 +905,9 @@ var Neptuo$TemplateEngine$Web$PartialUpdateComponentManager = {
                 return;
             }
             Neptuo.Templates.ComponentManager.commonPrototype.DoRenderControl.call(this, control, writer);
+        },
+        Update: function (partialView, control){
+            this.partialUpdates.set_Item$$TKey(control, partialView);
         }
     },
     ctors: [{

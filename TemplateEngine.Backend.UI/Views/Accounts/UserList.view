@@ -29,6 +29,15 @@
                 <ui:FormItem>
                     <label for="RoleKey">Role:</label>
                     <ui:DropDownList Name="RoleKey" Value="{Request RoleKey}" IsAddEmpty="true" CssClass="form-control input-sm w200" CssStyle="display: block;">
+                        <Template>
+                            <select id="{TemplateBinding ID}" name="{TemplateBinding Name}" class="{TemplateBinding CssClass}" style="{TemplateBinding CssStyle}">
+                                <option value="" ui:IsVisible="{TemplateBinding IsAddEmpty}">---</option>
+                                <ui:TemplatePlaceholder name="Content" />
+                            </select>
+                        </Template>
+                        <ItemTemplate>
+                            <ui:Option Text="{Binding Model.Name}" Value="{Binding Model.Key}" IsSelected="{Binding IsSelected}" />
+                        </ItemTemplate>
                         <Source>
                             <data:UserRoleDataSource />
                         </Source>

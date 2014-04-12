@@ -9,7 +9,6 @@ using Neptuo.TemplateEngine.Web.Compilation.CodeObjects;
 using Neptuo.TemplateEngine.Web.Compilation.Parsers;
 using Neptuo.TemplateEngine.Web.Compilation.PreProcessing;
 using Neptuo.TemplateEngine.Web.Controls;
-using Neptuo.TemplateEngine.Web.Controls.Ajax;
 using Neptuo.TemplateEngine.Web.Observers;
 using Neptuo.TemplateEngine.Web.ViewBundles;
 using Neptuo.Templates;
@@ -138,7 +137,7 @@ namespace Neptuo.TemplateEngine.Backend.Bootstrap
             generator.SetCodeObjectGenerator(typeof(ExplicitCastCodeObject), new CodeDomExplicitCastGenerator());
 
             generator.SetPropertyDescriptorGenerator(typeof(CssClassPropertyDescriptor), new CodeDomCssClassPropertyGenerator());
-            generator.SetPropertyTypeGenerator(typeof(ITemplate), new CodeDomTemplatePropertyTypeGenerator(fieldNameProvider, "{0}.Views.{1}.view"));
+            //generator.SetPropertyTypeGenerator(typeof(ITemplate), new CodeDomTemplatePropertyTypeGenerator(fieldNameProvider, "{0}.Views.{1}.view"));
             generator.SetAttributeGenerator(typeof(PropertySetAttribute), new CodeDomPropertySetAttributeGenerator());
         }
 

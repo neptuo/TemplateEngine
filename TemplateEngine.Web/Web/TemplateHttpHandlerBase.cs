@@ -59,10 +59,9 @@ namespace Neptuo.TemplateEngine.Backend.Web
                 if (!ProcessNavigationRules(navigations, globalNavigations, navigator))
                 {
                     BaseGeneratedView view = GetCurrentView(httpContext);
-                    ExtendedComponentManager componentManager = GetComponentManager(httpContext);
+                    IComponentManager componentManager = GetComponentManager(httpContext);
 
                     dependencyContainer.RegisterInstance<IComponentManager>(componentManager);
-                    dependencyContainer.RegisterInstance<IPartialUpdateWriter>(componentManager);
 
                     view.Setup(new BaseViewPage(componentManager), componentManager, dependencyContainer);
                     view.CreateControls();
@@ -101,9 +100,9 @@ namespace Neptuo.TemplateEngine.Backend.Web
             return false;
         }
 
-        protected virtual ExtendedComponentManager GetComponentManager(HttpContext httpContext)
+        protected virtual IComponentManager GetComponentManager(HttpContext httpContext)
         {
-            return new ExtendedComponentManager();
+            return new ComponentManager();
         }
 
         protected abstract BaseGeneratedView GetCurrentView(HttpContext context);
