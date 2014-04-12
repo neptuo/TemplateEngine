@@ -89,7 +89,7 @@
     <Compile Include="Templates\Controls\Templates\StringTemplate.cs" />
     <Compile Include="Templates\DataSources\IListDataSource.cs" />
     <Compile Include="Web\DataSources\WebDataSourceAttribute.cs" />
-    <Compile Include="GeneratedViewBase.cs" />
+    <Compile Include="Templates\GeneratedViewBase.cs" />
     <Compile Include="ViewBundles\GreedyViewBundle.cs" />
     <Compile Include="ViewBundles\IViewBundle.cs" />
     <Compile Include="ViewBundles\IViewBundleCollection.cs" />
