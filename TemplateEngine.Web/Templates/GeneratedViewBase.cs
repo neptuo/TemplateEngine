@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 
-namespace Neptuo.TemplateEngine.Web
+namespace Neptuo.TemplateEngine.Templates
 {
     public abstract class GeneratedViewBase : BaseGeneratedView
     {
