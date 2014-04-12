@@ -79,9 +79,10 @@ namespace Neptuo.TemplateEngine.Backend.Bootstrap
             string tempDirectory = @"C:\Temp\NeptuoTemplateEngine";
             string currentDirectory = DateTime.Now.Ticks.ToString();
 
-            string currentTemp = Path.Combine(tempDirectory, currentDirectory);
-            if (!Directory.Exists(currentTemp))
-                Directory.CreateDirectory(currentTemp);
+            //string currentTemp = Path.Combine(tempDirectory, currentDirectory);
+            //if (!Directory.Exists(currentTemp))
+            //    Directory.CreateDirectory(currentTemp);
+            string currentTemp = tempDirectory;
 
             viewService.ParserService.ContentParsers.Add(new XmlContentParser(registry));
             viewService.ParserService.DefaultValueParser = new PlainValueParser();

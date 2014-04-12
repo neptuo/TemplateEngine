@@ -203,7 +203,11 @@ namespace Neptuo.TemplateEngine.Web
 
         public string ResolveUrl(string path)
         {
-            return path.Replace("~/", ApplicationPath);
+            string applicationPath = ApplicationPath;
+            if (!ApplicationPath.EndsWith("/"))
+                applicationPath += "/";
+
+            return path.Replace("~/", applicationPath);
         }
 
         public string GetCurrentUrl()

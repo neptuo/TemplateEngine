@@ -51,7 +51,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Neptuo.TemplateEngine.Navigation.js" />
-    <Content Include="Neptuo.TemplateEngine.Navigation.xml" />
+    <None Include="Neptuo.TemplateEngine.Navigation.xml" />
   </ItemGroup>
   <ItemGroup>
     <SkcPlugin Include="Neptuo.SharpKit.Exugin.ExuginPlugin, Neptuo.SharpKit.Exugin">

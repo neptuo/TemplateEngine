@@ -187,7 +187,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Neptuo.TemplateEngine.Shared.js" />
-    <Content Include="Neptuo.TemplateEngine.Shared.xml" />
+    <None Include="Neptuo.TemplateEngine.Shared.xml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\TemplateEngine.Navigation\TemplateEngine.Navigation.csproj">

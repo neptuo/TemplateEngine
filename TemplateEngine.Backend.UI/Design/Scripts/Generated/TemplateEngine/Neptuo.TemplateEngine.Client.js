@@ -630,7 +630,10 @@ var Neptuo$TemplateEngine$Web$Application = {
         NavigateToUrl: function (url, toUpdate){
         },
         ResolveUrl: function (path){
-            return path.Replace$$String$$String("~/", this.get_ApplicationPath());
+            var applicationPath = this.get_ApplicationPath();
+            if (!this.get_ApplicationPath().EndsWith$$String("/"))
+                applicationPath += "/";
+            return path.Replace$$String$$String("~/", applicationPath);
         },
         GetCurrentUrl: function (){
             return location.pathname;

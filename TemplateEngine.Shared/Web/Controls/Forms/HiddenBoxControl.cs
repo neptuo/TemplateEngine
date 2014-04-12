@@ -22,10 +22,5 @@ namespace Neptuo.TemplateEngine.Web.Controls
             Attributes["value"] = Text;
             base.Render(writer);
         }
-
-        public override void HandleValue(string value)
-        {
-            Text = value;
-        }
     }
 }

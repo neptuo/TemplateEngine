@@ -28,7 +28,5 @@ namespace Neptuo.TemplateEngine.Web.Controls
             Attributes["name"] = Name;
             base.Render(writer);
         }
-
-        public abstract void HandleValue(string value);
     }
 }

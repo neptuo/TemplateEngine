@@ -57,9 +57,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Neptuo.TemplateEngine.Routing.Client.js" />
-    <Content Include="Neptuo.TemplateEngine.Routing.Client.xml">
+    <None Include="Neptuo.TemplateEngine.Routing.Client.xml">
       <SubType>Designer</SubType>
-    </Content>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <SkcPlugin Include="Neptuo.SharpKit.Exugin.ExuginPlugin, Neptuo.SharpKit.Exugin">

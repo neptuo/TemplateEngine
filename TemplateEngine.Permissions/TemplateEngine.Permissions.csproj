@@ -52,7 +52,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Neptuo.TemplateEngine.Permissions.js" />
-    <Content Include="Neptuo.TemplateEngine.Permissions.xml" />
+    <None Include="Neptuo.TemplateEngine.Permissions.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildBinPath)\SharpKit\5\SharpKit.Build.targets" />

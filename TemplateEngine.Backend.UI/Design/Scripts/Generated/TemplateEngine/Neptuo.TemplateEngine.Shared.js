@@ -1928,9 +1928,6 @@ var Neptuo$TemplateEngine$Web$Controls$CheckBoxControl = {
             writer.Tag("label").Attribute("class", "checkbox");
             Neptuo.TemplateEngine.Web.Controls.FormInputControlBase.commonPrototype.Render.call(this, writer);
             writer.Content$$String(this.get_LabelText()).CloseFullTag();
-        },
-        HandleValue: function (value){
-            this.set_IsChecked(value == "on");
         }
     },
     ctors: [{
@@ -2029,9 +2026,6 @@ var Neptuo$TemplateEngine$Web$Controls$HiddenBoxControl = {
         Render: function (writer){
             this.get_Attributes().set_Item$$TKey("value", this.get_Text());
             Neptuo.TemplateEngine.Web.Controls.FormInputControlBase.commonPrototype.Render.call(this, writer);
-        },
-        HandleValue: function (value){
-            this.set_Text(value);
         }
     },
     ctors: [{
@@ -2102,9 +2096,6 @@ var Neptuo$TemplateEngine$Web$Controls$TextBoxControl = {
             if (this.get_IsAutoFocus())
                 this.get_Attributes().set_Item$$TKey("autofocus", "autofocus");
             Neptuo.TemplateEngine.Web.Controls.FormInputControlBase.commonPrototype.Render.call(this, writer);
-        },
-        HandleValue: function (value){
-            this.set_Text(value);
         }
     },
     ctors: [{
