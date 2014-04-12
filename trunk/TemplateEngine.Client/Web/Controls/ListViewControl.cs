@@ -44,12 +44,12 @@ namespace Neptuo.TemplateEngine.Web.Controls
             UpdateHelper.RenderContent += OnRenderContent;
             UpdateHelper.OnInit();
 
-            GetModelPage(PageIndex, PageSize, OnLoadData);
+            GetModelPage(PageIndex, PageSize, OnLoadData, OnError);
         }
 
-        protected virtual void GetModelPage(int? pageIndex, int? pageSize, Action<IListResult> callback)
+        protected virtual void GetModelPage(int? pageIndex, int? pageSize, Action<IListResult> callback, Action<ErrorModel> errorCallback)
         {
-            Source.GetData(pageIndex, pageSize, callback);
+            Source.GetData(pageIndex, pageSize, callback, errorCallback);
         }
 
         protected virtual void ProcessModelItem(List<object> itemTemplates, object model)
@@ -135,6 +135,11 @@ namespace Neptuo.TemplateEngine.Web.Controls
             DataContext.Pop("Template");
 
             UpdateHelper.OnDataLoaded();
+        }
+
+        private void OnError(ErrorModel model)
+        {
+            UpdateHelper.OnError(model);
         }
     }
 }

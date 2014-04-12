@@ -35,9 +35,8 @@ namespace Neptuo.TemplateEngine.Web.Controls
             UpdateHelper.RenderContent += OnRenderContent;
             UpdateHelper.OnInit();
 
-            Source.GetItem(OnLoadData);
-
             NotifyService.Register(this);
+            Source.GetItem(OnLoadData, OnError);
         }
 
         private void OnRenderContent(IHtmlWriter writer)
@@ -55,9 +54,15 @@ namespace Neptuo.TemplateEngine.Web.Controls
             DataContext.Push(data);
             base.OnInit();
             DataContext.Pop();
-            NotifyService.NotifyDone(this);
 
             UpdateHelper.OnDataLoaded();
+            NotifyService.NotifyDone(this);
+        }
+
+        private void OnError(ErrorModel model)
+        {
+            UpdateHelper.OnError(model);
+            NotifyService.NotifyDone(this);
         }
     }
 }

@@ -16,6 +16,7 @@ namespace Neptuo.TemplateEngine.Web
         protected FormRequestContext Context { get; private set; }
 
         public event Action<IFormPostInvoker> OnSuccess;
+        public event Action<IFormPostInvoker, ErrorModel> OnError;
 
         public FormPostInvoker(IApplication application, FormRequestContext context)
         {
@@ -37,7 +38,8 @@ namespace Neptuo.TemplateEngine.Web
                 type = "POST",
                 data = Context.Parameters,
                 headers = headers,
-                success = OnSubmitSuccess
+                success = OnSubmitSuccess,
+                error = OnSubmitError
             });
         }
 
@@ -87,6 +89,12 @@ namespace Neptuo.TemplateEngine.Web
                 //TODO: Hmh, how to solve unexpected response?
                 HtmlContext.alert(status);
             }
+        }
+
+        private void OnSubmitError(jqXHR response, JsString status, JsError error)
+        {
+            if (OnError != null)
+                OnError(this, new ErrorModel(response.status, response.statusText, response.responseText));
         }
     }
 }

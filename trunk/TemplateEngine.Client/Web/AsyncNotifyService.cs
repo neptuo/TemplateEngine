@@ -27,12 +27,10 @@ namespace Neptuo.TemplateEngine.Web
         public void NotifyDone(object source)
         {
             if (sources.Remove(source))
-            {
                 counter--;
 
-                if (OnReady != null)
-                    OnReady();
-            }
+            if (counter == 0 && OnReady != null)
+                OnReady();
         }
     }
 }

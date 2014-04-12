@@ -21,6 +21,8 @@ namespace Neptuo.TemplateEngine.Web
         public event Action OnCompleted;
 
         private BaseGeneratedView view;
+        private AsyncNotifyService notifyService;
+        private bool isNotifyReadyCalled;
 
         public AsyncViewRenderer(string viewPath, string[] toUpdate, IDependencyContainer dependencyContainer, IViewActivator viewActivator, IViewLoadedChecker checker, IVirtualUrlProvider urlProvider)
         {
@@ -57,8 +59,7 @@ namespace Neptuo.TemplateEngine.Web
 
         private void RenderView()
         {
-            AsyncNotifyService notifyService = new AsyncNotifyService();
-            notifyService.OnReady += OnAsyncNotifyReady;
+            notifyService = new AsyncNotifyService();
             ClientExtendedComponentManager componentManager = new ClientExtendedComponentManager(ToUpdate);
             DependencyContainer
                 .RegisterInstance<IComponentManager>(componentManager)
@@ -72,14 +73,20 @@ namespace Neptuo.TemplateEngine.Web
             view.Init();
 
             if (notifyService.IsReady)
-            {
-                notifyService.OnReady -= OnAsyncNotifyReady;
                 OnAsyncNotifyReady();
-            }
+            else
+                notifyService.OnReady += OnAsyncNotifyReady;
         }
 
         private void OnAsyncNotifyReady()
         {
+            if (isNotifyReadyCalled)
+                SharpKit.Html.HtmlContext.alert("OnReady called twice!!");
+
+            isNotifyReadyCalled = true;
+
+            notifyService.OnReady -= OnAsyncNotifyReady;
+
             StringWriter writer = new StringWriter();
             view.Render(new ExtendedHtmlTextWriter(writer));
             view.Dispose();

@@ -1,4 +1,11 @@
-﻿body {
+﻿.error-info {
+    display: block;
+    padding: 10px;
+    color: white;
+    background: red;
+}
+
+body {
     margin-top: 100px;
     background: #F5F5F5;
 }
