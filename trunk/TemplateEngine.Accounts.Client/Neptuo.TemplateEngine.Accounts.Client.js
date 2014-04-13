@@ -34,7 +34,7 @@ var Neptuo$TemplateEngine$Accounts$Bootstrap$AccountBootstrapTask = {
     },
     ctors: [{
         name: "ctor",
-        parameters: ["Neptuo.IDependencyContainer", "Neptuo.TemplateEngine.Navigation.Bootstrap.IFormUriRegistry", "Neptuo.TemplateEngine.Web.Controllers.IControllerRegistry", "Neptuo.TemplateEngine.Web.GlobalNavigationCollection"]
+        parameters: ["Neptuo.IDependencyContainer", "Neptuo.TemplateEngine.Navigation.Bootstrap.IFormUriRegistry", "Neptuo.TemplateEngine.Controllers.IControllerRegistry", "Neptuo.TemplateEngine.Providers.GlobalNavigationCollection"]
     }
     ],
     IsAbstract: false
@@ -208,14 +208,14 @@ var Neptuo$TemplateEngine$Accounts$Web$Controllers$UserAccountController = {
     fullname: "Neptuo.TemplateEngine.Accounts.Web.Controllers.UserAccountController",
     baseTypeName: "System.Object",
     assemblyName: "Neptuo.TemplateEngine.Accounts.Client",
-    interfaceNames: ["Neptuo.TemplateEngine.Web.Controllers.IController"],
+    interfaceNames: ["Neptuo.TemplateEngine.Controllers.IController"],
     Kind: "Class",
     definition: {
         ctor: function (){
             this._Context = null;
             System.Object.ctor.call(this);
         },
-        Context$$: "Neptuo.TemplateEngine.Web.Controllers.IControllerContext",
+        Context$$: "Neptuo.TemplateEngine.Controllers.IControllerContext",
         get_Context: function (){
             return this._Context;
         },
@@ -223,7 +223,7 @@ var Neptuo$TemplateEngine$Accounts$Web$Controllers$UserAccountController = {
             this._Context = value;
         },
         Create: function (){
-            var model = Neptuo.TemplateEngine.Web.Controllers.Binders.ModelBinderExtensions.Bind$1$$IModelBinder$$T(Neptuo.TemplateEngine.Accounts.Commands.UserAccountCreateCommand.ctor, this.get_Context().get_ModelBinder(), new Neptuo.TemplateEngine.Accounts.Commands.UserAccountCreateCommand.ctor());
+            var model = Neptuo.TemplateEngine.Providers.ModelBinders.ModelBinderExtensions.Bind$1$$IModelBinder$$T(Neptuo.TemplateEngine.Accounts.Commands.UserAccountCreateCommand.ctor, this.get_Context().get_ModelBinder(), new Neptuo.TemplateEngine.Accounts.Commands.UserAccountCreateCommand.ctor());
             console.log(model);
         },
         Execute: function (context){
@@ -313,7 +313,7 @@ var Neptuo$TemplateEngine$Accounts$Templates$DataSources$UserAccountEditDataSour
                     $v1.set_Key(0);
                     return $v1;
                 }).call(this);
-                model = Neptuo.TemplateEngine.Web.Controllers.Binders.ModelBinderExtensions.Bind$1$$IModelBinder$$T(Neptuo.TemplateEngine.Accounts.UserAccountEditModel.ctor, this.get_ModelBinder(), model);
+                model = Neptuo.TemplateEngine.Providers.ModelBinders.ModelBinderExtensions.Bind$1$$IModelBinder$$T(Neptuo.TemplateEngine.Accounts.UserAccountEditModel.ctor, this.get_ModelBinder(), model);
                 callback(model);
                 return true;
             }
@@ -322,7 +322,7 @@ var Neptuo$TemplateEngine$Accounts$Templates$DataSources$UserAccountEditDataSour
     },
     ctors: [{
         name: "ctor",
-        parameters: ["Neptuo.TemplateEngine.Web.Controllers.Binders.IModelBinder", "Neptuo.Templates.IVirtualUrlProvider"]
+        parameters: ["Neptuo.TemplateEngine.Providers.ModelBinders.IModelBinder", "Neptuo.Templates.IVirtualUrlProvider"]
     }
     ],
     IsAbstract: false
@@ -405,7 +405,7 @@ var Neptuo$TemplateEngine$Accounts$Templates$DataSources$UserRoleEditDataSource 
     },
     ctors: [{
         name: "ctor",
-        parameters: ["Neptuo.TemplateEngine.Web.Controllers.Binders.IModelBinder", "Neptuo.Templates.IVirtualUrlProvider"]
+        parameters: ["Neptuo.TemplateEngine.Providers.ModelBinders.IModelBinder", "Neptuo.Templates.IVirtualUrlProvider"]
     }
     ],
     IsAbstract: false

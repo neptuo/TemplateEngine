@@ -1,5 +1,5 @@
 ﻿using Neptuo.TemplateEngine.Accounts.Commands;
-using Neptuo.TemplateEngine.Web.Controllers;
+using Neptuo.TemplateEngine.Controllers;
 using System;
 using System.Collections.Generic;
 using System.Linq;

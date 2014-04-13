@@ -10,8 +10,8 @@ using Neptuo.TemplateEngine.Navigation.Bootstrap;
 using Neptuo.TemplateEngine.Permissions;
 using Neptuo.TemplateEngine.PresentationModels;
 using Neptuo.TemplateEngine.Routing;
-using Neptuo.TemplateEngine.Web.Controllers;
-using Neptuo.TemplateEngine.Web.Controllers.Binders;
+using Neptuo.TemplateEngine.Controllers;
+using Neptuo.TemplateEngine.Providers.ModelBinders;
 using Neptuo.Templates;
 using SharpKit.Html;
 using SharpKit.JavaScript;
@@ -22,6 +22,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Neptuo.TemplateEngine.Providers;
 
 namespace Neptuo.TemplateEngine.Web
 {

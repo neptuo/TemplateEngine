@@ -1,4 +1,4 @@
-﻿using Neptuo.TemplateEngine.Web.Controllers.Binders;
+﻿using Neptuo.TemplateEngine.Providers.ModelBinders;
 using Neptuo.TemplateEngine.Templates.DataSources;
 using Neptuo.Templates;
 using SharpKit.JavaScript;

@@ -14,7 +14,7 @@ using Neptuo.TemplateEngine.Navigation;
 using Neptuo.TemplateEngine.Navigation.Bootstrap;
 using Neptuo.TemplateEngine.Web;
 using Neptuo.TemplateEngine.Templates.Compilation.Parsers;
-using Neptuo.TemplateEngine.Web.Controllers;
+using Neptuo.TemplateEngine.Controllers;
 using Neptuo.TemplateEngine.Web.DataSources;
 using Neptuo.TemplateEngine.Web.ViewBundles;
 using Neptuo.Templates;
@@ -28,6 +28,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Neptuo.TemplateEngine.Accounts.Templates.DataSources;
+using Neptuo.TemplateEngine.Providers;
 
 namespace Neptuo.TemplateEngine.Accounts.Bootstrap
 {

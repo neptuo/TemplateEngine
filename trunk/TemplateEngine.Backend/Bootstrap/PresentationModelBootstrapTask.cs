@@ -4,7 +4,7 @@ using Neptuo.PresentationModels;
 using Neptuo.PresentationModels.BindingConverters;
 using Neptuo.PresentationModels.TypeModels;
 using Neptuo.PresentationModels.Validation;
-using Neptuo.TemplateEngine.Web.Controllers.Binders;
+using Neptuo.TemplateEngine.Providers.ModelBinders;
 using System;
 using System.Collections.Generic;
 using System.Linq;

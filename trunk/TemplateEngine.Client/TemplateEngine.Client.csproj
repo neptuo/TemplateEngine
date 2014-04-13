@@ -126,7 +126,7 @@
     <Compile Include="Web\RouteParameterProvider.cs" />
     <Compile Include="Web\RouteParameterProviderFactory.cs" />
     <Compile Include="Templates\StaticViewActivator.cs" />
-    <Compile Include="Web\GeneratedViewBase.cs" />
+    <Compile Include="Templates\GeneratedViewBase.cs" />
     <Compile Include="Web\_InitScript.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -136,6 +136,10 @@
     </SkcPlugin>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\TemplateEngine.Controllers\TemplateEngine.Controllers.csproj">
+      <Project>{cefd01c6-467d-4e1c-ace6-af093e443e08}</Project>
+      <Name>TemplateEngine.Controllers</Name>
+    </ProjectReference>
     <ProjectReference Include="..\TemplateEngine.Navigation\TemplateEngine.Navigation.csproj">
       <Project>{f16d8bc8-2191-498f-9950-dc8aa200b0ba}</Project>
       <Name>TemplateEngine.Navigation</Name>
@@ -147,6 +151,10 @@
     <ProjectReference Include="..\TemplateEngine.PresentationModels\TemplateEngine.PresentationModels.csproj">
       <Project>{b064bdbc-3755-4110-8eb7-6add2535d9fd}</Project>
       <Name>TemplateEngine.PresentationModels</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TemplateEngine.Providers\TemplateEngine.Providers.csproj">
+      <Project>{30214616-7c89-467a-9147-7385e91aed13}</Project>
+      <Name>TemplateEngine.Providers</Name>
     </ProjectReference>
     <ProjectReference Include="..\TemplateEngine.Routing.Client\TemplateEngine.Routing.Client.csproj">
       <Project>{9432ee8b-1181-43cb-9e8d-e156eac8f7ba}</Project>

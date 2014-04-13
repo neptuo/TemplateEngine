@@ -1,6 +1,6 @@
 ﻿using Neptuo.TemplateEngine.Accounts.Commands;
-using Neptuo.TemplateEngine.Web.Controllers;
-using Neptuo.TemplateEngine.Web.Controllers.Binders;
+using Neptuo.TemplateEngine.Controllers;
+using Neptuo.TemplateEngine.Providers.ModelBinders;
 using SharpKit.Html;
 using System;
 using System.Collections.Generic;

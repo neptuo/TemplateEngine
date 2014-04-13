@@ -1,4 +1,5 @@
 ﻿using Neptuo.ComponentModel.Converters;
+using Neptuo.TemplateEngine.Providers;
 using SharpKit.JavaScript;
 using System;
 using System.Collections.Generic;
