@@ -58,14 +58,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IStackStorage.cs" />
-    <Compile Include="Web\Controllers\CommandHandlerControllerFactory.cs" />
-    <Compile Include="Web\Controllers\DependencyAsyncControllerFactory.cs" />
-    <Compile Include="Web\Controllers\IAsyncController.cs" />
-    <Compile Include="Web\Controllers\IAsyncControllerFactory.cs" />
-    <Compile Include="Web\Controllers\IAsyncResult.cs" />
-    <Compile Include="Web\Controllers\ModelControllerFactory.cs" />
-    <Compile Include="Web\Controllers\TransactionalAttribute.cs" />
-    <Compile Include="Web\Controllers\ValidateAttribute.cs" />
     <Compile Include="Templates\Controls\BundleControlBase.cs" />
     <Compile Include="Templates\Controls\Forms\GetFormControl.cs" />
     <Compile Include="Templates\Controls\Forms\PostFormControl.cs" />
@@ -84,23 +76,6 @@
     <Compile Include="StackStorage.cs" />
     <Compile Include="Templates\BindingManagerBase.cs" />
     <Compile Include="Templates\CompositeRequestContext.cs" />
-    <Compile Include="Web\Controllers\ActionAttribute.cs" />
-    <Compile Include="Web\Controllers\Binders\BindingValueStorage.cs" />
-    <Compile Include="Web\Controllers\Binders\IModelBinder.cs" />
-    <Compile Include="Web\Controllers\Binders\ModelBinder.cs" />
-    <Compile Include="Web\Controllers\Binders\ModelBinderExtensions.cs" />
-    <Compile Include="Web\Controllers\ControllerBase.cs" />
-    <Compile Include="Web\Controllers\ControllerContext.cs" />
-    <Compile Include="Web\Controllers\ControllerRegistryBase.cs" />
-    <Compile Include="Web\Controllers\ControllerRegistryExtensions.cs" />
-    <Compile Include="Web\Controllers\DependencyControllerFactory.cs" />
-    <Compile Include="Web\Controllers\IController.cs" />
-    <Compile Include="Web\Controllers\IControllerContext.cs" />
-    <Compile Include="Web\Controllers\IControllerFactory.cs" />
-    <Compile Include="Web\Controllers\IControllerRegistry.cs" />
-    <Compile Include="Web\Controllers\IViewData.cs" />
-    <Compile Include="Web\Controllers\MessageStorageExtensions.cs" />
-    <Compile Include="Web\Controllers\ViewDataCollection.cs" />
     <Compile Include="Templates\Controls\ContentControlBase.cs" />
     <Compile Include="Templates\Controls\ControlBase.cs" />
     <Compile Include="Templates\Controls\CssClassCollection.cs" />
@@ -150,28 +125,20 @@
     <Compile Include="Templates\Extensions\RequestExtension.cs" />
     <Compile Include="Templates\Extensions\SwitchExtension.cs" />
     <Compile Include="Templates\Extensions\TemplateBindingExtension.cs" />
-    <Compile Include="Web\GlobalNavigationCollection.cs" />
     <Compile Include="Templates\IBindingManager.cs" />
     <Compile Include="Templates\ICurrentUrlProvider.cs" />
     <Compile Include="Templates\IExtendedHtmlWriter.cs" />
-    <Compile Include="Web\IParameterProvider.cs" />
-    <Compile Include="Web\IParameterProviderFactory.cs" />
     <Compile Include="Templates\IPartialUpdateWriter.cs" />
     <Compile Include="Templates\IRequestContext.cs" />
     <Compile Include="Templates\IValueConverter.cs" />
     <Compile Include="Templates\IValueConverterService.cs" />
     <Compile Include="Templates\IViewActivator.cs" />
     <Compile Include="Web\LocalizationHelper.cs" />
-    <Compile Include="Web\Message.cs" />
-    <Compile Include="Web\MessageStorage.cs" />
-    <Compile Include="Web\NavigationCollection.cs" />
     <Compile Include="Templates\Observers\Ajax\PartialObserver.cs" />
     <Compile Include="Templates\Observers\EventObserver.cs" />
     <Compile Include="Templates\Observers\HtmlObserver.cs" />
     <Compile Include="Templates\Observers\IsPlaceholderObserver.cs" />
     <Compile Include="Templates\Observers\VisibleObserver.cs" />
-    <Compile Include="Web\ParameterProviderExtensions.cs" />
-    <Compile Include="Web\ParameterProviderType.cs" />
     <Compile Include="Templates\PresentationConfiguration.cs" />
     <Compile Include="Web\Routing\TemplateRouteParameterBase.cs" />
     <Compile Include="Templates\TemplateContentStorage.cs" />
@@ -196,6 +163,10 @@
     <ProjectReference Include="..\TemplateEngine.Permissions\TemplateEngine.Permissions.csproj">
       <Project>{e5c314ff-89ba-489e-bc2a-df8701a8c3f1}</Project>
       <Name>TemplateEngine.Permissions</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TemplateEngine.Providers\TemplateEngine.Providers.csproj">
+      <Project>{30214616-7c89-467a-9147-7385e91aed13}</Project>
+      <Name>TemplateEngine.Providers</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

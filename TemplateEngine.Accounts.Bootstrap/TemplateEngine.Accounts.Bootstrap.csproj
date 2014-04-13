@@ -100,6 +100,10 @@
       <Project>{36f0d8f9-1f8f-409c-9eda-c17644c4c0d8}</Project>
       <Name>TemplateEngine.Accounts</Name>
     </ProjectReference>
+    <ProjectReference Include="..\TemplateEngine.Controllers\TemplateEngine.Controllers.csproj">
+      <Project>{cefd01c6-467d-4e1c-ace6-af093e443e08}</Project>
+      <Name>TemplateEngine.Controllers</Name>
+    </ProjectReference>
     <ProjectReference Include="..\TemplateEngine.Data.Entity\TemplateEngine.Data.Entity.csproj">
       <Project>{176a5378-45be-4132-99bf-2f24b94712a4}</Project>
       <Name>TemplateEngine.Data.Entity</Name>
@@ -107,6 +111,10 @@
     <ProjectReference Include="..\TemplateEngine.Data\TemplateEngine.Data.csproj">
       <Project>{cfb337ac-4c28-4ccc-98db-860acea11bed}</Project>
       <Name>TemplateEngine.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TemplateEngine.Hosting\TemplateEngine.Hosting.csproj">
+      <Project>{f794b999-94db-4443-8780-25ad170742ee}</Project>
+      <Name>TemplateEngine.Hosting</Name>
     </ProjectReference>
     <ProjectReference Include="..\TemplateEngine.Navigation\TemplateEngine.Navigation.csproj">
       <Project>{f16d8bc8-2191-498f-9950-dc8aa200b0ba}</Project>
@@ -116,17 +124,25 @@
       <Project>{e5c314ff-89ba-489e-bc2a-df8701a8c3f1}</Project>
       <Name>TemplateEngine.Permissions</Name>
     </ProjectReference>
+    <ProjectReference Include="..\TemplateEngine.Providers\TemplateEngine.Providers.csproj">
+      <Project>{30214616-7c89-467a-9147-7385e91aed13}</Project>
+      <Name>TemplateEngine.Providers</Name>
+    </ProjectReference>
     <ProjectReference Include="..\TemplateEngine.Shared\TemplateEngine.Shared.csproj">
       <Project>{a4c6627c-c21b-4bb7-93a4-b40ac748588d}</Project>
       <Name>TemplateEngine.Shared</Name>
     </ProjectReference>
-    <ProjectReference Include="..\TemplateEngine.Web.Compilation\TemplateEngine.Web.Compilation.csproj">
-      <Project>{f116d6f7-e47c-4c73-a802-4f61ba50857f}</Project>
-      <Name>TemplateEngine.Web.Compilation</Name>
+    <ProjectReference Include="..\TemplateEngine.Templates\TemplateEngine.Templates.csproj">
+      <Project>{ee534abf-10e8-467b-aa25-d8a39b6542b4}</Project>
+      <Name>TemplateEngine.Templates</Name>
     </ProjectReference>
-    <ProjectReference Include="..\TemplateEngine.Web\TemplateEngine.Web.csproj">
+    <ProjectReference Include="..\TemplateEngine.Web.Compilation\TemplateEngine.Templates.Compilation.csproj">
+      <Project>{f116d6f7-e47c-4c73-a802-4f61ba50857f}</Project>
+      <Name>TemplateEngine.Templates.Compilation</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TemplateEngine.Web\TemplateEngine.Web - to remove.csproj">
       <Project>{8095932d-ec0b-4990-90f1-951b7b5feeac}</Project>
-      <Name>TemplateEngine.Web</Name>
+      <Name>TemplateEngine.Web - to remove</Name>
     </ProjectReference>
     <ProjectReference Include="..\TemplateEngine\TemplateEngine.csproj">
       <Project>{0ddeef40-567f-49de-94ec-314309702534}</Project>

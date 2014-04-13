@@ -1,5 +1,5 @@
 ﻿using Neptuo.TemplateEngine.Web;
-using Neptuo.TemplateEngine.Web.Controllers.Binders;
+using Neptuo.TemplateEngine.Providers.ModelBinders;
 using Neptuo.Templates;
 using SharpKit.JavaScript;
 using SharpKit.jQuery;

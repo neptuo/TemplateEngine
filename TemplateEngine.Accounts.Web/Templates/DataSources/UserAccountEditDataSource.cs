@@ -4,7 +4,7 @@ using Neptuo.PresentationModels.TypeModels;
 using Neptuo.TemplateEngine.Accounts.Commands;
 using Neptuo.TemplateEngine.Accounts.Data;
 using Neptuo.TemplateEngine.Web;
-using Neptuo.TemplateEngine.Web.Controllers.Binders;
+using Neptuo.TemplateEngine.Providers.ModelBinders;
 using Neptuo.TemplateEngine.Templates.DataSources;
 using System;
 using System.Collections.Generic;

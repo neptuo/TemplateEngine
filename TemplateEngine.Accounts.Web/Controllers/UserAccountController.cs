@@ -3,8 +3,8 @@ using Neptuo.Data;
 using Neptuo.TemplateEngine.Accounts.Commands;
 using Neptuo.TemplateEngine.Accounts.Data;
 using Neptuo.TemplateEngine.Web;
-using Neptuo.TemplateEngine.Web.Controllers;
-using Neptuo.TemplateEngine.Web.Controllers.Binders;
+using Neptuo.TemplateEngine.Controllers;
+using Neptuo.TemplateEngine.Providers.ModelBinders;
 using Neptuo.Validation;
 using System;
 using System.Collections.Generic;
@@ -12,6 +12,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web.Security;
+using Neptuo.TemplateEngine.Providers;
 
 namespace Neptuo.TemplateEngine.Accounts.Web.Controllers
 {

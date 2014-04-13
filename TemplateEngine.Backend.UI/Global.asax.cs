@@ -14,7 +14,7 @@ using Neptuo.TemplateEngine.Accounts.Data.Entity;
 using Neptuo.TemplateEngine.Backend.Bootstrap;
 using Neptuo.TemplateEngine.Permissions;
 using Neptuo.TemplateEngine.Web;
-using Neptuo.TemplateEngine.Web.Controllers;
+using Neptuo.TemplateEngine.Controllers;
 using Neptuo.TemplateEngine.Web.DataSources;
 using Neptuo.TemplateEngine.Web.ViewBundles;
 using Neptuo.Templates;
@@ -29,6 +29,7 @@ using System.Web;
 using System.Web.Routing;
 using System.Web.Security;
 using System.Web.SessionState;
+using Neptuo.TemplateEngine.Providers;
 
 namespace Neptuo.TemplateEngine.Backend.UI
 {

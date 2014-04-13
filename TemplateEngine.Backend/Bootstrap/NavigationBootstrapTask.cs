@@ -1,6 +1,7 @@
 ﻿using Neptuo.Bootstrap;
 using Neptuo.TemplateEngine.Navigation;
 using Neptuo.TemplateEngine.Navigation.Bootstrap;
+using Neptuo.TemplateEngine.Providers;
 using Neptuo.TemplateEngine.Web;
 using Neptuo.TemplateEngine.Web.Navigation;
 using Neptuo.TemplateEngine.Web.Routing;

@@ -26,6 +26,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 using CodeDomStructureGenerator = Neptuo.TemplateEngine.Templates.Compilation.CodeGenerators.CodeDomStructureGenerator;
+using Neptuo.TemplateEngine.Providers;
 
 namespace Neptuo.TemplateEngine.Backend.Bootstrap
 {
@@ -106,8 +107,8 @@ namespace Neptuo.TemplateEngine.Backend.Bootstrap
             registry.RegisterNamespace(new NamespaceDeclaration("ui", "Neptuo.TemplateEngine.Templates.Controls, Neptuo.TemplateEngine.Shared"));
             registry.RegisterNamespace(new NamespaceDeclaration("", "Neptuo.TemplateEngine.Templates.Extensions, Neptuo.TemplateEngine.Shared"));
 
-            registry.RegisterNamespace(new NamespaceDeclaration("ui", "Neptuo.TemplateEngine.Templates.Controls, Neptuo.TemplateEngine.Web"));
-            registry.RegisterNamespace(new NamespaceDeclaration("", "Neptuo.TemplateEngine.Templates.Extensions, Neptuo.TemplateEngine.Web"));
+            registry.RegisterNamespace(new NamespaceDeclaration("ui", "Neptuo.TemplateEngine.Templates.Controls, Neptuo.TemplateEngine.Templates"));
+            registry.RegisterNamespace(new NamespaceDeclaration("", "Neptuo.TemplateEngine.Templates.Extensions, Neptuo.TemplateEngine.Templates"));
             registry.RegisterComponentBuilder("ajax", "View", new DefaultTypeComponentBuilderFactory(typeof(PartialViewControl)));
             registry.RegisterComponentBuilder("ajax", "StartUp", new DefaultTypeComponentBuilderFactory(typeof(PartialStartUpControl)));
 

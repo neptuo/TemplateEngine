@@ -170,7 +170,7 @@ var Neptuo$TemplateEngine$Bootstrap$PresentationModelBootstrapTask = {
             this.SetupMetadataValidatorCollection(validators);
             var bindingConverters = new Neptuo.PresentationModels.BindingConverterCollection.ctor(null);
             this.SetupBindingConverterCollection(bindingConverters);
-            Neptuo.DependencyContainerExtensions.RegisterType$2$$IDependencyContainer$$Object(Neptuo.PresentationModels.TypeModels.IModelValueProviderFactory.ctor, Neptuo.PresentationModels.TypeModels.ReflectionModelValueProviderFactory.ctor, Neptuo.DependencyContainerExtensions.RegisterType$2$$IDependencyContainer$$Object(Neptuo.PresentationModels.TypeModels.IModelDefinitionFactory.ctor, Neptuo.PresentationModels.TypeModels.ReflectionModelDefinitionFactory.ctor, Neptuo.DependencyContainerExtensions.RegisterType$2$$IDependencyContainer(Neptuo.TemplateEngine.Web.Controllers.Binders.IModelBinder.ctor, Neptuo.TemplateEngine.Web.Controllers.Binders.ModelBinder.ctor, Neptuo.DependencyContainerExtensions.RegisterInstance$1(Neptuo.PresentationModels.IBindingConverterCollection.ctor, Neptuo.DependencyContainerExtensions.RegisterInstance$1(Neptuo.PresentationModels.BindingConverterCollection.ctor, Neptuo.DependencyContainerExtensions.RegisterInstance$1(Neptuo.PresentationModels.Validation.IMetadataValidatorCollection.ctor, Neptuo.DependencyContainerExtensions.RegisterInstance$1(Neptuo.PresentationModels.Validation.MetadataValidatorCollection.ctor, Neptuo.DependencyContainerExtensions.RegisterInstance$1(Neptuo.PresentationModels.TypeModels.MetadataReaderService.ctor, this.get_DependencyContainer(), metadataReaders), validators), validators), bindingConverters), bindingConverters)), new Neptuo.Lifetimes.SingletonLifetime.ctor()), new Neptuo.Lifetimes.SingletonLifetime.ctor());
+            Neptuo.DependencyContainerExtensions.RegisterType$2$$IDependencyContainer$$Object(Neptuo.PresentationModels.TypeModels.IModelValueProviderFactory.ctor, Neptuo.PresentationModels.TypeModels.ReflectionModelValueProviderFactory.ctor, Neptuo.DependencyContainerExtensions.RegisterType$2$$IDependencyContainer$$Object(Neptuo.PresentationModels.TypeModels.IModelDefinitionFactory.ctor, Neptuo.PresentationModels.TypeModels.ReflectionModelDefinitionFactory.ctor, Neptuo.DependencyContainerExtensions.RegisterType$2$$IDependencyContainer(Neptuo.TemplateEngine.Providers.ModelBinders.IModelBinder.ctor, Neptuo.TemplateEngine.Providers.ModelBinders.ModelBinder.ctor, Neptuo.DependencyContainerExtensions.RegisterInstance$1(Neptuo.PresentationModels.IBindingConverterCollection.ctor, Neptuo.DependencyContainerExtensions.RegisterInstance$1(Neptuo.PresentationModels.BindingConverterCollection.ctor, Neptuo.DependencyContainerExtensions.RegisterInstance$1(Neptuo.PresentationModels.Validation.IMetadataValidatorCollection.ctor, Neptuo.DependencyContainerExtensions.RegisterInstance$1(Neptuo.PresentationModels.Validation.MetadataValidatorCollection.ctor, Neptuo.DependencyContainerExtensions.RegisterInstance$1(Neptuo.PresentationModels.TypeModels.MetadataReaderService.ctor, this.get_DependencyContainer(), metadataReaders), validators), validators), bindingConverters), bindingConverters)), new Neptuo.Lifetimes.SingletonLifetime.ctor()), new Neptuo.Lifetimes.SingletonLifetime.ctor());
         },
         SetupMetadataReaderService: function (readerService){
         },
@@ -351,7 +351,7 @@ var Neptuo$TemplateEngine$Routing$TemplateRoute = {
                     toUpdate = value;
             }
             if (context.get_CustomValues().ContainsKey("Messages"))
-                Neptuo.DependencyContainerExtensions.RegisterInstance$1(Neptuo.TemplateEngine.Web.MessageStorage.ctor, childContainer, Cast(context.get_CustomValues().get_Item$$TKey("Messages"), Neptuo.TemplateEngine.Web.MessageStorage.ctor));
+                Neptuo.DependencyContainerExtensions.RegisterInstance$1(Neptuo.TemplateEngine.Providers.MessageStorage.ctor, childContainer, Cast(context.get_CustomValues().get_Item$$TKey("Messages"), Neptuo.TemplateEngine.Providers.MessageStorage.ctor));
             return new Neptuo.TemplateEngine.Routing.RouteData.ctor(context, new Neptuo.TemplateEngine.Routing.TemplateRouteHandler.ctor(this.get_Application().get_MainView(), viewPath, toUpdate, childContainer), new Neptuo.TemplateEngine.Routing.RouteValueDictionary.ctor());
         },
         MapView: function (url){
@@ -558,7 +558,7 @@ var Neptuo$TemplateEngine$Web$Application = {
             this.get_Router().AddRoute(new Neptuo.TemplateEngine.Routing.TemplateRoute.ctor(".aspx", this));
             this.set_UpdateViewNotifier(new Neptuo.TemplateEngine.Web.UpdateViewNotifier.ctor(this.get_MainView()));
             this.set_FormPostInvokers(new Neptuo.TemplateEngine.Web.QueueFormPostInvokerManager.ctor());
-            Neptuo.DependencyContainerExtensions.RegisterInstance$1(Neptuo.TemplateEngine.Routing.IRouter.ctor, Neptuo.DependencyContainerExtensions.RegisterInstance$1(Neptuo.TemplateEngine.Web.IMainView.ctor, Neptuo.DependencyContainerExtensions.RegisterInstance$1(Neptuo.TemplateEngine.Web.IHistoryState.ctor, Neptuo.DependencyContainerExtensions.RegisterInstance$1(Neptuo.TemplateEngine.Permissions.IPermissionProvider.ctor, Neptuo.DependencyContainerExtensions.RegisterInstance$1(Neptuo.TemplateEngine.Web.Controllers.IControllerRegistry.ctor, Neptuo.DependencyContainerExtensions.RegisterInstance$1(Neptuo.TemplateEngine.Navigation.Bootstrap.IFormUriRegistry.ctor, Neptuo.DependencyContainerExtensions.RegisterInstance$1(Neptuo.TemplateEngine.Navigation.IFormUriService.ctor, Neptuo.DependencyContainerExtensions.RegisterInstance$1(Neptuo.TemplateEngine.Web.GlobalNavigationCollection.ctor, Neptuo.DependencyContainerExtensions.RegisterInstance$1(Neptuo.TemplateEngine.Templates.IViewActivator.ctor, Neptuo.DependencyContainerExtensions.RegisterInstance$1(Neptuo.IGuidProvider.ctor, Neptuo.DependencyContainerExtensions.RegisterInstance$1(Neptuo.TemplateEngine.Templates.DataContextStorage.ctor, Neptuo.DependencyContainerExtensions.RegisterInstance$1(Neptuo.TemplateEngine.Templates.TemplateContentStorageStack.ctor, Neptuo.DependencyContainerExtensions.RegisterType$2$$IDependencyContainer(Neptuo.TemplateEngine.Templates.IRequestContext.ctor, Neptuo.TemplateEngine.Templates.CompositeRequestContext.ctor, Neptuo.DependencyContainerExtensions.RegisterType$2$$IDependencyContainer(Neptuo.TemplateEngine.Templates.IValueConverterService.ctor, Neptuo.TemplateEngine.Templates.ValueConverterService.ctor, Neptuo.DependencyContainerExtensions.RegisterType$2$$IDependencyContainer(Neptuo.TemplateEngine.Templates.IBindingManager.ctor, Neptuo.TemplateEngine.Templates.BindingManagerBase.ctor, Neptuo.DependencyContainerExtensions.RegisterType$2$$IDependencyContainer(Neptuo.TemplateEngine.Web.IParameterProvider.ctor, Neptuo.TemplateEngine.Web.RouteParameterProvider.ctor, Neptuo.DependencyContainerExtensions.RegisterType$2$$IDependencyContainer(Neptuo.TemplateEngine.Web.IParameterProviderFactory.ctor, Neptuo.TemplateEngine.Web.RouteParameterProviderFactory.ctor, Neptuo.DependencyContainerExtensions.RegisterInstance$1(Neptuo.TemplateEngine.Templates.ICurrentUrlProvider.ctor, Neptuo.DependencyContainerExtensions.RegisterInstance$1(Neptuo.Templates.IVirtualUrlProvider.ctor, Neptuo.DependencyContainerExtensions.RegisterType$2$$IDependencyContainer(Neptuo.TemplateEngine.IStackStorage$1.ctor, Neptuo.TemplateEngine.StackStorage$1.ctor, container), this), this)))))), new Neptuo.TemplateEngine.Templates.TemplateContentStorageStack.ctor()), new Neptuo.TemplateEngine.Templates.DataContextStorage.ctor()), new Neptuo.SequenceGuidProvider.ctor("guid", 1)), viewActivator), new Neptuo.TemplateEngine.Web.GlobalNavigationCollection.ctor()), formService), formService), new Neptuo.TemplateEngine.Web.Controllers.ControllerRegistryBase.ctor()), new Neptuo.TemplateEngine.Permissions.OptimisticPermissionProvider.ctor()), this.get_HistoryState()), this.get_MainView()), this.get_Router());
+            Neptuo.DependencyContainerExtensions.RegisterInstance$1(Neptuo.TemplateEngine.Routing.IRouter.ctor, Neptuo.DependencyContainerExtensions.RegisterInstance$1(Neptuo.TemplateEngine.Web.IMainView.ctor, Neptuo.DependencyContainerExtensions.RegisterInstance$1(Neptuo.TemplateEngine.Web.IHistoryState.ctor, Neptuo.DependencyContainerExtensions.RegisterInstance$1(Neptuo.TemplateEngine.Permissions.IPermissionProvider.ctor, Neptuo.DependencyContainerExtensions.RegisterInstance$1(Neptuo.TemplateEngine.Controllers.IControllerRegistry.ctor, Neptuo.DependencyContainerExtensions.RegisterInstance$1(Neptuo.TemplateEngine.Navigation.Bootstrap.IFormUriRegistry.ctor, Neptuo.DependencyContainerExtensions.RegisterInstance$1(Neptuo.TemplateEngine.Navigation.IFormUriService.ctor, Neptuo.DependencyContainerExtensions.RegisterInstance$1(Neptuo.TemplateEngine.Providers.GlobalNavigationCollection.ctor, Neptuo.DependencyContainerExtensions.RegisterInstance$1(Neptuo.TemplateEngine.Templates.IViewActivator.ctor, Neptuo.DependencyContainerExtensions.RegisterInstance$1(Neptuo.IGuidProvider.ctor, Neptuo.DependencyContainerExtensions.RegisterInstance$1(Neptuo.TemplateEngine.Templates.DataContextStorage.ctor, Neptuo.DependencyContainerExtensions.RegisterInstance$1(Neptuo.TemplateEngine.Templates.TemplateContentStorageStack.ctor, Neptuo.DependencyContainerExtensions.RegisterType$2$$IDependencyContainer(Neptuo.TemplateEngine.Templates.IRequestContext.ctor, Neptuo.TemplateEngine.Templates.CompositeRequestContext.ctor, Neptuo.DependencyContainerExtensions.RegisterType$2$$IDependencyContainer(Neptuo.TemplateEngine.Templates.IValueConverterService.ctor, Neptuo.TemplateEngine.Templates.ValueConverterService.ctor, Neptuo.DependencyContainerExtensions.RegisterType$2$$IDependencyContainer(Neptuo.TemplateEngine.Templates.IBindingManager.ctor, Neptuo.TemplateEngine.Templates.BindingManagerBase.ctor, Neptuo.DependencyContainerExtensions.RegisterType$2$$IDependencyContainer(Neptuo.TemplateEngine.Providers.IParameterProvider.ctor, Neptuo.TemplateEngine.Web.RouteParameterProvider.ctor, Neptuo.DependencyContainerExtensions.RegisterType$2$$IDependencyContainer(Neptuo.TemplateEngine.Providers.IParameterProviderFactory.ctor, Neptuo.TemplateEngine.Web.RouteParameterProviderFactory.ctor, Neptuo.DependencyContainerExtensions.RegisterInstance$1(Neptuo.TemplateEngine.Templates.ICurrentUrlProvider.ctor, Neptuo.DependencyContainerExtensions.RegisterInstance$1(Neptuo.Templates.IVirtualUrlProvider.ctor, Neptuo.DependencyContainerExtensions.RegisterType$2$$IDependencyContainer(Neptuo.TemplateEngine.IStackStorage$1.ctor, Neptuo.TemplateEngine.StackStorage$1.ctor, container), this), this)))))), new Neptuo.TemplateEngine.Templates.TemplateContentStorageStack.ctor()), new Neptuo.TemplateEngine.Templates.DataContextStorage.ctor()), new Neptuo.SequenceGuidProvider.ctor("guid", 1)), viewActivator), new Neptuo.TemplateEngine.Providers.GlobalNavigationCollection.ctor()), formService), formService), new Neptuo.TemplateEngine.Controllers.ControllerRegistryBase.ctor()), new Neptuo.TemplateEngine.Permissions.OptimisticPermissionProvider.ctor()), this.get_HistoryState()), this.get_MainView()), this.get_Router());
             return container;
         },
         RunBootstrapTasks: function (dependencyContainer){
@@ -588,11 +588,11 @@ var Neptuo$TemplateEngine$Web$Application = {
         },
         TryInvokeControllers: function (parameters){
             var container = this.get_DependencyContainer().CreateChildContainer();
-            Neptuo.DependencyContainerExtensions.RegisterInstance$1(Neptuo.TemplateEngine.Web.IParameterProvider.ctor, container, new Neptuo.TemplateEngine.Web.DictionaryParameterProvider.ctor(parameters));
-            var controllerRegistry = Neptuo.DependencyProviderExtensions.Resolve$1$$IDependencyProvider(Neptuo.TemplateEngine.Web.Controllers.IControllerRegistry.ctor, container);
-            var viewData = new Neptuo.TemplateEngine.Web.Controllers.ViewDataCollection.ctor();
-            var modelBinder = Neptuo.DependencyProviderExtensions.Resolve$1$$IDependencyProvider(Neptuo.TemplateEngine.Web.Controllers.Binders.IModelBinder.ctor, container);
-            var localNavigations = new Neptuo.TemplateEngine.Web.NavigationCollection.ctor();
+            Neptuo.DependencyContainerExtensions.RegisterInstance$1(Neptuo.TemplateEngine.Providers.IParameterProvider.ctor, container, new Neptuo.TemplateEngine.Web.DictionaryParameterProvider.ctor(parameters));
+            var controllerRegistry = Neptuo.DependencyProviderExtensions.Resolve$1$$IDependencyProvider(Neptuo.TemplateEngine.Controllers.IControllerRegistry.ctor, container);
+            var viewData = new Neptuo.TemplateEngine.Controllers.ViewDataCollection.ctor();
+            var modelBinder = Neptuo.DependencyProviderExtensions.Resolve$1$$IDependencyProvider(Neptuo.TemplateEngine.Providers.ModelBinders.IModelBinder.ctor, container);
+            var localNavigations = new Neptuo.TemplateEngine.Providers.NavigationCollection.ctor();
             var isControllerExecuted = false;
             var $it1 = parameters.GetEnumerator();
             while ($it1.MoveNext()){
@@ -607,7 +607,7 @@ var Neptuo$TemplateEngine$Web$Application = {
                     controller = $1.Value;
                     return $res;
                 }).call(this)){
-                    controller.Execute(new Neptuo.TemplateEngine.Web.Controllers.ControllerContext.ctor(key, viewData, modelBinder, localNavigations));
+                    controller.Execute(new Neptuo.TemplateEngine.Controllers.ControllerContext.ctor(key, viewData, modelBinder, localNavigations));
                     isControllerExecuted = true;
                 }
                 else {
@@ -620,7 +620,7 @@ var Neptuo$TemplateEngine$Web$Application = {
                         asyncController = $1.Value;
                         return $res;
                     }).call(this)){
-                        asyncController.ExecuteAsync(new Neptuo.TemplateEngine.Web.Controllers.ControllerContext.ctor(key, viewData, modelBinder, localNavigations));
+                        asyncController.ExecuteAsync(new Neptuo.TemplateEngine.Controllers.ControllerContext.ctor(key, viewData, modelBinder, localNavigations));
                         isControllerExecuted = true;
                     }
                 }
@@ -792,7 +792,7 @@ var Neptuo$TemplateEngine$Web$AsyncViewRenderer = {
         RenderView: function (){
             this.notifyService = new Neptuo.TemplateEngine.Web.AsyncNotifyService.ctor();
             var componentManager = new Neptuo.TemplateEngine.Templates.PartialUpdateComponentManager.ctor(this.get_ToUpdate());
-            Neptuo.DependencyContainerExtensions.RegisterInstance$1(Neptuo.TemplateEngine.Web.AsyncNotifyService.ctor, Neptuo.DependencyContainerExtensions.RegisterInstance$1(Neptuo.TemplateEngine.Web.NavigationCollection.ctor, Neptuo.DependencyContainerExtensions.RegisterInstance$1(Neptuo.TemplateEngine.Templates.IPartialUpdateWriter.ctor, Neptuo.DependencyContainerExtensions.RegisterInstance$1(Neptuo.Templates.IComponentManager.ctor, this.get_DependencyContainer(), componentManager), componentManager), new Neptuo.TemplateEngine.Web.NavigationCollection.ctor()), this.notifyService);
+            Neptuo.DependencyContainerExtensions.RegisterInstance$1(Neptuo.TemplateEngine.Web.AsyncNotifyService.ctor, Neptuo.DependencyContainerExtensions.RegisterInstance$1(Neptuo.TemplateEngine.Providers.NavigationCollection.ctor, Neptuo.DependencyContainerExtensions.RegisterInstance$1(Neptuo.TemplateEngine.Templates.IPartialUpdateWriter.ctor, Neptuo.DependencyContainerExtensions.RegisterInstance$1(Neptuo.Templates.IComponentManager.ctor, this.get_DependencyContainer(), componentManager), componentManager), new Neptuo.TemplateEngine.Providers.NavigationCollection.ctor()), this.notifyService);
             this.view = this.get_ViewActivator().CreateView(this.get_ViewPath());
             this.view.Setup(new Neptuo.Templates.BaseViewPage.ctor(componentManager), componentManager, this.get_DependencyContainer());
             this.view.CreateControls();
@@ -1404,7 +1404,7 @@ var Neptuo$TemplateEngine$Templates$DataSources$DataSourceProxy$1 = {
             this.set_UrlProvider(urlProvider);
             this.set_IsBindModel(true);
         },
-        ModelBinder$$: "Neptuo.TemplateEngine.Web.Controllers.Binders.IModelBinder",
+        ModelBinder$$: "Neptuo.TemplateEngine.Providers.ModelBinders.IModelBinder",
         get_ModelBinder: function (){
             return this._ModelBinder;
         },
@@ -1443,7 +1443,7 @@ var Neptuo$TemplateEngine$Templates$DataSources$DataSourceProxy$1 = {
                             return $res;
                         }).call(this)){
                             if (this.get_IsBindModel())
-                                model = Neptuo.TemplateEngine.Web.Controllers.Binders.ModelBinderExtensions.Bind$1$$IModelBinder$$T(this.TResultModel, this.get_ModelBinder(), model);
+                                model = Neptuo.TemplateEngine.Providers.ModelBinders.ModelBinderExtensions.Bind$1$$IModelBinder$$T(this.TResultModel, this.get_ModelBinder(), model);
                             callback(model);
                             return;
                         }
@@ -1468,7 +1468,7 @@ var Neptuo$TemplateEngine$Templates$DataSources$DataSourceProxy$1 = {
     },
     ctors: [{
         name: "ctor",
-        parameters: ["Neptuo.TemplateEngine.Web.Controllers.Binders.IModelBinder", "Neptuo.Templates.IVirtualUrlProvider"]
+        parameters: ["Neptuo.TemplateEngine.Providers.ModelBinders.IModelBinder", "Neptuo.Templates.IVirtualUrlProvider"]
     }
     ],
     IsAbstract: true
@@ -2134,7 +2134,7 @@ var Neptuo$TemplateEngine$Web$PartialResponseConverter = {
                 targetValue.Value = null;
                 return false;
             }
-            var messageStorage = new Neptuo.TemplateEngine.Web.MessageStorage.ctor();
+            var messageStorage = new Neptuo.TemplateEngine.Providers.MessageStorage.ctor();
             if (sourceValue["Messages"] != null){
                 var messages = sourceValue["Messages"];
                 for (var key in messages){
@@ -2338,7 +2338,7 @@ var Neptuo$TemplateEngine$Web$RouteParameterProviderFactory = {
     fullname: "Neptuo.TemplateEngine.Web.RouteParameterProviderFactory",
     baseTypeName: "System.Object",
     assemblyName: "Neptuo.TemplateEngine.Client",
-    interfaceNames: ["Neptuo.TemplateEngine.Web.IParameterProviderFactory"],
+    interfaceNames: ["Neptuo.TemplateEngine.Providers.IParameterProviderFactory"],
     Kind: "Class",
     definition: {
         ctor: function (routeContext){
@@ -2419,8 +2419,8 @@ var Neptuo$TemplateEngine$Templates$StaticViewActivator = {
     IsAbstract: false
 };
 JsTypes.push(Neptuo$TemplateEngine$Templates$StaticViewActivator);
-var Neptuo$TemplateEngine$Web$GeneratedViewBase = {
-    fullname: "Neptuo.TemplateEngine.Web.GeneratedViewBase",
+var Neptuo$TemplateEngine$Templates$GeneratedViewBase = {
+    fullname: "Neptuo.TemplateEngine.Templates.GeneratedViewBase",
     baseTypeName: "Neptuo.Templates.BaseGeneratedView",
     assemblyName: "Neptuo.TemplateEngine.Client",
     Kind: "Class",
@@ -2453,18 +2453,18 @@ var Neptuo$TemplateEngine$Web$GeneratedViewBase = {
     ],
     IsAbstract: true
 };
-JsTypes.push(Neptuo$TemplateEngine$Web$GeneratedViewBase);
+JsTypes.push(Neptuo$TemplateEngine$Templates$GeneratedViewBase);
 var Neptuo$TemplateEngine$Web$InitScript = {
     fullname: "Neptuo.TemplateEngine.Web.InitScript",
     baseTypeName: "System.Object",
     staticDefinition: {
         InvokeControllers: function (data){
             var container = Neptuo.TemplateEngine.Web.Application.get_Instance().get_DependencyContainer().CreateChildContainer();
-            Neptuo.DependencyContainerExtensions.RegisterInstance$1(Neptuo.TemplateEngine.Web.IParameterProvider.ctor, container, new Neptuo.TemplateEngine.Web.DictionaryParameterProvider.ctor(Neptuo.TemplateEngine.Web.InitScript.TransformParameters(data)));
-            var controllerRegistry = Neptuo.DependencyProviderExtensions.Resolve$1$$IDependencyProvider(Neptuo.TemplateEngine.Web.Controllers.IControllerRegistry.ctor, container);
-            var viewData = new Neptuo.TemplateEngine.Web.Controllers.ViewDataCollection.ctor();
-            var modelBinder = Neptuo.DependencyProviderExtensions.Resolve$1$$IDependencyProvider(Neptuo.TemplateEngine.Web.Controllers.Binders.IModelBinder.ctor, container);
-            var localNavigations = new Neptuo.TemplateEngine.Web.NavigationCollection.ctor();
+            Neptuo.DependencyContainerExtensions.RegisterInstance$1(Neptuo.TemplateEngine.Providers.IParameterProvider.ctor, container, new Neptuo.TemplateEngine.Web.DictionaryParameterProvider.ctor(Neptuo.TemplateEngine.Web.InitScript.TransformParameters(data)));
+            var controllerRegistry = Neptuo.DependencyProviderExtensions.Resolve$1$$IDependencyProvider(Neptuo.TemplateEngine.Controllers.IControllerRegistry.ctor, container);
+            var viewData = new Neptuo.TemplateEngine.Controllers.ViewDataCollection.ctor();
+            var modelBinder = Neptuo.DependencyProviderExtensions.Resolve$1$$IDependencyProvider(Neptuo.TemplateEngine.Providers.ModelBinders.IModelBinder.ctor, container);
+            var localNavigations = new Neptuo.TemplateEngine.Providers.NavigationCollection.ctor();
             var isControllerExecuted = false;
             for (var i = 0; i < data.length; i++){
                 var key = data[i]["name"];
@@ -2477,7 +2477,7 @@ var Neptuo$TemplateEngine$Web$InitScript = {
                     controller = $1.Value;
                     return $res;
                 })()){
-                    controller.Execute(new Neptuo.TemplateEngine.Web.Controllers.ControllerContext.ctor(key, viewData, modelBinder, localNavigations));
+                    controller.Execute(new Neptuo.TemplateEngine.Controllers.ControllerContext.ctor(key, viewData, modelBinder, localNavigations));
                     isControllerExecuted = true;
                 }
             }
