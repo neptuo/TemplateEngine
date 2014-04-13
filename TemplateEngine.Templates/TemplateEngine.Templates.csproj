@@ -151,9 +151,11 @@
     <Compile Include="IBindingManager.cs" />
     <Compile Include="IExtendedHtmlWriter.cs" />
     <Compile Include="IPartialUpdateWriter.cs" />
+    <Compile Include="IStackStorage.cs" />
     <Compile Include="IValueConverter.cs" />
     <Compile Include="IValueConverterService.cs" />
     <Compile Include="IViewActivator.cs" />
+    <Compile Include="LocalizationHelper.cs" />
     <Compile Include="Observers\Ajax\PartialObserver.cs" />
     <Compile Include="Observers\EventObserver.cs" />
     <Compile Include="Observers\HtmlObserver.cs" />
@@ -161,6 +163,7 @@
     <Compile Include="Observers\VisibleObserver.cs" />
     <Compile Include="PresentationConfiguration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StackStorage.cs" />
     <Compile Include="TemplateContentStorage.cs" />
     <Compile Include="TemplateContentStorageStack.cs" />
     <Compile Include="ValueConverterService.cs" />
