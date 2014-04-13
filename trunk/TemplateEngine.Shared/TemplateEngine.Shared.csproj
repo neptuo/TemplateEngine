@@ -57,10 +57,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IStackStorage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="StackStorage.cs" />
-    <Compile Include="Web\LocalizationHelper.cs" />
     <Compile Include="Web\Routing\TemplateRouteParameterBase.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -2875,6 +2875,15 @@ var Neptuo$TemplateEngine$Templates$IPartialUpdateWriter = {
     IsAbstract: true
 };
 JsTypes.push(Neptuo$TemplateEngine$Templates$IPartialUpdateWriter);
+var Neptuo$TemplateEngine$IStackStorage$1 = {
+    fullname: "Neptuo.TemplateEngine.IStackStorage$1",
+    baseTypeName: "System.Object",
+    assemblyName: "Neptuo.TemplateEngine.Templates",
+    Kind: "Interface",
+    ctors: [],
+    IsAbstract: true
+};
+JsTypes.push(Neptuo$TemplateEngine$IStackStorage$1);
 var Neptuo$TemplateEngine$Templates$IValueConverter = {
     fullname: "Neptuo.TemplateEngine.Templates.IValueConverter",
     baseTypeName: "System.Object",
@@ -2902,6 +2911,25 @@ var Neptuo$TemplateEngine$Templates$IViewActivator = {
     IsAbstract: true
 };
 JsTypes.push(Neptuo$TemplateEngine$Templates$IViewActivator);
+var Neptuo$TemplateEngine$Web$LocalizationHelper = {
+    fullname: "Neptuo.TemplateEngine.Web.LocalizationHelper",
+    baseTypeName: "System.Object",
+    staticDefinition: {
+        Translate: function (text){
+            return text;
+        }
+    },
+    assemblyName: "Neptuo.TemplateEngine.Templates",
+    Kind: "Class",
+    definition: {
+        ctor: function (){
+            System.Object.ctor.call(this);
+        }
+    },
+    ctors: [],
+    IsAbstract: true
+};
+JsTypes.push(Neptuo$TemplateEngine$Web$LocalizationHelper);
 var Neptuo$TemplateEngine$Templates$Observers$PartialObserver = {
     fullname: "Neptuo.TemplateEngine.Templates.Observers.PartialObserver",
     baseTypeName: "System.Object",
@@ -3187,6 +3215,44 @@ var Neptuo$TemplateEngine$Templates$PresentationConfiguration$1 = {
     IsAbstract: false
 };
 JsTypes.push(Neptuo$TemplateEngine$Templates$PresentationConfiguration$1);
+var Neptuo$TemplateEngine$StackStorage$1 = {
+    fullname: "Neptuo.TemplateEngine.StackStorage$1",
+    baseTypeName: "System.Object",
+    assemblyName: "Neptuo.TemplateEngine.Templates",
+    interfaceNames: ["Neptuo.TemplateEngine.IStackStorage$1"],
+    Kind: "Class",
+    definition: {
+        ctor: function (T){
+            this.T = T;
+            this._Stack = null;
+            System.Object.ctor.call(this);
+            this.set_Stack(new System.Collections.Generic.Stack$1.ctor(this.T));
+        },
+        Stack$$: "System.Collections.Generic.Stack`1[[`0]]",
+        get_Stack: function (){
+            return this._Stack;
+        },
+        set_Stack: function (value){
+            this._Stack = value;
+        },
+        Push: function (storage){
+            this.get_Stack().Push(storage);
+        },
+        Pop: function (){
+            return this.get_Stack().Pop();
+        },
+        Peek: function (){
+            return this.get_Stack().Peek();
+        }
+    },
+    ctors: [{
+        name: "ctor",
+        parameters: []
+    }
+    ],
+    IsAbstract: false
+};
+JsTypes.push(Neptuo$TemplateEngine$StackStorage$1);
 var Neptuo$TemplateEngine$Templates$TemplateContentStorage = {
     fullname: "Neptuo.TemplateEngine.Templates.TemplateContentStorage",
     baseTypeName: "System.Object",
