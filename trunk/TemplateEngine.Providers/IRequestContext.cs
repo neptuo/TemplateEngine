@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Neptuo.TemplateEngine.Templates
+namespace Neptuo.TemplateEngine.Providers
 {
     public interface IRequestContext : ICurrentUrlProvider, IVirtualUrlProvider, IParameterProviderFactory
     {

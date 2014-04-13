@@ -74,20 +74,97 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BindingManagerBase.cs" />
+    <Compile Include="CompositeRequestContext.cs" />
     <Compile Include="Controls\Ajax\PartialStartUpControl.cs" />
     <Compile Include="Controls\Ajax\PartialViewControl.cs" />
     <Compile Include="Controls\BundleControl.cs" />
+    <Compile Include="Controls\BundleControlBase.cs" />
+    <Compile Include="Controls\ContentControlBase.cs" />
+    <Compile Include="Controls\ControlBase.cs" />
+    <Compile Include="Controls\CssClassCollection.cs" />
+    <Compile Include="Controls\DesignData\HintAttribute.cs" />
+    <Compile Include="Controls\DesignData\SupportUiEventAttribute.cs" />
     <Compile Include="Controls\DetailViewControl.cs" />
+    <Compile Include="Controls\DoctypeControl.cs" />
     <Compile Include="Controls\DropDownListControl.cs" />
+    <Compile Include="Controls\FormItemControl.cs" />
+    <Compile Include="Controls\Forms\ButtonControl.cs" />
+    <Compile Include="Controls\Forms\CheckBoxControl.cs" />
+    <Compile Include="Controls\Forms\FormControlBase.cs" />
+    <Compile Include="Controls\Forms\FormInputControlBase.cs" />
+    <Compile Include="Controls\Forms\GetFormControl.cs" />
+    <Compile Include="Controls\Forms\HiddenBoxControl.cs" />
+    <Compile Include="Controls\Forms\IFormControl.cs" />
+    <Compile Include="Controls\Forms\PasswordBoxControl.cs" />
+    <Compile Include="Controls\Forms\PostFormControl.cs" />
+    <Compile Include="Controls\Forms\TextBoxControl.cs" />
+    <Compile Include="Controls\GenericContentControl.cs" />
+    <Compile Include="Controls\HtmlContentControlBase.cs" />
+    <Compile Include="Controls\HtmlControlBase.cs" />
+    <Compile Include="Controls\IHtmlAttributeCollection.cs" />
+    <Compile Include="Controls\IPaginationControl.cs" />
+    <Compile Include="Controls\ITextControl.cs" />
+    <Compile Include="Controls\IValueControl.cs" />
+    <Compile Include="Controls\LinkControl.cs" />
     <Compile Include="Controls\ListViewControl.cs" />
+    <Compile Include="Controls\LiteralControl.cs" />
+    <Compile Include="Controls\MessagePanelControl.cs" />
+    <Compile Include="Controls\NavigationControl.cs" />
+    <Compile Include="Controls\NavigationItem.cs" />
+    <Compile Include="Controls\OptionControl.cs" />
+    <Compile Include="Controls\PaginationControl.cs" />
+    <Compile Include="Controls\ParameterControl.cs" />
+    <Compile Include="Controls\Presentation\PresentationControlBase.cs" />
+    <Compile Include="Controls\Presentation\PresentationListControlBase.cs" />
     <Compile Include="Controls\SelectControl.cs" />
+    <Compile Include="Controls\SelectControlContext.cs" />
+    <Compile Include="Controls\SelectItem.cs" />
+    <Compile Include="Controls\Templates\ContentTemplate.cs" />
+    <Compile Include="Controls\Templates\ContentTemplateContent.cs" />
+    <Compile Include="Controls\Templates\DefaultTemplateAttribute.cs" />
+    <Compile Include="Controls\Templates\FileTemplate.cs" />
+    <Compile Include="Controls\Templates\ITemplate.cs" />
+    <Compile Include="Controls\Templates\ITemplateContent.cs" />
     <Compile Include="Controls\Templates\StringTemplate.cs" />
+    <Compile Include="Controls\Templates\TemplateContentControl.cs" />
+    <Compile Include="Controls\Templates\TemplateControl.cs" />
+    <Compile Include="Controls\Templates\TemplatePlaceholder.cs" />
+    <Compile Include="Controls\Templates\ViewTemplateBase.cs" />
+    <Compile Include="Controls\Templates\ViewTemplateContent.cs" />
+    <Compile Include="Controls\ViewBundleControl.cs" />
+    <Compile Include="DataContextStorage.cs" />
     <Compile Include="DataSources\IDataSource.cs" />
     <Compile Include="DataSources\IListDataSource.cs" />
+    <Compile Include="DataSources\IListResult.cs" />
     <Compile Include="DataSources\ListDataSourceBase.cs" />
+    <Compile Include="DataSources\ListResult.cs" />
     <Compile Include="DataSources\WebDataSourceAttribute.cs" />
+    <Compile Include="ExtendedHtmlTextWriter.cs" />
+    <Compile Include="Extensions\BindingExtension.cs" />
+    <Compile Include="Extensions\CurrentUrlExtension.cs" />
+    <Compile Include="Extensions\RequestExtension.cs" />
+    <Compile Include="Extensions\SwitchExtension.cs" />
+    <Compile Include="Extensions\TemplateBindingExtension.cs" />
     <Compile Include="GeneratedViewBase.cs" />
+    <Compile Include="HtmlWriterExtensions.cs" />
+    <Compile Include="IBindingManager.cs" />
+    <Compile Include="IExtendedHtmlWriter.cs" />
+    <Compile Include="IPartialUpdateWriter.cs" />
+    <Compile Include="IValueConverter.cs" />
+    <Compile Include="IValueConverterService.cs" />
+    <Compile Include="IViewActivator.cs" />
+    <Compile Include="Observers\Ajax\PartialObserver.cs" />
+    <Compile Include="Observers\EventObserver.cs" />
+    <Compile Include="Observers\HtmlObserver.cs" />
+    <Compile Include="Observers\IsPlaceholderObserver.cs" />
+    <Compile Include="Observers\VisibleObserver.cs" />
+    <Compile Include="PresentationConfiguration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TemplateContentStorage.cs" />
+    <Compile Include="TemplateContentStorageStack.cs" />
+    <Compile Include="ValueConverterService.cs" />
+    <Compile Include="ViewAttribute.cs" />
     <Compile Include="ViewServiceViewActivator.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -100,6 +177,10 @@
     <EmbeddedResource Include="Views\ListViewControl.Template.view" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\TemplateEngine.Navigation\TemplateEngine.Navigation.csproj">
+      <Project>{f16d8bc8-2191-498f-9950-dc8aa200b0ba}</Project>
+      <Name>TemplateEngine.Navigation</Name>
+    </ProjectReference>
     <ProjectReference Include="..\TemplateEngine.Providers\TemplateEngine.Providers.csproj">
       <Project>{30214616-7c89-467a-9147-7385e91aed13}</Project>
       <Name>TemplateEngine.Providers</Name>

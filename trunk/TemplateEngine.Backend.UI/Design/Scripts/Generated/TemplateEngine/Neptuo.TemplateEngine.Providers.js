@@ -273,6 +273,15 @@ var Neptuo$TemplateEngine$Providers$GlobalNavigationCollection = {
     IsAbstract: false
 };
 JsTypes.push(Neptuo$TemplateEngine$Providers$GlobalNavigationCollection);
+var Neptuo$TemplateEngine$Providers$ICurrentUrlProvider = {
+    fullname: "Neptuo.TemplateEngine.Providers.ICurrentUrlProvider",
+    baseTypeName: "System.Object",
+    assemblyName: "Neptuo.TemplateEngine.Providers",
+    Kind: "Interface",
+    ctors: [],
+    IsAbstract: true
+};
+JsTypes.push(Neptuo$TemplateEngine$Providers$ICurrentUrlProvider);
 var Neptuo$TemplateEngine$Providers$IParameterProvider = {
     fullname: "Neptuo.TemplateEngine.Providers.IParameterProvider",
     baseTypeName: "System.Object",
@@ -291,6 +300,16 @@ var Neptuo$TemplateEngine$Providers$IParameterProviderFactory = {
     IsAbstract: true
 };
 JsTypes.push(Neptuo$TemplateEngine$Providers$IParameterProviderFactory);
+var Neptuo$TemplateEngine$Providers$IRequestContext = {
+    fullname: "Neptuo.TemplateEngine.Providers.IRequestContext",
+    baseTypeName: "System.Object",
+    assemblyName: "Neptuo.TemplateEngine.Providers",
+    interfaceNames: ["Neptuo.TemplateEngine.Providers.ICurrentUrlProvider", "Neptuo.Templates.IVirtualUrlProvider", "Neptuo.TemplateEngine.Providers.IParameterProviderFactory"],
+    Kind: "Interface",
+    ctors: [],
+    IsAbstract: true
+};
+JsTypes.push(Neptuo$TemplateEngine$Providers$IRequestContext);
 var Neptuo$TemplateEngine$Providers$Message = {
     fullname: "Neptuo.TemplateEngine.Providers.Message",
     baseTypeName: "System.Object",

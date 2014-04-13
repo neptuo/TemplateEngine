@@ -104,9 +104,6 @@ namespace Neptuo.TemplateEngine.Backend.Bootstrap
 
         protected virtual void SetupTypeBuilderRegistry(TypeBuilderRegistry registry)
         {
-            registry.RegisterNamespace(new NamespaceDeclaration("ui", "Neptuo.TemplateEngine.Templates.Controls, Neptuo.TemplateEngine.Shared"));
-            registry.RegisterNamespace(new NamespaceDeclaration("", "Neptuo.TemplateEngine.Templates.Extensions, Neptuo.TemplateEngine.Shared"));
-
             registry.RegisterNamespace(new NamespaceDeclaration("ui", "Neptuo.TemplateEngine.Templates.Controls, Neptuo.TemplateEngine.Templates"));
             registry.RegisterNamespace(new NamespaceDeclaration("", "Neptuo.TemplateEngine.Templates.Extensions, Neptuo.TemplateEngine.Templates"));
             registry.RegisterComponentBuilder("ajax", "View", new DefaultTypeComponentBuilderFactory(typeof(PartialViewControl)));
