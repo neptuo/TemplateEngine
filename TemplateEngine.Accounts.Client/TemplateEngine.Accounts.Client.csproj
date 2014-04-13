@@ -110,6 +110,10 @@
       <Project>{a4c6627c-c21b-4bb7-93a4-b40ac748588d}</Project>
       <Name>TemplateEngine.Shared</Name>
     </ProjectReference>
+    <ProjectReference Include="..\TemplateEngine.Templates.Client\TemplateEngine.Templates.Client.csproj">
+      <Project>{6e0bcd94-e6d1-4f4d-bf0f-912ee279c09c}</Project>
+      <Name>TemplateEngine.Templates.Client</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
