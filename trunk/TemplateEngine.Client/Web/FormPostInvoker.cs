@@ -1,4 +1,5 @@
-﻿using Neptuo.TemplateEngine.Routing;
+﻿using Neptuo.TemplateEngine.Controllers;
+using Neptuo.TemplateEngine.Routing;
 using SharpKit.Html;
 using SharpKit.JavaScript;
 using SharpKit.jQuery;

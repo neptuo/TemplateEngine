@@ -104,10 +104,6 @@
       <Project>{ee534abf-10e8-467b-aa25-d8a39b6542b4}</Project>
       <Name>TemplateEngine.Templates</Name>
     </ProjectReference>
-    <ProjectReference Include="..\TemplateEngine.Web\TemplateEngine.Web - to remove.csproj">
-      <Project>{8095932d-ec0b-4990-90f1-951b7b5feeac}</Project>
-      <Name>TemplateEngine.Web - to remove</Name>
-    </ProjectReference>
     <ProjectReference Include="..\TemplateEngine\TemplateEngine.csproj">
       <Project>{0ddeef40-567f-49de-94ec-314309702534}</Project>
       <Name>TemplateEngine</Name>

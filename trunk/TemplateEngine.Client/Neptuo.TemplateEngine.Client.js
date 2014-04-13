@@ -188,61 +188,6 @@ var Neptuo$TemplateEngine$Bootstrap$PresentationModelBootstrapTask = {
     IsAbstract: false
 };
 JsTypes.push(Neptuo$TemplateEngine$Bootstrap$PresentationModelBootstrapTask);
-var Neptuo$TemplateEngine$Navigation$ClientNavigateTo = {
-    fullname: "Neptuo.TemplateEngine.Navigation.ClientNavigateTo",
-    baseTypeName: "Neptuo.TemplateEngine.Navigation.QueryStringNavigateTo",
-    assemblyName: "Neptuo.TemplateEngine.Client",
-    Kind: "Class",
-    definition: {
-        ctor: function (urlProvider, formUri, navigateToUrl){
-            this.navigateToUrl = null;
-            Neptuo.TemplateEngine.Navigation.QueryStringNavigateTo.ctor.call(this, urlProvider, formUri);
-            Neptuo.Guard.NotNull$$Object$$String(navigateToUrl, "navigateToUrl");
-            this.navigateToUrl = navigateToUrl;
-        },
-        NavigateToUrl: function (url){
-            this.navigateToUrl(url);
-        }
-    },
-    ctors: [{
-        name: "ctor",
-        parameters: ["Neptuo.Templates.IVirtualUrlProvider", "Neptuo.TemplateEngine.Navigation.FormUri", "System.Action"]
-    }
-    ],
-    IsAbstract: false
-};
-JsTypes.push(Neptuo$TemplateEngine$Navigation$ClientNavigateTo);
-var Neptuo$TemplateEngine$Navigation$ClientNavigator = {
-    fullname: "Neptuo.TemplateEngine.Navigation.ClientNavigator",
-    baseTypeName: "System.Object",
-    assemblyName: "Neptuo.TemplateEngine.Client",
-    interfaceNames: ["Neptuo.TemplateEngine.Navigation.INavigator"],
-    Kind: "Class",
-    definition: {
-        ctor: function (urlProvider, navigateToUrl){
-            this.urlProvider = null;
-            this.navigateToUrl = null;
-            System.Object.ctor.call(this);
-            Neptuo.Guard.NotNull$$Object$$String(urlProvider, "urlProvider");
-            Neptuo.Guard.NotNull$$Object$$String(navigateToUrl, "navigateToUrl");
-            this.urlProvider = urlProvider;
-            this.navigateToUrl = navigateToUrl;
-        },
-        Open: function (formUri){
-            this.NavigateTo(formUri).Open();
-        },
-        NavigateTo: function (formUri){
-            return new Neptuo.TemplateEngine.Navigation.ClientNavigateTo.ctor(this.urlProvider, formUri, this.navigateToUrl);
-        }
-    },
-    ctors: [{
-        name: "ctor",
-        parameters: ["Neptuo.Templates.IVirtualUrlProvider", "System.Action"]
-    }
-    ],
-    IsAbstract: false
-};
-JsTypes.push(Neptuo$TemplateEngine$Navigation$ClientNavigator);
 var Neptuo$TemplateEngine$Routing$ApplicationRouter = {
     fullname: "Neptuo.TemplateEngine.Routing.ApplicationRouter",
     baseTypeName: "Neptuo.TemplateEngine.Routing.Router",
@@ -801,7 +746,7 @@ var Neptuo$TemplateEngine$Web$ConverterBootstrapTask = {
             this.repository = Neptuo.Converts.get_Repository();
         },
         Initialize: function (){
-            this.repository.Add(Typeof(Object), Typeof(Neptuo.TemplateEngine.Web.PartialResponse.ctor), new Neptuo.TemplateEngine.Web.PartialResponseConverter.ctor());
+            this.repository.Add(Typeof(Object), Typeof(Neptuo.TemplateEngine.Controllers.PartialResponse.ctor), new Neptuo.TemplateEngine.Web.PartialResponseConverter.ctor());
         }
     },
     ctors: [{
@@ -920,7 +865,7 @@ var Neptuo$TemplateEngine$Web$FormPostInvoker = {
                 var $1 = {
                     Value: partialResponse
                 };
-                var $res = Neptuo.Converts.Try$2$$TSource$$TTarget(Object, Neptuo.TemplateEngine.Web.PartialResponse.ctor, response, $1);
+                var $res = Neptuo.Converts.Try$2$$TSource$$TTarget(Object, Neptuo.TemplateEngine.Controllers.PartialResponse.ctor, response, $1);
                 partialResponse = $1.Value;
                 return $res;
             }).call(this)){
@@ -1645,7 +1590,7 @@ var Neptuo$TemplateEngine$Web$PartialResponseConverter = {
                     }
                 }
             }
-            targetValue.Value = new Neptuo.TemplateEngine.Web.PartialResponse.ctor(messageStorage, sourceValue["Navigation"]);
+            targetValue.Value = new Neptuo.TemplateEngine.Controllers.PartialResponse.ctor(messageStorage, sourceValue["Navigation"]);
             return true;
         },
         TryConvertGeneral: function (sourceType, targetType, sourceValue, targetValue){

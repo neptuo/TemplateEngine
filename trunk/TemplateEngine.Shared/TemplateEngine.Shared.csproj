@@ -68,10 +68,7 @@
     <Compile Include="Templates\Controls\ViewBundleControl.cs" />
     <Compile Include="Templates\DataSources\IListResult.cs" />
     <Compile Include="Templates\DataSources\ListResult.cs" />
-    <Compile Include="Web\DictionaryParameterProvider.cs" />
     <Compile Include="Templates\HtmlWriterExtensions.cs" />
-    <Compile Include="Web\Navigation\QueryStringNavigateTo.cs" />
-    <Compile Include="Web\PartialResponse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StackStorage.cs" />
     <Compile Include="Templates\BindingManagerBase.cs" />
@@ -117,7 +114,6 @@
     <Compile Include="Templates\Controls\Templates\TemplatePlaceholder.cs" />
     <Compile Include="Templates\Controls\Templates\ViewTemplateBase.cs" />
     <Compile Include="Templates\Controls\Templates\ViewTemplateContent.cs" />
-    <Compile Include="Web\Converters\NullToBoolValueConverter.cs" />
     <Compile Include="Templates\DataContextStorage.cs" />
     <Compile Include="Templates\ExtendedHtmlTextWriter.cs" />
     <Compile Include="Templates\Extensions\BindingExtension.cs" />

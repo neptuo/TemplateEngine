@@ -106,6 +106,24 @@ var Neptuo$TemplateEngine$Templates$DataSources$ListDataSourceBase$1 = {
     IsAbstract: true
 };
 JsTypes.push(Neptuo$TemplateEngine$Templates$DataSources$ListDataSourceBase$1);
+var Neptuo$TemplateEngine$Web$DataSources$WebDataSourceAttribute = {
+    fullname: "Neptuo.TemplateEngine.Web.DataSources.WebDataSourceAttribute",
+    baseTypeName: "System.Attribute",
+    assemblyName: "Neptuo.TemplateEngine.Templates",
+    Kind: "Class",
+    definition: {
+        ctor: function (){
+            System.Attribute.ctor.call(this);
+        }
+    },
+    ctors: [{
+        name: "ctor",
+        parameters: []
+    }
+    ],
+    IsAbstract: false
+};
+JsTypes.push(Neptuo$TemplateEngine$Web$DataSources$WebDataSourceAttribute);
 var Neptuo$TemplateEngine$Templates$ViewServiceViewActivator = {
     fullname: "Neptuo.TemplateEngine.Templates.ViewServiceViewActivator",
     baseTypeName: "System.Object",
