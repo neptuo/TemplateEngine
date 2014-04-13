@@ -39,6 +39,9 @@
     <Reference Include="Neptuo.PresentationModels.TypeModels">
       <HintPath>..\References\Neptuo.PresentationModels.TypeModels.dll</HintPath>
     </Reference>
+    <Reference Include="Neptuo.Templates.Components">
+      <HintPath>..\References\Neptuo.Templates.Components.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -54,8 +57,10 @@
     <Compile Include="Binders\ModelBinderExtensions.cs" />
     <Compile Include="DictionaryParameterProvider.cs" />
     <Compile Include="GlobalNavigationCollection.cs" />
+    <Compile Include="ICurrentUrlProvider.cs" />
     <Compile Include="IParameterProvider.cs" />
     <Compile Include="IParameterProviderFactory.cs" />
+    <Compile Include="IRequestContext.cs" />
     <Compile Include="Message.cs" />
     <Compile Include="MessageStorage.cs" />
     <Compile Include="MessageStorageExtensions.cs" />

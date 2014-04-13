@@ -1,4 +1,5 @@
-﻿using Neptuo.Templates;
+﻿using Neptuo.TemplateEngine.Providers;
+using Neptuo.Templates;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,12 +8,12 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Templates.Controls
 {
-    public class GetFormControl : HtmlContentControlBase
+    public class PostFormControl : HtmlContentControlBase
     {
-        public GetFormControl(IComponentManager componentManager, ICurrentUrlProvider urlProvider)
+        public PostFormControl(IComponentManager componentManager, ICurrentUrlProvider urlProvider)
             : base(componentManager, "form")
         {
-            Attributes["method"] = "get";
+            Attributes["method"] = "post";
             Attributes["action"] = urlProvider.GetCurrentUrl();
         }
     }

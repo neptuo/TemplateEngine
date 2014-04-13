@@ -348,7 +348,7 @@ var Neptuo$TemplateEngine$Templates$Controls$ListViewControl = {
         set_TotalCount: function (value){
             this._TotalCount = value;
         },
-        RequestContext$$: "Neptuo.TemplateEngine.Templates.IRequestContext",
+        RequestContext$$: "Neptuo.TemplateEngine.Providers.IRequestContext",
         get_RequestContext: function (){
             return this._RequestContext;
         },
@@ -445,7 +445,7 @@ var Neptuo$TemplateEngine$Templates$Controls$ListViewControl = {
     },
     ctors: [{
         name: "ctor",
-        parameters: ["Neptuo.TemplateEngine.Templates.IRequestContext", "Neptuo.TemplateEngine.Templates.TemplateContentStorageStack", "Neptuo.TemplateEngine.Templates.DataContextStorage", "Neptuo.TemplateEngine.Web.PartialUpdateHelper"]
+        parameters: ["Neptuo.TemplateEngine.Providers.IRequestContext", "Neptuo.TemplateEngine.Templates.TemplateContentStorageStack", "Neptuo.TemplateEngine.Templates.DataContextStorage", "Neptuo.TemplateEngine.Web.PartialUpdateHelper"]
     }
     ],
     IsAbstract: false

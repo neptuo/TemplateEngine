@@ -1,4 +1,5 @@
-﻿using Neptuo.TemplateEngine.Templates.DataSources;
+﻿using Neptuo.TemplateEngine.Providers;
+using Neptuo.TemplateEngine.Templates.DataSources;
 using Neptuo.Templates;
 using System;
 using System.Collections;
