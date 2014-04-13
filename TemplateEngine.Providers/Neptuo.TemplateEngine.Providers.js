@@ -189,6 +189,54 @@ var Neptuo$TemplateEngine$Providers$ModelBinders$ModelBinderExtensions = {
     IsAbstract: true
 };
 JsTypes.push(Neptuo$TemplateEngine$Providers$ModelBinders$ModelBinderExtensions);
+var Neptuo$TemplateEngine$Web$DictionaryParameterProvider = {
+    fullname: "Neptuo.TemplateEngine.Web.DictionaryParameterProvider",
+    baseTypeName: "System.Object",
+    assemblyName: "Neptuo.TemplateEngine.Providers",
+    interfaceNames: ["Neptuo.TemplateEngine.Providers.IParameterProvider"],
+    Kind: "Class",
+    definition: {
+        ctor: function (parameters){
+            this._Parameters = null;
+            System.Object.ctor.call(this);
+            this.set_Parameters(parameters);
+        },
+        Parameters$$: "System.Collections.Generic.Dictionary`2[[System.String],[System.String]]",
+        get_Parameters: function (){
+            return this._Parameters;
+        },
+        set_Parameters: function (value){
+            this._Parameters = value;
+        },
+        Keys$$: "System.Collections.Generic.IEnumerable`1[[System.String]]",
+        get_Keys: function (){
+            return this.get_Parameters().get_Keys();
+        },
+        TryGet: function (key, value){
+            var targetValue;
+            if ((function (){
+                var $1 = {
+                    Value: targetValue
+                };
+                var $res = this.get_Parameters().TryGetValue(key, $1);
+                targetValue = $1.Value;
+                return $res;
+            }).call(this)){
+                value.Value = targetValue;
+                return true;
+            }
+            value.Value = null;
+            return false;
+        }
+    },
+    ctors: [{
+        name: "ctor",
+        parameters: ["System.Collections.Generic.Dictionary"]
+    }
+    ],
+    IsAbstract: false
+};
+JsTypes.push(Neptuo$TemplateEngine$Web$DictionaryParameterProvider);
 var Neptuo$TemplateEngine$Providers$GlobalNavigationCollection = {
     fullname: "Neptuo.TemplateEngine.Providers.GlobalNavigationCollection",
     baseTypeName: "System.Object",

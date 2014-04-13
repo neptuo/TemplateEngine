@@ -589,6 +589,42 @@ var Neptuo$TemplateEngine$Controllers$ModelControllerFactory$1 = {
     IsAbstract: false
 };
 JsTypes.push(Neptuo$TemplateEngine$Controllers$ModelControllerFactory$1);
+var Neptuo$TemplateEngine$Controllers$PartialResponse = {
+    fullname: "Neptuo.TemplateEngine.Controllers.PartialResponse",
+    baseTypeName: "System.Object",
+    assemblyName: "Neptuo.TemplateEngine.Controllers",
+    Kind: "Class",
+    definition: {
+        ctor: function (messages, navigation){
+            this._Messages = null;
+            this._Navigation = null;
+            System.Object.ctor.call(this);
+            this.set_Messages(messages);
+            this.set_Navigation(navigation);
+        },
+        Messages$$: "Neptuo.TemplateEngine.Providers.MessageStorage",
+        get_Messages: function (){
+            return this._Messages;
+        },
+        set_Messages: function (value){
+            this._Messages = value;
+        },
+        Navigation$$: "System.String",
+        get_Navigation: function (){
+            return this._Navigation;
+        },
+        set_Navigation: function (value){
+            this._Navigation = value;
+        }
+    },
+    ctors: [{
+        name: "ctor",
+        parameters: ["Neptuo.TemplateEngine.Providers.MessageStorage", "System.String"]
+    }
+    ],
+    IsAbstract: false
+};
+JsTypes.push(Neptuo$TemplateEngine$Controllers$PartialResponse);
 var Neptuo$TemplateEngine$Controllers$TransactionalAttribute = {
     fullname: "Neptuo.TemplateEngine.Controllers.TransactionalAttribute",
     baseTypeName: "System.Attribute",

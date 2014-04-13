@@ -1,4 +1,5 @@
 ﻿using Neptuo.ComponentModel.Converters;
+using Neptuo.TemplateEngine.Controllers;
 using Neptuo.TemplateEngine.Providers;
 using SharpKit.JavaScript;
 using System;
@@ -9,9 +10,9 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Web
 {
-    public class PartialResponseConverter : IConverter<JsObject, PartialResponse>
+    public class PartialResponseConverter : ConverterBase<JsObject, PartialResponse>
     {
-        public bool TryConvert(JsObject sourceValue, out PartialResponse targetValue)
+        public override bool TryConvert(JsObject sourceValue, out PartialResponse targetValue)
         {
             if (sourceValue == null)
             {
@@ -36,19 +37,6 @@ namespace Neptuo.TemplateEngine.Web
 
             targetValue = new PartialResponse(messageStorage, sourceValue["Navigation"].As<string>());
             return true;
-        }
-
-        public bool TryConvertGeneral(Type sourceType, Type targetType, object sourceValue, out object targetValue)
-        {
-            PartialResponse target;
-            if (TryConvert((JsObject)sourceValue, out target))
-            {
-                targetValue = target;
-                return true;
-            }
-
-            targetValue = null;
-            return false;
         }
     }
 }

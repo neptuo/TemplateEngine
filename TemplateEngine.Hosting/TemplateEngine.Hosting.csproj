@@ -63,9 +63,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Navigation\QueryStringNavigateTo.cs" />
+    <Compile Include="Navigation\RedirectNavigateTo.cs" />
+    <Compile Include="Navigation\RedirectNavigator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RequestParameterProvider.cs" />
     <Compile Include="RequestParameterProviderFactory.cs" />
+    <Compile Include="ViewBundles\GreedyViewBundle.cs" />
+    <Compile Include="ViewBundles\IViewBundle.cs" />
+    <Compile Include="ViewBundles\IViewBundleCollection.cs" />
+    <Compile Include="ViewBundles\ViewBundle.cs" />
+    <Compile Include="ViewBundles\ViewBundleCollection.cs" />
+    <Compile Include="ViewBundles\ViewBundleTable.cs" />
+    <Compile Include="ViewBundles\XmlViewBundleLoader.cs" />
     <Compile Include="Web\DataSources\DictionaryWebDataSourceRegistry.cs" />
     <Compile Include="Web\DataSources\IWebDataSourceRegistry.cs" />
     <Compile Include="Web\DataSources\WebDataSourceRegistryExtensions.cs" />
@@ -100,10 +110,6 @@
     <ProjectReference Include="..\TemplateEngine.Web.Compilation\TemplateEngine.Templates.Compilation.csproj">
       <Project>{f116d6f7-e47c-4c73-a802-4f61ba50857f}</Project>
       <Name>TemplateEngine.Templates.Compilation</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\TemplateEngine.Web\TemplateEngine.Web - to remove.csproj">
-      <Project>{8095932d-ec0b-4990-90f1-951b7b5feeac}</Project>
-      <Name>TemplateEngine.Web - to remove</Name>
     </ProjectReference>
     <ProjectReference Include="..\TemplateEngine\TemplateEngine.csproj">
       <Project>{0ddeef40-567f-49de-94ec-314309702534}</Project>
