@@ -49,20 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IUserAccountRepository.cs" />
-    <Compile Include="IUserRoleRepository.cs" />
-    <Compile Include="MemoryUserAccountRepository.cs" />
-    <Compile Include="MemoryUserRoleRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Queries\IUserAccountFilter.cs" />
-    <Compile Include="Queries\IUserAccountQuery.cs" />
-    <Compile Include="Queries\IUserRoleFilter.cs" />
-    <Compile Include="Queries\IUserRoleQuery.cs" />
-    <Compile Include="UserAccount.cs" />
-    <Compile Include="UserAccountDataService.cs" />
-    <Compile Include="Queries\UserAccountFilter.cs" />
-    <Compile Include="Queries\UserRoleFilter.cs" />
-    <Compile Include="UserRole.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

@@ -84,10 +84,6 @@
       <Project>{6dd08b12-15bd-4eb3-8273-da33c59b71c3}</Project>
       <Name>TemplateEngine.Accounts.Data.Entity</Name>
     </ProjectReference>
-    <ProjectReference Include="..\TemplateEngine.Accounts.Data\TemplateEngine.Accounts.Data.csproj">
-      <Project>{81a511cb-e52e-4fd8-91fc-e0b3fa6eeb3e}</Project>
-      <Name>TemplateEngine.Accounts.Data</Name>
-    </ProjectReference>
     <ProjectReference Include="..\TemplateEngine.Accounts.Shared\TemplateEngine.Accounts.Shared.csproj">
       <Project>{bd9ba2ab-c026-4c9f-8605-920d24987756}</Project>
       <Name>TemplateEngine.Accounts.Shared</Name>
