@@ -12,7 +12,6 @@ using Neptuo.Lifetimes.Mapping;
 using Neptuo.TemplateEngine.Accounts.Bootstrap;
 using Neptuo.TemplateEngine.Accounts.Data.Entity;
 using Neptuo.TemplateEngine.Backend.Bootstrap;
-using Neptuo.TemplateEngine.Permissions;
 using Neptuo.TemplateEngine.Web;
 using Neptuo.TemplateEngine.Controllers;
 using Neptuo.TemplateEngine.Web.DataSources;
@@ -30,6 +29,7 @@ using System.Web.Routing;
 using System.Web.Security;
 using System.Web.SessionState;
 using Neptuo.TemplateEngine.Providers;
+using Neptuo.TemplateEngine.Security;
 
 namespace Neptuo.TemplateEngine.Backend.UI
 {

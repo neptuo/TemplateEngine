@@ -12,7 +12,6 @@
   <Merge Filename="Design/Scripts/Generated/TemplateEngine/Neptuo.TemplateEngine.Routing.Client.js" Sources="../TemplateEngine.Routing.Client/Neptuo.TemplateEngine.Routing.Client.js" />
   <Merge Filename="Design/Scripts/Generated/TemplateEngine/Neptuo.TemplateEngine.Client.js" Sources="../TemplateEngine.Client/Neptuo.TemplateEngine.Client.js" />
   <Merge Filename="Design/Scripts/Generated/TemplateEngine/Neptuo.TemplateEngine.Navigation.js" Sources="../TemplateEngine.Navigation/Neptuo.TemplateEngine.Navigation.js" />
-  <Merge Filename="Design/Scripts/Generated/TemplateEngine/Neptuo.TemplateEngine.Permissions.js" Sources="../TemplateEngine.Permissions/Neptuo.TemplateEngine.Permissions.js" />
 
   <Merge Filename="Design/Scripts/Generated/TemplateEngine/Accounts/Neptuo.TemplateEngine.Accounts.Shared.js" Sources="../TemplateEngine.Accounts.Shared/Neptuo.TemplateEngine.Accounts.Shared.js" />
   <Merge Filename="Design/Scripts/Generated/TemplateEngine/Accounts/Neptuo.TemplateEngine.Accounts.Client.js" Sources="../TemplateEngine.Accounts.Client/Neptuo.TemplateEngine.Accounts.Client.js" />

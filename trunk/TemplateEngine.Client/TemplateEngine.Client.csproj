@@ -131,10 +131,6 @@
       <Project>{f16d8bc8-2191-498f-9950-dc8aa200b0ba}</Project>
       <Name>TemplateEngine.Navigation</Name>
     </ProjectReference>
-    <ProjectReference Include="..\TemplateEngine.Permissions\TemplateEngine.Permissions.csproj">
-      <Project>{e5c314ff-89ba-489e-bc2a-df8701a8c3f1}</Project>
-      <Name>TemplateEngine.Permissions</Name>
-    </ProjectReference>
     <ProjectReference Include="..\TemplateEngine.PresentationModels\TemplateEngine.PresentationModels.csproj">
       <Project>{b064bdbc-3755-4110-8eb7-6add2535d9fd}</Project>
       <Name>TemplateEngine.PresentationModels</Name>

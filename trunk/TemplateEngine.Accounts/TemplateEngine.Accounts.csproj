@@ -69,9 +69,9 @@
     <Compile Include="Data\Queries\IUserRoleQuery.cs" />
     <Compile Include="Data\Queries\UserAccountFilter.cs" />
     <Compile Include="Data\Queries\UserRoleFilter.cs" />
-    <Compile Include="Data\UserAccount.cs" />
+    <Compile Include="UserAccount.cs" />
     <Compile Include="Data\UserAccountDataService.cs" />
-    <Compile Include="Data\UserRole.cs" />
+    <Compile Include="UserRole.cs" />
     <Compile Include="IAuthenticator.cs" />
     <Compile Include="PasswordProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

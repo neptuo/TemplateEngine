@@ -6,7 +6,6 @@ using Neptuo.ObjectBuilder;
 using Neptuo.ObjectBuilder.Lifetimes.Mapping;
 using Neptuo.TemplateEngine.Navigation;
 using Neptuo.TemplateEngine.Navigation.Bootstrap;
-using Neptuo.TemplateEngine.Permissions;
 using Neptuo.TemplateEngine.PresentationModels;
 using Neptuo.TemplateEngine.Routing;
 using Neptuo.TemplateEngine.Templates;
@@ -109,7 +108,6 @@ namespace Neptuo.TemplateEngine.Web
                 .RegisterInstance<IFormUriRegistry>(formService)
 
                 .RegisterInstance<IControllerRegistry>(new ControllerRegistryBase())
-                .RegisterInstance<IPermissionProvider>(new OptimisticPermissionProvider())
 
                 .RegisterInstance<IHistoryState>(HistoryState)
                 .RegisterInstance<IMainView>(MainView)
