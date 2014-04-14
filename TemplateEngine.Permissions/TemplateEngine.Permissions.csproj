@@ -39,10 +39,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IPermissionProvider.cs" />
-    <Compile Include="IPermissionSet.cs" />
-    <Compile Include="OptimisticPermissionProvider.cs" />
-    <Compile Include="OptimisticPermissionSet.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

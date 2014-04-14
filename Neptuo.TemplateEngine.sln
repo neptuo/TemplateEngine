@@ -38,8 +38,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TemplateEngine.Templates.Co
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TemplateEngine.Navigation", "TemplateEngine.Navigation\TemplateEngine.Navigation.csproj", "{F16D8BC8-2191-498F-9950-DC8AA200B0BA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TemplateEngine.Permissions", "TemplateEngine.Permissions\TemplateEngine.Permissions.csproj", "{E5C314FF-89BA-489E-BC2A-DF8701A8C3F1}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TemplateEngine.Client", "TemplateEngine.Client\TemplateEngine.Client.csproj", "{7DF11E7B-E7FE-4EBB-A707-C592A230DF54}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TemplateEngine.PresentationModels", "TemplateEngine.PresentationModels\TemplateEngine.PresentationModels.csproj", "{B064BDBC-3755-4110-8EB7-6ADD2535D9FD}"
@@ -118,10 +116,6 @@ Global
 		{F16D8BC8-2191-498F-9950-DC8AA200B0BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F16D8BC8-2191-498F-9950-DC8AA200B0BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F16D8BC8-2191-498F-9950-DC8AA200B0BA}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E5C314FF-89BA-489E-BC2A-DF8701A8C3F1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E5C314FF-89BA-489E-BC2A-DF8701A8C3F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E5C314FF-89BA-489E-BC2A-DF8701A8C3F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E5C314FF-89BA-489E-BC2A-DF8701A8C3F1}.Release|Any CPU.Build.0 = Release|Any CPU
 		{7DF11E7B-E7FE-4EBB-A707-C592A230DF54}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{7DF11E7B-E7FE-4EBB-A707-C592A230DF54}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7DF11E7B-E7FE-4EBB-A707-C592A230DF54}.Release|Any CPU.ActiveCfg = Release|Any CPU

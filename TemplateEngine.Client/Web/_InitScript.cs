@@ -7,7 +7,6 @@ using Neptuo.ObjectBuilder;
 using Neptuo.ObjectBuilder.Lifetimes.Mapping;
 using Neptuo.TemplateEngine.Navigation;
 using Neptuo.TemplateEngine.Navigation.Bootstrap;
-using Neptuo.TemplateEngine.Permissions;
 using Neptuo.TemplateEngine.PresentationModels;
 using Neptuo.TemplateEngine.Routing;
 using Neptuo.TemplateEngine.Controllers;
