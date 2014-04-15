@@ -520,22 +520,8 @@ var Neptuo$TemplateEngine$Web$Application = {
                     controller = $1.Value;
                     return $res;
                 }).call(this)){
-                    controller.Execute(new Neptuo.TemplateEngine.Controllers.ControllerContext.ctor(key, modelBinder, localNavigations, messageStorage));
+                    controller.Execute(new Neptuo.TemplateEngine.Controllers.ControllerContext.ctor(key, modelBinder, container, localNavigations, messageStorage));
                     isControllerExecuted = true;
-                }
-                else {
-                    var asyncController;
-                    if ((function (){
-                        var $1 = {
-                            Value: asyncController
-                        };
-                        var $res = controllerRegistry.TryGetAsync(key, $1);
-                        asyncController = $1.Value;
-                        return $res;
-                    }).call(this)){
-                        asyncController.ExecuteAsync(new Neptuo.TemplateEngine.Controllers.ControllerContext.ctor(key, modelBinder, localNavigations, messageStorage));
-                        isControllerExecuted = true;
-                    }
                 }
             }
             return isControllerExecuted;
@@ -1738,7 +1724,7 @@ var Neptuo$TemplateEngine$Web$InitScript = {
                     controller = $1.Value;
                     return $res;
                 })()){
-                    controller.Execute(new Neptuo.TemplateEngine.Controllers.ControllerContext.ctor(key, modelBinder, localNavigations, messageStorage));
+                    controller.Execute(new Neptuo.TemplateEngine.Controllers.ControllerContext.ctor(key, modelBinder, container, localNavigations, messageStorage));
                     isControllerExecuted = true;
                 }
             }

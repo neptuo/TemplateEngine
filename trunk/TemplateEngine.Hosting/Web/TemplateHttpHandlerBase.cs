@@ -98,7 +98,7 @@ namespace Neptuo.TemplateEngine.Backend.Web
             {
                 IController controller;
                 if (registry.TryGet(key, out controller))
-                    controller.Execute(new ControllerContext(key, modelBinder, navigations, messageStorage));
+                    controller.Execute(new ControllerContext(key, modelBinder, dependencyContainer, navigations, messageStorage));
             }
         }
 
