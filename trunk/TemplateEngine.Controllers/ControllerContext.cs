@@ -11,21 +11,21 @@ namespace Neptuo.TemplateEngine.Controllers
     public class ControllerContext : IControllerContext
     {
         public string ActionName { get; private set; }
-        public IViewData ViewData { get; private set; }
         public IModelBinder ModelBinder { get; private set; }
         public NavigationCollection Navigations { get; private set; }
+        public MessageStorage Messages { get; private set; }
 
-        public ControllerContext(string action, IViewData viewData, IModelBinder modelBinder, NavigationCollection navigations)
+        public ControllerContext(string action, IModelBinder modelBinder, NavigationCollection navigations, MessageStorage messages)
         {
             Guard.NotNull(action, "action");
-            Guard.NotNull(viewData, "viewData");
             Guard.NotNull(modelBinder, "modelBinder");
             Guard.NotNull(navigations, "navigations");
+            Guard.NotNull(messages, "messages");
 
             ActionName = action;
-            ViewData = viewData;
             ModelBinder = modelBinder;
             Navigations = navigations;
+            Messages = messages;
         }
     }
 }

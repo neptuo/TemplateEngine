@@ -33,9 +33,9 @@ namespace Neptuo.TemplateEngine.Web
             container.RegisterInstance<IParameterProvider>(new DictionaryParameterProvider(TransformParameters(data)));
 
             IControllerRegistry controllerRegistry = container.Resolve<IControllerRegistry>();
-            ViewDataCollection viewData = new ViewDataCollection();
             IModelBinder modelBinder = container.Resolve<IModelBinder>();
             NavigationCollection localNavigations = new NavigationCollection();
+            MessageStorage messageStorage = container.Resolve<MessageStorage>();
             bool isControllerExecuted = false;
 
             for (int i = 0; i < data.length; i++)
@@ -45,7 +45,7 @@ namespace Neptuo.TemplateEngine.Web
                 IController controller;
                 if (controllerRegistry.TryGet(key, out controller))
                 {
-                    controller.Execute(new ControllerContext(key, viewData, modelBinder, localNavigations));
+                    controller.Execute(new ControllerContext(key, modelBinder, localNavigations, messageStorage));
                     isControllerExecuted = true;
                 }
             }

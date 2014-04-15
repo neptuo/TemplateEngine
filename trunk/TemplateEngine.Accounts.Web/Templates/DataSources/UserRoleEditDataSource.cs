@@ -11,7 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Neptuo.TemplateEngine.Web.DataSources;
 
-namespace Neptuo.TemplateEngine.Accounts.Web.DataSources
+namespace Neptuo.TemplateEngine.Accounts.Templates.DataSources
 {
     [WebDataSource]
     public class UserRoleEditDataSource : IDataSource

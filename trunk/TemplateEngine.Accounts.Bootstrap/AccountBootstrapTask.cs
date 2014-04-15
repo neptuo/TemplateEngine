@@ -3,13 +3,11 @@ using Neptuo.Commands.Handlers;
 using Neptuo.Lifetimes;
 using Neptuo.TemplateEngine.Accounts;
 using Neptuo.TemplateEngine.Accounts.Commands;
-using Neptuo.TemplateEngine.Accounts.Commands.Handlers;
 using Neptuo.TemplateEngine.Accounts.Data;
 using Neptuo.TemplateEngine.Accounts.Data.Entity;
 using Neptuo.TemplateEngine.Accounts.Data.Entity.Queries;
 using Neptuo.TemplateEngine.Accounts.Data.Queries;
 using Neptuo.TemplateEngine.Accounts.Web.Controllers;
-using Neptuo.TemplateEngine.Accounts.Web.DataSources;
 using Neptuo.TemplateEngine.Navigation;
 using Neptuo.TemplateEngine.Navigation.Bootstrap;
 using Neptuo.TemplateEngine.Web;
@@ -37,6 +35,7 @@ using Neptuo.Events.Handlers;
 using Neptuo.TemplateEngine.Security.Events;
 using System.Data.Entity;
 using Neptuo.TemplateEngine.Accounts.Bootstrap.Data.Entity;
+using Neptuo.TemplateEngine.Accounts.Web.Validation;
 
 namespace Neptuo.TemplateEngine.Accounts.Bootstrap
 {
@@ -111,35 +110,29 @@ namespace Neptuo.TemplateEngine.Accounts.Bootstrap
                 .RegisterType<IUserAccountQuery, EntityUserAccountQuery>()
                 .RegisterType<IActivator<UserAccount>, EntityUserAccountRepository>(new PerRequestLifetime())
                 .RegisterActivator<IUserAccountQuery>(new PerRequestLifetime())
-
-                .RegisterCommandHandler<UserAccountCreateCommand, UserAccountCreateCommandHandler>()
-                .RegisterCommandHandler<UserAccountEditCommand, UserAccountEditCommandHandler>()
-                .RegisterCommandHandler<UserAccountDeleteCommand, UserAccountDeleteCommandHandler>()
+                .RegisterType<IValidator<UserAccountCreateCommand>, UserAccountValidator>()
+                .RegisterType<IValidator<UserAccountEditCommand>, UserAccountValidator>()
 
                 .RegisterType<IUserRoleRepository, EntityUserRoleRepository>(new PerRequestLifetime())
                 .RegisterType<IUserRoleQuery, EntityUserRoleQuery>()
                 .RegisterType<IActivator<UserRole>, EntityUserRoleRepository>(new PerRequestLifetime())
                 .RegisterActivator<IUserRoleQuery>(new PerRequestLifetime())
+                .RegisterType<IValidator<UserRoleCreateCommand>, UserRoleValidator>()
+                .RegisterType<IValidator<UserRoleEditCommand>, UserRoleValidator>()
 
                 .RegisterType<IUserLogRepository, EntityUserLogRepository>(new PerRequestLifetime())
                 .RegisterType<IUserLogQuery, EntityUserLogQuery>(new PerRequestLifetime())
                 .RegisterType<IActivator<UserLog>, EntityUserLogRepository>(new PerRequestLifetime())
                 .RegisterActivator<IUserLogQuery>(new PerRequestLifetime())
 
-
-
-                .RegisterCommandHandler<UserRoleEditCommand, EditUserRoleCommandHandler>()
-                .RegisterType<ICommandHandler<UserAccountCreateCommand>, UserAccountCreateHandler>()
-                .RegisterType<ICommandHandler<UserAccountEditCommand>, UserAccountUpdateHandler>();
+                ;
         }
 
         protected void SetupControllers(IControllerRegistry controllerRegistry)
         {
             controllerRegistry
                 .Add(dependencyContainer, typeof(UserAccountController))
-                .Add(dependencyContainer, typeof(UserRoleController))
-                //.Add("Accounts/User/Create", new ModelControllerFactory<UserAccountCreateCommand>(dependencyContainer));
-                .AddCommandHandlers(dependencyContainer, typeof(UserAccountCreateHandler).Assembly);
+                .Add(dependencyContainer, typeof(UserRoleController));
         }
 
         protected void SetupDataSources(IWebDataSourceRegistry dataSourceRegistry)

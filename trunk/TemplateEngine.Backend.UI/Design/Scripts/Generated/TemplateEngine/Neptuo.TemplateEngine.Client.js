@@ -503,9 +503,9 @@ var Neptuo$TemplateEngine$Web$Application = {
             var container = this.get_DependencyContainer().CreateChildContainer();
             Neptuo.DependencyContainerExtensions.RegisterInstance$1(Neptuo.TemplateEngine.Providers.IParameterProvider.ctor, container, new Neptuo.TemplateEngine.Web.DictionaryParameterProvider.ctor(parameters));
             var controllerRegistry = Neptuo.DependencyProviderExtensions.Resolve$1$$IDependencyProvider(Neptuo.TemplateEngine.Controllers.IControllerRegistry.ctor, container);
-            var viewData = new Neptuo.TemplateEngine.Controllers.ViewDataCollection.ctor();
             var modelBinder = Neptuo.DependencyProviderExtensions.Resolve$1$$IDependencyProvider(Neptuo.TemplateEngine.Providers.ModelBinders.IModelBinder.ctor, container);
             var localNavigations = new Neptuo.TemplateEngine.Providers.NavigationCollection.ctor();
+            var messageStorage = Neptuo.DependencyProviderExtensions.Resolve$1$$IDependencyProvider(Neptuo.TemplateEngine.Providers.MessageStorage.ctor, container);
             var isControllerExecuted = false;
             var $it1 = parameters.GetEnumerator();
             while ($it1.MoveNext()){
@@ -520,7 +520,7 @@ var Neptuo$TemplateEngine$Web$Application = {
                     controller = $1.Value;
                     return $res;
                 }).call(this)){
-                    controller.Execute(new Neptuo.TemplateEngine.Controllers.ControllerContext.ctor(key, viewData, modelBinder, localNavigations));
+                    controller.Execute(new Neptuo.TemplateEngine.Controllers.ControllerContext.ctor(key, modelBinder, localNavigations, messageStorage));
                     isControllerExecuted = true;
                 }
                 else {
@@ -533,7 +533,7 @@ var Neptuo$TemplateEngine$Web$Application = {
                         asyncController = $1.Value;
                         return $res;
                     }).call(this)){
-                        asyncController.ExecuteAsync(new Neptuo.TemplateEngine.Controllers.ControllerContext.ctor(key, viewData, modelBinder, localNavigations));
+                        asyncController.ExecuteAsync(new Neptuo.TemplateEngine.Controllers.ControllerContext.ctor(key, modelBinder, localNavigations, messageStorage));
                         isControllerExecuted = true;
                     }
                 }
@@ -1723,9 +1723,9 @@ var Neptuo$TemplateEngine$Web$InitScript = {
             var container = Neptuo.TemplateEngine.Web.Application.get_Instance().get_DependencyContainer().CreateChildContainer();
             Neptuo.DependencyContainerExtensions.RegisterInstance$1(Neptuo.TemplateEngine.Providers.IParameterProvider.ctor, container, new Neptuo.TemplateEngine.Web.DictionaryParameterProvider.ctor(Neptuo.TemplateEngine.Web.InitScript.TransformParameters(data)));
             var controllerRegistry = Neptuo.DependencyProviderExtensions.Resolve$1$$IDependencyProvider(Neptuo.TemplateEngine.Controllers.IControllerRegistry.ctor, container);
-            var viewData = new Neptuo.TemplateEngine.Controllers.ViewDataCollection.ctor();
             var modelBinder = Neptuo.DependencyProviderExtensions.Resolve$1$$IDependencyProvider(Neptuo.TemplateEngine.Providers.ModelBinders.IModelBinder.ctor, container);
             var localNavigations = new Neptuo.TemplateEngine.Providers.NavigationCollection.ctor();
+            var messageStorage = Neptuo.DependencyProviderExtensions.Resolve$1$$IDependencyProvider(Neptuo.TemplateEngine.Providers.MessageStorage.ctor, container);
             var isControllerExecuted = false;
             for (var i = 0; i < data.length; i++){
                 var key = data[i]["name"];
@@ -1738,7 +1738,7 @@ var Neptuo$TemplateEngine$Web$InitScript = {
                     controller = $1.Value;
                     return $res;
                 })()){
-                    controller.Execute(new Neptuo.TemplateEngine.Controllers.ControllerContext.ctor(key, viewData, modelBinder, localNavigations));
+                    controller.Execute(new Neptuo.TemplateEngine.Controllers.ControllerContext.ctor(key, modelBinder, localNavigations, messageStorage));
                     isControllerExecuted = true;
                 }
             }

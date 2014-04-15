@@ -11,9 +11,9 @@ namespace Neptuo.TemplateEngine.Controllers
     public interface IControllerContext
     {
         string ActionName { get; }
-        IViewData ViewData { get; }
         IModelBinder ModelBinder { get; }
         NavigationCollection Navigations { get; }
+        MessageStorage Messages { get; }
     }
 
 }

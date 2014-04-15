@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Accounts.Commands
 {
-    public class UserAccountDeleteCommand
+    public class UserRoleCreateCommand
     {
-        public int UserKey { get; set; }
+        public string Name { get; set; }
+        public string Description { get; set; }
     }
 }

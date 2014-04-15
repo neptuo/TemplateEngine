@@ -33,9 +33,6 @@
     <Reference Include="Neptuo">
       <HintPath>..\References\Neptuo.dll</HintPath>
     </Reference>
-    <Reference Include="Neptuo.Commands">
-      <HintPath>..\References\Neptuo.Commands.dll</HintPath>
-    </Reference>
     <Reference Include="Neptuo.Data">
       <HintPath>..\References\Neptuo.Data.dll</HintPath>
     </Reference>

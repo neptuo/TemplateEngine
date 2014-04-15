@@ -90,11 +90,9 @@ var Neptuo$TemplateEngine$Accounts$Commands$UserAccountDeleteCommand = {
     assemblyName: "Neptuo.TemplateEngine.Accounts.Shared",
     Kind: "Class",
     definition: {
-        ctor: function (userKey){
+        ctor: function (){
             this._UserKey = 0;
             System.Object.ctor.call(this);
-            Neptuo.Guard.Positive(userKey, "userKey");
-            this.set_UserKey(userKey);
         },
         UserKey$$: "System.Int32",
         get_UserKey: function (){
@@ -106,7 +104,7 @@ var Neptuo$TemplateEngine$Accounts$Commands$UserAccountDeleteCommand = {
     },
     ctors: [{
         name: "ctor",
-        parameters: ["System.Int32"]
+        parameters: []
     }
     ],
     IsAbstract: false
@@ -178,6 +176,66 @@ var Neptuo$TemplateEngine$Accounts$Commands$UserAccountEditCommand = {
     IsAbstract: false
 };
 JsTypes.push(Neptuo$TemplateEngine$Accounts$Commands$UserAccountEditCommand);
+var Neptuo$TemplateEngine$Accounts$Commands$UserRoleCreateCommand = {
+    fullname: "Neptuo.TemplateEngine.Accounts.Commands.UserRoleCreateCommand",
+    baseTypeName: "System.Object",
+    assemblyName: "Neptuo.TemplateEngine.Accounts.Shared",
+    Kind: "Class",
+    definition: {
+        ctor: function (){
+            this._Name = null;
+            this._Description = null;
+            System.Object.ctor.call(this);
+        },
+        Name$$: "System.String",
+        get_Name: function (){
+            return this._Name;
+        },
+        set_Name: function (value){
+            this._Name = value;
+        },
+        Description$$: "System.String",
+        get_Description: function (){
+            return this._Description;
+        },
+        set_Description: function (value){
+            this._Description = value;
+        }
+    },
+    ctors: [{
+        name: "ctor",
+        parameters: []
+    }
+    ],
+    IsAbstract: false
+};
+JsTypes.push(Neptuo$TemplateEngine$Accounts$Commands$UserRoleCreateCommand);
+var Neptuo$TemplateEngine$Accounts$Commands$UserRoleDeleteCommand = {
+    fullname: "Neptuo.TemplateEngine.Accounts.Commands.UserRoleDeleteCommand",
+    baseTypeName: "System.Object",
+    assemblyName: "Neptuo.TemplateEngine.Accounts.Shared",
+    Kind: "Class",
+    definition: {
+        ctor: function (){
+            this._RoleKey = 0;
+            System.Object.ctor.call(this);
+        },
+        RoleKey$$: "System.Int32",
+        get_RoleKey: function (){
+            return this._RoleKey;
+        },
+        set_RoleKey: function (value){
+            this._RoleKey = value;
+        }
+    },
+    ctors: [{
+        name: "ctor",
+        parameters: []
+    }
+    ],
+    IsAbstract: false
+};
+JsTypes.push(Neptuo$TemplateEngine$Accounts$Commands$UserRoleDeleteCommand);
 var Neptuo$TemplateEngine$Accounts$Events$UserSignedIn = {
     fullname: "Neptuo.TemplateEngine.Accounts.Events.UserSignedIn",
     baseTypeName: "System.Object",

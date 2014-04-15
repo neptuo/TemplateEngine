@@ -21,6 +21,8 @@ namespace Neptuo.TemplateEngine.Accounts.Data.Entity
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            
+
             base.OnModelCreating(modelBuilder);
             MapUserAccount(modelBuilder.Entity<UserAccount>());
             MapUserRole(modelBuilder.Entity<UserRole>());
