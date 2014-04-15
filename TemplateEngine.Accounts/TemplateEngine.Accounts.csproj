@@ -33,9 +33,6 @@
     <Reference Include="Neptuo">
       <HintPath>..\References\Neptuo.dll</HintPath>
     </Reference>
-    <Reference Include="Neptuo.Commands">
-      <HintPath>..\References\Neptuo.Commands.dll</HintPath>
-    </Reference>
     <Reference Include="Neptuo.Data">
       <HintPath>..\References\Neptuo.Data.dll</HintPath>
     </Reference>
@@ -54,10 +51,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Commands\Handlers\UserAccountCreateCommandHandler.cs" />
-    <Compile Include="Commands\Handlers\EditUserRoleCommandHandler.cs" />
-    <Compile Include="Commands\Handlers\UserAccountDeleteCommandHandler.cs" />
-    <Compile Include="Commands\Handlers\UserAccountEditCommandHandler.cs" />
     <Compile Include="Data\DataProviderBase.cs" />
     <Compile Include="Data\IUserAccountRepository.cs" />
     <Compile Include="Data\IUserLogRepository.cs" />
@@ -73,6 +66,7 @@
     <Compile Include="Data\Queries\UserLogFilter.cs" />
     <Compile Include="Data\Queries\UserRoleFilter.cs" />
     <Compile Include="Data\UserLogDataProvider.cs" />
+    <Compile Include="Data\UserRoleDataProvider.cs" />
     <Compile Include="Events\UserLogCreatedEvent.cs" />
     <Compile Include="IUserLogContext.cs" />
     <Compile Include="UserAccount.cs" />

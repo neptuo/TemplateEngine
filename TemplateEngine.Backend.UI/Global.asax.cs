@@ -3,7 +3,6 @@ using log4net.Config;
 using Microsoft.Practices.Unity;
 using Neptuo;
 using Neptuo.Bootstrap;
-using Neptuo.Commands;
 using Neptuo.Data;
 using Neptuo.Data.Entity;
 using Neptuo.Events;
@@ -30,6 +29,7 @@ using System.Web.Security;
 using System.Web.SessionState;
 using Neptuo.TemplateEngine.Providers;
 using Neptuo.TemplateEngine.Security;
+using Neptuo.Validation;
 
 namespace Neptuo.TemplateEngine.Backend.UI
 {
@@ -77,8 +77,8 @@ namespace Neptuo.TemplateEngine.Backend.UI
                 .RegisterInstance<IEventDispatcher>(eventDispatcher)
                 .RegisterInstance<IEventRegistry>(eventDispatcher)
                 .RegisterInstance<IEventManager>(eventDispatcher)
+                .RegisterType<IValidatorService, DependencyValidatorService>()
                 .RegisterType<IParameterProvider, RequestParameterProvider>(new PerRequestLifetime())
-                .RegisterType<ICommandDispatcher, DependencyCommandDispatcher>()
                 .RegisterType<IControllerRegistry>(new SingletonLifetime(new ControllerRegistryBase()))
                 .RegisterType<IPermissionProvider, OptimisticPermissionProvider>(new PerRequestLifetime())
                 .RegisterInstance<IWebDataSourceRegistry>(new DictionaryWebDataSourceRegistry());

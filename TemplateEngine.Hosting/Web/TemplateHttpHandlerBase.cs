@@ -92,13 +92,13 @@ namespace Neptuo.TemplateEngine.Backend.Web
         {
             IControllerRegistry registry = dependencyContainer.Resolve<IControllerRegistry>();
             IModelBinder modelBinder = dependencyContainer.Resolve<IModelBinder>();
-            ViewDataCollection viewData = new ViewDataCollection();
+            MessageStorage messageStorage = dependencyContainer.Resolve<MessageStorage>();
 
             foreach (string key in httpContext.Request.Form.AllKeys)
             {
                 IController controller;
                 if (registry.TryGet(key, out controller))
-                    controller.Execute(new ControllerContext(key, viewData, modelBinder, navigations));
+                    controller.Execute(new ControllerContext(key, modelBinder, navigations, messageStorage));
             }
         }
 

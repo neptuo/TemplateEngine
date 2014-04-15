@@ -33,9 +33,6 @@
     <Reference Include="Neptuo">
       <HintPath>..\References\Neptuo.dll</HintPath>
     </Reference>
-    <Reference Include="Neptuo.Commands">
-      <HintPath>..\References\Neptuo.Commands.dll</HintPath>
-    </Reference>
     <Reference Include="Neptuo.Data">
       <HintPath>..\References\Neptuo.Data.dll</HintPath>
     </Reference>
@@ -55,7 +52,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ActionAttribute.cs" />
-    <Compile Include="CommandHandlerControllerFactory.cs" />
     <Compile Include="ControllerBase.cs" />
     <Compile Include="ControllerContext.cs" />
     <Compile Include="ControllerRegistryBase.cs" />
@@ -70,12 +66,10 @@
     <Compile Include="IControllerFactory.cs" />
     <Compile Include="IControllerRegistry.cs" />
     <Compile Include="IViewData.cs" />
-    <Compile Include="ModelControllerFactory.cs" />
     <Compile Include="PartialResponse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TransactionalAttribute.cs" />
     <Compile Include="ValidateAttribute.cs" />
-    <Compile Include="ViewDataCollection.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\TemplateEngine.PresentationModels\TemplateEngine.PresentationModels.csproj">

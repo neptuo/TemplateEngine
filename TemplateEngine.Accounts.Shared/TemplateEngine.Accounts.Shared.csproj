@@ -47,6 +47,8 @@
     <Compile Include="Commands\UserAccountCreateCommand.cs" />
     <Compile Include="Commands\UserAccountDeleteCommand.cs" />
     <Compile Include="Commands\UserAccountEditCommand.cs" />
+    <Compile Include="Commands\UserRoleCreateCommand.cs" />
+    <Compile Include="Commands\UserRoleDeleteCommand.cs" />
     <Compile Include="Events\UserSignedIn.cs" />
     <Compile Include="Templates\DataSources\IUserAccountDataSourceFilter.cs" />
     <Compile Include="Templates\DataSources\IUserRoleDataSourceFilter.cs" />

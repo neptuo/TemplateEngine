@@ -11,18 +11,5 @@ namespace Neptuo.TemplateEngine.Accounts.Commands
         public int Key { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
-
-        public UserRoleEditCommand()
-        { }
-
-        //public EditUserRoleCommand(UserRole userRole)
-        //{
-        //    if (userRole == null)
-        //        throw new ArgumentNullException("userRole");
-
-        //    Key = userRole.Key;
-        //    Name = userRole.Name;
-        //    Description = userRole.Description;
-        //}
     }
 }
