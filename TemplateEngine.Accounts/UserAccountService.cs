@@ -16,12 +16,14 @@ namespace Neptuo.TemplateEngine.Accounts
     {
         protected IEventDispatcher EventDispatcher { get; private set; }
         protected IUserRoleRepository UserRoles { get; private set; }
-        protected UserAccountDataService UserAccounts { get; private set; }
+        protected UserAccountDataProvider UserAccounts { get; private set; }
+        protected UserLogDataProvider UserLogs { get; private set; }
 
-        public UserAccountService(IEventDispatcher eventDispatcher, UserAccountDataService userAccounts, IUserRoleRepository userRoles)
+        public UserAccountService(IEventDispatcher eventDispatcher, UserAccountDataProvider userAccounts, UserLogDataProvider userLogs, IUserRoleRepository userRoles)
         {
             EventDispatcher = eventDispatcher;
             UserAccounts = userAccounts;
+            UserLogs = userLogs;
             UserRoles = userRoles;
         }
 
@@ -65,10 +67,20 @@ namespace Neptuo.TemplateEngine.Accounts
             Guard.NotNullOrEmpty(username, "username");
             Guard.NotNullOrEmpty(password, "password");
 
-            UserAccounts.Query.Filter = new CredentialsAccountFilter(username, password);
-            UserAccount account = UserAccounts.Query.ResultSingle();
+            var query = UserAccounts.Query();
+            query.Filter = new CredentialsAccountFilter(username, password);
+            UserAccount account = query.ResultSingle();
             if (account != null)
             {
+                UserLog log = UserLogs.Factory.Create();
+                log.Key = Guid.NewGuid();
+                log.SignedIn = DateTime.Now;
+                log.LastActivity = DateTime.Now;
+                log.User = account;
+
+                UserLogs.Repository.Insert(log);
+
+                EventDispatcher.Publish(new UserLogCreatedEvent(log));
                 EventDispatcher.Publish(new UserSignedIn(account.Key, account.Username));
                 return true;
             }
@@ -78,6 +90,7 @@ namespace Neptuo.TemplateEngine.Accounts
 
         public bool Logout()
         {
+            //TODO: GetCurrentToken
             EventDispatcher.Publish(new UserSignedOutEvent(DateTime.Now));
             return true;
         }

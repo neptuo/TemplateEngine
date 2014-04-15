@@ -14,6 +14,7 @@ namespace Neptuo.TemplateEngine.Accounts.Data.Entity
     {
         public IDbSet<UserAccount> UserAccounts { get; set; }
         public IDbSet<UserRole> UserRoles { get; set; }
+        public IDbSet<UserLog> UserLogs { get; set; }
 
         static DataContext()
         {
@@ -28,6 +29,7 @@ namespace Neptuo.TemplateEngine.Accounts.Data.Entity
             base.OnModelCreating(modelBuilder);
             MapUserAccount(modelBuilder.Entity<UserAccount>());
             MapUserRole(modelBuilder.Entity<UserRole>());
+            MapUserLog(modelBuilder.Entity<UserLog>());
         }
 
         protected void MapUserAccount(EntityTypeConfiguration<UserAccount> userAccount)
@@ -50,6 +52,25 @@ namespace Neptuo.TemplateEngine.Accounts.Data.Entity
 
             userRole
                 .HasMany(r => r.Accounts).WithMany(u => u.Roles).Map(x => x.ToTable("UserAccount_UserRole"));
+        }
+
+        protected void MapUserLog(EntityTypeConfiguration<UserLog> userLog)
+        {
+            userLog
+                .HasKey(l => l.Key)
+                .Property(r => r.Version)
+                .IsRowVersion();
+
+            userLog
+                .Property(l => l.SignedIn)
+                .IsRequired();
+
+            userLog
+                .Property(l => l.LastActivity)
+                .IsRequired();
+
+            userLog
+                .HasRequired(l => l.User).WithMany();
         }
 
         private class DbInitializer : DropCreateDatabaseIfModelChanges<DataContext>

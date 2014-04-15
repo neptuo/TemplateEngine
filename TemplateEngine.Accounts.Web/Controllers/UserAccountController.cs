@@ -119,7 +119,7 @@ namespace Neptuo.TemplateEngine.Accounts.Web.Controllers
 
             if (result)
             {
-                FormsAuthentication.SetAuthCookie(model.Username, false);
+                //FormsAuthentication.SetAuthCookie(model.Username, false);
                 MessageStorage.Add(null, String.Empty, String.Format("Welcome, {0}.", model.Username), MessageType.Info);
                 Context.Navigations.Add("Accounts.LoggedIn");
             }
@@ -132,7 +132,8 @@ namespace Neptuo.TemplateEngine.Accounts.Web.Controllers
         [Action("Accounts/Logout")]
         public void Logout()
         {
-            FormsAuthentication.SignOut();
+            AccountService.Logout();
+            //FormsAuthentication.SignOut();
             Context.Navigations.Add("Accounts.LoggedOut");
         }
 
