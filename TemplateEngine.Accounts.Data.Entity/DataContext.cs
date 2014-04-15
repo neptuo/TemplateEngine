@@ -16,11 +16,6 @@ namespace Neptuo.TemplateEngine.Accounts.Data.Entity
         public IDbSet<UserRole> UserRoles { get; set; }
         public IDbSet<UserLog> UserLogs { get; set; }
 
-        static DataContext()
-        {
-            Database.SetInitializer(new DbInitializer());
-        }
-
         public DataContext()
         { }
 
@@ -71,34 +66,6 @@ namespace Neptuo.TemplateEngine.Accounts.Data.Entity
 
             userLog
                 .HasRequired(l => l.User).WithMany();
-        }
-
-        private class DbInitializer : DropCreateDatabaseIfModelChanges<DataContext>
-        {
-            protected override void Seed(DataContext context)
-            {
-                base.Seed(context);
-
-                context.UserRoles.Add(new UserRole
-                {
-                    Name = "Administrators",
-                    Description = "System admins"
-                });
-                context.UserRoles.Add(new UserRole
-                {
-                    Name = "Everyone",
-                    Description = "Public (un-authenticated) users"
-                });
-
-                context.UserAccounts.Add(new UserAccount
-                {
-                    Username = "admin",
-                    Password = PasswordProvider.ComputePassword("admin", "admin"),
-                    IsEnabled = true
-                });
-
-                //context.UserAccounts.First(a => a.Key == 1).Roles.Add(context.UserRoles.First(r => r.Key == 1));
-            }
         }
     }
 }

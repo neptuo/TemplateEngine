@@ -35,6 +35,8 @@ using Neptuo.Events;
 using Neptuo.TemplateEngine.Accounts.Events;
 using Neptuo.Events.Handlers;
 using Neptuo.TemplateEngine.Security.Events;
+using System.Data.Entity;
+using Neptuo.TemplateEngine.Accounts.Bootstrap.Data.Entity;
 
 namespace Neptuo.TemplateEngine.Accounts.Bootstrap
 {
@@ -81,6 +83,8 @@ namespace Neptuo.TemplateEngine.Accounts.Bootstrap
             SetupGlobalNavigations(globalNavigations);
 
             SetupEvents(eventRegistry);
+
+            Database.SetInitializer(new DbInitializer());
 //#if DEBUG
             //CreateDummyUserRoles();
             //CreateDummyUserAccounts();
