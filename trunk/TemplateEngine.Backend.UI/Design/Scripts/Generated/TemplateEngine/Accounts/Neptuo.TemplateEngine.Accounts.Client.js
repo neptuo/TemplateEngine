@@ -207,7 +207,7 @@ var Neptuo$TemplateEngine$Accounts$UserRoleListResultConverter = {
 };
 JsTypes.push(Neptuo$TemplateEngine$Accounts$UserRoleListResultConverter);
 var Neptuo$TemplateEngine$Accounts$Web$Controllers$UserAccountController = {
-    fullname: "Neptuo.TemplateEngine.Accounts.Web.Controllers.UserAccountController",
+    fullname: "Neptuo.TemplateEngine.Accounts.Controllers.UserAccountController",
     baseTypeName: "System.Object",
     assemblyName: "Neptuo.TemplateEngine.Accounts.Client",
     interfaceNames: ["Neptuo.TemplateEngine.Controllers.IController"],

@@ -1,6 +1,6 @@
 ﻿using Neptuo.Bootstrap;
 using Neptuo.ComponentModel.Converters;
-using Neptuo.TemplateEngine.Accounts.Web.Controllers;
+using Neptuo.TemplateEngine.Accounts.Controllers;
 using Neptuo.TemplateEngine.Navigation.Bootstrap;
 using Neptuo.TemplateEngine.Web;
 using Neptuo.TemplateEngine.Controllers;
