@@ -18,13 +18,15 @@ namespace Neptuo.TemplateEngine.Accounts
         protected IUserRoleRepository UserRoles { get; private set; }
         protected UserAccountDataProvider UserAccounts { get; private set; }
         protected UserLogDataProvider UserLogs { get; private set; }
+        protected IUserLogContext UserContext { get; private set; }
 
-        public UserAccountService(IEventDispatcher eventDispatcher, UserAccountDataProvider userAccounts, UserLogDataProvider userLogs, IUserRoleRepository userRoles)
+        public UserAccountService(IEventDispatcher eventDispatcher, UserAccountDataProvider userAccounts, UserLogDataProvider userLogs, IUserRoleRepository userRoles, IUserLogContext userContext)
         {
             EventDispatcher = eventDispatcher;
             UserAccounts = userAccounts;
             UserLogs = userLogs;
             UserRoles = userRoles;
+            UserContext = userContext;
         }
 
         public UserAccount Get(int userKey)
@@ -77,7 +79,6 @@ namespace Neptuo.TemplateEngine.Accounts
                 log.SignedIn = DateTime.Now;
                 log.LastActivity = DateTime.Now;
                 log.User = account;
-
                 UserLogs.Repository.Insert(log);
 
                 EventDispatcher.Publish(new UserLogCreatedEvent(log));
@@ -90,7 +91,13 @@ namespace Neptuo.TemplateEngine.Accounts
 
         public bool Logout()
         {
-            //TODO: GetCurrentToken
+            if (!UserContext.IsAuthenticated)
+                return true;
+
+            UserContext.Log.LastActivity = DateTime.Now;
+            UserContext.Log.SignedOut = DateTime.Now;
+            UserLogs.Repository.Update(UserContext.Log);
+
             EventDispatcher.Publish(new UserSignedOutEvent(DateTime.Now));
             return true;
         }

@@ -63,6 +63,7 @@
     <Compile Include="Controllers\UserAccountCreateHandler.cs" />
     <Compile Include="Controllers\UserAccountUpdateHandler.cs" />
     <Compile Include="Controllers\UserRoleController.cs" />
+    <Compile Include="CurrentUserContext.cs" />
     <Compile Include="FormsAuthenticationProvider.cs" />
     <Compile Include="Templates\DataSources\UserAccountDataSource.cs" />
     <Compile Include="Templates\DataSources\UserAccountEditDataSource.cs" />

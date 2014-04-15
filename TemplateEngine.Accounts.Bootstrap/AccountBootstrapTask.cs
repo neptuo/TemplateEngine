@@ -100,6 +100,8 @@ namespace Neptuo.TemplateEngine.Accounts.Bootstrap
                 .RegisterType<DataContext>(new PerRequestLifetime())
 
                 .RegisterType<IAuthenticator, UserAccountService>()
+                .RegisterType<IUserContext, CurrentUserContext>(new PerRequestLifetime())
+                .RegisterType<IUserLogContext, CurrentUserContext>(new PerRequestLifetime())
 
                 .RegisterType<IUserAccountRepository, EntityUserAccountRepository>(new PerRequestLifetime())
                 .RegisterType<IUserAccountQuery, EntityUserAccountQuery>()
