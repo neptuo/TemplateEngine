@@ -24,6 +24,10 @@ namespace Neptuo.TemplateEngine.Accounts.Controllers
 
         public UserAccountController(IUnitOfWorkFactory unitOfWorkFactory, IUserAccountRepository userAccounts, IValidatorService validationService, UserAccountService accountService)
         {
+            Guard.NotNull(unitOfWorkFactory, "unitOfWorkFactory");
+            Guard.NotNull(userAccounts, "userAccounts");
+            Guard.NotNull(validationService, "validationService");
+            Guard.NotNull(accountService, "accountService");
             UnitOfWorkFactory = unitOfWorkFactory;
             UserAccounts = userAccounts;
             ValidationService = validationService;
@@ -33,21 +37,21 @@ namespace Neptuo.TemplateEngine.Accounts.Controllers
         #region Delete
 
         [Action("Accounts/User/Delete")]
-        public void Delete()
+        public string Delete(UserAccountDeleteCommand model)
         {
-            UserAccountDeleteCommand model = Context.ModelBinder.Bind<UserAccountDeleteCommand>();
             if (model.UserKey != 0)
             {
                 using (IUnitOfWork transaction = UnitOfWorkFactory.Create())
                 {
                     AccountService.DeleteAccount(model.UserKey);
                     
-                    Context.Navigations.Add("Accounts.User.Deleted");
-                    Context.Messages.Add(null, String.Empty, "User account deleted", MessageType.Info);
+                    Messages.Add(null, String.Empty, "User account deleted", MessageType.Info);
                     
                     transaction.SaveChanges();
+                    return "Accounts.User.Deleted";
                 }
             }
+            return null;
         }
 
         #endregion
@@ -55,14 +59,13 @@ namespace Neptuo.TemplateEngine.Accounts.Controllers
         #region Create/Update
 
         [Action("Accounts/User/Create")]
-        public void Create()
+        public string Create(UserAccountCreateCommand model)
         {
-            UserAccountCreateCommand model = Context.ModelBinder.Bind<UserAccountCreateCommand>();
             IValidationResult validationResult = ValidationService.Validate(model);
             if (!validationResult.IsValid)
             {
-                Context.Messages.AddValidationResult(validationResult, "UserEdit");
-                return;
+                Messages.AddValidationResult(validationResult, "UserEdit");
+                return null;
             }
 
             using (IUnitOfWork transaction = UnitOfWorkFactory.Create())
@@ -74,22 +77,21 @@ namespace Neptuo.TemplateEngine.Accounts.Controllers
                         AccountService.AssignAccountToRole(account, userRoleID);
                 }
 
-                Context.Messages.Add(null, String.Empty, "User account created.", MessageType.Info);
-                Context.Navigations.Add("Accounts.User.Created");
-
+                Messages.Add(null, String.Empty, "User account created.", MessageType.Info);
                 transaction.SaveChanges();
             }
+
+            return "Accounts.User.Created";
         }
 
         [Action("Accounts/User/Update")]
-        public void Update()
+        public string Update(UserAccountEditCommand model)
         {
-            UserAccountEditCommand model = Context.ModelBinder.Bind<UserAccountEditCommand>();
             IValidationResult validationResult = ValidationService.Validate(model);
             if (!validationResult.IsValid)
             {
-                Context.Messages.AddValidationResult(validationResult, "UserEdit");
-                return;
+                Messages.AddValidationResult(validationResult, "UserEdit");
+                return null;
             }
 
             using (IUnitOfWork transaction = UnitOfWorkFactory.Create())
@@ -129,11 +131,11 @@ namespace Neptuo.TemplateEngine.Accounts.Controllers
 
                 UserAccounts.Update(account);
 
-                Context.Messages.Add(null, String.Empty, "User account modified.", MessageType.Info);
-                Context.Navigations.Add("Accounts.User.Updated");
-                
+                Messages.Add(null, String.Empty, "User account modified.", MessageType.Info);
                 transaction.SaveChanges();
             }
+
+            return "Accounts.User.Updated";
         }
 
         #endregion
@@ -141,27 +143,24 @@ namespace Neptuo.TemplateEngine.Accounts.Controllers
         #region Sign In/Out
 
         [Action("Accounts/Login")]
-        public void Login()
+        public string Login(UserAccountLoginModel model)
         {
-            UserAccountLoginModel model = Context.ModelBinder.Bind<UserAccountLoginModel>();
             bool result = AccountService.Login(model.Username, model.Password);
-
             if (result)
             {
-                Context.Messages.Add(null, String.Empty, String.Format("Welcome, {0}.", model.Username), MessageType.Info);
-                Context.Navigations.Add("Accounts.LoggedIn");
+                Messages.Add(null, String.Empty, String.Format("Welcome, {0}.", model.Username), MessageType.Info);
+                return "Accounts.LoggedIn";
             }
-            else
-            {
-                Context.Messages.Add(null, String.Empty, "Invalid username or password.", MessageType.Error);
-            }
+
+            Messages.Add(null, String.Empty, "Invalid username or password.", MessageType.Error);
+            return null;
         }
 
         [Action("Accounts/Logout")]
-        public void Logout()
+        public string Logout()
         {
             AccountService.Logout();
-            Context.Navigations.Add("Accounts.LoggedOut");
+            return "Accounts.LoggedOut";
         }
 
         #endregion
