@@ -100,14 +100,6 @@
       <Project>{cefd01c6-467d-4e1c-ace6-af093e443e08}</Project>
       <Name>TemplateEngine.Controllers</Name>
     </ProjectReference>
-    <ProjectReference Include="..\TemplateEngine.Data.Entity\TemplateEngine.Data.Entity.csproj">
-      <Project>{176a5378-45be-4132-99bf-2f24b94712a4}</Project>
-      <Name>TemplateEngine.Data.Entity</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\TemplateEngine.Data\TemplateEngine.Data.csproj">
-      <Project>{cfb337ac-4c28-4ccc-98db-860acea11bed}</Project>
-      <Name>TemplateEngine.Data</Name>
-    </ProjectReference>
     <ProjectReference Include="..\TemplateEngine.Hosting\TemplateEngine.Hosting.csproj">
       <Project>{f794b999-94db-4443-8780-25ad170742ee}</Project>
       <Name>TemplateEngine.Hosting</Name>
