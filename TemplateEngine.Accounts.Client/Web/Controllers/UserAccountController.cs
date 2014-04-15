@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Neptuo.TemplateEngine.Accounts.Web.Controllers
+namespace Neptuo.TemplateEngine.Accounts.Controllers
 {
     public class UserAccountController : IController
     {

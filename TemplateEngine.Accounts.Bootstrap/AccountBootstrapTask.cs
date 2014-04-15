@@ -7,7 +7,7 @@ using Neptuo.TemplateEngine.Accounts.Data;
 using Neptuo.TemplateEngine.Accounts.Data.Entity;
 using Neptuo.TemplateEngine.Accounts.Data.Entity.Queries;
 using Neptuo.TemplateEngine.Accounts.Data.Queries;
-using Neptuo.TemplateEngine.Accounts.Web.Controllers;
+using Neptuo.TemplateEngine.Accounts.Controllers;
 using Neptuo.TemplateEngine.Navigation;
 using Neptuo.TemplateEngine.Navigation.Bootstrap;
 using Neptuo.TemplateEngine.Web;

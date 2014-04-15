@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 using Neptuo.TemplateEngine.Providers;
 using Neptuo.Data;
 
-namespace Neptuo.TemplateEngine.Accounts.Web.Controllers
+namespace Neptuo.TemplateEngine.Accounts.Controllers
 {
     public class UserRoleController : ControllerBase
     {

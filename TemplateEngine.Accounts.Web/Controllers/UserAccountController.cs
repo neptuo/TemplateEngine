@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 using System.Web.Security;
 using Neptuo.TemplateEngine.Providers;
 
-namespace Neptuo.TemplateEngine.Accounts.Web.Controllers
+namespace Neptuo.TemplateEngine.Accounts.Controllers
 {
     public class UserAccountController : ControllerBase
     {
