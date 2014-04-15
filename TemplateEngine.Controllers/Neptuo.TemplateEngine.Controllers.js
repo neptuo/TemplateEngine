@@ -48,6 +48,10 @@ var Neptuo$TemplateEngine$Controllers$ControllerBase = {
         set_Context: function (value){
             this._Context = value;
         },
+        Messages$$: "Neptuo.TemplateEngine.Providers.MessageStorage",
+        get_Messages: function (){
+            return this.get_Context().get_Messages();
+        },
         Execute: function (context){
             Neptuo.Guard.NotNull$$Object$$String(context, "context");
             this.set_Context(context);
@@ -58,11 +62,34 @@ var Neptuo$TemplateEngine$Controllers$ControllerBase = {
                 var action = Neptuo.Reflection.ReflectionHelper.GetAttribute$1(Neptuo.TemplateEngine.Controllers.ActionAttribute.ctor, methodInfo);
                 if (action != null){
                     if (action.get_ActionName() == context.get_ActionName()){
-                        methodInfo.Invoke$$Object$$Object$Array(this, null);
+                        var parameters = this.BindActionParameters(context, methodInfo);
+                        var result = this.ExecuteAction(context, methodInfo, parameters);
+                        this.ProcessActionResult(context, methodInfo, result);
                         break;
                     }
                 }
             }
+        },
+        BindActionParameters: function (context, methodInfo){
+            var parameters = methodInfo.GetParameters();
+            if (parameters.get_Length() == 0)
+                return null;
+            var values = new System.Collections.Generic.List$1.ctor(System.Object.ctor);
+            var $it2 = parameters.GetEnumerator();
+            while ($it2.MoveNext()){
+                var parameter = $it2.get_Current();
+                var value = context.get_ModelBinder().Bind$$Type(parameter.get_ParameterType());
+                values.Add(value);
+            }
+            return values.ToArray();
+        },
+        ExecuteAction: function (context, methodInfo, parameters){
+            return methodInfo.Invoke$$Object$$Object$Array(this, parameters);
+        },
+        ProcessActionResult: function (context, methodInfo, result){
+            var stringResult = As(result, System.String.ctor);
+            if (stringResult != null)
+                context.get_Navigations().Add(stringResult);
         }
     },
     ctors: [{
@@ -198,9 +225,9 @@ var Neptuo$TemplateEngine$Controllers$ControllerRegistryExtensions = {
     baseTypeName: "System.Object",
     staticDefinition: {
         Add$$IControllerRegistry$$IDependencyContainer$$Type: function (controllerRegistry, dependencyContainer, controllerType){
-            var $it2 = controllerType.GetMethods().GetEnumerator();
-            while ($it2.MoveNext()){
-                var methodInfo = $it2.get_Current();
+            var $it3 = controllerType.GetMethods().GetEnumerator();
+            while ($it3.MoveNext()){
+                var methodInfo = $it3.get_Current();
                 var action = Neptuo.Reflection.ReflectionHelper.GetAttribute$1(Neptuo.TemplateEngine.Controllers.ActionAttribute.ctor, methodInfo);
                 if (action != null)
                     Neptuo.TemplateEngine.Controllers.ControllerRegistryExtensions.Add$$IControllerRegistry$$String$$IDependencyContainer$$Type(controllerRegistry, action.get_ActionName(), dependencyContainer, controllerType);

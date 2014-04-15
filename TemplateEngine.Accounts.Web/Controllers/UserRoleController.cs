@@ -33,22 +33,21 @@ namespace Neptuo.TemplateEngine.Accounts.Controllers
         #region Delete
 
         [Action("Accounts/Role/Delete")]
-        public void Delete()
+        public string Delete(UserRoleDeleteCommand model)
         {
-            UserRoleDeleteCommand model = Context.ModelBinder.Bind<UserRoleDeleteCommand>();
             if (model.RoleKey != 0)
             {
                 using (IUnitOfWork transaction = UnitOfWorkFactory.Create())
                 {
                     UserRoles.Repository.Delete(UserRoles.Repository.Get(model.RoleKey));
-                    
-                    Context.Navigations.Add("Accounts.Role.Deleted");
-                    Context.Messages.Add(null, String.Empty, "User role deleted", MessageType.Info);
-
+                    Messages.Add(null, String.Empty, "User role deleted", MessageType.Info);
                     transaction.SaveChanges();
+
+                    return "Accounts.Role.Deleted";
                 }
             }
 
+            return null;
         }
 
         #endregion
@@ -56,14 +55,13 @@ namespace Neptuo.TemplateEngine.Accounts.Controllers
         #region Create/Update
 
         [Action("Accounts/Role/Create")]
-        public void Create()
+        public string Create(UserRoleCreateCommand model)
         {
-            UserRoleCreateCommand model = Context.ModelBinder.Bind<UserRoleCreateCommand>();
             IValidationResult validationResult = ValidationService.Validate(model);
             if (!validationResult.IsValid)
             {
-                Context.Messages.AddValidationResult(validationResult, "RoleEdit");
-                return;
+                Messages.AddValidationResult(validationResult, "RoleEdit");
+                return null;
             }
 
             using (IUnitOfWork transaction = UnitOfWorkFactory.Create())
@@ -73,23 +71,22 @@ namespace Neptuo.TemplateEngine.Accounts.Controllers
                 role.Description = model.Description;
 
                 UserRoles.Repository.Insert(role);
-
-                Context.Messages.Add(null, String.Empty, "User role created.", MessageType.Info);
-                Context.Navigations.Add("Accounts.Role.Created");
+                Messages.Add(null, String.Empty, "User role created.", MessageType.Info);
 
                 transaction.SaveChanges();
             }
+
+            return "Accounts.Role.Created";
         }
 
         [Action("Accounts/Role/Update")]
-        public void Update()
+        public string Update(UserRoleEditCommand model)
         {
-            UserRoleEditCommand model = Context.ModelBinder.Bind<UserRoleEditCommand>();
             IValidationResult validationResult = ValidationService.Validate(model);
             if (!validationResult.IsValid)
             {
-                Context.Messages.AddValidationResult(validationResult, "RoleEdit");
-                return;
+                Messages.AddValidationResult(validationResult, "RoleEdit");
+                return null;
             }
 
             using (IUnitOfWork transaction = UnitOfWorkFactory.Create())
@@ -105,13 +102,12 @@ namespace Neptuo.TemplateEngine.Accounts.Controllers
                     userRole.Description = model.Description;
 
                 UserRoles.Repository.Update(userRole);
-
-                Context.Messages.Add(null, String.Empty, "User role modified.", MessageType.Info);
-                Context.Navigations.Add("Accounts.Role.Updated");
+                Messages.Add(null, String.Empty, "User role modified.", MessageType.Info);
                 
                 transaction.SaveChanges();
             }
 
+            return "Accounts.Role.Updated";
         }
 
         #endregion
