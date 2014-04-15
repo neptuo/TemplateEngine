@@ -2,6 +2,8 @@
 using Neptuo.TemplateEngine.Accounts.Data;
 using Neptuo.TemplateEngine.Accounts.Data.Queries;
 using Neptuo.TemplateEngine.Accounts.Events;
+using Neptuo.TemplateEngine.Security;
+using Neptuo.TemplateEngine.Security.Events;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -71,6 +73,13 @@ namespace Neptuo.TemplateEngine.Accounts
                 return true;
             }
             return false;
+        }
+
+
+        public bool Logout()
+        {
+            EventDispatcher.Publish(new UserSignedOutEvent(DateTime.Now));
+            return true;
         }
     }
 }

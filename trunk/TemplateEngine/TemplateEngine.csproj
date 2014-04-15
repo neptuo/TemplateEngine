@@ -50,6 +50,9 @@
     <Compile Include="EventDispatcherExtensions.cs" />
     <Compile Include="ModuleAttribute.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Security\Events\UserSignedInEvent.cs" />
+    <Compile Include="Security\Events\UserSignedOutEvent.cs" />
+    <Compile Include="Security\IAuthenticator.cs" />
     <Compile Include="Security\IPermissionProvider.cs" />
     <Compile Include="Security\IPermissionSet.cs" />
     <Compile Include="Security\IUserContext.cs" />
