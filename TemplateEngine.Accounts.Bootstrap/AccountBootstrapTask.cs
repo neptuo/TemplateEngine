@@ -29,6 +29,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Neptuo.TemplateEngine.Accounts.Templates.DataSources;
 using Neptuo.TemplateEngine.Providers;
+using Neptuo.TemplateEngine.Security;
 
 namespace Neptuo.TemplateEngine.Accounts.Bootstrap
 {
