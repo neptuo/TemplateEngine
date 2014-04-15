@@ -10,6 +10,8 @@ namespace Neptuo.TemplateEngine.Security
     {
         IUserInfo User { get; }
         IPermissionProvider Permissions { get; }
+
+        string AuthenticationToken { get; }
         bool IsAuthenticated { get; }
     }
 }

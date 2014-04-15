@@ -74,6 +74,7 @@
     <Compile Include="Data\Queries\UserRoleFilter.cs" />
     <Compile Include="Data\UserLogDataProvider.cs" />
     <Compile Include="Events\UserLogCreatedEvent.cs" />
+    <Compile Include="IUserLogContext.cs" />
     <Compile Include="UserAccount.cs" />
     <Compile Include="Data\UserAccountDataProvider.cs" />
     <Compile Include="UserLog.cs" />
