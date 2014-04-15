@@ -80,18 +80,21 @@ var Neptuo$TemplateEngine$Controllers$ControllerContext = {
     interfaceNames: ["Neptuo.TemplateEngine.Controllers.IControllerContext"],
     Kind: "Class",
     definition: {
-        ctor: function (action, modelBinder, navigations, messages){
+        ctor: function (action, modelBinder, dependencyProvider, navigations, messages){
             this._ActionName = null;
             this._ModelBinder = null;
+            this._DependencyProvider = null;
             this._Navigations = null;
             this._Messages = null;
             System.Object.ctor.call(this);
             Neptuo.Guard.NotNull$$Object$$String(action, "action");
             Neptuo.Guard.NotNull$$Object$$String(modelBinder, "modelBinder");
+            Neptuo.Guard.NotNull$$Object$$String(dependencyProvider, "dependencyProvider");
             Neptuo.Guard.NotNull$$Object$$String(navigations, "navigations");
             Neptuo.Guard.NotNull$$Object$$String(messages, "messages");
             this.set_ActionName(action);
             this.set_ModelBinder(modelBinder);
+            this.set_DependencyProvider(dependencyProvider);
             this.set_Navigations(navigations);
             this.set_Messages(messages);
         },
@@ -108,6 +111,13 @@ var Neptuo$TemplateEngine$Controllers$ControllerContext = {
         },
         set_ModelBinder: function (value){
             this._ModelBinder = value;
+        },
+        DependencyProvider$$: "Neptuo.IDependencyProvider",
+        get_DependencyProvider: function (){
+            return this._DependencyProvider;
+        },
+        set_DependencyProvider: function (value){
+            this._DependencyProvider = value;
         },
         Navigations$$: "Neptuo.TemplateEngine.Providers.NavigationCollection",
         get_Navigations: function (){
@@ -126,7 +136,7 @@ var Neptuo$TemplateEngine$Controllers$ControllerContext = {
     },
     ctors: [{
         name: "ctor",
-        parameters: ["System.String", "Neptuo.TemplateEngine.Providers.ModelBinders.IModelBinder", "Neptuo.TemplateEngine.Providers.NavigationCollection", "Neptuo.TemplateEngine.Providers.MessageStorage"]
+        parameters: ["System.String", "Neptuo.TemplateEngine.Providers.ModelBinders.IModelBinder", "Neptuo.IDependencyProvider", "Neptuo.TemplateEngine.Providers.NavigationCollection", "Neptuo.TemplateEngine.Providers.MessageStorage"]
     }
     ],
     IsAbstract: false
@@ -141,10 +151,8 @@ var Neptuo$TemplateEngine$Controllers$ControllerRegistryBase = {
     definition: {
         ctor: function (){
             this._Storage = null;
-            this._AsyncStorage = null;
             System.Object.ctor.call(this);
             this.set_Storage(new System.Collections.Generic.Dictionary$2.ctor(System.String.ctor, Neptuo.TemplateEngine.Controllers.IControllerFactory.ctor));
-            this.set_AsyncStorage(new System.Collections.Generic.Dictionary$2.ctor(System.String.ctor, Neptuo.TemplateEngine.Controllers.IAsyncControllerFactory.ctor));
         },
         Storage$$: "System.Collections.Generic.Dictionary`2[[System.String],[Neptuo.TemplateEngine.Controllers.IControllerFactory]]",
         get_Storage: function (){
@@ -153,23 +161,10 @@ var Neptuo$TemplateEngine$Controllers$ControllerRegistryBase = {
         set_Storage: function (value){
             this._Storage = value;
         },
-        AsyncStorage$$: "System.Collections.Generic.Dictionary`2[[System.String],[Neptuo.TemplateEngine.Controllers.IAsyncControllerFactory]]",
-        get_AsyncStorage: function (){
-            return this._AsyncStorage;
-        },
-        set_AsyncStorage: function (value){
-            this._AsyncStorage = value;
-        },
-        Add$$String$$IControllerFactory: function (actionName, factory){
+        Add: function (actionName, factory){
             Neptuo.Guard.NotNull$$Object$$String(actionName, "actionName");
             Neptuo.Guard.NotNull$$Object$$String(factory, "factory");
             this.get_Storage().set_Item$$TKey(actionName, factory);
-            return this;
-        },
-        Add$$String$$IAsyncControllerFactory: function (actionName, factory){
-            Neptuo.Guard.NotNull$$Object$$String(actionName, "actionName");
-            Neptuo.Guard.NotNull$$Object$$String(factory, "factory");
-            this.get_AsyncStorage().set_Item$$TKey(actionName, factory);
             return this;
         },
         TryGet: function (actionName, controller){
@@ -180,23 +175,6 @@ var Neptuo$TemplateEngine$Controllers$ControllerRegistryBase = {
                     Value: factory
                 };
                 var $res = this.get_Storage().TryGetValue(actionName, $1);
-                factory = $1.Value;
-                return $res;
-            }).call(this)){
-                controller.Value = factory.Create();
-                return true;
-            }
-            controller.Value = null;
-            return false;
-        },
-        TryGetAsync: function (actionName, controller){
-            Neptuo.Guard.NotNull$$Object$$String(actionName, "actionName");
-            var factory;
-            if ((function (){
-                var $1 = {
-                    Value: factory
-                };
-                var $res = this.get_AsyncStorage().TryGetValue(actionName, $1);
                 factory = $1.Value;
                 return $res;
             }).call(this)){
@@ -230,7 +208,7 @@ var Neptuo$TemplateEngine$Controllers$ControllerRegistryExtensions = {
             return controllerRegistry;
         },
         Add$$IControllerRegistry$$String$$IDependencyContainer$$Type: function (controllerRegistry, actionName, dependencyContainer, controllerType){
-            return controllerRegistry.Add$$String$$IControllerFactory(actionName, new Neptuo.TemplateEngine.Controllers.DependencyControllerFactory.ctor(dependencyContainer, controllerType));
+            return controllerRegistry.Add(actionName, new Neptuo.TemplateEngine.Controllers.DependencyControllerFactory.ctor(dependencyContainer, controllerType));
         }
     },
     assemblyName: "Neptuo.TemplateEngine.Controllers",
@@ -244,48 +222,6 @@ var Neptuo$TemplateEngine$Controllers$ControllerRegistryExtensions = {
     IsAbstract: true
 };
 JsTypes.push(Neptuo$TemplateEngine$Controllers$ControllerRegistryExtensions);
-var Neptuo$TemplateEngine$Controllers$DependencyAsyncControllerFactory = {
-    fullname: "Neptuo.TemplateEngine.Controllers.DependencyAsyncControllerFactory",
-    baseTypeName: "System.Object",
-    assemblyName: "Neptuo.TemplateEngine.Controllers",
-    interfaceNames: ["Neptuo.TemplateEngine.Controllers.IAsyncControllerFactory"],
-    Kind: "Class",
-    definition: {
-        ctor: function (dependencyContainer, handlerType){
-            this._DependencyContainer = null;
-            this._HandlerType = null;
-            System.Object.ctor.call(this);
-            Neptuo.Guard.NotNull$$Object$$String(dependencyContainer, "dependencyContainer");
-            Neptuo.Guard.NotNull$$Object$$String(handlerType, "handlerType");
-            this.set_DependencyContainer(dependencyContainer);
-            this.set_HandlerType(handlerType);
-        },
-        DependencyContainer$$: "Neptuo.IDependencyContainer",
-        get_DependencyContainer: function (){
-            return this._DependencyContainer;
-        },
-        set_DependencyContainer: function (value){
-            this._DependencyContainer = value;
-        },
-        HandlerType$$: "System.Type",
-        get_HandlerType: function (){
-            return this._HandlerType;
-        },
-        set_HandlerType: function (value){
-            this._HandlerType = value;
-        },
-        Create: function (){
-            return Cast(this.get_DependencyContainer().Resolve(this.get_HandlerType(), null), Neptuo.TemplateEngine.Controllers.IAsyncController.ctor);
-        }
-    },
-    ctors: [{
-        name: "ctor",
-        parameters: ["Neptuo.IDependencyContainer", "System.Type"]
-    }
-    ],
-    IsAbstract: false
-};
-JsTypes.push(Neptuo$TemplateEngine$Controllers$DependencyAsyncControllerFactory);
 var Neptuo$TemplateEngine$Controllers$DependencyControllerFactory = {
     fullname: "Neptuo.TemplateEngine.Controllers.DependencyControllerFactory",
     baseTypeName: "System.Object",
@@ -328,33 +264,6 @@ var Neptuo$TemplateEngine$Controllers$DependencyControllerFactory = {
     IsAbstract: false
 };
 JsTypes.push(Neptuo$TemplateEngine$Controllers$DependencyControllerFactory);
-var Neptuo$TemplateEngine$Controllers$IAsyncController = {
-    fullname: "Neptuo.TemplateEngine.Controllers.IAsyncController",
-    baseTypeName: "System.Object",
-    assemblyName: "Neptuo.TemplateEngine.Controllers",
-    Kind: "Interface",
-    ctors: [],
-    IsAbstract: true
-};
-JsTypes.push(Neptuo$TemplateEngine$Controllers$IAsyncController);
-var Neptuo$TemplateEngine$Controllers$IAsyncControllerFactory = {
-    fullname: "Neptuo.TemplateEngine.Controllers.IAsyncControllerFactory",
-    baseTypeName: "System.Object",
-    assemblyName: "Neptuo.TemplateEngine.Controllers",
-    Kind: "Interface",
-    ctors: [],
-    IsAbstract: true
-};
-JsTypes.push(Neptuo$TemplateEngine$Controllers$IAsyncControllerFactory);
-var Neptuo$TemplateEngine$Controllers$IAsyncResult = {
-    fullname: "Neptuo.TemplateEngine.Controllers.IAsyncResult",
-    baseTypeName: "System.Object",
-    assemblyName: "Neptuo.TemplateEngine.Controllers",
-    Kind: "Interface",
-    ctors: [],
-    IsAbstract: true
-};
-JsTypes.push(Neptuo$TemplateEngine$Controllers$IAsyncResult);
 var Neptuo$TemplateEngine$Controllers$IController = {
     fullname: "Neptuo.TemplateEngine.Controllers.IController",
     baseTypeName: "System.Object",
@@ -391,37 +300,6 @@ var Neptuo$TemplateEngine$Controllers$IControllerRegistry = {
     IsAbstract: true
 };
 JsTypes.push(Neptuo$TemplateEngine$Controllers$IControllerRegistry);
-var Neptuo$TemplateEngine$Controllers$IViewData = {
-    fullname: "Neptuo.TemplateEngine.Controllers.IViewData",
-    baseTypeName: "System.Object",
-    assemblyName: "Neptuo.TemplateEngine.Controllers",
-    Kind: "Interface",
-    ctors: [],
-    IsAbstract: true
-};
-JsTypes.push(Neptuo$TemplateEngine$Controllers$IViewData);
-var Neptuo$TemplateEngine$Controllers$ViewDataExtensions = {
-    fullname: "Neptuo.TemplateEngine.Controllers.ViewDataExtensions",
-    baseTypeName: "System.Object",
-    staticDefinition: {
-        Get$1: function (T, viewData, key){
-            var data = viewData.Get(key);
-            if (Is(data, T))
-                return Cast(data, T);
-            return Default(T);
-        }
-    },
-    assemblyName: "Neptuo.TemplateEngine.Controllers",
-    Kind: "Class",
-    definition: {
-        ctor: function (){
-            System.Object.ctor.call(this);
-        }
-    },
-    ctors: [],
-    IsAbstract: true
-};
-JsTypes.push(Neptuo$TemplateEngine$Controllers$ViewDataExtensions);
 var Neptuo$TemplateEngine$Controllers$PartialResponse = {
     fullname: "Neptuo.TemplateEngine.Controllers.PartialResponse",
     baseTypeName: "System.Object",

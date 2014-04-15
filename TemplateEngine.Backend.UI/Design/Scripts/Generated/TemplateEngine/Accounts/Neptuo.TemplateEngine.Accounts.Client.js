@@ -206,7 +206,7 @@ var Neptuo$TemplateEngine$Accounts$UserRoleListResultConverter = {
     IsAbstract: false
 };
 JsTypes.push(Neptuo$TemplateEngine$Accounts$UserRoleListResultConverter);
-var Neptuo$TemplateEngine$Accounts$Web$Controllers$UserAccountController = {
+var Neptuo$TemplateEngine$Accounts$Controllers$UserAccountController = {
     fullname: "Neptuo.TemplateEngine.Accounts.Controllers.UserAccountController",
     baseTypeName: "System.Object",
     assemblyName: "Neptuo.TemplateEngine.Accounts.Client",
@@ -240,7 +240,7 @@ var Neptuo$TemplateEngine$Accounts$Web$Controllers$UserAccountController = {
     ],
     IsAbstract: false
 };
-JsTypes.push(Neptuo$TemplateEngine$Accounts$Web$Controllers$UserAccountController);
+JsTypes.push(Neptuo$TemplateEngine$Accounts$Controllers$UserAccountController);
 var Neptuo$TemplateEngine$Accounts$Templates$DataSources$UserAccountDataSource = {
     fullname: "Neptuo.TemplateEngine.Accounts.Templates.DataSources.UserAccountDataSource",
     baseTypeName: "Neptuo.TemplateEngine.Templates.DataSources.ListDataSourceProxy$1",

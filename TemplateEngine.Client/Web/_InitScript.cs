@@ -45,7 +45,7 @@ namespace Neptuo.TemplateEngine.Web
                 IController controller;
                 if (controllerRegistry.TryGet(key, out controller))
                 {
-                    controller.Execute(new ControllerContext(key, modelBinder, localNavigations, messageStorage));
+                    controller.Execute(new ControllerContext(key, modelBinder, container, localNavigations, messageStorage));
                     isControllerExecuted = true;
                 }
             }

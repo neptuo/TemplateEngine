@@ -56,16 +56,11 @@
     <Compile Include="ControllerContext.cs" />
     <Compile Include="ControllerRegistryBase.cs" />
     <Compile Include="ControllerRegistryExtensions.cs" />
-    <Compile Include="DependencyAsyncControllerFactory.cs" />
     <Compile Include="DependencyControllerFactory.cs" />
-    <Compile Include="IAsyncController.cs" />
-    <Compile Include="IAsyncControllerFactory.cs" />
-    <Compile Include="IAsyncResult.cs" />
     <Compile Include="IController.cs" />
     <Compile Include="IControllerContext.cs" />
     <Compile Include="IControllerFactory.cs" />
     <Compile Include="IControllerRegistry.cs" />
-    <Compile Include="IViewData.cs" />
     <Compile Include="PartialResponse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TransactionalAttribute.cs" />

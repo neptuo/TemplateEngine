@@ -177,19 +177,9 @@ namespace Neptuo.TemplateEngine.Web
                 IController controller;
                 if (controllerRegistry.TryGet(key, out controller))
                 {
-                    controller.Execute(new ControllerContext(key, modelBinder, localNavigations, messageStorage));
+                    controller.Execute(new ControllerContext(key, modelBinder, container, localNavigations, messageStorage));
                     isControllerExecuted = true;
                 }
-                else
-                {
-                    IAsyncController asyncController;
-                    if (controllerRegistry.TryGetAsync(key, out asyncController))
-                    {
-                        asyncController.ExecuteAsync(new ControllerContext(key, modelBinder, localNavigations, messageStorage));
-                        isControllerExecuted = true;
-                    }
-                }
-
             }
 
             //TODO: Process navigations

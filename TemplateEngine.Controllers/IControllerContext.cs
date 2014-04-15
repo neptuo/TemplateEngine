@@ -12,6 +12,7 @@ namespace Neptuo.TemplateEngine.Controllers
     {
         string ActionName { get; }
         IModelBinder ModelBinder { get; }
+        IDependencyProvider DependencyProvider { get; }
         NavigationCollection Navigations { get; }
         MessageStorage Messages { get; }
     }
