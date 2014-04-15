@@ -75,6 +75,7 @@ namespace Neptuo.TemplateEngine.Backend.UI
                 .RegisterType<HttpContextBase>(new GetterLifetime(() => new HttpContextWrapper(HttpContext.Current)))
                 .RegisterType<HttpRequestBase>(new GetterLifetime(() => new HttpRequestWrapper(HttpContext.Current.Request)))
                 .RegisterInstance<IEventDispatcher>(eventDispatcher)
+                .RegisterInstance<IEventRegistry>(eventDispatcher)
                 .RegisterInstance<IEventManager>(eventDispatcher)
                 .RegisterType<IParameterProvider, RequestParameterProvider>(new PerRequestLifetime())
                 .RegisterType<ICommandDispatcher, DependencyCommandDispatcher>()

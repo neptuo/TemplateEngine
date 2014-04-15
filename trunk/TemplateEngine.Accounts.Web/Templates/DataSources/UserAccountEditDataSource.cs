@@ -18,12 +18,12 @@ namespace Neptuo.TemplateEngine.Accounts.Templates.DataSources
     [WebDataSource]
     public class UserAccountEditDataSource : IDataSource
     {
-        private UserAccountDataService dataService;
+        private UserAccountDataProvider dataService;
         private IModelBinder modelBinder;
 
         public int Key { get; set; }
 
-        public UserAccountEditDataSource(UserAccountDataService dataService, IModelBinder modelBinder)
+        public UserAccountEditDataSource(UserAccountDataProvider dataService, IModelBinder modelBinder)
         {
             Guard.NotNull(dataService, "accountDataService");
             Guard.NotNull(modelBinder, "modelBinder");

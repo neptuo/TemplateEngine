@@ -30,6 +30,11 @@ using System.Threading.Tasks;
 using Neptuo.TemplateEngine.Accounts.Templates.DataSources;
 using Neptuo.TemplateEngine.Providers;
 using Neptuo.TemplateEngine.Security;
+using Neptuo.TemplateEngine.Accounts.Web;
+using Neptuo.Events;
+using Neptuo.TemplateEngine.Accounts.Events;
+using Neptuo.Events.Handlers;
+using Neptuo.TemplateEngine.Security.Events;
 
 namespace Neptuo.TemplateEngine.Accounts.Bootstrap
 {
@@ -43,8 +48,9 @@ namespace Neptuo.TemplateEngine.Accounts.Bootstrap
         private GlobalNavigationCollection globalNavigations;
         private IWebDataSourceRegistry dataSourceRegistry;
         private IViewBundleCollection viewBundles;
+        private IEventRegistry eventRegistry;
 
-        public AccountBootstrapTask(IDependencyContainer dependencyContainer, TypeBuilderRegistry registry, IFormUriRegistry formRegistry, IControllerRegistry controllerRegistry, GlobalNavigationCollection globalNavigations, IWebDataSourceRegistry dataSourceRegistry)
+        public AccountBootstrapTask(IDependencyContainer dependencyContainer, TypeBuilderRegistry registry, IFormUriRegistry formRegistry, IControllerRegistry controllerRegistry, GlobalNavigationCollection globalNavigations, IWebDataSourceRegistry dataSourceRegistry, IEventRegistry eventRegistry)
         {
             Guard.NotNull(dependencyContainer, "dependencyContainer");
             Guard.NotNull(registry, "registry");
@@ -52,6 +58,7 @@ namespace Neptuo.TemplateEngine.Accounts.Bootstrap
             Guard.NotNull(controllerRegistry, "controllerRegistry");
             Guard.NotNull(globalNavigations, "globalNavigations");
             Guard.NotNull(dataSourceRegistry, "dataSourceRegistry");
+            Guard.NotNull(eventRegistry, "eventRegistry");
 
             this.dependencyContainer = dependencyContainer;
             this.registry = registry;
@@ -59,6 +66,7 @@ namespace Neptuo.TemplateEngine.Accounts.Bootstrap
             this.controllerRegistry = controllerRegistry;
             this.globalNavigations = globalNavigations;
             this.dataSourceRegistry = dataSourceRegistry;
+            this.eventRegistry = eventRegistry;
             this.viewBundles = ViewBundleTable.Bundles;
         }
 
@@ -72,7 +80,7 @@ namespace Neptuo.TemplateEngine.Accounts.Bootstrap
             SetupForms(formRegistry);
             SetupGlobalNavigations(globalNavigations);
 
-
+            SetupEvents(eventRegistry);
 //#if DEBUG
             //CreateDummyUserRoles();
             //CreateDummyUserAccounts();
@@ -91,9 +99,12 @@ namespace Neptuo.TemplateEngine.Accounts.Bootstrap
             dependencyContainer
                 .RegisterType<DataContext>(new PerRequestLifetime())
 
+                .RegisterType<IAuthenticator, UserAccountService>()
+
                 .RegisterType<IUserAccountRepository, EntityUserAccountRepository>(new PerRequestLifetime())
                 .RegisterType<IUserAccountQuery, EntityUserAccountQuery>()
                 .RegisterType<IActivator<UserAccount>, EntityUserAccountRepository>(new PerRequestLifetime())
+                .RegisterActivator<IUserAccountQuery>(new PerRequestLifetime())
 
                 .RegisterCommandHandler<UserAccountCreateCommand, UserAccountCreateCommandHandler>()
                 .RegisterCommandHandler<UserAccountEditCommand, UserAccountEditCommandHandler>()
@@ -102,11 +113,16 @@ namespace Neptuo.TemplateEngine.Accounts.Bootstrap
                 .RegisterType<IUserRoleRepository, EntityUserRoleRepository>(new PerRequestLifetime())
                 .RegisterType<IUserRoleQuery, EntityUserRoleQuery>()
                 .RegisterType<IActivator<UserRole>, EntityUserRoleRepository>(new PerRequestLifetime())
+                .RegisterActivator<IUserRoleQuery>(new PerRequestLifetime())
+
+                .RegisterType<IUserLogRepository, EntityUserLogRepository>(new PerRequestLifetime())
+                .RegisterType<IUserLogQuery, EntityUserLogQuery>(new PerRequestLifetime())
+                .RegisterType<IActivator<UserLog>, EntityUserLogRepository>(new PerRequestLifetime())
+                .RegisterActivator<IUserLogQuery>(new PerRequestLifetime())
+
+
+
                 .RegisterCommandHandler<UserRoleEditCommand, EditUserRoleCommandHandler>()
-
-                .RegisterType<IAuthenticator, UserAccountService>()
-
-
                 .RegisterType<ICommandHandler<UserAccountCreateCommand>, UserAccountCreateHandler>()
                 .RegisterType<ICommandHandler<UserAccountEditCommand>, UserAccountUpdateHandler>();
         }
@@ -125,51 +141,58 @@ namespace Neptuo.TemplateEngine.Accounts.Bootstrap
             dataSourceRegistry.AddFromAssembly(typeof(UserAccountDataSource).Assembly);
         }
 
+        protected void SetupEvents(IEventRegistry eventRegistry)
+        {
+            FormsAuthenticationProvider authProvider = new FormsAuthenticationProvider();
+            eventRegistry.Subscribe<UserLogCreatedEvent>(new SingletonEventHandlerFactory<UserLogCreatedEvent>(authProvider));
+            eventRegistry.Subscribe<UserSignedOutEvent>(new SingletonEventHandlerFactory<UserSignedOutEvent>(authProvider));
+        }
+
         #region Init data
 
-        protected void CreateDummyUserAccounts()
-        {
-            IUserRoleRepository userRoles = dependencyContainer.Resolve<IUserRoleRepository>();
-            IUserAccountRepository storage = dependencyContainer.Resolve<IUserAccountRepository>();
-            for (int i = 0; i < 34; i++)
-            {
-                storage.Insert(new MemoryUserAccount
-                {
-                    Username = "User " + i,
-                    IsEnabled = (i % 3) == 1,
-                    Roles = new List<UserRole>
-                    {
-                        userRoles.Get(1),
-                        userRoles.Get(2)
-                    }
-                });
-            }
-        }
+        //protected void CreateDummyUserAccounts()
+        //{
+        //    IUserRoleRepository userRoles = dependencyContainer.Resolve<IUserRoleRepository>();
+        //    IUserAccountRepository storage = dependencyContainer.Resolve<IUserAccountRepository>();
+        //    for (int i = 0; i < 34; i++)
+        //    {
+        //        storage.Insert(new MemoryUserAccount
+        //        {
+        //            Username = "User " + i,
+        //            IsEnabled = (i % 3) == 1,
+        //            Roles = new List<UserRole>
+        //            {
+        //                userRoles.Get(1),
+        //                userRoles.Get(2)
+        //            }
+        //        });
+        //    }
+        //}
 
-        protected void CreateDummyUserRoles()
-        {
-            IUserRoleRepository storage = dependencyContainer.Resolve<IUserRoleRepository>();
-            storage.Insert(new MemoryUserRole
-            {
-                Name = "Administrators",
-                Description = "System admins"
-            });
-            storage.Insert(new MemoryUserRole
-            {
-                Name = "Everyone",
-                Description = "Public (un-authenticated) users"
-            });
-            storage.Insert(new MemoryUserRole
-            {
-                Name = "WebAdmins",
-                Description = "Admins of web presentation"
-            });
-            storage.Insert(new MemoryUserRole
-            {
-                Name = "Articles",
-                Description = "Article writers"
-            });
-        }
+        //protected void CreateDummyUserRoles()
+        //{
+        //    IUserRoleRepository storage = dependencyContainer.Resolve<IUserRoleRepository>();
+        //    storage.Insert(new MemoryUserRole
+        //    {
+        //        Name = "Administrators",
+        //        Description = "System admins"
+        //    });
+        //    storage.Insert(new MemoryUserRole
+        //    {
+        //        Name = "Everyone",
+        //        Description = "Public (un-authenticated) users"
+        //    });
+        //    storage.Insert(new MemoryUserRole
+        //    {
+        //        Name = "WebAdmins",
+        //        Description = "Admins of web presentation"
+        //    });
+        //    storage.Insert(new MemoryUserRole
+        //    {
+        //        Name = "Articles",
+        //        Description = "Article writers"
+        //    });
+        //}
 
         #endregion
     }

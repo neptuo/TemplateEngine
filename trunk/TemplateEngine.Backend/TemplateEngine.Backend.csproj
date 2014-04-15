@@ -107,6 +107,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Bootstrap\BindingBootstrapTask.cs" />
+    <Compile Include="Bootstrap\ModuleBootstrapConstraint.cs" />
+    <Compile Include="Bootstrap\ModuleBootstrapConstraintProvider.cs" />
     <Compile Include="JavascriptBootstrapTask.cs" />
     <Compile Include="Bootstrap\NavigationBootstrapTask.cs" />
     <Compile Include="Bootstrap\PresentationModelBootstrapTask.cs" />
