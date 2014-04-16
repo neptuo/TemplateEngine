@@ -45,9 +45,6 @@
     <Reference Include="Neptuo.Bootstrap">
       <HintPath>..\References\Neptuo.Bootstrap.dll</HintPath>
     </Reference>
-    <Reference Include="Neptuo.Commands">
-      <HintPath>..\References\Neptuo.Commands.dll</HintPath>
-    </Reference>
     <Reference Include="Neptuo.Data">
       <HintPath>..\References\Neptuo.Data.dll</HintPath>
     </Reference>

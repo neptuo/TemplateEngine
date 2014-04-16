@@ -6,7 +6,6 @@ using Neptuo.ObjectBuilder;
 using Neptuo.ObjectBuilder.Lifetimes.Mapping;
 using Neptuo.TemplateEngine.Navigation;
 using Neptuo.TemplateEngine.Navigation.Bootstrap;
-using Neptuo.TemplateEngine.PresentationModels;
 using Neptuo.TemplateEngine.Routing;
 using Neptuo.TemplateEngine.Templates;
 using Neptuo.TemplateEngine.Controllers;
@@ -89,7 +88,6 @@ namespace Neptuo.TemplateEngine.Web
             FormPostInvokers = new QueueFormPostInvokerManager();
 
             container
-                .RegisterType<IStackStorage<IViewStorage>, StackStorage<IViewStorage>>()
                 .RegisterInstance<IVirtualUrlProvider>(this)
                 .RegisterInstance<ICurrentUrlProvider>(this)
                 .RegisterType<IParameterProviderFactory, RouteParameterProviderFactory>()
