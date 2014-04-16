@@ -94,6 +94,7 @@ namespace Neptuo.TemplateEngine.Accounts.Bootstrap
             registry.RegisterNamespace(new NamespaceDeclaration("data", "Neptuo.TemplateEngine.Accounts.Templates.DataSources, Neptuo.TemplateEngine.Accounts.Web"));
 
             registry.RegisterComponentBuilder("ui", "AccountSideNav", new UserTemplateComponentBuilderFactory("~/Views/Accounts/SideNav.view"));
+            registry.RegisterComponentBuilder("ui", "LoginView", new UserTemplateComponentBuilderFactory("~/Views/Accounts/LoginUserControl.view"));
         }
 
         protected void SetupDependencyContainer(IDependencyContainer dependencyContainer)

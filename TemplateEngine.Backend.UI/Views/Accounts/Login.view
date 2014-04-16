@@ -1,50 +1,33 @@
 ﻿<ui:Doctype Type="Xhtml" />
 <html xmlns="http://www.w3.org/1999/xhtml">
-  <head>
-    <meta charset="utf-8" />
-    <title>Sign to TemplateEngine</title>
+    <head>
+        <meta charset="utf-8" />
+        <title>Sign to TemplateEngine</title>
 
-    <ui:Bundle Path="~/design/css/admin" IsStyle="true" />
-    <ui:Bundle Path="~/design/js/admin" />
+        <ui:Bundle Path="~/design/css/admin" IsStyle="true" />
+        <ui:Bundle Path="~/design/js/admin" />
 
-    <ajax:StartUp DefaultUpdate="Body" />
-    <ui:ViewBundle Path="Default" />
-    <ui:ViewBundle Path="~/Views/Accounts/Login.view" />
+        <ajax:StartUp DefaultUpdate="Body" />
+        <ui:ViewBundle Path="Default" />
+        <ui:ViewBundle Path="~/Views/Accounts/Login.view" />
 
-  </head>
-  <body>
-    
-    <ajax:View Partial="Body">
-      <div style="padding: 15px 10px;">
-        <ui:MessagePanel Key="" />
-        
-        <ui:PostForm>
-          <div class="col-md-6" style="margin: 0 auto; float: none;">
+    </head>
+    <body>
 
-            <ui:FormItem l:LabelText="Username" l:HelpText="Your user name">
-              <ui:TextBox Name="Username" Text="{Request Username}" IsAutoFocus="true" html:ID="Username" html:Class="form-control" />
-            </ui:FormItem>
+        <ajax:View Partial="Body">
 
-            <ui:FormItem l:LabelText="Password" l:HelpText="Your password">
-              <ui:PasswordBox Name="Password" IsAutoFocus="true" html:ID="Password" html:Class="form-control" />
-            </ui:FormItem>
+            <div class="sub-header">
+                <h2 class="col-md-6" style="margin: 0 auto; float: none;">
+                    <span class="glyphicon glyphicon-user"></span>
+                    Sign in to TemplateEngine
+                </h2>
+            </div>
+            <div style="padding: 15px 10px;">
+                <div class="col-md-6" style="margin: 0 auto; float: none;">
+                    <ui:LoginView />
+                </div>
+            </div>
+        </ajax:View>
 
-          </div>
-
-          <ui:SubHeader>
-            <ui:TemplateContent Name="Left">
-              <h2>
-                <span class="glyphicon glyphicon-user"></span>
-                Sign in to TemplateEngine
-              </h2>
-            </ui:TemplateContent>
-            <ui:TemplateContent Name="Right">
-              <ui:Button l:Text="Sign in" ui:Event="Accounts/Login" CssClass="btn btn-primary" />
-            </ui:TemplateContent>
-          </ui:SubHeader>
-        </ui:PostForm>
-      </div>
-    </ajax:View>
-    
-  </body>
+    </body>
 </html>
