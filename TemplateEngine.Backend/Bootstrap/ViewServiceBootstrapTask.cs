@@ -1,7 +1,5 @@
 ﻿using Neptuo.Bootstrap;
 using Neptuo.TemplateEngine.Backend.Web;
-using Neptuo.TemplateEngine.PresentationModels;
-using Neptuo.TemplateEngine.PresentationModels.Observers;
 using Neptuo.TemplateEngine.Templates;
 using Neptuo.TemplateEngine.Web;
 using Neptuo.TemplateEngine.Templates.Compilation;
@@ -68,7 +66,6 @@ namespace Neptuo.TemplateEngine.Backend.Bootstrap
                 .RegisterInstance<IVirtualUrlProvider>(new ServerPathProvider())
                 .RegisterInstance<ICurrentUrlProvider>(new ServerPathProvider())
                 .RegisterType<IParameterProviderFactory, RequestParameterProviderFactory>(new PerRequestLifetime())
-                .RegisterType<IStackStorage<IViewStorage>, StackStorage<IViewStorage>>(new PerRequestLifetime())
                 .RegisterType<IViewActivator, ViewServiceViewActivator>()
                 .RegisterType<IRequestContext, CompositeRequestContext>()
                 .RegisterType<TemplateContentStorageStack>(new PerRequestLifetime())
@@ -113,7 +110,6 @@ namespace Neptuo.TemplateEngine.Backend.Bootstrap
             registry.RegisterComponentBuilder("ui", "SubHeader", new UserTemplateComponentBuilderFactory("~/Views/Shared/SubHeader.view"));
             
             registry.RegisterObserverBuilder("ui", "Event", new DefaultTypeObserverBuilderFactory(typeof(EventObserver), ObserverBuilderScope.PerElement));
-            registry.RegisterObserverBuilder("view", "ID", new DefaultTypeObserverBuilderFactory(typeof(ViewIdentifierObserver), ObserverBuilderScope.PerElement));
             registry.RegisterObserverBuilder("html", "*", new DefaultTypeObserverBuilderFactory(typeof(HtmlObserver), ObserverBuilderScope.PerElement));
             registry.RegisterObserverBuilder("l", "*", new LocalizationObserverBuilderFactory());
             registry.RegisterObserverBuilder("form", "*", new FormUriObserverBuiderFactory());

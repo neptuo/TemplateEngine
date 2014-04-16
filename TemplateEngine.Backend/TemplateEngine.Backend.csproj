@@ -157,10 +157,6 @@
       <Project>{f16d8bc8-2191-498f-9950-dc8aa200b0ba}</Project>
       <Name>TemplateEngine.Navigation</Name>
     </ProjectReference>
-    <ProjectReference Include="..\TemplateEngine.PresentationModels\TemplateEngine.PresentationModels.csproj">
-      <Project>{b064bdbc-3755-4110-8eb7-6add2535d9fd}</Project>
-      <Name>TemplateEngine.PresentationModels</Name>
-    </ProjectReference>
     <ProjectReference Include="..\TemplateEngine.Providers\TemplateEngine.Providers.csproj">
       <Project>{30214616-7c89-467a-9147-7385e91aed13}</Project>
       <Name>TemplateEngine.Providers</Name>
