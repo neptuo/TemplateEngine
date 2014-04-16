@@ -10,6 +10,12 @@
         User roles
     </ui:Link>
 </li>
+<li>
+    <ui:Link form:Href="Accounts.Log.List" ajax:Update="BodyContainer">
+        <span class="glyphicon glyphicon-list"></span>
+        User logs
+    </ui:Link>
+</li>
 <li ui:IsVisible="false">
     <a href="#" class="disabled">
         <span class="glyphicon glyphicon-align-left"></span>

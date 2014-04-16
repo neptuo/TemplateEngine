@@ -45,9 +45,11 @@ namespace Neptuo.TemplateEngine.Accounts.Bootstrap
             converterRepository
                 .Add(typeof(JsObject), typeof(UserAccountEditModel), new UserAccountEditModelConverter())
                 .Add(typeof(JsObject), typeof(UserAccountListResult), new UserAccountListResultConverter())
-                
+
                 .Add(typeof(JsObject), typeof(UserRoleEditModel), new UserRoleEditModelConverter())
-                .Add(typeof(JsObject), typeof(UserRoleListResult), new UserRoleListResultConverter());
+                .Add(typeof(JsObject), typeof(UserRoleListResult), new UserRoleListResultConverter())
+
+                .Add(typeof(JsObject), typeof(UserLogListResult), new UserLogListResultConverter());
 
             SetupForms(formRegistry);
             SetupGlobalNavigations(globalNavigations);

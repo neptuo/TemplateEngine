@@ -62,6 +62,7 @@
     <Compile Include="FormsAuthenticationProvider.cs" />
     <Compile Include="Templates\DataSources\UserAccountDataSource.cs" />
     <Compile Include="Templates\DataSources\UserAccountEditDataSource.cs" />
+    <Compile Include="Templates\DataSources\UserLogDataSource.cs" />
     <Compile Include="Templates\DataSources\UserRoleDataSource.cs" />
     <Compile Include="Templates\DataSources\UserRoleEditDataSource.cs" />
     <Compile Include="Controllers\UserAccountController.cs" />

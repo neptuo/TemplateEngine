@@ -63,9 +63,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Bootstrap\AccountBootstrapTask.cs" />
+    <Compile Include="Templates\DataSources\UserLogDataSource.cs" />
     <Compile Include="UserAccountEditModelConverter.cs" />
     <Compile Include="UserAccountListResult.cs" />
     <Compile Include="UserAccountListResultConverter.cs" />
+    <Compile Include="UserLogListResult.cs" />
+    <Compile Include="UserLogListResultConverter.cs" />
     <Compile Include="UserRoleEditModelConverter.cs" />
     <Compile Include="UserRoleListResult.cs" />
     <Compile Include="UserRoleListResultConverter.cs" />

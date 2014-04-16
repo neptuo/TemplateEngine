@@ -17,7 +17,8 @@ namespace Neptuo.TemplateEngine.Accounts.Data.Entity.Queries
 
         protected override Expression BuildWhereExpression(Expression parameter)
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
+            return null;
         }
 
         protected override IUserLogFilter CreateFilter()

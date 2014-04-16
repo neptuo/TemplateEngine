@@ -5,7 +5,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Neptuo.TemplateEngine.Web.DataSources
+namespace Neptuo.TemplateEngine.Templates.DataSources
 {
     public static class WebDataSourceRegistryExtensions
     {

@@ -2461,8 +2461,8 @@ var Neptuo$TemplateEngine$Templates$DataSources$ListResult = {
     IsAbstract: false
 };
 JsTypes.push(Neptuo$TemplateEngine$Templates$DataSources$ListResult);
-var Neptuo$TemplateEngine$Web$DataSources$WebDataSourceAttribute = {
-    fullname: "Neptuo.TemplateEngine.Web.DataSources.WebDataSourceAttribute",
+var Neptuo$TemplateEngine$Templates$DataSources$WebDataSourceAttribute = {
+    fullname: "Neptuo.TemplateEngine.Templates.DataSources.WebDataSourceAttribute",
     baseTypeName: "System.Attribute",
     assemblyName: "Neptuo.TemplateEngine.Templates",
     Kind: "Class",
@@ -2478,7 +2478,7 @@ var Neptuo$TemplateEngine$Web$DataSources$WebDataSourceAttribute = {
     ],
     IsAbstract: false
 };
-JsTypes.push(Neptuo$TemplateEngine$Web$DataSources$WebDataSourceAttribute);
+JsTypes.push(Neptuo$TemplateEngine$Templates$DataSources$WebDataSourceAttribute);
 var Neptuo$TemplateEngine$Templates$ExtendedHtmlTextWriter = {
     fullname: "Neptuo.TemplateEngine.Templates.ExtendedHtmlTextWriter",
     baseTypeName: "Neptuo.Templates.HtmlTextWriter",

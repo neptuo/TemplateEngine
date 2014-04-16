@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Neptuo.TemplateEngine.Web.DataSources
+namespace Neptuo.TemplateEngine.Templates.DataSources
 {
     /// <summary>
     /// Marker attribute to mark data source as accessible through web.
