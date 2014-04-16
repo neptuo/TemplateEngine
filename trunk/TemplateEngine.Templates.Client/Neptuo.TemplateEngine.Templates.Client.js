@@ -553,6 +553,36 @@ var Neptuo$TemplateEngine$Templates$Controls$SelectControl = {
     IsAbstract: false
 };
 JsTypes.push(Neptuo$TemplateEngine$Templates$Controls$SelectControl);
+var Neptuo$TemplateEngine$Templates$DataSources$CollectionDataSource = {
+    fullname: "Neptuo.TemplateEngine.Templates.DataSources.CollectionDataSource",
+    baseTypeName: "System.Object",
+    assemblyName: "Neptuo.TemplateEngine.Templates.Client",
+    interfaceNames: ["Neptuo.TemplateEngine.Templates.DataSources.IListDataSource"],
+    Kind: "Class",
+    definition: {
+        ctor: function (){
+            this._Data = null;
+            System.Object.ctor.call(this);
+        },
+        Data$$: "System.Collections.IEnumerable",
+        get_Data: function (){
+            return this._Data;
+        },
+        set_Data: function (value){
+            this._Data = value;
+        },
+        GetData: function (pageIndex, pageSize, callback, errorCallback){
+            callback(new Neptuo.TemplateEngine.Templates.DataSources.ListResult.ctor(this.get_Data(), 0));
+        }
+    },
+    ctors: [{
+        name: "ctor",
+        parameters: []
+    }
+    ],
+    IsAbstract: false
+};
+JsTypes.push(Neptuo$TemplateEngine$Templates$DataSources$CollectionDataSource);
 var Neptuo$TemplateEngine$Templates$DataSources$DataSourceProxy$1 = {
     fullname: "Neptuo.TemplateEngine.Templates.DataSources.DataSourceProxy$1",
     baseTypeName: "System.Object",

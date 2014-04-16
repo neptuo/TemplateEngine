@@ -13,4 +13,5 @@
   <Type Target="Neptuo.TemplateEngine.Templates.DataSources.IDataSource" Export="false" />
   <Type Target="Neptuo.TemplateEngine.Templates.DataSources.IListDataSource" Export="false" />
   <Type Target="Neptuo.TemplateEngine.Templates.DataSources.ListDataSourceBase" Export="false" />
+  <Type Target="Neptuo.TemplateEngine.Templates.DataSources.CollectionDataSource" Export="false" />
 </Exugin>
