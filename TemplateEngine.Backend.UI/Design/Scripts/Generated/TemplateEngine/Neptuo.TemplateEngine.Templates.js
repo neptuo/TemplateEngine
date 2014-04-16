@@ -2464,7 +2464,7 @@ var Neptuo$TemplateEngine$Templates$DataSources$ListResult = {
 };
 JsTypes.push(Neptuo$TemplateEngine$Templates$DataSources$ListResult);
 var Neptuo$TemplateEngine$Web$DataSources$WebDataSourceAttribute = {
-    fullname: "Neptuo.TemplateEngine.Web.DataSources.WebDataSourceAttribute",
+    fullname: "Neptuo.TemplateEngine.Templates.DataSources.WebDataSourceAttribute",
     baseTypeName: "System.Attribute",
     assemblyName: "Neptuo.TemplateEngine.Templates",
     Kind: "Class",

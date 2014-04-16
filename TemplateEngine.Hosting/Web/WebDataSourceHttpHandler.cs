@@ -1,6 +1,6 @@
 ﻿using Neptuo.TemplateEngine.Templates.DataSources;
 using Neptuo.TemplateEngine.Providers.ModelBinders;
-using Neptuo.TemplateEngine.Web.DataSources;
+using Neptuo.TemplateEngine.Templates.DataSources;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;

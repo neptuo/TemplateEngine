@@ -9,7 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Neptuo.TemplateEngine.Web.DataSources;
+using Neptuo.TemplateEngine.Templates.DataSources;
 
 namespace Neptuo.TemplateEngine.Accounts.Templates.DataSources
 {

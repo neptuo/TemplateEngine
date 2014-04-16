@@ -12,7 +12,7 @@ using Neptuo.TemplateEngine.Navigation.Bootstrap;
 using Neptuo.TemplateEngine.Web;
 using Neptuo.TemplateEngine.Templates.Compilation.Parsers;
 using Neptuo.TemplateEngine.Controllers;
-using Neptuo.TemplateEngine.Web.DataSources;
+using Neptuo.TemplateEngine.Templates.DataSources;
 using Neptuo.TemplateEngine.Web.ViewBundles;
 using Neptuo.Templates;
 using Neptuo.Templates.Compilation;

@@ -210,6 +210,9 @@
   <ItemGroup>
     <Content Include="Views\Accounts\Login.view" />
     <Content Include="packages.config" />
+    <Content Include="Views\Accounts\LogList.view">
+      <SubType>Designer</SubType>
+    </Content>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

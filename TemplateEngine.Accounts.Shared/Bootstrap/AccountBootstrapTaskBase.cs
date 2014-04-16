@@ -23,7 +23,9 @@ namespace Neptuo.TemplateEngine.Accounts.Bootstrap
                 .Register("Accounts.User.Edit", TemplateRouteParameterBase.FormatUrl("~/Accounts/UserEdit"))
 
                 .Register("Accounts.Role.List", TemplateRouteParameterBase.FormatUrl("~/Accounts/RoleList"))
-                .Register("Accounts.Role.Edit", TemplateRouteParameterBase.FormatUrl("~/Accounts/RoleEdit"));
+                .Register("Accounts.Role.Edit", TemplateRouteParameterBase.FormatUrl("~/Accounts/RoleEdit"))
+
+                .Register("Accounts.Log.List", TemplateRouteParameterBase.FormatUrl("~/Accounts/LogList"));
         }
 
         protected void SetupGlobalNavigations(GlobalNavigationCollection globalNavigations)

@@ -13,7 +13,7 @@ using Neptuo.TemplateEngine.Accounts.Data.Entity;
 using Neptuo.TemplateEngine.Backend.Bootstrap;
 using Neptuo.TemplateEngine.Web;
 using Neptuo.TemplateEngine.Controllers;
-using Neptuo.TemplateEngine.Web.DataSources;
+using Neptuo.TemplateEngine.Templates.DataSources;
 using Neptuo.TemplateEngine.Web.ViewBundles;
 using Neptuo.Templates;
 using Neptuo.Unity;
