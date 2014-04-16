@@ -134,6 +134,7 @@
     <Compile Include="Controls\Templates\ViewTemplateContent.cs" />
     <Compile Include="Controls\ViewBundleControl.cs" />
     <Compile Include="DataContextStorage.cs" />
+    <Compile Include="DataSources\CollectionDataSource.cs" />
     <Compile Include="DataSources\IDataSource.cs" />
     <Compile Include="DataSources\IListDataSource.cs" />
     <Compile Include="DataSources\IListResult.cs" />

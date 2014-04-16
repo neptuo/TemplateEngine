@@ -55,6 +55,7 @@
     <Compile Include="Controls\DropDownListControl.cs" />
     <Compile Include="Controls\ListViewControl.cs" />
     <Compile Include="Controls\SelectControl.cs" />
+    <Compile Include="DataSources\CollectionDataSource.cs" />
     <Compile Include="DataSources\DataSourceProxy.cs" />
     <Compile Include="DataSources\IDataSource.cs" />
     <Compile Include="DataSources\IListDataSource.cs" />

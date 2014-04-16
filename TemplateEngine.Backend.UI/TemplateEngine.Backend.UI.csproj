@@ -157,6 +157,7 @@
     <Content Include="Design\Scripts\Generated\TemplateEngine\Accounts\Neptuo.TemplateEngine.Accounts.Client.js" />
     <Content Include="Design\Scripts\Generated\TemplateEngine\Accounts\Neptuo.TemplateEngine.Accounts.Shared.js" />
     <Content Include="Design\Scripts\Generated\TemplateEngine\Neptuo.TemplateEngine.Navigation.js" />
+    <Content Include="Design\Scripts\Generated\TemplateEngine\Neptuo.TemplateEngine.Templates.Client.js" />
     <Content Include="Design\Scripts\Generated\TemplateEngine\Neptuo.TemplateEngine.Templates.js" />
     <Content Include="Design\Styles\bootstrap-theme.css" />
     <Content Include="Design\Styles\bootstrap-theme.min.css" />

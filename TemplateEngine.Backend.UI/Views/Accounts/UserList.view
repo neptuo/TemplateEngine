@@ -67,7 +67,7 @@
                                 <th class="w150">Is enabled</th>
                                 <th class="w150 action-list"></th>
                             </tr>
-                        </thead>
+                        </thead> 
                         <tbody>
                             <ui:TemplatePlaceholder Name="Content" />
                         </tbody>
@@ -82,7 +82,19 @@
                     <td>
                         <ui:Literal Text="{Binding Username}" />
                     </td>
-                    <td></td>
+                    <td>
+                        <ui:ListView>
+                            <Source>
+                                <data:CollectionDataSource Data="{Binding Roles}" /> 
+                            </Source>
+                            <ItemTemplate>
+                                <ui:Literal Text="{Binding Name}" />
+                            </ItemTemplate>
+                            <EmptyTemplate>
+                              No roles assigned 
+                            </EmptyTemplate>
+                        </ui:ListView>
+                    </td>
                     <td></td>
                     <td>
                         <ui:Literal Text="{Binding IsEnabled}" />

@@ -49,7 +49,7 @@ namespace Neptuo.TemplateEngine.Templates
             Type sourceType = value.GetType();
             Type targetType = typeof(T);
 
-            if (sourceType == targetType)
+            if (targetType.IsAssignableFrom(sourceType))
                 return (T)value;
 
             if (sourceType == typeof(string))
