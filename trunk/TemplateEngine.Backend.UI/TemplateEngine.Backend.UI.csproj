@@ -213,7 +213,9 @@
     <Content Include="Views\Accounts\LogList.view">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Views\Accounts\LoginUserControl.view" />
+    <Content Include="Views\Accounts\LoginUserControl.view">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Views\Accounts\SideNavUserControl.view" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
