@@ -17,8 +17,16 @@ namespace Neptuo.TemplateEngine.Accounts.Data.Entity.Queries
 
         protected override Expression BuildWhereExpression(Expression parameter)
         {
-            //throw new NotImplementedException();
-            return null;
+            Expression target = null;
+
+            //TODO: Create search for Key 
+            //if (Filter.Key != null)
+            //    target = EntityQuerySearch.BuildIntSearch<UserLog>(target, parameter, l => l.Key, Filter.Key);
+
+            if (Filter.UserKey != null)
+                target = EntityQuerySearch.BuildIntSearch<UserLog>(target, parameter, l => l.User.Key, Filter.UserKey); //TODO: Read while property path
+
+            return target;
         }
 
         protected override IUserLogFilter CreateFilter()

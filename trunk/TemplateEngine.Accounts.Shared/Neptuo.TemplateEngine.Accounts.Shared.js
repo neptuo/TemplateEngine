@@ -283,6 +283,15 @@ var Neptuo$TemplateEngine$Accounts$Templates$DataSources$IUserAccountDataSourceF
     IsAbstract: true
 };
 JsTypes.push(Neptuo$TemplateEngine$Accounts$Templates$DataSources$IUserAccountDataSourceFilter);
+var Neptuo$TemplateEngine$Accounts$Templates$DataSources$IUserLogDataSourceFilter = {
+    fullname: "Neptuo.TemplateEngine.Accounts.Templates.DataSources.IUserLogDataSourceFilter",
+    baseTypeName: "System.Object",
+    assemblyName: "Neptuo.TemplateEngine.Accounts.Shared",
+    Kind: "Interface",
+    ctors: [],
+    IsAbstract: true
+};
+JsTypes.push(Neptuo$TemplateEngine$Accounts$Templates$DataSources$IUserLogDataSourceFilter);
 var Neptuo$TemplateEngine$Accounts$Templates$DataSources$IUserRoleDataSourceFilter = {
     fullname: "Neptuo.TemplateEngine.Accounts.Templates.DataSources.IUserRoleDataSourceFilter",
     baseTypeName: "System.Object",
