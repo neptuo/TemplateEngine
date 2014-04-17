@@ -44,12 +44,22 @@ var Neptuo$TemplateEngine$Accounts$Templates$DataSources$UserLogDataSource = {
     fullname: "Neptuo.TemplateEngine.Accounts.Templates.DataSources.UserLogDataSource",
     baseTypeName: "Neptuo.TemplateEngine.Templates.DataSources.ListDataSourceProxy$1",
     assemblyName: "Neptuo.TemplateEngine.Accounts.Client",
+    interfaceNames: ["Neptuo.TemplateEngine.Accounts.Templates.DataSources.IUserLogDataSourceFilter"],
     Kind: "Class",
     definition: {
         ctor: function (urlProvider){
+            this._UserKey = null;
             Neptuo.TemplateEngine.Templates.DataSources.ListDataSourceProxy$1.ctor.call(this, Neptuo.TemplateEngine.Accounts.UserLogListResult.ctor, urlProvider);
         },
+        UserKey$$: "System.Nullable`1[[System.Int32]]",
+        get_UserKey: function (){
+            return this._UserKey;
+        },
+        set_UserKey: function (value){
+            this._UserKey = value;
+        },
         SetParameters: function (parameterBuilder){
+            parameterBuilder.Set("UserKey", this.get_UserKey());
         }
     },
     ctors: [{

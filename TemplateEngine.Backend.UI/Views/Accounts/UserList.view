@@ -5,7 +5,7 @@
         </ul>
     </ui:TemplateContent>
     <ui:TemplateContent Name="Body">
-        
+
         <ui:SubHeader>
             <ui:TemplateContent Name="Left">
                 <h2>
@@ -19,12 +19,12 @@
         </ui:SubHeader>
 
         <div class="sub-panel">
-          <ui:GetForm html:Class="form-inline" ajax:Update="Content">
+            <ui:GetForm html:Class="form-inline" ajax:Update="Content">
                 <ui:FormItem l:LabelText="ID:">
                     <ui:TextBox Name="Key" Text="{Request Key}" IsAutoFocus="true" CssClass="form-control input-sm w50" html:Style="display: block;" />
                 </ui:FormItem>
                 <ui:FormItem l:LabelText="Username:">
-                    <ui:TextBox Name="Username" Text="{Request Username}" CssClass="form-control input-sm" /> 
+                    <ui:TextBox Name="Username" Text="{Request Username}" CssClass="form-control input-sm" />
                 </ui:FormItem>
                 <ui:FormItem>
                     <label for="RoleKey">Role:</label>
@@ -43,15 +43,15 @@
                     <ui:Link form:Href="Accounts.User.List" ajax:Update="Content" CssClass="btn btn-default btn-sm" l:Text="Clear" CopyParameters="PageIndex" AllowActive="false" />
                 </div>
             </ui:GetForm>
-      </div>
+        </div>
 
         <!--<ui:Link form:Href="Accounts.User.List" Text="Link" CopyParameters="Query">
             <Parameters>
                 <ui:Parameter Name="PageIndex" Value="2" />
             </Parameters>
         </ui:Link>-->
- 
-        <ui:ListView PageIndex="{Request PageIndex}" PageSize="10"> 
+
+        <ui:ListView PageIndex="{Request PageIndex}" PageSize="10">
             <Source>
                 <data:UserAccountDataSource Username="{Request Username}" Key="{Request Key}" RoleKey="{Request RoleKey}" />
             </Source>
@@ -67,7 +67,7 @@
                                 <th class="w150">Is enabled</th>
                                 <th class="w150 action-list"></th>
                             </tr>
-                        </thead> 
+                        </thead>
                         <tbody>
                             <ui:TemplatePlaceholder Name="Content" />
                         </tbody>
@@ -85,17 +85,26 @@
                     <td>
                         <ui:ListView>
                             <Source>
-                                <data:CollectionDataSource Data="{Binding Roles}" /> 
+                                <data:CollectionDataSource Data="{Binding Roles}" />
                             </Source>
                             <ItemTemplate>
                                 <ui:Literal Text="{Binding Name}" />
                             </ItemTemplate>
                             <EmptyTemplate>
-                              No roles assigned 
+                                No roles assigned
                             </EmptyTemplate>
                         </ui:ListView>
                     </td>
-                    <td></td>
+                    <td>
+                        <!--<ui:ListView PageSize="1">
+                            <Source>
+                                <data:UserLogDataSource UserKey="{Binding Key}" />
+                            </Source>
+                            <ItemTemplate>
+                                <ui:Literal Text="{Binding SignedIn}" />
+                            </ItemTemplate>
+                        </ui:ListView>-->
+                    </td>
                     <td>
                         <ui:Literal Text="{Binding IsEnabled}" />
                     </td>
@@ -117,5 +126,5 @@
             </EmptyTemplate>
         </ui:ListView>
 
-    </ui:TemplateContent>    
+    </ui:TemplateContent>
 </ui:AdminLayout>

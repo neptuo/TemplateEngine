@@ -8,13 +8,17 @@ using Neptuo.Templates;
 
 namespace Neptuo.TemplateEngine.Accounts.Templates.DataSources
 {
-    public class UserLogDataSource : ListDataSourceProxy<UserLogListResult>
+    public class UserLogDataSource : ListDataSourceProxy<UserLogListResult>, IUserLogDataSourceFilter
     {
+        public int? UserKey { get; set; }
+
         public UserLogDataSource(IVirtualUrlProvider urlProvider)
             : base(urlProvider)
         { }
 
         protected override void SetParameters(JsObjectBuilder parameterBuilder)
-        { }
+        {
+            parameterBuilder.Set("UserKey", UserKey);
+        }
     }
 }
