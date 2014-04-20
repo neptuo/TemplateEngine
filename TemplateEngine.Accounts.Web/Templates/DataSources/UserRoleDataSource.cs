@@ -28,7 +28,7 @@ namespace Neptuo.TemplateEngine.Accounts.Templates.DataSources
             this.roleQuery = roleQuery;
         }
 
-        protected void ApplyFilter(int? pageIndex, int? pageSize)
+        protected void ApplyFilter()
         {
             if (!String.IsNullOrEmpty(Name))
                 roleQuery.Filter.Name = TextSearch.Create(Name, TextSearchType.Contains, false);
@@ -44,7 +44,7 @@ namespace Neptuo.TemplateEngine.Accounts.Templates.DataSources
 
         public IEnumerable GetData(int? pageIndex, int? pageSize)
         {
-            ApplyFilter(pageIndex, pageSize);
+            ApplyFilter();
 
             List<UserRoleViewModel> result = new List<UserRoleViewModel>();
             foreach (UserRole role in roleQuery.EnumeratePageItems(pageIndex, pageSize))
@@ -55,7 +55,7 @@ namespace Neptuo.TemplateEngine.Accounts.Templates.DataSources
 
         public int GetTotalCount()
         {
-            ApplyFilter(null, null);
+            ApplyFilter();
             return roleQuery.Count();
         }
     }

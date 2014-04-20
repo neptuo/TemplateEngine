@@ -44,7 +44,7 @@ namespace Neptuo.TemplateEngine.Accounts.Templates.DataSources
             return new UserAccountViewModel(userAccount.Key, userAccount.Username, userAccount.IsEnabled, userAccount.Roles.Select(r => new UserRoleRowViewModel(r.Key, r.Name)));
         }
 
-        protected void ApplyFilter(int? pageIndex, int? pageSize)
+        protected void ApplyFilter()
         {
             if (!String.IsNullOrEmpty(Username))
                 userQuery.Filter.Username = TextSearch.Create(Username, TextSearchType.Contains);
@@ -62,7 +62,7 @@ namespace Neptuo.TemplateEngine.Accounts.Templates.DataSources
 
         public IEnumerable GetData(int? pageIndex, int? pageSize)
         {
-            ApplyFilter(pageIndex, pageSize);
+            ApplyFilter();
 
             List<UserAccountViewModel> result = new List<UserAccountViewModel>();
             foreach (UserAccount account in userQuery.EnumeratePageItems(pageIndex, pageSize))
@@ -81,7 +81,7 @@ namespace Neptuo.TemplateEngine.Accounts.Templates.DataSources
 
         public int GetTotalCount()
         {
-            ApplyFilter(null, null);
+            ApplyFilter();
             return userQuery.Count();
         }
     }
