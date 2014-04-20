@@ -4,20 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Neptuo.TemplateEngine.Accounts
+namespace Neptuo.TemplateEngine.Accounts.Controllers.Commands
 {
-    public class UserRoleEditModel
+    public class UserRoleEditCommand
     {
-        public bool IsNew
-        {
-            get { return Key == 0; }
-        }
-
         public int Key { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
-        
-        public UserRoleEditModel()
-        { }
     }
 }

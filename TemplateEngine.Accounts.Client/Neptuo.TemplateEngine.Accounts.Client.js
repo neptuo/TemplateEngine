@@ -2,9 +2,9 @@
 
 if (typeof(JsTypes) == "undefined")
     var JsTypes = [];
-var Neptuo$TemplateEngine$Accounts$Bootstrap$AccountBootstrapTask = {
-    fullname: "Neptuo.TemplateEngine.Accounts.Bootstrap.AccountBootstrapTask",
-    baseTypeName: "Neptuo.TemplateEngine.Accounts.Bootstrap.AccountBootstrapTaskBase",
+var Neptuo$TemplateEngine$Accounts$Hosting$Bootstrap$AccountBootstrapTask = {
+    fullname: "Neptuo.TemplateEngine.Accounts.Hosting.Bootstrap.AccountBootstrapTask",
+    baseTypeName: "Neptuo.TemplateEngine.Accounts.Hosting.Bootstrap.AccountBootstrapTaskBase",
     assemblyName: "Neptuo.TemplateEngine.Accounts.Client",
     interfaceNames: ["Neptuo.Bootstrap.IBootstrapTask"],
     Kind: "Class",
@@ -15,7 +15,7 @@ var Neptuo$TemplateEngine$Accounts$Bootstrap$AccountBootstrapTask = {
             this.controllerRegistry = null;
             this.globalNavigations = null;
             this.converterRepository = null;
-            Neptuo.TemplateEngine.Accounts.Bootstrap.AccountBootstrapTaskBase.ctor.call(this);
+            Neptuo.TemplateEngine.Accounts.Hosting.Bootstrap.AccountBootstrapTaskBase.ctor.call(this);
             Neptuo.Guard.NotNull$$Object$$String(dependencyContainer, "dependencyContainer");
             Neptuo.Guard.NotNull$$Object$$String(formRegistry, "formRegistry");
             Neptuo.Guard.NotNull$$Object$$String(controllerRegistry, "controllerRegistry");
@@ -39,7 +39,7 @@ var Neptuo$TemplateEngine$Accounts$Bootstrap$AccountBootstrapTask = {
     ],
     IsAbstract: false
 };
-JsTypes.push(Neptuo$TemplateEngine$Accounts$Bootstrap$AccountBootstrapTask);
+JsTypes.push(Neptuo$TemplateEngine$Accounts$Hosting$Bootstrap$AccountBootstrapTask);
 var Neptuo$TemplateEngine$Accounts$Templates$DataSources$UserLogDataSource = {
     fullname: "Neptuo.TemplateEngine.Accounts.Templates.DataSources.UserLogDataSource",
     baseTypeName: "Neptuo.TemplateEngine.Templates.DataSources.ListDataSourceProxy$1",
@@ -291,41 +291,6 @@ var Neptuo$TemplateEngine$Accounts$UserRoleListResultConverter = {
     IsAbstract: false
 };
 JsTypes.push(Neptuo$TemplateEngine$Accounts$UserRoleListResultConverter);
-var Neptuo$TemplateEngine$Accounts$Controllers$UserAccountController = {
-    fullname: "Neptuo.TemplateEngine.Accounts.Controllers.UserAccountController",
-    baseTypeName: "System.Object",
-    assemblyName: "Neptuo.TemplateEngine.Accounts.Client",
-    interfaceNames: ["Neptuo.TemplateEngine.Controllers.IController"],
-    Kind: "Class",
-    definition: {
-        ctor: function (){
-            this._Context = null;
-            System.Object.ctor.call(this);
-        },
-        Context$$: "Neptuo.TemplateEngine.Controllers.IControllerContext",
-        get_Context: function (){
-            return this._Context;
-        },
-        set_Context: function (value){
-            this._Context = value;
-        },
-        Create: function (){
-            var model = Neptuo.TemplateEngine.Providers.ModelBinders.ModelBinderExtensions.Bind$1$$IModelBinder$$T(Neptuo.TemplateEngine.Accounts.Commands.UserAccountCreateCommand.ctor, this.get_Context().get_ModelBinder(), new Neptuo.TemplateEngine.Accounts.Commands.UserAccountCreateCommand.ctor());
-            console.log(model);
-        },
-        Execute: function (context){
-            this.set_Context(context);
-            this.Create();
-        }
-    },
-    ctors: [{
-        name: "ctor",
-        parameters: []
-    }
-    ],
-    IsAbstract: false
-};
-JsTypes.push(Neptuo$TemplateEngine$Accounts$Controllers$UserAccountController);
 var Neptuo$TemplateEngine$Accounts$Templates$DataSources$UserAccountDataSource = {
     fullname: "Neptuo.TemplateEngine.Accounts.Templates.DataSources.UserAccountDataSource",
     baseTypeName: "Neptuo.TemplateEngine.Templates.DataSources.ListDataSourceProxy$1",

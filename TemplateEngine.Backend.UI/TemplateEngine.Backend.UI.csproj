@@ -225,21 +225,17 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\TemplateEngine.Accounts.Bootstrap\TemplateEngine.Accounts.Bootstrap.csproj">
-      <Project>{f0850d8e-c545-4652-8e66-7cb4b816d1cb}</Project>
-      <Name>TemplateEngine.Accounts.Bootstrap</Name>
-    </ProjectReference>
     <ProjectReference Include="..\TemplateEngine.Accounts.Data.Entity\TemplateEngine.Accounts.Data.Entity.csproj">
       <Project>{6dd08b12-15bd-4eb3-8273-da33c59b71c3}</Project>
       <Name>TemplateEngine.Accounts.Data.Entity</Name>
     </ProjectReference>
+    <ProjectReference Include="..\TemplateEngine.Accounts.Hosting\TemplateEngine.Accounts.Hosting.csproj">
+      <Project>{ab318aad-488f-4c85-9ba0-900a0826e941}</Project>
+      <Name>TemplateEngine.Accounts.Hosting</Name>
+    </ProjectReference>
     <ProjectReference Include="..\TemplateEngine.Accounts.Shared\TemplateEngine.Accounts.Shared.csproj">
       <Project>{bd9ba2ab-c026-4c9f-8605-920d24987756}</Project>
       <Name>TemplateEngine.Accounts.Shared</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\TemplateEngine.Accounts.Web\TemplateEngine.Accounts.Web.csproj">
-      <Project>{a67f64a5-c62d-491e-8aee-2b5766668b5e}</Project>
-      <Name>TemplateEngine.Accounts.Web</Name>
     </ProjectReference>
     <ProjectReference Include="..\TemplateEngine.Accounts\TemplateEngine.Accounts.csproj">
       <Project>{36f0d8f9-1f8f-409c-9eda-c17644c4c0d8}</Project>

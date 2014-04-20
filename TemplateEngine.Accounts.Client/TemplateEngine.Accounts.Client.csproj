@@ -72,7 +72,6 @@
     <Compile Include="UserRoleEditModelConverter.cs" />
     <Compile Include="UserRoleListResult.cs" />
     <Compile Include="UserRoleListResultConverter.cs" />
-    <Compile Include="Web\Controllers\UserAccountController.cs" />
     <Compile Include="Templates\DataSources\UserAccountDataSource.cs" />
     <Compile Include="Templates\DataSources\UserAccountEditDataSource.cs" />
     <Compile Include="Templates\DataSources\UserRoleDataSource.cs" />

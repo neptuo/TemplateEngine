@@ -48,6 +48,7 @@ namespace Neptuo.TemplateEngine.Accounts
 
         public void DeleteAccount(int userKey)
         {
+            EventDispatcher.Publish(new UserAccountDeleted(userKey));
             UserAccounts.Repository.Delete(UserAccounts.Repository.Get(userKey));
         }
 
@@ -82,7 +83,7 @@ namespace Neptuo.TemplateEngine.Accounts
                 UserLogs.Repository.Insert(log);
 
                 EventDispatcher.Publish(new UserLogCreatedEvent(log));
-                EventDispatcher.Publish(new UserSignedIn(account.Key, account.Username));
+                EventDispatcher.Publish(new UserSignedInEvent(, log.SignedIn));//TODO: Pass new user context
                 return true;
             }
             return false;

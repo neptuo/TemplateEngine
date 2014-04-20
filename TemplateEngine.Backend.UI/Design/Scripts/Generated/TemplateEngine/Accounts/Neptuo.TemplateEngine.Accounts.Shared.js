@@ -4,8 +4,8 @@
 
 if (typeof(JsTypes) == "undefined")
     var JsTypes = [];
-var Neptuo$TemplateEngine$Accounts$Bootstrap$AccountBootstrapTaskBase = {
-    fullname: "Neptuo.TemplateEngine.Accounts.Bootstrap.AccountBootstrapTaskBase",
+var Neptuo$TemplateEngine$Accounts$Hosting$Bootstrap$AccountBootstrapTaskBase = {
+    fullname: "Neptuo.TemplateEngine.Accounts.Hosting.Bootstrap.AccountBootstrapTaskBase",
     baseTypeName: "System.Object",
     assemblyName: "Neptuo.TemplateEngine.Accounts.Shared",
     Kind: "Class",
@@ -27,217 +27,7 @@ var Neptuo$TemplateEngine$Accounts$Bootstrap$AccountBootstrapTaskBase = {
     ],
     IsAbstract: true
 };
-JsTypes.push(Neptuo$TemplateEngine$Accounts$Bootstrap$AccountBootstrapTaskBase);
-var Neptuo$TemplateEngine$Accounts$Commands$UserAccountCreateCommand = {
-    fullname: "Neptuo.TemplateEngine.Accounts.Commands.UserAccountCreateCommand",
-    baseTypeName: "System.Object",
-    assemblyName: "Neptuo.TemplateEngine.Accounts.Shared",
-    Kind: "Class",
-    definition: {
-        ctor: function (){
-            this._Username = null;
-            this._Password = null;
-            this._PasswordAgain = null;
-            this._IsEnabled = false;
-            this._RoleKeys = null;
-            System.Object.ctor.call(this);
-        },
-        Username$$: "System.String",
-        get_Username: function (){
-            return this._Username;
-        },
-        set_Username: function (value){
-            this._Username = value;
-        },
-        Password$$: "System.String",
-        get_Password: function (){
-            return this._Password;
-        },
-        set_Password: function (value){
-            this._Password = value;
-        },
-        PasswordAgain$$: "System.String",
-        get_PasswordAgain: function (){
-            return this._PasswordAgain;
-        },
-        set_PasswordAgain: function (value){
-            this._PasswordAgain = value;
-        },
-        IsEnabled$$: "System.Boolean",
-        get_IsEnabled: function (){
-            return this._IsEnabled;
-        },
-        set_IsEnabled: function (value){
-            this._IsEnabled = value;
-        },
-        RoleKeys$$: "System.Collections.Generic.IEnumerable`1[[System.Int32]]",
-        get_RoleKeys: function (){
-            return this._RoleKeys;
-        },
-        set_RoleKeys: function (value){
-            this._RoleKeys = value;
-        }
-    },
-    ctors: [{
-        name: "ctor",
-        parameters: []
-    }
-    ],
-    IsAbstract: false
-};
-JsTypes.push(Neptuo$TemplateEngine$Accounts$Commands$UserAccountCreateCommand);
-var Neptuo$TemplateEngine$Accounts$Commands$UserAccountDeleteCommand = {
-    fullname: "Neptuo.TemplateEngine.Accounts.Commands.UserAccountDeleteCommand",
-    baseTypeName: "System.Object",
-    assemblyName: "Neptuo.TemplateEngine.Accounts.Shared",
-    Kind: "Class",
-    definition: {
-        ctor: function (){
-            this._UserKey = 0;
-            System.Object.ctor.call(this);
-        },
-        UserKey$$: "System.Int32",
-        get_UserKey: function (){
-            return this._UserKey;
-        },
-        set_UserKey: function (value){
-            this._UserKey = value;
-        }
-    },
-    ctors: [{
-        name: "ctor",
-        parameters: []
-    }
-    ],
-    IsAbstract: false
-};
-JsTypes.push(Neptuo$TemplateEngine$Accounts$Commands$UserAccountDeleteCommand);
-var Neptuo$TemplateEngine$Accounts$Commands$UserAccountEditCommand = {
-    fullname: "Neptuo.TemplateEngine.Accounts.Commands.UserAccountEditCommand",
-    baseTypeName: "System.Object",
-    assemblyName: "Neptuo.TemplateEngine.Accounts.Shared",
-    Kind: "Class",
-    definition: {
-        ctor: function (){
-            this._Key = 0;
-            this._Username = null;
-            this._Password = null;
-            this._PasswordAgain = null;
-            this._IsEnabled = false;
-            this._RoleKeys = null;
-            System.Object.ctor.call(this);
-        },
-        Key$$: "System.Int32",
-        get_Key: function (){
-            return this._Key;
-        },
-        set_Key: function (value){
-            this._Key = value;
-        },
-        Username$$: "System.String",
-        get_Username: function (){
-            return this._Username;
-        },
-        set_Username: function (value){
-            this._Username = value;
-        },
-        Password$$: "System.String",
-        get_Password: function (){
-            return this._Password;
-        },
-        set_Password: function (value){
-            this._Password = value;
-        },
-        PasswordAgain$$: "System.String",
-        get_PasswordAgain: function (){
-            return this._PasswordAgain;
-        },
-        set_PasswordAgain: function (value){
-            this._PasswordAgain = value;
-        },
-        IsEnabled$$: "System.Boolean",
-        get_IsEnabled: function (){
-            return this._IsEnabled;
-        },
-        set_IsEnabled: function (value){
-            this._IsEnabled = value;
-        },
-        RoleKeys$$: "System.Collections.Generic.IEnumerable`1[[System.Int32]]",
-        get_RoleKeys: function (){
-            return this._RoleKeys;
-        },
-        set_RoleKeys: function (value){
-            this._RoleKeys = value;
-        }
-    },
-    ctors: [{
-        name: "ctor",
-        parameters: []
-    }
-    ],
-    IsAbstract: false
-};
-JsTypes.push(Neptuo$TemplateEngine$Accounts$Commands$UserAccountEditCommand);
-var Neptuo$TemplateEngine$Accounts$Commands$UserRoleCreateCommand = {
-    fullname: "Neptuo.TemplateEngine.Accounts.Commands.UserRoleCreateCommand",
-    baseTypeName: "System.Object",
-    assemblyName: "Neptuo.TemplateEngine.Accounts.Shared",
-    Kind: "Class",
-    definition: {
-        ctor: function (){
-            this._Name = null;
-            this._Description = null;
-            System.Object.ctor.call(this);
-        },
-        Name$$: "System.String",
-        get_Name: function (){
-            return this._Name;
-        },
-        set_Name: function (value){
-            this._Name = value;
-        },
-        Description$$: "System.String",
-        get_Description: function (){
-            return this._Description;
-        },
-        set_Description: function (value){
-            this._Description = value;
-        }
-    },
-    ctors: [{
-        name: "ctor",
-        parameters: []
-    }
-    ],
-    IsAbstract: false
-};
-JsTypes.push(Neptuo$TemplateEngine$Accounts$Commands$UserRoleCreateCommand);
-var Neptuo$TemplateEngine$Accounts$Commands$UserRoleDeleteCommand = {
-    fullname: "Neptuo.TemplateEngine.Accounts.Commands.UserRoleDeleteCommand",
-    baseTypeName: "System.Object",
-    assemblyName: "Neptuo.TemplateEngine.Accounts.Shared",
-    Kind: "Class",
-    definition: {
-        ctor: function (){
-            this._RoleKey = 0;
-            System.Object.ctor.call(this);
-        },
-        RoleKey$$: "System.Int32",
-        get_RoleKey: function (){
-            return this._RoleKey;
-        },
-        set_RoleKey: function (value){
-            this._RoleKey = value;
-        }
-    },
-    ctors: [{
-        name: "ctor",
-        parameters: []
-    }
-    ],
-    IsAbstract: false
-};
-JsTypes.push(Neptuo$TemplateEngine$Accounts$Commands$UserRoleDeleteCommand);
+JsTypes.push(Neptuo$TemplateEngine$Accounts$Hosting$Bootstrap$AccountBootstrapTaskBase);
 var Neptuo$TemplateEngine$Accounts$Events$UserSignedIn = {
     fullname: "Neptuo.TemplateEngine.Accounts.Events.UserSignedIn",
     baseTypeName: "System.Object",
@@ -303,40 +93,6 @@ var Neptuo$TemplateEngine$Accounts$Templates$DataSources$IUserRoleDataSourceFilt
     IsAbstract: true
 };
 JsTypes.push(Neptuo$TemplateEngine$Accounts$Templates$DataSources$IUserRoleDataSourceFilter);
-var Neptuo$TemplateEngine$Accounts$UserAccountLoginModel = {
-    fullname: "Neptuo.TemplateEngine.Accounts.UserAccountLoginModel",
-    baseTypeName: "System.Object",
-    assemblyName: "Neptuo.TemplateEngine.Accounts.Shared",
-    Kind: "Class",
-    definition: {
-        ctor: function (){
-            this._Username = null;
-            this._Password = null;
-            System.Object.ctor.call(this);
-        },
-        Username$$: "System.String",
-        get_Username: function (){
-            return this._Username;
-        },
-        set_Username: function (value){
-            this._Username = value;
-        },
-        Password$$: "System.String",
-        get_Password: function (){
-            return this._Password;
-        },
-        set_Password: function (value){
-            this._Password = value;
-        }
-    },
-    ctors: [{
-        name: "ctor",
-        parameters: []
-    }
-    ],
-    IsAbstract: false
-};
-JsTypes.push(Neptuo$TemplateEngine$Accounts$UserAccountLoginModel);
 var Neptuo$TemplateEngine$Accounts$UserAccountRowViewModel = {
     fullname: "Neptuo.TemplateEngine.Accounts.UserAccountRowViewModel",
     baseTypeName: "System.Object",
@@ -427,48 +183,6 @@ var Neptuo$TemplateEngine$Accounts$UserAccountViewModel = {
     IsAbstract: false
 };
 JsTypes.push(Neptuo$TemplateEngine$Accounts$UserAccountViewModel);
-var Neptuo$TemplateEngine$Accounts$Commands$UserRoleEditCommand = {
-    fullname: "Neptuo.TemplateEngine.Accounts.Commands.UserRoleEditCommand",
-    baseTypeName: "System.Object",
-    assemblyName: "Neptuo.TemplateEngine.Accounts.Shared",
-    Kind: "Class",
-    definition: {
-        ctor: function (){
-            this._Key = 0;
-            this._Name = null;
-            this._Description = null;
-            System.Object.ctor.call(this);
-        },
-        Key$$: "System.Int32",
-        get_Key: function (){
-            return this._Key;
-        },
-        set_Key: function (value){
-            this._Key = value;
-        },
-        Name$$: "System.String",
-        get_Name: function (){
-            return this._Name;
-        },
-        set_Name: function (value){
-            this._Name = value;
-        },
-        Description$$: "System.String",
-        get_Description: function (){
-            return this._Description;
-        },
-        set_Description: function (value){
-            this._Description = value;
-        }
-    },
-    ctors: [{
-        name: "ctor",
-        parameters: []
-    }
-    ],
-    IsAbstract: false
-};
-JsTypes.push(Neptuo$TemplateEngine$Accounts$Commands$UserRoleEditCommand);
 var Neptuo$TemplateEngine$Accounts$Events$UserAccountCreated = {
     fullname: "Neptuo.TemplateEngine.Accounts.Events.UserAccountCreated",
     baseTypeName: "System.Object",
@@ -565,16 +279,64 @@ var Neptuo$TemplateEngine$Accounts$Events$UserAccountUpdated = {
 JsTypes.push(Neptuo$TemplateEngine$Accounts$Events$UserAccountUpdated);
 var Neptuo$TemplateEngine$Accounts$UserAccountEditModel = {
     fullname: "Neptuo.TemplateEngine.Accounts.UserAccountEditModel",
-    baseTypeName: "Neptuo.TemplateEngine.Accounts.Commands.UserAccountEditCommand",
+    baseTypeName: "System.Object",
     assemblyName: "Neptuo.TemplateEngine.Accounts.Shared",
     Kind: "Class",
     definition: {
         ctor: function (){
-            Neptuo.TemplateEngine.Accounts.Commands.UserAccountEditCommand.ctor.call(this);
+            this._Key = 0;
+            this._Username = null;
+            this._Password = null;
+            this._PasswordAgain = null;
+            this._IsEnabled = false;
+            this._RoleKeys = null;
+            System.Object.ctor.call(this);
         },
         IsNew$$: "System.Boolean",
         get_IsNew: function (){
             return this.get_Key() == 0;
+        },
+        Key$$: "System.Int32",
+        get_Key: function (){
+            return this._Key;
+        },
+        set_Key: function (value){
+            this._Key = value;
+        },
+        Username$$: "System.String",
+        get_Username: function (){
+            return this._Username;
+        },
+        set_Username: function (value){
+            this._Username = value;
+        },
+        Password$$: "System.String",
+        get_Password: function (){
+            return this._Password;
+        },
+        set_Password: function (value){
+            this._Password = value;
+        },
+        PasswordAgain$$: "System.String",
+        get_PasswordAgain: function (){
+            return this._PasswordAgain;
+        },
+        set_PasswordAgain: function (value){
+            this._PasswordAgain = value;
+        },
+        IsEnabled$$: "System.Boolean",
+        get_IsEnabled: function (){
+            return this._IsEnabled;
+        },
+        set_IsEnabled: function (value){
+            this._IsEnabled = value;
+        },
+        RoleKeys$$: "System.Collections.Generic.IEnumerable`1[[System.Int32]]",
+        get_RoleKeys: function (){
+            return this._RoleKeys;
+        },
+        set_RoleKeys: function (value){
+            this._RoleKeys = value;
         }
     },
     ctors: [{
@@ -659,16 +421,40 @@ var Neptuo$TemplateEngine$Accounts$UserLogViewModel = {
 JsTypes.push(Neptuo$TemplateEngine$Accounts$UserLogViewModel);
 var Neptuo$TemplateEngine$Accounts$UserRoleEditModel = {
     fullname: "Neptuo.TemplateEngine.Accounts.UserRoleEditModel",
-    baseTypeName: "Neptuo.TemplateEngine.Accounts.Commands.UserRoleEditCommand",
+    baseTypeName: "System.Object",
     assemblyName: "Neptuo.TemplateEngine.Accounts.Shared",
     Kind: "Class",
     definition: {
         ctor: function (){
-            Neptuo.TemplateEngine.Accounts.Commands.UserRoleEditCommand.ctor.call(this);
+            this._Key = 0;
+            this._Name = null;
+            this._Description = null;
+            System.Object.ctor.call(this);
         },
         IsNew$$: "System.Boolean",
         get_IsNew: function (){
             return this.get_Key() == 0;
+        },
+        Key$$: "System.Int32",
+        get_Key: function (){
+            return this._Key;
+        },
+        set_Key: function (value){
+            this._Key = value;
+        },
+        Name$$: "System.String",
+        get_Name: function (){
+            return this._Name;
+        },
+        set_Name: function (value){
+            this._Name = value;
+        },
+        Description$$: "System.String",
+        get_Description: function (){
+            return this._Description;
+        },
+        set_Description: function (value){
+            this._Description = value;
         }
     },
     ctors: [{

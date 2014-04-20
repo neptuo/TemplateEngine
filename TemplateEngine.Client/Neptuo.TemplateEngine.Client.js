@@ -268,7 +268,7 @@ var Neptuo$TemplateEngine$Routing$TemplateRoute = {
         MapView: function (url){
             if (this.get_UrlSuffix() != null && !url.EndsWith$$String(this.get_UrlSuffix()))
                 return null;
-            if (url.StartsWith$$String(this.get_Application().get_ApplicationPath()))
+            if (this.get_Application().get_ApplicationPath().length > 1 && url.StartsWith$$String(this.get_Application().get_ApplicationPath()))
                 url = url.substr(this.get_Application().get_ApplicationPath().length);
             if (this.get_UrlSuffix() != null)
                 url = url.Replace$$String$$String(this.get_UrlSuffix(), ".view");
