@@ -73,11 +73,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AccountBootstrapTask.cs" />
-    <Compile Include="Data\Entity\DbInitializer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\TemplateEngine.Accounts.Controllers\TemplateEngine.Accounts.Controllers.csproj">
+      <Project>{fd17a578-fd88-4deb-a1b2-5619bbb515fa}</Project>
+      <Name>TemplateEngine.Accounts.Controllers</Name>
+    </ProjectReference>
     <ProjectReference Include="..\TemplateEngine.Accounts.Data.Entity\TemplateEngine.Accounts.Data.Entity.csproj">
       <Project>{6dd08b12-15bd-4eb3-8273-da33c59b71c3}</Project>
       <Name>TemplateEngine.Accounts.Data.Entity</Name>
@@ -85,6 +87,10 @@
     <ProjectReference Include="..\TemplateEngine.Accounts.Shared\TemplateEngine.Accounts.Shared.csproj">
       <Project>{bd9ba2ab-c026-4c9f-8605-920d24987756}</Project>
       <Name>TemplateEngine.Accounts.Shared</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TemplateEngine.Accounts.Templates\TemplateEngine.Accounts.Templates.csproj">
+      <Project>{fbf201ad-00ac-4899-98ea-3abc7db0d67c}</Project>
+      <Name>TemplateEngine.Accounts.Templates</Name>
     </ProjectReference>
     <ProjectReference Include="..\TemplateEngine.Accounts.Web\TemplateEngine.Accounts.Web.csproj">
       <Project>{a67f64a5-c62d-491e-8aee-2b5766668b5e}</Project>

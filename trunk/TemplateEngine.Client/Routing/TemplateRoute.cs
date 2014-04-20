@@ -56,7 +56,7 @@ namespace Neptuo.TemplateEngine.Routing
             if (UrlSuffix != null && !url.EndsWith(UrlSuffix))
                 return null;
 
-            if (url.StartsWith(Application.ApplicationPath))
+            if (Application.ApplicationPath.Length > 1 && url.StartsWith(Application.ApplicationPath))
                 url = url.Substring(Application.ApplicationPath.Length);
 
             if (UrlSuffix != null)

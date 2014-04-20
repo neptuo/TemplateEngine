@@ -1,14 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{36F0D8F9-1F8F-409C-9EDA-C17644C4C0D8}</ProjectGuid>
+    <ProjectGuid>{FD17A578-FD88-4DEB-A1B2-5619BBB515FA}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Neptuo.TemplateEngine.Accounts</RootNamespace>
-    <AssemblyName>Neptuo.TemplateEngine.Accounts</AssemblyName>
+    <RootNamespace>Neptuo.TemplateEngine.Accounts.Controllers</RootNamespace>
+    <AssemblyName>Neptuo.TemplateEngine.Accounts.Controllers</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -31,16 +31,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Neptuo">
-      <HintPath>..\References\Neptuo.dll</HintPath>
+      <HintPath>..\..\Neptuo.TemplateEngine\References\Neptuo.dll</HintPath>
     </Reference>
     <Reference Include="Neptuo.Data">
-      <HintPath>..\References\Neptuo.Data.dll</HintPath>
-    </Reference>
-    <Reference Include="Neptuo.PresentationModels">
-      <HintPath>..\References\Neptuo.PresentationModels.dll</HintPath>
-    </Reference>
-    <Reference Include="Neptuo.PresentationModels.Validation">
-      <HintPath>..\References\Neptuo.PresentationModels.Validation.dll</HintPath>
+      <HintPath>..\..\Neptuo.TemplateEngine\References\Neptuo.Data.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -51,39 +45,31 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Data\DataProviderBase.cs" />
-    <Compile Include="Data\IUserAccountRepository.cs" />
-    <Compile Include="Data\IUserLogRepository.cs" />
-    <Compile Include="Data\IUserRoleRepository.cs" />
-    <Compile Include="Data\Queries\CredentialsAccountFilter.cs" />
-    <Compile Include="Data\Queries\IUserAccountFilter.cs" />
-    <Compile Include="Data\Queries\IUserAccountQuery.cs" />
-    <Compile Include="Data\Queries\IUserLogFilter.cs" />
-    <Compile Include="Data\Queries\IUserLogQuery.cs" />
-    <Compile Include="Data\Queries\IUserRoleFilter.cs" />
-    <Compile Include="Data\Queries\IUserRoleQuery.cs" />
-    <Compile Include="Data\Queries\UserAccountFilter.cs" />
-    <Compile Include="Data\Queries\UserLogFilter.cs" />
-    <Compile Include="Data\Queries\UserRoleFilter.cs" />
-    <Compile Include="Data\UserLogDataProvider.cs" />
-    <Compile Include="Data\UserRoleDataProvider.cs" />
-    <Compile Include="Events\UserAccountCreated.cs" />
-    <Compile Include="Events\UserAccountDeleted.cs" />
-    <Compile Include="Events\UserAccountUpdated.cs" />
-    <Compile Include="Events\UserLogCreatedEvent.cs" />
-    <Compile Include="IUserLogContext.cs" />
-    <Compile Include="UserAccount.cs" />
-    <Compile Include="Data\UserAccountDataProvider.cs" />
-    <Compile Include="UserLog.cs" />
-    <Compile Include="UserRole.cs" />
-    <Compile Include="PasswordProvider.cs" />
+    <Compile Include="Commands\UserAccountCreateCommand.cs" />
+    <Compile Include="Commands\UserAccountDeleteCommand.cs" />
+    <Compile Include="Commands\UserAccountEditCommand.cs" />
+    <Compile Include="Commands\UserAccountLoginCommand.cs" />
+    <Compile Include="Commands\UserRoleCreateCommand.cs" />
+    <Compile Include="Commands\UserRoleDeleteCommand.cs" />
+    <Compile Include="Commands\UserRoleEditCommand.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UserAccountService.cs" />
+    <Compile Include="UserAccountController.cs" />
+    <Compile Include="UserRoleController.cs" />
+    <Compile Include="Validation\UserAccountValidator.cs" />
+    <Compile Include="Validation\UserRoleValidator.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\TemplateEngine.Accounts.Shared\TemplateEngine.Accounts.Shared.csproj">
-      <Project>{bd9ba2ab-c026-4c9f-8605-920d24987756}</Project>
-      <Name>TemplateEngine.Accounts.Shared</Name>
+    <ProjectReference Include="..\TemplateEngine.Accounts\TemplateEngine.Accounts.csproj">
+      <Project>{36f0d8f9-1f8f-409c-9eda-c17644c4c0d8}</Project>
+      <Name>TemplateEngine.Accounts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TemplateEngine.Controllers\TemplateEngine.Controllers.csproj">
+      <Project>{cefd01c6-467d-4e1c-ace6-af093e443e08}</Project>
+      <Name>TemplateEngine.Controllers</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TemplateEngine.Providers\TemplateEngine.Providers.csproj">
+      <Project>{30214616-7c89-467a-9147-7385e91aed13}</Project>
+      <Name>TemplateEngine.Providers</Name>
     </ProjectReference>
     <ProjectReference Include="..\TemplateEngine\TemplateEngine.csproj">
       <Project>{0ddeef40-567f-49de-94ec-314309702534}</Project>

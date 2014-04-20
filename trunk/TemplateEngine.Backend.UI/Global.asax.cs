@@ -8,7 +8,7 @@ using Neptuo.Data.Entity;
 using Neptuo.Events;
 using Neptuo.Lifetimes;
 using Neptuo.Lifetimes.Mapping;
-using Neptuo.TemplateEngine.Accounts.Bootstrap;
+using Neptuo.TemplateEngine.Accounts.Hosting.Bootstrap;
 using Neptuo.TemplateEngine.Accounts.Data.Entity;
 using Neptuo.TemplateEngine.Backend.Bootstrap;
 using Neptuo.TemplateEngine.Web;

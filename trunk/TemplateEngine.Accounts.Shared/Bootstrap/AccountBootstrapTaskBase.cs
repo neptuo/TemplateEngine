@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 using Neptuo.TemplateEngine.Providers;
 using Neptuo.TemplateEngine.Web.Routing;
 
-namespace Neptuo.TemplateEngine.Accounts.Bootstrap
+namespace Neptuo.TemplateEngine.Accounts.Hosting.Bootstrap
 {
     public abstract class AccountBootstrapTaskBase
     {

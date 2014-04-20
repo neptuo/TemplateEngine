@@ -44,22 +44,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Bootstrap\AccountBootstrapTaskBase.cs" />
-    <Compile Include="Commands\UserAccountCreateCommand.cs" />
-    <Compile Include="Commands\UserAccountDeleteCommand.cs" />
-    <Compile Include="Commands\UserAccountEditCommand.cs" />
-    <Compile Include="Commands\UserRoleCreateCommand.cs" />
-    <Compile Include="Commands\UserRoleDeleteCommand.cs" />
-    <Compile Include="Events\UserSignedIn.cs" />
     <Compile Include="Templates\DataSources\IUserAccountDataSourceFilter.cs" />
     <Compile Include="Templates\DataSources\IUserLogDataSourceFilter.cs" />
     <Compile Include="Templates\DataSources\IUserRoleDataSourceFilter.cs" />
-    <Compile Include="UserAccountLoginModel.cs" />
     <Compile Include="UserAccountRowViewModel.cs" />
     <Compile Include="UserAccountViewModel.cs" />
-    <Compile Include="Commands\UserRoleEditCommand.cs" />
-    <Compile Include="Events\UserAccountCreated.cs" />
-    <Compile Include="Events\UserAccountDeleted.cs" />
-    <Compile Include="Events\UserAccountUpdated.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UserAccountEditModel.cs" />
     <Compile Include="UserLogViewModel.cs" />

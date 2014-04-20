@@ -4,15 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Neptuo.TemplateEngine.Accounts
+namespace Neptuo.TemplateEngine.Accounts.Controllers.Commands
 {
-    public class UserAccountEditModel
+    public class UserAccountEditCommand
     {
-        public bool IsNew
-        {
-            get { return Key == 0; }
-        }
-
         public int Key { get; set; }
         public string Username { get; set; }
         public string Password { get; set; }

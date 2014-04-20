@@ -1,6 +1,5 @@
 ﻿using Neptuo.Bootstrap;
 using Neptuo.ComponentModel.Converters;
-using Neptuo.TemplateEngine.Accounts.Controllers;
 using Neptuo.TemplateEngine.Navigation.Bootstrap;
 using Neptuo.TemplateEngine.Web;
 using Neptuo.TemplateEngine.Controllers;
@@ -12,7 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Neptuo.TemplateEngine.Providers;
 
-namespace Neptuo.TemplateEngine.Accounts.Bootstrap
+namespace Neptuo.TemplateEngine.Accounts.Hosting.Bootstrap
 {
     public class AccountBootstrapTask : AccountBootstrapTaskBase, IBootstrapTask
     {
@@ -38,10 +37,6 @@ namespace Neptuo.TemplateEngine.Accounts.Bootstrap
 
         public void Initialize()
         {
-            //controllerRegistry
-            //    .Add("Accounts/User/Create", new DependencyControllerFactory(dependencyContainer, typeof(UserAccountController)));
-            //.Add(dependencyContainer, typeof(UserAccountController));
-
             converterRepository
                 .Add(typeof(JsObject), typeof(UserAccountEditModel), new UserAccountEditModelConverter())
                 .Add(typeof(JsObject), typeof(UserAccountListResult), new UserAccountListResultConverter())
