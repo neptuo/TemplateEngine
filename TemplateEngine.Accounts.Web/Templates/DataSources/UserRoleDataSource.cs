@@ -3,7 +3,6 @@ using Neptuo.PresentationModels.TypeModels;
 using Neptuo.TemplateEngine.Accounts.Data;
 using Neptuo.TemplateEngine.Accounts.Data.Queries;
 using Neptuo.TemplateEngine.Templates.DataSources;
-using Neptuo.TemplateEngine.Templates.DataSources;
 using System;
 using System.Collections;
 using System.Collections.Generic;
