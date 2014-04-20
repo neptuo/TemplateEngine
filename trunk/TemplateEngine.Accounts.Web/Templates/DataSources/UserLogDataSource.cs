@@ -14,16 +14,19 @@ namespace Neptuo.TemplateEngine.Accounts.Templates.DataSources
     public class UserLogDataSource : IListDataSource, IUserLogDataSourceFilter
     {
         private readonly IUserLogQuery query;
+        private readonly IUserLogContext userContext;
 
         public int? UserKey { get; set; }
 
-        public UserLogDataSource(IUserLogQuery query)
+        public UserLogDataSource(IUserLogQuery query, IUserLogContext userContext)
         {
             Guard.NotNull(query, "query");
+            Guard.NotNull(userContext, "userContext");
             this.query = query;
+            this.userContext = userContext;
         }
 
-        protected void ApplyFilter(int? pageIndex, int? pageSize)
+        protected void ApplyFilter()
         {
             if (UserKey != null)
                 query.Filter.UserKey = IntSearch.Create(UserKey.Value);
@@ -33,21 +36,21 @@ namespace Neptuo.TemplateEngine.Accounts.Templates.DataSources
 
         public IEnumerable GetData(int? pageIndex, int? pageSize)
         {
-            ApplyFilter(pageIndex, pageSize);
+            ApplyFilter();
 
-            return query.EnumerateItems().Select(l => new UserLogViewModel(
+            return query.EnumeratePageItems(pageIndex, pageSize).Select(l => new UserLogViewModel(
                 l.Key.ToString(),
                 new UserAccountRowViewModel(l.User.Key, l.User.Username),
                 l.SignedIn,
                 l.SignedOut,
                 l.LastActivity,
-                false
+                userContext.Log.Key == l.Key
             ));
         }
 
         public int GetTotalCount()
         {
-            ApplyFilter(null, null);
+            ApplyFilter();
             return query.Count();
         }
     }
