@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Accounts
 {
-    public class UserAccountRowViewModel
+    public class UserAccountRowViewModel 
     {
         public int Key { get; set; }
         public string Username { get; set; }

@@ -92,6 +92,10 @@
       <Project>{bd9ba2ab-c026-4c9f-8605-920d24987756}</Project>
       <Name>TemplateEngine.Accounts.Shared</Name>
     </ProjectReference>
+    <ProjectReference Include="..\TemplateEngine.Accounts.ViewModels\TemplateEngine.Accounts.ViewModels.csproj">
+      <Project>{f5033996-e58c-4e29-a79e-7512e4d8fdaa}</Project>
+      <Name>TemplateEngine.Accounts.ViewModels</Name>
+    </ProjectReference>
     <ProjectReference Include="..\TemplateEngine.Client\TemplateEngine.Client.csproj">
       <Project>{7df11e7b-e7fe-4ebb-a707-c592a230df54}</Project>
       <Name>TemplateEngine.Client</Name>
