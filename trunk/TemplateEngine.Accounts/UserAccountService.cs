@@ -83,7 +83,7 @@ namespace Neptuo.TemplateEngine.Accounts
                 UserLogs.Repository.Insert(log);
 
                 EventDispatcher.Publish(new UserLogCreatedEvent(log));
-                EventDispatcher.Publish(new UserSignedInEvent(, log.SignedIn));//TODO: Pass new user context
+                EventDispatcher.Publish(new UserSignedInEvent(new UserContextBase(log), log.SignedIn));//TODO: Pass new user context
                 return true;
             }
             return false;

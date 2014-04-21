@@ -9,7 +9,7 @@ using System.Web;
 
 namespace Neptuo.TemplateEngine.Accounts.Hosting
 {
-    public class CurrentUserContext : IUserLogContext, IUserContext
+    public class CurrentUserContext : UserContextBase
     {
         private readonly HttpContextBase httpContext;
         private readonly UserLogDataProvider userLogs;
@@ -17,7 +17,7 @@ namespace Neptuo.TemplateEngine.Accounts.Hosting
         private UserLog userLog;
         private IPermissionProvider permissionProvider;
 
-        public UserLog Log
+        public override UserLog Log
         {
             get
             {
@@ -26,40 +26,19 @@ namespace Neptuo.TemplateEngine.Accounts.Hosting
 
                 return userLog;
             }
-        }
-
-        public IUserInfo User
-        {
-            get { return Log.User; }
-        }
-
-        public IPermissionProvider Permissions
-        {
-            get
-            {
-                if (permissionProvider == null)
-                    permissionProvider = GetPermissionProvider();
-
-                return permissionProvider;
-            }
-        }
-
-        public bool IsAuthenticated
-        {
-            get { return httpContext.User.Identity.IsAuthenticated; }
-        }
-
-        public string AuthenticationToken
-        {
-            get { return httpContext.User.Identity.Name; }
+            protected set { userLog = value; }
         }
 
         public CurrentUserContext(HttpContextBase httpContext, UserLogDataProvider userLogs)
+            : base(null)
         {
             Guard.NotNull(httpContext, "httpContext");
             Guard.NotNull(userLogs, "userLogs");
             this.httpContext = httpContext;
             this.userLogs = userLogs;
+
+            IsAuthenticated = httpContext.User.Identity.IsAuthenticated;
+            AuthenticationToken = httpContext.User.Identity.Name;
         }
 
         private Guid? GetSessionKey()
@@ -96,11 +75,6 @@ namespace Neptuo.TemplateEngine.Accounts.Hosting
 
             //TODO: Throw.
             return null;
-        }
-
-        private IPermissionProvider GetPermissionProvider()
-        {
-            throw new NotImplementedException();
         }
     }
 }
