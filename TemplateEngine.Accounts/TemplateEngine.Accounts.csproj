@@ -51,6 +51,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="UserContextBase.cs" />
     <Compile Include="Data\DataProviderBase.cs" />
     <Compile Include="Data\IUserAccountRepository.cs" />
     <Compile Include="Data\IUserLogRepository.cs" />
