@@ -12,22 +12,19 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Accounts.Templates.DataSources
 {
-    public class UserAccountDataSource : ListDataSourceProxy<UserAccountListResult>, IUserAccountDataSourceFilter
+    public class UserAccountDataSource : DynamicListDataSourceProxy<UserAccountListResult>, IUserAccountDataSourceFilter
     {
         public int? Key { get; set; }
         public string Username { get; set; }
         public int? RoleKey { get; set; }
 
         public UserAccountDataSource(IVirtualUrlProvider urlProvider)
-            : base(urlProvider)
+            : base(urlProvider, GetFilterProperties())
         { }
 
-        protected override void SetParameters(JsObjectBuilder parameterBuilder)
+        private static IEnumerable<string> GetFilterProperties()
         {
-            parameterBuilder
-                .Set("Key", Key)
-                .Set("Username", Username)
-                .Set("RoleKey", RoleKey);
+            return new List<string> { "Key", "Username", "RoleKey" };
         }
     }
 }
