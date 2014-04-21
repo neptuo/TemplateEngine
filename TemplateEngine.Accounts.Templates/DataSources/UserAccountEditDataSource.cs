@@ -36,7 +36,6 @@ namespace Neptuo.TemplateEngine.Accounts.Templates.DataSources
             UserAccountEditModel model = MapEntityToModel(account ?? dataService.Factory.Create());
             model = modelBinder.Bind<UserAccountEditModel>(model);
             return model;
-            //return providerFactory.Create(model);
         }
 
         private UserAccountEditModel MapEntityToModel(UserAccount userAccount)
