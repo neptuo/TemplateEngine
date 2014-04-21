@@ -674,6 +674,37 @@ var Neptuo$TemplateEngine$Templates$DataSources$DataSourceProxy$1 = {
     IsAbstract: true
 };
 JsTypes.push(Neptuo$TemplateEngine$Templates$DataSources$DataSourceProxy$1);
+var Neptuo$TemplateEngine$Templates$DataSources$DynamicListDataSourceProxy$1 = {
+    fullname: "Neptuo.TemplateEngine.Templates.DataSources.DynamicListDataSourceProxy$1",
+    baseTypeName: "Neptuo.TemplateEngine.Templates.DataSources.ListDataSourceProxy$1",
+    assemblyName: "Neptuo.TemplateEngine.Templates.Client",
+    Kind: "Class",
+    definition: {
+        ctor: function (TResultModel, urlProvider, properties){
+            this.TResultModel = TResultModel;
+            this.properties = null;
+            Neptuo.TemplateEngine.Templates.DataSources.ListDataSourceProxy$1.ctor.call(this, this.TResultModel, urlProvider);
+            Neptuo.Guard.NotNull$$Object$$String(properties, "properties");
+            this.properties = properties;
+        },
+        SetParameters: function (parameterBuilder){
+            var $it3 = this.properties.GetEnumerator();
+            while ($it3.MoveNext()){
+                var propertyName = $it3.get_Current();
+                var propertyInfo = this.GetType().GetProperty$$String(propertyName);
+                var propertyValue = propertyInfo.GetValue$$Object$$Object$Array(this, null);
+                parameterBuilder.Set(propertyName, propertyValue);
+            }
+        }
+    },
+    ctors: [{
+        name: "ctor",
+        parameters: ["Neptuo.Templates.IVirtualUrlProvider", "System.Collections.Generic.IEnumerable"]
+    }
+    ],
+    IsAbstract: false
+};
+JsTypes.push(Neptuo$TemplateEngine$Templates$DataSources$DynamicListDataSourceProxy$1);
 var Neptuo$TemplateEngine$Templates$DataSources$IDataSource = {
     fullname: "Neptuo.TemplateEngine.Templates.DataSources.IDataSource",
     baseTypeName: "System.Object",

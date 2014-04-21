@@ -295,7 +295,18 @@ var Neptuo$TemplateEngine$Accounts$UserRoleListResultConverter = {
 JsTypes.push(Neptuo$TemplateEngine$Accounts$UserRoleListResultConverter);
 var Neptuo$TemplateEngine$Accounts$Templates$DataSources$UserAccountDataSource = {
     fullname: "Neptuo.TemplateEngine.Accounts.Templates.DataSources.UserAccountDataSource",
-    baseTypeName: "Neptuo.TemplateEngine.Templates.DataSources.ListDataSourceProxy$1",
+    baseTypeName: "Neptuo.TemplateEngine.Templates.DataSources.DynamicListDataSourceProxy$1",
+    staticDefinition: {
+        GetFilterProperties: function (){
+            return (function (){
+                var $v1 = new System.Collections.Generic.List$1.ctor(System.String.ctor);
+                $v1.Add("Key");
+                $v1.Add("Username");
+                $v1.Add("RoleKey");
+                return $v1;
+            })();
+        }
+    },
     assemblyName: "Neptuo.TemplateEngine.Accounts.Client",
     interfaceNames: ["Neptuo.TemplateEngine.Accounts.Templates.DataSources.IUserAccountDataSourceFilter"],
     Kind: "Class",
@@ -304,7 +315,7 @@ var Neptuo$TemplateEngine$Accounts$Templates$DataSources$UserAccountDataSource =
             this._Key = null;
             this._Username = null;
             this._RoleKey = null;
-            Neptuo.TemplateEngine.Templates.DataSources.ListDataSourceProxy$1.ctor.call(this, Neptuo.TemplateEngine.Accounts.UserAccountListResult.ctor, urlProvider);
+            Neptuo.TemplateEngine.Templates.DataSources.DynamicListDataSourceProxy$1.ctor.call(this, Neptuo.TemplateEngine.Accounts.UserAccountListResult.ctor, urlProvider, Neptuo.TemplateEngine.Accounts.Templates.DataSources.UserAccountDataSource.GetFilterProperties());
         },
         Key$$: "System.Nullable`1[[System.Int32]]",
         get_Key: function (){
@@ -326,9 +337,6 @@ var Neptuo$TemplateEngine$Accounts$Templates$DataSources$UserAccountDataSource =
         },
         set_RoleKey: function (value){
             this._RoleKey = value;
-        },
-        SetParameters: function (parameterBuilder){
-            parameterBuilder.Set("Key", this.get_Key()).Set("Username", this.get_Username()).Set("RoleKey", this.get_RoleKey());
         }
     },
     ctors: [{
@@ -363,9 +371,9 @@ var Neptuo$TemplateEngine$Accounts$Templates$DataSources$UserAccountEditDataSour
         OnGetItem: function (callback){
             if (this.get_Key() == 0){
                 var model = (function (){
-                    var $v1 = new Neptuo.TemplateEngine.Accounts.UserAccountEditModel.ctor();
-                    $v1.set_Key(0);
-                    return $v1;
+                    var $v2 = new Neptuo.TemplateEngine.Accounts.UserAccountEditModel.ctor();
+                    $v2.set_Key(0);
+                    return $v2;
                 }).call(this);
                 model = Neptuo.TemplateEngine.Providers.ModelBinders.ModelBinderExtensions.Bind$1$$IModelBinder$$T(Neptuo.TemplateEngine.Accounts.UserAccountEditModel.ctor, this.get_ModelBinder(), model);
                 callback(model);

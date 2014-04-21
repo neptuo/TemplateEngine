@@ -57,6 +57,7 @@
     <Compile Include="Controls\SelectControl.cs" />
     <Compile Include="DataSources\CollectionDataSource.cs" />
     <Compile Include="DataSources\DataSourceProxy.cs" />
+    <Compile Include="DataSources\DynamicListDataSourceProxy.cs" />
     <Compile Include="DataSources\IDataSource.cs" />
     <Compile Include="DataSources\IListDataSource.cs" />
     <Compile Include="DataSources\ListDataSourceProxy.cs" />
