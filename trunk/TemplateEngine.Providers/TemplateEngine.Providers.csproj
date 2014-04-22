@@ -55,7 +55,6 @@
     <Compile Include="Binders\IModelBinder.cs" />
     <Compile Include="Binders\ModelBinder.cs" />
     <Compile Include="Binders\ModelBinderExtensions.cs" />
-    <Compile Include="Configurations\IConfiguration.cs" />
     <Compile Include="DictionaryParameterProvider.cs" />
     <Compile Include="GlobalNavigationCollection.cs" />
     <Compile Include="ICurrentUrlProvider.cs" />
