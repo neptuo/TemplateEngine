@@ -46,6 +46,10 @@ td.action-list {
     text-align: right;
 }
 
+
+.inline-form .checkbox {
+}
+
 /* ---------------------- WIDTHS ----------------------- */
 
 .w50 {
