@@ -26,7 +26,7 @@ namespace Neptuo.TemplateEngine.Backend.Bootstrap
         public void Initialize()
         {
             FormUriTable.Registry
-                .Register("Home", TemplateRouteParameterBase.FormatUrl("~/Home"));
+                .Register("Home", TemplateRouteParameterBase.FormatUrl("~/Default"));
 
             dependencyContainer
                 .RegisterInstance<IFormUriRepository>(FormUriTable.Repository)

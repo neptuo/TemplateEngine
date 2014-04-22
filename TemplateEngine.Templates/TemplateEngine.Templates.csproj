@@ -144,6 +144,7 @@
     <Compile Include="ExtendedHtmlTextWriter.cs" />
     <Compile Include="Extensions\BindingExtension.cs" />
     <Compile Include="Extensions\CurrentUrlExtension.cs" />
+    <Compile Include="Extensions\FormatStringExtension.cs" />
     <Compile Include="Extensions\RequestExtension.cs" />
     <Compile Include="Extensions\SwitchExtension.cs" />
     <Compile Include="Extensions\TemplateBindingExtension.cs" />

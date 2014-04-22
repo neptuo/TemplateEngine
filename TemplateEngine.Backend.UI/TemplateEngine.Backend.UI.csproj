@@ -218,6 +218,7 @@
     </Content>
     <Content Include="Views\Accounts\SideNavUserControl.view" />
     <Content Include="Views\Accounts\PermissionList.view" />
+    <Content Include="Views\Accounts\PermissionEdit.view" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
