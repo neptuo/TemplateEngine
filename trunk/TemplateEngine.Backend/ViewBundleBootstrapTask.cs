@@ -20,7 +20,7 @@ namespace Neptuo.TemplateEngine.Backend
         public void Initialize()
         {
             IViewBundle bundle = new ViewBundle("Default");
-            bundle.Add("~/Views/Home.view");
+            bundle.Add("~/Views/Default.view");
             bundle.Add("~/Views/Shared/AdminLayout.view");
             bundle.Add("~/Views/Shared/SubHeader.view");
             bundles.Add(bundle);

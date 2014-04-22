@@ -10,7 +10,7 @@
             <ui:TemplateContent Name="Left">
                 <h2>
                     <span class="glyphicon glyphicon-eye-open"></span>
-                    Permissions assigned to role:
+                    Permissions for '<ui:Literal Text="{Request ResourceName}" />' in role:
                     <ui:DetailView>
                         <Source>
                             <data:UserRoleEditDataSource Key="{Request RoleKey}" />
@@ -45,7 +45,7 @@
                         <span class="glyphicon glyphicon-search"></span>
                         <ui:Literal l:Text="Search" />
                     </ui:Button>
-                    <ui:Link form:Href="Accounts.Permissions.List" ajax:Update="Content" CssClass="btn btn-default btn-sm" l:Text="Clear" CopyParameters="PageIndex,RoleKey" AllowActive="false" />
+                    <ui:Link form:Href="Accounts.Permissions.List" ajax:Update="Content" CssClass="btn btn-default btn-sm" l:Text="Clear" CopyParameters="PageIndex" AllowActive="false" />
                 </div>
             </ui:GetForm>
         </div>
@@ -61,7 +61,7 @@
                             <tr>
                                 <th>Resource</th>
                                 <th>Hint</th>
-                                <th class="200">Permissions</th>
+                                <th>Permissions</th>
                                 <th class="150"></th>
                             </tr>
                         </thead>
@@ -97,7 +97,7 @@
                     <td>
                         <ui:Link form:Href="Accounts.Permissions.Edit" l:Text="Edit" CssClass="btn btn-default btn-xs">
                             <Parameters>
-                                <ui:Parameter Name="RoleKey" Value="{Request RoleKey}" />
+                                <ui:Parameter Name="RoleKey" Value="{Binding RoleKey}" />
                                 <ui:Parameter Name="ResourceName" Value="{Binding ResourceName}" />
                             </Parameters>
                         </ui:Link>

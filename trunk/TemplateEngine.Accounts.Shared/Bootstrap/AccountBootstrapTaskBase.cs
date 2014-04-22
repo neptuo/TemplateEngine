@@ -27,7 +27,8 @@ namespace Neptuo.TemplateEngine.Accounts.Hosting.Bootstrap
 
                 .Register("Accounts.Log.List", TemplateRouteParameterBase.FormatUrl("~/Accounts/LogList"))
 
-                .Register("Accounts.Permissions.List", TemplateRouteParameterBase.FormatUrl("~/Accounts/PermissionList"));
+                .Register("Accounts.Permissions.List", TemplateRouteParameterBase.FormatUrl("~/Accounts/PermissionList"))
+                .Register("Accounts.Permissions.Edit", TemplateRouteParameterBase.FormatUrl("~/Accounts/PermissionEdit"));
         }
 
         protected void SetupGlobalNavigations(GlobalNavigationCollection globalNavigations)

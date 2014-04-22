@@ -13,7 +13,7 @@
             <Template>
 
                 <div style="padding: 15px 10px;">
-                  <ui:PostForm ajax:Update="Content">
+                    <ui:PostForm ajax:Update="Content">
                         <ui:FormItem l:LabelText="Name" l:HelpText="Role name">
                             <ui:TextBox Name="Name" Text="{Binding Name}" IsAutoFocus="true" html:ID="Name" html:Class="form-control" />
                             <ui:MessagePanel Group="RoleEdit" Key="Name" />
@@ -52,6 +52,6 @@
 
             </Template>
         </ui:DetailView>
-         
+
     </ui:TemplateContent>
-</ui:AdminLayout> 
+</ui:AdminLayout>

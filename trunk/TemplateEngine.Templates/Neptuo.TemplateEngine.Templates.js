@@ -2667,6 +2667,48 @@ var Neptuo$TemplateEngine$Templates$Extensions$CurrentUrlExtension = {
     IsAbstract: false
 };
 JsTypes.push(Neptuo$TemplateEngine$Templates$Extensions$CurrentUrlExtension);
+var Neptuo$TemplateEngine$Templates$Extensions$FormatStringExtension = {
+    fullname: "Neptuo.TemplateEngine.Templates.Extensions.FormatStringExtension",
+    baseTypeName: "System.Object",
+    assemblyName: "Neptuo.TemplateEngine.Templates",
+    interfaceNames: ["Neptuo.Templates.Extensions.IValueExtension"],
+    Kind: "Class",
+    definition: {
+        ctor: function (){
+            this._Format = null;
+            this._Value = null;
+            System.Object.ctor.call(this);
+        },
+        Format$$: "System.String",
+        get_Format: function (){
+            return this._Format;
+        },
+        set_Format: function (value){
+            this._Format = value;
+        },
+        Value$$: "System.Object",
+        get_Value: function (){
+            return this._Value;
+        },
+        set_Value: function (value){
+            this._Value = value;
+        },
+        ProvideValue: function (context){
+            if (System.String.IsNullOrEmpty(this.get_Format()))
+                this.set_Format("{0}");
+            else
+                this.set_Format(this.get_Format().Replace$$String$$String("[0]", "{0}"));
+            return System.String.Format$$String$$Object(this.get_Format(), this.get_Value());
+        }
+    },
+    ctors: [{
+        name: "ctor",
+        parameters: []
+    }
+    ],
+    IsAbstract: false
+};
+JsTypes.push(Neptuo$TemplateEngine$Templates$Extensions$FormatStringExtension);
 var Neptuo$TemplateEngine$Templates$Extensions$RequestExtension = {
     fullname: "Neptuo.TemplateEngine.Templates.Extensions.RequestExtension",
     baseTypeName: "System.Object",
