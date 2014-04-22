@@ -8,7 +8,7 @@ namespace Neptuo.TemplateEngine.Web.Routing
 {
     public class TemplateRouteParameterBase
     {
-        public const string TemplateUrlSuffix = ".aspx";
+        public const string TemplateUrlSuffix = ".html";
         public const string TemplatePathSuffix = ".view";
 
         public static string FormatUrl(string path)

@@ -22,13 +22,13 @@ var Neptuo$TemplateEngine$Web$Routing$TemplateRouteParameterBase = {
     baseTypeName: "System.Object",
     staticDefinition: {
         cctor: function (){
-            Neptuo.TemplateEngine.Web.Routing.TemplateRouteParameterBase.TemplateUrlSuffix = ".aspx";
+            Neptuo.TemplateEngine.Web.Routing.TemplateRouteParameterBase.TemplateUrlSuffix = ".html";
             Neptuo.TemplateEngine.Web.Routing.TemplateRouteParameterBase.TemplatePathSuffix = ".view";
         },
         FormatUrl: function (path){
             if (path == null)
                 throw $CreateException(new System.ArgumentNullException.ctor$$String("path"), new Error());
-            return System.String.Format$$String$$Object$$Object("{0}{1}", path, ".aspx");
+            return System.String.Format$$String$$Object$$Object("{0}{1}", path, ".html");
         }
     },
     assemblyName: "Neptuo.TemplateEngine.Shared",
