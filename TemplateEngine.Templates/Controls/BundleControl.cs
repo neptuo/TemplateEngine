@@ -13,18 +13,18 @@ namespace Neptuo.TemplateEngine.Templates.Controls
 {
     public class BundleControl : BundleControlBase
     {
+        private IApplicationConfiguration config;
         private IVirtualUrlProvider urlProvider;
         private HttpContextBase httpContext;
         private BundleCollection bundles;
-        private bool enableOptimizations;
 
         public BundleControl(IApplicationConfiguration config, IVirtualUrlProvider urlProvider, HttpContextBase httpContext)
             : base(urlProvider)
         {
+            this.config = config;
             this.urlProvider = urlProvider;
             this.httpContext = httpContext;
             this.bundles = BundleTable.Bundles;
-            this.enableOptimizations = !config.IsDebug;
         }
 
         protected IEnumerable<BundleFile> GetBundleContent()
@@ -38,7 +38,7 @@ namespace Neptuo.TemplateEngine.Templates.Controls
 
         protected override void RenderScript(IHtmlWriter writer)
         {
-            if (enableOptimizations)
+            if (config.IsDebug)
             {
                 base.RenderScript(writer);
                 return;
@@ -50,7 +50,7 @@ namespace Neptuo.TemplateEngine.Templates.Controls
 
         protected override void RenderStyle(IHtmlWriter writer)
         {
-            if (enableOptimizations)
+            if (config.IsDebug)
             {
                 base.RenderStyle(writer);
                 return;
