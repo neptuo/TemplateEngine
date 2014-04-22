@@ -918,41 +918,6 @@ var Neptuo$TemplateEngine$Web$FormRequestContext = {
     IsAbstract: false
 };
 JsTypes.push(Neptuo$TemplateEngine$Web$FormRequestContext);
-var Neptuo$TemplateEngine$Templates$GeneratedViewBase = {
-    fullname: "Neptuo.TemplateEngine.Templates.GeneratedViewBase",
-    baseTypeName: "Neptuo.Templates.BaseGeneratedView",
-    assemblyName: "Neptuo.TemplateEngine.Client",
-    Kind: "Class",
-    definition: {
-        ctor: function (){
-            this.urlProvider = null;
-            Neptuo.Templates.BaseGeneratedView.ctor.call(this);
-        },
-        ResolveUrl: function (relativeUrl){
-            if (this.urlProvider == null)
-                this.urlProvider = Neptuo.DependencyProviderExtensions.Resolve$1$$IDependencyProvider(Neptuo.Templates.IVirtualUrlProvider.ctor, this.dependencyProvider);
-            return this.urlProvider.ResolveUrl(relativeUrl);
-        },
-        CastValueTo$1: function (T, value){
-            if (value == null)
-                return null;
-            var sourceType = value.GetType();
-            var targetType = Typeof(T);
-            if (sourceType == targetType)
-                return Cast(value, T);
-            if (targetType == Typeof(System.String.ctor))
-                return value.toString();
-            return value;
-        }
-    },
-    ctors: [{
-        name: "ctor",
-        parameters: []
-    }
-    ],
-    IsAbstract: true
-};
-JsTypes.push(Neptuo$TemplateEngine$Templates$GeneratedViewBase);
 var Neptuo$TemplateEngine$Web$HistoryItem = {
     fullname: "Neptuo.TemplateEngine.Web.HistoryItem",
     baseTypeName: "System.Object",

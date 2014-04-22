@@ -11,14 +11,14 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Templates.Controls
 {
-    public class DetailViewControl : TemplateControl
+    public class ClientDetailViewControl : TemplateControl
     {
-        public IDataSource Source { get; set; }
+        public IClientDataSource Source { get; set; }
         protected DataContextStorage DataContext { get; private set; }
         protected PartialUpdateHelper UpdateHelper { get; private set; }
         protected AsyncNotifyService NotifyService { get; private set; }
 
-        public DetailViewControl(IComponentManager componentManager, TemplateContentStorageStack storage, DataContextStorage dataContext, PartialUpdateHelper updateHelper, AsyncNotifyService notifyService)
+        public ClientDetailViewControl(IComponentManager componentManager, TemplateContentStorageStack storage, DataContextStorage dataContext, PartialUpdateHelper updateHelper, AsyncNotifyService notifyService)
             : base(componentManager, storage)
         {
             DataContext = dataContext;

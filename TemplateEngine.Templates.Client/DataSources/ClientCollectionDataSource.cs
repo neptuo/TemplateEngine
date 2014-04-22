@@ -8,7 +8,7 @@ using Neptuo.TemplateEngine.Web;
 
 namespace Neptuo.TemplateEngine.Templates.DataSources
 {
-    public class CollectionDataSource : IListDataSource
+    public class ClientCollectionDataSource : IClientListDataSource
     {
         public IEnumerable Data { get; set; }
 

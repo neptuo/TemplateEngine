@@ -48,19 +48,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controls\Ajax\PartialStartUpControl.cs" />
-    <Compile Include="Controls\Ajax\PartialViewControl.cs" />
-    <Compile Include="Controls\BundleControl.cs" />
-    <Compile Include="Controls\DetailViewControl.cs" />
-    <Compile Include="Controls\DropDownListControl.cs" />
-    <Compile Include="Controls\ListViewControl.cs" />
-    <Compile Include="Controls\SelectControl.cs" />
-    <Compile Include="DataSources\CollectionDataSource.cs" />
+    <Compile Include="Controls\Ajax\ClientPartialStartUpControl.cs" />
+    <Compile Include="Controls\Ajax\ClientPartialViewControl.cs" />
+    <Compile Include="Controls\ClientBundleControl.cs" />
+    <Compile Include="Controls\ClientDetailViewControl.cs" />
+    <Compile Include="Controls\ClientDropDownListControl.cs" />
+    <Compile Include="Controls\ClientListViewControl.cs" />
+    <Compile Include="Controls\ClientSelectControl.cs" />
+    <Compile Include="DataSources\ClientCollectionDataSource.cs" />
     <Compile Include="DataSources\DataSourceProxy.cs" />
     <Compile Include="DataSources\DynamicListDataSourceProxy.cs" />
     <Compile Include="DataSources\IDataSource.cs" />
     <Compile Include="DataSources\IListDataSource.cs" />
     <Compile Include="DataSources\ListDataSourceProxy.cs" />
+    <Compile Include="ClientGeneratedViewBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -9,12 +9,12 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Templates.Controls
 {
-    public class PartialViewControl : HtmlContentControlBase
+    public class ClientPartialViewControl : HtmlContentControlBase
     {
         protected IPartialUpdateWriter UpdateWriter { get; private set; }
         public string Partial { get; set; }
 
-        public PartialViewControl(IComponentManager componentManager, IPartialUpdateWriter updateWriter)
+        public ClientPartialViewControl(IComponentManager componentManager, IPartialUpdateWriter updateWriter)
             : base(componentManager, "div")
         {
             UpdateWriter = updateWriter;

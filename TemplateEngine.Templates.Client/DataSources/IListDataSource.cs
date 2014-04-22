@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Templates.DataSources
 {
-    public interface IListDataSource
+    public interface IClientListDataSource
     {
         void GetData(int? pageIndex, int? pageSize, Action<IListResult> callback, Action<ErrorModel> errorCallback);
     }

@@ -13,9 +13,9 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Templates.Controls
 {
-    public class ListViewControl : TemplateControl
+    public class ClientListViewControl : TemplateControl
     {
-        public IListDataSource Source { get; set; }
+        public IClientListDataSource Source { get; set; }
         public ITemplate ItemTemplate { get; set; }
         public ITemplate EmptyTemplate { get; set; }
         public IPaginationControl Pagination { get; set; }
@@ -26,7 +26,7 @@ namespace Neptuo.TemplateEngine.Templates.Controls
         protected DataContextStorage DataContext { get; private set; }
         protected PartialUpdateHelper UpdateHelper { get; private set; }
 
-        public ListViewControl(IRequestContext requestContext, TemplateContentStorageStack storage, DataContextStorage dataContext, PartialUpdateHelper updateHelper)
+        public ClientListViewControl(IRequestContext requestContext, TemplateContentStorageStack storage, DataContextStorage dataContext, PartialUpdateHelper updateHelper)
             : base(requestContext.ComponentManager, storage) 
         {
             RequestContext = requestContext;

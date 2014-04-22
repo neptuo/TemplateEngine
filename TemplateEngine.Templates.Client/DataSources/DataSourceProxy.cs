@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Templates.DataSources
 {
-    public abstract class DataSourceProxy<TResultModel> : IDataSource
+    public abstract class DataSourceProxy<TResultModel> : IClientDataSource
     {
         protected IModelBinder ModelBinder { get; private set; }
         protected IVirtualUrlProvider UrlProvider { get; private set; }

@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Templates.DataSources
 {
-    public abstract class ListDataSourceProxy<TResultModel> : IListDataSource
+    public abstract class ListDataSourceProxy<TResultModel> : IClientListDataSource
         where TResultModel : IListResult
     {
         protected IVirtualUrlProvider UrlProvider { get; private set; }

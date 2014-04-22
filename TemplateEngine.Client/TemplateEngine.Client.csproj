@@ -88,7 +88,6 @@
     <Compile Include="Web\ErrorModel.cs" />
     <Compile Include="Web\FormPostInvoker.cs" />
     <Compile Include="Web\FormRequestContext.cs" />
-    <Compile Include="Web\GeneratedViewBase.cs" />
     <Compile Include="Web\HistoryItem.cs" />
     <Compile Include="Web\HistoryState.cs" />
     <Compile Include="Web\IApplication.cs" />

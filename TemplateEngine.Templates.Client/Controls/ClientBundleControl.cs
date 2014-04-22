@@ -9,9 +9,9 @@ using System.Web;
 
 namespace Neptuo.TemplateEngine.Templates.Controls
 {
-    public abstract class BundleControl : BundleControlBase
+    public abstract class ClientBundleControl : BundleControlBase
     {
-        public BundleControl(IVirtualUrlProvider urlProvider)
+        public ClientBundleControl(IVirtualUrlProvider urlProvider)
             : base(urlProvider)
         { }
     }
