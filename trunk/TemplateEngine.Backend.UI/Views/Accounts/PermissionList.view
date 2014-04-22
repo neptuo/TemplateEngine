@@ -16,12 +16,35 @@
         </ui:SubHeader>
 
         <div class="sub-panel">
-            Filter...
+            <ui:GetForm html:Class="form-inline" ajax:Update="Content">
+                <ui:FormItem>
+                    <label for="RoleKey">Role:</label>
+                    <ui:DropDownList Name="RoleKey" Value="{Request RoleKey}" IsAddEmpty="true" CssClass="form-control input-sm w200" CssStyle="display: block;">
+                        <Source>
+                            <data:UserRoleDataSource />
+                        </Source>
+                    </ui:DropDownList>
+                </ui:FormItem>
+                <ui:FormItem l:LabelText="Resource:">
+                    <ui:TextBox Name="ResourceName" Value="{Request ResourceName}" CssClass="form-control input-sm" />
+                </ui:FormItem>
+                <ui:FormItem l:LabelText="Permission:">
+                    <ui:TextBox Name="PermissionName" Value="{Request PermissionName}" CssClass="form-control input-sm" />
+                </ui:FormItem>
+                
+                <div class="right">
+                    <ui:Button html:Class="btn btn-success btn-sm">
+                        <span class="glyphicon glyphicon-search"></span>
+                        <ui:Literal l:Text="Search" />
+                    </ui:Button>
+                    <ui:Link Href="{CurrentUrl}" ajax:Update="Content" CssClass="btn btn-default btn-sm" l:Text="Clear" CopyParameters="PageIndex" AllowActive="false" />
+                </div>
+            </ui:GetForm>
         </div>
 
         <ui:ListView PageIndex="{Request PageIndex}" PageSize="10">
             <Source>
-                <data:ResourcePermissionDataSource RoleKey="{Request RoleKey}" />
+                <data:ResourcePermissionDataSource RoleKey="{Request RoleKey}" ResourceName="{Request ResourceName}" PermissionName="{Request PermissionName}" />
             </Source>
             <Template>
                 <div style="padding: 10px;">
