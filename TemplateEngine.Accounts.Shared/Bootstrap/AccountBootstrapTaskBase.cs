@@ -27,8 +27,8 @@ namespace Neptuo.TemplateEngine.Accounts.Hosting.Bootstrap
 
                 .Register("Accounts.Log.List", TemplateRouteParameterBase.FormatUrl("~/Accounts/LogList"))
 
-                .Register("Accounts.Permissions.List", TemplateRouteParameterBase.FormatUrl("~/Accounts/PermissionList"))
-                .Register("Accounts.Permissions.Edit", TemplateRouteParameterBase.FormatUrl("~/Accounts/PermissionEdit"));
+                .Register("Accounts.Permission.List", TemplateRouteParameterBase.FormatUrl("~/Accounts/PermissionList"))
+                .Register("Accounts.Permission.Edit", TemplateRouteParameterBase.FormatUrl("~/Accounts/PermissionEdit"));
         }
 
         protected void SetupGlobalNavigations(GlobalNavigationCollection globalNavigations)
@@ -41,6 +41,8 @@ namespace Neptuo.TemplateEngine.Accounts.Hosting.Bootstrap
                 .Add("Accounts.Role.Deleted", (FormUri)"Accounts.Role.List")
                 .Add("Accounts.Role.Created", (FormUri)"Accounts.Role.List")
                 .Add("Accounts.Role.Updated", (FormUri)"Accounts.Role.List")
+
+                .Add("Accounts.Permission.Updated", (FormUri)"Accounts.Role.List")
 
                 .Add("Accounts.LoggedIn", (FormUri)"Accounts.User.List")
                 .Add("Accounts.LoggedOut", (FormUri)"Accounts.Login");

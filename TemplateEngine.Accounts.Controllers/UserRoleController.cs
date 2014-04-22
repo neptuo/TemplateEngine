@@ -109,5 +109,18 @@ namespace Neptuo.TemplateEngine.Accounts.Controllers
         }
 
         #endregion
+
+        #region Update permissions
+
+        [Action("Accounts/Permissions/Update")]
+        public string UpdatePermissions(ResourcePermissionUpdateCommand model)
+        {
+
+
+            Context.Messages.Add(null, String.Empty, "Permissions updated.", MessageType.Info);
+            return "Accounts.Permission.Updated";
+        }
+
+        #endregion
     }
 }
