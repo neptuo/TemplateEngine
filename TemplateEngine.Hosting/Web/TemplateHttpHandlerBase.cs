@@ -15,6 +15,7 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.SessionState;
 using Neptuo.TemplateEngine.Providers;
+using Neptuo.TemplateEngine.Security;
 
 namespace Neptuo.TemplateEngine.Backend.Web
 {
@@ -31,60 +32,76 @@ namespace Neptuo.TemplateEngine.Backend.Web
         public void ProcessRequest(HttpContext httpContext)
         {
             Guard.NotNull(httpContext, "context");
-
+            
             IDependencyContainer dependencyContainer = GetDependencyContainer().CreateChildContainer();
-            NavigationCollection navigations = dependencyContainer.Resolve<NavigationCollection>();
-            GlobalNavigationCollection globalNavigations = dependencyContainer.Resolve<GlobalNavigationCollection>();
-            ExecuteControllers(httpContext, dependencyContainer, navigations);
-
-            if (httpContext.Request.Headers[EngineRequestType] == EngineRequestTypePartial)
+            
+            //TODO: Check whether can read
+            FormUri formUri = GetCurrentFormUri(httpContext);
+            IUserContext userContext = dependencyContainer.Resolve<IUserContext>();
+            if (userContext.Permissions.IsAllowed(formUri.Identifier(), "Read"))
             {
-                // Partial ajax request - serialize messages and navigations
-                MessageStorage messageStorage = dependencyContainer.Resolve<MessageStorage>();
-                
-                string redirectUrl = null;
-                FormUri to;
-                if (globalNavigations.TryGetValue(navigations.FirstOrDefault(), out to))
-                    redirectUrl = to.Url();
 
-                //JavaScriptSerializer javaScriptSerializer = new JavaScriptSerializer();
-                //string response = javaScriptSerializer.Serialize(new PartialResponse(messageStorage, redirectUrl));
 
-                string response = JsonConvert.SerializeObject(new ServerPartialResponse(messageStorage.GetStorage(), redirectUrl));
-                httpContext.Response.ContentType = "application/json";
-                httpContext.Response.Write(response);
-            }
-            else
-            {
-                Stopwatch stopwatch = new Stopwatch();
-                stopwatch.Start();
 
-                // Standart request - process redirects and eventually rerender current view
-                INavigator navigator = dependencyContainer.Resolve<INavigator>();
-                if (!ProcessNavigationRules(navigations, globalNavigations, navigator))
+                NavigationCollection navigations = dependencyContainer.Resolve<NavigationCollection>();
+                GlobalNavigationCollection globalNavigations = dependencyContainer.Resolve<GlobalNavigationCollection>();
+
+
+                //TODO: Check whether can write!
+                if (userContext.Permissions.IsAllowed(formUri.Identifier(), "ReadWrite"))
+                    ExecuteControllers(httpContext, dependencyContainer, navigations);
+
+
+                if (httpContext.Request.Headers[EngineRequestType] == EngineRequestTypePartial)
                 {
-                    BaseGeneratedView view = GetCurrentView(httpContext);
-                    IComponentManager componentManager = GetComponentManager(httpContext);
+                    // Partial ajax request - serialize messages and navigations
+                    MessageStorage messageStorage = dependencyContainer.Resolve<MessageStorage>();
 
-                    dependencyContainer.RegisterInstance<IComponentManager>(componentManager);
+                    string redirectUrl = null;
+                    FormUri to;
+                    if (globalNavigations.TryGetValue(navigations.FirstOrDefault(), out to))
+                        redirectUrl = to.Url();
 
-                    view.Setup(new BaseViewPage(componentManager), componentManager, dependencyContainer);
-                    Debug.WriteLine("Template after setup: {0}ms", stopwatch.ElapsedMilliseconds);
+                    //JavaScriptSerializer javaScriptSerializer = new JavaScriptSerializer();
+                    //string response = javaScriptSerializer.Serialize(new PartialResponse(messageStorage, redirectUrl));
 
-                    view.CreateControls();
-                    Debug.WriteLine("Template after create controls: {0}ms", stopwatch.ElapsedMilliseconds);
+                    string response = JsonConvert.SerializeObject(new ServerPartialResponse(messageStorage.GetStorage(), redirectUrl));
+                    httpContext.Response.ContentType = "application/json";
+                    httpContext.Response.Write(response);
+                }
+                else
+                {
+                    Stopwatch stopwatch = new Stopwatch();
+                    stopwatch.Start();
 
-                    view.Init();
-                    Debug.WriteLine("Template after init: {0}ms", stopwatch.ElapsedMilliseconds);
+                    // Standart request - process redirects and eventually rerender current view
+                    INavigator navigator = dependencyContainer.Resolve<INavigator>();
+                    if (!ProcessNavigationRules(navigations, globalNavigations, navigator))
+                    {
+                        BaseGeneratedView view = GetCurrentView(httpContext);
+                        IComponentManager componentManager = GetComponentManager(httpContext);
 
-                    view.Render(new ExtendedHtmlTextWriter(httpContext.Response.Output));
-                    Debug.WriteLine("Template after render: {0}ms", stopwatch.ElapsedMilliseconds);
+                        dependencyContainer.RegisterInstance<IComponentManager>(componentManager);
 
-                    view.Dispose();
+                        view.Setup(new BaseViewPage(componentManager), componentManager, dependencyContainer);
+                        Debug.WriteLine("Template after setup: {0}ms", stopwatch.ElapsedMilliseconds);
+
+                        view.CreateControls();
+                        Debug.WriteLine("Template after create controls: {0}ms", stopwatch.ElapsedMilliseconds);
+
+                        view.Init();
+                        Debug.WriteLine("Template after init: {0}ms", stopwatch.ElapsedMilliseconds);
+
+                        view.Render(new ExtendedHtmlTextWriter(httpContext.Response.Output));
+                        Debug.WriteLine("Template after render: {0}ms", stopwatch.ElapsedMilliseconds);
+
+                        view.Dispose();
+                    }
+
+                    stopwatch.Stop();
+                    Debug.WriteLine("Template total: {0}ms", stopwatch.ElapsedMilliseconds);
                 }
 
-                stopwatch.Stop();
-                Debug.WriteLine("Template total: {0}ms", stopwatch.ElapsedMilliseconds);
             }
         }
 
@@ -124,5 +141,7 @@ namespace Neptuo.TemplateEngine.Backend.Web
         protected abstract BaseGeneratedView GetCurrentView(HttpContext context);
 
         protected abstract IDependencyContainer GetDependencyContainer();
+
+        protected abstract FormUri GetCurrentFormUri(HttpContext context);
     }
 }

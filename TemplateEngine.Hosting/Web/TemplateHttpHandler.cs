@@ -1,4 +1,6 @@
-﻿using Neptuo.TemplateEngine.Web;
+﻿using Neptuo.TemplateEngine.Navigation;
+using Neptuo.TemplateEngine.Web;
+using Neptuo.TemplateEngine.Web.Routing;
 using Neptuo.Templates;
 using Neptuo.Templates.Compilation;
 using System;
@@ -39,6 +41,14 @@ namespace Neptuo.TemplateEngine.Backend.Web
         protected override IDependencyContainer GetDependencyContainer()
         {
             return ViewServiceContext.DependencyProvider.CreateChildContainer();
+        }
+
+        protected override FormUri GetCurrentFormUri(HttpContext context)
+        {
+            string uri = TemplateUrl.Replace("\\", "/").Replace("~/Views/", "~/").Replace(TemplateRouteParameterBase.TemplatePathSuffix, TemplateRouteParameterBase.TemplateUrlSuffix);
+
+            FormUri formUri = FormUriTable.Repository.EnumerateForms().FirstOrDefault(f => f.Url().ToLowerInvariant() == uri);
+            return formUri;
         }
     }
 }
