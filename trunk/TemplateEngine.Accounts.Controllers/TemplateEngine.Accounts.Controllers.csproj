@@ -54,6 +54,7 @@
     <Compile Include="Commands\UserRoleDeleteCommand.cs" />
     <Compile Include="Commands\UserRoleEditCommand.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ResourcePermissionController.cs" />
     <Compile Include="UserAccountController.cs" />
     <Compile Include="UserRoleController.cs" />
     <Compile Include="Validation\UserAccountValidator.cs" />

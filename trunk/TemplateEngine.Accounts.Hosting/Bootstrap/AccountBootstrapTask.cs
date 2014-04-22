@@ -137,7 +137,8 @@ namespace Neptuo.TemplateEngine.Accounts.Hosting.Bootstrap
         {
             controllerRegistry
                 .Add(dependencyContainer, typeof(UserAccountController))
-                .Add(dependencyContainer, typeof(UserRoleController));
+                .Add(dependencyContainer, typeof(UserRoleController))
+                .Add(dependencyContainer, typeof(ResourcePermissionController));
         }
 
         protected void SetupDataSources(IWebDataSourceRegistry dataSourceRegistry)
