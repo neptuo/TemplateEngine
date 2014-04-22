@@ -1,4 +1,5 @@
 ﻿using Neptuo.TemplateEngine.Accounts.Data;
+using Neptuo.TemplateEngine.Accounts.Data.Queries;
 using Neptuo.TemplateEngine.Security;
 using System;
 using System.Collections.Generic;
@@ -15,7 +16,6 @@ namespace Neptuo.TemplateEngine.Accounts.Hosting
         private readonly UserLogDataProvider userLogs;
 
         private UserLog userLog;
-        private IPermissionProvider permissionProvider;
 
         public override UserLog Log
         {
@@ -29,8 +29,8 @@ namespace Neptuo.TemplateEngine.Accounts.Hosting
             protected set { userLog = value; }
         }
 
-        public CurrentUserContext(HttpContextBase httpContext, UserLogDataProvider userLogs)
-            : base(null)
+        public CurrentUserContext(HttpContextBase httpContext, UserLogDataProvider userLogs, IActivator<IResourcePermissionQuery> permissionQueryFactory)
+            : base(null, permissionQueryFactory)
         {
             Guard.NotNull(httpContext, "httpContext");
             Guard.NotNull(userLogs, "userLogs");

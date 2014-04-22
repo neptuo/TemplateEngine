@@ -38,7 +38,7 @@ namespace Neptuo.TemplateEngine.Templates.Controls
 
         protected override void RenderScript(IHtmlWriter writer)
         {
-            if (config.IsDebug)
+            if (!config.IsDebug)
             {
                 base.RenderScript(writer);
                 return;
@@ -50,7 +50,7 @@ namespace Neptuo.TemplateEngine.Templates.Controls
 
         protected override void RenderStyle(IHtmlWriter writer)
         {
-            if (config.IsDebug)
+            if (!config.IsDebug)
             {
                 base.RenderStyle(writer);
                 return;

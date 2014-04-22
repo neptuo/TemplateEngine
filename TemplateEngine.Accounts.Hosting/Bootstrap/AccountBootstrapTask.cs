@@ -35,7 +35,6 @@ using Neptuo.TemplateEngine.Security.Events;
 using System.Data.Entity;
 using Neptuo.TemplateEngine.Accounts.Hosting.Data.Entity;
 using Neptuo.TemplateEngine.Accounts.Controllers.Validation;
-using Neptuo.TemplateEngine.Accounts.Hosting.Data.Entity;
 
 namespace Neptuo.TemplateEngine.Accounts.Hosting.Bootstrap
 {
@@ -125,6 +124,11 @@ namespace Neptuo.TemplateEngine.Accounts.Hosting.Bootstrap
                 .RegisterType<IUserLogQuery, EntityUserLogQuery>(new PerRequestLifetime())
                 .RegisterType<IActivator<UserLog>, EntityUserLogRepository>(new PerRequestLifetime())
                 .RegisterActivator<IUserLogQuery>(new PerRequestLifetime())
+
+                .RegisterType<IResourcePermissionRepository, EntityResourcePermissionRepository>(new PerRequestLifetime())
+                .RegisterType<IResourcePermissionQuery, EntityResourcePermissionQuery>()
+                .RegisterType<IActivator<ResourcePermission>, EntityResourcePermissionRepository>(new PerRequestLifetime())
+                .RegisterActivator<IResourcePermissionQuery>(new PerRequestLifetime())
 
                 ;
         }

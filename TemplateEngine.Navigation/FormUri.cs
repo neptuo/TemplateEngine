@@ -44,7 +44,7 @@ namespace Neptuo.TemplateEngine.Navigation
         public static explicit operator FormUri(string uri)
         {
             FormUri formUri;
-            if (FormUriService.Instance.TryGet(uri, out formUri))
+            if (FormUriTable.Repository.TryGet(uri, out formUri))
                 return formUri;
 
             throw new ArgumentOutOfRangeException("uri", String.Format("This '{0}' isn't registered form uri.", uri));

@@ -6,6 +6,7 @@
         <View Path="~/Views/Accounts/RoleList.view" />
         <View Path="~/Views/Accounts/RoleEdit.view" />
         <View Path="~/Views/Accounts/LogList.view" />
+        <View Path="~/Views/Accounts/PermissionList.view" />
         <View Path="~/Views/Accounts/SideNavUserControl.view" />
     </ViewBundle>
     <ViewBundle Path="~/Views/Accounts/UserEdit.view">
@@ -14,6 +15,7 @@
         <View Path="~/Views/Accounts/RoleList.view" />
         <View Path="~/Views/Accounts/RoleEdit.view" />
         <View Path="~/Views/Accounts/LogList.view" />
+        <View Path="~/Views/Accounts/PermissionList.view" />
         <View Path="~/Views/Accounts/SideNavUserControl.view" />
     </ViewBundle>
     <ViewBundle Path="~/Views/Accounts/RoleList.view">
@@ -22,6 +24,7 @@
         <View Path="~/Views/Accounts/RoleList.view" />
         <View Path="~/Views/Accounts/RoleEdit.view" />
         <View Path="~/Views/Accounts/LogList.view" />
+        <View Path="~/Views/Accounts/PermissionList.view" />
         <View Path="~/Views/Accounts/SideNavUserControl.view" />
     </ViewBundle>
     <ViewBundle Path="~/Views/Accounts/RoleEdit.view">
@@ -30,6 +33,25 @@
         <View Path="~/Views/Accounts/RoleList.view" />
         <View Path="~/Views/Accounts/RoleEdit.view" />
         <View Path="~/Views/Accounts/LogList.view" />
+        <View Path="~/Views/Accounts/PermissionList.view" />
+        <View Path="~/Views/Accounts/SideNavUserControl.view" />
+    </ViewBundle>
+    <ViewBundle Path="~/Views/Accounts/LogList.view">
+        <View Path="~/Views/Accounts/UserList.view" />
+        <View Path="~/Views/Accounts/UserEdit.view" />
+        <View Path="~/Views/Accounts/RoleList.view" />
+        <View Path="~/Views/Accounts/RoleEdit.view" />
+        <View Path="~/Views/Accounts/LogList.view" />
+        <View Path="~/Views/Accounts/PermissionList.view" />
+        <View Path="~/Views/Accounts/SideNavUserControl.view" />
+    </ViewBundle>
+    <ViewBundle Path="~/Views/Accounts/PermissionList.view">
+        <View Path="~/Views/Accounts/UserList.view" />
+        <View Path="~/Views/Accounts/UserEdit.view" />
+        <View Path="~/Views/Accounts/RoleList.view" />
+        <View Path="~/Views/Accounts/RoleEdit.view" />
+        <View Path="~/Views/Accounts/LogList.view" />
+        <View Path="~/Views/Accounts/PermissionList.view" />
         <View Path="~/Views/Accounts/SideNavUserControl.view" />
     </ViewBundle>
     <ViewBundle Path="~/Views/Accounts/Login.view">

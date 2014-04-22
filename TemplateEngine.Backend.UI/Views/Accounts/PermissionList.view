@@ -1,0 +1,74 @@
+﻿<ui:AdminLayout Title="Permissions">
+    <ui:TemplateContent Name="SideNav">
+        <ul class="nav nav-pills nav-stacked">
+            <ui:AccountSideNav />
+        </ul>
+    </ui:TemplateContent>
+    <ui:TemplateContent Name="Body">
+        
+        <ui:SubHeader>
+            <ui:TemplateContent Name="Left">
+                <h2>
+                    <span class="glyphicon glyphicon-th-large"></span>
+                    Permissions assigned to role
+                </h2>
+            </ui:TemplateContent>
+        </ui:SubHeader>
+
+        <div class="sub-panel">
+            Filter...
+        </div>
+
+        <ui:ListView PageIndex="{Request PageIndex}" PageSize="10">
+            <Source>
+                <data:ResourcePermissionDataSource RoleKey="{Request RoleKey}" />
+            </Source>
+            <Template>
+                <div style="padding: 10px;">
+                    <table class="table table-condensed table-hover">
+                        <thead>
+                            <tr>
+                                <th>Resource</th>
+                                <th>Hint</th>
+                                <th class="w200">Permissions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <ui:TemplatePlaceholder Name="Content" />
+                        </tbody>
+                    </table>
+                </div>
+            </Template>
+            <ItemTemplate>
+                <tr>
+                    <td>
+                        <ui:Literal Text="{Binding ResourceName}" />
+                    </td>
+                    <td>
+                        <ui:Literal Text="{Binding ResourceHint}" />
+                    </td>
+                    <td>
+                        <ui:ListView>
+                            <Source>
+                                <data:CollectionDataSource Data="{Binding Permissions}" />
+                            </Source>
+                            <Template>
+                                <div>
+                                    <ui:TemplatePlaceholder Name="Content" />
+                                </div>
+                            </Template>
+                            <ItemTemplate>
+                                <ui:CheckBox Name="{Binding ResourceName}" IsChecked="{Binding IsEnabled}" LabelText="{Binding PermissionName}" Value="{Binding PermissionName}" />
+                            </ItemTemplate>
+                        </ui:ListView>
+                    </td>
+                </tr>
+            </ItemTemplate>
+            <EmptyTemplate>
+                No permissions to view.
+            </EmptyTemplate>
+        </ui:ListView>
+
+    </ui:TemplateContent>    
+</ui:AdminLayout>
+  

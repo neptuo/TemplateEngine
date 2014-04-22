@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataSources\ResourcePermissionDataSource.cs" />
     <Compile Include="DataSources\UserAccountDataSource.cs" />
     <Compile Include="DataSources\UserAccountEditDataSource.cs" />
     <Compile Include="DataSources\UserLogDataSource.cs" />
@@ -64,6 +65,10 @@
     <ProjectReference Include="..\TemplateEngine.Accounts\TemplateEngine.Accounts.csproj">
       <Project>{36f0d8f9-1f8f-409c-9eda-c17644c4c0d8}</Project>
       <Name>TemplateEngine.Accounts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TemplateEngine.Navigation\TemplateEngine.Navigation.csproj">
+      <Project>{f16d8bc8-2191-498f-9950-dc8aa200b0ba}</Project>
+      <Name>TemplateEngine.Navigation</Name>
     </ProjectReference>
     <ProjectReference Include="..\TemplateEngine.Providers\TemplateEngine.Providers.csproj">
       <Project>{30214616-7c89-467a-9147-7385e91aed13}</Project>

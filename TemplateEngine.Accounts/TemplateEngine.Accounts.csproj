@@ -51,6 +51,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Data\IResourcePermissionRepository.cs" />
+    <Compile Include="Data\Queries\IResourcePermissionFilter.cs" />
+    <Compile Include="Data\Queries\IResourcePermissionQuery.cs" />
+    <Compile Include="Data\Queries\ResourcePermissionFilter.cs" />
+    <Compile Include="Data\ResourcePermissionDataProvider.cs" />
+    <Compile Include="ResourcePermission.cs" />
+    <Compile Include="ResourcePermissionProvider.cs" />
     <Compile Include="UserContextBase.cs" />
     <Compile Include="Data\DataProviderBase.cs" />
     <Compile Include="Data\IUserAccountRepository.cs" />

@@ -15,18 +15,18 @@ namespace Neptuo.TemplateEngine.Accounts.Data.Entity
         public IDbSet<UserAccount> UserAccounts { get; set; }
         public IDbSet<UserRole> UserRoles { get; set; }
         public IDbSet<UserLog> UserLogs { get; set; }
+        public IDbSet<ResourcePermission> Permissions { get; set; }
 
         public DataContext()
         { }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            
-
             base.OnModelCreating(modelBuilder);
             MapUserAccount(modelBuilder.Entity<UserAccount>());
             MapUserRole(modelBuilder.Entity<UserRole>());
             MapUserLog(modelBuilder.Entity<UserLog>());
+            MapResourcePermission(modelBuilder.Entity<ResourcePermission>());
         }
 
         protected void MapUserAccount(EntityTypeConfiguration<UserAccount> userAccount)
@@ -68,6 +68,17 @@ namespace Neptuo.TemplateEngine.Accounts.Data.Entity
 
             userLog
                 .HasRequired(l => l.User).WithMany();
+        }
+
+        private void MapResourcePermission(EntityTypeConfiguration<ResourcePermission> permission)
+        {
+            permission
+                .HasKey(p => p.Key)
+                .Property(p => p.Version)
+                .IsRowVersion();
+
+            permission
+                .HasRequired(p => p.Role).WithMany();
         }
     }
 }

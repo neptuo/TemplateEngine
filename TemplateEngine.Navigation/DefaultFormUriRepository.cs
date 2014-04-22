@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Navigation
 {
-    public class DefaultFormUriService : IFormUriService, IFormUriRegistry
+    public class DefaultFormUriRepository : IFormUriRepository, IFormUriRegistry
     {
-        protected Dictionary<string, FormUri> Storage;
+        protected Dictionary<string, FormUri> Storage { get; private set; }
 
-        public DefaultFormUriService()
+        public DefaultFormUriRepository()
         {
             Storage = new Dictionary<string, FormUri>();
         }
@@ -32,6 +32,11 @@ namespace Neptuo.TemplateEngine.Navigation
         public bool TryGet(string identifier, out FormUri formUri)
         {
             return Storage.TryGetValue(identifier, out formUri);
+        }
+
+        public IEnumerable<FormUri> EnumerateForms()
+        {
+            return Storage.Values;
         }
     }
 }

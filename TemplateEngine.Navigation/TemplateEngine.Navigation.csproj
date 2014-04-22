@@ -39,12 +39,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Bootstrap\FormUriServiceRegistration.cs" />
-    <Compile Include="DefaultFormUriService.cs" />
+    <Compile Include="DefaultFormUriRepository.cs" />
     <Compile Include="FormUri.cs" />
-    <Compile Include="FormUriService.cs" />
+    <Compile Include="FormUriTable.cs" />
     <Compile Include="Bootstrap\IFormUriRegistry.cs" />
-    <Compile Include="IFormUriService.cs" />
+    <Compile Include="IFormUriRepository.cs" />
     <Compile Include="INavigateTo.cs" />
     <Compile Include="INavigator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -72,9 +72,6 @@ namespace Neptuo.TemplateEngine.Web
             container
                 .Map(typeof(SingletonLifetime), new SingletonLifetimeMapper());
 
-            DefaultFormUriService formService = new DefaultFormUriService();
-            FormUriServiceRegistration.SetInstance(formService);
-
             IViewActivator viewActivator = new StaticViewActivator(container);
 
             HistoryState = new HistoryState();
@@ -102,8 +99,8 @@ namespace Neptuo.TemplateEngine.Web
 
                 .RegisterInstance(new GlobalNavigationCollection())
 
-                .RegisterInstance<IFormUriService>(formService)
-                .RegisterInstance<IFormUriRegistry>(formService)
+                .RegisterInstance<IFormUriRepository>(FormUriTable.Repository)
+                .RegisterInstance<IFormUriRegistry>(FormUriTable.Registry)
 
                 .RegisterInstance<IControllerRegistry>(new ControllerRegistryBase())
 

@@ -54,6 +54,7 @@
     <Compile Include="Security\IUserInfo.cs" />
     <Compile Include="Security\OptimisticPermissionProvider.cs" />
     <Compile Include="Security\OptimisticPermissionSet.cs" />
+    <Compile Include="Security\PermissionSet.cs" />
     <Compile Include="StringToIntConverter.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -13,9 +13,9 @@ namespace Neptuo.TemplateEngine.Templates.Compilation.Parsers
 {
     public class FormUriObserverBuider : IObserverBuilder
     {
-        protected IFormUriService FormService { get; private set; }
+        protected IFormUriRepository FormService { get; private set; }
 
-        public FormUriObserverBuider(IFormUriService formService)
+        public FormUriObserverBuider(IFormUriRepository formService)
         {
             FormService = formService;
         }
