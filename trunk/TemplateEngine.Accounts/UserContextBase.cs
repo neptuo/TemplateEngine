@@ -37,12 +37,18 @@ namespace Neptuo.TemplateEngine.Accounts
 
         public UserContextBase(UserLog log, IActivator<IResourcePermissionQuery> permissionQueryFactory)
         {
+            Guard.NotNull(permissionQueryFactory, "permissionQueryFactory");
             Log = log;
+            this.permissionQueryFactory = permissionQueryFactory;
         }
 
         protected virtual IPermissionProvider GetPermissionProvider()
         {
-            return new ResourcePermissionProvider(permissionQueryFactory, Log.User.Roles.Select(r => r.Key));
+            List<int> roleKeys = new List<int>();
+            if(IsAuthenticated)
+                roleKeys.AddRange(Log.User.Roles.Select(r => r.Key));
+
+            return new ResourcePermissionProvider(permissionQueryFactory, roleKeys);
         }
     }
 }
