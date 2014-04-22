@@ -35,6 +35,9 @@
     <Reference Include="Neptuo">
       <HintPath>..\References\Neptuo.dll</HintPath>
     </Reference>
+    <Reference Include="Neptuo.Configuration">
+      <HintPath>..\References\Neptuo.Configuration.dll</HintPath>
+    </Reference>
     <Reference Include="Neptuo.PresentationModels">
       <HintPath>..\References\Neptuo.PresentationModels.dll</HintPath>
     </Reference>
@@ -60,6 +63,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Configuration\ApplicationConfiguration.cs" />
+    <Compile Include="Configuration\IsDebugProperty.cs" />
     <Compile Include="Navigation\QueryStringNavigateTo.cs" />
     <Compile Include="Navigation\RedirectNavigateTo.cs" />
     <Compile Include="Navigation\RedirectNavigator.cs" />

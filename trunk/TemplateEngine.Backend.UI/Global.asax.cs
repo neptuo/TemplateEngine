@@ -56,6 +56,7 @@ namespace Neptuo.TemplateEngine.Backend.UI
             bootstrapper.Register<BindingBootstrapTask>();
             bootstrapper.Register<ViewBundleBootstrapTask>();
             bootstrapper.Register<JavascriptBootstrapTask>();
+            bootstrapper.Register<ConfigurationBootstrapTask>();
 
             //TODO: Bootstrap as independent module
             bootstrapper.Register<AccountBootstrapTask>();

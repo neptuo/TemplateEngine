@@ -46,6 +46,9 @@
     <Reference Include="Neptuo.Bootstrap">
       <HintPath>..\References\Neptuo.Bootstrap.dll</HintPath>
     </Reference>
+    <Reference Include="Neptuo.Configuration">
+      <HintPath>..\References\Neptuo.Configuration.dll</HintPath>
+    </Reference>
     <Reference Include="Neptuo.Data">
       <HintPath>..\References\Neptuo.Data.dll</HintPath>
     </Reference>
@@ -106,6 +109,7 @@
     <Compile Include="Bootstrap\BindingBootstrapTask.cs" />
     <Compile Include="Bootstrap\ModuleBootstrapConstraint.cs" />
     <Compile Include="Bootstrap\ModuleBootstrapConstraintProvider.cs" />
+    <Compile Include="ConfigurationBootstrapTask.cs" />
     <Compile Include="JavascriptBootstrapTask.cs" />
     <Compile Include="Bootstrap\NavigationBootstrapTask.cs" />
     <Compile Include="Bootstrap\PresentationModelBootstrapTask.cs" />
