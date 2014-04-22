@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Commands\ResourcePermissionUpdateCommand.cs" />
     <Compile Include="Commands\UserAccountCreateCommand.cs" />
     <Compile Include="Commands\UserAccountDeleteCommand.cs" />
     <Compile Include="Commands\UserAccountEditCommand.cs" />

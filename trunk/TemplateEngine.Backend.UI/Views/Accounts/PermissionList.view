@@ -45,7 +45,7 @@
                         <span class="glyphicon glyphicon-search"></span>
                         <ui:Literal l:Text="Search" />
                     </ui:Button>
-                    <ui:Link form:Href="Accounts.Permissions.List" ajax:Update="Content" CssClass="btn btn-default btn-sm" l:Text="Clear" CopyParameters="PageIndex,RoleKey" AllowActive="false" />
+                    <ui:Link form:Href="Accounts.Permission.List" ajax:Update="Content" CssClass="btn btn-default btn-sm" l:Text="Clear" CopyParameters="PageIndex,RoleKey" AllowActive="false" />
                 </div>
             </ui:GetForm>
         </div>
@@ -95,7 +95,7 @@
                         </ui:ListView>
                     </td>
                     <td>
-                        <ui:Link form:Href="Accounts.Permissions.Edit" l:Text="Edit" CssClass="btn btn-default btn-xs">
+                        <ui:Link form:Href="Accounts.Permission.Edit" l:Text="Edit" CssClass="btn btn-default btn-xs">
                             <Parameters>
                                 <ui:Parameter Name="RoleKey" Value="{Request RoleKey}" />
                                 <ui:Parameter Name="ResourceName" Value="{Binding ResourceName}" />

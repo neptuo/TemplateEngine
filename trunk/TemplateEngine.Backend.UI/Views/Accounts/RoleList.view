@@ -79,7 +79,7 @@
                                 <ui:Parameter Name="RoleKey" Value="{Binding Key}" />
                             </Parameters>
                         </ui:Link>
-                        <ui:Link form:Href="Accounts.Permissions.List" Text="Permissions" ajax:Update="Content" html:Class="btn btn-default btn-xs">
+                        <ui:Link form:Href="Accounts.Permission.List" Text="Permissions" ajax:Update="Content" html:Class="btn btn-default btn-xs">
                             <Parameters>
                                 <ui:Parameter Name="RoleKey" Value="{Binding Key}" />
                             </Parameters>
