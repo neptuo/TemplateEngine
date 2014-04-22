@@ -112,7 +112,7 @@ namespace Neptuo.TemplateEngine.Accounts.Controllers
 
         #region Update permissions
 
-        [Action("Accounts/Permissions/Update")]
+        [Action("Accounts/Permission/Update")]
         public string UpdatePermissions(ResourcePermissionUpdateCommand model)
         {
 

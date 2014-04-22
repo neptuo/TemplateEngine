@@ -61,8 +61,8 @@
                             <tr>
                                 <th>Resource</th>
                                 <th>Hint</th>
-                                <th class="200">Permissions</th>
-                                <th class="150"></th>
+                                <!--<th class="200">Permissions</th>-->
+                                <th>Permissions</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -79,7 +79,7 @@
                     <td>
                         <ui:Literal Text="{Binding ResourceHint}" />
                     </td>
-                    <td>
+                    <!--<td>
                         <ui:ListView>
                             <Source>
                                 <data:CollectionDataSource Data="{Binding Permissions}" />
@@ -93,14 +93,32 @@
                                 <ui:Literal Text="{Binding PermissionName}" ui:IsVisible="{Binding IsEnabled}" />
                             </ItemTemplate>
                         </ui:ListView>
-                    </td>
+                    </td>-->
                     <td>
-                        <ui:Link form:Href="Accounts.Permission.Edit" l:Text="Edit" CssClass="btn btn-default btn-xs">
+                        <ui:PostForm ajax:Update="Content" CssClass="inline-form">
+                            <ui:ListView>
+                                <Source>
+                                    <data:CollectionDataSource Data="{Binding Permissions}" />
+                                </Source>
+                                <Template>
+                                    <ui:TemplatePlaceholder Name="Content" />
+                                </Template>
+                                <ItemTemplate>
+                                    <ui:CheckBox Name="PermissionNames" Value="{Binding PermissionName}" LabelText="{Binding PermissionName}" IsChecked="{Binding IsEnabled}" />
+                                </ItemTemplate>
+                            </ui:ListView>
+
+                            <ui:HiddenBox Name="ResourceName" Value="{Binding ResourceName}" />
+                            <ui:HiddenBox Name="RoleKey" Value="{Request RoleKey}" />
+                            <ui:Button l:Text="Update" ui:Event="Accounts/Permission/Update" CssClass="btn btn-default btn-xs" />
+                        </ui:PostForm>
+                        
+                        <!--<ui:Link form:Href="Accounts.Permission.Edit" l:Text="Edit" CssClass="btn btn-default btn-xs">
                             <Parameters>
                                 <ui:Parameter Name="RoleKey" Value="{Request RoleKey}" />
                                 <ui:Parameter Name="ResourceName" Value="{Binding ResourceName}" />
                             </Parameters>
-                        </ui:Link>
+                        </ui:Link>-->
                     </td>
                 </tr>
             </ItemTemplate>
