@@ -189,6 +189,287 @@ var Neptuo$TemplateEngine$Providers$ModelBinders$ModelBinderExtensions = {
     IsAbstract: true
 };
 JsTypes.push(Neptuo$TemplateEngine$Providers$ModelBinders$ModelBinderExtensions);
+var ConsoleApplication20$IConfiguration = {
+    fullname: "ConsoleApplication20.IConfiguration",
+    baseTypeName: "System.Object",
+    assemblyName: "Neptuo.TemplateEngine.Providers",
+    Kind: "Interface",
+    ctors: [],
+    IsAbstract: true
+};
+JsTypes.push(ConsoleApplication20$IConfiguration);
+var ConsoleApplication20$IConfigurationProperty = {
+    fullname: "ConsoleApplication20.IConfigurationProperty",
+    baseTypeName: "System.Object",
+    assemblyName: "Neptuo.TemplateEngine.Providers",
+    Kind: "Interface",
+    ctors: [],
+    IsAbstract: true
+};
+JsTypes.push(ConsoleApplication20$IConfigurationProperty);
+var ConsoleApplication20$IConfigurationProperty$1 = {
+    fullname: "ConsoleApplication20.IConfigurationProperty$1",
+    baseTypeName: "System.Object",
+    assemblyName: "Neptuo.TemplateEngine.Providers",
+    interfaceNames: ["ConsoleApplication20.IConfigurationProperty"],
+    Kind: "Interface",
+    ctors: [],
+    IsAbstract: true
+};
+JsTypes.push(ConsoleApplication20$IConfigurationProperty$1);
+var ConsoleApplication20$IUpdateableConfigurationProperty = {
+    fullname: "ConsoleApplication20.IUpdateableConfigurationProperty",
+    baseTypeName: "System.Object",
+    assemblyName: "Neptuo.TemplateEngine.Providers",
+    Kind: "Interface",
+    ctors: [],
+    IsAbstract: true
+};
+JsTypes.push(ConsoleApplication20$IUpdateableConfigurationProperty);
+var ConsoleApplication20$IConfigurationPropertyScope = {
+    fullname: "ConsoleApplication20.IConfigurationPropertyScope",
+    baseTypeName: "System.Object",
+    assemblyName: "Neptuo.TemplateEngine.Providers",
+    Kind: "Interface",
+    ctors: [],
+    IsAbstract: true
+};
+JsTypes.push(ConsoleApplication20$IConfigurationPropertyScope);
+var ConsoleApplication20$StaticConfigurationPropertyScope = {
+    fullname: "ConsoleApplication20.StaticConfigurationPropertyScope",
+    baseTypeName: "System.Object",
+    assemblyName: "Neptuo.TemplateEngine.Providers",
+    interfaceNames: ["ConsoleApplication20.IConfigurationPropertyScope"],
+    Kind: "Class",
+    definition: {
+        ctor: function (){
+            System.Object.ctor.call(this);
+        },
+        GetValue: function (key){
+            return "false";
+        }
+    },
+    ctors: [{
+        name: "ctor",
+        parameters: []
+    }
+    ],
+    IsAbstract: false
+};
+JsTypes.push(ConsoleApplication20$StaticConfigurationPropertyScope);
+var ConsoleApplication20$ApplicationConfigurationPropertyScope = {
+    fullname: "ConsoleApplication20.ApplicationConfigurationPropertyScope",
+    baseTypeName: "System.Object",
+    assemblyName: "Neptuo.TemplateEngine.Providers",
+    interfaceNames: ["ConsoleApplication20.IConfigurationPropertyScope"],
+    Kind: "Class",
+    definition: {
+        ctor: function (){
+            System.Object.ctor.call(this);
+        },
+        GetValue: function (key){
+            return "true";
+        }
+    },
+    ctors: [{
+        name: "ctor",
+        parameters: []
+    }
+    ],
+    IsAbstract: false
+};
+JsTypes.push(ConsoleApplication20$ApplicationConfigurationPropertyScope);
+var ConsoleApplication20$UserConfigurationPropertyScope = {
+    fullname: "ConsoleApplication20.UserConfigurationPropertyScope",
+    baseTypeName: "System.Object",
+    assemblyName: "Neptuo.TemplateEngine.Providers",
+    interfaceNames: ["ConsoleApplication20.IConfigurationPropertyScope"],
+    Kind: "Class",
+    definition: {
+        ctor: function (){
+            System.Object.ctor.call(this);
+        },
+        GetValue: function (key){
+            return "false";
+        }
+    },
+    ctors: [{
+        name: "ctor",
+        parameters: []
+    }
+    ],
+    IsAbstract: false
+};
+JsTypes.push(ConsoleApplication20$UserConfigurationPropertyScope);
+var ConsoleApplication20$FormConfigurationPropertyScope = {
+    fullname: "ConsoleApplication20.FormConfigurationPropertyScope",
+    baseTypeName: "System.Object",
+    assemblyName: "Neptuo.TemplateEngine.Providers",
+    interfaceNames: ["ConsoleApplication20.IConfigurationPropertyScope"],
+    Kind: "Class",
+    definition: {
+        ctor: function (){
+            System.Object.ctor.call(this);
+        },
+        GetValue: function (key){
+            return "true";
+        }
+    },
+    ctors: [{
+        name: "ctor",
+        parameters: []
+    }
+    ],
+    IsAbstract: false
+};
+JsTypes.push(ConsoleApplication20$FormConfigurationPropertyScope);
+var ConsoleApplication20$ConfigurationScope = {
+    fullname: "ConsoleApplication20.ConfigurationScope",
+    baseTypeName: "System.Object",
+    staticDefinition: {
+        cctor: function (){
+            ConsoleApplication20.ConfigurationScope.Static = new ConsoleApplication20.StaticConfigurationPropertyScope.ctor();
+            ConsoleApplication20.ConfigurationScope.Application = new ConsoleApplication20.ApplicationConfigurationPropertyScope.ctor();
+            ConsoleApplication20.ConfigurationScope.User = new ConsoleApplication20.UserConfigurationPropertyScope.ctor();
+            ConsoleApplication20.ConfigurationScope.Form = new ConsoleApplication20.FormConfigurationPropertyScope.ctor();
+        }
+    },
+    assemblyName: "Neptuo.TemplateEngine.Providers",
+    Kind: "Class",
+    definition: {
+        ctor: function (){
+            System.Object.ctor.call(this);
+        }
+    },
+    ctors: [],
+    IsAbstract: true
+};
+JsTypes.push(ConsoleApplication20$ConfigurationScope);
+var ConsoleApplication20$Configuration = {
+    fullname: "ConsoleApplication20.Configuration",
+    baseTypeName: "System.Object",
+    assemblyName: "Neptuo.TemplateEngine.Providers",
+    interfaceNames: ["ConsoleApplication20.IConfiguration"],
+    Kind: "Class",
+    definition: {
+        ctor: function (){
+            this.DefaultScope = ConsoleApplication20.ConfigurationScope.Application;
+            this.properties = new System.Collections.Generic.HashSet$1.ctor(System.Type.ctor);
+            System.Object.ctor.call(this);
+        },
+        MapProperty$1: function (T){
+            this.properties.Add(Typeof(T));
+        },
+        GetProperty$1: function (T){
+            if (this.properties.Contains(Typeof(T))){
+                var property = new T();
+                var updateable = As(property, ConsoleApplication20.IUpdateableConfigurationProperty.ctor);
+                if (updateable != null){
+                    var value = (property.get_Scope() != null ? property.get_Scope() : this.DefaultScope).GetValue(property.get_Name());
+                    updateable.SetValue(value);
+                }
+                return Cast(property, T);
+            }
+            return new T();
+        }
+    },
+    ctors: [{
+        name: "ctor",
+        parameters: []
+    }
+    ],
+    IsAbstract: false
+};
+JsTypes.push(ConsoleApplication20$Configuration);
+var ConsoleApplication20$ConfigurationProperty$1 = {
+    fullname: "ConsoleApplication20.ConfigurationProperty$1",
+    baseTypeName: "System.Object",
+    assemblyName: "Neptuo.TemplateEngine.Providers",
+    interfaceNames: ["ConsoleApplication20.IConfigurationProperty$1", "ConsoleApplication20.IUpdateableConfigurationProperty"],
+    Kind: "Class",
+    definition: {
+        ctor: function (T, defaultValue, scope, name){
+            this.T = T;
+            this._Name = null;
+            this._PropertyType = null;
+            this._Scope = null;
+            this._Value = null;
+            System.Object.ctor.call(this);
+            this.set_PropertyType(Typeof(this.T));
+            this.set_Value(defaultValue);
+            this.set_Scope(scope);
+            this.set_Name((name != null ? name : this.GetType().get_FullName()));
+        },
+        Name$$: "System.String",
+        get_Name: function (){
+            return this._Name;
+        },
+        set_Name: function (value){
+            this._Name = value;
+        },
+        PropertyType$$: "System.Type",
+        get_PropertyType: function (){
+            return this._PropertyType;
+        },
+        set_PropertyType: function (value){
+            this._PropertyType = value;
+        },
+        Scope$$: "ConsoleApplication20.IConfigurationPropertyScope",
+        get_Scope: function (){
+            return this._Scope;
+        },
+        set_Scope: function (value){
+            this._Scope = value;
+        },
+        Value$$: "`0",
+        get_Value: function (){
+            return this._Value;
+        },
+        set_Value: function (value){
+            this._Value = value;
+        },
+        SetValue: function (value){
+            var target;
+            if ((function (){
+                var $1 = {
+                    Value: target
+                };
+                var $res = this.TryParseValue(value, $1);
+                target = $1.Value;
+                return $res;
+            }).call(this))
+                this.set_Value(target);
+        }
+    },
+    ctors: [{
+        name: "ctor",
+        parameters: ["T", "ConsoleApplication20.IConfigurationPropertyScope", "System.String"]
+    }
+    ],
+    IsAbstract: true
+};
+JsTypes.push(ConsoleApplication20$ConfigurationProperty$1);
+var ConsoleApplication20$BoolConfigurationProperty = {
+    fullname: "ConsoleApplication20.BoolConfigurationProperty",
+    baseTypeName: "ConsoleApplication20.ConfigurationProperty$1",
+    assemblyName: "Neptuo.TemplateEngine.Providers",
+    Kind: "Class",
+    definition: {
+        ctor: function (defaultValue, scope, name){
+            ConsoleApplication20.ConfigurationProperty$1.ctor.call(this, System.Boolean.ctor, defaultValue, scope, name);
+        },
+        TryParseValue: function (source, target){
+            return System.Boolean.TryParse(source, target);
+        }
+    },
+    ctors: [{
+        name: "ctor",
+        parameters: ["System.Boolean", "ConsoleApplication20.IConfigurationPropertyScope", "System.String"]
+    }
+    ],
+    IsAbstract: false
+};
+JsTypes.push(ConsoleApplication20$BoolConfigurationProperty);
 var Neptuo$TemplateEngine$Web$DictionaryParameterProvider = {
     fullname: "Neptuo.TemplateEngine.Web.DictionaryParameterProvider",
     baseTypeName: "System.Object",
