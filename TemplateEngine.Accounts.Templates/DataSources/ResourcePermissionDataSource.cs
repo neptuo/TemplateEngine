@@ -29,16 +29,16 @@ namespace Neptuo.TemplateEngine.Accounts.Templates.DataSources
 
         protected bool ApplyFilter()
         {
-            if (RoleKey == null)
-                return false;
+            //if (RoleKey == null)
+            //    return false;
 
-            query.Filter.RoleKey = IntSearch.Create(RoleKey.Value);
+            //query.Filter.RoleKey = IntSearch.Create(RoleKey.Value);
 
-            if (ResourceName != null)
-                query.Filter.ResourceName = TextSearch.Create(ResourceName, TextSearchType.Contains);
+            //if (ResourceName != null)
+            //    query.Filter.ResourceName = TextSearch.Create(ResourceName, TextSearchType.Contains);
 
-            if (PermissionName != null)
-                query.Filter.PermissionName = TextSearch.Create(PermissionName, TextSearchType.Contains);
+            //if (PermissionName != null)
+            //    query.Filter.PermissionName = TextSearch.Create(PermissionName, TextSearchType.Contains);
 
             return true;
         }
@@ -68,7 +68,7 @@ namespace Neptuo.TemplateEngine.Accounts.Templates.DataSources
             List<ResourcePermissionEditViewModel> result = new List<ResourcePermissionEditViewModel>();
             if (ApplyFilter())
             {
-                var enabledItems = query.EnumerateItems(p => new { ResourceName = p.ResourceName, PermissionName = p.PermissionName });
+                IEnumerable<ResourcePermission> enabledItems = query.EnumerateItems();
 
                 foreach (FormUri formUri in GetFormUris())
                 {
@@ -76,7 +76,13 @@ namespace Neptuo.TemplateEngine.Accounts.Templates.DataSources
                         new ResourcePermissionEditViewModel(
                             formUri.Identifier(), 
                             formUri.Url(), 
-                            GetPermissions().Select(p => new PermissionNameEditViewModel(formUri.Identifier(), p, true))
+                            GetPermissions().Select(
+                                pn => new PermissionNameEditViewModel(
+                                    formUri.Identifier(), 
+                                    pn, 
+                                    enabledItems.Any(p => p.ResourceName == formUri.Identifier() && p.PermissionName == pn && p.Role.Key == RoleKey.Value)
+                                )
+                            )
                         )
                     );
                 }
