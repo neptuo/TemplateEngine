@@ -1,4 +1,5 @@
-﻿using Neptuo.Templates;
+﻿using Neptuo.TemplateEngine.Configuration;
+using Neptuo.Templates;
 using Neptuo.Templates.Controls;
 using System;
 using System.Collections.Generic;
@@ -11,13 +12,16 @@ namespace Neptuo.TemplateEngine.Templates.Controls
 {
     public class PartialStartUpControl : IControl
     {
+        private IApplicationConfiguration config;
         private HttpContextBase httpContext;
 
         public string DefaultUpdate { get; set; }
 
-        public PartialStartUpControl(HttpContextBase httpContext)
+        public PartialStartUpControl(IApplicationConfiguration config, HttpContextBase httpContext)
         {
+            Guard.NotNull(config, "config");
             Guard.NotNull(httpContext, "httpContext");
+            this.config = config;
             this.httpContext = httpContext;
         }
 
@@ -32,7 +36,7 @@ namespace Neptuo.TemplateEngine.Templates.Controls
 
             string startupStript = String.Format(
                 "JsRuntime.Start(); Neptuo.TemplateEngine.Web.Application.Start({0}, \"{1}\", [{2}]);", 
-                httpContext.Request.Url.Host == "localhost" ? "true" : "false", //TODO: Move to configuration
+                config.IsDebug,
                 httpContext.Request.ApplicationPath, 
                 toUpdate
             );
