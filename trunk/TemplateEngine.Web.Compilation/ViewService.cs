@@ -15,6 +15,10 @@ namespace Neptuo.TemplateEngine.Templates.Compilation
 {
     public class ViewService : CodeDomViewService
     {
+        public ViewService()
+            : base(true)
+        { }
+
         public string GenerateJavascriptSourceCodeFromView(string viewContent, IViewServiceContext context, INaming naming)
         {
             IPropertyDescriptor propertyDescriptor = ParseViewContent(viewContent, context);

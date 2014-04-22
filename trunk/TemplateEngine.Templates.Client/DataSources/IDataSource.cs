@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Templates.DataSources
 {
-    public interface IDataSource
+    public interface IClientDataSource
     {
         void GetItem(Action<object> callback, Action<ErrorModel> errorCallback);
     }

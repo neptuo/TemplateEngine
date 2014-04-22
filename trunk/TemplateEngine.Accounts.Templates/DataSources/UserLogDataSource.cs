@@ -32,14 +32,14 @@ namespace Neptuo.TemplateEngine.Accounts.Templates.DataSources
                 query.Filter.UserKey = IntSearch.Create(UserKey.Value);
 
             //TODO: Fix by sorting after where!
-            query.OrderByDescending(l => l.Key);
+            //query.OrderByDescending(l => l.Key);
         }
 
         public IEnumerable GetData(int? pageIndex, int? pageSize)
         {
             ApplyFilter();
 
-            return query.EnumeratePageItems(pageIndex, pageSize).Select(l => new UserLogViewModel(
+            return query.EnumerateItems().Select(l => new UserLogViewModel( //TODO: Paging-> pageIndex, pageSize
                 l.Key.ToString(),
                 new UserAccountRowViewModel(l.User.Key, l.User.Username),
                 l.SignedIn,

@@ -7,13 +7,13 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Templates.Controls
 {
-    public class DropDownListControl : SelectControl
+    public class ClientDropDownListControl : ClientSelectControl
     {
         public string ID { get; set; }
         public string CssStyle { get; set; }
         public string CssClass { get; set; }
 
-        public DropDownListControl(PartialUpdateHelper partialHelper, SelectControlContext context)
+        public ClientDropDownListControl(PartialUpdateHelper partialHelper, SelectControlContext context)
             : base(partialHelper, context)
         { }
 

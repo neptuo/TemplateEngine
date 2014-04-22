@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Templates.Controls
 {
-    public class SelectControl : ListViewControl, IHtmlAttributeCollection, IAttributeCollection
+    public class ClientSelectControl : ClientListViewControl, IHtmlAttributeCollection, IAttributeCollection
     {
         public string Name { get; set; }
         public object Value { get; set; }
@@ -20,7 +20,7 @@ namespace Neptuo.TemplateEngine.Templates.Controls
 
         protected IBindingManager BindingManager { get; private set; }
 
-        public SelectControl(PartialUpdateHelper updateHelper, SelectControlContext context)
+        public ClientSelectControl(PartialUpdateHelper updateHelper, SelectControlContext context)
             : base(context.RequestContext, context.Storage, context.DataContext, updateHelper)
         {
             Attributes = new HtmlAttributeCollection();

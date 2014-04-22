@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Templates.Controls
 {
-    public class PartialStartUpControl : IControl
+    public class ClientPartialStartUpControl : IControl
     {
         public string DefaultUpdate { get; set; }
 

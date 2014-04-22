@@ -10,7 +10,7 @@ using System.Web;
 
 namespace Neptuo.TemplateEngine.Templates
 {
-    public abstract class GeneratedViewBase : BaseGeneratedView
+    public abstract class ClientGeneratedViewBase : BaseGeneratedView
     {
         protected IVirtualUrlProvider urlProvider;
 
