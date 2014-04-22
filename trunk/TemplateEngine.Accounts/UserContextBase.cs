@@ -1,4 +1,5 @@
-﻿using Neptuo.TemplateEngine.Security;
+﻿using Neptuo.TemplateEngine.Accounts.Data.Queries;
+using Neptuo.TemplateEngine.Security;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,7 @@ namespace Neptuo.TemplateEngine.Accounts
 {
     public class UserContextBase : IUserLogContext, IUserContext
     {
+        private IActivator<IResourcePermissionQuery> permissionQueryFactory;
         private IPermissionProvider permissionProvider;
 
         public virtual UserLog Log { get; protected set; }
@@ -33,14 +35,14 @@ namespace Neptuo.TemplateEngine.Accounts
 
         public virtual string AuthenticationToken { get; protected set; }
 
-        public UserContextBase(UserLog log)
+        public UserContextBase(UserLog log, IActivator<IResourcePermissionQuery> permissionQueryFactory)
         {
             Log = log;
         }
 
         protected virtual IPermissionProvider GetPermissionProvider()
         {
-            throw new NotImplementedException();
+            return new ResourcePermissionProvider(permissionQueryFactory, Log.User.Roles.Select(r => r.Key));
         }
     }
 }

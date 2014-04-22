@@ -27,7 +27,7 @@ var Neptuo$TemplateEngine$Accounts$Hosting$Bootstrap$AccountBootstrapTask = {
             this.converterRepository = Neptuo.Converts.get_Repository();
         },
         Initialize: function (){
-            this.converterRepository.Add(Typeof(Object), Typeof(Neptuo.TemplateEngine.Accounts.UserAccountEditModel.ctor), new Neptuo.TemplateEngine.Accounts.UserAccountEditModelConverter.ctor()).Add(Typeof(Object), Typeof(Neptuo.TemplateEngine.Accounts.UserAccountListResult.ctor), new Neptuo.TemplateEngine.Accounts.UserAccountListResultConverter.ctor()).Add(Typeof(Object), Typeof(Neptuo.TemplateEngine.Accounts.UserRoleEditModel.ctor), new Neptuo.TemplateEngine.Accounts.UserRoleEditModelConverter.ctor()).Add(Typeof(Object), Typeof(Neptuo.TemplateEngine.Accounts.UserRoleListResult.ctor), new Neptuo.TemplateEngine.Accounts.UserRoleListResultConverter.ctor()).Add(Typeof(Object), Typeof(Neptuo.TemplateEngine.Accounts.UserLogListResult.ctor), new Neptuo.TemplateEngine.Accounts.UserLogListResultConverter.ctor());
+            this.converterRepository.Add(Typeof(Object), Typeof(Neptuo.TemplateEngine.Accounts.UserAccountEditModel.ctor), new Neptuo.TemplateEngine.Accounts.UserAccountEditModelConverter.ctor()).Add(Typeof(Object), Typeof(Neptuo.TemplateEngine.Accounts.UserAccountListResult.ctor), new Neptuo.TemplateEngine.Accounts.UserAccountListResultConverter.ctor()).Add(Typeof(Object), Typeof(Neptuo.TemplateEngine.Accounts.UserRoleEditModel.ctor), new Neptuo.TemplateEngine.Accounts.UserRoleEditModelConverter.ctor()).Add(Typeof(Object), Typeof(Neptuo.TemplateEngine.Accounts.UserRoleListResult.ctor), new Neptuo.TemplateEngine.Accounts.UserRoleListResultConverter.ctor()).Add(Typeof(Object), Typeof(Neptuo.TemplateEngine.Accounts.UserLogListResult.ctor), new Neptuo.TemplateEngine.Accounts.UserLogListResultConverter.ctor()).Add(Typeof(Object), Typeof(Neptuo.TemplateEngine.Accounts.ResourcePermissionListResult.ctor), new Neptuo.TemplateEngine.Accounts.ResourcePermissionListResultConverter.ctor());
             this.SetupForms(this.formRegistry);
             this.SetupGlobalNavigations(this.globalNavigations);
         }
@@ -40,6 +40,101 @@ var Neptuo$TemplateEngine$Accounts$Hosting$Bootstrap$AccountBootstrapTask = {
     IsAbstract: false
 };
 JsTypes.push(Neptuo$TemplateEngine$Accounts$Hosting$Bootstrap$AccountBootstrapTask);
+var Neptuo$TemplateEngine$Accounts$ResourcePermissionListResult = {
+    fullname: "Neptuo.TemplateEngine.Accounts.ResourcePermissionListResult",
+    baseTypeName: "Neptuo.TemplateEngine.Templates.DataSources.ListResult",
+    assemblyName: "Neptuo.TemplateEngine.Accounts.Client",
+    Kind: "Class",
+    definition: {
+        ctor: function (data, totalCount){
+            Neptuo.TemplateEngine.Templates.DataSources.ListResult.ctor.call(this, data, totalCount);
+        }
+    },
+    ctors: [{
+        name: "ctor",
+        parameters: ["System.Collections.IEnumerable", "System.Int32"]
+    }
+    ],
+    IsAbstract: false
+};
+JsTypes.push(Neptuo$TemplateEngine$Accounts$ResourcePermissionListResult);
+var Neptuo$TemplateEngine$Accounts$ResourcePermissionListResultConverter = {
+    fullname: "Neptuo.TemplateEngine.Accounts.ResourcePermissionListResultConverter",
+    baseTypeName: "Neptuo.ComponentModel.Converters.ConverterBase$2",
+    assemblyName: "Neptuo.TemplateEngine.Accounts.Client",
+    Kind: "Class",
+    definition: {
+        ctor: function (){
+            Neptuo.ComponentModel.Converters.ConverterBase$2.ctor.call(this, Object, Neptuo.TemplateEngine.Accounts.ResourcePermissionListResult.ctor);
+        },
+        TryConvert: function (sourceValue, targetValue){
+            var totalCount = sourceValue["TotalCount"];
+            var data = sourceValue["Data"];
+            targetValue.Value = new Neptuo.TemplateEngine.Accounts.ResourcePermissionListResult.ctor(this.GetResourcePermissions(data), totalCount);
+            return true;
+        },
+        GetResourcePermissions: function (sourceValue){
+            var data = new System.Collections.Generic.List$1.ctor(Neptuo.TemplateEngine.Accounts.ViewModels.ResourcePermissionEditViewModel.ctor);
+            var array = sourceValue;
+            for (var i = 0; i < array.length; i++){
+                var item = array[i];
+                data.Add(new Neptuo.TemplateEngine.Accounts.ViewModels.ResourcePermissionEditViewModel.ctor(item["ResourceName"], item["ResourceHint"], this.GetPermissionNames(item["Permissions"])));
+            }
+            return data;
+        },
+        GetPermissionNames: function (sourceValue){
+            var data = new System.Collections.Generic.List$1.ctor(Neptuo.TemplateEngine.Accounts.ViewModels.PermissionNameEditViewModel.ctor);
+            var array = sourceValue;
+            for (var i = 0; i < array.length; i++){
+                var item = array[i];
+                data.Add(new Neptuo.TemplateEngine.Accounts.ViewModels.PermissionNameEditViewModel.ctor(item["RessourceName"], item["PermissionName"], item["IsEnabled"]));
+            }
+            return data;
+        }
+    },
+    ctors: [{
+        name: "ctor",
+        parameters: []
+    }
+    ],
+    IsAbstract: false
+};
+JsTypes.push(Neptuo$TemplateEngine$Accounts$ResourcePermissionListResultConverter);
+var Neptuo$TemplateEngine$Accounts$Templates$DataSources$ResourcePermissionDataSource = {
+    fullname: "Neptuo.TemplateEngine.Accounts.Templates.DataSources.ResourcePermissionDataSource",
+    baseTypeName: "Neptuo.TemplateEngine.Templates.DataSources.DynamicListDataSourceProxy$1",
+    staticDefinition: {
+        GetFilterProperties: function (){
+            return (function (){
+                var $v1 = new System.Collections.Generic.List$1.ctor(System.String.ctor);
+                $v1.Add("RoleKey");
+                return $v1;
+            })();
+        }
+    },
+    assemblyName: "Neptuo.TemplateEngine.Accounts.Client",
+    Kind: "Class",
+    definition: {
+        ctor: function (urlProvider){
+            this._RoleKey = 0;
+            Neptuo.TemplateEngine.Templates.DataSources.DynamicListDataSourceProxy$1.ctor.call(this, Neptuo.TemplateEngine.Accounts.ResourcePermissionListResult.ctor, urlProvider, Neptuo.TemplateEngine.Accounts.Templates.DataSources.ResourcePermissionDataSource.GetFilterProperties());
+        },
+        RoleKey$$: "System.Int32",
+        get_RoleKey: function (){
+            return this._RoleKey;
+        },
+        set_RoleKey: function (value){
+            this._RoleKey = value;
+        }
+    },
+    ctors: [{
+        name: "ctor",
+        parameters: ["Neptuo.Templates.IVirtualUrlProvider"]
+    }
+    ],
+    IsAbstract: false
+};
+JsTypes.push(Neptuo$TemplateEngine$Accounts$Templates$DataSources$ResourcePermissionDataSource);
 var Neptuo$TemplateEngine$Accounts$Templates$DataSources$UserLogDataSource = {
     fullname: "Neptuo.TemplateEngine.Accounts.Templates.DataSources.UserLogDataSource",
     baseTypeName: "Neptuo.TemplateEngine.Templates.DataSources.ListDataSourceProxy$1",
@@ -297,11 +392,11 @@ var Neptuo$TemplateEngine$Accounts$Templates$DataSources$UserAccountDataSource =
     staticDefinition: {
         GetFilterProperties: function (){
             return (function (){
-                var $v1 = new System.Collections.Generic.List$1.ctor(System.String.ctor);
-                $v1.Add("Key");
-                $v1.Add("Username");
-                $v1.Add("RoleKey");
-                return $v1;
+                var $v2 = new System.Collections.Generic.List$1.ctor(System.String.ctor);
+                $v2.Add("Key");
+                $v2.Add("Username");
+                $v2.Add("RoleKey");
+                return $v2;
             })();
         }
     },
@@ -369,9 +464,9 @@ var Neptuo$TemplateEngine$Accounts$Templates$DataSources$UserAccountEditDataSour
         OnGetItem: function (callback){
             if (this.get_Key() == 0){
                 var model = (function (){
-                    var $v2 = new Neptuo.TemplateEngine.Accounts.UserAccountEditModel.ctor();
-                    $v2.set_Key(0);
-                    return $v2;
+                    var $v3 = new Neptuo.TemplateEngine.Accounts.UserAccountEditModel.ctor();
+                    $v3.set_Key(0);
+                    return $v3;
                 }).call(this);
                 model = Neptuo.TemplateEngine.Providers.ModelBinders.ModelBinderExtensions.Bind$1$$IModelBinder$$T(Neptuo.TemplateEngine.Accounts.UserAccountEditModel.ctor, this.get_ModelBinder(), model);
                 callback(model);

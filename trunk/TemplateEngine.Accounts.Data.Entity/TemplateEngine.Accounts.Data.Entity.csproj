@@ -63,8 +63,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataContext.cs" />
+    <Compile Include="EntityResourcePermissionRepository.cs" />
     <Compile Include="EntityUserLogRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Queries\EntityResourcePermissionQuery.cs" />
     <Compile Include="Queries\EntityUserAccountQuery.cs" />
     <Compile Include="Queries\EntityUserLogQuery.cs" />
     <Compile Include="Queries\EntityUserRoleQuery.cs" />

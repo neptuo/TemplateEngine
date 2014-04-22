@@ -25,15 +25,12 @@ namespace Neptuo.TemplateEngine.Backend.Bootstrap
 
         public void Initialize()
         {
-            DefaultFormUriService formService = new DefaultFormUriService();
-            FormUriServiceRegistration.SetInstance(formService);
-
-            formService
+            FormUriTable.Registry
                 .Register("Home", TemplateRouteParameterBase.FormatUrl("~/Home"));
 
             dependencyContainer
-                .RegisterInstance<IFormUriService>(formService)
-                .RegisterInstance<IFormUriRegistry>(formService)
+                .RegisterInstance<IFormUriRepository>(FormUriTable.Repository)
+                .RegisterInstance<IFormUriRegistry>(FormUriTable.Registry)
                 .RegisterType<INavigator, RedirectNavigator>(new PerRequestLifetime())
                 .RegisterType<NavigationCollection>(new PerRequestLifetime())
                 .RegisterInstance(new GlobalNavigationCollection());

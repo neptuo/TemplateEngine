@@ -18,14 +18,16 @@ namespace Neptuo.TemplateEngine.Accounts
         protected IUserRoleRepository UserRoles { get; private set; }
         protected UserAccountDataProvider UserAccounts { get; private set; }
         protected UserLogDataProvider UserLogs { get; private set; }
+        protected IActivator<IResourcePermissionQuery> PermissionQueryFactory { get; private set; }
         protected IUserLogContext UserContext { get; private set; }
 
-        public UserAccountService(IEventDispatcher eventDispatcher, UserAccountDataProvider userAccounts, UserLogDataProvider userLogs, IUserRoleRepository userRoles, IUserLogContext userContext)
+        public UserAccountService(IEventDispatcher eventDispatcher, UserAccountDataProvider userAccounts, UserLogDataProvider userLogs, IActivator<IResourcePermissionQuery> permissionQueryFactory, IUserRoleRepository userRoles, IUserLogContext userContext)
         {
             EventDispatcher = eventDispatcher;
             UserAccounts = userAccounts;
             UserLogs = userLogs;
             UserRoles = userRoles;
+            PermissionQueryFactory = permissionQueryFactory;
             UserContext = userContext;
         }
 
@@ -83,7 +85,7 @@ namespace Neptuo.TemplateEngine.Accounts
                 UserLogs.Repository.Insert(log);
 
                 EventDispatcher.Publish(new UserLogCreatedEvent(log));
-                EventDispatcher.Publish(new UserSignedInEvent(new UserContextBase(log), log.SignedIn));//TODO: Pass new user context
+                EventDispatcher.Publish(new UserSignedInEvent(new UserContextBase(log, PermissionQueryFactory), log.SignedIn));//TODO: Pass new user context
                 return true;
             }
             return false;

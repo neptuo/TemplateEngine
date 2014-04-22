@@ -44,7 +44,9 @@ namespace Neptuo.TemplateEngine.Accounts.Hosting.Bootstrap
                 .Add(typeof(JsObject), typeof(UserRoleEditModel), new UserRoleEditModelConverter())
                 .Add(typeof(JsObject), typeof(UserRoleListResult), new UserRoleListResultConverter())
 
-                .Add(typeof(JsObject), typeof(UserLogListResult), new UserLogListResultConverter());
+                .Add(typeof(JsObject), typeof(UserLogListResult), new UserLogListResultConverter())
+
+                .Add(typeof(JsObject), typeof(ResourcePermissionListResult), new ResourcePermissionListResultConverter());
 
             SetupForms(formRegistry);
             SetupGlobalNavigations(globalNavigations);

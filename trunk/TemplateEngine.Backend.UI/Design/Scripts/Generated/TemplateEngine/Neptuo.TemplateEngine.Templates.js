@@ -574,6 +574,7 @@ var Neptuo$TemplateEngine$Templates$Controls$CheckBoxControl = {
     definition: {
         ctor: function (componentManager){
             this._LabelText = null;
+            this._Value = null;
             this._IsChecked = false;
             Neptuo.TemplateEngine.Templates.Controls.FormInputControlBase.ctor.call(this, componentManager);
             this.set_Type("checkbox");
@@ -585,6 +586,13 @@ var Neptuo$TemplateEngine$Templates$Controls$CheckBoxControl = {
         set_LabelText: function (value){
             this._LabelText = value;
         },
+        Value$$: "System.String",
+        get_Value: function (){
+            return this._Value;
+        },
+        set_Value: function (value){
+            this._Value = value;
+        },
         IsChecked$$: "System.Boolean",
         get_IsChecked: function (){
             return this._IsChecked;
@@ -595,6 +603,8 @@ var Neptuo$TemplateEngine$Templates$Controls$CheckBoxControl = {
         Render: function (writer){
             if (this.get_IsChecked())
                 this.get_Attributes().set_Item$$TKey("checked", "checked");
+            if (this.get_Value() != null)
+                this.get_Attributes().set_Item$$TKey("value", this.get_Value());
             writer.Tag("label").Attribute("class", "checkbox");
             Neptuo.TemplateEngine.Templates.Controls.FormInputControlBase.commonPrototype.Render.call(this, writer);
             writer.Content$$String(this.get_LabelText()).CloseFullTag();

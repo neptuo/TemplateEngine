@@ -63,6 +63,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Bootstrap\AccountBootstrapTask.cs" />
+    <Compile Include="ResourcePermissionListResult.cs" />
+    <Compile Include="ResourcePermissionListResultConverter.cs" />
+    <Compile Include="Templates\DataSources\ResourcePermissionDataSource.cs" />
     <Compile Include="Templates\DataSources\UserLogDataSource.cs" />
     <Compile Include="UserAccountEditModelConverter.cs" />
     <Compile Include="UserAccountListResult.cs" />

@@ -10,7 +10,7 @@ namespace Neptuo.TemplateEngine.Accounts
 {
     public class UserAccountEditModelConverter : ConverterBase<JsObject, UserAccountEditModel>
     {
-        public bool TryConvert(JsObject sourceValue, out UserAccountEditModel targetValue)
+        public override bool TryConvert(JsObject sourceValue, out UserAccountEditModel targetValue)
         {
             targetValue = new UserAccountEditModel();
             targetValue.Key = sourceValue["Key"].As<int>();

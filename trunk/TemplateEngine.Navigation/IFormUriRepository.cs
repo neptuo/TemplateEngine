@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Navigation
 {
-    public interface IFormUriService
+    public interface IFormUriRepository
     {
         bool TryGet(string identifier, out FormUri formUri);
+        IEnumerable<FormUri> EnumerateForms();
     }
 }

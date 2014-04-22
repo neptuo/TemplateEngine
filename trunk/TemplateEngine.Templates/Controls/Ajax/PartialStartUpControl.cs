@@ -36,7 +36,7 @@ namespace Neptuo.TemplateEngine.Templates.Controls
 
             string startupStript = String.Format(
                 "JsRuntime.Start(); Neptuo.TemplateEngine.Web.Application.Start({0}, \"{1}\", [{2}]);", 
-                config.IsDebug,
+                config.IsDebug ? "true" : "false",
                 httpContext.Request.ApplicationPath, 
                 toUpdate
             );

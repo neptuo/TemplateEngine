@@ -19,36 +19,24 @@ if (typeof($CreateException)=='undefined')
 
 if (typeof(JsTypes) == "undefined")
     var JsTypes = [];
-var Neptuo$TemplateEngine$Navigation$Bootstrap$FormUriServiceRegistration = {
-    fullname: "Neptuo.TemplateEngine.Navigation.Bootstrap.FormUriServiceRegistration",
+var Neptuo$TemplateEngine$Navigation$DefaultFormUriRepository = {
+    fullname: "Neptuo.TemplateEngine.Navigation.DefaultFormUriRepository",
     baseTypeName: "System.Object",
-    staticDefinition: {
-        SetInstance: function (formUriService){
-            Neptuo.TemplateEngine.Navigation.FormUriService.SetInstance(formUriService);
-        }
-    },
     assemblyName: "Neptuo.TemplateEngine.Navigation",
+    interfaceNames: ["Neptuo.TemplateEngine.Navigation.IFormUriRepository", "Neptuo.TemplateEngine.Navigation.Bootstrap.IFormUriRegistry"],
     Kind: "Class",
     definition: {
         ctor: function (){
+            this._Storage = null;
             System.Object.ctor.call(this);
-        }
-    },
-    ctors: [],
-    IsAbstract: true
-};
-JsTypes.push(Neptuo$TemplateEngine$Navigation$Bootstrap$FormUriServiceRegistration);
-var Neptuo$TemplateEngine$Navigation$DefaultFormUriService = {
-    fullname: "Neptuo.TemplateEngine.Navigation.DefaultFormUriService",
-    baseTypeName: "System.Object",
-    assemblyName: "Neptuo.TemplateEngine.Navigation",
-    interfaceNames: ["Neptuo.TemplateEngine.Navigation.IFormUriService", "Neptuo.TemplateEngine.Navigation.Bootstrap.IFormUriRegistry"],
-    Kind: "Class",
-    definition: {
-        ctor: function (){
-            this.Storage = null;
-            System.Object.ctor.call(this);
-            this.Storage = new System.Collections.Generic.Dictionary$2.ctor(System.String.ctor, Neptuo.TemplateEngine.Navigation.FormUri.ctor);
+            this.set_Storage(new System.Collections.Generic.Dictionary$2.ctor(System.String.ctor, Neptuo.TemplateEngine.Navigation.FormUri.ctor));
+        },
+        Storage$$: "System.Collections.Generic.Dictionary`2[[System.String],[Neptuo.TemplateEngine.Navigation.FormUri]]",
+        get_Storage: function (){
+            return this._Storage;
+        },
+        set_Storage: function (value){
+            this._Storage = value;
         },
         Register: function (identifier, url){
             if (identifier == null)
@@ -56,11 +44,14 @@ var Neptuo$TemplateEngine$Navigation$DefaultFormUriService = {
             if (url == null)
                 throw $CreateException(new System.ArgumentNullException.ctor$$String("url"), new Error());
             var formUri = new Neptuo.TemplateEngine.Navigation.FormUri.ctor(identifier, url);
-            this.Storage.set_Item$$TKey(identifier, formUri);
+            this.get_Storage().set_Item$$TKey(identifier, formUri);
             return this;
         },
         TryGet: function (identifier, formUri){
-            return this.Storage.TryGetValue(identifier, formUri);
+            return this.get_Storage().TryGetValue(identifier, formUri);
+        },
+        EnumerateForms: function (){
+            return this.get_Storage().get_Values();
         }
     },
     ctors: [{
@@ -70,7 +61,7 @@ var Neptuo$TemplateEngine$Navigation$DefaultFormUriService = {
     ],
     IsAbstract: false
 };
-JsTypes.push(Neptuo$TemplateEngine$Navigation$DefaultFormUriService);
+JsTypes.push(Neptuo$TemplateEngine$Navigation$DefaultFormUriRepository);
 var Neptuo$TemplateEngine$Navigation$FormUri = {
     fullname: "Neptuo.TemplateEngine.Navigation.FormUri",
     baseTypeName: "System.Object",
@@ -81,7 +72,7 @@ var Neptuo$TemplateEngine$Navigation$FormUri = {
                 var $1 = {
                     Value: formUri
                 };
-                var $res = Neptuo.TemplateEngine.Navigation.FormUriService.get_Instance().TryGet(uri, $1);
+                var $res = Neptuo.TemplateEngine.Navigation.FormUriTable.get_Repository().TryGet(uri, $1);
                 formUri = $1.Value;
                 return $res;
             })())
@@ -118,21 +109,24 @@ var Neptuo$TemplateEngine$Navigation$FormUri = {
     IsAbstract: false
 };
 JsTypes.push(Neptuo$TemplateEngine$Navigation$FormUri);
-var Neptuo$TemplateEngine$Navigation$FormUriService = {
-    fullname: "Neptuo.TemplateEngine.Navigation.FormUriService",
+var Neptuo$TemplateEngine$Navigation$FormUriTable = {
+    fullname: "Neptuo.TemplateEngine.Navigation.FormUriTable",
     baseTypeName: "System.Object",
     staticDefinition: {
         cctor: function (){
-            Neptuo.TemplateEngine.Navigation.FormUriService.instance = null;
+            Neptuo.TemplateEngine.Navigation.FormUriTable.instance = null;
         },
-        Instance$$: "Neptuo.TemplateEngine.Navigation.IFormUriService",
-        get_Instance: function (){
-            if (Neptuo.TemplateEngine.Navigation.FormUriService.instance == null)
-                throw $CreateException(new System.InvalidOperationException.ctor$$String("Using navigation singleton without set this instance."), new Error());
-            return Neptuo.TemplateEngine.Navigation.FormUriService.instance;
+        Repository$$: "Neptuo.TemplateEngine.Navigation.IFormUriRepository",
+        get_Repository: function (){
+            if (Neptuo.TemplateEngine.Navigation.FormUriTable.instance == null)
+                Neptuo.TemplateEngine.Navigation.FormUriTable.instance = new Neptuo.TemplateEngine.Navigation.DefaultFormUriRepository.ctor();
+            return Neptuo.TemplateEngine.Navigation.FormUriTable.instance;
         },
-        SetInstance: function (service){
-            Neptuo.TemplateEngine.Navigation.FormUriService.instance = service;
+        Registry$$: "Neptuo.TemplateEngine.Navigation.Bootstrap.IFormUriRegistry",
+        get_Registry: function (){
+            if (Neptuo.TemplateEngine.Navigation.FormUriTable.instance == null)
+                Neptuo.TemplateEngine.Navigation.FormUriTable.instance = new Neptuo.TemplateEngine.Navigation.DefaultFormUriRepository.ctor();
+            return Neptuo.TemplateEngine.Navigation.FormUriTable.instance;
         }
     },
     assemblyName: "Neptuo.TemplateEngine.Navigation",
@@ -145,7 +139,7 @@ var Neptuo$TemplateEngine$Navigation$FormUriService = {
     ctors: [],
     IsAbstract: true
 };
-JsTypes.push(Neptuo$TemplateEngine$Navigation$FormUriService);
+JsTypes.push(Neptuo$TemplateEngine$Navigation$FormUriTable);
 var Neptuo$TemplateEngine$Navigation$Bootstrap$IFormUriRegistry = {
     fullname: "Neptuo.TemplateEngine.Navigation.Bootstrap.IFormUriRegistry",
     baseTypeName: "System.Object",
@@ -155,15 +149,15 @@ var Neptuo$TemplateEngine$Navigation$Bootstrap$IFormUriRegistry = {
     IsAbstract: true
 };
 JsTypes.push(Neptuo$TemplateEngine$Navigation$Bootstrap$IFormUriRegistry);
-var Neptuo$TemplateEngine$Navigation$IFormUriService = {
-    fullname: "Neptuo.TemplateEngine.Navigation.IFormUriService",
+var Neptuo$TemplateEngine$Navigation$IFormUriRepository = {
+    fullname: "Neptuo.TemplateEngine.Navigation.IFormUriRepository",
     baseTypeName: "System.Object",
     assemblyName: "Neptuo.TemplateEngine.Navigation",
     Kind: "Interface",
     ctors: [],
     IsAbstract: true
 };
-JsTypes.push(Neptuo$TemplateEngine$Navigation$IFormUriService);
+JsTypes.push(Neptuo$TemplateEngine$Navigation$IFormUriRepository);
 var Neptuo$TemplateEngine$Navigation$INavigateTo = {
     fullname: "Neptuo.TemplateEngine.Navigation.INavigateTo",
     baseTypeName: "System.Object",
