@@ -1,4 +1,5 @@
-﻿using Neptuo.Templates;
+﻿using Neptuo.TemplateEngine.Configuration;
+using Neptuo.Templates;
 using Neptuo.Templates.Controls;
 using System;
 using System.Collections.Generic;
@@ -17,13 +18,13 @@ namespace Neptuo.TemplateEngine.Templates.Controls
         private BundleCollection bundles;
         private bool enableOptimizations;
 
-        public BundleControl(IVirtualUrlProvider urlProvider, HttpContextBase httpContext)
+        public BundleControl(IApplicationConfiguration config, IVirtualUrlProvider urlProvider, HttpContextBase httpContext)
             : base(urlProvider)
         {
             this.urlProvider = urlProvider;
             this.httpContext = httpContext;
             this.bundles = BundleTable.Bundles;
-            this.enableOptimizations = BundleTable.EnableOptimizations;
+            this.enableOptimizations = !config.IsDebug;
         }
 
         protected IEnumerable<BundleFile> GetBundleContent()
