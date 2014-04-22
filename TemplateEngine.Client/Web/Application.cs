@@ -144,7 +144,7 @@ namespace Neptuo.TemplateEngine.Web
             toUpdate = toUpdate ?? DefaultToUpdate;
 
             HistoryState.Push(new HistoryItem(url, toUpdate));
-            Router.RouteTo(new RequestContext(url, new RouteParamDictionary(), new RouteValueDictionary().AddItem("ToUpdate", toUpdate)));
+            NavigateToUrl(url, toUpdate);
         }
 
         private void OnFormSubmit(FormRequestContext context)
@@ -183,7 +183,7 @@ namespace Neptuo.TemplateEngine.Web
 
         private void NavigateToUrl(string url, string[] toUpdate)
         {
-            //TODO: Invoke router...
+            Router.RouteTo(new RequestContext(url, new RouteParamDictionary(), new RouteValueDictionary().AddItem("ToUpdate", toUpdate)));
         }
 
         #region Url

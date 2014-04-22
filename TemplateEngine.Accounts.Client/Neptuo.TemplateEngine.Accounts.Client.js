@@ -108,23 +108,42 @@ var Neptuo$TemplateEngine$Accounts$Templates$DataSources$ResourcePermissionDataS
             return (function (){
                 var $v1 = new System.Collections.Generic.List$1.ctor(System.String.ctor);
                 $v1.Add("RoleKey");
+                $v1.Add("ResourceName");
+                $v1.Add("PermissionName");
                 return $v1;
             })();
         }
     },
     assemblyName: "Neptuo.TemplateEngine.Accounts.Client",
+    interfaceNames: ["Neptuo.TemplateEngine.Accounts.Templates.DataSources.IResourcePermissionDataSourceFilter"],
     Kind: "Class",
     definition: {
         ctor: function (urlProvider){
-            this._RoleKey = 0;
+            this._RoleKey = null;
+            this._ResourceName = null;
+            this._PermissionName = null;
             Neptuo.TemplateEngine.Templates.DataSources.DynamicListDataSourceProxy$1.ctor.call(this, Neptuo.TemplateEngine.Accounts.ResourcePermissionListResult.ctor, urlProvider, Neptuo.TemplateEngine.Accounts.Templates.DataSources.ResourcePermissionDataSource.GetFilterProperties());
         },
-        RoleKey$$: "System.Int32",
+        RoleKey$$: "System.Nullable`1[[System.Int32]]",
         get_RoleKey: function (){
             return this._RoleKey;
         },
         set_RoleKey: function (value){
             this._RoleKey = value;
+        },
+        ResourceName$$: "System.String",
+        get_ResourceName: function (){
+            return this._ResourceName;
+        },
+        set_ResourceName: function (value){
+            this._ResourceName = value;
+        },
+        PermissionName$$: "System.String",
+        get_PermissionName: function (){
+            return this._PermissionName;
+        },
+        set_PermissionName: function (value){
+            this._PermissionName = value;
         }
     },
     ctors: [{

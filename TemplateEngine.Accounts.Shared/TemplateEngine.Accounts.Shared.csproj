@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Bootstrap\AccountBootstrapTaskBase.cs" />
+    <Compile Include="Templates\DataSources\IResourcePermissionDataSourceFilter.cs" />
     <Compile Include="Templates\DataSources\IUserAccountDataSourceFilter.cs" />
     <Compile Include="Templates\DataSources\IUserLogDataSourceFilter.cs" />
     <Compile Include="Templates\DataSources\IUserRoleDataSourceFilter.cs" />
@@ -56,6 +57,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Neptuo.TemplateEngine.Accounts.Shared.js" />
+    <None Include="Neptuo.TemplateEngine.Accounts.Shared.xml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\TemplateEngine.Controllers\TemplateEngine.Controllers.csproj">

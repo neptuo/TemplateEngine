@@ -491,7 +491,7 @@ var Neptuo$TemplateEngine$Web$Application = {
             this.get_UpdateViewNotifier().StartUpdate();
             toUpdate = (toUpdate != null ? toUpdate : this.get_DefaultToUpdate());
             this.get_HistoryState().Push(new Neptuo.TemplateEngine.Web.HistoryItem.ctor(url, toUpdate, null));
-            this.get_Router().RouteTo(new Neptuo.TemplateEngine.Routing.RequestContext.ctor(url, new Neptuo.TemplateEngine.Routing.RouteParamDictionary.ctor(), new Neptuo.TemplateEngine.Routing.RouteValueDictionary.ctor().AddItem("ToUpdate", toUpdate)));
+            this.NavigateToUrl(url, toUpdate);
         },
         OnFormSubmit: function (context){
             this.get_UpdateViewNotifier().StartUpdate();
@@ -525,6 +525,7 @@ var Neptuo$TemplateEngine$Web$Application = {
             return isControllerExecuted;
         },
         NavigateToUrl: function (url, toUpdate){
+            this.get_Router().RouteTo(new Neptuo.TemplateEngine.Routing.RequestContext.ctor(url, new Neptuo.TemplateEngine.Routing.RouteParamDictionary.ctor(), new Neptuo.TemplateEngine.Routing.RouteValueDictionary.ctor().AddItem("ToUpdate", toUpdate)));
         },
         ResolveUrl: function (path){
             var applicationPath = this.get_ApplicationPath();

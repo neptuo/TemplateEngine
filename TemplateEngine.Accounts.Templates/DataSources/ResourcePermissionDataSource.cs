@@ -13,11 +13,13 @@ using System.Threading.Tasks;
 namespace Neptuo.TemplateEngine.Accounts.Templates.DataSources
 {
     [WebDataSource]
-    public class ResourcePermissionDataSource : IListDataSource
+    public class ResourcePermissionDataSource : IListDataSource, IResourcePermissionDataSourceFilter
     {
         private IResourcePermissionQuery query;
 
-        public int RoleKey { get; set; }
+        public int? RoleKey { get; set; }
+        public string ResourceName { get; set; }
+        public string PermissionName { get; set; }
 
         public ResourcePermissionDataSource(IResourcePermissionQuery query)
         {
@@ -25,24 +27,59 @@ namespace Neptuo.TemplateEngine.Accounts.Templates.DataSources
             this.query = query;
         }
 
-        protected void ApplyFilter()
+        protected bool ApplyFilter()
         {
-            query.Filter.RoleKey = IntSearch.Create(RoleKey);
+            if (RoleKey == null)
+                return false;
+
+            query.Filter.RoleKey = IntSearch.Create(RoleKey.Value);
+
+            if (ResourceName != null)
+                query.Filter.ResourceName = TextSearch.Create(ResourceName, TextSearchType.Contains);
+
+            if (PermissionName != null)
+                query.Filter.PermissionName = TextSearch.Create(PermissionName, TextSearchType.Contains);
+
+            return true;
+        }
+
+        protected IEnumerable<FormUri> GetFormUris()
+        {
+            IEnumerable<FormUri> result = FormUriTable.Repository.EnumerateForms();
+
+            if (ResourceName != null)
+                result = result.Where(f => f.Identifier().Contains(ResourceName));
+
+            return result;
+        }
+
+        protected IEnumerable<string> GetPermissions()
+        {
+            IEnumerable<string> result = new List<string> { "Read", "ReadWrite" };
+
+            if (PermissionName != null)
+                result = result.Where(p => p.Contains(PermissionName));
+
+            return result;
         }
 
         public IEnumerable GetData(int? pageIndex, int? pageSize)
         {
-            ApplyFilter();
-            var enabledItems = query.EnumerateItems(p => new { ResourceName = p.ResourceName, PermissionName = p.PermissionName });
-
             List<ResourcePermissionEditViewModel> result = new List<ResourcePermissionEditViewModel>();
-            foreach (FormUri formUri in FormUriTable.Repository.EnumerateForms())
+            if (ApplyFilter())
             {
-                result.Add(new ResourcePermissionEditViewModel(formUri.Identifier(), formUri.Url(), new List<PermissionNameEditViewModel>
+                var enabledItems = query.EnumerateItems(p => new { ResourceName = p.ResourceName, PermissionName = p.PermissionName });
+
+                foreach (FormUri formUri in GetFormUris())
                 {
-                    new PermissionNameEditViewModel(formUri.Identifier(), "Read", true),
-                    new PermissionNameEditViewModel(formUri.Identifier(), "ReadWrite", false)
-                }));
+                    result.Add(
+                        new ResourcePermissionEditViewModel(
+                            formUri.Identifier(), 
+                            formUri.Url(), 
+                            GetPermissions().Select(p => new PermissionNameEditViewModel(formUri.Identifier(), p, true))
+                        )
+                    );
+                }
             }
             return result;
         }
