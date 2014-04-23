@@ -1,5 +1,6 @@
 ﻿using Neptuo.TemplateEngine.Web;
 using Neptuo.Templates;
+using SharpKit.Html;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,7 +31,11 @@ namespace Neptuo.TemplateEngine.Templates
             if (mappings.TryGetValue(path, out viewType))
                 return (BaseGeneratedView)dependencyProvider.Resolve(viewType);
 
-            throw new NotImplementedException();
+            if (Application.Instance.IsDebug)
+                HtmlContext.alert("View class not found! For view path: " + path);
+
+            HtmlContext.location.reload();
+            throw new NotSupportedException();
         }
 
         public bool IsViewLoaded(string viewPath)

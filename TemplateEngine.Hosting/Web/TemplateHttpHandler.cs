@@ -45,7 +45,18 @@ namespace Neptuo.TemplateEngine.Backend.Web
 
         protected override FormUri GetCurrentFormUri(HttpContext context)
         {
-            string uri = TemplateUrl.Replace("\\", "/").Replace("~/Views/", "~/").Replace(TemplateRouteParameterBase.TemplatePathSuffix, TemplateRouteParameterBase.TemplateUrlSuffix);
+            return GetCurrentFormUri(TemplateUrl);
+        }
+
+        public static FormUri GetCurrentFormUri(string templateUrl)
+        {
+            Guard.NotNull(templateUrl, "templateUrl");
+
+            string uri = templateUrl
+                .Replace("\\", "/")
+                .Replace("~/Views/", "~/")
+                .Replace(TemplateRouteParameterBase.TemplatePathSuffix, TemplateRouteParameterBase.TemplateUrlSuffix)
+                .ToLowerInvariant();
 
             FormUri formUri = FormUriTable.Repository.EnumerateForms().FirstOrDefault(f => f.Url().ToLowerInvariant() == uri);
             return formUri;

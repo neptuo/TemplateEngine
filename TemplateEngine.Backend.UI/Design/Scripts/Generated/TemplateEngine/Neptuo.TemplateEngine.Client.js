@@ -1260,7 +1260,10 @@ var Neptuo$TemplateEngine$Templates$StaticViewActivator = {
                 return $res;
             }).call(this))
                 return Cast(Neptuo.DependencyProviderExtensions.Resolve$$IDependencyProvider$$Type(this.dependencyProvider, viewType), Neptuo.Templates.BaseGeneratedView.ctor);
-            throw $CreateException(new System.NotImplementedException.ctor(), new Error());
+            if (Neptuo.TemplateEngine.Web.Application.get_Instance().get_IsDebug())
+                alert("View class not found! For view path: " + path);
+            location.reload();
+            throw $CreateException(new System.NotSupportedException.ctor(), new Error());
         },
         IsViewLoaded: function (viewPath){
             return Neptuo.TemplateEngine.Templates.StaticViewActivator.mappings.ContainsKey(viewPath);

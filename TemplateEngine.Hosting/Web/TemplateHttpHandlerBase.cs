@@ -103,6 +103,11 @@ namespace Neptuo.TemplateEngine.Backend.Web
                 }
 
             }
+            else
+            {
+                httpContext.Response.StatusCode = 403;
+                httpContext.Response.End();
+            }
         }
 
         protected virtual void ExecuteControllers(HttpContext httpContext, IDependencyContainer dependencyContainer, NavigationCollection navigations)
