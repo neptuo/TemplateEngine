@@ -17,6 +17,11 @@ namespace Neptuo.TemplateEngine.Hosting.Configuration
             get { return configuration.GetProperty<IsDebugProperty>().Value; }
         }
 
+        public int AnonymousRoleKey
+        {
+            get { return configuration.GetProperty<AnonymousRoleKeyProperty>().Value; }
+        }
+
         public ApplicationConfiguration(IConfiguration configuration)
         {
             Guard.NotNull(configuration, "configuration");

@@ -13,7 +13,7 @@ namespace Neptuo.TemplateEngine.Accounts.Data.Queries
         {
             Username = TextSearch.Create(username);
             Password = TextSearch.Create(PasswordProvider.ComputePassword(username, password));
-            IsEnabled = true;
+            IsEnabled = BoolSearch.True();
         }
     }
 }

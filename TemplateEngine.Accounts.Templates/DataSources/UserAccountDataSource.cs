@@ -55,8 +55,6 @@ namespace Neptuo.TemplateEngine.Accounts.Templates.DataSources
                 userQuery.Filter.RoleKey = RoleKey;
 
             userQuery.OrderBy(u => u.Username);
-
-            //userQuery.OrderBy(u => u.Username);
         }
 
         public IEnumerable GetData(int? pageIndex, int? pageSize)

@@ -12,7 +12,7 @@ namespace Neptuo.TemplateEngine.Accounts.Data.Queries
         public IntSearch Key { get; set; }
         public TextSearch Username { get; set; }
         public TextSearch Password { get; set; }
-        public bool? IsEnabled { get; set; }
+        public BoolSearch IsEnabled { get; set; }
         public int? RoleKey { get; set; }
     }
 }
