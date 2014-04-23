@@ -1,4 +1,6 @@
 ﻿using Neptuo.Security.Cryptography;
+using Neptuo.TemplateEngine.Navigation;
+using Neptuo.TemplateEngine.Security;
 using Neptuo.TemplateEngine.Templates.Compilation;
 using Neptuo.TemplateEngine.Web.ViewBundles;
 using Neptuo.Templates.Compilation;
@@ -49,37 +51,49 @@ namespace Neptuo.TemplateEngine.Backend.Web
                 string tempViewPath = GetTempJavascriptFilePath(configuration, viewPath);
                 string viewContent = File.ReadAllText(viewPath);
                 string virtualViewPath = RelativePath(context.Server, viewPath, context.Request);
-                if (currentBundle.ContainsView(virtualViewPath))
+                if (IsViewAllow(virtualViewPath))
                 {
-                    INaming classNaming = viewService.NamingService.FromFile(virtualViewPath);
-                    appendBuilder.AppendFormat(
-                        "Neptuo.TemplateEngine.Templates.StaticViewActivator.Add('{0}', Typeof(Neptuo.Templates.{1}.ctor));",
-                        virtualViewPath, //.Replace("~/Views/", "~/")
-                        classNaming.ClassName
-                    );
-                    appendBuilder.AppendLine();
-
-                    if (File.Exists(tempViewPath))
+                    if (currentBundle.ContainsView(virtualViewPath))
                     {
-                        DateTime tempLastModified = File.GetLastWriteTime(tempViewPath);
-                        if (tempLastModified >= viewLastModified)
-                        {
-                            contentBuilder.AppendLine("/*" + viewPath + " - CACHE*/");
-                            contentBuilder.AppendLine(File.ReadAllText(tempViewPath));
-                            continue;
-                        }
-                    }
+                        INaming classNaming = viewService.NamingService.FromFile(virtualViewPath);
+                        appendBuilder.AppendFormat(
+                            "Neptuo.TemplateEngine.Templates.StaticViewActivator.Add('{0}', Typeof(Neptuo.Templates.{1}.ctor));",
+                            virtualViewPath, //.Replace("~/Views/", "~/")
+                            classNaming.ClassName
+                        );
+                        appendBuilder.AppendLine();
 
-                    string javascriptContent = viewService.GenerateJavascriptSourceCodeFromView(viewContent, new ViewServiceContext(dependencyProvider), classNaming);
-                    javascriptContent = RewriteJavascriptContent(javascriptContent);
-                    File.WriteAllText(tempViewPath, javascriptContent);
-                    contentBuilder.AppendLine(javascriptContent);
+                        if (File.Exists(tempViewPath))
+                        {
+                            DateTime tempLastModified = File.GetLastWriteTime(tempViewPath);
+                            if (tempLastModified >= viewLastModified)
+                            {
+                                contentBuilder.AppendLine("/*" + viewPath + " - CACHE*/");
+                                contentBuilder.AppendLine(File.ReadAllText(tempViewPath));
+                                continue;
+                            }
+                        }
+
+                        string javascriptContent = viewService.GenerateJavascriptSourceCodeFromView(viewContent, new ViewServiceContext(dependencyProvider), classNaming);
+                        javascriptContent = RewriteJavascriptContent(javascriptContent);
+                        File.WriteAllText(tempViewPath, javascriptContent);
+                        contentBuilder.AppendLine(javascriptContent);
+                    }
                 }
             }
 
             context.Response.Write(contentBuilder.ToString());
             context.Response.Write("JsRuntime.Start();");
             context.Response.Write(appendBuilder.ToString());
+        }
+
+        private bool IsViewAllow(string virtualViewPath)
+        {
+            FormUri formUri = TemplateHttpHandler.GetCurrentFormUri(virtualViewPath);
+            if (formUri == null)
+                return true;
+
+            return dependencyProvider.Resolve<IUserContext>().Permissions.IsAllowed(formUri.Identifier(), "Read");
         }
 
         private string RewriteJavascriptContent(string content)

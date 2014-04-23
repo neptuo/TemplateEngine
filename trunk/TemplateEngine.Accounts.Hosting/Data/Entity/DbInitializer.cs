@@ -37,26 +37,44 @@ namespace Neptuo.TemplateEngine.Accounts.Hosting.Data.Entity
             admin.Roles = new List<UserRole>();
             admin.Roles.Add(context.UserRoles.Find(1));
 
-            context.Permissions.Add(new ResourcePermission
-            {
-                ResourceName = "Home",
-                PermissionName = "Read",
-                Role = context.UserRoles.Find(1)
-            });
-            context.Permissions.Add(new ResourcePermission
-            {
-                ResourceName = "Accounts.Login",
-                PermissionName = "Read",
-                Role = context.UserRoles.Find(2)
-            });
-            context.Permissions.Add(new ResourcePermission
-            {
-                ResourceName = "Accounts.Login",
-                PermissionName = "ReadWrite",
-                Role = context.UserRoles.Find(2)
-            });
+
+            // Login for everyone
+            UserRole everyone = context.UserRoles.Find(2);
+            InsertPermission(context, everyone, "Accounts.Login", "Read");
+            InsertPermission(context, everyone, "Accounts.Login", "ReadWrite");
+        
+
+            // Every thing for admins
+            UserRole admins = context.UserRoles.Find(1);
+            InsertPermission(context, admins, "Home", "Read");
+            InsertPermission(context, admins, "Home", "ReadWrite");
+
+            InsertPermission(context, admins, "Accounts.User.List", "Read");
+            InsertPermission(context, admins, "Accounts.User.List", "ReadWrite");
+
+            InsertPermission(context, admins, "Accounts.User.Edit", "Read");
+            InsertPermission(context, admins, "Accounts.User.Edit", "ReadWrite");
+
+            InsertPermission(context, admins, "Accounts.Role.List", "Read");
+            InsertPermission(context, admins, "Accounts.Role.List", "ReadWrite");
+
+            InsertPermission(context, admins, "Accounts.Role.Edit", "Read");
+            InsertPermission(context, admins, "Accounts.Role.Edit", "ReadWrite");
+
+            InsertPermission(context, admins, "Accounts.Permission.List", "Read");
+            InsertPermission(context, admins, "Accounts.Permission.List", "ReadWrite");
 
             context.SaveChanges();
+        }
+
+        private void InsertPermission(DataContext context, UserRole role, string resourceName, string permissionName)
+        {
+            context.Permissions.Add(new ResourcePermission
+            {
+                ResourceName = resourceName,
+                PermissionName = permissionName,
+                Role = role
+            });
         }
     }
 }
