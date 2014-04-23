@@ -41,7 +41,7 @@ namespace Neptuo.TemplateEngine.Accounts.Controllers
                 return "Accounts.Permission.Updated";
             }
 
-            if (model.ResourceName == null)
+            if (model.ResourceNames == null)
             {
                 Context.Messages.Add(null, String.Empty, "Missing resource name.", MessageType.Error);
                 return null;
@@ -51,18 +51,18 @@ namespace Neptuo.TemplateEngine.Accounts.Controllers
             {
                 var deleteQuery = Permissions.Query();
                 deleteQuery.Filter.RoleKey = IntSearch.Create(model.RoleKey);
-                deleteQuery.Filter.ResourceName = TextSearch.Create(model.ResourceName);
+                deleteQuery.Filter.PermissionName = TextSearch.Create(model.PermissionName);
 
                 foreach (ResourcePermission permission in deleteQuery.EnumerateItems())
                     Permissions.Repository.Delete(permission);
 
-                if (model.PermissionNames != null)
+                if (model.PermissionName != null)
                 {
-                    foreach (string permissionName in model.PermissionNames)
+                    foreach (string resourceName in model.ResourceNames)
                     {
                         ResourcePermission permission = Permissions.Factory.Create();
-                        permission.ResourceName = model.ResourceName;
-                        permission.PermissionName = permissionName;
+                        permission.ResourceName = resourceName;
+                        permission.PermissionName = model.PermissionName;
                         permission.Role = role;
 
                         Permissions.Repository.Insert(permission);

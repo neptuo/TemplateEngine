@@ -10,7 +10,6 @@ namespace Neptuo.TemplateEngine.Accounts.Templates.DataSources
     {
         int? RoleKey { get; set; }
         string ResourceName { get; set; }
-        string PermissionName { get; set; }
     }
 }
  

@@ -32,24 +32,6 @@ namespace Neptuo.TemplateEngine.Accounts
                 data.Add(new ResourcePermissionEditViewModel(
                     item["ResourceName"].As<string>(),
                     item["ResourceHint"].As<string>(),
-                    GetPermissionNames(item["Permissions"].As<JsArray>())
-                ));
-            }
-
-            return data;
-        }
-
-        private IEnumerable<PermissionNameEditViewModel> GetPermissionNames(JsArray sourceValue)
-        {
-            List<PermissionNameEditViewModel> data = new List<PermissionNameEditViewModel>();
-            
-            JsArray array = sourceValue.As<JsArray>();
-            for (int i = 0; i < array.length; i++)
-            {
-                JsObject item = array[i].As<JsObject>();
-
-                data.Add(new PermissionNameEditViewModel(
-                    item["RessourceName"].As<string>(),
                     item["PermissionName"].As<string>(),
                     item["IsEnabled"].As<bool>()
                 ));
