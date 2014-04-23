@@ -9,5 +9,6 @@ namespace Neptuo.TemplateEngine.Configuration
     public interface IApplicationConfiguration
     {
         bool IsDebug { get; }
+        int AnonymousRoleKey { get; }
     }
 }

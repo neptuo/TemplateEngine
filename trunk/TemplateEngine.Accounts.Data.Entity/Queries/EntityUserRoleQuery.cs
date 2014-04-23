@@ -15,7 +15,7 @@ namespace Neptuo.TemplateEngine.Accounts.Data.Entity.Queries
             : base(dbContext.UserRoles)
         { }
 
-        protected override Expression BuildWhereExpression(Expression parameter)
+        protected override Expression BuildWhereExpression(ParameterExpression parameter)
         {
             Expression target = null;
 

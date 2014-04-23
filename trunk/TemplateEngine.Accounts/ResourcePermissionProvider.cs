@@ -24,6 +24,9 @@ namespace Neptuo.TemplateEngine.Accounts
 
         public bool IsAllowed(object key, string action)
         {
+            if (!roleKeys.Any())
+                return false;
+
             var query = queryFactory.Create();
             query.Filter = new ResourcePermissionFilter(key.ToString(), action, roleKeys);
             return query.Any();

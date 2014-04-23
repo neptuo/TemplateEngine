@@ -29,16 +29,16 @@ namespace Neptuo.TemplateEngine.Accounts.Templates.DataSources
 
         protected bool ApplyFilter()
         {
-            //if (RoleKey == null)
-            //    return false;
+            if (RoleKey == null)
+                return false;
 
-            //query.Filter.RoleKey = IntSearch.Create(RoleKey.Value);
+            query.Filter.RoleKey = IntSearch.Create(RoleKey.Value);
 
-            //if (ResourceName != null)
-            //    query.Filter.ResourceName = TextSearch.Create(ResourceName, TextSearchType.Contains);
+            if (ResourceName != null)
+                query.Filter.ResourceName = TextSearch.Contains(ResourceName, false);
 
-            //if (PermissionName != null)
-            //    query.Filter.PermissionName = TextSearch.Create(PermissionName, TextSearchType.Contains);
+            if (PermissionName != null)
+                query.Filter.PermissionName = TextSearch.Contains(PermissionName, false);
 
             return true;
         }

@@ -2,6 +2,7 @@
 using Neptuo.TemplateEngine.Accounts.Data;
 using Neptuo.TemplateEngine.Accounts.Data.Queries;
 using Neptuo.TemplateEngine.Accounts.Events;
+using Neptuo.TemplateEngine.Configuration;
 using Neptuo.TemplateEngine.Security;
 using Neptuo.TemplateEngine.Security.Events;
 using System;
@@ -14,6 +15,7 @@ namespace Neptuo.TemplateEngine.Accounts
 {
     public class UserAccountService : IAuthenticator
     {
+        protected IApplicationConfiguration Configuration { get; private set; }
         protected IEventDispatcher EventDispatcher { get; private set; }
         protected IUserRoleRepository UserRoles { get; private set; }
         protected UserAccountDataProvider UserAccounts { get; private set; }
@@ -21,8 +23,9 @@ namespace Neptuo.TemplateEngine.Accounts
         protected IActivator<IResourcePermissionQuery> PermissionQueryFactory { get; private set; }
         protected IUserLogContext UserContext { get; private set; }
 
-        public UserAccountService(IEventDispatcher eventDispatcher, UserAccountDataProvider userAccounts, UserLogDataProvider userLogs, IActivator<IResourcePermissionQuery> permissionQueryFactory, IUserRoleRepository userRoles, IUserLogContext userContext)
+        public UserAccountService(IApplicationConfiguration configuration, IEventDispatcher eventDispatcher, UserAccountDataProvider userAccounts, UserLogDataProvider userLogs, IActivator<IResourcePermissionQuery> permissionQueryFactory, IUserRoleRepository userRoles, IUserLogContext userContext)
         {
+            Configuration = configuration;
             EventDispatcher = eventDispatcher;
             UserAccounts = userAccounts;
             UserLogs = userLogs;
@@ -85,7 +88,7 @@ namespace Neptuo.TemplateEngine.Accounts
                 UserLogs.Repository.Insert(log);
 
                 EventDispatcher.Publish(new UserLogCreatedEvent(log));
-                EventDispatcher.Publish(new UserSignedInEvent(new UserContextBase(log, PermissionQueryFactory), log.SignedIn));//TODO: Pass new user context
+                EventDispatcher.Publish(new UserSignedInEvent(new UserContextBase(Configuration, log, PermissionQueryFactory), log.SignedIn));//TODO: Pass new user context
                 return true;
             }
             return false;

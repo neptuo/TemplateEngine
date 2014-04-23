@@ -63,6 +63,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Configuration\AnonymousRoleKeyProperty.cs" />
     <Compile Include="Configuration\ApplicationConfiguration.cs" />
     <Compile Include="Configuration\IsDebugProperty.cs" />
     <Compile Include="Navigation\QueryStringNavigateTo.cs" />

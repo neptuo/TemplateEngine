@@ -15,7 +15,7 @@ namespace Neptuo.TemplateEngine.Accounts.Data.Entity.Queries
             : base(dbContext.UserAccounts)
         { }
 
-        protected override Expression BuildWhereExpression(Expression parameter)
+        protected override Expression BuildWhereExpression(ParameterExpression parameter)
         {
             Expression target = null;
 
@@ -30,11 +30,11 @@ namespace Neptuo.TemplateEngine.Accounts.Data.Entity.Queries
                 if (Filter.Password != null)
                     target = EntityQuerySearch.BuildTextSearch<UserAccount>(target, parameter, u => u.Password, Filter.Password);
 
-                //TODO: Add IsEnabled;
+                if (Filter.IsEnabled != null)
+                    target = EntityQuerySearch.BuildBoolSearch<UserAccount>(target, parameter, u => u.IsEnabled, Filter.IsEnabled);
 
                 //if (Filter.RoleKey != null)
-                //    Items.Where(u => u.Roles.Select(r => r.Key).Contains(Filter.RoleKey.Value));
-                //    target = EntityQuerySearch.BuildTextSearch<UserAccountEntity>(target, parameter, u => u.Password, Filter.Password);
+                //    target = EntityQuerySearch.BuildIntSearch<UserAccount>(target, parameter, u => u.Roles, Filter.RoleKey);
             }
 
             return target;

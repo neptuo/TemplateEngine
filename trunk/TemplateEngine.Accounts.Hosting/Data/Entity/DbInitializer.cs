@@ -47,13 +47,13 @@ namespace Neptuo.TemplateEngine.Accounts.Hosting.Data.Entity
             {
                 ResourceName = "Accounts.Login",
                 PermissionName = "Read",
-                Role = context.UserRoles.Find(1)
+                Role = context.UserRoles.Find(2)
             });
             context.Permissions.Add(new ResourcePermission
             {
                 ResourceName = "Accounts.Login",
                 PermissionName = "ReadWrite",
-                Role = context.UserRoles.Find(1)
+                Role = context.UserRoles.Find(2)
             });
 
             context.SaveChanges();
