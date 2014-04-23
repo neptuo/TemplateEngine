@@ -10,13 +10,15 @@ namespace Neptuo.TemplateEngine.Accounts.ViewModels
     {
         public string ResourceName { get; set; }
         public string ResourceHint { get; set; }
-        public IEnumerable<PermissionNameEditViewModel> Permissions { get; set; }
+        public string PermissionName { get; set; }
+        public bool IsEnabled { get; set; }
 
-        public ResourcePermissionEditViewModel(string resourceName, string resourceHint, IEnumerable<PermissionNameEditViewModel> permissions)
+        public ResourcePermissionEditViewModel(string resourceName, string resourceHint, string permissionName, bool isEnabled)
         {
             ResourceName = resourceName;
             ResourceHint = resourceHint;
-            Permissions = permissions;
+            PermissionName = permissionName;
+            IsEnabled = isEnabled;
         }
     }
 }

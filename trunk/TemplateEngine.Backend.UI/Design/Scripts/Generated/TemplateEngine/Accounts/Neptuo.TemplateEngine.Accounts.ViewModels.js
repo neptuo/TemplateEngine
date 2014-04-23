@@ -4,18 +4,20 @@
 
 if (typeof(JsTypes) == "undefined")
     var JsTypes = [];
-var Neptuo$TemplateEngine$Accounts$ViewModels$PermissionNameEditViewModel = {
-    fullname: "Neptuo.TemplateEngine.Accounts.ViewModels.PermissionNameEditViewModel",
+var Neptuo$TemplateEngine$Accounts$ViewModels$ResourcePermissionEditViewModel = {
+    fullname: "Neptuo.TemplateEngine.Accounts.ViewModels.ResourcePermissionEditViewModel",
     baseTypeName: "System.Object",
     assemblyName: "Neptuo.TemplateEngine.Accounts.ViewModels",
     Kind: "Class",
     definition: {
-        ctor: function (resourceName, permissionName, isEnabled){
+        ctor: function (resourceName, resourceHint, permissionName, isEnabled){
             this._ResourceName = null;
+            this._ResourceHint = null;
             this._PermissionName = null;
             this._IsEnabled = false;
             System.Object.ctor.call(this);
             this.set_ResourceName(resourceName);
+            this.set_ResourceHint(resourceHint);
             this.set_PermissionName(permissionName);
             this.set_IsEnabled(isEnabled);
         },
@@ -25,6 +27,13 @@ var Neptuo$TemplateEngine$Accounts$ViewModels$PermissionNameEditViewModel = {
         },
         set_ResourceName: function (value){
             this._ResourceName = value;
+        },
+        ResourceHint$$: "System.String",
+        get_ResourceHint: function (){
+            return this._ResourceHint;
+        },
+        set_ResourceHint: function (value){
+            this._ResourceHint = value;
         },
         PermissionName$$: "System.String",
         get_PermissionName: function (){
@@ -43,52 +52,7 @@ var Neptuo$TemplateEngine$Accounts$ViewModels$PermissionNameEditViewModel = {
     },
     ctors: [{
         name: "ctor",
-        parameters: ["System.String", "System.String", "System.Boolean"]
-    }
-    ],
-    IsAbstract: false
-};
-JsTypes.push(Neptuo$TemplateEngine$Accounts$ViewModels$PermissionNameEditViewModel);
-var Neptuo$TemplateEngine$Accounts$ViewModels$ResourcePermissionEditViewModel = {
-    fullname: "Neptuo.TemplateEngine.Accounts.ViewModels.ResourcePermissionEditViewModel",
-    baseTypeName: "System.Object",
-    assemblyName: "Neptuo.TemplateEngine.Accounts.ViewModels",
-    Kind: "Class",
-    definition: {
-        ctor: function (resourceName, resourceHint, permissions){
-            this._ResourceName = null;
-            this._ResourceHint = null;
-            this._Permissions = null;
-            System.Object.ctor.call(this);
-            this.set_ResourceName(resourceName);
-            this.set_ResourceHint(resourceHint);
-            this.set_Permissions(permissions);
-        },
-        ResourceName$$: "System.String",
-        get_ResourceName: function (){
-            return this._ResourceName;
-        },
-        set_ResourceName: function (value){
-            this._ResourceName = value;
-        },
-        ResourceHint$$: "System.String",
-        get_ResourceHint: function (){
-            return this._ResourceHint;
-        },
-        set_ResourceHint: function (value){
-            this._ResourceHint = value;
-        },
-        Permissions$$: "System.Collections.Generic.IEnumerable`1[[Neptuo.TemplateEngine.Accounts.ViewModels.PermissionNameEditViewModel]]",
-        get_Permissions: function (){
-            return this._Permissions;
-        },
-        set_Permissions: function (value){
-            this._Permissions = value;
-        }
-    },
-    ctors: [{
-        name: "ctor",
-        parameters: ["System.String", "System.String", "System.Collections.Generic.IEnumerable"]
+        parameters: ["System.String", "System.String", "System.String", "System.Boolean"]
     }
     ],
     IsAbstract: false

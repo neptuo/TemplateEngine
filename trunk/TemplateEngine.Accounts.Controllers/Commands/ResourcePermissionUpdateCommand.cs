@@ -9,7 +9,7 @@ namespace Neptuo.TemplateEngine.Accounts.Controllers.Commands
     public class ResourcePermissionUpdateCommand
     {
         public int RoleKey { get; set; }
-        public string ResourceName { get; set; }
-        public IEnumerable<string> PermissionNames { get; set; }
+        public IEnumerable<string> ResourceNames { get; set; }
+        public string PermissionName { get; set; }
     }
 }

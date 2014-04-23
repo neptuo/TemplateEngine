@@ -19,7 +19,6 @@ namespace Neptuo.TemplateEngine.Accounts.Templates.DataSources
 
         public int? RoleKey { get; set; }
         public string ResourceName { get; set; }
-        public string PermissionName { get; set; }
 
         public ResourcePermissionDataSource(IResourcePermissionQuery query)
         {
@@ -37,9 +36,6 @@ namespace Neptuo.TemplateEngine.Accounts.Templates.DataSources
             if (ResourceName != null)
                 query.Filter.ResourceName = TextSearch.Contains(ResourceName, false);
 
-            if (PermissionName != null)
-                query.Filter.PermissionName = TextSearch.Contains(PermissionName, false);
-
             return true;
         }
 
@@ -49,16 +45,6 @@ namespace Neptuo.TemplateEngine.Accounts.Templates.DataSources
 
             if (ResourceName != null)
                 result = result.Where(f => f.Identifier().Contains(ResourceName));
-
-            return result;
-        }
-
-        protected IEnumerable<string> GetPermissions()
-        {
-            IEnumerable<string> result = new List<string> { "Read", "ReadWrite" };
-
-            if (PermissionName != null)
-                result = result.Where(p => p.Contains(PermissionName));
 
             return result;
         }
@@ -76,13 +62,8 @@ namespace Neptuo.TemplateEngine.Accounts.Templates.DataSources
                         new ResourcePermissionEditViewModel(
                             formUri.Identifier(), 
                             formUri.Url(), 
-                            GetPermissions().Select(
-                                pn => new PermissionNameEditViewModel(
-                                    formUri.Identifier(), 
-                                    pn, 
-                                    enabledItems.Any(p => p.ResourceName == formUri.Identifier() && p.PermissionName == pn && p.Role.Key == RoleKey.Value)
-                                )
-                            )
+                            "ReadWrite",
+                            enabledItems.Any(p => p.ResourceName == formUri.Identifier() && p.PermissionName == "ReadWrite" && p.Role.Key == RoleKey.Value)
                         )
                     );
                 }

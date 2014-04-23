@@ -80,16 +80,7 @@ var Neptuo$TemplateEngine$Accounts$ResourcePermissionListResultConverter = {
             var array = sourceValue;
             for (var i = 0; i < array.length; i++){
                 var item = array[i];
-                data.Add(new Neptuo.TemplateEngine.Accounts.ViewModels.ResourcePermissionEditViewModel.ctor(item["ResourceName"], item["ResourceHint"], this.GetPermissionNames(item["Permissions"])));
-            }
-            return data;
-        },
-        GetPermissionNames: function (sourceValue){
-            var data = new System.Collections.Generic.List$1.ctor(Neptuo.TemplateEngine.Accounts.ViewModels.PermissionNameEditViewModel.ctor);
-            var array = sourceValue;
-            for (var i = 0; i < array.length; i++){
-                var item = array[i];
-                data.Add(new Neptuo.TemplateEngine.Accounts.ViewModels.PermissionNameEditViewModel.ctor(item["RessourceName"], item["PermissionName"], item["IsEnabled"]));
+                data.Add(new Neptuo.TemplateEngine.Accounts.ViewModels.ResourcePermissionEditViewModel.ctor(item["ResourceName"], item["ResourceHint"], item["PermissionName"], item["IsEnabled"]));
             }
             return data;
         }
@@ -111,7 +102,6 @@ var Neptuo$TemplateEngine$Accounts$Templates$DataSources$ResourcePermissionDataS
                 var $v1 = new System.Collections.Generic.List$1.ctor(System.String.ctor);
                 $v1.Add("RoleKey");
                 $v1.Add("ResourceName");
-                $v1.Add("PermissionName");
                 return $v1;
             })();
         }
@@ -123,7 +113,6 @@ var Neptuo$TemplateEngine$Accounts$Templates$DataSources$ResourcePermissionDataS
         ctor: function (urlProvider){
             this._RoleKey = null;
             this._ResourceName = null;
-            this._PermissionName = null;
             Neptuo.TemplateEngine.Templates.DataSources.DynamicListDataSourceProxy$1.ctor.call(this, Neptuo.TemplateEngine.Accounts.ResourcePermissionListResult.ctor, urlProvider, Neptuo.TemplateEngine.Accounts.Templates.DataSources.ResourcePermissionDataSource.GetFilterProperties());
         },
         RoleKey$$: "System.Nullable`1[[System.Int32]]",
@@ -139,13 +128,6 @@ var Neptuo$TemplateEngine$Accounts$Templates$DataSources$ResourcePermissionDataS
         },
         set_ResourceName: function (value){
             this._ResourceName = value;
-        },
-        PermissionName$$: "System.String",
-        get_PermissionName: function (){
-            return this._PermissionName;
-        },
-        set_PermissionName: function (value){
-            this._PermissionName = value;
         }
     },
     ctors: [{

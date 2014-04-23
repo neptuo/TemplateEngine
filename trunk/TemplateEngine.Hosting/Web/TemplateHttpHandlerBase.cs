@@ -38,7 +38,7 @@ namespace Neptuo.TemplateEngine.Backend.Web
             //TODO: Check whether can read
             FormUri formUri = GetCurrentFormUri(httpContext);
             IUserContext userContext = dependencyContainer.Resolve<IUserContext>();
-            if (userContext.Permissions.IsAllowed(formUri.Identifier(), "Read"))
+            if (userContext.Permissions.IsAllowed(formUri.Identifier(), "ReadWrite"))
             {
 
 
@@ -46,10 +46,7 @@ namespace Neptuo.TemplateEngine.Backend.Web
                 NavigationCollection navigations = dependencyContainer.Resolve<NavigationCollection>();
                 GlobalNavigationCollection globalNavigations = dependencyContainer.Resolve<GlobalNavigationCollection>();
 
-
-                //TODO: Check whether can write!
-                if (userContext.Permissions.IsAllowed(formUri.Identifier(), "ReadWrite"))
-                    ExecuteControllers(httpContext, dependencyContainer, navigations);
+                ExecuteControllers(httpContext, dependencyContainer, navigations);
 
 
                 if (httpContext.Request.Headers[EngineRequestType] == EngineRequestTypePartial)
