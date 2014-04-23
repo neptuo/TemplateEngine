@@ -149,7 +149,9 @@
     <Content Include="Design\Scripts\Generated\Neptuo.PresentationModels.Validation.js" />
     <Content Include="Design\Scripts\Generated\Neptuo.System.Client.js" />
     <Content Include="Design\Scripts\Generated\Neptuo.Tokens.js" />
+    <Content Include="Design\Scripts\Generated\TemplateEngine\Accounts\Neptuo.TemplateEngine.Accounts.ViewModels.js" />
     <Content Include="Design\Scripts\Generated\TemplateEngine\Neptuo.TemplateEngine.Controllers.js" />
+    <Content Include="Design\Scripts\Generated\TemplateEngine\Neptuo.TemplateEngine.Providers.js" />
     <Content Include="Design\Scripts\Generated\TemplateEngine\Neptuo.TemplateEngine.Routing.Client.js" />
     <Content Include="Design\Scripts\Generated\TemplateEngine\Neptuo.TemplateEngine.Shared.js" />
     <Content Include="Design\Scripts\Generated\Neptuo.Templates.Components.js" />
