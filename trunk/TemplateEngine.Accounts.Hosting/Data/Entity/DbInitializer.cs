@@ -31,8 +31,32 @@ namespace Neptuo.TemplateEngine.Accounts.Hosting.Data.Entity
                 Password = PasswordProvider.ComputePassword("admin", "admin"),
                 IsEnabled = true
             });
+            context.SaveChanges();
 
-            //context.UserAccounts.First(a => a.Key == 1).Roles.Add(context.UserRoles.First(r => r.Key == 1));
+            UserAccount admin = context.UserAccounts.Find(1);
+            admin.Roles = new List<UserRole>();
+            admin.Roles.Add(context.UserRoles.Find(1));
+
+            context.Permissions.Add(new ResourcePermission
+            {
+                ResourceName = "Home",
+                PermissionName = "Read",
+                Role = context.UserRoles.Find(1)
+            });
+            context.Permissions.Add(new ResourcePermission
+            {
+                ResourceName = "Accounts.Login",
+                PermissionName = "Read",
+                Role = context.UserRoles.Find(1)
+            });
+            context.Permissions.Add(new ResourcePermission
+            {
+                ResourceName = "Accounts.Login",
+                PermissionName = "ReadWrite",
+                Role = context.UserRoles.Find(1)
+            });
+
+            context.SaveChanges();
         }
     }
 }
