@@ -30,6 +30,8 @@ using System.Web.SessionState;
 using Neptuo.TemplateEngine.Providers;
 using Neptuo.TemplateEngine.Security;
 using Neptuo.Validation;
+using Neptuo.Templates.Compilation;
+using System.Text;
 
 namespace Neptuo.TemplateEngine.Backend.UI
 {
@@ -113,7 +115,31 @@ namespace Neptuo.TemplateEngine.Backend.UI
 
         protected void Application_Error(object sender, EventArgs e)
         {
-            LogManager.GetLogger("Global").Fatal(null, Server.GetLastError());
+            Exception exception = Server.GetLastError();
+            CodeDomViewServiceException viewServiceException = exception as CodeDomViewServiceException;
+            if (viewServiceException != null)
+            {
+                StringBuilder message = new StringBuilder();
+                message.AppendLine(exception.Message);
+
+                foreach (IErrorInfo errorInfo in viewServiceException.Errors)
+                {
+                    message.AppendFormat(
+                        "Line: {0}, Column: {1}, Error no.: {2}, Text: {3}",
+                        errorInfo.Line,
+                        errorInfo.Column,
+                        errorInfo.ErrorNumber,
+                        errorInfo.ErrorText
+                    );
+                    message.AppendLine();
+                }
+
+                LogManager.GetLogger("Global").Fatal(message);
+            }
+            else
+            {
+                LogManager.GetLogger("Global").Fatal(null, exception);
+            }
         }
 
         //protected void Session_End(object sender, EventArgs e)
