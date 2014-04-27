@@ -1,43 +1,38 @@
 ﻿using log4net;
 using log4net.Config;
-using Microsoft.Practices.Unity;
-using Neptuo;
 using Neptuo.Bootstrap;
 using Neptuo.Data;
 using Neptuo.Data.Entity;
 using Neptuo.Events;
 using Neptuo.Lifetimes;
-using Neptuo.Lifetimes.Mapping;
-using Neptuo.TemplateEngine.Accounts.Hosting.Bootstrap;
 using Neptuo.TemplateEngine.Accounts.Data.Entity;
+using Neptuo.TemplateEngine.Accounts.Hosting.Bootstrap;
 using Neptuo.TemplateEngine.Backend.Bootstrap;
-using Neptuo.TemplateEngine.Web;
 using Neptuo.TemplateEngine.Controllers;
+using Neptuo.TemplateEngine.Hosting.Bootstrap;
+using Neptuo.TemplateEngine.Providers;
+using Neptuo.TemplateEngine.Security;
 using Neptuo.TemplateEngine.Templates.DataSources;
-using Neptuo.TemplateEngine.Web.ViewBundles;
-using Neptuo.Templates;
+using Neptuo.TemplateEngine.Web;
+using Neptuo.Templates.Compilation;
 using Neptuo.Unity;
 using Neptuo.Unity.Lifetimes.Mapping;
 using Neptuo.Unity.Web.Lifetimes.Mapping;
+using Neptuo.Validation;
 using Neptuo.Web;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Routing;
-using System.Web.Security;
-using System.Web.SessionState;
-using Neptuo.TemplateEngine.Providers;
-using Neptuo.TemplateEngine.Security;
-using Neptuo.Validation;
-using Neptuo.Templates.Compilation;
 using System.Text;
+using System.Web;
 
 namespace Neptuo.TemplateEngine.Backend.UI
 {
-    public class Global : HttpApplication
+    public class Global : HostedApplication
     {
-        protected void Application_Start(object sender, EventArgs e)
+        public Global()
+            : base(new BackendBuilder())
+        { }
+
+        protected override void OnStart()
         {
             IDependencyContainer container = CreateDependencyContainer();
             ManualBootstrapper bootstrapper = CreateBootstrapper(container);
@@ -46,7 +41,7 @@ namespace Neptuo.TemplateEngine.Backend.UI
             bootstrapper.Initialize();
 
             Converts.Repository.Add(typeof(string), typeof(int), new StringToIntConverter());
-            XmlConfigurator.Configure();
+            XmlConfigurator.Configure();   
         }
 
         protected void RegisterBootstrapTasks(IBootstrapTaskRegistry bootstrapper, IDependencyContainer container)
