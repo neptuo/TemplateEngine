@@ -204,6 +204,7 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BackendBuilder.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
