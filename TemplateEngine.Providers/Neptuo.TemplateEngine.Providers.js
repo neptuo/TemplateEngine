@@ -452,39 +452,6 @@ var Neptuo$TemplateEngine$Providers$MessageStorageExtensions = {
     IsAbstract: true
 };
 JsTypes.push(Neptuo$TemplateEngine$Providers$MessageStorageExtensions);
-var Neptuo$TemplateEngine$Providers$NavigationCollection = {
-    fullname: "Neptuo.TemplateEngine.Providers.NavigationCollection",
-    baseTypeName: "System.Object",
-    assemblyName: "Neptuo.TemplateEngine.Providers",
-    interfaceNames: ["System.Collections.Generic.IEnumerable$1"],
-    Kind: "Class",
-    definition: {
-        ctor: function (){
-            this.items = new System.Collections.Generic.HashSet$1.ctor(System.String.ctor);
-            System.Object.ctor.call(this);
-        },
-        Add: function (name){
-            if (name == null)
-                throw $CreateException(new System.ArgumentNullException.ctor$$String("name"), new Error());
-            this.items.Add(name);
-        },
-        Contains: function (name){
-            if (name == null)
-                throw $CreateException(new System.ArgumentNullException.ctor$$String("name"), new Error());
-            return this.items.Contains(name);
-        },
-        GetEnumerator: function (){
-            return this.items.GetEnumerator();
-        }
-    },
-    ctors: [{
-        name: "ctor",
-        parameters: []
-    }
-    ],
-    IsAbstract: false
-};
-JsTypes.push(Neptuo$TemplateEngine$Providers$NavigationCollection);
 var Neptuo$TemplateEngine$Providers$ParameterProviderExtensions = {
     fullname: "Neptuo.TemplateEngine.Providers.ParameterProviderExtensions",
     baseTypeName: "System.Object",

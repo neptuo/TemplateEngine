@@ -502,7 +502,6 @@ var Neptuo$TemplateEngine$Web$Application = {
             Neptuo.DependencyContainerExtensions.RegisterInstance$1(Neptuo.TemplateEngine.Providers.IParameterProvider.ctor, container, new Neptuo.TemplateEngine.Web.DictionaryParameterProvider.ctor(parameters));
             var controllerRegistry = Neptuo.DependencyProviderExtensions.Resolve$1$$IDependencyProvider(Neptuo.TemplateEngine.Controllers.IControllerRegistry.ctor, container);
             var modelBinder = Neptuo.DependencyProviderExtensions.Resolve$1$$IDependencyProvider(Neptuo.TemplateEngine.Providers.ModelBinders.IModelBinder.ctor, container);
-            var localNavigations = new Neptuo.TemplateEngine.Providers.NavigationCollection.ctor();
             var messageStorage = Neptuo.DependencyProviderExtensions.Resolve$1$$IDependencyProvider(Neptuo.TemplateEngine.Providers.MessageStorage.ctor, container);
             var isControllerExecuted = false;
             var $it1 = parameters.GetEnumerator();
@@ -518,7 +517,7 @@ var Neptuo$TemplateEngine$Web$Application = {
                     controller = $1.Value;
                     return $res;
                 }).call(this)){
-                    controller.Execute(new Neptuo.TemplateEngine.Controllers.ControllerContext.ctor(key, modelBinder, container, localNavigations, messageStorage));
+                    controller.Execute(new Neptuo.TemplateEngine.Controllers.ControllerContext.ctor(key, modelBinder, container, messageStorage));
                     isControllerExecuted = true;
                 }
             }
@@ -690,7 +689,7 @@ var Neptuo$TemplateEngine$Web$AsyncViewRenderer = {
         RenderView: function (){
             this.notifyService = new Neptuo.TemplateEngine.Web.AsyncNotifyService.ctor();
             var componentManager = new Neptuo.TemplateEngine.Templates.PartialUpdateComponentManager.ctor(this.get_ToUpdate());
-            Neptuo.DependencyContainerExtensions.RegisterInstance$1(Neptuo.TemplateEngine.Web.AsyncNotifyService.ctor, Neptuo.DependencyContainerExtensions.RegisterInstance$1(Neptuo.TemplateEngine.Providers.NavigationCollection.ctor, Neptuo.DependencyContainerExtensions.RegisterInstance$1(Neptuo.TemplateEngine.Templates.IPartialUpdateWriter.ctor, Neptuo.DependencyContainerExtensions.RegisterInstance$1(Neptuo.Templates.IComponentManager.ctor, this.get_DependencyContainer(), componentManager), componentManager), new Neptuo.TemplateEngine.Providers.NavigationCollection.ctor()), this.notifyService);
+            Neptuo.DependencyContainerExtensions.RegisterInstance$1(Neptuo.TemplateEngine.Web.AsyncNotifyService.ctor, Neptuo.DependencyContainerExtensions.RegisterInstance$1(Neptuo.TemplateEngine.Templates.IPartialUpdateWriter.ctor, Neptuo.DependencyContainerExtensions.RegisterInstance$1(Neptuo.Templates.IComponentManager.ctor, this.get_DependencyContainer(), componentManager), componentManager), this.notifyService);
             this.view = this.get_ViewActivator().CreateView(this.get_ViewPath());
             this.view.Setup(new Neptuo.Templates.BaseViewPage.ctor(componentManager), componentManager, this.get_DependencyContainer());
             this.view.CreateControls();
@@ -1677,7 +1676,6 @@ var Neptuo$TemplateEngine$Web$InitScript = {
             Neptuo.DependencyContainerExtensions.RegisterInstance$1(Neptuo.TemplateEngine.Providers.IParameterProvider.ctor, container, new Neptuo.TemplateEngine.Web.DictionaryParameterProvider.ctor(Neptuo.TemplateEngine.Web.InitScript.TransformParameters(data)));
             var controllerRegistry = Neptuo.DependencyProviderExtensions.Resolve$1$$IDependencyProvider(Neptuo.TemplateEngine.Controllers.IControllerRegistry.ctor, container);
             var modelBinder = Neptuo.DependencyProviderExtensions.Resolve$1$$IDependencyProvider(Neptuo.TemplateEngine.Providers.ModelBinders.IModelBinder.ctor, container);
-            var localNavigations = new Neptuo.TemplateEngine.Providers.NavigationCollection.ctor();
             var messageStorage = Neptuo.DependencyProviderExtensions.Resolve$1$$IDependencyProvider(Neptuo.TemplateEngine.Providers.MessageStorage.ctor, container);
             var isControllerExecuted = false;
             for (var i = 0; i < data.length; i++){
@@ -1691,7 +1689,7 @@ var Neptuo$TemplateEngine$Web$InitScript = {
                     controller = $1.Value;
                     return $res;
                 })()){
-                    controller.Execute(new Neptuo.TemplateEngine.Controllers.ControllerContext.ctor(key, modelBinder, container, localNavigations, messageStorage));
+                    controller.Execute(new Neptuo.TemplateEngine.Controllers.ControllerContext.ctor(key, modelBinder, container, messageStorage));
                     isControllerExecuted = true;
                 }
             }

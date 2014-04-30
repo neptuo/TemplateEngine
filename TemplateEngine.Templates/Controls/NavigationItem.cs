@@ -11,7 +11,7 @@ namespace Neptuo.TemplateEngine.Templates.Controls
     public class NavigationItem
     {
         [Hint("Navigation result name")]
-        public string Name { get; set; }
+        public string On { get; set; }
 
         [Hint("Form uri to navigate to.")]
         public FormUri To { get; set; }

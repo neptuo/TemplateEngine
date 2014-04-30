@@ -43,10 +43,9 @@ namespace Neptuo.TemplateEngine.Hosting
 
 
 
-                NavigationCollection navigations = dependencyContainer.Resolve<NavigationCollection>();
                 GlobalNavigationCollection globalNavigations = dependencyContainer.Resolve<GlobalNavigationCollection>();
 
-                ExecuteControllers(httpContext, dependencyContainer, navigations);
+                string navigation = ExecuteControllers(httpContext, dependencyContainer);
 
 
                 if (httpContext.Request.Headers[EngineRequestType] == EngineRequestTypePartial)
@@ -56,7 +55,7 @@ namespace Neptuo.TemplateEngine.Hosting
 
                     string redirectUrl = null;
                     FormUri to;
-                    if (globalNavigations.TryGetValue(navigations.FirstOrDefault(), out to))
+                    if (globalNavigations.TryGetValue(navigation, out to))
                         redirectUrl = to.Url();
 
                     //JavaScriptSerializer javaScriptSerializer = new JavaScriptSerializer();
@@ -73,7 +72,7 @@ namespace Neptuo.TemplateEngine.Hosting
 
                     // Standart request - process redirects and eventually rerender current view
                     INavigator navigator = dependencyContainer.Resolve<INavigator>();
-                    if (!ProcessNavigationRules(navigations, globalNavigations, navigator))
+                    if (!ProcessNavigationRule(navigation, globalNavigations, navigator))
                     {
                         BaseGeneratedView view = GetCurrentView(httpContext);
                         IComponentManager componentManager = GetComponentManager(httpContext);
@@ -107,30 +106,34 @@ namespace Neptuo.TemplateEngine.Hosting
             }
         }
 
-        protected virtual void ExecuteControllers(HttpContext httpContext, IDependencyContainer dependencyContainer, NavigationCollection navigations)
+        protected virtual string ExecuteControllers(HttpContext httpContext, IDependencyContainer dependencyContainer)
         {
             IControllerRegistry registry = dependencyContainer.Resolve<IControllerRegistry>();
             IModelBinder modelBinder = dependencyContainer.Resolve<IModelBinder>();
             MessageStorage messageStorage = dependencyContainer.Resolve<MessageStorage>();
 
+            string navigation = null;
             foreach (string key in httpContext.Request.Form.AllKeys)
             {
                 IController controller;
                 if (registry.TryGet(key, out controller))
-                    controller.Execute(new ControllerContext(key, modelBinder, dependencyContainer, navigations, messageStorage));
+                {
+                    IControllerContext context = new ControllerContext(key, modelBinder, dependencyContainer, messageStorage);
+                    controller.Execute(context);
+                    navigation = context.Navigation;
+                }
             }
+
+            return navigation;
         }
 
-        protected virtual bool ProcessNavigationRules(NavigationCollection navigations, GlobalNavigationCollection globalNavigations, INavigator navigator)
+        protected virtual bool ProcessNavigationRule(string navigation, GlobalNavigationCollection globalNavigations, INavigator navigator)
         {
-            foreach (string name in navigations)
+            FormUri to;
+            if (globalNavigations.TryGetValue(navigation, out to))
             {
-                FormUri to;
-                if (globalNavigations.TryGetValue(name, out to))
-                {
-                    navigator.Open(to);
-                    return true;
-                }
+                navigator.Open(to);
+                return true;
             }
             return false;
         }

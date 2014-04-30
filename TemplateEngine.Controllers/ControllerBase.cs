@@ -65,7 +65,7 @@ namespace Neptuo.TemplateEngine.Controllers
         {
             string stringResult = result as string;
             if (stringResult != null)
-                context.Navigations.Add(stringResult);
+                context.Navigation = stringResult;
         }
     }
 }

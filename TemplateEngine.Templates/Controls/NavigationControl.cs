@@ -15,29 +15,26 @@ namespace Neptuo.TemplateEngine.Templates.Controls
     [DefaultProperty("Items")]
     public class NavigationControl : ControlBase
     {
-        protected NavigationCollection Navigations { get; private set; }
-        protected GlobalNavigationCollection GlobalNavigations { get; private set; }
+        protected string Navigation { get; private set; }
         protected INavigator Navigator { get; private set; }
         public ICollection<NavigationItem> Items { get; set; }
 
-        public NavigationControl(IComponentManager componentManager, INavigator navigator, NavigationCollection navigations, GlobalNavigationCollection globalNavigations)
+        public NavigationControl(IComponentManager componentManager, INavigator navigator, string navigation)
             : base(componentManager)
         {
             Navigator = navigator;
-            Navigations = navigations;
-            GlobalNavigations = globalNavigations;
+            Navigation = navigation;
         }
 
         public override void OnInit()
         {
             InitComponents(Items);
-            foreach (string name in Navigations)
             {
                 if (Items != null)
                 {
                     foreach (NavigationItem item in Items)
                     {
-                        if (item.Name == name)
+                        if (item.On == Navigation)
                         {
                             Navigator.Open(item.To);
                             return;

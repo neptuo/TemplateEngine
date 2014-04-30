@@ -81,7 +81,6 @@ namespace Neptuo.TemplateEngine.Web
             DependencyContainer
                 .RegisterInstance<IComponentManager>(componentManager)
                 .RegisterInstance<IPartialUpdateWriter>(componentManager)
-                .RegisterInstance<NavigationCollection>(new NavigationCollection())
                 .RegisterInstance<AsyncNotifyService>(notifyService);
 
             view = ViewActivator.CreateView(ViewPath);

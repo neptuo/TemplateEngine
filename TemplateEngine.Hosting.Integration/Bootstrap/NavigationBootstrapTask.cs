@@ -32,7 +32,6 @@ namespace Neptuo.TemplateEngine.Hosting.Integration.Bootstrap
                 .RegisterInstance<IFormUriRepository>(FormUriTable.Repository)
                 .RegisterInstance<IFormUriRegistry>(FormUriTable.Registry)
                 .RegisterType<INavigator, RedirectNavigator>(new PerRequestLifetime())
-                .RegisterType<NavigationCollection>(new PerRequestLifetime())
                 .RegisterInstance(new GlobalNavigationCollection());
         }
     }
