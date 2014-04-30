@@ -11,27 +11,27 @@ namespace Neptuo.TemplateEngine.Providers
     {
         private Dictionary<string, FormUri> storage = new Dictionary<string, FormUri>();
 
-        public GlobalNavigationCollection Add(string name, FormUri to)
+        public GlobalNavigationCollection Add(string on, FormUri to)
         {
-            if (name == null)
+            if (on == null)
                 throw new ArgumentNullException("name");
 
             if (to == null)
                 throw new ArgumentNullException("to");
 
-            storage[name] = to;
+            storage[on] = to;
             return this;
         }
 
-        public bool TryGetValue(string name, out FormUri to)
+        public bool TryGetValue(string on, out FormUri to)
         {
-            if (name == null)
+            if (on == null)
             {
                 to = null;
                 return false;
             }
 
-            return storage.TryGetValue(name, out to);
+            return storage.TryGetValue(on, out to);
         }
     }
 }
