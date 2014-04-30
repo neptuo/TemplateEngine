@@ -4,8 +4,9 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using Neptuo.TemplateEngine.Templates.DataSources;
 
-namespace Neptuo.TemplateEngine.Templates.DataSources
+namespace Neptuo.TemplateEngine.Hosting.DataSources
 {
     public static class WebDataSourceRegistryExtensions
     {

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Neptuo.TemplateEngine.Templates.DataSources
+namespace Neptuo.TemplateEngine.Hosting.DataSources
 {
     public class DictionaryWebDataSourceRegistry : IWebDataSourceRegistry
     {

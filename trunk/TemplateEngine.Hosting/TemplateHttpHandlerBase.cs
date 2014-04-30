@@ -17,7 +17,7 @@ using System.Web.SessionState;
 using Neptuo.TemplateEngine.Providers;
 using Neptuo.TemplateEngine.Security;
 
-namespace Neptuo.TemplateEngine.Backend.Web
+namespace Neptuo.TemplateEngine.Hosting
 {
     public abstract class TemplateHttpHandlerBase : IHttpHandler, IRequiresSessionState
     {

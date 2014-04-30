@@ -79,15 +79,15 @@
     <Compile Include="ViewBundles\ViewBundleCollection.cs" />
     <Compile Include="ViewBundles\ViewBundleTable.cs" />
     <Compile Include="ViewBundles\XmlViewBundleLoader.cs" />
-    <Compile Include="Web\DataSources\DictionaryWebDataSourceRegistry.cs" />
-    <Compile Include="Web\DataSources\IWebDataSourceRegistry.cs" />
-    <Compile Include="Web\DataSources\WebDataSourceRegistryExtensions.cs" />
-    <Compile Include="Web\ServerPartialResponse.cs" />
-    <Compile Include="Web\ServerPathProvider.cs" />
-    <Compile Include="Web\TemplateHttpHandler.cs" />
-    <Compile Include="Web\TemplateHttpHandlerBase.cs" />
-    <Compile Include="Web\WebDataSourceHttpHandler.cs" />
-    <Compile Include="Web\WebDataSourceModel.cs" />
+    <Compile Include="DataSources\DictionaryWebDataSourceRegistry.cs" />
+    <Compile Include="DataSources\IWebDataSourceRegistry.cs" />
+    <Compile Include="DataSources\WebDataSourceRegistryExtensions.cs" />
+    <Compile Include="ServerPartialResponse.cs" />
+    <Compile Include="ServerPathProvider.cs" />
+    <Compile Include="TemplateHttpHandler.cs" />
+    <Compile Include="TemplateHttpHandlerBase.cs" />
+    <Compile Include="WebDataSourceHttpHandler.cs" />
+    <Compile Include="WebDataSourceModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\TemplateEngine.Controllers\TemplateEngine.Controllers.csproj">
