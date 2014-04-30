@@ -39,26 +39,26 @@
       <HintPath>..\packages\EntityFramework.6.1.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Neptuo">
-      <HintPath>..\..\Neptuo.TemplateEngine\References\Neptuo.dll</HintPath>
+      <HintPath>..\References\Neptuo.dll</HintPath>
     </Reference>
     <Reference Include="Neptuo.Bootstrap">
-      <HintPath>..\..\Neptuo.TemplateEngine\References\Neptuo.Bootstrap.dll</HintPath>
+      <HintPath>..\References\Neptuo.Bootstrap.dll</HintPath>
     </Reference>
     <Reference Include="Neptuo.Data">
-      <HintPath>..\..\Neptuo.TemplateEngine\References\Neptuo.Data.dll</HintPath>
+      <HintPath>..\References\Neptuo.Data.dll</HintPath>
     </Reference>
     <Reference Include="Neptuo.Data.Entity">
-      <HintPath>..\..\Neptuo.TemplateEngine\References\Neptuo.Data.Entity.dll</HintPath>
+      <HintPath>..\References\Neptuo.Data.Entity.dll</HintPath>
     </Reference>
     <Reference Include="Neptuo.Templates.Components, Version=3.0.4.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Neptuo.TemplateEngine\References\Neptuo.Templates.Components.dll</HintPath>
+      <HintPath>..\References\Neptuo.Templates.Components.dll</HintPath>
     </Reference>
     <Reference Include="Neptuo.Templates.Components.Compilation">
-      <HintPath>..\..\Neptuo.TemplateEngine\References\Neptuo.Templates.Components.Compilation.dll</HintPath>
+      <HintPath>..\References\Neptuo.Templates.Components.Compilation.dll</HintPath>
     </Reference>
     <Reference Include="Neptuo.Web">
-      <HintPath>..\..\Neptuo.TemplateEngine\References\Neptuo.Web.dll</HintPath>
+      <HintPath>..\References\Neptuo.Web.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
