@@ -62,6 +62,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TemplateEngine.Accounts.Vie
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TemplateEngine.Hosting.Integration", "TemplateEngine.Hosting.Integration\TemplateEngine.Hosting.Integration.csproj", "{F206C037-60A2-47A0-9166-F60A785FADC7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test", "Test\Test.csproj", "{06BE7FC4-342C-464C-B1C3-245B31BA3262}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -160,6 +162,10 @@ Global
 		{F206C037-60A2-47A0-9166-F60A785FADC7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F206C037-60A2-47A0-9166-F60A785FADC7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F206C037-60A2-47A0-9166-F60A785FADC7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{06BE7FC4-342C-464C-B1C3-245B31BA3262}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{06BE7FC4-342C-464C-B1C3-245B31BA3262}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{06BE7FC4-342C-464C-B1C3-245B31BA3262}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{06BE7FC4-342C-464C-B1C3-245B31BA3262}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
