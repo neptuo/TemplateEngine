@@ -206,7 +206,6 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BackendBuilder.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -246,10 +245,6 @@
     <ProjectReference Include="..\TemplateEngine.Accounts\TemplateEngine.Accounts.csproj">
       <Project>{36f0d8f9-1f8f-409c-9eda-c17644c4c0d8}</Project>
       <Name>TemplateEngine.Accounts</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\TemplateEngine.Backend\TemplateEngine.Backend.csproj">
-      <Project>{81bf7e93-6af0-4c89-98d5-c66903fedd1b}</Project>
-      <Name>TemplateEngine.Backend</Name>
     </ProjectReference>
     <ProjectReference Include="..\TemplateEngine.Controllers\TemplateEngine.Controllers.csproj">
       <Project>{cefd01c6-467d-4e1c-ace6-af093e443e08}</Project>
