@@ -1325,29 +1325,20 @@ var Neptuo$TemplateEngine$Templates$Controls$NavigationControl = {
     assemblyName: "Neptuo.TemplateEngine.Templates",
     Kind: "Class",
     definition: {
-        ctor: function (componentManager, navigator, navigations, globalNavigations){
-            this._Navigations = null;
-            this._GlobalNavigations = null;
+        ctor: function (componentManager, navigator, navigation){
+            this._Navigation = null;
             this._Navigator = null;
             this._Items = null;
             Neptuo.TemplateEngine.Templates.Controls.ControlBase.ctor.call(this, componentManager);
             this.set_Navigator(navigator);
-            this.set_Navigations(navigations);
-            this.set_GlobalNavigations(globalNavigations);
+            this.set_Navigation(navigation);
         },
-        Navigations$$: "Neptuo.TemplateEngine.Providers.NavigationCollection",
-        get_Navigations: function (){
-            return this._Navigations;
+        Navigation$$: "System.String",
+        get_Navigation: function (){
+            return this._Navigation;
         },
-        set_Navigations: function (value){
-            this._Navigations = value;
-        },
-        GlobalNavigations$$: "Neptuo.TemplateEngine.Providers.GlobalNavigationCollection",
-        get_GlobalNavigations: function (){
-            return this._GlobalNavigations;
-        },
-        set_GlobalNavigations: function (value){
-            this._GlobalNavigations = value;
+        set_Navigation: function (value){
+            this._Navigation = value;
         },
         Navigator$$: "Neptuo.TemplateEngine.Navigation.INavigator",
         get_Navigator: function (){
@@ -1365,17 +1356,13 @@ var Neptuo$TemplateEngine$Templates$Controls$NavigationControl = {
         },
         OnInit: function (){
             this.InitComponents$1(Neptuo.TemplateEngine.Templates.Controls.NavigationItem.ctor, this.get_Items());
-            var $it14 = this.get_Navigations().GetEnumerator();
-            while ($it14.MoveNext()){
-                var name = $it14.get_Current();
-                if (this.get_Items() != null){
-                    var $it15 = this.get_Items().GetEnumerator();
-                    while ($it15.MoveNext()){
-                        var item = $it15.get_Current();
-                        if (item.get_Name() == name){
-                            this.get_Navigator().Open(item.get_To());
-                            return;
-                        }
+            if (this.get_Items() != null){
+                var $it14 = this.get_Items().GetEnumerator();
+                while ($it14.MoveNext()){
+                    var item = $it14.get_Current();
+                    if (item.get_On() == this.get_Navigation()){
+                        this.get_Navigator().Open(item.get_To());
+                        return;
                     }
                 }
             }
@@ -1383,7 +1370,7 @@ var Neptuo$TemplateEngine$Templates$Controls$NavigationControl = {
     },
     ctors: [{
         name: "ctor",
-        parameters: ["Neptuo.Templates.IComponentManager", "Neptuo.TemplateEngine.Navigation.INavigator", "Neptuo.TemplateEngine.Providers.NavigationCollection", "Neptuo.TemplateEngine.Providers.GlobalNavigationCollection"]
+        parameters: ["Neptuo.Templates.IComponentManager", "Neptuo.TemplateEngine.Navigation.INavigator", "System.String"]
     }
     ],
     IsAbstract: false
@@ -1395,7 +1382,7 @@ var Neptuo$TemplateEngine$Templates$Controls$NavigationItem = {
     assemblyName: "Neptuo.TemplateEngine.Templates",
     customAttributes: [{
         targetType: "property",
-        targetMemberName: "Name",
+        targetMemberName: "On",
         typeName: "Neptuo.TemplateEngine.Templates.Controls.DesignData.HintAttribute",
         ctorName: "ctor",
         positionalArguments: ["Navigation result name"]
@@ -1410,16 +1397,16 @@ var Neptuo$TemplateEngine$Templates$Controls$NavigationItem = {
     Kind: "Class",
     definition: {
         ctor: function (){
-            this._Name = null;
+            this._On = null;
             this._To = null;
             System.Object.ctor.call(this);
         },
-        Name$$: "System.String",
-        get_Name: function (){
-            return this._Name;
+        On$$: "System.String",
+        get_On: function (){
+            return this._On;
         },
-        set_Name: function (value){
-            this._Name = value;
+        set_On: function (value){
+            this._On = value;
         },
         To$$: "Neptuo.TemplateEngine.Navigation.FormUri",
         get_To: function (){
@@ -1687,9 +1674,9 @@ var Neptuo$TemplateEngine$Templates$Controls$PresentationListControlBase$1 = {
             this.InitComponent(this.get_ItemTemplate());
             var itemTemplates = new System.Collections.Generic.List$1.ctor(System.Object.ctor);
             var models = this.LoadData();
-            var $it16 = models.GetEnumerator();
-            while ($it16.MoveNext()){
-                var model = $it16.get_Current();
+            var $it15 = models.GetEnumerator();
+            while ($it15.MoveNext()){
+                var model = $it15.get_Current();
                 var provider = this.configuration.get_ValueProviderFactory().Create(model);
                 this.get_DataContext().Push(provider, null);
                 var control = new Neptuo.TemplateEngine.Templates.Controls.TemplateControl.ctor(this.get_ComponentManager(), this.configuration.get_TemplateStorage());
@@ -1881,27 +1868,27 @@ var Neptuo$TemplateEngine$Templates$Controls$ContentTemplateContent = {
         },
         OnInit: function (){
             if (this.get_Content() != null){
-                var $it17 = this.get_Content().GetEnumerator();
-                while ($it17.MoveNext()){
-                    var item = $it17.get_Current();
+                var $it16 = this.get_Content().GetEnumerator();
+                while ($it16.MoveNext()){
+                    var item = $it16.get_Current();
                     this.get_ComponentManager().Init(item);
                 }
             }
         },
         Render: function (writer){
             if (this.get_Content() != null){
-                var $it18 = this.get_Content().GetEnumerator();
-                while ($it18.MoveNext()){
-                    var item = $it18.get_Current();
+                var $it17 = this.get_Content().GetEnumerator();
+                while ($it17.MoveNext()){
+                    var item = $it17.get_Current();
                     this.get_ComponentManager().Render(item, writer);
                 }
             }
         },
         Dispose: function (){
             if (this.get_Content() != null){
-                var $it19 = this.get_Content().GetEnumerator();
-                while ($it19.MoveNext()){
-                    var item = $it19.get_Current();
+                var $it18 = this.get_Content().GetEnumerator();
+                while ($it18.MoveNext()){
+                    var item = $it18.get_Current();
                     this.get_ComponentManager().Dispose(item);
                 }
             }
@@ -2413,9 +2400,9 @@ var Neptuo$TemplateEngine$Templates$DataSources$ListDataSourceBase$1 = {
             data = this.ApplyFilter(data);
             if (pageSize != null)
                 data = System.Linq.Queryable.Take$1(this.T, System.Linq.Queryable.Skip$1(this.T, data, (pageIndex != null ? pageIndex : 0) * pageSize.get_Value()), pageSize.get_Value());
-            var $it20 = data.GetEnumerator();
-            while ($it20.MoveNext()){
-                var item = $it20.get_Current();
+            var $it19 = data.GetEnumerator();
+            while ($it19.MoveNext()){
+                var item = $it19.get_Current();
                 $yield.push(this.get_ProviderFactory().Create(item));
             }
             return $yield;
@@ -2514,9 +2501,9 @@ var Neptuo$TemplateEngine$Templates$ExtendedHtmlTextWriter = {
         },
         Tag: function (name){
             Neptuo.Templates.HtmlTextWriter.commonPrototype.Tag.call(this, name);
-            var $it21 = this.get_PendingAttributes().GetEnumerator();
-            while ($it21.MoveNext()){
-                var attribute = $it21.get_Current();
+            var $it20 = this.get_PendingAttributes().GetEnumerator();
+            while ($it20.MoveNext()){
+                var attribute = $it20.get_Current();
                 this.Attribute(attribute.Name, attribute.Value);
             }
             this.get_PendingAttributes().Clear();
@@ -3321,9 +3308,9 @@ var Neptuo$TemplateEngine$Templates$TemplateContentStorage = {
         AddRange: function (contents){
             if (contents == null)
                 throw $CreateException(new System.ArgumentNullException.ctor$$String("contents"), new Error());
-            var $it22 = contents.GetEnumerator();
-            while ($it22.MoveNext()){
-                var content = $it22.get_Current();
+            var $it21 = contents.GetEnumerator();
+            while ($it21.MoveNext()){
+                var content = $it21.get_Current();
                 this.Add(content.get_Name(), content);
             }
         },

@@ -64,7 +64,6 @@
     <Compile Include="Message.cs" />
     <Compile Include="MessageStorage.cs" />
     <Compile Include="MessageStorageExtensions.cs" />
-    <Compile Include="NavigationCollection.cs" />
     <Compile Include="ParameterProviderExtensions.cs" />
     <Compile Include="ParameterProviderType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -162,7 +162,6 @@ namespace Neptuo.TemplateEngine.Web
 
             IControllerRegistry controllerRegistry = container.Resolve<IControllerRegistry>();
             IModelBinder modelBinder = container.Resolve<IModelBinder>();
-            NavigationCollection localNavigations = new NavigationCollection();
             MessageStorage messageStorage = container.Resolve<MessageStorage>();
             bool isControllerExecuted = false;
 
@@ -172,7 +171,7 @@ namespace Neptuo.TemplateEngine.Web
                 IController controller;
                 if (controllerRegistry.TryGet(key, out controller))
                 {
-                    controller.Execute(new ControllerContext(key, modelBinder, container, localNavigations, messageStorage));
+                    controller.Execute(new ControllerContext(key, modelBinder, container, messageStorage));
                     isControllerExecuted = true;
                 }
             }

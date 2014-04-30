@@ -89,7 +89,7 @@ var Neptuo$TemplateEngine$Controllers$ControllerBase = {
         ProcessActionResult: function (context, methodInfo, result){
             var stringResult = As(result, System.String.ctor);
             if (stringResult != null)
-                context.get_Navigations().Add(stringResult);
+                context.set_Navigation(stringResult);
         }
     },
     ctors: [{
@@ -107,22 +107,20 @@ var Neptuo$TemplateEngine$Controllers$ControllerContext = {
     interfaceNames: ["Neptuo.TemplateEngine.Controllers.IControllerContext"],
     Kind: "Class",
     definition: {
-        ctor: function (action, modelBinder, dependencyProvider, navigations, messages){
+        ctor: function (action, modelBinder, dependencyProvider, messages){
             this._ActionName = null;
             this._ModelBinder = null;
             this._DependencyProvider = null;
-            this._Navigations = null;
+            this._Navigation = null;
             this._Messages = null;
             System.Object.ctor.call(this);
             Neptuo.Guard.NotNull$$Object$$String(action, "action");
             Neptuo.Guard.NotNull$$Object$$String(modelBinder, "modelBinder");
             Neptuo.Guard.NotNull$$Object$$String(dependencyProvider, "dependencyProvider");
-            Neptuo.Guard.NotNull$$Object$$String(navigations, "navigations");
             Neptuo.Guard.NotNull$$Object$$String(messages, "messages");
             this.set_ActionName(action);
             this.set_ModelBinder(modelBinder);
             this.set_DependencyProvider(dependencyProvider);
-            this.set_Navigations(navigations);
             this.set_Messages(messages);
         },
         ActionName$$: "System.String",
@@ -146,12 +144,12 @@ var Neptuo$TemplateEngine$Controllers$ControllerContext = {
         set_DependencyProvider: function (value){
             this._DependencyProvider = value;
         },
-        Navigations$$: "Neptuo.TemplateEngine.Providers.NavigationCollection",
-        get_Navigations: function (){
-            return this._Navigations;
+        Navigation$$: "System.String",
+        get_Navigation: function (){
+            return this._Navigation;
         },
-        set_Navigations: function (value){
-            this._Navigations = value;
+        set_Navigation: function (value){
+            this._Navigation = value;
         },
         Messages$$: "Neptuo.TemplateEngine.Providers.MessageStorage",
         get_Messages: function (){
@@ -163,7 +161,7 @@ var Neptuo$TemplateEngine$Controllers$ControllerContext = {
     },
     ctors: [{
         name: "ctor",
-        parameters: ["System.String", "Neptuo.TemplateEngine.Providers.ModelBinders.IModelBinder", "Neptuo.IDependencyProvider", "Neptuo.TemplateEngine.Providers.NavigationCollection", "Neptuo.TemplateEngine.Providers.MessageStorage"]
+        parameters: ["System.String", "Neptuo.TemplateEngine.Providers.ModelBinders.IModelBinder", "Neptuo.IDependencyProvider", "Neptuo.TemplateEngine.Providers.MessageStorage"]
     }
     ],
     IsAbstract: false
