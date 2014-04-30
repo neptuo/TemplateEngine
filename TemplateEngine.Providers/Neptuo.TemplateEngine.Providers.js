@@ -247,20 +247,20 @@ var Neptuo$TemplateEngine$Providers$GlobalNavigationCollection = {
             this.storage = new System.Collections.Generic.Dictionary$2.ctor(System.String.ctor, Neptuo.TemplateEngine.Navigation.FormUri.ctor);
             System.Object.ctor.call(this);
         },
-        Add: function (name, to){
-            if (name == null)
+        Add: function (on, to){
+            if (on == null)
                 throw $CreateException(new System.ArgumentNullException.ctor$$String("name"), new Error());
             if (to == null)
                 throw $CreateException(new System.ArgumentNullException.ctor$$String("to"), new Error());
-            this.storage.set_Item$$TKey(name, to);
+            this.storage.set_Item$$TKey(on, to);
             return this;
         },
-        TryGetValue: function (name, to){
-            if (name == null){
+        TryGetValue: function (on, to){
+            if (on == null){
                 to.Value = null;
                 return false;
             }
-            return this.storage.TryGetValue(name, to);
+            return this.storage.TryGetValue(on, to);
         }
     },
     ctors: [{
