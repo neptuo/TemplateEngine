@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Routing;
 
-namespace Neptuo.TemplateEngine.Backend.Web.Routing
+namespace Neptuo.TemplateEngine.Hosting.Integration.Routing
 {
     public class ErrorRouteHandler : IRouteHandler
     {

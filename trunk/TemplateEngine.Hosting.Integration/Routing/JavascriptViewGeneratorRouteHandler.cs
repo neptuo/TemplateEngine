@@ -1,4 +1,4 @@
-﻿using Neptuo.TemplateEngine.Backend.Web;
+﻿using Neptuo.TemplateEngine.Hosting.Integration;
 using Neptuo.TemplateEngine.Templates.Compilation;
 using Neptuo.Templates.Compilation;
 using System;
@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Routing;
 
-namespace Neptuo.TemplateEngine.Backend.Web.Routing
+namespace Neptuo.TemplateEngine.Hosting.Integration.Routing
 {
     public class JavascriptViewGeneratorRouteHandler : IRouteHandler
     {

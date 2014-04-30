@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 
-namespace Neptuo.TemplateEngine.Backend.Web.Routing
+namespace Neptuo.TemplateEngine.Hosting.Integration.Routing
 {
     public class TemplateRouteParameterFactory : IRouteParameterFactory
     {

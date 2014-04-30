@@ -23,6 +23,7 @@ using System;
 using System.Text;
 using System.Web;
 using Neptuo.TemplateEngine.Hosting.Integration;
+using Neptuo.TemplateEngine.Hosting.Integration.Bootstrap;
 
 namespace Neptuo.TemplateEngine.Backend.UI
 {

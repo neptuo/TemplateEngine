@@ -106,27 +106,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Bootstrap\BindingBootstrapTask.cs" />
-    <Compile Include="Bootstrap\ModuleBootstrapConstraint.cs" />
-    <Compile Include="Bootstrap\ModuleBootstrapConstraintProvider.cs" />
-    <Compile Include="ConfigurationBootstrapTask.cs" />
-    <Compile Include="JavascriptBootstrapTask.cs" />
-    <Compile Include="Bootstrap\NavigationBootstrapTask.cs" />
-    <Compile Include="Bootstrap\PresentationModelBootstrapTask.cs" />
+    <Compile Include="Bootstrap\JavascriptBootstrapTask.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RoutingBootstrapTask.cs" />
-    <Compile Include="ViewBundleBootstrapTask.cs" />
-    <Compile Include="Web\JavascriptViewGeneratorConfiguration.cs" />
-    <Compile Include="Web\Routing\DependencyRouteHandler.cs" />
-    <Compile Include="Web\Routing\JavascriptViewGeneratorRouteHandler.cs" />
-    <Compile Include="Web\ErrorHttpHandler.cs" />
-    <Compile Include="Web\Routing\ErrorRouteHandler.cs" />
-    <Compile Include="Web\Routing\StaticTemplateRouteHandler.cs" />
-    <Compile Include="Web\Routing\TemplateRouteParameterFactory.cs" />
-    <Compile Include="Web\Routing\TemplateRouteHandler.cs" />
-    <Compile Include="Web\Routing\TemplateRouteParameter.cs" />
-    <Compile Include="Bootstrap\ViewServiceBootstrapTask.cs" />
-    <Compile Include="Web\JavascriptViewGeneratorHttpHandler.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\TemplateEngine.Accounts.Data.Entity\TemplateEngine.Accounts.Data.Entity.csproj">

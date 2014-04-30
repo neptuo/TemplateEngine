@@ -33,6 +33,43 @@
     <Reference Include="Neptuo">
       <HintPath>..\References\Neptuo.dll</HintPath>
     </Reference>
+    <Reference Include="Neptuo.Bootstrap">
+      <HintPath>..\References\Neptuo.Bootstrap.dll</HintPath>
+    </Reference>
+    <Reference Include="Neptuo.Configuration">
+      <HintPath>..\References\Neptuo.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="Neptuo.PresentationModels, Version=4.5.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\Neptuo.PresentationModels.dll</HintPath>
+    </Reference>
+    <Reference Include="Neptuo.PresentationModels.BindingConverters">
+      <HintPath>..\References\Neptuo.PresentationModels.BindingConverters.dll</HintPath>
+    </Reference>
+    <Reference Include="Neptuo.PresentationModels.TypeModels, Version=4.5.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\Neptuo.PresentationModels.TypeModels.dll</HintPath>
+    </Reference>
+    <Reference Include="Neptuo.PresentationModels.TypeModels.DataAnnotations">
+      <HintPath>..\References\Neptuo.PresentationModels.TypeModels.DataAnnotations.dll</HintPath>
+    </Reference>
+    <Reference Include="Neptuo.PresentationModels.Validation">
+      <HintPath>..\References\Neptuo.PresentationModels.Validation.dll</HintPath>
+    </Reference>
+    <Reference Include="Neptuo.Templates.Components, Version=3.0.5.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\Neptuo.Templates.Components.dll</HintPath>
+    </Reference>
+    <Reference Include="Neptuo.Templates.Components.Compilation, Version=3.0.5.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\Neptuo.Templates.Components.Compilation.dll</HintPath>
+    </Reference>
+    <Reference Include="Neptuo.Web">
+      <HintPath>..\References\Neptuo.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="Neptuo.Web.Routing">
+      <HintPath>..\References\Neptuo.Web.Routing.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Web" />
@@ -43,9 +80,58 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Bootstrap\BindingBootstrapTask.cs" />
+    <Compile Include="Bootstrap\ConfigurationBootstrapTask.cs" />
+    <Compile Include="Bootstrap\ModuleBootstrapConstraint.cs" />
+    <Compile Include="Bootstrap\ModuleBootstrapConstraintProvider.cs" />
+    <Compile Include="Bootstrap\NavigationBootstrapTask.cs" />
+    <Compile Include="Bootstrap\PresentationModelBootstrapTask.cs" />
+    <Compile Include="Bootstrap\RoutingBootstrapTask.cs" />
+    <Compile Include="Bootstrap\ViewBundleBootstrapTask.cs" />
+    <Compile Include="Bootstrap\ViewServiceBootstrapTask.cs" />
     <Compile Include="HostedApplication.cs" />
     <Compile Include="IApplicationBuilder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ErrorHttpHandler.cs" />
+    <Compile Include="JavascriptViewGeneratorConfiguration.cs" />
+    <Compile Include="JavascriptViewGeneratorHttpHandler.cs" />
+    <Compile Include="Routing\DependencyRouteHandler.cs" />
+    <Compile Include="Routing\ErrorRouteHandler.cs" />
+    <Compile Include="Routing\JavascriptViewGeneratorRouteHandler.cs" />
+    <Compile Include="Routing\StaticTemplateRouteHandler.cs" />
+    <Compile Include="Routing\TemplateRouteHandler.cs" />
+    <Compile Include="Routing\TemplateRouteParameter.cs" />
+    <Compile Include="Routing\TemplateRouteParameterFactory.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TemplateEngine.Hosting\TemplateEngine.Hosting.csproj">
+      <Project>{f794b999-94db-4443-8780-25ad170742ee}</Project>
+      <Name>TemplateEngine.Hosting</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TemplateEngine.Navigation\TemplateEngine.Navigation.csproj">
+      <Project>{f16d8bc8-2191-498f-9950-dc8aa200b0ba}</Project>
+      <Name>TemplateEngine.Navigation</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TemplateEngine.Providers\TemplateEngine.Providers.csproj">
+      <Project>{30214616-7c89-467a-9147-7385e91aed13}</Project>
+      <Name>TemplateEngine.Providers</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TemplateEngine.Shared\TemplateEngine.Shared.csproj">
+      <Project>{a4c6627c-c21b-4bb7-93a4-b40ac748588d}</Project>
+      <Name>TemplateEngine.Shared</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TemplateEngine.Templates\TemplateEngine.Templates.csproj">
+      <Project>{ee534abf-10e8-467b-aa25-d8a39b6542b4}</Project>
+      <Name>TemplateEngine.Templates</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TemplateEngine.Web.Compilation\TemplateEngine.Templates.Compilation.csproj">
+      <Project>{f116d6f7-e47c-4c73-a802-4f61ba50857f}</Project>
+      <Name>TemplateEngine.Templates.Compilation</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TemplateEngine\TemplateEngine.csproj">
+      <Project>{0ddeef40-567f-49de-94ec-314309702534}</Project>
+      <Name>TemplateEngine</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

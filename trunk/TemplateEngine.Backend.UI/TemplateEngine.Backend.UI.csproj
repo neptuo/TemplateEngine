@@ -261,7 +261,7 @@
     </ProjectReference>
     <ProjectReference Include="..\TemplateEngine.Hosting.Integration\TemplateEngine.Hosting.Integration.csproj">
       <Project>{f206c037-60a2-47a0-9166-f60a785fadc7}</Project>
-      <Name>TemplateEngine.Integration</Name>
+      <Name>TemplateEngine.Hosting.Integration</Name>
     </ProjectReference>
     <ProjectReference Include="..\TemplateEngine.Navigation\TemplateEngine.Navigation.csproj">
       <Project>{f16d8bc8-2191-498f-9950-dc8aa200b0ba}</Project>

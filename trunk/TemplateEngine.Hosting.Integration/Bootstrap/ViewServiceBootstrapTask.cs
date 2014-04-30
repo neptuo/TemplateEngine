@@ -1,5 +1,5 @@
 ﻿using Neptuo.Bootstrap;
-using Neptuo.TemplateEngine.Backend.Web;
+using Neptuo.TemplateEngine.Hosting.Integration;
 using Neptuo.TemplateEngine.Templates;
 using Neptuo.TemplateEngine.Web;
 using Neptuo.TemplateEngine.Templates.Compilation;
@@ -25,8 +25,9 @@ using System.Threading.Tasks;
 using System.Web;
 using CodeDomStructureGenerator = Neptuo.TemplateEngine.Templates.Compilation.CodeGenerators.CodeDomStructureGenerator;
 using Neptuo.TemplateEngine.Providers;
+using Neptuo.TemplateEngine.Backend.Web;
 
-namespace Neptuo.TemplateEngine.Backend.Bootstrap
+namespace Neptuo.TemplateEngine.Hosting.Integration.Bootstrap
 {
     public class ViewServiceBootstrapTask : IBootstrapTask
     {

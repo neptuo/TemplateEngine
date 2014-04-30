@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Neptuo.TemplateEngine.Backend.Web
+namespace Neptuo.TemplateEngine.Hosting.Integration
 {
     public class JavascriptViewGeneratorConfiguration
     {
