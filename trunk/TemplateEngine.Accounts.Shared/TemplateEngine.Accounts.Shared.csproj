@@ -72,10 +72,6 @@
       <Project>{30214616-7c89-467a-9147-7385e91aed13}</Project>
       <Name>TemplateEngine.Providers</Name>
     </ProjectReference>
-    <ProjectReference Include="..\TemplateEngine.Shared\TemplateEngine.Shared.csproj">
-      <Project>{a4c6627c-c21b-4bb7-93a4-b40ac748588d}</Project>
-      <Name>TemplateEngine.Shared</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildBinPath)\SharpKit\5\SharpKit.Build.targets" />

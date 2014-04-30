@@ -86,10 +86,6 @@
       <Project>{f16d8bc8-2191-498f-9950-dc8aa200b0ba}</Project>
       <Name>TemplateEngine.Navigation</Name>
     </ProjectReference>
-    <ProjectReference Include="..\TemplateEngine.Shared\TemplateEngine.Shared.csproj">
-      <Project>{a4c6627c-c21b-4bb7-93a4-b40ac748588d}</Project>
-      <Name>TemplateEngine.Shared</Name>
-    </ProjectReference>
     <ProjectReference Include="..\TemplateEngine.Templates\TemplateEngine.Templates.csproj">
       <Project>{ee534abf-10e8-467b-aa25-d8a39b6542b4}</Project>
       <Name>TemplateEngine.Templates</Name>
