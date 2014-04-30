@@ -50,38 +50,7 @@ namespace Neptuo.TemplateEngine.Web
             PartialResponse partialResponse;
             if (Converts.Try<JsObject, PartialResponse>(response.As<JsObject>(), out partialResponse))
             {
-                string navigationUrl = null;
-                if (partialResponse.Navigation != null)
-                    navigationUrl = Application.ResolveUrl(partialResponse.Navigation);
-                else
-                    navigationUrl = Application.GetCurrentUrl();
-
-                RouteValueDictionary customValues = new RouteValueDictionary()
-                    .AddItem("ToUpdate", Context.ToUpdate)
-                    .AddItem("Messages", partialResponse.Messages);
-
-                // Save form request only if there wasn't redirect
-                if (navigationUrl == Application.GetCurrentUrl())
-                {
-                    Application.Router.RouteTo(
-                        new RequestContext(
-                            navigationUrl,
-                            Context.Parameters.ToRouteParams(),
-                            customValues
-                        )
-                    );
-                }
-                else
-                {
-                    Application.HistoryState.Push(new HistoryItem(navigationUrl, Context.ToUpdate));
-                    Application.Router.RouteTo(
-                        new RequestContext(
-                            navigationUrl, 
-                            new RouteParamDictionary(),
-                            customValues
-                        )
-                    );
-                }
+                ProcessResponse(partialResponse);
 
                 if (OnSuccess != null)
                     OnSuccess(this);
@@ -91,6 +60,32 @@ namespace Neptuo.TemplateEngine.Web
                 //TODO: Hmh, how to solve unexpected response?
                 HtmlContext.alert(status);
             }
+        }
+
+        private void ProcessResponse(PartialResponse partialResponse)
+        {
+            string navigationUrl = ResolveNavigationUrl(partialResponse);
+
+            RouteValueDictionary customValues = new RouteValueDictionary()
+                .AddItem("ToUpdate", Context.ToUpdate)
+                .AddItem("Messages", partialResponse.Messages);
+
+            RouteParamDictionary parameters = new RouteParamDictionary();
+            // Save form request only if there wasn't redirect
+            if (navigationUrl == Application.GetCurrentUrl())
+                parameters = Context.Parameters.ToRouteParams();
+            else
+                Application.HistoryState.Push(new HistoryItem(navigationUrl, Context.ToUpdate));
+
+            Application.Router.RouteTo(new RequestContext(navigationUrl, parameters, customValues));
+        }
+
+        private string ResolveNavigationUrl(PartialResponse partialResponse)
+        {
+            if (partialResponse.Navigation != null)
+                return Application.ResolveUrl(partialResponse.Navigation);
+            else
+                return Application.GetCurrentUrl();
         }
 
         private void OnSubmitError(jqXHR response, JsString status, JsError error)

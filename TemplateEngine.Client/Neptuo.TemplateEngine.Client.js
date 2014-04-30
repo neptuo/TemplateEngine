@@ -867,25 +867,29 @@ var Neptuo$TemplateEngine$Web$FormPostInvoker = {
                 partialResponse = $1.Value;
                 return $res;
             }).call(this)){
-                var navigationUrl = null;
-                if (partialResponse.get_Navigation() != null)
-                    navigationUrl = this.get_Application().ResolveUrl(partialResponse.get_Navigation());
-                else
-                    navigationUrl = this.get_Application().GetCurrentUrl();
-                var customValues = new Neptuo.TemplateEngine.Routing.RouteValueDictionary.ctor().AddItem("ToUpdate", this.get_Context().ToUpdate).AddItem("Messages", partialResponse.get_Messages());
-                if (navigationUrl == this.get_Application().GetCurrentUrl()){
-                    this.get_Application().get_Router().RouteTo(new Neptuo.TemplateEngine.Routing.RequestContext.ctor(navigationUrl, Neptuo.TemplateEngine.Web.JsArrayExtensions.ToRouteParams(this.get_Context().Parameters), customValues));
-                }
-                else {
-                    this.get_Application().get_HistoryState().Push(new Neptuo.TemplateEngine.Web.HistoryItem.ctor(navigationUrl, this.get_Context().ToUpdate, null));
-                    this.get_Application().get_Router().RouteTo(new Neptuo.TemplateEngine.Routing.RequestContext.ctor(navigationUrl, new Neptuo.TemplateEngine.Routing.RouteParamDictionary.ctor(), customValues));
-                }
+                this.ProcessResponse(partialResponse);
                 if (this.OnSuccess != null)
                     this.OnSuccess(this);
             }
             else {
                 alert(status);
             }
+        },
+        ProcessResponse: function (partialResponse){
+            var navigationUrl = this.ResolveNavigationUrl(partialResponse);
+            var customValues = new Neptuo.TemplateEngine.Routing.RouteValueDictionary.ctor().AddItem("ToUpdate", this.get_Context().ToUpdate).AddItem("Messages", partialResponse.get_Messages());
+            var parameters = new Neptuo.TemplateEngine.Routing.RouteParamDictionary.ctor();
+            if (navigationUrl == this.get_Application().GetCurrentUrl())
+                parameters = Neptuo.TemplateEngine.Web.JsArrayExtensions.ToRouteParams(this.get_Context().Parameters);
+            else
+                this.get_Application().get_HistoryState().Push(new Neptuo.TemplateEngine.Web.HistoryItem.ctor(navigationUrl, this.get_Context().ToUpdate, null));
+            this.get_Application().get_Router().RouteTo(new Neptuo.TemplateEngine.Routing.RequestContext.ctor(navigationUrl, parameters, customValues));
+        },
+        ResolveNavigationUrl: function (partialResponse){
+            if (partialResponse.get_Navigation() != null)
+                return this.get_Application().ResolveUrl(partialResponse.get_Navigation());
+            else
+                return this.get_Application().GetCurrentUrl();
         },
         OnSubmitError: function (response, status, error){
             if (this.OnError != null)
