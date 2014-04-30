@@ -75,6 +75,7 @@
     <Compile Include="ViewBundles\GreedyViewBundle.cs" />
     <Compile Include="ViewBundles\IViewBundle.cs" />
     <Compile Include="ViewBundles\IViewBundleCollection.cs" />
+    <Compile Include="TemplateRouteParameterBase.cs" />
     <Compile Include="ViewBundles\ViewBundle.cs" />
     <Compile Include="ViewBundles\ViewBundleCollection.cs" />
     <Compile Include="ViewBundles\ViewBundleTable.cs" />
@@ -101,10 +102,6 @@
     <ProjectReference Include="..\TemplateEngine.Providers\TemplateEngine.Providers.csproj">
       <Project>{30214616-7c89-467a-9147-7385e91aed13}</Project>
       <Name>TemplateEngine.Providers</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\TemplateEngine.Shared\TemplateEngine.Shared.csproj">
-      <Project>{a4c6627c-c21b-4bb7-93a4-b40ac748588d}</Project>
-      <Name>TemplateEngine.Shared</Name>
     </ProjectReference>
     <ProjectReference Include="..\TemplateEngine.Templates\TemplateEngine.Templates.csproj">
       <Project>{ee534abf-10e8-467b-aa25-d8a39b6542b4}</Project>
