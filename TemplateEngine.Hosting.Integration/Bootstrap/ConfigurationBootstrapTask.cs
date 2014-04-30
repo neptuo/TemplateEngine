@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Neptuo.TemplateEngine.Backend
+namespace Neptuo.TemplateEngine.Hosting.Integration
 {
     public class ConfigurationBootstrapTask : IBootstrapTask
     {

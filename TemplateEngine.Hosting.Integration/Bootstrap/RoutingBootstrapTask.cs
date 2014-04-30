@@ -1,6 +1,5 @@
 ﻿using Neptuo.Bootstrap;
 using Neptuo.TemplateEngine.Backend.Web;
-using Neptuo.TemplateEngine.Backend.Web.Routing;
 using Neptuo.TemplateEngine.Web;
 using Neptuo.TemplateEngine.Templates.Compilation;
 using Neptuo.Templates.Compilation;
@@ -11,8 +10,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web.Routing;
+using Neptuo.TemplateEngine.Hosting.Integration.Routing;
 
-namespace Neptuo.TemplateEngine.Backend
+namespace Neptuo.TemplateEngine.Hosting.Integration.Bootstrap
 {
     public class RoutingBootstrapTask : IBootstrapTask
     {

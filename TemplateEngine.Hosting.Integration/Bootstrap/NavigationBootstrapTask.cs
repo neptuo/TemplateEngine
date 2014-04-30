@@ -12,7 +12,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Neptuo.TemplateEngine.Backend.Bootstrap
+namespace Neptuo.TemplateEngine.Hosting.Integration.Bootstrap
 {
     public class NavigationBootstrapTask : IBootstrapTask
     {

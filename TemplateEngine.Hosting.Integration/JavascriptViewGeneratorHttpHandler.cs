@@ -11,8 +11,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web;
+using Neptuo.TemplateEngine.Backend.Web;
 
-namespace Neptuo.TemplateEngine.Backend.Web
+namespace Neptuo.TemplateEngine.Hosting.Integration
 {
     public class JavascriptViewGeneratorHttpHandler : IHttpHandler
     {
