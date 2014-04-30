@@ -24,6 +24,7 @@ using System.Text;
 using System.Web;
 using Neptuo.TemplateEngine.Hosting.Integration;
 using Neptuo.TemplateEngine.Hosting.Integration.Bootstrap;
+using Neptuo.TemplateEngine.Hosting.DataSources;
 
 namespace Neptuo.TemplateEngine.Backend.UI
 {

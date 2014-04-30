@@ -1,15 +1,15 @@
-﻿using Neptuo.TemplateEngine.Templates.DataSources;
-using Neptuo.TemplateEngine.Providers.ModelBinders;
-using Neptuo.TemplateEngine.Templates.DataSources;
-using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web;
+using Neptuo.TemplateEngine.Hosting.DataSources;
+using Neptuo.TemplateEngine.Providers.ModelBinders;
+using Neptuo.TemplateEngine.Templates.DataSources;
+using Newtonsoft.Json;
 
-namespace Neptuo.TemplateEngine.Web
+namespace Neptuo.TemplateEngine.Hosting
 {
     public class WebDataSourceHttpHandler : IHttpHandler
     {

@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 
-namespace Neptuo.TemplateEngine.Backend.Web
+namespace Neptuo.TemplateEngine.Hosting
 {
     public class ServerPathProvider : IVirtualPathProvider, IVirtualUrlProvider, ICurrentUrlProvider
     {
