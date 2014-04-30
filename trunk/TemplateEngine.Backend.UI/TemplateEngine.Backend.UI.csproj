@@ -198,7 +198,9 @@
     <None Include="Neptuo.TemplateEngine.Backend.UI.xml">
       <SubType>Designer</SubType>
     </None>
-    <Content Include="Views\Accounts\AccountsViewBundles.xml" />
+    <Content Include="Views\Accounts\AccountsViewBundles.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -256,6 +258,10 @@
     <ProjectReference Include="..\TemplateEngine.Hosting\TemplateEngine.Hosting.csproj">
       <Project>{f794b999-94db-4443-8780-25ad170742ee}</Project>
       <Name>TemplateEngine.Hosting</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TemplateEngine.Hosting.Integration\TemplateEngine.Hosting.Integration.csproj">
+      <Project>{f206c037-60a2-47a0-9166-f60a785fadc7}</Project>
+      <Name>TemplateEngine.Integration</Name>
     </ProjectReference>
     <ProjectReference Include="..\TemplateEngine.Navigation\TemplateEngine.Navigation.csproj">
       <Project>{f16d8bc8-2191-498f-9950-dc8aa200b0ba}</Project>

@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 
-namespace Neptuo.TemplateEngine.Hosting.Bootstrap
+namespace Neptuo.TemplateEngine.Hosting.Integration
 {
     public class HostedApplication : HttpApplication
     {
