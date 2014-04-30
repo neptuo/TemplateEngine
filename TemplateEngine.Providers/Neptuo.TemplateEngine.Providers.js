@@ -308,6 +308,15 @@ var Neptuo$TemplateEngine$Providers$IRequestContext = {
     IsAbstract: true
 };
 JsTypes.push(Neptuo$TemplateEngine$Providers$IRequestContext);
+var Neptuo$TemplateEngine$Providers$ITemplateUrlFormatter = {
+    fullname: "Neptuo.TemplateEngine.Providers.ITemplateUrlFormatter",
+    baseTypeName: "System.Object",
+    assemblyName: "Neptuo.TemplateEngine.Providers",
+    Kind: "Interface",
+    ctors: [],
+    IsAbstract: true
+};
+JsTypes.push(Neptuo$TemplateEngine$Providers$ITemplateUrlFormatter);
 var Neptuo$TemplateEngine$Providers$Message = {
     fullname: "Neptuo.TemplateEngine.Providers.Message",
     baseTypeName: "System.Object",

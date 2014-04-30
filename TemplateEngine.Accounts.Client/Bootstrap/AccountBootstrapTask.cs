@@ -18,19 +18,22 @@ namespace Neptuo.TemplateEngine.Accounts.Hosting.Bootstrap
         private IDependencyContainer dependencyContainer;
         private IFormUriRegistry formRegistry;
         private IControllerRegistry controllerRegistry;
+        private ITemplateUrlFormatter formatter;
         private GlobalNavigationCollection globalNavigations;
         private IConverterRepository converterRepository;
 
-        public AccountBootstrapTask(IDependencyContainer dependencyContainer, IFormUriRegistry formRegistry, IControllerRegistry controllerRegistry, GlobalNavigationCollection globalNavigations)
+        public AccountBootstrapTask(IDependencyContainer dependencyContainer, IFormUriRegistry formRegistry, IControllerRegistry controllerRegistry, ITemplateUrlFormatter formatter, GlobalNavigationCollection globalNavigations)
         {
             Guard.NotNull(dependencyContainer, "dependencyContainer");
             Guard.NotNull(formRegistry, "formRegistry");
             Guard.NotNull(controllerRegistry, "controllerRegistry");
+            Guard.NotNull(formatter, "formatter");
             Guard.NotNull(globalNavigations, "globalNavigations");
 
             this.dependencyContainer = dependencyContainer;
             this.formRegistry = formRegistry;
             this.controllerRegistry = controllerRegistry;
+            this.formatter = formatter;
             this.globalNavigations = globalNavigations;
             this.converterRepository = Converts.Repository;
         }
@@ -48,7 +51,7 @@ namespace Neptuo.TemplateEngine.Accounts.Hosting.Bootstrap
 
                 .Add(typeof(JsObject), typeof(ResourcePermissionListResult), new ResourcePermissionListResultConverter());
 
-            SetupForms(formRegistry);
+            SetupForms(formRegistry, formatter);
             SetupGlobalNavigations(globalNavigations);
         }
     }

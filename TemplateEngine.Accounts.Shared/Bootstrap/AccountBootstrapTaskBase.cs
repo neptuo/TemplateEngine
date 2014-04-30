@@ -8,26 +8,25 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Neptuo.TemplateEngine.Providers;
-using Neptuo.TemplateEngine.Web.Routing;
 
 namespace Neptuo.TemplateEngine.Accounts.Hosting.Bootstrap
 {
     public abstract class AccountBootstrapTaskBase
     {
-        protected void SetupForms(IFormUriRegistry formRegistry)
+        protected void SetupForms(IFormUriRegistry formRegistry, ITemplateUrlFormatter formatter)
         {
             formRegistry
-                .Register("Accounts.Login", TemplateRouteParameterBase.FormatUrl("~/Accounts/Login"))
+                .Register("Accounts.Login", formatter.FormatUrl("~/Accounts/Login"))
 
-                .Register("Accounts.User.List", TemplateRouteParameterBase.FormatUrl("~/Accounts/UserList"))
-                .Register("Accounts.User.Edit", TemplateRouteParameterBase.FormatUrl("~/Accounts/UserEdit"))
+                .Register("Accounts.User.List", formatter.FormatUrl("~/Accounts/UserList"))
+                .Register("Accounts.User.Edit", formatter.FormatUrl("~/Accounts/UserEdit"))
 
-                .Register("Accounts.Role.List", TemplateRouteParameterBase.FormatUrl("~/Accounts/RoleList"))
-                .Register("Accounts.Role.Edit", TemplateRouteParameterBase.FormatUrl("~/Accounts/RoleEdit"))
+                .Register("Accounts.Role.List", formatter.FormatUrl("~/Accounts/RoleList"))
+                .Register("Accounts.Role.Edit", formatter.FormatUrl("~/Accounts/RoleEdit"))
 
-                .Register("Accounts.Log.List", TemplateRouteParameterBase.FormatUrl("~/Accounts/LogList"))
+                .Register("Accounts.Log.List", formatter.FormatUrl("~/Accounts/LogList"))
 
-                .Register("Accounts.Permission.List", TemplateRouteParameterBase.FormatUrl("~/Accounts/PermissionList"));
+                .Register("Accounts.Permission.List", formatter.FormatUrl("~/Accounts/PermissionList"));
         }
 
         protected void SetupGlobalNavigations(GlobalNavigationCollection globalNavigations)

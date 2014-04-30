@@ -46,17 +46,19 @@ namespace Neptuo.TemplateEngine.Accounts.Hosting.Bootstrap
         private TypeBuilderRegistry registry;
         private IFormUriRegistry formRegistry;
         private IControllerRegistry controllerRegistry;
+        private ITemplateUrlFormatter formatter;
         private GlobalNavigationCollection globalNavigations;
         private IWebDataSourceRegistry dataSourceRegistry;
         private IViewBundleCollection viewBundles;
         private IEventRegistry eventRegistry;
 
-        public AccountBootstrapTask(IDependencyContainer dependencyContainer, TypeBuilderRegistry registry, IFormUriRegistry formRegistry, IControllerRegistry controllerRegistry, GlobalNavigationCollection globalNavigations, IWebDataSourceRegistry dataSourceRegistry, IEventRegistry eventRegistry)
+        public AccountBootstrapTask(IDependencyContainer dependencyContainer, TypeBuilderRegistry registry, IFormUriRegistry formRegistry, IControllerRegistry controllerRegistry, ITemplateUrlFormatter formatter, GlobalNavigationCollection globalNavigations, IWebDataSourceRegistry dataSourceRegistry, IEventRegistry eventRegistry)
         {
             Guard.NotNull(dependencyContainer, "dependencyContainer");
             Guard.NotNull(registry, "registry");
             Guard.NotNull(formRegistry, "formRegistry");
             Guard.NotNull(controllerRegistry, "controllerRegistry");
+            Guard.NotNull(formatter, "formatter");
             Guard.NotNull(globalNavigations, "globalNavigations");
             Guard.NotNull(dataSourceRegistry, "dataSourceRegistry");
             Guard.NotNull(eventRegistry, "eventRegistry");
@@ -65,6 +67,7 @@ namespace Neptuo.TemplateEngine.Accounts.Hosting.Bootstrap
             this.registry = registry;
             this.formRegistry = formRegistry;
             this.controllerRegistry = controllerRegistry;
+            this.formatter = formatter;
             this.globalNavigations = globalNavigations;
             this.dataSourceRegistry = dataSourceRegistry;
             this.eventRegistry = eventRegistry;
@@ -78,7 +81,7 @@ namespace Neptuo.TemplateEngine.Accounts.Hosting.Bootstrap
             SetupControllers(controllerRegistry);
             SetupDataSources(dataSourceRegistry);
 
-            SetupForms(formRegistry);
+            SetupForms(formRegistry, formatter);
             SetupGlobalNavigations(globalNavigations);
 
             SetupEvents(eventRegistry);
