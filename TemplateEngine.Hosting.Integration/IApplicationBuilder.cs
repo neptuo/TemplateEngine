@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Neptuo.TemplateEngine.Hosting.Bootstrap
+namespace Neptuo.TemplateEngine.Hosting.Integration
 {
     public interface IApplicationBuilder
     {

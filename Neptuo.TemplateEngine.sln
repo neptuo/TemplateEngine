@@ -64,6 +64,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TemplateEngine.Accounts.Hos
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TemplateEngine.Accounts.ViewModels", "TemplateEngine.Accounts.ViewModels\TemplateEngine.Accounts.ViewModels.csproj", "{F5033996-E58C-4E29-A79E-7512E4D8FDAA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TemplateEngine.Hosting.Integration", "TemplateEngine.Hosting.Integration\TemplateEngine.Hosting.Integration.csproj", "{F206C037-60A2-47A0-9166-F60A785FADC7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -162,6 +164,10 @@ Global
 		{F5033996-E58C-4E29-A79E-7512E4D8FDAA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F5033996-E58C-4E29-A79E-7512E4D8FDAA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F5033996-E58C-4E29-A79E-7512E4D8FDAA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F206C037-60A2-47A0-9166-F60A785FADC7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F206C037-60A2-47A0-9166-F60A785FADC7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F206C037-60A2-47A0-9166-F60A785FADC7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F206C037-60A2-47A0-9166-F60A785FADC7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -188,6 +194,7 @@ Global
 		{CEFD01C6-467D-4E1C-ACE6-AF093E443E08} = {C3F66B67-FA56-40D6-800B-335163886830}
 		{30214616-7C89-467A-9147-7385E91AED13} = {C3F66B67-FA56-40D6-800B-335163886830}
 		{6E0BCD94-E6D1-4F4D-BF0F-912EE279C09C} = {C3F66B67-FA56-40D6-800B-335163886830}
+		{F206C037-60A2-47A0-9166-F60A785FADC7} = {C3F66B67-FA56-40D6-800B-335163886830}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		VisualSVNWorkingCopyRoot = .

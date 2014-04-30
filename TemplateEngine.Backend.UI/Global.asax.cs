@@ -9,7 +9,6 @@ using Neptuo.TemplateEngine.Accounts.Data.Entity;
 using Neptuo.TemplateEngine.Accounts.Hosting.Bootstrap;
 using Neptuo.TemplateEngine.Backend.Bootstrap;
 using Neptuo.TemplateEngine.Controllers;
-using Neptuo.TemplateEngine.Hosting.Bootstrap;
 using Neptuo.TemplateEngine.Providers;
 using Neptuo.TemplateEngine.Security;
 using Neptuo.TemplateEngine.Templates.DataSources;
@@ -23,6 +22,7 @@ using Neptuo.Web;
 using System;
 using System.Text;
 using System.Web;
+using Neptuo.TemplateEngine.Hosting.Integration;
 
 namespace Neptuo.TemplateEngine.Backend.UI
 {
