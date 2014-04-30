@@ -22,13 +22,14 @@ using Neptuo.TemplateEngine.Providers;
 
 namespace Neptuo.TemplateEngine.Web
 {
-    public class Application : IApplication, IVirtualUrlProvider, ICurrentUrlProvider
+    public class Application : IApplication, IVirtualUrlProvider, ICurrentUrlProvider, ITemplateUrlFormatter
     {
         public static IApplication Instance { get; private set; }
 
         public bool IsDebug { get; private set; }
         public string ApplicationPath { get; private set; }
         public string[] DefaultToUpdate { get; private set; }
+        public string TemplateUrlSuffix { get; private set; }
         public IHistoryState HistoryState { get; private set; }
         public IMainView MainView { get; private set; }
         public IDependencyContainer DependencyContainer { get; private set; }
@@ -38,7 +39,7 @@ namespace Neptuo.TemplateEngine.Web
 
         #region Initialization
 
-        private Application(bool isDebug, string applicationPath, string[] defaultToUpdate)
+        private Application(bool isDebug, string applicationPath, string[] defaultToUpdate, string templateUrlSuffix)
         {
             Guard.NotNull(applicationPath, "applicationPath");
             Guard.NotNull(defaultToUpdate, "defaultToUpdate");
@@ -46,6 +47,8 @@ namespace Neptuo.TemplateEngine.Web
             IsDebug = isDebug;
             ApplicationPath = applicationPath;
             DefaultToUpdate = defaultToUpdate;
+            TemplateUrlSuffix = templateUrlSuffix;
+
             DependencyContainer = CreateDependencyContainer();
 
             HistoryState.OnPop += OnHistoryStatePop;
@@ -58,12 +61,12 @@ namespace Neptuo.TemplateEngine.Web
             RunBootstrapTasks(DependencyContainer);
         }
 
-        public static void Start(bool isDebug, string applicationPath, string[] defaultToUpdate)
+        public static void Start(bool isDebug, string applicationPath, string[] defaultToUpdate, string templateUrlSuffix)
         {
             if (Instance != null)
                 throw new ApplicationException("Application is already started."); //TODO: Ehm, be quiet?
 
-            Instance = new Application(isDebug, applicationPath, defaultToUpdate);
+            Instance = new Application(isDebug, applicationPath, defaultToUpdate, templateUrlSuffix);
         }
 
         private IDependencyContainer CreateDependencyContainer()
@@ -78,7 +81,7 @@ namespace Neptuo.TemplateEngine.Web
             MainView = new MainView(viewActivator, this);
 
             Router = new ApplicationRouter(!IsDebug);
-            Router.AddRoute(new TemplateRoute(TemplateRouteParameterBase.TemplateUrlSuffix, this));
+            Router.AddRoute(new TemplateRoute(TemplateUrlSuffix, this));
 
             UpdateViewNotifier = new UpdateViewNotifier(MainView);
 
@@ -87,6 +90,7 @@ namespace Neptuo.TemplateEngine.Web
             container
                 .RegisterInstance<IVirtualUrlProvider>(this)
                 .RegisterInstance<ICurrentUrlProvider>(this)
+                .RegisterInstance<ITemplateUrlFormatter>(this)
                 .RegisterType<IParameterProviderFactory, RouteParameterProviderFactory>()
                 .RegisterType<IParameterProvider, RouteParameterProvider>()
                 .RegisterType<IBindingManager, BindingManagerBase>()
@@ -201,7 +205,11 @@ namespace Neptuo.TemplateEngine.Web
             return SharpKit.Html.HtmlContext.location.pathname;
         }
 
-        #endregion
+        public string FormatUrl(string urlPart)
+        {
+            return urlPart + TemplateUrlSuffix;
+        }
 
+        #endregion
     }
 }

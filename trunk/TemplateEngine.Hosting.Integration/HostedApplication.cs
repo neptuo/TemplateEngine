@@ -84,6 +84,7 @@ namespace Neptuo.TemplateEngine.Hosting.Integration
                 .RegisterType<IControllerRegistry>(new SingletonLifetime(new ControllerRegistryBase()))
                 .RegisterType<IPermissionProvider, OptimisticPermissionProvider>(new PerRequestLifetime())
                 .RegisterInstance<IWebDataSourceRegistry>(new DictionaryWebDataSourceRegistry())
+                .RegisterInstance<ITemplateUrlFormatter>(new TemplateUrlFomatter())
                 .RegisterType<IUserContext, AnonymousUserContext>();
 
             builder.RegisterTypes(dependencyContainer);

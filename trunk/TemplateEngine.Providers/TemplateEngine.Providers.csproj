@@ -61,6 +61,7 @@
     <Compile Include="IParameterProvider.cs" />
     <Compile Include="IParameterProviderFactory.cs" />
     <Compile Include="IRequestContext.cs" />
+    <Compile Include="ITemplateUrlFormatter.cs" />
     <Compile Include="Message.cs" />
     <Compile Include="MessageStorage.cs" />
     <Compile Include="MessageStorageExtensions.cs" />

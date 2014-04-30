@@ -72,6 +72,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RequestParameterProvider.cs" />
     <Compile Include="RequestParameterProviderFactory.cs" />
+    <Compile Include="TemplateUrlFomatter.cs" />
     <Compile Include="ViewBundles\GreedyViewBundle.cs" />
     <Compile Include="ViewBundles\IViewBundle.cs" />
     <Compile Include="ViewBundles\IViewBundleCollection.cs" />

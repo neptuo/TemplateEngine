@@ -35,10 +35,11 @@ namespace Neptuo.TemplateEngine.Templates.Controls
             string toUpdate = String.Join(",", DefaultUpdate.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries).Select(s => "'" + s + "'"));
 
             string startupStript = String.Format(
-                "JsRuntime.Start(); Neptuo.TemplateEngine.Web.Application.Start({0}, \"{1}\", [{2}]);", 
+                "JsRuntime.Start(); Neptuo.TemplateEngine.Web.Application.Start({0}, \"{1}\", [{2}], \"{3}\");", 
                 config.IsDebug ? "true" : "false",
                 httpContext.Request.ApplicationPath, 
-                toUpdate
+                toUpdate,
+                ".html"
             );
 
             writer
