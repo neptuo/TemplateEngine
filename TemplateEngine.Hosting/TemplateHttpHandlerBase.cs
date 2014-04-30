@@ -38,7 +38,7 @@ namespace Neptuo.TemplateEngine.Hosting
             //TODO: Check whether can read
             FormUri formUri = GetCurrentFormUri(httpContext);
             IUserContext userContext = dependencyContainer.Resolve<IUserContext>();
-            if (userContext.Permissions.IsAllowed(formUri.Identifier(), "ReadWrite"))
+            if (formUri == null || userContext.Permissions.IsAllowed(formUri.Identifier(), "ReadWrite"))
             {
 
 
