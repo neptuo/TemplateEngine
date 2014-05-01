@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Exugin>
-    <Export Filename="Neptuo.TemplateEngine.Templates.Client.js" FilenameFormat="~/{0}" />
+    <Export Filename="Neptuo.TemplateEngine.Templates.js" FilenameFormat="~/{0}" />
 
     <Type Target="Neptuo.TemplateEngine.Templates.ClientGeneratedViewBase" Name="Neptuo.TemplateEngine.Templates.GeneratedViewBase" />
     <Type Target="Neptuo.TemplateEngine.Templates.Controls.ClientPartialStartUpControl" Name="Neptuo.TemplateEngine.Templates.Controls.PartialStartUpControl" />

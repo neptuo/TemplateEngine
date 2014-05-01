@@ -60,7 +60,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TemplateEngine.Accounts.Vie
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TemplateEngine.Hosting.Integration", "TemplateEngine.Hosting.Integration\TemplateEngine.Hosting.Integration.csproj", "{F206C037-60A2-47A0-9166-F60A785FADC7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test", "Test\Test.csproj", "{06BE7FC4-342C-464C-B1C3-245B31BA3262}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TemplateEngine.Controllers.Client", "TemplateEngine.Controllers.Client\TemplateEngine.Controllers.Client.csproj", "{7A29AB8F-8A8D-4DA6-B17A-FAA81E3D4869}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -156,10 +156,10 @@ Global
 		{F206C037-60A2-47A0-9166-F60A785FADC7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F206C037-60A2-47A0-9166-F60A785FADC7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F206C037-60A2-47A0-9166-F60A785FADC7}.Release|Any CPU.Build.0 = Release|Any CPU
-		{06BE7FC4-342C-464C-B1C3-245B31BA3262}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{06BE7FC4-342C-464C-B1C3-245B31BA3262}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{06BE7FC4-342C-464C-B1C3-245B31BA3262}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{06BE7FC4-342C-464C-B1C3-245B31BA3262}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7A29AB8F-8A8D-4DA6-B17A-FAA81E3D4869}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7A29AB8F-8A8D-4DA6-B17A-FAA81E3D4869}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7A29AB8F-8A8D-4DA6-B17A-FAA81E3D4869}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7A29AB8F-8A8D-4DA6-B17A-FAA81E3D4869}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -186,6 +186,7 @@ Global
 		{30214616-7C89-467A-9147-7385E91AED13} = {C3F66B67-FA56-40D6-800B-335163886830}
 		{6E0BCD94-E6D1-4F4D-BF0F-912EE279C09C} = {C3F66B67-FA56-40D6-800B-335163886830}
 		{F206C037-60A2-47A0-9166-F60A785FADC7} = {C3F66B67-FA56-40D6-800B-335163886830}
+		{7A29AB8F-8A8D-4DA6-B17A-FAA81E3D4869} = {C3F66B67-FA56-40D6-800B-335163886830}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		VisualSVNWorkingCopyRoot = .

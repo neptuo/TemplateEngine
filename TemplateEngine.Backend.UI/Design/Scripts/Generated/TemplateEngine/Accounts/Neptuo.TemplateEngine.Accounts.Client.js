@@ -11,32 +11,35 @@ var Neptuo$TemplateEngine$Accounts$Hosting$Bootstrap$AccountBootstrapTask = {
     interfaceNames: ["Neptuo.Bootstrap.IBootstrapTask"],
     Kind: "Class",
     definition: {
-        ctor: function (dependencyContainer, formRegistry, controllerRegistry, globalNavigations){
+        ctor: function (dependencyContainer, formRegistry, controllerRegistry, formatter, globalNavigations){
             this.dependencyContainer = null;
             this.formRegistry = null;
             this.controllerRegistry = null;
+            this.formatter = null;
             this.globalNavigations = null;
             this.converterRepository = null;
             Neptuo.TemplateEngine.Accounts.Hosting.Bootstrap.AccountBootstrapTaskBase.ctor.call(this);
             Neptuo.Guard.NotNull$$Object$$String(dependencyContainer, "dependencyContainer");
             Neptuo.Guard.NotNull$$Object$$String(formRegistry, "formRegistry");
             Neptuo.Guard.NotNull$$Object$$String(controllerRegistry, "controllerRegistry");
+            Neptuo.Guard.NotNull$$Object$$String(formatter, "formatter");
             Neptuo.Guard.NotNull$$Object$$String(globalNavigations, "globalNavigations");
             this.dependencyContainer = dependencyContainer;
             this.formRegistry = formRegistry;
             this.controllerRegistry = controllerRegistry;
+            this.formatter = formatter;
             this.globalNavigations = globalNavigations;
             this.converterRepository = Neptuo.Converts.get_Repository();
         },
         Initialize: function (){
             this.converterRepository.Add(Typeof(Object), Typeof(Neptuo.TemplateEngine.Accounts.UserAccountEditModel.ctor), new Neptuo.TemplateEngine.Accounts.UserAccountEditModelConverter.ctor()).Add(Typeof(Object), Typeof(Neptuo.TemplateEngine.Accounts.UserAccountListResult.ctor), new Neptuo.TemplateEngine.Accounts.UserAccountListResultConverter.ctor()).Add(Typeof(Object), Typeof(Neptuo.TemplateEngine.Accounts.UserRoleEditModel.ctor), new Neptuo.TemplateEngine.Accounts.UserRoleEditModelConverter.ctor()).Add(Typeof(Object), Typeof(Neptuo.TemplateEngine.Accounts.UserRoleListResult.ctor), new Neptuo.TemplateEngine.Accounts.UserRoleListResultConverter.ctor()).Add(Typeof(Object), Typeof(Neptuo.TemplateEngine.Accounts.UserLogListResult.ctor), new Neptuo.TemplateEngine.Accounts.UserLogListResultConverter.ctor()).Add(Typeof(Object), Typeof(Neptuo.TemplateEngine.Accounts.ResourcePermissionListResult.ctor), new Neptuo.TemplateEngine.Accounts.ResourcePermissionListResultConverter.ctor());
-            this.SetupForms(this.formRegistry);
+            this.SetupForms(this.formRegistry, this.formatter);
             this.SetupGlobalNavigations(this.globalNavigations);
         }
     },
     ctors: [{
         name: "ctor",
-        parameters: ["Neptuo.IDependencyContainer", "Neptuo.TemplateEngine.Navigation.Bootstrap.IFormUriRegistry", "Neptuo.TemplateEngine.Controllers.IControllerRegistry", "Neptuo.TemplateEngine.Providers.GlobalNavigationCollection"]
+        parameters: ["Neptuo.IDependencyContainer", "Neptuo.TemplateEngine.Navigation.Bootstrap.IFormUriRegistry", "Neptuo.TemplateEngine.Controllers.IAsyncControllerRegistry", "Neptuo.TemplateEngine.Providers.ITemplateUrlFormatter", "Neptuo.TemplateEngine.Providers.GlobalNavigationCollection"]
     }
     ],
     IsAbstract: false

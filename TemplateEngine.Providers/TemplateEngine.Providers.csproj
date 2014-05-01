@@ -67,6 +67,7 @@
     <Compile Include="MessageStorageExtensions.cs" />
     <Compile Include="ParameterProviderExtensions.cs" />
     <Compile Include="ParameterProviderType.cs" />
+    <Compile Include="PartialResponse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

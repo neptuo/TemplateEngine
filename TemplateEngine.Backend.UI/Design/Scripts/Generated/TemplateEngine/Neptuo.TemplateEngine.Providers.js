@@ -249,20 +249,20 @@ var Neptuo$TemplateEngine$Providers$GlobalNavigationCollection = {
             this.storage = new System.Collections.Generic.Dictionary$2.ctor(System.String.ctor, Neptuo.TemplateEngine.Navigation.FormUri.ctor);
             System.Object.ctor.call(this);
         },
-        Add: function (name, to){
-            if (name == null)
+        Add: function (on, to){
+            if (on == null)
                 throw $CreateException(new System.ArgumentNullException.ctor$$String("name"), new Error());
             if (to == null)
                 throw $CreateException(new System.ArgumentNullException.ctor$$String("to"), new Error());
-            this.storage.set_Item$$TKey(name, to);
+            this.storage.set_Item$$TKey(on, to);
             return this;
         },
-        TryGetValue: function (name, to){
-            if (name == null){
+        TryGetValue: function (on, to){
+            if (on == null){
                 to.Value = null;
                 return false;
             }
-            return this.storage.TryGetValue(name, to);
+            return this.storage.TryGetValue(on, to);
         }
     },
     ctors: [{
@@ -310,6 +310,15 @@ var Neptuo$TemplateEngine$Providers$IRequestContext = {
     IsAbstract: true
 };
 JsTypes.push(Neptuo$TemplateEngine$Providers$IRequestContext);
+var Neptuo$TemplateEngine$Providers$ITemplateUrlFormatter = {
+    fullname: "Neptuo.TemplateEngine.Providers.ITemplateUrlFormatter",
+    baseTypeName: "System.Object",
+    assemblyName: "Neptuo.TemplateEngine.Providers",
+    Kind: "Interface",
+    ctors: [],
+    IsAbstract: true
+};
+JsTypes.push(Neptuo$TemplateEngine$Providers$ITemplateUrlFormatter);
 var Neptuo$TemplateEngine$Providers$Message = {
     fullname: "Neptuo.TemplateEngine.Providers.Message",
     baseTypeName: "System.Object",
@@ -454,39 +463,6 @@ var Neptuo$TemplateEngine$Providers$MessageStorageExtensions = {
     IsAbstract: true
 };
 JsTypes.push(Neptuo$TemplateEngine$Providers$MessageStorageExtensions);
-var Neptuo$TemplateEngine$Providers$NavigationCollection = {
-    fullname: "Neptuo.TemplateEngine.Providers.NavigationCollection",
-    baseTypeName: "System.Object",
-    assemblyName: "Neptuo.TemplateEngine.Providers",
-    interfaceNames: ["System.Collections.Generic.IEnumerable$1"],
-    Kind: "Class",
-    definition: {
-        ctor: function (){
-            this.items = new System.Collections.Generic.HashSet$1.ctor(System.String.ctor);
-            System.Object.ctor.call(this);
-        },
-        Add: function (name){
-            if (name == null)
-                throw $CreateException(new System.ArgumentNullException.ctor$$String("name"), new Error());
-            this.items.Add(name);
-        },
-        Contains: function (name){
-            if (name == null)
-                throw $CreateException(new System.ArgumentNullException.ctor$$String("name"), new Error());
-            return this.items.Contains(name);
-        },
-        GetEnumerator: function (){
-            return this.items.GetEnumerator();
-        }
-    },
-    ctors: [{
-        name: "ctor",
-        parameters: []
-    }
-    ],
-    IsAbstract: false
-};
-JsTypes.push(Neptuo$TemplateEngine$Providers$NavigationCollection);
 var Neptuo$TemplateEngine$Providers$ParameterProviderExtensions = {
     fullname: "Neptuo.TemplateEngine.Providers.ParameterProviderExtensions",
     baseTypeName: "System.Object",
@@ -537,5 +513,41 @@ var Neptuo$TemplateEngine$Providers$ParameterProviderType = {
     IsAbstract: false
 };
 JsTypes.push(Neptuo$TemplateEngine$Providers$ParameterProviderType);
+var Neptuo$TemplateEngine$Providers$PartialResponse = {
+    fullname: "Neptuo.TemplateEngine.Providers.PartialResponse",
+    baseTypeName: "System.Object",
+    assemblyName: "Neptuo.TemplateEngine.Providers",
+    Kind: "Class",
+    definition: {
+        ctor: function (messages, navigation){
+            this._Messages = null;
+            this._Navigation = null;
+            System.Object.ctor.call(this);
+            this.set_Messages(messages);
+            this.set_Navigation(navigation);
+        },
+        Messages$$: "Neptuo.TemplateEngine.Providers.MessageStorage",
+        get_Messages: function (){
+            return this._Messages;
+        },
+        set_Messages: function (value){
+            this._Messages = value;
+        },
+        Navigation$$: "System.String",
+        get_Navigation: function (){
+            return this._Navigation;
+        },
+        set_Navigation: function (value){
+            this._Navigation = value;
+        }
+    },
+    ctors: [{
+        name: "ctor",
+        parameters: ["Neptuo.TemplateEngine.Providers.MessageStorage", "System.String"]
+    }
+    ],
+    IsAbstract: false
+};
+JsTypes.push(Neptuo$TemplateEngine$Providers$PartialResponse);
 
 

@@ -152,14 +152,12 @@
     <Content Include="Design\Scripts\Generated\TemplateEngine\Accounts\Neptuo.TemplateEngine.Accounts.ViewModels.js" />
     <Content Include="Design\Scripts\Generated\TemplateEngine\Neptuo.TemplateEngine.Controllers.js" />
     <Content Include="Design\Scripts\Generated\TemplateEngine\Neptuo.TemplateEngine.Providers.js" />
-    <Content Include="Design\Scripts\Generated\TemplateEngine\Neptuo.TemplateEngine.Routing.Client.js" />
-    <Content Include="Design\Scripts\Generated\TemplateEngine\Neptuo.TemplateEngine.Shared.js" />
+    <Content Include="Design\Scripts\Generated\TemplateEngine\Neptuo.TemplateEngine.Routing.js" />
     <Content Include="Design\Scripts\Generated\Neptuo.Templates.Components.js" />
-    <Content Include="Design\Scripts\Generated\TemplateEngine\Neptuo.TemplateEngine.Client.js" />
+    <Content Include="Design\Scripts\Generated\TemplateEngine\Neptuo.TemplateEngine.js" />
     <Content Include="Design\Scripts\Generated\TemplateEngine\Accounts\Neptuo.TemplateEngine.Accounts.Client.js" />
     <Content Include="Design\Scripts\Generated\TemplateEngine\Accounts\Neptuo.TemplateEngine.Accounts.Shared.js" />
     <Content Include="Design\Scripts\Generated\TemplateEngine\Neptuo.TemplateEngine.Navigation.js" />
-    <Content Include="Design\Scripts\Generated\TemplateEngine\Neptuo.TemplateEngine.Templates.Client.js" />
     <Content Include="Design\Scripts\Generated\TemplateEngine\Neptuo.TemplateEngine.Templates.js" />
     <Content Include="Design\Styles\bootstrap-theme.css" />
     <Content Include="Design\Styles\bootstrap-theme.min.css" />
