@@ -36,6 +36,7 @@ namespace Neptuo.TemplateEngine.Web
         public IFormPostInvokerManager FormPostInvokers { get; private set; }
         public IRouter Router { get; private set; }
         public IUpdateViewNotifier UpdateViewNotifier { get; private set; }
+        public IAsyncControllerRegistry ControllerRegistry { get; private set; }
 
         #region Initialization
 
@@ -43,6 +44,7 @@ namespace Neptuo.TemplateEngine.Web
         {
             Guard.NotNull(applicationPath, "applicationPath");
             Guard.NotNull(defaultToUpdate, "defaultToUpdate");
+            Guard.NotNull(templateUrlSuffix, "templateUrlSuffix");
 
             IsDebug = isDebug;
             ApplicationPath = applicationPath;
@@ -84,8 +86,8 @@ namespace Neptuo.TemplateEngine.Web
             Router.AddRoute(new TemplateRoute(TemplateUrlSuffix, this));
 
             UpdateViewNotifier = new UpdateViewNotifier(MainView);
-
             FormPostInvokers = new QueueFormPostInvokerManager();
+            ControllerRegistry = new AsyncControllerRegistryBase();
 
             container
                 .RegisterInstance<IVirtualUrlProvider>(this)
@@ -106,7 +108,7 @@ namespace Neptuo.TemplateEngine.Web
                 .RegisterInstance<IFormUriRepository>(FormUriTable.Repository)
                 .RegisterInstance<IFormUriRegistry>(FormUriTable.Registry)
 
-                .RegisterInstance<IAsyncControllerRegistry>(new AsyncControllerRegistryBase())
+                .RegisterInstance<IAsyncControllerRegistry>(ControllerRegistry)
 
                 .RegisterInstance<IHistoryState>(HistoryState)
                 .RegisterInstance<IMainView>(MainView)
@@ -156,33 +158,12 @@ namespace Neptuo.TemplateEngine.Web
             UpdateViewNotifier.StartUpdate();
             //TODO: Invoke controllers
             //if (!InvokeControllers(context.Parameters))
-            FormPostInvokers.Invoke(new FormPostInvoker(this, context));
+            FormPostInvokers.Invoke(new FormPostInvoker(this, ControllerRegistry, context));
         }
         
-        public bool TryInvokeControllers(Dictionary<string, string> parameters)
+        public void TryInvokeControllers(FormRequestContext context)
         {
-            //IDependencyContainer container = DependencyContainer.CreateChildContainer();
-            //container.RegisterInstance<IParameterProvider>(new DictionaryParameterProvider(parameters));
-
-            //IControllerRegistry controllerRegistry = container.Resolve<IControllerRegistry>();
-            //IModelBinder modelBinder = container.Resolve<IModelBinder>();
-            //MessageStorage messageStorage = container.Resolve<MessageStorage>();
-            //bool isControllerExecuted = false;
-
-            //foreach (KeyValuePair<string, string> parameter in parameters)
-            //{
-            //    string key = parameter.Key;
-            //    IController controller;
-            //    if (controllerRegistry.TryGet(key, out controller))
-            //    {
-            //        controller.Execute(new ControllerContext(key, modelBinder, container, messageStorage));
-            //        isControllerExecuted = true;
-            //    }
-            //}
-
-            ////TODO: Process navigations
-            //return isControllerExecuted;
-            return true;
+            FormPostInvokers.Invoke(new FormPostInvoker(this, ControllerRegistry, context));
         }
 
         private void NavigateToUrl(string url, string[] toUpdate)
