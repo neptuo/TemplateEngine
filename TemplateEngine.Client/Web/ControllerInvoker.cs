@@ -61,9 +61,8 @@ namespace Neptuo.TemplateEngine.Web
             IModelBinder modelBinder = container.Resolve<IModelBinder>();
             MessageStorage messageStorage = container.Resolve<MessageStorage>();
 
-            foreach (KeyValuePair<string, string> parameter in Context.Parameters)
+            foreach (string key in parameterProvider.Keys)
             {
-                string key = parameter.Key;
                 IAsyncController controller;
                 if (ControllerRegistry.TryGet(key, out controller))
                 {
