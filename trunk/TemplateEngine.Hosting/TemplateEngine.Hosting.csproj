@@ -66,6 +66,7 @@
     <Compile Include="Configuration\AnonymousRoleKeyProperty.cs" />
     <Compile Include="Configuration\ApplicationConfiguration.cs" />
     <Compile Include="Configuration\IsDebugProperty.cs" />
+    <Compile Include="JsonConverter.cs" />
     <Compile Include="Navigation\QueryStringNavigateTo.cs" />
     <Compile Include="Navigation\RedirectNavigateTo.cs" />
     <Compile Include="Navigation\RedirectNavigator.cs" />

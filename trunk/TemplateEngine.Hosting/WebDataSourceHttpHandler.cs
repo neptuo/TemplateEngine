@@ -7,7 +7,7 @@ using System.Web;
 using Neptuo.TemplateEngine.Hosting.DataSources;
 using Neptuo.TemplateEngine.Providers.ModelBinders;
 using Neptuo.TemplateEngine.Templates.DataSources;
-using Newtonsoft.Json;
+using Neptuo.TemplateEngine.Providers;
 
 namespace Neptuo.TemplateEngine.Hosting
 {
@@ -52,11 +52,11 @@ namespace Neptuo.TemplateEngine.Hosting
                 }
             }
 
-            if(data != null)
+            JsonResponse jsonResponse;
+            if(data != null && Converts.Try(data, out jsonResponse))
             {
-                string response = JsonConvert.SerializeObject(data);
-                context.Response.ContentType = "application/json";
-                context.Response.Write(response);
+                context.Response.ContentType = jsonResponse.ContentType;
+                context.Response.Write(jsonResponse.Response);
             }
         }
 

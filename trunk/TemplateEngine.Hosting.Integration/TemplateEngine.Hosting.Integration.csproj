@@ -99,6 +99,7 @@
   <ItemGroup>
     <Compile Include="Bootstrap\BindingBootstrapTask.cs" />
     <Compile Include="Bootstrap\ConfigurationBootstrapTask.cs" />
+    <Compile Include="Bootstrap\ConverterBootstrapTask.cs" />
     <Compile Include="Bootstrap\ModuleBootstrapConstraint.cs" />
     <Compile Include="Bootstrap\ModuleBootstrapConstraintProvider.cs" />
     <Compile Include="Bootstrap\NavigationBootstrapTask.cs" />

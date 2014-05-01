@@ -317,6 +317,46 @@ var Neptuo$TemplateEngine$Providers$ITemplateUrlFormatter = {
     IsAbstract: true
 };
 JsTypes.push(Neptuo$TemplateEngine$Providers$ITemplateUrlFormatter);
+var Neptuo$TemplateEngine$Providers$JsonResponse = {
+    fullname: "Neptuo.TemplateEngine.Providers.JsonResponse",
+    baseTypeName: "System.Object",
+    assemblyName: "Neptuo.TemplateEngine.Providers",
+    Kind: "Class",
+    definition: {
+        ctor: function (response){
+            this._Response = null;
+            this._ContentType = null;
+            System.Object.ctor.call(this);
+            this.set_Response(response);
+            this.set_ContentType("application/json");
+        },
+        Response$$: "System.String",
+        get_Response: function (){
+            return this._Response;
+        },
+        set_Response: function (value){
+            this._Response = value;
+        },
+        ContentType$$: "System.String",
+        get_ContentType: function (){
+            return this._ContentType;
+        },
+        set_ContentType: function (value){
+            this._ContentType = value;
+        },
+        ReponseLength$$: "System.Int32",
+        get_ReponseLength: function (){
+            return this.get_Response().get_Length();
+        }
+    },
+    ctors: [{
+        name: "ctor",
+        parameters: ["System.String"]
+    }
+    ],
+    IsAbstract: false
+};
+JsTypes.push(Neptuo$TemplateEngine$Providers$JsonResponse);
 var Neptuo$TemplateEngine$Providers$Message = {
     fullname: "Neptuo.TemplateEngine.Providers.Message",
     baseTypeName: "System.Object",
