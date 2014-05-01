@@ -35,11 +35,6 @@ namespace Neptuo.TemplateEngine.Web
         IDependencyContainer DependencyContainer { get; }
 
         /// <summary>
-        /// Form POST manager.
-        /// </summary>
-        IControllerInvokeManager FormPostInvokers { get; }
-
-        /// <summary>
         /// Router.
         /// </summary>
         IRouter Router { get; }
@@ -53,6 +48,6 @@ namespace Neptuo.TemplateEngine.Web
         /// Tries to find and invoke controller.
         /// </summary>
         /// <param name="parameters">Form request context.</param>
-        void TryInvokeControllers(FormRequestContext context);
+        void InvokeController(FormRequestContext context);
     }
 }
