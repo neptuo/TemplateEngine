@@ -97,7 +97,7 @@ namespace Neptuo.TemplateEngine.Web
                     formData.push(submitButton);
                 }
 
-                FormRequestContext context = new FormRequestContext(toUpdate, formData, buttonName, formUrl);
+                FormRequestContext context = new FormRequestContext(toUpdate, formData, formUrl);
 
                 if (OnPostFormSubmit != null)
                     OnPostFormSubmit(context);

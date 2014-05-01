@@ -161,7 +161,6 @@ namespace Neptuo.TemplateEngine.Web
         
         public bool TryInvokeControllers(Dictionary<string, string> parameters)
         {
-            return true;
             //IDependencyContainer container = DependencyContainer.CreateChildContainer();
             //container.RegisterInstance<IParameterProvider>(new DictionaryParameterProvider(parameters));
 
@@ -183,6 +182,7 @@ namespace Neptuo.TemplateEngine.Web
 
             ////TODO: Process navigations
             //return isControllerExecuted;
+            return true;
         }
 
         private void NavigateToUrl(string url, string[] toUpdate)

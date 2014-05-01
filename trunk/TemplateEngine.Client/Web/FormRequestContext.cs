@@ -11,14 +11,12 @@ namespace Neptuo.TemplateEngine.Web
     {
         public string[] ToUpdate { get; private set; }
         public JsArray Parameters { get; private set; }
-        public string EventName { get; private set; }
         public string FormUrl { get; private set; }
 
-        public FormRequestContext(string[] toUpdate, JsArray parameters, string eventName, string formUrl)
+        public FormRequestContext(string[] toUpdate, JsArray parameters, string formUrl)
         {
             ToUpdate = toUpdate;
             Parameters = parameters;
-            EventName = eventName;
             FormUrl = formUrl;
         }
     }
