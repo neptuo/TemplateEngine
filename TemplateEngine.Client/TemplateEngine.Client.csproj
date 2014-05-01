@@ -86,14 +86,14 @@
     <Compile Include="Web\AsyncViewRenderer.cs" />
     <Compile Include="Web\ConverterBootstrapTask.cs" />
     <Compile Include="Web\ErrorModel.cs" />
-    <Compile Include="Web\FormPostInvoker.cs" />
+    <Compile Include="Web\ControllerInvoker.cs" />
     <Compile Include="Web\FormRequestContext.cs" />
     <Compile Include="Web\HistoryItem.cs" />
     <Compile Include="Web\HistoryState.cs" />
     <Compile Include="Web\IApplication.cs" />
     <Compile Include="Web\IAsyncViewRenderer.cs" />
-    <Compile Include="Web\IFormPostInvoker.cs" />
-    <Compile Include="Web\IFormPostInvokerManager.cs" />
+    <Compile Include="Web\IControllerInvoker.cs" />
+    <Compile Include="Web\IControllerInvokeManager.cs" />
     <Compile Include="Web\IHistoryState.cs" />
     <Compile Include="Web\IMainView.cs" />
     <Compile Include="Web\ITemplateConfiguration.cs" />
@@ -108,7 +108,7 @@
     <Compile Include="Web\JsArrayExtensions.cs" />
     <Compile Include="Web\MainView.cs" />
     <Compile Include="Web\PartialResponseConverter.cs" />
-    <Compile Include="Web\QueueFormPostInvokerManager.cs" />
+    <Compile Include="Web\QueueControllerInvokeManager.cs" />
     <Compile Include="Web\RouteParameterProvider.cs" />
     <Compile Include="Web\RouteParameterProviderFactory.cs" />
     <Compile Include="Web\_InitScript.cs" />

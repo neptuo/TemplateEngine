@@ -7,14 +7,14 @@ using System.Threading.Tasks;
 namespace Neptuo.TemplateEngine.Web
 {
     /// <summary>
-    /// Manages <see cref="IFormPostInvoker"/>.
+    /// Manages <see cref="IControllerInvoker"/>.
     /// </summary>
-    public interface IFormPostInvokerManager
+    public interface IControllerInvokeManager
     {
         /// <summary>
         /// Starts <paramref name="invoker"/>.
         /// </summary>
         /// <param name="invoker">Invoker to start.</param>
-        void Invoke(IFormPostInvoker invoker);
+        void Invoke(IControllerInvoker invoker);
     }
 }

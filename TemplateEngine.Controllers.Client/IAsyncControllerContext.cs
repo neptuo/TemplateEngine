@@ -11,12 +11,13 @@ namespace Neptuo.TemplateEngine.Controllers
     public interface IAsyncControllerContext
     {
         string ActionName { get; }
+        IParameterProvider Parameters { get; }
         IModelBinder ModelBinder { get; }
         IDependencyProvider DependencyProvider { get; }
+        
         string Navigation { get; set; }
         MessageStorage Messages { get; }
 
         void OnComplete();
     }
-
 }

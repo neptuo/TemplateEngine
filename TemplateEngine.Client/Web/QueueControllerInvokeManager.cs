@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Web
 {
-    public class QueueFormPostInvokerManager : IFormPostInvokerManager
+    public class QueueControllerInvokeManager : IControllerInvokeManager
     {
         private bool isRunning = false;
-        private List<IFormPostInvoker> invokers = new List<IFormPostInvoker>();
+        private List<IControllerInvoker> invokers = new List<IControllerInvoker>();
 
-        public void Invoke(IFormPostInvoker invoker)
+        public void Invoke(IControllerInvoker invoker)
         {
             invoker.OnSuccess += OnSuccess;
             invoker.OnError += OnError;
@@ -22,7 +22,7 @@ namespace Neptuo.TemplateEngine.Web
                 InvokeFirst();
         }
 
-        private void OnSuccess(IFormPostInvoker invoker)
+        private void OnSuccess(IControllerInvoker invoker)
         {
             invokers.Remove(invoker);
             isRunning = false;
@@ -30,7 +30,7 @@ namespace Neptuo.TemplateEngine.Web
             InvokeFirst();
         }
 
-        private void OnError(IFormPostInvoker invoker, ErrorModel error)
+        private void OnError(IControllerInvoker invoker, ErrorModel error)
         {
             invokers.Remove(invoker);
 
@@ -47,7 +47,7 @@ namespace Neptuo.TemplateEngine.Web
 
         private void InvokeFirst()
         {
-            IFormPostInvoker invoker = invokers.FirstOrDefault();
+            IControllerInvoker invoker = invokers.FirstOrDefault();
             if (invoker != null)
             {
                 invoker.Invoke();

@@ -13,16 +13,18 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Web
 {
-    public class FormPostInvoker : IFormPostInvoker
+    public class ControllerInvoker : IControllerInvoker
     {
         protected IApplication Application { get; private set; }
         protected IAsyncControllerRegistry ControllerRegistry { get; private set; }
         protected FormRequestContext Context { get; private set; }
 
-        public event Action<IFormPostInvoker> OnSuccess;
-        public event Action<IFormPostInvoker, ErrorModel> OnError;
+        public event Action<IControllerInvoker> OnSuccess;
+        public event Action<IControllerInvoker, ErrorModel> OnError;
 
-        public FormPostInvoker(IApplication application, IAsyncControllerRegistry controllerRegistry, FormRequestContext context)
+        private IAsyncControllerContext controllerContext;
+
+        public ControllerInvoker(IApplication application, IAsyncControllerRegistry controllerRegistry, FormRequestContext context)
         {
             Guard.NotNull(application, "application");
             Guard.NotNull(context, "context");
@@ -34,27 +36,8 @@ namespace Neptuo.TemplateEngine.Web
 
         public void Invoke()
         {
-            //TODO: Run AsyncControllers here!
             Application.HistoryState.Replace(new HistoryItem(Context.FormUrl, Context.ToUpdate, Context));
-            
-            IDependencyContainer container = Application.DependencyContainer.CreateChildContainer();
-            container.RegisterInstance<IParameterProvider>(Context.Parameters.ToParameterProvider());
-            IModelBinder modelBinder = container.Resolve<IModelBinder>();
-            MessageStorage messageStorage = container.Resolve<MessageStorage>();
-
-            bool isControllerInvoked = false;
-            foreach (KeyValuePair<string, string> parameter in Context.Parameters)
-            {
-                string key = parameter.Key;
-                IAsyncController controller;
-                if (ControllerRegistry.TryGet(key, out controller))
-                {
-                    isControllerInvoked = true;
-                    controller.Execute(new AsyncControllerContext(key, modelBinder, container, messageStorage, OnControllerExecuted));
-                }
-            }
-
-            if (!isControllerInvoked)
+            if (!TryInvokeControllers())
             {
                 JsObject headers = new JsObject();
                 headers["X-EngineRequestType"] = "Partial"; //TODO: Shared constant?
@@ -70,10 +53,32 @@ namespace Neptuo.TemplateEngine.Web
             }
         }
 
+        private bool TryInvokeControllers()
+        {
+            IParameterProvider parameterProvider = Context.Parameters.ToParameterProvider();
+            IDependencyContainer container = Application.DependencyContainer.CreateChildContainer();
+            container.RegisterInstance<IParameterProvider>(parameterProvider);
+            IModelBinder modelBinder = container.Resolve<IModelBinder>();
+            MessageStorage messageStorage = container.Resolve<MessageStorage>();
+
+            foreach (KeyValuePair<string, string> parameter in Context.Parameters)
+            {
+                string key = parameter.Key;
+                IAsyncController controller;
+                if (ControllerRegistry.TryGet(key, out controller))
+                {
+                    controllerContext = new AsyncControllerContext(key, parameterProvider, modelBinder, container, messageStorage, OnControllerExecuted);
+                    controller.Execute(controllerContext);
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
         private void OnControllerExecuted()
         {
-            if (OnSuccess != null)
-                OnSuccess(this);
+            ProcessResponse(new PartialResponse(controllerContext.Messages, controllerContext.Navigation));
         }
 
         private void OnSubmitSuccess(object response, JsString status, jqXHR sender)
@@ -95,7 +100,7 @@ namespace Neptuo.TemplateEngine.Web
 
         private void ProcessResponse(PartialResponse partialResponse)
         {
-            string navigationUrl = ResolveNavigationUrl(partialResponse);
+            string navigationUrl = ResolveNavigationUrl(partialResponse.Navigation);
 
             RouteValueDictionary customValues = new RouteValueDictionary()
                 .AddItem("ToUpdate", Context.ToUpdate)
@@ -111,10 +116,10 @@ namespace Neptuo.TemplateEngine.Web
             Application.Router.RouteTo(new RequestContext(navigationUrl, parameters, customValues));
         }
 
-        private string ResolveNavigationUrl(PartialResponse partialResponse)
+        private string ResolveNavigationUrl(string navigation)
         {
-            if (partialResponse.Navigation != null)
-                return Application.ResolveUrl(partialResponse.Navigation);
+            if (navigation != null)
+                return Application.ResolveUrl(navigation);
             else
                 return Application.GetCurrentUrl();
         }

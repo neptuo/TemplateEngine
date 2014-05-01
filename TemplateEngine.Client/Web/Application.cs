@@ -33,7 +33,7 @@ namespace Neptuo.TemplateEngine.Web
         public IHistoryState HistoryState { get; private set; }
         public IMainView MainView { get; private set; }
         public IDependencyContainer DependencyContainer { get; private set; }
-        public IFormPostInvokerManager FormPostInvokers { get; private set; }
+        public IControllerInvokeManager FormPostInvokers { get; private set; }
         public IRouter Router { get; private set; }
         public IUpdateViewNotifier UpdateViewNotifier { get; private set; }
         public IAsyncControllerRegistry ControllerRegistry { get; private set; }
@@ -86,7 +86,7 @@ namespace Neptuo.TemplateEngine.Web
             Router.AddRoute(new TemplateRoute(TemplateUrlSuffix, this));
 
             UpdateViewNotifier = new UpdateViewNotifier(MainView);
-            FormPostInvokers = new QueueFormPostInvokerManager();
+            FormPostInvokers = new QueueControllerInvokeManager();
             ControllerRegistry = new AsyncControllerRegistryBase();
 
             container
@@ -158,12 +158,12 @@ namespace Neptuo.TemplateEngine.Web
             UpdateViewNotifier.StartUpdate();
             //TODO: Invoke controllers
             //if (!InvokeControllers(context.Parameters))
-            FormPostInvokers.Invoke(new FormPostInvoker(this, ControllerRegistry, context));
+            FormPostInvokers.Invoke(new ControllerInvoker(this, ControllerRegistry, context));
         }
         
         public void TryInvokeControllers(FormRequestContext context)
         {
-            FormPostInvokers.Invoke(new FormPostInvoker(this, ControllerRegistry, context));
+            FormPostInvokers.Invoke(new ControllerInvoker(this, ControllerRegistry, context));
         }
 
         private void NavigateToUrl(string url, string[] toUpdate)

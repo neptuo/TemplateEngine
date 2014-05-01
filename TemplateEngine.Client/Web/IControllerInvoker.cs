@@ -9,17 +9,17 @@ namespace Neptuo.TemplateEngine.Web
     /// <summary>
     /// Contract for processing forms usign POST.
     /// </summary>
-    public interface IFormPostInvoker
+    public interface IControllerInvoker
     {
         /// <summary>
         /// Executed when POST is successfull.
         /// </summary>
-        event Action<IFormPostInvoker> OnSuccess;
+        event Action<IControllerInvoker> OnSuccess;
 
         /// <summary>
         /// Executed when POST was not successfull;
         /// </summary>
-        event Action<IFormPostInvoker, ErrorModel> OnError;
+        event Action<IControllerInvoker, ErrorModel> OnError;
 
         /// <summary>
         /// Starts POST request.
