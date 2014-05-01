@@ -37,7 +37,7 @@ var Neptuo$TemplateEngine$Accounts$Hosting$Bootstrap$AccountBootstrapTask = {
     },
     ctors: [{
         name: "ctor",
-        parameters: ["Neptuo.IDependencyContainer", "Neptuo.TemplateEngine.Navigation.Bootstrap.IFormUriRegistry", "Neptuo.TemplateEngine.Controllers.IControllerRegistry", "Neptuo.TemplateEngine.Providers.ITemplateUrlFormatter", "Neptuo.TemplateEngine.Providers.GlobalNavigationCollection"]
+        parameters: ["Neptuo.IDependencyContainer", "Neptuo.TemplateEngine.Navigation.Bootstrap.IFormUriRegistry", "Neptuo.TemplateEngine.Controllers.IAsyncControllerRegistry", "Neptuo.TemplateEngine.Providers.ITemplateUrlFormatter", "Neptuo.TemplateEngine.Providers.GlobalNavigationCollection"]
     }
     ],
     IsAbstract: false

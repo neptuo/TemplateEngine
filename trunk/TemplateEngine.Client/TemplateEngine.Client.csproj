@@ -119,9 +119,9 @@
     </SkcPlugin>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\TemplateEngine.Controllers\TemplateEngine.Controllers.csproj">
-      <Project>{cefd01c6-467d-4e1c-ace6-af093e443e08}</Project>
-      <Name>TemplateEngine.Controllers</Name>
+    <ProjectReference Include="..\TemplateEngine.Controllers.Client\TemplateEngine.Controllers.Client.csproj">
+      <Project>{7a29ab8f-8a8d-4da6-b17a-faa81e3d4869}</Project>
+      <Name>TemplateEngine.Controllers.Client</Name>
     </ProjectReference>
     <ProjectReference Include="..\TemplateEngine.Navigation\TemplateEngine.Navigation.csproj">
       <Project>{f16d8bc8-2191-498f-9950-dc8aa200b0ba}</Project>
@@ -145,7 +145,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Neptuo.TemplateEngine.Client.js" />
+    <Content Include="Neptuo.TemplateEngine.js" />
     <None Include="Neptuo.TemplateEngine.Client.xml">
       <SubType>Designer</SubType>
     </None>

@@ -17,12 +17,12 @@ namespace Neptuo.TemplateEngine.Accounts.Hosting.Bootstrap
     {
         private IDependencyContainer dependencyContainer;
         private IFormUriRegistry formRegistry;
-        private IControllerRegistry controllerRegistry;
+        private IAsyncControllerRegistry controllerRegistry;
         private ITemplateUrlFormatter formatter;
         private GlobalNavigationCollection globalNavigations;
         private IConverterRepository converterRepository;
 
-        public AccountBootstrapTask(IDependencyContainer dependencyContainer, IFormUriRegistry formRegistry, IControllerRegistry controllerRegistry, ITemplateUrlFormatter formatter, GlobalNavigationCollection globalNavigations)
+        public AccountBootstrapTask(IDependencyContainer dependencyContainer, IFormUriRegistry formRegistry, IAsyncControllerRegistry controllerRegistry, ITemplateUrlFormatter formatter, GlobalNavigationCollection globalNavigations)
         {
             Guard.NotNull(dependencyContainer, "dependencyContainer");
             Guard.NotNull(formRegistry, "formRegistry");

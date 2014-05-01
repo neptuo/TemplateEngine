@@ -1,6 +1,7 @@
 ﻿using Neptuo.Bootstrap;
 using Neptuo.ComponentModel.Converters;
 using Neptuo.TemplateEngine.Controllers;
+using Neptuo.TemplateEngine.Providers;
 using SharpKit.JavaScript;
 using System;
 using System.Collections.Generic;

@@ -89,7 +89,7 @@
     </SkcPlugin>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Neptuo.TemplateEngine.Templates.Client.js" />
+    <Content Include="Neptuo.TemplateEngine.Templates.js" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildBinPath)\SharpKit\5\SharpKit.Build.targets" />

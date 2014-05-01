@@ -26,30 +26,30 @@ namespace Neptuo.TemplateEngine.Web
 {
     public static class InitScript
     {
-        private static bool InvokeControllers(JsArray data)
-        {
-            IDependencyContainer container = Application.Instance.DependencyContainer.CreateChildContainer();
-            container.RegisterInstance<IParameterProvider>(new DictionaryParameterProvider(TransformParameters(data)));
+        //private static bool InvokeControllers(JsArray data)
+        //{
+        //    IDependencyContainer container = Application.Instance.DependencyContainer.CreateChildContainer();
+        //    container.RegisterInstance<IParameterProvider>(new DictionaryParameterProvider(TransformParameters(data)));
 
-            IControllerRegistry controllerRegistry = container.Resolve<IControllerRegistry>();
-            IModelBinder modelBinder = container.Resolve<IModelBinder>();
-            MessageStorage messageStorage = container.Resolve<MessageStorage>();
-            bool isControllerExecuted = false;
+        //    IControllerRegistry controllerRegistry = container.Resolve<IControllerRegistry>();
+        //    IModelBinder modelBinder = container.Resolve<IModelBinder>();
+        //    MessageStorage messageStorage = container.Resolve<MessageStorage>();
+        //    bool isControllerExecuted = false;
 
-            for (int i = 0; i < data.length; i++)
-            {
-                string key = data[i].As<JsObject>()["name"].As<string>();
+        //    for (int i = 0; i < data.length; i++)
+        //    {
+        //        string key = data[i].As<JsObject>()["name"].As<string>();
 
-                IController controller;
-                if (controllerRegistry.TryGet(key, out controller))
-                {
-                    controller.Execute(new ControllerContext(key, modelBinder, container, messageStorage));
-                    isControllerExecuted = true;
-                }
-            }
+        //        IController controller;
+        //        if (controllerRegistry.TryGet(key, out controller))
+        //        {
+        //            controller.Execute(new ControllerContext(key, modelBinder, container, messageStorage));
+        //            isControllerExecuted = true;
+        //        }
+        //    }
 
-            return isControllerExecuted;
-        }
+        //    return isControllerExecuted;
+        //}
 
         private static Dictionary<string, string> TransformParameters(JsArray data)
         {

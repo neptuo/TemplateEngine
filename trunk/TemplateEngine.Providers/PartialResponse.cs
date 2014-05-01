@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Neptuo.TemplateEngine.Controllers
+namespace Neptuo.TemplateEngine.Providers
 {
     public class PartialResponse
     {

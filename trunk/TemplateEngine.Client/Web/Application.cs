@@ -106,7 +106,7 @@ namespace Neptuo.TemplateEngine.Web
                 .RegisterInstance<IFormUriRepository>(FormUriTable.Repository)
                 .RegisterInstance<IFormUriRegistry>(FormUriTable.Registry)
 
-                .RegisterInstance<IControllerRegistry>(new ControllerRegistryBase())
+                .RegisterInstance<IAsyncControllerRegistry>(new AsyncControllerRegistryBase())
 
                 .RegisterInstance<IHistoryState>(HistoryState)
                 .RegisterInstance<IMainView>(MainView)
@@ -161,27 +161,28 @@ namespace Neptuo.TemplateEngine.Web
         
         public bool TryInvokeControllers(Dictionary<string, string> parameters)
         {
-            IDependencyContainer container = DependencyContainer.CreateChildContainer();
-            container.RegisterInstance<IParameterProvider>(new DictionaryParameterProvider(parameters));
+            return true;
+            //IDependencyContainer container = DependencyContainer.CreateChildContainer();
+            //container.RegisterInstance<IParameterProvider>(new DictionaryParameterProvider(parameters));
 
-            IControllerRegistry controllerRegistry = container.Resolve<IControllerRegistry>();
-            IModelBinder modelBinder = container.Resolve<IModelBinder>();
-            MessageStorage messageStorage = container.Resolve<MessageStorage>();
-            bool isControllerExecuted = false;
+            //IControllerRegistry controllerRegistry = container.Resolve<IControllerRegistry>();
+            //IModelBinder modelBinder = container.Resolve<IModelBinder>();
+            //MessageStorage messageStorage = container.Resolve<MessageStorage>();
+            //bool isControllerExecuted = false;
 
-            foreach (KeyValuePair<string, string> parameter in parameters)
-            {
-                string key = parameter.Key;
-                IController controller;
-                if (controllerRegistry.TryGet(key, out controller))
-                {
-                    controller.Execute(new ControllerContext(key, modelBinder, container, messageStorage));
-                    isControllerExecuted = true;
-                }
-            }
+            //foreach (KeyValuePair<string, string> parameter in parameters)
+            //{
+            //    string key = parameter.Key;
+            //    IController controller;
+            //    if (controllerRegistry.TryGet(key, out controller))
+            //    {
+            //        controller.Execute(new ControllerContext(key, modelBinder, container, messageStorage));
+            //        isControllerExecuted = true;
+            //    }
+            //}
 
-            //TODO: Process navigations
-            return isControllerExecuted;
+            ////TODO: Process navigations
+            //return isControllerExecuted;
         }
 
         private void NavigateToUrl(string url, string[] toUpdate)
