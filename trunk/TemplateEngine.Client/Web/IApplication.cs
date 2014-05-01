@@ -37,7 +37,7 @@ namespace Neptuo.TemplateEngine.Web
         /// <summary>
         /// Form POST manager.
         /// </summary>
-        IFormPostInvokerManager FormPostInvokers { get; }
+        IControllerInvokeManager FormPostInvokers { get; }
 
         /// <summary>
         /// Router.

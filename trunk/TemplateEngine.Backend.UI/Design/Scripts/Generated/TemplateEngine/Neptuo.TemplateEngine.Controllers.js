@@ -11,20 +11,23 @@ var Neptuo$TemplateEngine$Controllers$AsyncControllerContext = {
     interfaceNames: ["Neptuo.TemplateEngine.Controllers.IAsyncControllerContext"],
     Kind: "Class",
     definition: {
-        ctor: function (action, modelBinder, dependencyProvider, messages, onComplete){
+        ctor: function (action, parameters, modelBinder, dependencyProvider, messages, onComplete){
             this.onComplete = null;
             this._ActionName = null;
+            this._Parameters = null;
             this._ModelBinder = null;
             this._DependencyProvider = null;
             this._Navigation = null;
             this._Messages = null;
             System.Object.ctor.call(this);
             Neptuo.Guard.NotNull$$Object$$String(action, "action");
+            Neptuo.Guard.NotNull$$Object$$String(parameters, "parameters");
             Neptuo.Guard.NotNull$$Object$$String(modelBinder, "modelBinder");
             Neptuo.Guard.NotNull$$Object$$String(dependencyProvider, "dependencyProvider");
             Neptuo.Guard.NotNull$$Object$$String(messages, "messages");
             Neptuo.Guard.NotNull$$Object$$String(onComplete, "onComplete");
             this.set_ActionName(action);
+            this.set_Parameters(parameters);
             this.set_ModelBinder(modelBinder);
             this.set_DependencyProvider(dependencyProvider);
             this.set_Messages(messages);
@@ -36,6 +39,13 @@ var Neptuo$TemplateEngine$Controllers$AsyncControllerContext = {
         },
         set_ActionName: function (value){
             this._ActionName = value;
+        },
+        Parameters$$: "Neptuo.TemplateEngine.Providers.IParameterProvider",
+        get_Parameters: function (){
+            return this._Parameters;
+        },
+        set_Parameters: function (value){
+            this._Parameters = value;
         },
         ModelBinder$$: "Neptuo.TemplateEngine.Providers.ModelBinders.IModelBinder",
         get_ModelBinder: function (){
@@ -71,7 +81,7 @@ var Neptuo$TemplateEngine$Controllers$AsyncControllerContext = {
     },
     ctors: [{
         name: "ctor",
-        parameters: ["System.String", "Neptuo.TemplateEngine.Providers.ModelBinders.IModelBinder", "Neptuo.IDependencyProvider", "Neptuo.TemplateEngine.Providers.MessageStorage", "System.Action"]
+        parameters: ["System.String", "Neptuo.TemplateEngine.Providers.IParameterProvider", "Neptuo.TemplateEngine.Providers.ModelBinders.IModelBinder", "Neptuo.IDependencyProvider", "Neptuo.TemplateEngine.Providers.MessageStorage", "System.Action"]
     }
     ],
     IsAbstract: false
