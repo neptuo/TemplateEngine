@@ -513,10 +513,10 @@ var Neptuo$TemplateEngine$Web$Application = {
             this.NavigateToUrl(url, toUpdate);
         },
         OnFormSubmit: function (context){
-            this.get_UpdateViewNotifier().StartUpdate();
-            this.get_ControllerManager().Invoke(new Neptuo.TemplateEngine.Web.ControllerInvoker.ctor(this, this.get_ControllerRegistry(), context));
+            this.InvokeController(context);
         },
         InvokeController: function (context){
+            this.get_UpdateViewNotifier().StartUpdate();
             this.get_ControllerManager().Invoke(new Neptuo.TemplateEngine.Web.ControllerInvoker.ctor(this, this.get_ControllerRegistry(), context));
         },
         NavigateToUrl: function (url, toUpdate){

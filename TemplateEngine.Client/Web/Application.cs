@@ -155,14 +155,12 @@ namespace Neptuo.TemplateEngine.Web
 
         private void OnFormSubmit(FormRequestContext context)
         {
-            UpdateViewNotifier.StartUpdate();
-            //TODO: Invoke controllers
-            //if (!InvokeControllers(context.Parameters))
-            ControllerManager.Invoke(new ControllerInvoker(this, ControllerRegistry, context));
+            InvokeController(context);
         }
         
         public void InvokeController(FormRequestContext context)
         {
+            UpdateViewNotifier.StartUpdate();
             ControllerManager.Invoke(new ControllerInvoker(this, ControllerRegistry, context));
         }
 
