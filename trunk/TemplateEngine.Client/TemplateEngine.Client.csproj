@@ -96,6 +96,7 @@
     <Compile Include="Web\IFormPostInvokerManager.cs" />
     <Compile Include="Web\IHistoryState.cs" />
     <Compile Include="Web\IMainView.cs" />
+    <Compile Include="Web\ITemplateConfiguration.cs" />
     <Compile Include="Web\IUpdateViewNotifier.cs" />
     <Compile Include="Web\JsObjectBuilder.cs" />
     <Compile Include="Web\PartialUpdateComponentManager.cs" />

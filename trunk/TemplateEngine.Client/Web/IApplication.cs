@@ -1,4 +1,5 @@
-﻿using Neptuo.TemplateEngine.Navigation;
+﻿using Neptuo.TemplateEngine.Controllers;
+using Neptuo.TemplateEngine.Navigation;
 using Neptuo.TemplateEngine.Providers;
 using Neptuo.TemplateEngine.Routing;
 using Neptuo.TemplateEngine.Templates;
@@ -11,25 +12,12 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Web
 {
-    public interface IApplication : IVirtualUrlProvider, ICurrentUrlProvider
+    public interface IApplication : ITemplateConfiguration, IVirtualUrlProvider, ICurrentUrlProvider
     {
         /// <summary>
         /// Whether is application in debug mode.
         /// </summary>
         bool IsDebug { get; }
-
-        /// <summary>
-        /// Gets current root app path.
-        /// </summary>
-        /// <example>
-        /// /App/ThisApp
-        /// </example>
-        string ApplicationPath { get; }
-
-        /// <summary>
-        /// Name of default region to update.
-        /// </summary>
-        string[] DefaultToUpdate { get; }
 
         /// <summary>
         /// Provides access to application history state.
@@ -57,11 +45,14 @@ namespace Neptuo.TemplateEngine.Web
         IRouter Router { get; }
 
         /// <summary>
-        /// Tries to find client controller.
-        /// TODO: Very temp version!!
+        /// Registry for controllers.
         /// </summary>
-        /// <param name="parameters">Form parameters.</param>
-        /// <returns>Whether controller was executed.</returns>
-        bool TryInvokeControllers(Dictionary<string, string> parameters);
+        IAsyncControllerRegistry ControllerRegistry { get; }
+
+        /// <summary>
+        /// Tries to find and invoke controller.
+        /// </summary>
+        /// <param name="parameters">Form request context.</param>
+        void TryInvokeControllers(FormRequestContext context);
     }
 }

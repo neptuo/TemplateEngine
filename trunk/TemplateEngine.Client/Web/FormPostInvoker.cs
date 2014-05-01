@@ -1,5 +1,6 @@
 ﻿using Neptuo.TemplateEngine.Controllers;
 using Neptuo.TemplateEngine.Providers;
+using Neptuo.TemplateEngine.Providers.ModelBinders;
 using Neptuo.TemplateEngine.Routing;
 using SharpKit.Html;
 using SharpKit.JavaScript;
@@ -15,16 +16,19 @@ namespace Neptuo.TemplateEngine.Web
     public class FormPostInvoker : IFormPostInvoker
     {
         protected IApplication Application { get; private set; }
+        protected IAsyncControllerRegistry ControllerRegistry { get; private set; }
         protected FormRequestContext Context { get; private set; }
 
         public event Action<IFormPostInvoker> OnSuccess;
         public event Action<IFormPostInvoker, ErrorModel> OnError;
 
-        public FormPostInvoker(IApplication application, FormRequestContext context)
+        public FormPostInvoker(IApplication application, IAsyncControllerRegistry controllerRegistry, FormRequestContext context)
         {
             Guard.NotNull(application, "application");
             Guard.NotNull(context, "context");
+            Guard.NotNull(controllerRegistry, "controllerRegistry");
             Application = application;
+            ControllerRegistry = controllerRegistry;
             Context = context;
         }
 
@@ -32,18 +36,44 @@ namespace Neptuo.TemplateEngine.Web
         {
             //TODO: Run AsyncControllers here!
             Application.HistoryState.Replace(new HistoryItem(Context.FormUrl, Context.ToUpdate, Context));
+            
+            IDependencyContainer container = Application.DependencyContainer.CreateChildContainer();
+            container.RegisterInstance<IParameterProvider>(Context.Parameters.ToParameterProvider());
+            IModelBinder modelBinder = container.Resolve<IModelBinder>();
+            MessageStorage messageStorage = container.Resolve<MessageStorage>();
 
-            JsObject headers = new JsObject();
-            headers["X-EngineRequestType"] = "Partial"; //TODO: Shared constant?
-            jQuery.ajax(new AjaxSettings
+            bool isControllerInvoked = false;
+            foreach (KeyValuePair<string, string> parameter in Context.Parameters)
             {
-                url = Context.FormUrl,
-                type = "POST",
-                data = Context.Parameters,
-                headers = headers,
-                success = OnSubmitSuccess,
-                error = OnSubmitError
-            });
+                string key = parameter.Key;
+                IAsyncController controller;
+                if (ControllerRegistry.TryGet(key, out controller))
+                {
+                    isControllerInvoked = true;
+                    controller.Execute(new AsyncControllerContext(key, modelBinder, container, messageStorage, OnControllerExecuted));
+                }
+            }
+
+            if (!isControllerInvoked)
+            {
+                JsObject headers = new JsObject();
+                headers["X-EngineRequestType"] = "Partial"; //TODO: Shared constant?
+                jQuery.ajax(new AjaxSettings
+                {
+                    url = Context.FormUrl,
+                    type = "POST",
+                    data = Context.Parameters,
+                    headers = headers,
+                    success = OnSubmitSuccess,
+                    error = OnSubmitError
+                });
+            }
+        }
+
+        private void OnControllerExecuted()
+        {
+            if (OnSuccess != null)
+                OnSuccess(this);
         }
 
         private void OnSubmitSuccess(object response, JsString status, jqXHR sender)
