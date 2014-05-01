@@ -264,6 +264,10 @@
       <Project>{30214616-7c89-467a-9147-7385e91aed13}</Project>
       <Name>TemplateEngine.Providers</Name>
     </ProjectReference>
+    <ProjectReference Include="..\TemplateEngine.Publishing.Hosting\TemplateEngine.Publishing.Hosting.csproj">
+      <Project>{6df3905b-0866-4d0f-a14d-164680860664}</Project>
+      <Name>TemplateEngine.Publishing.Hosting</Name>
+    </ProjectReference>
     <ProjectReference Include="..\TemplateEngine.Templates\TemplateEngine.Templates.csproj">
       <Project>{ee534abf-10e8-467b-aa25-d8a39b6542b4}</Project>
       <Name>TemplateEngine.Templates</Name>

@@ -6,6 +6,7 @@ using Neptuo.TemplateEngine.Accounts.Data.Entity;
 using Neptuo.TemplateEngine.Accounts.Hosting.Bootstrap;
 using Neptuo.TemplateEngine.Hosting.Integration;
 using Neptuo.Web;
+using Neptuo.TemplateEngine.Publishing.Hosting.Bootstrap;
 
 namespace Neptuo.TemplateEngine.Backend.UI
 {
@@ -30,6 +31,7 @@ namespace Neptuo.TemplateEngine.Backend.UI
 
                 //TODO: Bootstrap as independent module
                 bootstrapper.Register<AccountBootstrapTask>();
+                bootstrapper.Register<PublishingBootstrapTask>();
             }
         }
 

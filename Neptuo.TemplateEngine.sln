@@ -36,7 +36,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TemplateEngine.Accounts.Sha
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TemplateEngine.Accounts.Client", "TemplateEngine.Accounts.Client\TemplateEngine.Accounts.Client.csproj", "{D9B6611D-C5D5-4652-99A7-4152775E16CA}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Framework", "Framework", "{C3F66B67-FA56-40D6-800B-335163886830}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_Framework", "_Framework", "{C3F66B67-FA56-40D6-800B-335163886830}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TemplateEngine.Routing.Client", "TemplateEngine.Routing.Client\TemplateEngine.Routing.Client.csproj", "{9432EE8B-1181-43CB-9E8D-E156EAC8F7BA}"
 EndProject
@@ -61,6 +61,14 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TemplateEngine.Hosting.Integration", "TemplateEngine.Hosting.Integration\TemplateEngine.Hosting.Integration.csproj", "{F206C037-60A2-47A0-9166-F60A785FADC7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TemplateEngine.Controllers.Client", "TemplateEngine.Controllers.Client\TemplateEngine.Controllers.Client.csproj", "{7A29AB8F-8A8D-4DA6-B17A-FAA81E3D4869}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Publishing", "Publishing", "{AB961E63-8050-49E3-B41C-66DAE0ECD0D7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TemplateEngine.Publishing", "TemplateEngine.Publishing\TemplateEngine.Publishing.csproj", "{9FE72FF0-CA57-44C6-817C-19C64CDA54F5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TemplateEngine.Publishing.Data.Entity", "TemplateEngine.Publishing.Data.Entity\TemplateEngine.Publishing.Data.Entity.csproj", "{A9C3BBAD-D366-4C1C-A284-8A0D4907DE99}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TemplateEngine.Publishing.Hosting", "TemplateEngine.Publishing.Hosting\TemplateEngine.Publishing.Hosting.csproj", "{6DF3905B-0866-4D0F-A14D-164680860664}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -160,6 +168,18 @@ Global
 		{7A29AB8F-8A8D-4DA6-B17A-FAA81E3D4869}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7A29AB8F-8A8D-4DA6-B17A-FAA81E3D4869}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7A29AB8F-8A8D-4DA6-B17A-FAA81E3D4869}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9FE72FF0-CA57-44C6-817C-19C64CDA54F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9FE72FF0-CA57-44C6-817C-19C64CDA54F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9FE72FF0-CA57-44C6-817C-19C64CDA54F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9FE72FF0-CA57-44C6-817C-19C64CDA54F5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A9C3BBAD-D366-4C1C-A284-8A0D4907DE99}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A9C3BBAD-D366-4C1C-A284-8A0D4907DE99}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A9C3BBAD-D366-4C1C-A284-8A0D4907DE99}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A9C3BBAD-D366-4C1C-A284-8A0D4907DE99}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6DF3905B-0866-4D0F-A14D-164680860664}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6DF3905B-0866-4D0F-A14D-164680860664}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6DF3905B-0866-4D0F-A14D-164680860664}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6DF3905B-0866-4D0F-A14D-164680860664}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -187,6 +207,9 @@ Global
 		{6E0BCD94-E6D1-4F4D-BF0F-912EE279C09C} = {C3F66B67-FA56-40D6-800B-335163886830}
 		{F206C037-60A2-47A0-9166-F60A785FADC7} = {C3F66B67-FA56-40D6-800B-335163886830}
 		{7A29AB8F-8A8D-4DA6-B17A-FAA81E3D4869} = {C3F66B67-FA56-40D6-800B-335163886830}
+		{9FE72FF0-CA57-44C6-817C-19C64CDA54F5} = {AB961E63-8050-49E3-B41C-66DAE0ECD0D7}
+		{A9C3BBAD-D366-4C1C-A284-8A0D4907DE99} = {AB961E63-8050-49E3-B41C-66DAE0ECD0D7}
+		{6DF3905B-0866-4D0F-A14D-164680860664} = {AB961E63-8050-49E3-B41C-66DAE0ECD0D7}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		VisualSVNWorkingCopyRoot = .
