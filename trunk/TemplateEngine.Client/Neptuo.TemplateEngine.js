@@ -863,8 +863,9 @@ var Neptuo$TemplateEngine$Web$ControllerInvoker = {
             Neptuo.DependencyContainerExtensions.RegisterInstance$1(Neptuo.TemplateEngine.Providers.IParameterProvider.ctor, container, parameterProvider);
             var modelBinder = Neptuo.DependencyProviderExtensions.Resolve$1$$IDependencyProvider(Neptuo.TemplateEngine.Providers.ModelBinders.IModelBinder.ctor, container);
             var messageStorage = Neptuo.DependencyProviderExtensions.Resolve$1$$IDependencyProvider(Neptuo.TemplateEngine.Providers.MessageStorage.ctor, container);
-            for (var $i2 = 0,$t2 = this.get_Context().Parameters,$l2 = $t2.length,parameter = $t2[$i2]; $i2 < $l2; $i2++, parameter = $t2[$i2]){
-                var key = parameter.get_Key();
+            var $it1 = parameterProvider.get_Keys().GetEnumerator();
+            while ($it1.MoveNext()){
+                var key = $it1.get_Current();
                 var controller;
                 if ((function (){
                     var $1 = {
