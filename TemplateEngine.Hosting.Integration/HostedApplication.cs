@@ -59,6 +59,7 @@ namespace Neptuo.TemplateEngine.Hosting.Integration
             bootstrapper.Register<BindingBootstrapTask>();
             bootstrapper.Register<ViewBundleBootstrapTask>();
             bootstrapper.Register<ConfigurationBootstrapTask>();
+            bootstrapper.Register<ConverterBootstrapTask>();
 
             builder.RegisterBootstrapTasks(bootstrapper);
         }
