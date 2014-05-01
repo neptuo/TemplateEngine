@@ -887,21 +887,19 @@ var Neptuo$TemplateEngine$Web$FormRequestContext = {
     assemblyName: "Neptuo.TemplateEngine.Client",
     Kind: "Class",
     definition: {
-        ctor: function (toUpdate, parameters, eventName, formUrl){
+        ctor: function (toUpdate, parameters, formUrl){
             this.ToUpdate = null;
             this.Parameters = null;
-            this.EventName = null;
             this.FormUrl = null;
             System.Object.ctor.call(this);
             this.ToUpdate = toUpdate;
             this.Parameters = parameters;
-            this.EventName = eventName;
             this.FormUrl = formUrl;
         }
     },
     ctors: [{
         name: "ctor",
-        parameters: ["System.String[]", "SharpKit.JavaScript.JsArray", "System.String", "System.String"]
+        parameters: ["System.String[]", "SharpKit.JavaScript.JsArray", "System.String"]
     }
     ],
     IsAbstract: false
@@ -917,14 +915,11 @@ var Neptuo$TemplateEngine$Web$HistoryItem = {
             this.ToUpdate = null;
             this.Url = null;
             this.FormData = null;
-            this.EventName = null;
             System.Object.ctor.call(this);
             this.Url = url;
             this.ToUpdate = toUpdate;
-            if (context != null){
+            if (context != null)
                 this.FormData = context.Parameters;
-                this.EventName = context.EventName;
-            }
         }
     },
     ctors: [{
@@ -1483,7 +1478,7 @@ var Neptuo$TemplateEngine$Web$MainView = {
                     submitButton["value"] = null;
                     formData.push(submitButton);
                 }
-                var context = new Neptuo.TemplateEngine.Web.FormRequestContext.ctor(toUpdate, formData, buttonName, formUrl);
+                var context = new Neptuo.TemplateEngine.Web.FormRequestContext.ctor(toUpdate, formData, formUrl);
                 if (this.OnPostFormSubmit != null)
                     this.OnPostFormSubmit(context);
             }
