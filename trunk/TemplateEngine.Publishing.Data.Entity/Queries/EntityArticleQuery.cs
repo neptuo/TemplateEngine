@@ -11,6 +11,10 @@ namespace Neptuo.TemplateEngine.Publishing.Data.Entity.Queries
 {
     public class EntityArticleQuery : EntityQuery<Article, IArticleFilter>, IArticleQuery
     {
+        public EntityArticleQuery(DataContext dbContext)
+            : base(dbContext.Articles)
+        { }
+
         protected override Expression BuildWhereExpression(ParameterExpression parameter)
         {
             Expression target = null;

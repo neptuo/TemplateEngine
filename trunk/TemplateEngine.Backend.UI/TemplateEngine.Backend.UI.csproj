@@ -223,6 +223,13 @@
     </Content>
     <Content Include="Views\Accounts\SideNavUserControl.view" />
     <Content Include="Views\Accounts\PermissionList.view" />
+    <Content Include="Views\Publishing\ArticleLineList.view">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Views\Publishing\SideNavUserControl.view" />
+    <Content Include="Views\Publishing\ArticleLineEdit.view">
+      <SubType>Designer</SubType>
+    </Content>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

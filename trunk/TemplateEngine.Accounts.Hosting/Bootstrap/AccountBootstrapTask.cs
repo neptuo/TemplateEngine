@@ -39,38 +39,24 @@ using Neptuo.TemplateEngine.Hosting.DataSources;
 namespace Neptuo.TemplateEngine.Accounts.Hosting.Bootstrap
 {
     [Module]
-    public class AccountBootstrapTask : AccountBootstrapTaskBase, IBootstrapTask
+    public class AccountBootstrapTask : IBootstrapTask
     {
         private IDependencyContainer dependencyContainer;
         private TypeBuilderRegistry registry;
-        private IFormUriRegistry formRegistry;
         private IControllerRegistry controllerRegistry;
-        private ITemplateUrlFormatter formatter;
-        private GlobalNavigationCollection globalNavigations;
         private IWebDataSourceRegistry dataSourceRegistry;
-        private IViewBundleCollection viewBundles;
-        private IEventRegistry eventRegistry;
 
-        public AccountBootstrapTask(IDependencyContainer dependencyContainer, TypeBuilderRegistry registry, IFormUriRegistry formRegistry, IControllerRegistry controllerRegistry, ITemplateUrlFormatter formatter, GlobalNavigationCollection globalNavigations, IWebDataSourceRegistry dataSourceRegistry, IEventRegistry eventRegistry)
+        public AccountBootstrapTask(IDependencyContainer dependencyContainer, TypeBuilderRegistry registry, IControllerRegistry controllerRegistry, IWebDataSourceRegistry dataSourceRegistry)
         {
             Guard.NotNull(dependencyContainer, "dependencyContainer");
             Guard.NotNull(registry, "registry");
-            Guard.NotNull(formRegistry, "formRegistry");
             Guard.NotNull(controllerRegistry, "controllerRegistry");
-            Guard.NotNull(formatter, "formatter");
-            Guard.NotNull(globalNavigations, "globalNavigations");
             Guard.NotNull(dataSourceRegistry, "dataSourceRegistry");
-            Guard.NotNull(eventRegistry, "eventRegistry");
 
             this.dependencyContainer = dependencyContainer;
             this.registry = registry;
-            this.formRegistry = formRegistry;
             this.controllerRegistry = controllerRegistry;
-            this.formatter = formatter;
-            this.globalNavigations = globalNavigations;
             this.dataSourceRegistry = dataSourceRegistry;
-            this.eventRegistry = eventRegistry;
-            this.viewBundles = ViewBundleTable.Bundles;
         }
 
         public void Initialize()
@@ -79,11 +65,6 @@ namespace Neptuo.TemplateEngine.Accounts.Hosting.Bootstrap
             SetupTypeBuilderRegistry(registry);
             SetupControllers(controllerRegistry);
             SetupDataSources(dataSourceRegistry);
-
-            SetupForms(formRegistry, formatter);
-            SetupGlobalNavigations(globalNavigations);
-
-            SetupEvents(eventRegistry);
 
             Database.SetInitializer(new DbInitializer());
 //#if DEBUG
@@ -147,10 +128,6 @@ namespace Neptuo.TemplateEngine.Accounts.Hosting.Bootstrap
         protected void SetupDataSources(IWebDataSourceRegistry dataSourceRegistry)
         {
             dataSourceRegistry.AddFromAssembly(typeof(UserAccountDataSource).Assembly);
-        }
-
-        protected void SetupEvents(IEventRegistry eventRegistry)
-        {
         }
 
         #region Init data

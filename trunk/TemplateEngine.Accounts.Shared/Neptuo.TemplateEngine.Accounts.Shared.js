@@ -2,30 +2,6 @@
 
 if (typeof(JsTypes) == "undefined")
     var JsTypes = [];
-var Neptuo$TemplateEngine$Accounts$Hosting$Bootstrap$AccountBootstrapTaskBase = {
-    fullname: "Neptuo.TemplateEngine.Accounts.Hosting.Bootstrap.AccountBootstrapTaskBase",
-    baseTypeName: "System.Object",
-    assemblyName: "Neptuo.TemplateEngine.Accounts.Shared",
-    Kind: "Class",
-    definition: {
-        ctor: function (){
-            System.Object.ctor.call(this);
-        },
-        SetupForms: function (formRegistry, formatter){
-            formRegistry.Register("Accounts.Login", formatter.FormatUrl("~/Accounts/Login")).Register("Accounts.User.List", formatter.FormatUrl("~/Accounts/UserList")).Register("Accounts.User.Edit", formatter.FormatUrl("~/Accounts/UserEdit")).Register("Accounts.Role.List", formatter.FormatUrl("~/Accounts/RoleList")).Register("Accounts.Role.Edit", formatter.FormatUrl("~/Accounts/RoleEdit")).Register("Accounts.Log.List", formatter.FormatUrl("~/Accounts/LogList")).Register("Accounts.Permission.List", formatter.FormatUrl("~/Accounts/PermissionList"));
-        },
-        SetupGlobalNavigations: function (globalNavigations){
-            globalNavigations.Add("Accounts.User.Deleted", Neptuo.TemplateEngine.Navigation.FormUri.op_Explicit("Accounts.User.List")).Add("Accounts.User.Created", Neptuo.TemplateEngine.Navigation.FormUri.op_Explicit("Accounts.User.List")).Add("Accounts.User.Updated", Neptuo.TemplateEngine.Navigation.FormUri.op_Explicit("Accounts.User.List")).Add("Accounts.Role.Deleted", Neptuo.TemplateEngine.Navigation.FormUri.op_Explicit("Accounts.Role.List")).Add("Accounts.Role.Created", Neptuo.TemplateEngine.Navigation.FormUri.op_Explicit("Accounts.Role.List")).Add("Accounts.Role.Updated", Neptuo.TemplateEngine.Navigation.FormUri.op_Explicit("Accounts.Role.List")).Add("Accounts.Permission.Updated", Neptuo.TemplateEngine.Navigation.FormUri.op_Explicit("Accounts.Role.List")).Add("Accounts.LoggedIn", Neptuo.TemplateEngine.Navigation.FormUri.op_Explicit("Accounts.User.List")).Add("Accounts.LoggedOut", Neptuo.TemplateEngine.Navigation.FormUri.op_Explicit("Accounts.Login"));
-        }
-    },
-    ctors: [{
-        name: "ctor",
-        parameters: []
-    }
-    ],
-    IsAbstract: true
-};
-JsTypes.push(Neptuo$TemplateEngine$Accounts$Hosting$Bootstrap$AccountBootstrapTaskBase);
 var Neptuo$TemplateEngine$Accounts$Templates$DataSources$IResourcePermissionDataSourceFilter = {
     fullname: "Neptuo.TemplateEngine.Accounts.Templates.DataSources.IResourcePermissionDataSourceFilter",
     baseTypeName: "System.Object",

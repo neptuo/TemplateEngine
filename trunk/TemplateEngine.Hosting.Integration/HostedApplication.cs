@@ -20,6 +20,7 @@ using Neptuo.Unity.Lifetimes.Mapping;
 using Neptuo.Unity.Web.Lifetimes.Mapping;
 using Neptuo.Validation;
 using Neptuo.Web;
+using Neptuo.TemplateEngine.Navigation.Bootstrap;
 
 namespace Neptuo.TemplateEngine.Hosting.Integration
 {
@@ -42,7 +43,10 @@ namespace Neptuo.TemplateEngine.Hosting.Integration
             bootstrapper.Initialize();
 
             Converts.Repository.Add(typeof(string), typeof(int), new StringToIntConverter());
-            XmlConfigurator.Configure();  
+            XmlConfigurator.Configure();
+
+            builder.RegisterForms(container.Resolve<IFormUriRegistry>(), container.Resolve<ITemplateUrlFormatter>());
+            builder.RegisterGlobalNavigations(container.Resolve<GlobalNavigationCollection>());
 
             OnAfterStart();
         }
