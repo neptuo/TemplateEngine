@@ -27,7 +27,6 @@ using System.Threading.Tasks;
 using Neptuo.TemplateEngine.Accounts.Templates.DataSources;
 using Neptuo.TemplateEngine.Providers;
 using Neptuo.TemplateEngine.Security;
-using Neptuo.TemplateEngine.Accounts.Web;
 using Neptuo.Events;
 using Neptuo.TemplateEngine.Accounts.Events;
 using Neptuo.Events.Handlers;
@@ -152,9 +151,6 @@ namespace Neptuo.TemplateEngine.Accounts.Hosting.Bootstrap
 
         protected void SetupEvents(IEventRegistry eventRegistry)
         {
-            FormsAuthenticationProvider authProvider = new FormsAuthenticationProvider();
-            eventRegistry.Subscribe<UserLogCreatedEvent>(new SingletonEventHandlerFactory<UserLogCreatedEvent>(authProvider));
-            eventRegistry.Subscribe<UserSignedOutEvent>(new SingletonEventHandlerFactory<UserSignedOutEvent>(authProvider));
         }
 
         #region Init data

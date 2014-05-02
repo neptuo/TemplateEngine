@@ -13,7 +13,8 @@ namespace Neptuo.TemplateEngine.Publishing.Hosting.Bootstrap
     {
         public void Initialize()
         {
-            new DataContext();
+            DataContext dbContext = new DataContext();
+            dbContext.SaveChanges();
         }
     }
 }
