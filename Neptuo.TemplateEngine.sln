@@ -70,6 +70,16 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TemplateEngine.Publishing.D
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TemplateEngine.Publishing.Hosting", "TemplateEngine.Publishing.Hosting\TemplateEngine.Publishing.Hosting.csproj", "{6DF3905B-0866-4D0F-A14D-164680860664}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TemplateEngine.Publishing.Templates", "TemplateEngine.Publishing.Templates\TemplateEngine.Publishing.Templates.csproj", "{4EDC5EB0-F8CF-4554-B831-909B991303BA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TemplateEngine.Publishing.Shared", "TemplateEngine.Publishing.Shared\TemplateEngine.Publishing.Shared.csproj", "{B411906B-F831-4A99-9EEC-69DCB4D539A4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TemplateEngine.Publishing.ViewModels", "TemplateEngine.Publishing.ViewModels\TemplateEngine.Publishing.ViewModels.csproj", "{1ADA241F-AA7F-4777-A550-E908BA99B1DA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TemplateEngine.Publishing.Client", "TemplateEngine.Publishing.Client\TemplateEngine.Publishing.Client.csproj", "{73CD6EF5-CB0E-4205-84E3-AF072E5FB233}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TemplateEngine.Publishing.Controllers", "TemplateEngine.Publishing.Controllers\TemplateEngine.Publishing.Controllers.csproj", "{0418CDBA-38E7-4D3F-A41F-1725FF2F6E19}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -180,6 +190,26 @@ Global
 		{6DF3905B-0866-4D0F-A14D-164680860664}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6DF3905B-0866-4D0F-A14D-164680860664}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6DF3905B-0866-4D0F-A14D-164680860664}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4EDC5EB0-F8CF-4554-B831-909B991303BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4EDC5EB0-F8CF-4554-B831-909B991303BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4EDC5EB0-F8CF-4554-B831-909B991303BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4EDC5EB0-F8CF-4554-B831-909B991303BA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B411906B-F831-4A99-9EEC-69DCB4D539A4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B411906B-F831-4A99-9EEC-69DCB4D539A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B411906B-F831-4A99-9EEC-69DCB4D539A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B411906B-F831-4A99-9EEC-69DCB4D539A4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1ADA241F-AA7F-4777-A550-E908BA99B1DA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1ADA241F-AA7F-4777-A550-E908BA99B1DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1ADA241F-AA7F-4777-A550-E908BA99B1DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1ADA241F-AA7F-4777-A550-E908BA99B1DA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{73CD6EF5-CB0E-4205-84E3-AF072E5FB233}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{73CD6EF5-CB0E-4205-84E3-AF072E5FB233}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{73CD6EF5-CB0E-4205-84E3-AF072E5FB233}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{73CD6EF5-CB0E-4205-84E3-AF072E5FB233}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0418CDBA-38E7-4D3F-A41F-1725FF2F6E19}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0418CDBA-38E7-4D3F-A41F-1725FF2F6E19}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0418CDBA-38E7-4D3F-A41F-1725FF2F6E19}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0418CDBA-38E7-4D3F-A41F-1725FF2F6E19}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -210,6 +240,11 @@ Global
 		{9FE72FF0-CA57-44C6-817C-19C64CDA54F5} = {AB961E63-8050-49E3-B41C-66DAE0ECD0D7}
 		{A9C3BBAD-D366-4C1C-A284-8A0D4907DE99} = {AB961E63-8050-49E3-B41C-66DAE0ECD0D7}
 		{6DF3905B-0866-4D0F-A14D-164680860664} = {AB961E63-8050-49E3-B41C-66DAE0ECD0D7}
+		{4EDC5EB0-F8CF-4554-B831-909B991303BA} = {AB961E63-8050-49E3-B41C-66DAE0ECD0D7}
+		{B411906B-F831-4A99-9EEC-69DCB4D539A4} = {AB961E63-8050-49E3-B41C-66DAE0ECD0D7}
+		{1ADA241F-AA7F-4777-A550-E908BA99B1DA} = {AB961E63-8050-49E3-B41C-66DAE0ECD0D7}
+		{73CD6EF5-CB0E-4205-84E3-AF072E5FB233} = {AB961E63-8050-49E3-B41C-66DAE0ECD0D7}
+		{0418CDBA-38E7-4D3F-A41F-1725FF2F6E19} = {AB961E63-8050-49E3-B41C-66DAE0ECD0D7}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		VisualSVNWorkingCopyRoot = .

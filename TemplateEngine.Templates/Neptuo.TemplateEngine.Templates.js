@@ -2372,55 +2372,6 @@ var Neptuo$TemplateEngine$Templates$DataSources$IListResult = {
     IsAbstract: true
 };
 JsTypes.push(Neptuo$TemplateEngine$Templates$DataSources$IListResult);
-var Neptuo$TemplateEngine$Templates$DataSources$ListDataSourceBase$1 = {
-    fullname: "Neptuo.TemplateEngine.Templates.DataSources.ListDataSourceBase$1",
-    baseTypeName: "System.Object",
-    assemblyName: "Neptuo.TemplateEngine.Templates",
-    interfaceNames: ["Neptuo.TemplateEngine.Templates.DataSources.IListDataSource"],
-    Kind: "Class",
-    definition: {
-        ctor: function (T, providerFactory){
-            this.T = T;
-            this._ProviderFactory = null;
-            System.Object.ctor.call(this);
-            if (providerFactory == null)
-                throw $CreateException(new System.ArgumentNullException.ctor$$String("providerFactory"), new Error());
-            this.set_ProviderFactory(providerFactory);
-        },
-        ProviderFactory$$: "Neptuo.PresentationModels.TypeModels.IModelValueProviderFactory",
-        get_ProviderFactory: function (){
-            return this._ProviderFactory;
-        },
-        set_ProviderFactory: function (value){
-            this._ProviderFactory = value;
-        },
-        GetData$$Nullable$1$Int32$$Nullable$1$Int32: function (pageIndex, pageSize){
-            var $yield = [];
-            var data = this.GetData();
-            data = this.ApplyFilter(data);
-            if (pageSize != null)
-                data = System.Linq.Queryable.Take$1(this.T, System.Linq.Queryable.Skip$1(this.T, data, (pageIndex != null ? pageIndex : 0) * pageSize.get_Value()), pageSize.get_Value());
-            var $it19 = data.GetEnumerator();
-            while ($it19.MoveNext()){
-                var item = $it19.get_Current();
-                $yield.push(this.get_ProviderFactory().Create(item));
-            }
-            return $yield;
-        },
-        GetTotalCount: function (){
-            var data = this.GetData();
-            data = this.ApplyFilter(data);
-            return System.Linq.Queryable.Count$1$$IQueryable$1(this.T, data);
-        }
-    },
-    ctors: [{
-        name: "ctor",
-        parameters: ["Neptuo.PresentationModels.TypeModels.IModelValueProviderFactory"]
-    }
-    ],
-    IsAbstract: true
-};
-JsTypes.push(Neptuo$TemplateEngine$Templates$DataSources$ListDataSourceBase$1);
 var Neptuo$TemplateEngine$Templates$DataSources$ListResult = {
     fullname: "Neptuo.TemplateEngine.Templates.DataSources.ListResult",
     baseTypeName: "System.Object",
@@ -2501,9 +2452,9 @@ var Neptuo$TemplateEngine$Templates$ExtendedHtmlTextWriter = {
         },
         Tag: function (name){
             Neptuo.Templates.HtmlTextWriter.commonPrototype.Tag.call(this, name);
-            var $it20 = this.get_PendingAttributes().GetEnumerator();
-            while ($it20.MoveNext()){
-                var attribute = $it20.get_Current();
+            var $it19 = this.get_PendingAttributes().GetEnumerator();
+            while ($it19.MoveNext()){
+                var attribute = $it19.get_Current();
                 this.Attribute(attribute.Name, attribute.Value);
             }
             this.get_PendingAttributes().Clear();
@@ -3308,9 +3259,9 @@ var Neptuo$TemplateEngine$Templates$TemplateContentStorage = {
         AddRange: function (contents){
             if (contents == null)
                 throw $CreateException(new System.ArgumentNullException.ctor$$String("contents"), new Error());
-            var $it21 = contents.GetEnumerator();
-            while ($it21.MoveNext()){
-                var content = $it21.get_Current();
+            var $it20 = contents.GetEnumerator();
+            while ($it20.MoveNext()){
+                var content = $it20.get_Current();
                 this.Add(content.get_Name(), content);
             }
         },
