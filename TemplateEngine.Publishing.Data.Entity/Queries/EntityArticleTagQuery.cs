@@ -11,6 +11,10 @@ namespace Neptuo.TemplateEngine.Publishing.Data.Entity.Queries
 {
     public class EntityArticleTagQuery : EntityQuery<ArticleTag, IArticleTagFilter>, IArticleTagQuery
     {
+        public EntityArticleTagQuery(DataContext dbContext)
+            : base(dbContext.ArticleTags)
+        { }
+
         protected override Expression BuildWhereExpression(ParameterExpression parameter)
         {
             Expression target = null;

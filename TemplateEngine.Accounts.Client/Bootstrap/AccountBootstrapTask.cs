@@ -13,28 +13,19 @@ using Neptuo.TemplateEngine.Providers;
 
 namespace Neptuo.TemplateEngine.Accounts.Hosting.Bootstrap
 {
-    public class AccountBootstrapTask : AccountBootstrapTaskBase, IBootstrapTask
+    public class AccountBootstrapTask : IBootstrapTask
     {
         private IDependencyContainer dependencyContainer;
-        private IFormUriRegistry formRegistry;
         private IAsyncControllerRegistry controllerRegistry;
-        private ITemplateUrlFormatter formatter;
-        private GlobalNavigationCollection globalNavigations;
         private IConverterRepository converterRepository;
 
-        public AccountBootstrapTask(IDependencyContainer dependencyContainer, IFormUriRegistry formRegistry, IAsyncControllerRegistry controllerRegistry, ITemplateUrlFormatter formatter, GlobalNavigationCollection globalNavigations)
+        public AccountBootstrapTask(IDependencyContainer dependencyContainer, IAsyncControllerRegistry controllerRegistry)
         {
             Guard.NotNull(dependencyContainer, "dependencyContainer");
-            Guard.NotNull(formRegistry, "formRegistry");
             Guard.NotNull(controllerRegistry, "controllerRegistry");
-            Guard.NotNull(formatter, "formatter");
-            Guard.NotNull(globalNavigations, "globalNavigations");
 
             this.dependencyContainer = dependencyContainer;
-            this.formRegistry = formRegistry;
             this.controllerRegistry = controllerRegistry;
-            this.formatter = formatter;
-            this.globalNavigations = globalNavigations;
             this.converterRepository = Converts.Repository;
         }
 
@@ -50,9 +41,6 @@ namespace Neptuo.TemplateEngine.Accounts.Hosting.Bootstrap
                 .Add(typeof(JsObject), typeof(UserLogListResult), new UserLogListResultConverter())
 
                 .Add(typeof(JsObject), typeof(ResourcePermissionListResult), new ResourcePermissionListResultConverter());
-
-            SetupForms(formRegistry, formatter);
-            SetupGlobalNavigations(globalNavigations);
         }
     }
 }

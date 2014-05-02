@@ -8,14 +8,11 @@ var Neptuo$TemplateEngine$Publishing$ViewModels$ArticleLineViewModel = {
     assemblyName: "Neptuo.TemplateEngine.Publishing.ViewModels",
     Kind: "Class",
     definition: {
-        ctor: function (key, name, url){
+        ctor: function (){
             this._Key = 0;
             this._Name = null;
             this._Url = null;
             System.Object.ctor.call(this);
-            this.set_Key(key);
-            this.set_Name(name);
-            this.set_Url(url);
         },
         Key$$: "System.Int32",
         get_Key: function (){
@@ -37,10 +34,22 @@ var Neptuo$TemplateEngine$Publishing$ViewModels$ArticleLineViewModel = {
         },
         set_Url: function (value){
             this._Url = value;
+        },
+        ctor$$Int32$$String$$String: function (key, name, url){
+            this._Key = 0;
+            this._Name = null;
+            this._Url = null;
+            System.Object.ctor.call(this);
+            this.set_Key(key);
+            this.set_Name(name);
+            this.set_Url(url);
         }
     },
     ctors: [{
         name: "ctor",
+        parameters: []
+    }, {
+        name: "ctor$$Int32$$String$$String",
         parameters: ["System.Int32", "System.String", "System.String"]
     }
     ],

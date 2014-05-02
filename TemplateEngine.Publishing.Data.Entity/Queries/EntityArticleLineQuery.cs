@@ -11,6 +11,10 @@ namespace Neptuo.TemplateEngine.Publishing.Data.Entity.Queries
 {
     public class EntityArticleLineQuery : EntityQuery<ArticleLine, IArticleLineFilter>, IArticleLineQuery
     {
+        public EntityArticleLineQuery(DataContext dbContext)
+            : base(dbContext.ArticleLines)
+        { }
+
         protected override Expression BuildWhereExpression(ParameterExpression parameter)
         {
             Expression target = null;

@@ -56,6 +56,9 @@
     <Reference Include="Neptuo.Templates.Components.Compilation">
       <HintPath>..\References\Neptuo.Templates.Components.Compilation.dll</HintPath>
     </Reference>
+    <Reference Include="Neptuo.Web">
+      <HintPath>..\References\Neptuo.Web.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -71,13 +74,53 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\TemplateEngine.Controllers\TemplateEngine.Controllers.csproj">
+      <Project>{cefd01c6-467d-4e1c-ace6-af093e443e08}</Project>
+      <Name>TemplateEngine.Controllers</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TemplateEngine.Hosting\TemplateEngine.Hosting.csproj">
+      <Project>{f794b999-94db-4443-8780-25ad170742ee}</Project>
+      <Name>TemplateEngine.Hosting</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TemplateEngine.Navigation\TemplateEngine.Navigation.csproj">
+      <Project>{f16d8bc8-2191-498f-9950-dc8aa200b0ba}</Project>
+      <Name>TemplateEngine.Navigation</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TemplateEngine.Providers\TemplateEngine.Providers.csproj">
+      <Project>{30214616-7c89-467a-9147-7385e91aed13}</Project>
+      <Name>TemplateEngine.Providers</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TemplateEngine.Publishing.Controllers\TemplateEngine.Publishing.Controllers.csproj">
+      <Project>{0418cdba-38e7-4d3f-a41f-1725ff2f6e19}</Project>
+      <Name>TemplateEngine.Publishing.Controllers</Name>
+    </ProjectReference>
     <ProjectReference Include="..\TemplateEngine.Publishing.Data.Entity\TemplateEngine.Publishing.Data.Entity.csproj">
       <Project>{a9c3bbad-d366-4c1c-a284-8a0d4907de99}</Project>
       <Name>TemplateEngine.Publishing.Data.Entity</Name>
     </ProjectReference>
+    <ProjectReference Include="..\TemplateEngine.Publishing.Shared\TemplateEngine.Publishing.Shared.csproj">
+      <Project>{b411906b-f831-4a99-9eec-69dcb4d539a4}</Project>
+      <Name>TemplateEngine.Publishing.Shared</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TemplateEngine.Publishing.Templates\TemplateEngine.Publishing.Templates.csproj">
+      <Project>{4edc5eb0-f8cf-4554-b831-909b991303ba}</Project>
+      <Name>TemplateEngine.Publishing.Templates</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TemplateEngine.Publishing.ViewModels\TemplateEngine.Publishing.ViewModels.csproj">
+      <Project>{1ada241f-aa7f-4777-a550-e908ba99b1da}</Project>
+      <Name>TemplateEngine.Publishing.ViewModels</Name>
+    </ProjectReference>
     <ProjectReference Include="..\TemplateEngine.Publishing\TemplateEngine.Publishing.csproj">
       <Project>{9fe72ff0-ca57-44c6-817c-19c64cda54f5}</Project>
       <Name>TemplateEngine.Publishing</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TemplateEngine.Templates\TemplateEngine.Templates.csproj">
+      <Project>{ee534abf-10e8-467b-aa25-d8a39b6542b4}</Project>
+      <Name>TemplateEngine.Templates</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TemplateEngine.Web.Compilation\TemplateEngine.Templates.Compilation.csproj">
+      <Project>{f116d6f7-e47c-4c73-a802-4f61ba50857f}</Project>
+      <Name>TemplateEngine.Templates.Compilation</Name>
     </ProjectReference>
     <ProjectReference Include="..\TemplateEngine\TemplateEngine.csproj">
       <Project>{0ddeef40-567f-49de-94ec-314309702534}</Project>

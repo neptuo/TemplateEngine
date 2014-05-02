@@ -43,7 +43,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Bootstrap\AccountBootstrapTaskBase.cs" />
     <Compile Include="Templates\DataSources\IResourcePermissionDataSourceFilter.cs" />
     <Compile Include="Templates\DataSources\IUserAccountDataSourceFilter.cs" />
     <Compile Include="Templates\DataSources\IUserLogDataSourceFilter.cs" />

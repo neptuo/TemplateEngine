@@ -51,6 +51,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\TemplateEngine.Providers\TemplateEngine.Providers.csproj">
+      <Project>{30214616-7c89-467a-9147-7385e91aed13}</Project>
+      <Name>TemplateEngine.Providers</Name>
+    </ProjectReference>
     <ProjectReference Include="..\TemplateEngine.Publishing.Shared\TemplateEngine.Publishing.Shared.csproj">
       <Project>{b411906b-f831-4a99-9eec-69dcb4d539a4}</Project>
       <Name>TemplateEngine.Publishing.Shared</Name>

@@ -7,6 +7,10 @@ using Neptuo.TemplateEngine.Accounts.Hosting.Bootstrap;
 using Neptuo.TemplateEngine.Hosting.Integration;
 using Neptuo.Web;
 using Neptuo.TemplateEngine.Publishing.Hosting.Bootstrap;
+using Neptuo.TemplateEngine.Navigation.Bootstrap;
+using Neptuo.TemplateEngine.Providers;
+using System;
+using Neptuo.TemplateEngine.Navigation;
 
 namespace Neptuo.TemplateEngine.Backend.UI
 {
@@ -32,6 +36,42 @@ namespace Neptuo.TemplateEngine.Backend.UI
                 //TODO: Bootstrap as independent module
                 bootstrapper.Register<AccountBootstrapTask>();
                 bootstrapper.Register<PublishingBootstrapTask>();
+            }
+
+            public void RegisterForms(IFormUriRegistry formRegistry, ITemplateUrlFormatter formatter)
+            {
+                formRegistry
+                    .Register("Accounts.Login", formatter.FormatUrl("~/Accounts/Login"))
+                    .Register("Accounts.User.List", formatter.FormatUrl("~/Accounts/UserList"))
+                    .Register("Accounts.User.Edit", formatter.FormatUrl("~/Accounts/UserEdit"))
+                    .Register("Accounts.Role.List", formatter.FormatUrl("~/Accounts/RoleList"))
+                    .Register("Accounts.Role.Edit", formatter.FormatUrl("~/Accounts/RoleEdit"))
+                    .Register("Accounts.Log.List", formatter.FormatUrl("~/Accounts/LogList"))
+                    .Register("Accounts.Permission.List", formatter.FormatUrl("~/Accounts/PermissionList"));
+
+                formRegistry
+                    .Register("Publishing.Article.List", formatter.FormatUrl("~/Publishing/ArticleList"))
+                    .Register("Publishing.Article.Edit", formatter.FormatUrl("~/Publishing/ArticleEdit"))
+                    .Register("Publishing.ArticleLine.List", formatter.FormatUrl("~/Publishing/ArticleLineList"))
+                    .Register("Publishing.ArticleLine.Edit", formatter.FormatUrl("~/Publishing/ArticleLineEdit"))
+                    .Register("Publishing.ArticleTag.List", formatter.FormatUrl("~/Publishing/ArticleTagList"))
+                    .Register("Publishing.ArticleTag.Edit", formatter.FormatUrl("~/Publishing/ArticleTagEdit"));
+            }
+
+            public void RegisterGlobalNavigations(GlobalNavigationCollection globalNavigations)
+            {
+                globalNavigations
+                    .Add("Accounts.User.Deleted", (FormUri)"Accounts.User.List")
+                    .Add("Accounts.User.Created", (FormUri)"Accounts.User.List")
+                    .Add("Accounts.User.Updated", (FormUri)"Accounts.User.List")
+                    .Add("Accounts.Role.Deleted", (FormUri)"Accounts.Role.List")
+                    .Add("Accounts.Role.Created", (FormUri)"Accounts.Role.List")
+                    .Add("Accounts.Role.Updated", (FormUri)"Accounts.Role.List")
+                    .Add("Accounts.Permission.Updated", (FormUri)"Accounts.Role.List")
+                    .Add("Accounts.LoggedIn", (FormUri)"Accounts.User.List")
+                    .Add("Accounts.LoggedOut", (FormUri)"Accounts.Login");
+
+
             }
         }
 

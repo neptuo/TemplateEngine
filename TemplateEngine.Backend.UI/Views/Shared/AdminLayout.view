@@ -11,8 +11,8 @@
     <ui:Bundle Path="~/design/css/admin" IsStyle="true" />
     <ui:Bundle Path="~/design/js/admin" />
   
-    <ajax:StartUp DefaultUpdate="Body" />
-    <ui:ViewBundle Path="Default" />
+    <!--<ajax:StartUp DefaultUpdate="Body" />
+    <ui:ViewBundle Path="Default" />-->
   
     <ui:TemplatePlaceholder Name="Head" />
 </head>
@@ -27,8 +27,8 @@
             </div>
             <ul class="nav navbar-nav">
                 <li>
-                    <a form:href="Home" ajax:Update="BodyContainer">
-                        <ui:Literal l:Text="Web" />
+                    <a form:href="Publishing.ArticleLine.List" ajax:Update="BodyContainer">
+                        <ui:Literal l:Text="Publishing" />
                     </a>
                 </li>
                 <li>
