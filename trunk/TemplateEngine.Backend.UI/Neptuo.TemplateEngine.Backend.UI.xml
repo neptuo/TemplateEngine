@@ -15,4 +15,8 @@
     <Merge Filename="Design/Scripts/Generated/TemplateEngine/Accounts/Neptuo.TemplateEngine.Accounts.Shared.js" Sources="../TemplateEngine.Accounts.Shared/Neptuo.TemplateEngine.Accounts.Shared.js" />
     <Merge Filename="Design/Scripts/Generated/TemplateEngine/Accounts/Neptuo.TemplateEngine.Accounts.ViewModels.js" Sources="../TemplateEngine.Accounts.ViewModels/Neptuo.TemplateEngine.Accounts.ViewModels.js" />
     <Merge Filename="Design/Scripts/Generated/TemplateEngine/Accounts/Neptuo.TemplateEngine.Accounts.Client.js" Sources="../TemplateEngine.Accounts.Client/Neptuo.TemplateEngine.Accounts.Client.js" />
+
+    <Merge Filename="Design/Scripts/Generated/TemplateEngine/Publishing/Neptuo.TemplateEngine.Publishing.Shared.js" Sources="../TemplateEngine.Publishing.Shared/Neptuo.TemplateEngine.Publishing.Shared.js" />
+    <Merge Filename="Design/Scripts/Generated/TemplateEngine/Publishing/Neptuo.TemplateEngine.Publishing.ViewModels.js" Sources="../TemplateEngine.Publishing.ViewModels/Neptuo.TemplateEngine.Publishing.ViewModels.js" />
+    <Merge Filename="Design/Scripts/Generated/TemplateEngine/Publishing/Neptuo.TemplateEngine.Publishing.Client.js" Sources="../TemplateEngine.Publishing.Client/Neptuo.TemplateEngine.Publishing.Client.js" />
 </Exugin>

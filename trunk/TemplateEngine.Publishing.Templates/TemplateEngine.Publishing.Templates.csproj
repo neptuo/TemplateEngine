@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{9FE72FF0-CA57-44C6-817C-19C64CDA54F5}</ProjectGuid>
+    <ProjectGuid>{4EDC5EB0-F8CF-4554-B831-909B991303BA}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Neptuo.TemplateEngine.Publishing</RootNamespace>
-    <AssemblyName>Neptuo.TemplateEngine.Publishing</AssemblyName>
+    <RootNamespace>Neptuo.TemplateEngine.Publishing.Templates</RootNamespace>
+    <AssemblyName>Neptuo.TemplateEngine.Publishing.Templates</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -45,22 +45,28 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Article.cs" />
-    <Compile Include="ArticleLine.cs" />
-    <Compile Include="ArticleTag.cs" />
-    <Compile Include="Data\IArticleLineRepository.cs" />
-    <Compile Include="Data\IArticleRepository.cs" />
-    <Compile Include="Data\IArticleTagRepository.cs" />
-    <Compile Include="Data\Queries\ArticleFilter.cs" />
-    <Compile Include="Data\Queries\ArticleLineFilter.cs" />
-    <Compile Include="Data\Queries\ArticleTagFilter.cs" />
-    <Compile Include="Data\Queries\IArticleFilter.cs" />
-    <Compile Include="Data\Queries\IArticleLineFilter.cs" />
-    <Compile Include="Data\Queries\IArticleLineQuery.cs" />
-    <Compile Include="Data\Queries\IArticleQuery.cs" />
-    <Compile Include="Data\Queries\IArticleTagFilter.cs" />
-    <Compile Include="Data\Queries\IArticleTagQuery.cs" />
+    <Compile Include="DataSources\ArticleDataSource.cs" />
+    <Compile Include="DataSources\ArticleLineDataSource.cs" />
+    <Compile Include="DataSources\ArticleTagDataSource.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TemplateEngine.Publishing.Shared\TemplateEngine.Publishing.Shared.csproj">
+      <Project>{b411906b-f831-4a99-9eec-69dcb4d539a4}</Project>
+      <Name>TemplateEngine.Publishing.Shared</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TemplateEngine.Publishing.ViewModels\TemplateEngine.Publishing.ViewModels.csproj">
+      <Project>{1ada241f-aa7f-4777-a550-e908ba99b1da}</Project>
+      <Name>TemplateEngine.Publishing.ViewModels</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TemplateEngine.Publishing\TemplateEngine.Publishing.csproj">
+      <Project>{9fe72ff0-ca57-44c6-817c-19c64cda54f5}</Project>
+      <Name>TemplateEngine.Publishing</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TemplateEngine.Templates\TemplateEngine.Templates.csproj">
+      <Project>{ee534abf-10e8-467b-aa25-d8a39b6542b4}</Project>
+      <Name>TemplateEngine.Templates</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

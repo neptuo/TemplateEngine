@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Publishing.Data.Queries
 {
-    public interface IArticleTagFilter
+    public class ArticleTagFilter : IArticleTagFilter
     {
-        IntSearch Key { get; set; }
-        TextSearch Name { get; set; }
-        TextSearch Url { get; set; }
+        public IntSearch Key { get; set; }
+        public TextSearch Name { get; set; }
+        public TextSearch Url { get; set; }
     }
 }

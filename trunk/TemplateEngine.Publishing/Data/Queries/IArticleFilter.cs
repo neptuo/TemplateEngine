@@ -12,6 +12,7 @@ namespace Neptuo.TemplateEngine.Publishing.Data.Queries
         IntSearch Key { get; set; }
         TextSearch Title { get; set; }
         TextSearch Url { get; set; }
+        BoolSearch IsVisible { get; set; }
 
         IntSearch LineKey { get; set; }
         IntSearch TagKey { get; set; }
