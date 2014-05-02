@@ -74,7 +74,6 @@
     <Compile Include="Bootstrap\AccountBootstrapTask.cs" />
     <Compile Include="CurrentUserContext.cs" />
     <Compile Include="Data\Entity\DbInitializer.cs" />
-    <Compile Include="FormsAuthenticationProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

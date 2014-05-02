@@ -97,6 +97,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Bootstrap\AuthenticationBootstrapTask.cs" />
     <Compile Include="Bootstrap\BindingBootstrapTask.cs" />
     <Compile Include="Bootstrap\ConfigurationBootstrapTask.cs" />
     <Compile Include="Bootstrap\ConverterBootstrapTask.cs" />

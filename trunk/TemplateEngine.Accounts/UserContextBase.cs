@@ -37,11 +37,18 @@ namespace Neptuo.TemplateEngine.Accounts
 
         public virtual string AuthenticationToken { get; protected set; }
 
-        public UserContextBase(IApplicationConfiguration configuration, UserLog log, IActivator<IResourcePermissionQuery> permissionQueryFactory)
+        public UserContextBase(IApplicationConfiguration configuration, UserLog log, IActivator<IResourcePermissionQuery> permissionQueryFactory, string authenticationToken = null)
         {
             Guard.NotNull(configuration, "configuration");
             Guard.NotNull(permissionQueryFactory, "permissionQueryFactory");
             Log = log;
+            
+            if (!String.IsNullOrEmpty(authenticationToken))
+            {
+                AuthenticationToken = authenticationToken;
+                IsAuthenticated = true;
+            }
+
             this.configuration = configuration;
             this.permissionQueryFactory = permissionQueryFactory;
         }
