@@ -27,7 +27,7 @@
             </div>
             <ul class="nav navbar-nav">
                 <li>
-                    <a form:href="Publishing.ArticleLine.List" ajax:Update="BodyContainer">
+                    <a form:href="Publishing.Article.List" ajax:Update="BodyContainer">
                         <span class="glyphicon glyphicon-globe"></span>
                         <ui:Literal l:Text="Publishing" />
                     </a>
@@ -60,7 +60,7 @@
             <div class="right">
                 <a href="http://www.neptuo.com">Neptuo</a>
                 <a href="http://te.neptuo.com">TemplateEngine</a>
-                © 2013
+                © 2014
             </div>
             <div class="clear"></div>
         </footer>

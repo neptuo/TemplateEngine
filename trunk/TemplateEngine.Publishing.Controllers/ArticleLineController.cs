@@ -55,22 +55,30 @@ namespace Neptuo.TemplateEngine.Publishing.Controllers
         {
             Guard.NotNull(model, "model");
 
-            ArticleLine tag = repository.Get(model.Key);
-            if (tag == null)
+            ArticleLine line = repository.Get(model.Key);
+            if (line == null)
             {
                 Messages.Add(null, String.Empty, "No such article line.", MessageType.Warn);
                 return null;
             }
 
-            tag.Name = model.Name;
-            tag.Url = model.UrlPart;
-            tag.AvailableTags = new List<ArticleTag>(GetSelectedTags(model.AvailableTagKeys));
-            repository.Update(tag);
+            if (line.Name != model.Name)
+                line.Name = model.Name;
+
+            if (line.Url != model.UrlPart)
+                line.Url = model.UrlPart;
+
+            line.AvailableTags.Clear();
+            foreach (ArticleTag tag in GetSelectedTags(model.AvailableTagKeys))
+                line.AvailableTags.Add(tag);
+
+            repository.Update(line);
 
             Messages.Add(null, String.Empty, "Article line update.", MessageType.Info);
             return "Publishing.ArticleLine.Updated";
         }
 
+        [Action("Publishing/ArticleLine/Delete")]
         public string Delete(ArticleLineDeleteCommand model)
         {
             Guard.NotNull(model, "model");

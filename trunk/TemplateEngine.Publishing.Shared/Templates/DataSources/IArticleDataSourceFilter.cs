@@ -11,6 +11,7 @@ namespace Neptuo.TemplateEngine.Publishing.Templates.DataSources
         int? Key { get; set; }
         int? LineKey { get; set; }
         int? TagKey { get; set; }
+        bool IsIncludeHidden { get; set; }
 
         string Url { get; set; }
     }

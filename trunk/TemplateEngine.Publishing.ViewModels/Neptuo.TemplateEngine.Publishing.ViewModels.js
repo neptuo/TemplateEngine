@@ -2,6 +2,124 @@
 
 if (typeof(JsTypes) == "undefined")
     var JsTypes = [];
+var Neptuo$TemplateEngine$Publishing$ViewModels$ArticleEditViewModel = {
+    fullname: "Neptuo.TemplateEngine.Publishing.ViewModels.ArticleEditViewModel",
+    baseTypeName: "System.Object",
+    assemblyName: "Neptuo.TemplateEngine.Publishing.ViewModels",
+    Kind: "Class",
+    definition: {
+        ctor: function (){
+            this._Key = null;
+            this._Title = null;
+            this._Content = null;
+            this._UrlPart = null;
+            this._IsVisible = false;
+            this._Author = null;
+            this._LineKey = 0;
+            this._AvailableTagKeys = null;
+            this._TagKeys = null;
+            System.Object.ctor.call(this);
+        },
+        IsNew$$: "System.Boolean",
+        get_IsNew: function (){
+            return this.get_Key() == null;
+        },
+        Key$$: "System.Nullable`1[[System.Int32]]",
+        get_Key: function (){
+            return this._Key;
+        },
+        set_Key: function (value){
+            this._Key = value;
+        },
+        Title$$: "System.String",
+        get_Title: function (){
+            return this._Title;
+        },
+        set_Title: function (value){
+            this._Title = value;
+        },
+        Content$$: "System.String",
+        get_Content: function (){
+            return this._Content;
+        },
+        set_Content: function (value){
+            this._Content = value;
+        },
+        UrlPart$$: "System.String",
+        get_UrlPart: function (){
+            return this._UrlPart;
+        },
+        set_UrlPart: function (value){
+            this._UrlPart = value;
+        },
+        IsVisible$$: "System.Boolean",
+        get_IsVisible: function (){
+            return this._IsVisible;
+        },
+        set_IsVisible: function (value){
+            this._IsVisible = value;
+        },
+        Author$$: "System.String",
+        get_Author: function (){
+            return this._Author;
+        },
+        set_Author: function (value){
+            this._Author = value;
+        },
+        LineKey$$: "System.Int32",
+        get_LineKey: function (){
+            return this._LineKey;
+        },
+        set_LineKey: function (value){
+            this._LineKey = value;
+        },
+        AvailableTagKeys$$: "System.Collections.Generic.IEnumerable`1[[System.Int32]]",
+        get_AvailableTagKeys: function (){
+            return this._AvailableTagKeys;
+        },
+        set_AvailableTagKeys: function (value){
+            this._AvailableTagKeys = value;
+        },
+        TagKeys$$: "System.Collections.Generic.IEnumerable`1[[System.Int32]]",
+        get_TagKeys: function (){
+            return this._TagKeys;
+        },
+        set_TagKeys: function (value){
+            this._TagKeys = value;
+        },
+        ctor$$Int32$$String$$String$$String$$Boolean$$String$$Int32$$IEnumerable$1$Int32$$IEnumerable$1$Int32: function (key, title, content, urlPart, isVisible, author, lineKey, availableTagKeys, tagKeys){
+            this._Key = null;
+            this._Title = null;
+            this._Content = null;
+            this._UrlPart = null;
+            this._IsVisible = false;
+            this._Author = null;
+            this._LineKey = 0;
+            this._AvailableTagKeys = null;
+            this._TagKeys = null;
+            System.Object.ctor.call(this);
+            this.set_Key(key);
+            this.set_Title(title);
+            this.set_Content(content);
+            this.set_UrlPart(urlPart);
+            this.set_IsVisible(isVisible);
+            this.set_Author(author);
+            this.set_LineKey(lineKey);
+            this.set_AvailableTagKeys(availableTagKeys);
+            this.set_TagKeys(tagKeys);
+        }
+    },
+    ctors: [{
+        name: "ctor",
+        parameters: []
+    }, {
+        name: "ctor$$Int32$$String$$String$$String$$Boolean$$String$$Int32$$IEnumerable$$IEnumerable",
+        parameters: ["System.Int32", "System.String", "System.String", "System.String", "System.Boolean", "System.String", "System.Int32", "System.Collections.Generic.IEnumerable", "System.Collections.Generic.IEnumerable"]
+    }
+    ],
+    IsAbstract: false
+};
+JsTypes.push(Neptuo$TemplateEngine$Publishing$ViewModels$ArticleEditViewModel);
 var Neptuo$TemplateEngine$Publishing$ViewModels$ArticleLineViewModel = {
     fullname: "Neptuo.TemplateEngine.Publishing.ViewModels.ArticleLineViewModel",
     baseTypeName: "System.Object",

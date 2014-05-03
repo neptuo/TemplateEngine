@@ -39,6 +39,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ArticleEditViewModel.cs" />
     <Compile Include="ArticleLineViewModel.cs" />
     <Compile Include="ArticleLineEditViewModel.cs" />
     <Compile Include="ArticleTagEditViewModel.cs" />

@@ -64,7 +64,7 @@ var Neptuo$TemplateEngine$Templates$BindingManagerBase = {
                 value.Value = null;
                 return false;
             }
-            var provider = As(source, Neptuo.PresentationModels.IModelValueProvider.ctor);
+            var provider = As(source, Neptuo.PresentationModels.IModelValueGetter.ctor);
             if (provider != null)
                 return provider.TryGetValue(expression, value);
             var info = null;

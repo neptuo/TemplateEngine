@@ -45,7 +45,7 @@ namespace Neptuo.TemplateEngine.Templates
                 return false;
             }
 
-            IModelValueProvider provider = source as IModelValueProvider;
+            IModelValueGetter provider = source as IModelValueGetter;
             if (provider != null)
                 return provider.TryGetValue(expression, out value);
 

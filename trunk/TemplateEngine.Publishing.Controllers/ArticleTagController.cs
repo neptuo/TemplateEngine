@@ -57,8 +57,12 @@ namespace Neptuo.TemplateEngine.Publishing.Controllers
                 return null;
             }
 
-            tag.Name = model.Name;
-            tag.Url = model.UrlPart;
+            if (tag.Name != model.Name)
+                tag.Name = model.Name;
+
+            if (tag.Url != model.UrlPart)
+                tag.Url = model.UrlPart;
+
             repository.Update(tag);
 
             Messages.Add(null, String.Empty, "Article tag updated.", MessageType.Info);
