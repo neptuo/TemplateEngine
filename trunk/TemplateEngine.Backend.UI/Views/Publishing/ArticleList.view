@@ -39,7 +39,7 @@
         
         <ui:ListView PageIndex="{Request PageIndex}" PageSize="10">
             <Source>
-                <data:ArticleDataSource Key="{Request Key}" Title="{Request Title}" IsIncludeHidden="true" />
+                <data:ArticleDataSource Key="{Request Key}" Title="{Request Title}" LineKey="{Request LineKey}" TagKey="{Request TagKey}" IsIncludeHidden="true" />
             </Source>
             <Template>
                 <div style="padding: 10px;">
