@@ -1,0 +1,52 @@
+﻿<ui:AdminLayout Title="Create/Edit article tag">
+    <ui:TemplateContent Name="SideNav">
+        <ul class="nav nav-pills nav-stacked">
+            <ui:PublishingSideNav />
+        </ul>
+    </ui:TemplateContent>
+    <ui:TemplateContent Name="Body">
+
+        <ui:DetailView>
+            <Source>
+                <data:ArticleTagDataSource Key="{Request TagKey}" />
+            </Source>
+            <Template>
+
+                <div style="padding: 15px 10px;">
+                    <ui:PostForm ajax:Update="Content">
+                        <ui:FormItem l:LabelText="Name" l:HelpText="Tag name">
+                            <ui:TextBox Name="Name" Text="{Binding Name}" IsAutoFocus="true" html:Class="form-control" />
+                            <ui:MessagePanel Group="ArticleTagEdit" Key="Name" />
+                        </ui:FormItem>
+                        <ui:FormItem l:LabelText="Url" l:HelpText="Tag url (used for dynamic url address)">
+                            <ui:TextBox Name="UrlPart" Text="{Binding UrlPart}" html:Class="form-control" />
+                            <ui:MessagePanel Group="ArticleTagEdit" Key="UrlPart" />
+                        </ui:FormItem>
+
+                        <ui:SubHeader>
+                            <ui:TemplateContent Name="Left">
+                                <h2>
+                                    <span class="glyphicon glyphicon-tags"></span>
+                                    Create/Edit article tag
+                                </h2>
+                            </ui:TemplateContent>
+                            <ui:TemplateContent Name="Right">
+                                <a form:href="Publishing.ArticleTag.List" ajax:Update="Content" class="btn btn-small">
+                                    <span class="glyphicon glyphicon-arrow-left"></span>
+                                    Back to list
+                                </a>
+
+                                <ui:HiddenBox Name="Key" Text="{Binding Key}" />
+
+                                <ui:Button l:Text="Save" ui:Event="{Switch {Binding IsNew}, TrueValue=Publishing/ArticleTag/Create, FalseValue=Publishing/ArticleTag/Update}" CssClass="btn btn-primary" />
+                                <ui:Button l:Text="Delete" ui:Event="Publishing/ArticleTag/Delete" html:Class="btn btn-danger" />
+                            </ui:TemplateContent>
+                        </ui:SubHeader>
+                    </ui:PostForm>
+                </div>
+
+            </Template>
+        </ui:DetailView>
+
+    </ui:TemplateContent>
+</ui:AdminLayout>

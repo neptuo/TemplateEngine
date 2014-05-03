@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Controllers
 {
-    [AttributeUsage(AttributeTargets.Class)]
+    [AttributeUsage(AttributeTargets.Method)]
     public class ValidateAttribute : Attribute
     {
         public string MessageKey { get; private set; }

@@ -12,7 +12,7 @@ namespace Neptuo.TemplateEngine.Publishing.ViewModels
 
         public string Title { get; set; }
         public string Content { get; set; }
-        public string Url { get; set; }
+        public string UrlPart { get; set; }
         public bool IsVisible { get; set; }
 
         public string Author { get; set; }
@@ -23,12 +23,12 @@ namespace Neptuo.TemplateEngine.Publishing.ViewModels
         public ArticleLineViewModel Line { get; set; }
         public IEnumerable<ArticleTagViewModel> Tags { get; set; }
 
-        public ArticleViewModel(int key, string title, string content, string url, bool isVisible, string author, DateTime created, DateTime? lastModified, ArticleLineViewModel line, IEnumerable<ArticleTagViewModel> tags)
+        public ArticleViewModel(int key, string title, string content, string urlPart, bool isVisible, string author, DateTime created, DateTime? lastModified, ArticleLineViewModel line, IEnumerable<ArticleTagViewModel> tags)
         {
             Key = key;
             Title = title;
             Content = content;
-            Url = url;
+            UrlPart = urlPart;
             IsVisible = isVisible;
             Author = author;
             Created = created;

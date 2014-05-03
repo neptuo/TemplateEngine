@@ -1,4 +1,5 @@
 ﻿using Neptuo.Data.Queries;
+using Neptuo.TemplateEngine.Providers.ModelBinders;
 using Neptuo.TemplateEngine.Publishing.Data.Queries;
 using Neptuo.TemplateEngine.Publishing.ViewModels;
 using Neptuo.TemplateEngine.Templates.DataSources;
@@ -14,15 +15,18 @@ namespace Neptuo.TemplateEngine.Publishing.Templates.DataSources
     public class ArticleTagDataSource : IListDataSource, IDataSource, IArticleTagDataSourceFilter
     {
         private IArticleTagQuery query;
+        private IModelBinder modelBinder;
 
         public int? Key { get; set; }
         public string Name { get; set; }
         public string Url { get; set; }
 
-        public ArticleTagDataSource(IArticleTagQuery query)
+        public ArticleTagDataSource(IArticleTagQuery query, IModelBinder modelBinder)
         {
             Guard.NotNull(query, "query");
+            Guard.NotNull(modelBinder, "modelBinder");
             this.query = query;
+            this.modelBinder = modelBinder;
         }
 
         protected void ApplyFilter()
@@ -31,20 +35,26 @@ namespace Neptuo.TemplateEngine.Publishing.Templates.DataSources
                 query.Filter.Key = IntSearch.Create(Key.Value);
 
             if (!String.IsNullOrEmpty(Name))
-                query.Filter.Name = TextSearch.Contains(Name, false);
+                query.Filter.Name = TextSearch.StartsWith(Name);
 
             if (!String.IsNullOrEmpty(Url))
                 query.Filter.Url = TextSearch.Create(Url);
+
+            query.OrderBy(t => t.Name);
         }
 
         public object GetItem()
         {
+            ArticleTagEditViewModel viewModel = new ArticleTagEditViewModel();
             if (Key != null)
             {
                 query.Filter.Key = IntSearch.Create(Key.Value);
-                return query.ResultSingle();
+                ArticleTag model = query.ResultSingle();
+                viewModel = new ArticleTagEditViewModel(model.Key, model.Name, model.Url);
             }
-            return null;
+
+            modelBinder.Bind(viewModel);
+            return viewModel;
         }
 
         public IEnumerable GetData(int? pageIndex, int? pageSize)

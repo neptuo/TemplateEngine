@@ -6,13 +6,21 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Publishing.ViewModels
 {
-    public class ArticleTagViewModel
+    public class ArticleTagEditViewModel
     {
-        public int Key { get; set; }
+        public bool IsNew
+        {
+            get { return Key == null; }
+        }
+
+        public int? Key { get; set; }
         public string Name { get; set; }
         public string UrlPart { get; set; }
 
-        public ArticleTagViewModel(int key, string name, string urlPart)
+        public ArticleTagEditViewModel()
+        { }
+
+        public ArticleTagEditViewModel(int? key, string name, string urlPart)
         {
             Key = key;
             Name = name;

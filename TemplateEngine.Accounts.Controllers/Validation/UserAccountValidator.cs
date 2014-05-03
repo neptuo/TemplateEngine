@@ -48,7 +48,7 @@ namespace Neptuo.TemplateEngine.Accounts.Controllers.Validation
             else if (username.Length < 5)
                 messages.Add(new StringLengthMessage(usernameKey, 5, null));
             else if (IsUsernameUsed(key, username))
-                messages.Add(new TextValidationMessage(usernameKey, "Username is already taken aby another user!"));
+                messages.Add(new TextValidationMessage(usernameKey, "Username is already taken by another user!"));
         }
 
         private void ValidatePassword(int? key, string password, string passwordAgain, List<IValidationMessage> messages)

@@ -10,6 +10,7 @@ namespace Neptuo.TemplateEngine.Publishing.Controllers.Commands
     {
         public int Key { get; set; }
         public string Name { get; set; }
-        public string Url { get; set; }
+        public string UrlPart { get; set; }
+        public IEnumerable<int> AvailableTagKeys { get; set; }
     }
 }

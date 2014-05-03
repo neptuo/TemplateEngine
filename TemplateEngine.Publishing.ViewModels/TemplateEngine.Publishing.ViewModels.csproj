@@ -40,6 +40,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ArticleLineViewModel.cs" />
+    <Compile Include="ArticleLineEditViewModel.cs" />
+    <Compile Include="ArticleTagEditViewModel.cs" />
     <Compile Include="ArticleTagViewModel.cs" />
     <Compile Include="ArticleViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

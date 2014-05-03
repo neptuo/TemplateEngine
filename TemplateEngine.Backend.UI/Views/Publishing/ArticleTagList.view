@@ -9,12 +9,12 @@
         <ui:SubHeader>
             <ui:TemplateContent Name="Left">
                 <h2>
-                    <span class="glyphicon glyphicon-book"></span>
-                    Article lines
+                    <span class="glyphicon glyphicon-tags"></span>
+                    Article tags
                 </h2>
             </ui:TemplateContent>
             <ui:TemplateContent Name="Right">
-                <a form:href="Publishing.ArticleLine.Edit" ajax:Update="Content" class="btn btn-primary">Create article line</a>
+                <a form:href="Publishing.ArticleTag.Edit" ajax:Update="Content" class="btn btn-primary">Create article tag</a>
             </ui:TemplateContent>
         </ui:SubHeader>
 
@@ -32,14 +32,14 @@
                         <span class="glyphicon glyphicon-search"></span>
                         <ui:Literal l:Text="Search" />
                     </ui:Button>
-                    <ui:Link form:Href="Publishing.ArticleLine.List" ajax:Update="Content" CssClass="btn btn-default btn-sm" l:Text="Clear" CopyParameters="PageIndex" AllowActive="false" />
+                    <ui:Link form:Href="Publishing.ArticleTag.List" ajax:Update="Content" CssClass="btn btn-default btn-sm" l:Text="Clear" CopyParameters="PageIndex" AllowActive="false" />
                 </div>
             </ui:GetForm>
         </div>
         
         <ui:ListView PageIndex="{Request PageIndex}" PageSize="10">
             <Source>
-                <data:ArticleLineDataSource Key="{Request Key}" Name="{Request Name}" />
+                <data:ArticleTagDataSource Key="{Request Key}" Name="{Request Name}" />
             </Source>
             <Template>
                 <div style="padding: 10px;">
@@ -69,20 +69,20 @@
                         <ui:Literal Text="{Binding UrlPart}" />
                     </td>
                     <td class="action-list">
-                        <ui:Link form:Href="Publishing.ArticleLine.Edit" ajax:Update="Content" Text="Edit" html:Class="btn btn-default btn-xs">
+                        <ui:Link form:Href="Publishing.ArticleTag.Edit" ajax:Update="Content" Text="Edit" html:Class="btn btn-default btn-xs">
                             <Parameters>
-                                <ui:Parameter Name="LineKey" Value="{Binding Key}" />
+                                <ui:Parameter Name="TagKey" Value="{Binding Key}" />
                             </Parameters>
                         </ui:Link>
                         <ui:PostForm html:Class="form-inline" ajax:Update="Content" html:Style="display: inline;">
-                            <ui:HiddenBox Name="LineKey" Text="{Binding Key}" />
-                            <ui:Button l:Text="Delete" ui:Event="Publishing/ArticleLine/Delete" html:Class="btn btn-xs btn-danger" />
+                            <ui:HiddenBox Name="TagKey" Text="{Binding Key}" />
+                            <ui:Button l:Text="Delete" ui:Event="Publishing/ArticleTag/Delete" html:Class="btn btn-xs btn-danger" />
                         </ui:PostForm>
                     </td>
                 </tr>
             </ItemTemplate>
             <EmptyTemplate>
-                No article lines, <a form:href="Publishing.ArticleLine.Edit" ajax:Update="Content">create one</a>.
+                No article tags, <a form:href="Publishing.ArticleTag.Edit" ajax:Update="Content">create one</a>.
             </EmptyTemplate>
         </ui:ListView>
 

@@ -71,7 +71,13 @@ namespace Neptuo.TemplateEngine.Backend.UI
                     .Add("Accounts.LoggedIn", (FormUri)"Accounts.User.List")
                     .Add("Accounts.LoggedOut", (FormUri)"Accounts.Login");
 
-
+                globalNavigations
+                    .Add("Publishing.ArticleLine.Deleted", (FormUri)"Publishing.ArticleLine.List")
+                    .Add("Publishing.ArticleLine.Created", (FormUri)"Publishing.ArticleLine.List")
+                    .Add("Publishing.ArticleLine.Updated", (FormUri)"Publishing.ArticleLine.List")
+                    .Add("Publishing.ArticleTag.Deleted", (FormUri)"Publishing.ArticleTag.List")
+                    .Add("Publishing.ArticleTag.Created", (FormUri)"Publishing.ArticleTag.List")
+                    .Add("Publishing.ArticleTag.Updated", (FormUri)"Publishing.ArticleTag.List");
             }
         }
 
