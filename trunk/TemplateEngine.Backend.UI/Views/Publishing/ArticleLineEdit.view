@@ -1,7 +1,7 @@
 ﻿<ui:AdminLayout Title="Create/Edit article line">
     <ui:TemplateContent Name="SideNav">
         <ul class="nav nav-pills nav-stacked">
-            <ui:AccountSideNav />
+            <ui:PublishingSideNav />
         </ul>
     </ui:TemplateContent>
     <ui:TemplateContent Name="Body">
@@ -14,19 +14,33 @@
 
                 <div style="padding: 15px 10px;">
                     <ui:PostForm ajax:Update="Content">
-                        <ui:FormItem l:LabelText="Name" l:HelpText="Line name">
-                            <ui:TextBox Name="Name" Text="{Binding Name}" IsAutoFocus="true" html:ID="Name" html:Class="form-control" />
-                            <ui:MessagePanel Group="ArticleLineEdit" Key="Name" />
-                        </ui:FormItem>
-                        <ui:FormItem l:LabelText="Url" l:HelpText="Line url (used for dynamic url address)">
-                            <ui:TextBox Name="Url" Text="{Binding Url}" html:ID="Description" html:Class="form-control" />
-                            <ui:MessagePanel Group="ArticleLineEdit" Key="Url" />
-                        </ui:FormItem>
+                        <div class="col-md-6">
+                            <ui:FormItem l:LabelText="Name" l:HelpText="Line name">
+                                <ui:TextBox Name="Name" Text="{Binding Name}" IsAutoFocus="true" html:ID="Name" html:Class="form-control" />
+                                <ui:MessagePanel Group="ArticleLineEdit" Key="Name" />
+                            </ui:FormItem>
+                            <ui:FormItem l:LabelText="Url" l:HelpText="Line url (used for dynamic url address)">
+                                <ui:TextBox Name="UrlPart" Text="{Binding UrlPart}" html:ID="Description" html:Class="form-control" />
+                                <ui:MessagePanel Group="ArticleLineEdit" Key="UrlPart" />
+                            </ui:FormItem>
+                        </div>
+                        <div class="col-md-6">
+                            <ui:FormItem l:LabelText="Available tags" l:HelpText="List of tags available for this article line">
+                                <ui:Select Value="{Binding AvailableTagKeys}" SelectedValuePath="Key">
+                                    <Source>
+                                        <data:ArticleTagDataSource />
+                                    </Source>
+                                    <ItemTemplate>
+                                        <ui:CheckBox IsChecked="{Binding IsSelected}" LabelText="{Binding Model.Name}" Name="AvailableTagKeys" value="{Binding Model.Key}" />
+                                    </ItemTemplate>
+                                </ui:Select>
+                            </ui:FormItem>
+                        </div>
 
                         <ui:SubHeader>
                             <ui:TemplateContent Name="Left">
                                 <h2>
-                                    <span class="glyphicon glyphicon-glass"></span>
+                                    <span class="glyphicon glyphicon-book"></span>
                                     Create/Edit article line
                                 </h2>
                             </ui:TemplateContent>

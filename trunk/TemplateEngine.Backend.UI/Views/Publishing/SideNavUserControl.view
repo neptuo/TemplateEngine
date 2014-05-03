@@ -1,18 +1,18 @@
 ﻿<li>
     <ui:Link form:Href="Publishing.Article.List" ajax:Update="BodyContainer">
-        <span class="glyphicon glyphicon-remove"></span>
+        <span class="glyphicon glyphicon-align-left"></span>
         Articles
     </ui:Link>
 </li>
 <li>
     <ui:Link form:Href="Publishing.ArticleLine.List" ajax:Update="BodyContainer">
-        <span class="glyphicon glyphicon-glass"></span>
+        <span class="glyphicon glyphicon-book"></span>
         Article lines
     </ui:Link>
 </li>
 <li>
     <ui:Link form:Href="Publishing.ArticleTag.List" ajax:Update="BodyContainer">
-        <span class="glyphicon glyphicon-remove"></span>
+        <span class="glyphicon glyphicon-tags"></span>
         Article tags
     </ui:Link>
 </li>

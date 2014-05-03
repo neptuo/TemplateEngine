@@ -63,8 +63,12 @@ var Neptuo$TemplateEngine$Controllers$ControllerBase = {
                 if (action != null){
                     if (action.get_ActionName() == context.get_ActionName()){
                         var parameters = this.BindActionParameters(context, methodInfo);
-                        var result = this.ExecuteAction(context, methodInfo, parameters);
-                        this.ProcessActionResult(context, methodInfo, result);
+                        if (this.TryValidate(methodInfo, parameters)){
+                            var transaction = this.TryTransaction(methodInfo);
+                            var result = this.ExecuteAction(context, methodInfo, parameters);
+                            transaction.Dispose(result != null);
+                            this.ProcessActionResult(context, methodInfo, result);
+                        }
                         break;
                     }
                 }
@@ -90,6 +94,30 @@ var Neptuo$TemplateEngine$Controllers$ControllerBase = {
             var stringResult = As(result, System.String.ctor);
             if (stringResult != null)
                 context.set_Navigation(stringResult);
+        },
+        TryValidate: function (methodInfo, parameters){
+            var result = true;
+            var validate = Neptuo.Reflection.ReflectionHelper.GetAttribute$1(Neptuo.TemplateEngine.Controllers.ValidateAttribute.ctor, methodInfo);
+            if (validate != null){
+                var validatorService = Neptuo.DependencyProviderExtensions.Resolve$1$$IDependencyProvider(Neptuo.Validation.IValidatorService.ctor, this.get_Context().get_DependencyProvider());
+                var $it3 = parameters.GetEnumerator();
+                while ($it3.MoveNext()){
+                    var parameter = $it3.get_Current();
+                    var validationResult = validatorService.Validate$$Object(parameter);
+                    if (!validationResult.get_IsValid()){
+                        Neptuo.TemplateEngine.Providers.MessageStorageExtensions.AddValidationResult(this.get_Messages(), validationResult, validate.get_MessageKey(), true);
+                        result = false;
+                    }
+                }
+            }
+            return result;
+        },
+        TryTransaction: function (methodInfo){
+            var transaction = null;
+            var transactional = Neptuo.Reflection.ReflectionHelper.GetAttribute$1(Neptuo.TemplateEngine.Controllers.TransactionalAttribute.ctor, methodInfo);
+            if (transactional != null)
+                transaction = Neptuo.DependencyProviderExtensions.Resolve$1$$IDependencyProvider(Neptuo.Data.IUnitOfWorkFactory.ctor, this.get_Context().get_DependencyProvider()).Create();
+            return new Neptuo.TemplateEngine.Controllers.TransactionalDisposable.ctor(transaction);
         }
     },
     ctors: [{
@@ -223,9 +251,9 @@ var Neptuo$TemplateEngine$Controllers$ControllerRegistryExtensions = {
     baseTypeName: "System.Object",
     staticDefinition: {
         Add$$IControllerRegistry$$IDependencyContainer$$Type: function (controllerRegistry, dependencyContainer, controllerType){
-            var $it3 = controllerType.GetMethods().GetEnumerator();
-            while ($it3.MoveNext()){
-                var methodInfo = $it3.get_Current();
+            var $it4 = controllerType.GetMethods().GetEnumerator();
+            while ($it4.MoveNext()){
+                var methodInfo = $it4.get_Current();
                 var action = Neptuo.Reflection.ReflectionHelper.GetAttribute$1(Neptuo.TemplateEngine.Controllers.ActionAttribute.ctor, methodInfo);
                 if (action != null)
                     Neptuo.TemplateEngine.Controllers.ControllerRegistryExtensions.Add$$IControllerRegistry$$String$$IDependencyContainer$$Type(controllerRegistry, action.get_ActionName(), dependencyContainer, controllerType);
@@ -343,6 +371,30 @@ var Neptuo$TemplateEngine$Controllers$TransactionalAttribute = {
     IsAbstract: false
 };
 JsTypes.push(Neptuo$TemplateEngine$Controllers$TransactionalAttribute);
+var Neptuo$TemplateEngine$Controllers$TransactionalDisposable = {
+    fullname: "Neptuo.TemplateEngine.Controllers.TransactionalDisposable",
+    baseTypeName: "System.Object",
+    assemblyName: "Neptuo.TemplateEngine.Controllers",
+    Kind: "Class",
+    definition: {
+        ctor: function (transaction){
+            this.transaction = null;
+            System.Object.ctor.call(this);
+            this.transaction = transaction;
+        },
+        Dispose: function (saveChanges){
+            if (this.transaction != null && saveChanges)
+                this.transaction.SaveChanges();
+        }
+    },
+    ctors: [{
+        name: "ctor",
+        parameters: ["Neptuo.Data.IUnitOfWork"]
+    }
+    ],
+    IsAbstract: false
+};
+JsTypes.push(Neptuo$TemplateEngine$Controllers$TransactionalDisposable);
 var Neptuo$TemplateEngine$Controllers$ValidateAttribute = {
     fullname: "Neptuo.TemplateEngine.Controllers.ValidateAttribute",
     baseTypeName: "System.Attribute",

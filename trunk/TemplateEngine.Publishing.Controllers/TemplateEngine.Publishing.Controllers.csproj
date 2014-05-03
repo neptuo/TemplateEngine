@@ -30,6 +30,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Neptuo">
+      <HintPath>..\References\Neptuo.dll</HintPath>
+    </Reference>
+    <Reference Include="Neptuo.Data">
+      <HintPath>..\References\Neptuo.Data.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -41,14 +47,29 @@
   <ItemGroup>
     <Compile Include="ArticleController.cs" />
     <Compile Include="ArticleLineController.cs" />
+    <Compile Include="ArticleTagController.cs" />
+    <Compile Include="Commands\ArticleLineDeleteCommand.cs" />
+    <Compile Include="Commands\ArticleTagCreateCommand.cs" />
     <Compile Include="Commands\ArticleLineCreateCommand.cs" />
+    <Compile Include="Commands\ArticleTagDeleteCommand.cs" />
+    <Compile Include="Commands\ArticleTagEditCommand.cs" />
     <Compile Include="Commands\ArticleLineEditCommand.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Validation\ArticleLineValidator.cs" />
+    <Compile Include="Validation\ArticleTagValidator.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\TemplateEngine.Controllers\TemplateEngine.Controllers.csproj">
       <Project>{cefd01c6-467d-4e1c-ace6-af093e443e08}</Project>
       <Name>TemplateEngine.Controllers</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TemplateEngine.Providers\TemplateEngine.Providers.csproj">
+      <Project>{30214616-7c89-467a-9147-7385e91aed13}</Project>
+      <Name>TemplateEngine.Providers</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TemplateEngine.Publishing\TemplateEngine.Publishing.csproj">
+      <Project>{9fe72ff0-ca57-44c6-817c-19c64cda54f5}</Project>
+      <Name>TemplateEngine.Publishing</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

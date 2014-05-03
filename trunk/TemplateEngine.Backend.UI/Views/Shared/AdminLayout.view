@@ -21,18 +21,20 @@
         <div class="navbar navbar-fixed-top navbar-main">
             <div class="navbar-header">
                 <a form:href="Home" class="navbar-brand" ajax:Update="BodyContainer">
-                    <span class="glyphicon glyphicon-refresh"></span>
+                    <span class="glyphicon glyphicon-tree-deciduous"></span>
                     TemplateEngine
                 </a>
             </div>
             <ul class="nav navbar-nav">
                 <li>
                     <a form:href="Publishing.ArticleLine.List" ajax:Update="BodyContainer">
+                        <span class="glyphicon glyphicon-globe"></span>
                         <ui:Literal l:Text="Publishing" />
                     </a>
                 </li>
                 <li>
                     <a form:href="Accounts.User.List" ajax:Update="BodyContainer">
+                        <span class="glyphicon glyphicon-user"></span>
                         <ui:Literal l:Text="User accounts" />
                     </a>
                 </li>

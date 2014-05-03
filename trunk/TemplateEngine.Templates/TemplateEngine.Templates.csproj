@@ -197,6 +197,7 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
+    <EmbeddedResource Include="Views\SelectControl.Template.view" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Neptuo.TemplateEngine.Templates.xml" />

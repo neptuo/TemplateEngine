@@ -35,7 +35,7 @@ namespace Neptuo.TemplateEngine.Publishing.Templates.DataSources
                 query.Filter.Key = IntSearch.Create(Key.Value);
 
             if (!String.IsNullOrEmpty(Name))
-                query.Filter.Name = TextSearch.Contains(Name);
+                query.Filter.Name = TextSearch.StartsWith(Name);
 
             if (!String.IsNullOrEmpty(Url))
                 query.Filter.Url = TextSearch.Create(Url);
@@ -45,12 +45,12 @@ namespace Neptuo.TemplateEngine.Publishing.Templates.DataSources
 
         public object GetItem()
         {
-            ArticleLineViewModel viewModel = new ArticleLineViewModel();
+            ArticleLineEditViewModel viewModel = new ArticleLineEditViewModel();
             if (Key != null)
             {
                 query.Filter.Key = IntSearch.Create(Key.Value);
                 ArticleLine model = query.ResultSingle();
-                viewModel = new ArticleLineViewModel(model.Key, model.Name, model.Url);
+                viewModel = new ArticleLineEditViewModel(model.Key, model.Name, model.Url, model.AvailableTags.Select(t => t.Key));
             }
 
             modelBinder.Bind(viewModel);

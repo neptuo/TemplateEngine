@@ -8,11 +8,14 @@ var Neptuo$TemplateEngine$Publishing$ViewModels$ArticleLineViewModel = {
     assemblyName: "Neptuo.TemplateEngine.Publishing.ViewModels",
     Kind: "Class",
     definition: {
-        ctor: function (){
+        ctor: function (key, name, urlPart){
             this._Key = 0;
             this._Name = null;
-            this._Url = null;
+            this._UrlPart = null;
             System.Object.ctor.call(this);
+            this.set_Key(key);
+            this.set_Name(name);
+            this.set_UrlPart(urlPart);
         },
         Key$$: "System.Int32",
         get_Key: function (){
@@ -28,48 +31,162 @@ var Neptuo$TemplateEngine$Publishing$ViewModels$ArticleLineViewModel = {
         set_Name: function (value){
             this._Name = value;
         },
-        Url$$: "System.String",
-        get_Url: function (){
-            return this._Url;
+        UrlPart$$: "System.String",
+        get_UrlPart: function (){
+            return this._UrlPart;
         },
-        set_Url: function (value){
-            this._Url = value;
-        },
-        ctor$$Int32$$String$$String: function (key, name, url){
-            this._Key = 0;
-            this._Name = null;
-            this._Url = null;
-            System.Object.ctor.call(this);
-            this.set_Key(key);
-            this.set_Name(name);
-            this.set_Url(url);
+        set_UrlPart: function (value){
+            this._UrlPart = value;
         }
     },
     ctors: [{
         name: "ctor",
-        parameters: []
-    }, {
-        name: "ctor$$Int32$$String$$String",
         parameters: ["System.Int32", "System.String", "System.String"]
     }
     ],
     IsAbstract: false
 };
 JsTypes.push(Neptuo$TemplateEngine$Publishing$ViewModels$ArticleLineViewModel);
+var Neptuo$TemplateEngine$Publishing$ViewModels$ArticleLineEditViewModel = {
+    fullname: "Neptuo.TemplateEngine.Publishing.ViewModels.ArticleLineEditViewModel",
+    baseTypeName: "System.Object",
+    assemblyName: "Neptuo.TemplateEngine.Publishing.ViewModels",
+    Kind: "Class",
+    definition: {
+        ctor: function (){
+            this._Key = null;
+            this._Name = null;
+            this._UrlPart = null;
+            this._AvailableTagKeys = null;
+            System.Object.ctor.call(this);
+        },
+        IsNew$$: "System.Boolean",
+        get_IsNew: function (){
+            return this.get_Key() == null;
+        },
+        Key$$: "System.Nullable`1[[System.Int32]]",
+        get_Key: function (){
+            return this._Key;
+        },
+        set_Key: function (value){
+            this._Key = value;
+        },
+        Name$$: "System.String",
+        get_Name: function (){
+            return this._Name;
+        },
+        set_Name: function (value){
+            this._Name = value;
+        },
+        UrlPart$$: "System.String",
+        get_UrlPart: function (){
+            return this._UrlPart;
+        },
+        set_UrlPart: function (value){
+            this._UrlPart = value;
+        },
+        AvailableTagKeys$$: "System.Collections.Generic.IEnumerable`1[[System.Int32]]",
+        get_AvailableTagKeys: function (){
+            return this._AvailableTagKeys;
+        },
+        set_AvailableTagKeys: function (value){
+            this._AvailableTagKeys = value;
+        },
+        ctor$$Nullable$1$Int32$$String$$String$$IEnumerable$1$Int32: function (key, name, urlPart, availableTagKeys){
+            this._Key = null;
+            this._Name = null;
+            this._UrlPart = null;
+            this._AvailableTagKeys = null;
+            System.Object.ctor.call(this);
+            this.set_Key(key);
+            this.set_Name(name);
+            this.set_UrlPart(urlPart);
+            this.set_AvailableTagKeys(availableTagKeys);
+        }
+    },
+    ctors: [{
+        name: "ctor",
+        parameters: []
+    }, {
+        name: "ctor$$Nullable$$String$$String$$IEnumerable",
+        parameters: ["System.Nullable", "System.String", "System.String", "System.Collections.Generic.IEnumerable"]
+    }
+    ],
+    IsAbstract: false
+};
+JsTypes.push(Neptuo$TemplateEngine$Publishing$ViewModels$ArticleLineEditViewModel);
+var Neptuo$TemplateEngine$Publishing$ViewModels$ArticleTagEditViewModel = {
+    fullname: "Neptuo.TemplateEngine.Publishing.ViewModels.ArticleTagEditViewModel",
+    baseTypeName: "System.Object",
+    assemblyName: "Neptuo.TemplateEngine.Publishing.ViewModels",
+    Kind: "Class",
+    definition: {
+        ctor: function (){
+            this._Key = null;
+            this._Name = null;
+            this._UrlPart = null;
+            System.Object.ctor.call(this);
+        },
+        IsNew$$: "System.Boolean",
+        get_IsNew: function (){
+            return this.get_Key() == null;
+        },
+        Key$$: "System.Nullable`1[[System.Int32]]",
+        get_Key: function (){
+            return this._Key;
+        },
+        set_Key: function (value){
+            this._Key = value;
+        },
+        Name$$: "System.String",
+        get_Name: function (){
+            return this._Name;
+        },
+        set_Name: function (value){
+            this._Name = value;
+        },
+        UrlPart$$: "System.String",
+        get_UrlPart: function (){
+            return this._UrlPart;
+        },
+        set_UrlPart: function (value){
+            this._UrlPart = value;
+        },
+        ctor$$Nullable$1$Int32$$String$$String: function (key, name, urlPart){
+            this._Key = null;
+            this._Name = null;
+            this._UrlPart = null;
+            System.Object.ctor.call(this);
+            this.set_Key(key);
+            this.set_Name(name);
+            this.set_UrlPart(urlPart);
+        }
+    },
+    ctors: [{
+        name: "ctor",
+        parameters: []
+    }, {
+        name: "ctor$$Nullable$$String$$String",
+        parameters: ["System.Nullable", "System.String", "System.String"]
+    }
+    ],
+    IsAbstract: false
+};
+JsTypes.push(Neptuo$TemplateEngine$Publishing$ViewModels$ArticleTagEditViewModel);
 var Neptuo$TemplateEngine$Publishing$ViewModels$ArticleTagViewModel = {
     fullname: "Neptuo.TemplateEngine.Publishing.ViewModels.ArticleTagViewModel",
     baseTypeName: "System.Object",
     assemblyName: "Neptuo.TemplateEngine.Publishing.ViewModels",
     Kind: "Class",
     definition: {
-        ctor: function (key, name, url){
+        ctor: function (key, name, urlPart){
             this._Key = 0;
             this._Name = null;
-            this._Url = null;
+            this._UrlPart = null;
             System.Object.ctor.call(this);
             this.set_Key(key);
             this.set_Name(name);
-            this.set_Url(url);
+            this.set_UrlPart(urlPart);
         },
         Key$$: "System.Int32",
         get_Key: function (){
@@ -85,12 +202,12 @@ var Neptuo$TemplateEngine$Publishing$ViewModels$ArticleTagViewModel = {
         set_Name: function (value){
             this._Name = value;
         },
-        Url$$: "System.String",
-        get_Url: function (){
-            return this._Url;
+        UrlPart$$: "System.String",
+        get_UrlPart: function (){
+            return this._UrlPart;
         },
-        set_Url: function (value){
-            this._Url = value;
+        set_UrlPart: function (value){
+            this._UrlPart = value;
         }
     },
     ctors: [{
@@ -107,11 +224,11 @@ var Neptuo$TemplateEngine$Publishing$ViewModels$ArticleViewModel = {
     assemblyName: "Neptuo.TemplateEngine.Publishing.ViewModels",
     Kind: "Class",
     definition: {
-        ctor: function (key, title, content, url, isVisible, author, created, lastModified, line, tags){
+        ctor: function (key, title, content, urlPart, isVisible, author, created, lastModified, line, tags){
             this._Key = 0;
             this._Title = null;
             this._Content = null;
-            this._Url = null;
+            this._UrlPart = null;
             this._IsVisible = false;
             this._Author = null;
             this._Created = System.DateTime.MinValue;
@@ -122,7 +239,7 @@ var Neptuo$TemplateEngine$Publishing$ViewModels$ArticleViewModel = {
             this.set_Key(key);
             this.set_Title(title);
             this.set_Content(content);
-            this.set_Url(url);
+            this.set_UrlPart(urlPart);
             this.set_IsVisible(isVisible);
             this.set_Author(author);
             this.set_Created(created);
@@ -151,12 +268,12 @@ var Neptuo$TemplateEngine$Publishing$ViewModels$ArticleViewModel = {
         set_Content: function (value){
             this._Content = value;
         },
-        Url$$: "System.String",
-        get_Url: function (){
-            return this._Url;
+        UrlPart$$: "System.String",
+        get_UrlPart: function (){
+            return this._UrlPart;
         },
-        set_Url: function (value){
-            this._Url = value;
+        set_UrlPart: function (value){
+            this._UrlPart = value;
         },
         IsVisible$$: "System.Boolean",
         get_IsVisible: function (){

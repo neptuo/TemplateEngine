@@ -35,15 +35,15 @@
                         <div class="col-md-6">
                             <ui:FormItem l:LabelText="Roles" l:HelpText="Assigned roles to account">
                                 <ui:Select Value="{Binding RoleKeys}" SelectedValuePath="Key">
-                                  <Source>
-                                    <data:UserRoleDataSource />
-                                  </Source>
-                                  <Template>
-                                    <ui:TemplatePlaceholder name="Content" />
-                                  </Template>
-                                  <ItemTemplate>
-                                    <ui:CheckBox IsChecked="{Binding IsSelected}" LabelText="{Binding Model.Name}" Name="RoleKeys" value="{Binding Model.Key}" />
-                                  </ItemTemplate>
+                                    <Source>
+                                        <data:UserRoleDataSource />
+                                    </Source>
+                                    <Template>
+                                        <ui:TemplatePlaceholder name="Content" />
+                                    </Template>
+                                    <ItemTemplate>
+                                        <ui:CheckBox IsChecked="{Binding IsSelected}" LabelText="{Binding Model.Name}" Name="RoleKeys" value="{Binding Model.Key}" />
+                                    </ItemTemplate>
                                 </ui:Select>
                             </ui:FormItem>
                         </div>
@@ -72,6 +72,6 @@
 
             </Template>
         </ui:DetailView>
-         
+
     </ui:TemplateContent>
 </ui:AdminLayout>

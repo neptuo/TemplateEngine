@@ -1,5 +1,7 @@
-﻿using Neptuo.Reflection;
+﻿using Neptuo.Data;
+using Neptuo.Reflection;
 using Neptuo.TemplateEngine.Providers;
+using Neptuo.Validation;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,9 +34,14 @@ namespace Neptuo.TemplateEngine.Controllers
                     if (action.ActionName == context.ActionName)
                     {
                         object[] parameters = BindActionParameters(context, methodInfo);
-                        object result = ExecuteAction(context, methodInfo, parameters);
-                        ProcessActionResult(context, methodInfo, result);
-                        
+                        if (TryValidate(methodInfo, parameters))
+                        {
+                            TransactionalDisposable transaction = TryTransaction(methodInfo);
+                            object result = ExecuteAction(context, methodInfo, parameters);
+                            transaction.Dispose(result != null);
+
+                            ProcessActionResult(context, methodInfo, result);
+                        }
                         break;
                     }
                 }
@@ -66,6 +73,37 @@ namespace Neptuo.TemplateEngine.Controllers
             string stringResult = result as string;
             if (stringResult != null)
                 context.Navigation = stringResult;
+        }
+
+
+        private bool TryValidate(MethodInfo methodInfo, object[] parameters)
+        {
+            bool result = true;
+            ValidateAttribute validate = ReflectionHelper.GetAttribute<ValidateAttribute>(methodInfo);
+            if (validate != null)
+            {
+                IValidatorService validatorService = Context.DependencyProvider.Resolve<IValidatorService>();
+                foreach (object parameter in parameters)
+                {
+                    IValidationResult validationResult = validatorService.Validate(parameter);
+                    if (!validationResult.IsValid)
+                    {
+                        Messages.AddValidationResult(validationResult, validate.MessageKey);
+                        result = false;
+                    }
+                }
+            }
+            return result;
+        }
+
+        private TransactionalDisposable TryTransaction(MethodInfo methodInfo)
+        {
+            IUnitOfWork transaction = null;
+            TransactionalAttribute transactional = ReflectionHelper.GetAttribute<TransactionalAttribute>(methodInfo);
+            if (transactional != null)
+                transaction = Context.DependencyProvider.Resolve<IUnitOfWorkFactory>().Create();
+
+            return new TransactionalDisposable(transaction);
         }
     }
 }

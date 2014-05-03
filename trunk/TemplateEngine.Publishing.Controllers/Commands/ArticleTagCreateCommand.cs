@@ -6,10 +6,9 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Publishing.Controllers.Commands
 {
-    public class ArticleLineCreateCommand
+    public class ArticleTagCreateCommand
     {
         public string Name { get; set; }
         public string UrlPart { get; set; }
-        public IEnumerable<int> AvailableTagKeys { get; set; }
     }
 }

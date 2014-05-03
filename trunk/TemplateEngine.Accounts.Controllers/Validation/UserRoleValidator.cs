@@ -25,6 +25,7 @@ namespace Neptuo.TemplateEngine.Accounts.Controllers.Validation
 
         public IValidationResult Validate(UserRoleCreateCommand model)
         {
+            Guard.NotNull(model, "model");
             List<IValidationMessage> messages = new List<IValidationMessage>();
             ValidateName(null, model.Name, messages);
             return new ValidationResultBase(!messages.Any(), messages);
@@ -32,6 +33,7 @@ namespace Neptuo.TemplateEngine.Accounts.Controllers.Validation
 
         public IValidationResult Validate(UserRoleEditCommand model)
         {
+            Guard.NotNull(model, "model");
             List<IValidationMessage> messages = new List<IValidationMessage>();
             ValidateName(model.Key, model.Name, messages);
             return new ValidationResultBase(!messages.Any(), messages);
@@ -42,7 +44,7 @@ namespace Neptuo.TemplateEngine.Accounts.Controllers.Validation
             if (String.IsNullOrEmpty(name))
                 messages.Add(new StringNullOrEmptyMessage(nameKey));
             else if (IsNameUsed(key, name))
-                messages.Add(new TextValidationMessage(nameKey, "Name is already taken aby another role!"));
+                messages.Add(new TextValidationMessage(nameKey, "Name is already taken by another role!"));
         }
 
         private bool IsNameUsed(int? key, string name)
