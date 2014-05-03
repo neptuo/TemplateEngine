@@ -21,6 +21,7 @@ namespace Neptuo.TemplateEngine.Publishing.Templates.DataSources
         public int? Key { get; set; }
         public int? LineKey { get; set; }
         public int? TagKey { get; set; }
+        public string Title { get; set; }
         public string Url { get; set; }
         public bool IsIncludeHidden { get; set; }
 
@@ -42,6 +43,9 @@ namespace Neptuo.TemplateEngine.Publishing.Templates.DataSources
 
             if (TagKey != null)
                 query.Filter.TagKey = IntSearch.Create(TagKey.Value);
+
+            if (!String.IsNullOrEmpty(Title))
+                query.Filter.Title = TextSearch.Contains(Title);
 
             if (!String.IsNullOrEmpty(Url))
                 query.Filter.Url = TextSearch.Create(Url);
