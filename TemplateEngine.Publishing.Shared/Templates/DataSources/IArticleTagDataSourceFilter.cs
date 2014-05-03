@@ -8,7 +8,7 @@ namespace Neptuo.TemplateEngine.Publishing.Templates.DataSources
 {
     public interface IArticleTagDataSourceFilter
     {
-        int? Key { get; set; }
+        IEnumerable<int> Key { get; set; }
         string Name { get; set; }
         string Url { get; set; }
     }

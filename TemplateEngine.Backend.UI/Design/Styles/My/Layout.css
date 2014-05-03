@@ -151,3 +151,27 @@ li.message-error {
   background-color: #f2dede;
   border-color: #ebccd1;
 }
+
+/* ----------------------------- HOME BOX ------------------------------ */
+
+.box {
+    float:left;
+    margin: 30px 0 30px 30px;
+    border: 1px solid #cccccc;
+}
+
+.box-header {
+    padding: 10px;
+    border-bottom: 1px solid #cccccc;
+    background: #F5F5F5;
+}
+
+.box-header h3 {
+    font-size: 14px;
+    padding: 0 10px;
+    margin: 0;
+}
+
+.box .side-navbar {
+    border: 0;
+}

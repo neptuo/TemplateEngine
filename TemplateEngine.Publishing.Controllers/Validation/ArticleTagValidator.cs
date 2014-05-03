@@ -14,6 +14,7 @@ namespace Neptuo.TemplateEngine.Publishing.Controllers.Validation
     public class ArticleTagValidator : IValidator<ArticleTagCreateCommand>, IValidator<ArticleTagEditCommand>
     {
         private static readonly string nameKey = TypeHelper.PropertyName<ArticleTagCreateCommand, string>(c => c.Name);
+        private static readonly string urlPartKey = TypeHelper.PropertyName<ArticleTagCreateCommand, string>(c => c.UrlPart);
 
         private IActivator<IArticleTagQuery> queryFactory;
 
@@ -52,9 +53,9 @@ namespace Neptuo.TemplateEngine.Publishing.Controllers.Validation
         private void ValidateUrl(int? key, string url, List<IValidationMessage> messages)
         {
             if (String.IsNullOrEmpty(url))
-                messages.Add(new StringNullOrEmptyMessage(nameKey));
-            else if (IsNameUsed(key, url))
-                messages.Add(new TextValidationMessage(nameKey, "Url is already taken by another tag!"));
+                messages.Add(new StringNullOrEmptyMessage(urlPartKey));
+            else if (IsUrlUsed(key, url))
+                messages.Add(new TextValidationMessage(urlPartKey, "Url is already taken by another tag!"));
         }
 
         private bool IsNameUsed(int? key, string name)

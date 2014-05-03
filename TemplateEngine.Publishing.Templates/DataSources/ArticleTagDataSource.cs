@@ -17,7 +17,7 @@ namespace Neptuo.TemplateEngine.Publishing.Templates.DataSources
         private IArticleTagQuery query;
         private IModelBinder modelBinder;
 
-        public int? Key { get; set; }
+        public IEnumerable<int> Key { get; set; }
         public string Name { get; set; }
         public string Url { get; set; }
 
@@ -32,7 +32,7 @@ namespace Neptuo.TemplateEngine.Publishing.Templates.DataSources
         protected void ApplyFilter()
         {
             if (Key != null)
-                query.Filter.Key = IntSearch.Create(Key.Value);
+                query.Filter.Key = IntSearch.Create(Key);
 
             if (!String.IsNullOrEmpty(Name))
                 query.Filter.Name = TextSearch.StartsWith(Name);
@@ -48,7 +48,7 @@ namespace Neptuo.TemplateEngine.Publishing.Templates.DataSources
             ArticleTagEditViewModel viewModel = new ArticleTagEditViewModel();
             if (Key != null)
             {
-                query.Filter.Key = IntSearch.Create(Key.Value);
+                query.Filter.Key = IntSearch.Create(Key);
                 ArticleTag model = query.ResultSingle();
                 viewModel = new ArticleTagEditViewModel(model.Key, model.Name, model.Url);
             }
@@ -62,8 +62,8 @@ namespace Neptuo.TemplateEngine.Publishing.Templates.DataSources
             ApplyFilter();
 
             List<ArticleTagViewModel> result = new List<ArticleTagViewModel>();
-            foreach (ArticleTag line in query.EnumeratePageItems(pageIndex, pageSize))
-                result.Add(new ArticleTagViewModel(line.Key, line.Name, line.Url));
+            foreach (ArticleTag tag in query.EnumeratePageItems(pageIndex, pageSize))
+                result.Add(new ArticleTagViewModel(tag.Key, tag.Name, tag.Url));
 
             return result;
         }

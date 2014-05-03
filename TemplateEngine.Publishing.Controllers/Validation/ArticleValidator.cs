@@ -11,43 +11,43 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Publishing.Controllers.Validation
 {
-    public class ArticleLineValidator : IValidator<ArticleLineCreateCommand>, IValidator<ArticleLineEditCommand>
+    public class ArticleValidator : IValidator<ArticleCreateCommand>, IValidator<ArticleEditCommand>
     {
-        private static readonly string nameKey = TypeHelper.PropertyName<ArticleLineCreateCommand, string>(c => c.Name);
-        private static readonly string urlPartKey = TypeHelper.PropertyName<ArticleLineCreateCommand, string>(c => c.UrlPart);
+        private static readonly string titleKey = TypeHelper.PropertyName<ArticleCreateCommand, string>(c => c.Title);
+        private static readonly string urlPartKey = TypeHelper.PropertyName<ArticleCreateCommand, string>(c => c.UrlPart);
+        private static readonly string authorKey = TypeHelper.PropertyName<ArticleCreateCommand, string>(c => c.Author);
+        private static readonly string lineKey = TypeHelper.PropertyName<ArticleCreateCommand, int>(c => c.LineKey);
 
-        private IActivator<IArticleLineQuery> queryFactory;
+        private IActivator<IArticleQuery> queryFactory;
 
-        public ArticleLineValidator(IActivator<IArticleLineQuery> queryFactory)
+        public ArticleValidator(IActivator<IArticleQuery> queryFactory)
         {
             Guard.NotNull(queryFactory, "queryFactory");
             this.queryFactory = queryFactory;
         }
 
-        public IValidationResult Validate(ArticleLineCreateCommand model)
+        public IValidationResult Validate(ArticleCreateCommand model)
         {
             Guard.NotNull(model, "model");
             List<IValidationMessage> messages = new List<IValidationMessage>();
-            ValidateName(null, model.Name, messages);
+            ValidateTitle(null, model.Title, messages);
             ValidateUrl(null, model.UrlPart, messages);
             return new ValidationResultBase(!messages.Any(), messages);
         }
 
-        public IValidationResult Validate(ArticleLineEditCommand model)
+        public IValidationResult Validate(ArticleEditCommand model)
         {
             Guard.NotNull(model, "model");
             List<IValidationMessage> messages = new List<IValidationMessage>();
-            ValidateName(model.Key, model.Name, messages);
+            ValidateTitle(model.Key, model.Title, messages);
             ValidateUrl(model.Key, model.UrlPart, messages);
             return new ValidationResultBase(!messages.Any(), messages);
         }
 
-        private void ValidateName(int? key, string name, List<IValidationMessage> messages)
+        private void ValidateTitle(int? key, string title, List<IValidationMessage> messages)
         {
-            if (String.IsNullOrEmpty(name))
-                messages.Add(new StringNullOrEmptyMessage(nameKey));
-            else if (IsNameUsed(key, name))
-                messages.Add(new TextValidationMessage(nameKey, "Name is already taken by another line!"));
+            if (String.IsNullOrEmpty(title))
+                messages.Add(new StringNullOrEmptyMessage(titleKey));
         }
 
         private void ValidateUrl(int? key, string url, List<IValidationMessage> messages)
@@ -55,19 +55,7 @@ namespace Neptuo.TemplateEngine.Publishing.Controllers.Validation
             if (String.IsNullOrEmpty(url))
                 messages.Add(new StringNullOrEmptyMessage(urlPartKey));
             else if (IsUrlUsed(key, url))
-                messages.Add(new TextValidationMessage(urlPartKey, "Url is already taken by another line!"));
-        }
-
-        private bool IsNameUsed(int? key, string name)
-        {
-            var query = queryFactory.Create();
-            query.Filter.Name = TextSearch.Create(name);
-
-            IEnumerable<int> keys = query.EnumerateItems(u => u.Key);
-            if (key == null)
-                return keys.Any();
-
-            return !keys.All(k => k == key.Value);
+                messages.Add(new TextValidationMessage(urlPartKey, "Url is already taken by another article!"));
         }
 
         private bool IsUrlUsed(int? key, string url)

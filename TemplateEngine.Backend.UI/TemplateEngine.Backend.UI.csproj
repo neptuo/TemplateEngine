@@ -236,6 +236,12 @@
     <Content Include="Views\Publishing\ArticleTagEdit.view">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Views\Publishing\ArticleList.view">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Views\Publishing\ArticleEdit.view">
+      <SubType>Designer</SubType>
+    </Content>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

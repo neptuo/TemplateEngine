@@ -1,4 +1,5 @@
 ﻿using Neptuo.Data.Queries;
+using Neptuo.TemplateEngine.Providers.ModelBinders;
 using Neptuo.TemplateEngine.Publishing.Data.Queries;
 using Neptuo.TemplateEngine.Publishing.ViewModels;
 using Neptuo.TemplateEngine.Templates.DataSources;
@@ -14,18 +15,21 @@ namespace Neptuo.TemplateEngine.Publishing.Templates.DataSources
     [WebDataSource]
     public class ArticleDataSource : IListDataSource, IDataSource, IArticleDataSourceFilter
     {
+        private IModelBinder modelBinder;
         private IArticleQuery query;
 
         public int? Key { get; set; }
         public int? LineKey { get; set; }
         public int? TagKey { get; set; }
         public string Url { get; set; }
-        public bool? IsVisible { get; set; }
+        public bool IsIncludeHidden { get; set; }
 
-        public ArticleDataSource(IArticleQuery query)
+        public ArticleDataSource(IArticleQuery query, IModelBinder modelBinder)
         {
             Guard.NotNull(query, "query");
+            Guard.NotNull(modelBinder, "modelBinder");
             this.query = query;
+            this.modelBinder = modelBinder;
         }
 
         protected void ApplyFilter()
@@ -42,18 +46,35 @@ namespace Neptuo.TemplateEngine.Publishing.Templates.DataSources
             if (!String.IsNullOrEmpty(Url))
                 query.Filter.Url = TextSearch.Create(Url);
 
-            if (IsVisible != null)
-                query.Filter.IsVisible = BoolSearch.Create(IsVisible.Value);
+            if (IsIncludeHidden)
+                query.Filter.IsVisible = null;
+
+            query.OrderByDescending(a => a.Title);
         }
 
         public object GetItem()
         {
+            ArticleEditViewModel viewModel = new ArticleEditViewModel();
             if (Key != null)
             {
+                query.Filter.IsVisible = null;
                 query.Filter.Key = IntSearch.Create(Key.Value);
-                return query.ResultSingle();
+                Article model = query.ResultSingle();
+                viewModel = new ArticleEditViewModel(
+                    model.Key, 
+                    model.Title, 
+                    model.Content, 
+                    model.Url, 
+                    model.IsVisible, 
+                    model.Author, 
+                    model.Line.Key, 
+                    model.Line.AvailableTags.Select(t => t.Key), 
+                    model.Tags.Select(t => t.Key)
+                );
             }
-            return null;
+
+            modelBinder.Bind(viewModel);
+            return viewModel;
         }
 
         public IEnumerable GetData(int? pageIndex, int? pageSize)

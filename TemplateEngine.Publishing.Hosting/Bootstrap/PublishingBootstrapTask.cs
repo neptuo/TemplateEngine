@@ -79,8 +79,8 @@ namespace Neptuo.TemplateEngine.Publishing.Hosting.Bootstrap
                 .RegisterType<IArticleQuery, EntityArticleQuery>()
                 .RegisterType<IActivator<Article>, EntityArticleRepository>(new PerRequestLifetime())
                 .RegisterActivator<IArticleQuery>(new PerRequestLifetime())
-                //.RegisterType<IValidator<ArticleCreateCommand>, ArticleValidator>()
-                //.RegisterType<IValidator<ArticleEditCommand>, ArticleValidator>()
+                .RegisterType<IValidator<ArticleCreateCommand>, ArticleValidator>()
+                .RegisterType<IValidator<ArticleEditCommand>, ArticleValidator>()
 
                 .RegisterType<IArticleLineRepository, EntityArticleLineRepository>(new PerRequestLifetime())
                 .RegisterType<IArticleLineQuery, EntityArticleLineQuery>()

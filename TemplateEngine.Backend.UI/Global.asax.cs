@@ -41,6 +41,9 @@ namespace Neptuo.TemplateEngine.Backend.UI
             public void RegisterForms(IFormUriRegistry formRegistry, ITemplateUrlFormatter formatter)
             {
                 formRegistry
+                    .Register("Home", formatter.FormatUrl("~/Default"));
+
+                formRegistry
                     .Register("Accounts.Login", formatter.FormatUrl("~/Accounts/Login"))
                     .Register("Accounts.User.List", formatter.FormatUrl("~/Accounts/UserList"))
                     .Register("Accounts.User.Edit", formatter.FormatUrl("~/Accounts/UserEdit"))
@@ -68,10 +71,13 @@ namespace Neptuo.TemplateEngine.Backend.UI
                     .Add("Accounts.Role.Created", (FormUri)"Accounts.Role.List")
                     .Add("Accounts.Role.Updated", (FormUri)"Accounts.Role.List")
                     .Add("Accounts.Permission.Updated", (FormUri)"Accounts.Role.List")
-                    .Add("Accounts.LoggedIn", (FormUri)"Accounts.User.List")
+                    .Add("Accounts.LoggedIn", (FormUri)"Home")
                     .Add("Accounts.LoggedOut", (FormUri)"Accounts.Login");
 
                 globalNavigations
+                    .Add("Publishing.Article.Deleted", (FormUri)"Publishing.Article.List")
+                    .Add("Publishing.Article.Created", (FormUri)"Publishing.Article.List")
+                    .Add("Publishing.Article.Updated", (FormUri)"Publishing.Article.List")
                     .Add("Publishing.ArticleLine.Deleted", (FormUri)"Publishing.ArticleLine.List")
                     .Add("Publishing.ArticleLine.Created", (FormUri)"Publishing.ArticleLine.List")
                     .Add("Publishing.ArticleLine.Updated", (FormUri)"Publishing.ArticleLine.List")
