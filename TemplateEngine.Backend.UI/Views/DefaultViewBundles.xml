@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ViewBundles>
+    <ViewBundle Path="Default">
+        <View Path="~/Views/Default.view" />
+        <View Path="~/Views/Shared/AdminLayout.view" />
+        <View Path="~/Views/Shared/SubHeader.view" />
+        <View Path="~/Views/Accounts/SideNavUserControl.view" />
+        <View Path="~/Views/Publishing/SideNavUserControl.view" />
+    </ViewBundle>
+</ViewBundles>

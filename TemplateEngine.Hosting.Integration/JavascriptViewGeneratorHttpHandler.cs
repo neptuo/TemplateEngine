@@ -93,7 +93,8 @@ namespace Neptuo.TemplateEngine.Hosting.Integration
             if (formUri == null)
                 return true;
 
-            return dependencyProvider.Resolve<IUserContext>().Permissions.IsAllowed(formUri.Identifier(), "ReadWrite");
+            //return dependencyProvider.Resolve<IUserContext>().Permissions.IsAllowed(formUri.Identifier(), "ReadWrite");
+            return true;
         }
 
         private string RewriteJavascriptContent(string content)

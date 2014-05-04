@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ViewBundles>
+    <ViewBundle>
+        <View Path="~/Views/Publishing/ArticleEdit.view" />
+        <View Path="~/Views/Publishing/ArticleList.view" />
+        <View Path="~/Views/Publishing/ArticleLineEdit.view" />
+        <View Path="~/Views/Publishing/ArticleLineList.view" />
+        <View Path="~/Views/Publishing/ArticleTagEdit.view" />
+        <View Path="~/Views/Publishing/ArticleTagList.view" />
+        <View Path="~/Views/Publishing/SideNavUserControl.view" />
+        
+        <Script Path="~/Design/Scripts/Generated/TemplateEngine/Publishing/Neptuo.TemplateEngine.Publishing.Client.js" />
+        <Script Path="~/Design/Scripts/Generated/TemplateEngine/Publishing/Neptuo.TemplateEngine.Publishing.Shared.js" />
+        <Script Path="~/Design/Scripts/Generated/TemplateEngine/Publishing/Neptuo.TemplateEngine.Publishing.ViewModels.js" />
+    </ViewBundle>
+</ViewBundles>

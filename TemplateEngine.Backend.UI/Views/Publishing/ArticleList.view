@@ -51,7 +51,7 @@
                                 <th class="w150">Url</th>
                                 <th class="w100">Author</th>
                                 <th class="w50">Visible</th>
-                                <th class="w150">Last modified</th>
+                                <th class="w200">Last modified</th>
                                 <th class="w100"></th>
                             </tr>
                         </thead>

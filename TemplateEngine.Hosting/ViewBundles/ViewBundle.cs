@@ -9,6 +9,7 @@ namespace Neptuo.TemplateEngine.Web.ViewBundles
     public class ViewBundle : IViewBundle
     {
         protected HashSet<string> Views { get; private set; }
+        protected HashSet<string> Scripts { get; private set; }
 
         public string Name { get; private set; }
 
@@ -17,12 +18,19 @@ namespace Neptuo.TemplateEngine.Web.ViewBundles
             Guard.NotNullOrEmpty(name, "name");
             Name = name;
             Views = new HashSet<string>();
+            Scripts = new HashSet<string>();
         }
 
-        public void Add(string viewPath)
+        public void AddView(string viewPath)
         {
             Guard.NotNullOrEmpty(viewPath, "viewPath");
             Views.Add(viewPath);
+        }
+
+        public void AddScript(string scriptPath)
+        {
+            Guard.NotNullOrEmpty(scriptPath, "scriptPath");
+            Scripts.Add(scriptPath);
         }
 
         public IEnumerable<string> EnumerateViews()
@@ -30,10 +38,21 @@ namespace Neptuo.TemplateEngine.Web.ViewBundles
             return Views;
         }
 
+        public IEnumerable<string> EnumerateScripts()
+        {
+            return Scripts;
+        }
+
         public bool ContainsView(string viewPath)
         {
             Guard.NotNullOrEmpty(viewPath, "viewPath");
             return Views.Contains(viewPath);
+        }
+
+        public bool ContainsScript(string scriptPath)
+        {
+            Guard.NotNullOrEmpty(scriptPath, "scriptPath");
+            return Scripts.Contains(scriptPath);
         }
     }
 }
