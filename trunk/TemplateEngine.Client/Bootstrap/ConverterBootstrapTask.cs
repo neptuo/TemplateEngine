@@ -2,6 +2,7 @@
 using Neptuo.ComponentModel.Converters;
 using Neptuo.TemplateEngine.Controllers;
 using Neptuo.TemplateEngine.Providers;
+using Neptuo.TemplateEngine.Web;
 using SharpKit.JavaScript;
 using System;
 using System.Collections.Generic;
@@ -9,7 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Neptuo.TemplateEngine.Web
+namespace Neptuo.TemplateEngine.Bootstrap
 {
     public class ConverterBootstrapTask : IBootstrapTask
     {
@@ -23,7 +24,8 @@ namespace Neptuo.TemplateEngine.Web
         public void Initialize()
         {
             repository
-                .Add(typeof(JsObject), typeof(PartialResponse), new PartialResponseConverter());
+                .Add(typeof(JsObject), typeof(PartialResponse), new PartialResponseConverter())
+                .Add(typeof(JsObject), typeof(ModelValueGetterListResult), new ModelValueGetterListResultConverter());
         }
     }
 }

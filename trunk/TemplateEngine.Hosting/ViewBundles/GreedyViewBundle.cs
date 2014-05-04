@@ -10,15 +10,28 @@ namespace Neptuo.TemplateEngine.Web.ViewBundles
     {
         public string Name { get; set; }
 
-        public void Add(string viewPath)
+        public void AddView(string viewPath)
+        { }
+
+        public void AddScript(string scriptPath)
         { }
 
         public IEnumerable<string> EnumerateViews()
         {
-            return new List<string>();
+            return Enumerable.Empty<string>();
+        }
+
+        public IEnumerable<string> EnumerateScripts()
+        {
+            return Enumerable.Empty<string>();
         }
 
         public bool ContainsView(string viewPath)
+        {
+            return true;
+        }
+
+        public bool ContainsScript(string scriptPath)
         {
             return true;
         }

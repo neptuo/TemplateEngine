@@ -106,7 +106,6 @@
     <Compile Include="Bootstrap\NavigationBootstrapTask.cs" />
     <Compile Include="Bootstrap\PresentationModelBootstrapTask.cs" />
     <Compile Include="Bootstrap\RoutingBootstrapTask.cs" />
-    <Compile Include="Bootstrap\ViewBundleBootstrapTask.cs" />
     <Compile Include="Bootstrap\ViewServiceBootstrapTask.cs" />
     <Compile Include="HostedApplication.cs" />
     <Compile Include="IApplicationBuilder.cs" />

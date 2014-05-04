@@ -14,6 +14,6 @@ namespace Neptuo.TemplateEngine.Publishing.Templates.DataSources
         bool IsIncludeHidden { get; set; }
         
         string Title { get; set; }
-        string Url { get; set; }
+        string UrlPart { get; set; }
     }
 }

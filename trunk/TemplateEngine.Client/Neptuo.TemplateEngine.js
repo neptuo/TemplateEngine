@@ -188,6 +188,97 @@ var Neptuo$TemplateEngine$Bootstrap$PresentationModelBootstrapTask = {
     IsAbstract: false
 };
 JsTypes.push(Neptuo$TemplateEngine$Bootstrap$PresentationModelBootstrapTask);
+var Neptuo$TemplateEngine$ModelValueGetterListResult = {
+    fullname: "Neptuo.TemplateEngine.ModelValueGetterListResult",
+    baseTypeName: "Neptuo.TemplateEngine.Templates.DataSources.ListResult",
+    assemblyName: "Neptuo.TemplateEngine.Client",
+    Kind: "Class",
+    definition: {
+        ctor: function (data, totalCount){
+            Neptuo.TemplateEngine.Templates.DataSources.ListResult.ctor.call(this, data, totalCount);
+        }
+    },
+    ctors: [{
+        name: "ctor",
+        parameters: ["System.Collections.IEnumerable", "System.Int32"]
+    }
+    ],
+    IsAbstract: false
+};
+JsTypes.push(Neptuo$TemplateEngine$ModelValueGetterListResult);
+var Neptuo$TemplateEngine$ModelValueGetterListResult$ModelValueGetter = {
+    fullname: "Neptuo.TemplateEngine.ModelValueGetterListResult.ModelValueGetter",
+    baseTypeName: "System.Object",
+    assemblyName: "Neptuo.TemplateEngine.Client",
+    interfaceNames: ["Neptuo.PresentationModels.IModelValueGetter"],
+    Kind: "Class",
+    definition: {
+        ctor: function (source){
+            this.source = null;
+            System.Object.ctor.call(this);
+            this.source = source;
+        },
+        TryGetValue: function (identifier, value){
+            if (this.source == null){
+                value.Value = null;
+                return false;
+            }
+            if (System.String.IsNullOrEmpty(identifier)){
+                value.Value = this.source;
+                return true;
+            }
+            var currentSource = this.source;
+            var exprs = identifier.Split$$Char$Array$$StringSplitOptions(["."], 1);
+            for (var i = 0; i < exprs.length; i++){
+                currentSource = currentSource[exprs[i]];
+                if (currentSource == null)
+                    break;
+            }
+            value.Value = currentSource;
+            return true;
+        }
+    },
+    ctors: [{
+        name: "ctor",
+        parameters: ["SharpKit.JavaScript.JsObject"]
+    }
+    ],
+    IsAbstract: false
+};
+JsTypes.push(Neptuo$TemplateEngine$ModelValueGetterListResult$ModelValueGetter);
+var Neptuo$TemplateEngine$ModelValueGetterListResultConverter = {
+    fullname: "Neptuo.TemplateEngine.ModelValueGetterListResultConverter",
+    baseTypeName: "Neptuo.ComponentModel.Converters.ConverterBase$2",
+    assemblyName: "Neptuo.TemplateEngine.Client",
+    Kind: "Class",
+    definition: {
+        ctor: function (){
+            Neptuo.ComponentModel.Converters.ConverterBase$2.ctor.call(this, Object, Neptuo.TemplateEngine.ModelValueGetterListResult.ctor);
+        },
+        TryConvert: function (sourceValue, targetValue){
+            var totalCount = sourceValue["TotalCount"];
+            var data = sourceValue["Data"];
+            targetValue.Value = new Neptuo.TemplateEngine.ModelValueGetterListResult.ctor(this.GetModelValueGetters(data), totalCount);
+            return true;
+        },
+        GetModelValueGetters: function (sourceValue){
+            var data = new System.Collections.Generic.List$1.ctor(Neptuo.PresentationModels.IModelValueGetter.ctor);
+            var array = sourceValue;
+            for (var i = 0; i < array.length; i++){
+                var item = array[i];
+                data.Add(new Neptuo.TemplateEngine.ModelValueGetterListResult.ModelValueGetter.ctor(item));
+            }
+            return data;
+        }
+    },
+    ctors: [{
+        name: "ctor",
+        parameters: []
+    }
+    ],
+    IsAbstract: false
+};
+JsTypes.push(Neptuo$TemplateEngine$ModelValueGetterListResultConverter);
 var Neptuo$TemplateEngine$Routing$ApplicationRouter = {
     fullname: "Neptuo.TemplateEngine.Routing.ApplicationRouter",
     baseTypeName: "Neptuo.TemplateEngine.Routing.Router",
@@ -718,8 +809,8 @@ var Neptuo$TemplateEngine$Web$AsyncViewRenderer = {
     IsAbstract: false
 };
 JsTypes.push(Neptuo$TemplateEngine$Web$AsyncViewRenderer);
-var Neptuo$TemplateEngine$Web$ConverterBootstrapTask = {
-    fullname: "Neptuo.TemplateEngine.Web.ConverterBootstrapTask",
+var Neptuo$TemplateEngine$Bootstrap$ConverterBootstrapTask = {
+    fullname: "Neptuo.TemplateEngine.Bootstrap.ConverterBootstrapTask",
     baseTypeName: "System.Object",
     assemblyName: "Neptuo.TemplateEngine.Client",
     interfaceNames: ["Neptuo.Bootstrap.IBootstrapTask"],
@@ -731,7 +822,7 @@ var Neptuo$TemplateEngine$Web$ConverterBootstrapTask = {
             this.repository = Neptuo.Converts.get_Repository();
         },
         Initialize: function (){
-            this.repository.Add(Typeof(Object), Typeof(Neptuo.TemplateEngine.Providers.PartialResponse.ctor), new Neptuo.TemplateEngine.Web.PartialResponseConverter.ctor());
+            this.repository.Add(Typeof(Object), Typeof(Neptuo.TemplateEngine.Providers.PartialResponse.ctor), new Neptuo.TemplateEngine.Web.PartialResponseConverter.ctor()).Add(Typeof(Object), Typeof(Neptuo.TemplateEngine.ModelValueGetterListResult.ctor), new Neptuo.TemplateEngine.ModelValueGetterListResultConverter.ctor());
         }
     },
     ctors: [{
@@ -741,7 +832,7 @@ var Neptuo$TemplateEngine$Web$ConverterBootstrapTask = {
     ],
     IsAbstract: false
 };
-JsTypes.push(Neptuo$TemplateEngine$Web$ConverterBootstrapTask);
+JsTypes.push(Neptuo$TemplateEngine$Bootstrap$ConverterBootstrapTask);
 var Neptuo$TemplateEngine$Web$ErrorModel = {
     fullname: "Neptuo.TemplateEngine.Web.ErrorModel",
     baseTypeName: "System.Object",

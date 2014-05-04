@@ -22,7 +22,7 @@ namespace Neptuo.TemplateEngine.Publishing.Templates.DataSources
         public int? LineKey { get; set; }
         public int? TagKey { get; set; }
         public string Title { get; set; }
-        public string Url { get; set; }
+        public string UrlPart { get; set; }
         public bool IsIncludeHidden { get; set; }
 
         public ArticleDataSource(IArticleQuery query, IModelBinder modelBinder)
@@ -47,8 +47,8 @@ namespace Neptuo.TemplateEngine.Publishing.Templates.DataSources
             if (!String.IsNullOrEmpty(Title))
                 query.Filter.Title = TextSearch.Contains(Title);
 
-            if (!String.IsNullOrEmpty(Url))
-                query.Filter.Url = TextSearch.Create(Url);
+            if (!String.IsNullOrEmpty(UrlPart))
+                query.Filter.Url = TextSearch.Create(UrlPart);
 
             if (IsIncludeHidden)
                 query.Filter.IsVisible = null;
