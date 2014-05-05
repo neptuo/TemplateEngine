@@ -101,7 +101,8 @@ namespace Neptuo.TemplateEngine.Backend.UI
                 bundles.Add(new ScriptBundle("~/design/js/admin")
                     .Include("~/Design/Scripts/jquery-{version}.js")
                     .Include("~/Design/Scripts/bootstrap.js")
-                    .IncludeDirectory("~/Design/Scripts/Generated", "*.js", true)
+                    .IncludeDirectory("~/Design/Scripts/Generated", "*.js")
+                    .IncludeDirectory("~/Design/Scripts/Generated/TemplateEngine", "*.js")
                 );
 
                 bundles.Add(new StyleBundle("~/design/css/admin")

@@ -14,11 +14,11 @@ namespace Neptuo.TemplateEngine.Hosting.Integration.Routing
 {
     public class JavascriptViewGeneratorRouteHandler : IRouteHandler
     {
-        private JavascriptViewGeneratorConfiguration configuration;
+        private ViewBundleHttpHandlerConfiguration configuration;
         private ViewService viewService;
         private IDependencyProvider dependencyProvider;
 
-        public JavascriptViewGeneratorRouteHandler(JavascriptViewGeneratorConfiguration configuration, ViewService viewService, IDependencyProvider dependencyProvider)
+        public JavascriptViewGeneratorRouteHandler(ViewBundleHttpHandlerConfiguration configuration, ViewService viewService, IDependencyProvider dependencyProvider)
         {
             this.configuration = configuration;
             this.viewService = viewService;
@@ -27,7 +27,7 @@ namespace Neptuo.TemplateEngine.Hosting.Integration.Routing
 
         public IHttpHandler GetHttpHandler(RequestContext requestContext)
         {
-            return new JavascriptViewGeneratorHttpHandler(configuration, viewService, dependencyProvider);
+            return new ViewBundleHttpHandler(configuration, viewService, dependencyProvider);
         }
     }
 }

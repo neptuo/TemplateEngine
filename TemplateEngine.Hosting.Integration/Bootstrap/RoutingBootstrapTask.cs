@@ -32,7 +32,7 @@ namespace Neptuo.TemplateEngine.Hosting.Integration.Bootstrap
 
         public void Initialize()
         {
-            var configuration = new JavascriptViewGeneratorConfiguration("~/Views", @"C:\Temp\NeptuoTemplateEngineJavascript");
+            var configuration = new ViewBundleHttpHandlerConfiguration("~/Views", @"C:\Temp\NeptuoTemplateEngineJavascript");
 
             routeParameterRegistry.Add("path", new TemplateRouteParameterFactory());
 

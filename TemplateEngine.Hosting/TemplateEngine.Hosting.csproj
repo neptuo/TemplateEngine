@@ -67,6 +67,8 @@
     <Compile Include="Configuration\ApplicationConfiguration.cs" />
     <Compile Include="Configuration\IsDebugProperty.cs" />
     <Compile Include="FormsAuthenticationProvider.cs" />
+    <Compile Include="ViewBundleHttpHandlerConfiguration.cs" />
+    <Compile Include="ViewBundleHttpHandler.cs" />
     <Compile Include="JsonConverter.cs" />
     <Compile Include="Navigation\QueryStringNavigateTo.cs" />
     <Compile Include="Navigation\RedirectNavigateTo.cs" />

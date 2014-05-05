@@ -125,6 +125,13 @@ namespace Neptuo.TemplateEngine.Web
 
             IBootstrapper bootstrapper = new AutomaticBootstrapper(taskFactory, JsCompiler.NewTypes.As<JsArray<Type>>(), new AttributeConstraintProvider(constrainFactory));
             bootstrapper.Initialize();
+
+            JsCompiler.AfterNextCompilation(AfterCompilation);
+        }
+
+        private void AfterCompilation()
+        {
+            RunBootstrapTasks(DependencyContainer);
         }
 
         #endregion

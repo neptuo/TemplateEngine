@@ -111,8 +111,6 @@
     <Compile Include="IApplicationBuilder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ErrorHttpHandler.cs" />
-    <Compile Include="JavascriptViewGeneratorConfiguration.cs" />
-    <Compile Include="JavascriptViewGeneratorHttpHandler.cs" />
     <Compile Include="Routing\DependencyRouteHandler.cs" />
     <Compile Include="Routing\ErrorRouteHandler.cs" />
     <Compile Include="Routing\JavascriptViewGeneratorRouteHandler.cs" />

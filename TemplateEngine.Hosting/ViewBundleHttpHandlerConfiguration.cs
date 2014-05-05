@@ -4,14 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Neptuo.TemplateEngine.Hosting.Integration
+namespace Neptuo.TemplateEngine.Hosting
 {
-    public class JavascriptViewGeneratorConfiguration
+    public class ViewBundleHttpHandlerConfiguration
     {
         public string ViewDirectory { get; set; }
         public string TempDirectory { get; set; }
 
-        public JavascriptViewGeneratorConfiguration(string viewDirectory, string tempDirectory)
+        public ViewBundleHttpHandlerConfiguration(string viewDirectory, string tempDirectory)
         {
             ViewDirectory = viewDirectory;
             TempDirectory = tempDirectory;
