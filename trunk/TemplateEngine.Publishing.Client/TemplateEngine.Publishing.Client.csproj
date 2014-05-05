@@ -36,9 +36,14 @@
     <Reference Include="Neptuo.Bootstrap">
       <HintPath>..\References\Neptuo.Bootstrap.dll</HintPath>
     </Reference>
+    <Reference Include="Neptuo.PresentationModels, Version=4.5.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\Neptuo.PresentationModels.dll</HintPath>
+    </Reference>
     <Reference Include="Neptuo.Templates.Components">
       <HintPath>..\References\Neptuo.Templates.Components.dll</HintPath>
     </Reference>
+    <Reference Include="SharpKit.JavaScript, Version=1.5.0.0, Culture=neutral, PublicKeyToken=2575297a09c47a96, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -48,6 +53,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ArticleViewModelConverter.cs" />
     <Compile Include="Bootstrap\PublishingBootstrapTask.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Templates\DataSources\ArticleDataSource.cs" />
@@ -68,9 +74,17 @@
       <Project>{7df11e7b-e7fe-4ebb-a707-c592a230df54}</Project>
       <Name>TemplateEngine.Client</Name>
     </ProjectReference>
+    <ProjectReference Include="..\TemplateEngine.Providers\TemplateEngine.Providers.csproj">
+      <Project>{30214616-7c89-467a-9147-7385e91aed13}</Project>
+      <Name>TemplateEngine.Providers</Name>
+    </ProjectReference>
     <ProjectReference Include="..\TemplateEngine.Publishing.Shared\TemplateEngine.Publishing.Shared.csproj">
       <Project>{b411906b-f831-4a99-9eec-69dcb4d539a4}</Project>
       <Name>TemplateEngine.Publishing.Shared</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TemplateEngine.Publishing.ViewModels\TemplateEngine.Publishing.ViewModels.csproj">
+      <Project>{1ada241f-aa7f-4777-a550-e908ba99b1da}</Project>
+      <Name>TemplateEngine.Publishing.ViewModels</Name>
     </ProjectReference>
     <ProjectReference Include="..\TemplateEngine.Templates.Client\TemplateEngine.Templates.Client.csproj">
       <Project>{6e0bcd94-e6d1-4f4d-bf0f-912ee279c09c}</Project>

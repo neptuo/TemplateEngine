@@ -4115,6 +4115,166 @@ var Neptuo$TemplateEngine$Templates$DataSources$DynamicListDataSourceProxy$1 = {
     IsAbstract: false
 };
 JsTypes.push(Neptuo$TemplateEngine$Templates$DataSources$DynamicListDataSourceProxy$1);
+var Neptuo$TemplateEngine$Templates$DataSources$FullDataSourceProxy$2 = {
+    fullname: "Neptuo.TemplateEngine.Templates.DataSources.FullDataSourceProxy$2",
+    baseTypeName: "System.Object",
+    assemblyName: "Neptuo.TemplateEngine.Templates.Client",
+    interfaceNames: ["Neptuo.TemplateEngine.Templates.DataSources.IListDataSource", "Neptuo.TemplateEngine.Templates.DataSources.IDataSource"],
+    Kind: "Class",
+    definition: {
+        ctor: function (TListResultModel, TSingleResultModel, modelBinder, urlProvider, parameterProperties, singleProperties){
+            this.TListResultModel = TListResultModel;
+            this.TSingleResultModel = TSingleResultModel;
+            this._UrlProvider = null;
+            this._ModelBinder = null;
+            this._ListProperties = null;
+            this._SingleProperties = null;
+            this._IsBindModel = false;
+            System.Object.ctor.call(this);
+            Neptuo.Guard.NotNull$$Object$$String(modelBinder, "modelBinder");
+            Neptuo.Guard.NotNull$$Object$$String(urlProvider, "urlProvider");
+            this.set_ModelBinder(modelBinder);
+            this.set_UrlProvider(urlProvider);
+            this.set_IsBindModel(true);
+            this.set_ListProperties(parameterProperties);
+            this.set_SingleProperties(singleProperties);
+        },
+        UrlProvider$$: "Neptuo.Templates.IVirtualUrlProvider",
+        get_UrlProvider: function (){
+            return this._UrlProvider;
+        },
+        set_UrlProvider: function (value){
+            this._UrlProvider = value;
+        },
+        ModelBinder$$: "Neptuo.TemplateEngine.Providers.ModelBinders.IModelBinder",
+        get_ModelBinder: function (){
+            return this._ModelBinder;
+        },
+        set_ModelBinder: function (value){
+            this._ModelBinder = value;
+        },
+        ListProperties$$: "System.Collections.Generic.IEnumerable`1[[System.String]]",
+        get_ListProperties: function (){
+            return this._ListProperties;
+        },
+        set_ListProperties: function (value){
+            this._ListProperties = value;
+        },
+        SingleProperties$$: "System.Collections.Generic.IEnumerable`1[[System.String]]",
+        get_SingleProperties: function (){
+            return this._SingleProperties;
+        },
+        set_SingleProperties: function (value){
+            this._SingleProperties = value;
+        },
+        IsBindModel$$: "System.Boolean",
+        get_IsBindModel: function (){
+            return this._IsBindModel;
+        },
+        set_IsBindModel: function (value){
+            this._IsBindModel = value;
+        },
+        GetData: function (pageIndex, pageSize, callback, errorCallback){
+            $.ajax({
+                url: this.get_UrlProvider().ResolveUrl(this.FormatUrl()),
+                type: "GET",
+                data: this.SetListParametersInternal(pageIndex, pageSize),
+                cache: false,
+                success: $CreateAnonymousDelegate(this, function (response, status, sender){
+                    var model;
+                    if ((function (){
+                        var $1 = {
+                            Value: model
+                        };
+                        var $res = Neptuo.Converts.Try$2$$TSource$$TTarget(Object, this.TListResultModel, response, $1);
+                        model = $1.Value;
+                        return $res;
+                    }).call(this))
+                        callback(model);
+                    else
+                        throw $CreateException(new System.NotSupportedException.ctor(), new Error());
+                }),
+                error: $CreateAnonymousDelegate(this, function (response, status, error){
+                    errorCallback(new Neptuo.TemplateEngine.Web.ErrorModel.ctor(response.status, response.statusText, response.responseText));
+                })
+            });
+        },
+        SetListParametersInternal: function (pageIndex, pageSize){
+            var parameterBuilder = Neptuo.TemplateEngine.JsObjectBuilder.New("DataSource", this.GetDataSourceName()).Set("PageIndex", pageIndex).Set("PageSize", pageSize);
+            this.SetListParameters(parameterBuilder);
+            return parameterBuilder.ToJsObject();
+        },
+        SetListParameters: function (parameterBuilder){
+            if (this.get_ListProperties() == null)
+                throw $CreateException(new System.InvalidOperationException.ctor$$String("Missing ListProperties or overriden method SetListParameters."), new Error());
+            var $it4 = this.get_ListProperties().GetEnumerator();
+            while ($it4.MoveNext()){
+                var propertyName = $it4.get_Current();
+                var propertyInfo = this.GetType().GetProperty$$String(propertyName);
+                var propertyValue = propertyInfo.GetValue$$Object$$Object$Array(this, null);
+                parameterBuilder.Set(propertyName, propertyValue);
+            }
+        },
+        GetItem: function (callback, errorCallback){
+            if (!this.OnGetItem(callback)){
+                $.ajax({
+                    url: this.get_UrlProvider().ResolveUrl(this.FormatUrl()),
+                    type: "GET",
+                    data: this.SetSingleParametersInternal(),
+                    cache: false,
+                    success: $CreateAnonymousDelegate(this, function (response, status, sender){
+                        var model;
+                        if ((function (){
+                            var $1 = {
+                                Value: model
+                            };
+                            var $res = Neptuo.Converts.Try$2$$TSource$$TTarget(Object, this.TSingleResultModel, response, $1);
+                            model = $1.Value;
+                            return $res;
+                        }).call(this)){
+                            if (this.get_IsBindModel())
+                                model = Neptuo.TemplateEngine.Providers.ModelBinders.ModelBinderExtensions.Bind$1$$IModelBinder$$T(this.TSingleResultModel, this.get_ModelBinder(), model);
+                            callback(model);
+                            return;
+                        }
+                    }),
+                    error: $CreateAnonymousDelegate(this, function (response, status, error){
+                        errorCallback(new Neptuo.TemplateEngine.Web.ErrorModel.ctor(response.status, response.statusText, response.responseText));
+                    })
+                });
+            }
+        },
+        SetSingleParametersInternal: function (){
+            var parameterBuilder = Neptuo.TemplateEngine.JsObjectBuilder.New("DataSource", this.GetDataSourceName());
+            this.SetSingleParameters(parameterBuilder);
+            return parameterBuilder.ToJsObject();
+        },
+        SetSingleParameters: function (parameterBuilder){
+            if (this.get_SingleProperties() == null)
+                throw $CreateException(new System.InvalidOperationException.ctor$$String("Missing SingleProperties or overriden method SetSingleParameters."), new Error());
+            var $it5 = this.get_SingleProperties().GetEnumerator();
+            while ($it5.MoveNext()){
+                var propertyName = $it5.get_Current();
+                var propertyInfo = this.GetType().GetProperty$$String(propertyName);
+                var propertyValue = propertyInfo.GetValue$$Object$$Object$Array(this, null);
+                parameterBuilder.Set(propertyName, propertyValue);
+            }
+        },
+        GetDataSourceName: function (){
+            return this.GetType().get_Name();
+        },
+        FormatUrl: function (){
+            return "~/DataSource.ashx";
+        }
+    },
+    ctors: [{
+        name: "ctor",
+        parameters: ["Neptuo.TemplateEngine.Providers.ModelBinders.IModelBinder", "Neptuo.Templates.IVirtualUrlProvider", "System.Collections.Generic.IEnumerable", "System.Collections.Generic.IEnumerable"]
+    }
+    ],
+    IsAbstract: true
+};
+JsTypes.push(Neptuo$TemplateEngine$Templates$DataSources$FullDataSourceProxy$2);
 var Neptuo$TemplateEngine$Templates$DataSources$IDataSource = {
     fullname: "Neptuo.TemplateEngine.Templates.DataSources.IDataSource",
     baseTypeName: "System.Object",

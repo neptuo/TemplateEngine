@@ -66,6 +66,7 @@
     <Compile Include="DataSources\ClientCollectionDataSource.cs" />
     <Compile Include="DataSources\DataSourceProxy.cs" />
     <Compile Include="DataSources\DynamicListDataSourceProxy.cs" />
+    <Compile Include="DataSources\FullDataSourceProxy.cs" />
     <Compile Include="DataSources\IDataSource.cs" />
     <Compile Include="DataSources\IListDataSource.cs" />
     <Compile Include="DataSources\ListDataSourceProxy.cs" />
