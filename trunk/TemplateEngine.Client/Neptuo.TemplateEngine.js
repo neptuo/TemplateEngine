@@ -591,6 +591,10 @@ var Neptuo$TemplateEngine$Web$Application = {
             });
             var bootstrapper = new Neptuo.Bootstrap.AutomaticBootstrapper.ctor$$Func$2$Type$IBootstrapTask$$IEnumerable$1$Type$$IBootstrapConstraintProvider(taskFactory, JsCompiler.NewTypes, new Neptuo.Bootstrap.Constraints.AttributeConstraintProvider.ctor(constrainFactory));
             bootstrapper.Initialize();
+            AfterNextCompilation($CreateDelegate(this, this.AfterCompilation));
+        },
+        AfterCompilation: function (){
+            this.RunBootstrapTasks(this.get_DependencyContainer());
         },
         OnHistoryStatePop: function (historyItem){
             if (historyItem == null)
