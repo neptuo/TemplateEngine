@@ -26,6 +26,13 @@
                 <ui:FormItem l:LabelText="Title:">
                     <ui:TextBox Name="Title" Text="{Request Title}" CssClass="form-control input-sm" />
                 </ui:FormItem>
+                <ui:FormItem l:LabelText="Line:">
+                    <ui:DropDownList Name="LineKey" Value="{Request LineKey}" IsAddEmpty="true" CssClass="form-control input-sm w200" CssStyle="display: block;">
+                        <Source>
+                            <data:ArticleLineDataSource />
+                        </Source>
+                    </ui:DropDownList>
+                </ui:FormItem>
 
                 <div class="right">
                     <ui:Button html:Class="btn btn-success btn-sm">

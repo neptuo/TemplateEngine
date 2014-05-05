@@ -23,6 +23,9 @@ namespace Neptuo.TemplateEngine.Publishing.ViewModels
         public ArticleLineViewModel Line { get; set; }
         public IEnumerable<ArticleTagViewModel> Tags { get; set; }
 
+        public ArticleViewModel()
+        { }
+
         public ArticleViewModel(int key, string title, string content, string urlPart, bool isVisible, string author, DateTime created, DateTime? lastModified, ArticleLineViewModel line, IEnumerable<ArticleTagViewModel> tags)
         {
             Key = key;

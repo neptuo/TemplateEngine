@@ -342,7 +342,7 @@ var Neptuo$TemplateEngine$Publishing$ViewModels$ArticleViewModel = {
     assemblyName: "Neptuo.TemplateEngine.Publishing.ViewModels",
     Kind: "Class",
     definition: {
-        ctor: function (key, title, content, urlPart, isVisible, author, created, lastModified, line, tags){
+        ctor: function (){
             this._Key = 0;
             this._Title = null;
             this._Content = null;
@@ -354,16 +354,6 @@ var Neptuo$TemplateEngine$Publishing$ViewModels$ArticleViewModel = {
             this._Line = null;
             this._Tags = null;
             System.Object.ctor.call(this);
-            this.set_Key(key);
-            this.set_Title(title);
-            this.set_Content(content);
-            this.set_UrlPart(urlPart);
-            this.set_IsVisible(isVisible);
-            this.set_Author(author);
-            this.set_Created(created);
-            this.set_LastModified(lastModified);
-            this.set_Line(line);
-            this.set_Tags(tags);
         },
         Key$$: "System.Int32",
         get_Key: function (){
@@ -434,10 +424,36 @@ var Neptuo$TemplateEngine$Publishing$ViewModels$ArticleViewModel = {
         },
         set_Tags: function (value){
             this._Tags = value;
+        },
+        ctor$$Int32$$String$$String$$String$$Boolean$$String$$DateTime$$Nullable$1$DateTime$$ArticleLineViewModel$$IEnumerable$1$ArticleTagViewModel: function (key, title, content, urlPart, isVisible, author, created, lastModified, line, tags){
+            this._Key = 0;
+            this._Title = null;
+            this._Content = null;
+            this._UrlPart = null;
+            this._IsVisible = false;
+            this._Author = null;
+            this._Created = System.DateTime.MinValue;
+            this._LastModified = null;
+            this._Line = null;
+            this._Tags = null;
+            System.Object.ctor.call(this);
+            this.set_Key(key);
+            this.set_Title(title);
+            this.set_Content(content);
+            this.set_UrlPart(urlPart);
+            this.set_IsVisible(isVisible);
+            this.set_Author(author);
+            this.set_Created(created);
+            this.set_LastModified(lastModified);
+            this.set_Line(line);
+            this.set_Tags(tags);
         }
     },
     ctors: [{
         name: "ctor",
+        parameters: []
+    }, {
+        name: "ctor$$Int32$$String$$String$$String$$Boolean$$String$$DateTime$$Nullable$$ArticleLineViewModel$$IEnumerable",
         parameters: ["System.Int32", "System.String", "System.String", "System.String", "System.Boolean", "System.String", "System.DateTime", "System.Nullable", "Neptuo.TemplateEngine.Publishing.ViewModels.ArticleLineViewModel", "System.Collections.Generic.IEnumerable"]
     }
     ],
