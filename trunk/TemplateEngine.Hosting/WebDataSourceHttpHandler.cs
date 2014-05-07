@@ -40,13 +40,13 @@ namespace Neptuo.TemplateEngine.Hosting
                 object dataSourceObject = modelBinder.Bind(dataSourceType);
 
                 IListDataSource listDataSource = dataSourceObject as IListDataSource;
-                if (listDataSource != null)
+                IDataSource dataSource = dataSourceObject as IDataSource;
+                if (listDataSource != null && (dataSource == null || model.IsListMode))
                 {
                     data = new ListResult(listDataSource.GetData(model.PageIndex, model.PageSize), listDataSource.GetTotalCount());
                 }
                 else
                 {
-                    IDataSource dataSource = dataSourceObject as IDataSource;
                     if (dataSource != null)
                         data = dataSource.GetItem();
                 }

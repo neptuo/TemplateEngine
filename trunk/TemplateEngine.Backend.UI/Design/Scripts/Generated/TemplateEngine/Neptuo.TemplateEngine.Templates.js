@@ -466,10 +466,13 @@ var Neptuo$TemplateEngine$Templates$Controls$FormItemControl = {
     assemblyName: "Neptuo.TemplateEngine.Templates",
     Kind: "Class",
     definition: {
-        ctor: function (componentManager){
+        ctor: function (componentManager, guidProvider){
+            this.guidProvider = null;
             this._LabelText = null;
             this._HelpText = null;
             Neptuo.TemplateEngine.Templates.Controls.ContentControlBase.ctor.call(this, componentManager);
+            Neptuo.Guard.NotNull$$Object$$String(guidProvider, "guidProvider");
+            this.guidProvider = guidProvider;
         },
         LabelText$$: "System.String",
         get_LabelText: function (){
@@ -505,7 +508,7 @@ var Neptuo$TemplateEngine$Templates$Controls$FormItemControl = {
                     if (htmlControl != null){
                         if (!System.String.IsNullOrEmpty(htmlControl.get_ID()))
                             return htmlControl.get_ID();
-                        var id = System.Guid.NewGuid().ToString();
+                        var id = this.guidProvider.Next();
                         htmlControl.set_ID(id);
                         return id;
                     }
@@ -516,7 +519,7 @@ var Neptuo$TemplateEngine$Templates$Controls$FormItemControl = {
     },
     ctors: [{
         name: "ctor",
-        parameters: ["Neptuo.Templates.IComponentManager"]
+        parameters: ["Neptuo.Templates.IComponentManager", "Neptuo.IGuidProvider"]
     }
     ],
     IsAbstract: false
@@ -4200,7 +4203,7 @@ var Neptuo$TemplateEngine$Templates$DataSources$FullDataSourceProxy$2 = {
             });
         },
         SetListParametersInternal: function (pageIndex, pageSize){
-            var parameterBuilder = Neptuo.TemplateEngine.JsObjectBuilder.New("DataSource", this.GetDataSourceName()).Set("PageIndex", pageIndex).Set("PageSize", pageSize);
+            var parameterBuilder = Neptuo.TemplateEngine.JsObjectBuilder.New("DataSource", this.GetDataSourceName()).Set("IsListMode", true).Set("PageIndex", pageIndex).Set("PageSize", pageSize);
             this.SetListParameters(parameterBuilder);
             return parameterBuilder.ToJsObject();
         },

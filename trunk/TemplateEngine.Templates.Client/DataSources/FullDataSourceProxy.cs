@@ -60,7 +60,7 @@ namespace Neptuo.TemplateEngine.Templates.DataSources
 
         private JsObject SetListParametersInternal(int? pageIndex, int? pageSize)
         {
-            JsObjectBuilder parameterBuilder = JsObjectBuilder.New("DataSource", GetDataSourceName()).Set("PageIndex", pageIndex).Set("PageSize", pageSize);
+            JsObjectBuilder parameterBuilder = JsObjectBuilder.New("DataSource", GetDataSourceName()).Set("IsListMode", true).Set("PageIndex", pageIndex).Set("PageSize", pageSize);
             SetListParameters(parameterBuilder);
             return parameterBuilder.ToJsObject();
         }

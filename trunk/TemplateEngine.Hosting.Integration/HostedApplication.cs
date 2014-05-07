@@ -84,6 +84,7 @@ namespace Neptuo.TemplateEngine.Hosting.Integration
                 .RegisterInstance<IEventDispatcher>(eventDispatcher)
                 .RegisterInstance<IEventRegistry>(eventDispatcher)
                 .RegisterInstance<IEventManager>(eventDispatcher)
+                .RegisterInstance<IGuidProvider>(new GuidProvider())
                 .RegisterType<IValidatorService, DependencyValidatorService>()
                 .RegisterType<IParameterProvider, RequestParameterProvider>(new PerRequestLifetime())
                 .RegisterType<IControllerRegistry>(new SingletonLifetime(new ControllerRegistryBase()))

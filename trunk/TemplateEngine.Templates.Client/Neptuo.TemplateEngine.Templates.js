@@ -788,7 +788,7 @@ var Neptuo$TemplateEngine$Templates$DataSources$FullDataSourceProxy$2 = {
             });
         },
         SetListParametersInternal: function (pageIndex, pageSize){
-            var parameterBuilder = Neptuo.TemplateEngine.JsObjectBuilder.New("DataSource", this.GetDataSourceName()).Set("PageIndex", pageIndex).Set("PageSize", pageSize);
+            var parameterBuilder = Neptuo.TemplateEngine.JsObjectBuilder.New("DataSource", this.GetDataSourceName()).Set("IsListMode", true).Set("PageIndex", pageIndex).Set("PageSize", pageSize);
             this.SetListParameters(parameterBuilder);
             return parameterBuilder.ToJsObject();
         },
