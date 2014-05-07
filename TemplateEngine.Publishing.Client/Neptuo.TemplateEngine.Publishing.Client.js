@@ -52,18 +52,15 @@ var Neptuo$TemplateEngine$Publishing$Bootstrap$PublishingBootstrapTask = {
     IsAbstract: false
 };
 JsTypes.push(Neptuo$TemplateEngine$Publishing$Bootstrap$PublishingBootstrapTask);
-var Neptuo$TemplateEngine$Publishing$Templates$DataSources$ArticleDataSource = {
-    fullname: "Neptuo.TemplateEngine.Publishing.Templates.DataSources.ArticleDataSource",
+var Neptuo$TemplateEngine$Publishing$Templates$DataSources$ArticleTagDataSource = {
+    fullname: "Neptuo.TemplateEngine.Publishing.Templates.DataSources.ArticleTagDataSource",
     baseTypeName: "Neptuo.TemplateEngine.Templates.DataSources.FullDataSourceProxy$2",
     staticDefinition: {
         GetFilterListProperties: function (){
             return (function (){
                 var $v1 = new System.Collections.Generic.List$1.ctor(System.String.ctor);
                 $v1.Add("Key");
-                $v1.Add("LineKey");
-                $v1.Add("TagKey");
-                $v1.Add("IsIncludeHidden");
-                $v1.Add("Title");
+                $v1.Add("Name");
                 $v1.Add("UrlPart");
                 return $v1;
             })();
@@ -73,6 +70,149 @@ var Neptuo$TemplateEngine$Publishing$Templates$DataSources$ArticleDataSource = {
                 var $v2 = new System.Collections.Generic.List$1.ctor(System.String.ctor);
                 $v2.Add("Key");
                 return $v2;
+            })();
+        }
+    },
+    assemblyName: "Neptuo.TemplateEngine.Publishing.Client",
+    interfaceNames: ["Neptuo.TemplateEngine.Publishing.Templates.DataSources.IArticleTagDataSourceFilter"],
+    Kind: "Class",
+    definition: {
+        ctor: function (modelBinder, urlProvider){
+            this._Key = null;
+            this._Name = null;
+            this._UrlPart = null;
+            Neptuo.TemplateEngine.Templates.DataSources.FullDataSourceProxy$2.ctor.call(this, Neptuo.TemplateEngine.ModelValueGetterListResult.ctor, Neptuo.TemplateEngine.Publishing.ViewModels.ArticleTagViewModel.ctor, modelBinder, urlProvider, Neptuo.TemplateEngine.Publishing.Templates.DataSources.ArticleTagDataSource.GetFilterListProperties(), Neptuo.TemplateEngine.Publishing.Templates.DataSources.ArticleTagDataSource.GetFilterSingleProperties());
+        },
+        Key$$: "System.Collections.Generic.IEnumerable`1[[System.Int32]]",
+        get_Key: function (){
+            return this._Key;
+        },
+        set_Key: function (value){
+            this._Key = value;
+        },
+        Name$$: "System.String",
+        get_Name: function (){
+            return this._Name;
+        },
+        set_Name: function (value){
+            this._Name = value;
+        },
+        UrlPart$$: "System.String",
+        get_UrlPart: function (){
+            return this._UrlPart;
+        },
+        set_UrlPart: function (value){
+            this._UrlPart = value;
+        },
+        OnGetItem: function (callback){
+            if (this.get_Key() == null){
+                var model = new Neptuo.TemplateEngine.Publishing.ViewModels.ArticleTagViewModel.ctor();
+                model = Neptuo.TemplateEngine.Providers.ModelBinders.ModelBinderExtensions.Bind$1$$IModelBinder$$T(Neptuo.TemplateEngine.Publishing.ViewModels.ArticleTagViewModel.ctor, this.get_ModelBinder(), model);
+                callback(model);
+                return true;
+            }
+            return false;
+        }
+    },
+    ctors: [{
+        name: "ctor",
+        parameters: ["Neptuo.TemplateEngine.Providers.ModelBinders.IModelBinder", "Neptuo.Templates.IVirtualUrlProvider"]
+    }
+    ],
+    IsAbstract: false
+};
+JsTypes.push(Neptuo$TemplateEngine$Publishing$Templates$DataSources$ArticleTagDataSource);
+var Neptuo$TemplateEngine$Publishing$Templates$DataSources$ArticleLineDataSource = {
+    fullname: "Neptuo.TemplateEngine.Publishing.Templates.DataSources.ArticleLineDataSource",
+    baseTypeName: "Neptuo.TemplateEngine.Templates.DataSources.FullDataSourceProxy$2",
+    staticDefinition: {
+        GetFilterListProperties: function (){
+            return (function (){
+                var $v3 = new System.Collections.Generic.List$1.ctor(System.String.ctor);
+                $v3.Add("Key");
+                $v3.Add("Name");
+                $v3.Add("UrlPart");
+                return $v3;
+            })();
+        },
+        GetFilterSingleProperties: function (){
+            return (function (){
+                var $v4 = new System.Collections.Generic.List$1.ctor(System.String.ctor);
+                $v4.Add("Key");
+                return $v4;
+            })();
+        }
+    },
+    assemblyName: "Neptuo.TemplateEngine.Publishing.Client",
+    interfaceNames: ["Neptuo.TemplateEngine.Publishing.Templates.DataSources.IArticleLineDataSourceFilter"],
+    Kind: "Class",
+    definition: {
+        ctor: function (modelBinder, urlProvider){
+            this._Key = null;
+            this._Name = null;
+            this._UrlPart = null;
+            Neptuo.TemplateEngine.Templates.DataSources.FullDataSourceProxy$2.ctor.call(this, Neptuo.TemplateEngine.ModelValueGetterListResult.ctor, Neptuo.TemplateEngine.Publishing.ViewModels.ArticleLineViewModel.ctor, modelBinder, urlProvider, Neptuo.TemplateEngine.Publishing.Templates.DataSources.ArticleLineDataSource.GetFilterListProperties(), Neptuo.TemplateEngine.Publishing.Templates.DataSources.ArticleLineDataSource.GetFilterSingleProperties());
+        },
+        Key$$: "System.Nullable`1[[System.Int32]]",
+        get_Key: function (){
+            return this._Key;
+        },
+        set_Key: function (value){
+            this._Key = value;
+        },
+        Name$$: "System.String",
+        get_Name: function (){
+            return this._Name;
+        },
+        set_Name: function (value){
+            this._Name = value;
+        },
+        UrlPart$$: "System.String",
+        get_UrlPart: function (){
+            return this._UrlPart;
+        },
+        set_UrlPart: function (value){
+            this._UrlPart = value;
+        },
+        OnGetItem: function (callback){
+            if (this.get_Key() == null){
+                var model = new Neptuo.TemplateEngine.Publishing.ViewModels.ArticleLineViewModel.ctor();
+                model = Neptuo.TemplateEngine.Providers.ModelBinders.ModelBinderExtensions.Bind$1$$IModelBinder$$T(Neptuo.TemplateEngine.Publishing.ViewModels.ArticleLineViewModel.ctor, this.get_ModelBinder(), model);
+                callback(model);
+                return true;
+            }
+            return false;
+        }
+    },
+    ctors: [{
+        name: "ctor",
+        parameters: ["Neptuo.TemplateEngine.Providers.ModelBinders.IModelBinder", "Neptuo.Templates.IVirtualUrlProvider"]
+    }
+    ],
+    IsAbstract: false
+};
+JsTypes.push(Neptuo$TemplateEngine$Publishing$Templates$DataSources$ArticleLineDataSource);
+var Neptuo$TemplateEngine$Publishing$Templates$DataSources$ArticleDataSource = {
+    fullname: "Neptuo.TemplateEngine.Publishing.Templates.DataSources.ArticleDataSource",
+    baseTypeName: "Neptuo.TemplateEngine.Templates.DataSources.FullDataSourceProxy$2",
+    staticDefinition: {
+        GetFilterListProperties: function (){
+            return (function (){
+                var $v5 = new System.Collections.Generic.List$1.ctor(System.String.ctor);
+                $v5.Add("Key");
+                $v5.Add("LineKey");
+                $v5.Add("TagKey");
+                $v5.Add("IsIncludeHidden");
+                $v5.Add("Title");
+                $v5.Add("UrlPart");
+                return $v5;
+            })();
+        },
+        GetFilterSingleProperties: function (){
+            return (function (){
+                var $v6 = new System.Collections.Generic.List$1.ctor(System.String.ctor);
+                $v6.Add("Key");
+                return $v6;
             })();
         }
     },

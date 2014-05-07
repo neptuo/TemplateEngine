@@ -12,6 +12,9 @@ namespace Neptuo.TemplateEngine.Publishing.ViewModels
         public string Name { get; set; }
         public string UrlPart { get; set; }
 
+        public ArticleLineViewModel()
+        { }
+
         public ArticleLineViewModel(int key, string name, string urlPart)
         {
             Key = key;

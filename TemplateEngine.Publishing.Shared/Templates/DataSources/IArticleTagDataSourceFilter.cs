@@ -10,6 +10,6 @@ namespace Neptuo.TemplateEngine.Publishing.Templates.DataSources
     {
         IEnumerable<int> Key { get; set; }
         string Name { get; set; }
-        string Url { get; set; }
+        string UrlPart { get; set; }
     }
 }

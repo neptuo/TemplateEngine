@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Publishing.Templates.DataSources
 {
+    [WebDataSource]
     public class ArticleLineDataSource : IListDataSource, IDataSource, IArticleLineDataSourceFilter
     {
         private IArticleLineQuery query;
@@ -19,7 +20,7 @@ namespace Neptuo.TemplateEngine.Publishing.Templates.DataSources
 
         public int? Key { get; set; }
         public string Name { get; set; }
-        public string Url { get; set; }
+        public string UrlPart { get; set; }
 
         public ArticleLineDataSource(IArticleLineQuery query, IModelBinder modelBinder)
         {
@@ -37,8 +38,8 @@ namespace Neptuo.TemplateEngine.Publishing.Templates.DataSources
             if (!String.IsNullOrEmpty(Name))
                 query.Filter.Name = TextSearch.StartsWith(Name);
 
-            if (!String.IsNullOrEmpty(Url))
-                query.Filter.Url = TextSearch.Create(Url);
+            if (!String.IsNullOrEmpty(UrlPart))
+                query.Filter.Url = TextSearch.Create(UrlPart);
 
             query.OrderBy(l => l.Name);
         }

@@ -128,14 +128,11 @@ var Neptuo$TemplateEngine$Publishing$ViewModels$ArticleLineViewModel = {
     assemblyName: "Neptuo.TemplateEngine.Publishing.ViewModels",
     Kind: "Class",
     definition: {
-        ctor: function (key, name, urlPart){
+        ctor: function (){
             this._Key = 0;
             this._Name = null;
             this._UrlPart = null;
             System.Object.ctor.call(this);
-            this.set_Key(key);
-            this.set_Name(name);
-            this.set_UrlPart(urlPart);
         },
         Key$$: "System.Int32",
         get_Key: function (){
@@ -157,10 +154,22 @@ var Neptuo$TemplateEngine$Publishing$ViewModels$ArticleLineViewModel = {
         },
         set_UrlPart: function (value){
             this._UrlPart = value;
+        },
+        ctor$$Int32$$String$$String: function (key, name, urlPart){
+            this._Key = 0;
+            this._Name = null;
+            this._UrlPart = null;
+            System.Object.ctor.call(this);
+            this.set_Key(key);
+            this.set_Name(name);
+            this.set_UrlPart(urlPart);
         }
     },
     ctors: [{
         name: "ctor",
+        parameters: []
+    }, {
+        name: "ctor$$Int32$$String$$String",
         parameters: ["System.Int32", "System.String", "System.String"]
     }
     ],
@@ -299,14 +308,11 @@ var Neptuo$TemplateEngine$Publishing$ViewModels$ArticleTagViewModel = {
     assemblyName: "Neptuo.TemplateEngine.Publishing.ViewModels",
     Kind: "Class",
     definition: {
-        ctor: function (key, name, urlPart){
+        ctor: function (){
             this._Key = 0;
             this._Name = null;
             this._UrlPart = null;
             System.Object.ctor.call(this);
-            this.set_Key(key);
-            this.set_Name(name);
-            this.set_UrlPart(urlPart);
         },
         Key$$: "System.Int32",
         get_Key: function (){
@@ -328,10 +334,22 @@ var Neptuo$TemplateEngine$Publishing$ViewModels$ArticleTagViewModel = {
         },
         set_UrlPart: function (value){
             this._UrlPart = value;
+        },
+        ctor$$Int32$$String$$String: function (key, name, urlPart){
+            this._Key = 0;
+            this._Name = null;
+            this._UrlPart = null;
+            System.Object.ctor.call(this);
+            this.set_Key(key);
+            this.set_Name(name);
+            this.set_UrlPart(urlPart);
         }
     },
     ctors: [{
         name: "ctor",
+        parameters: []
+    }, {
+        name: "ctor$$Int32$$String$$String",
         parameters: ["System.Int32", "System.String", "System.String"]
     }
     ],

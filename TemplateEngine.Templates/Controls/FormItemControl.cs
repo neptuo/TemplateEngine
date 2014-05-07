@@ -9,12 +9,17 @@ namespace Neptuo.TemplateEngine.Templates.Controls
 {
     public class FormItemControl : ContentControlBase
     {
+        private IGuidProvider guidProvider;
+
         public string LabelText { get; set; }
         public string HelpText { get; set; }
 
-        public FormItemControl(IComponentManager componentManager)
+        public FormItemControl(IComponentManager componentManager, IGuidProvider guidProvider)
             : base(componentManager)
-        { }
+        {
+            Guard.NotNull(guidProvider, "guidProvider");
+            this.guidProvider = guidProvider;
+        }
 
         public override void Render(IHtmlWriter writer)
         {
@@ -75,7 +80,7 @@ namespace Neptuo.TemplateEngine.Templates.Controls
                         if (!String.IsNullOrEmpty(htmlControl.ID))
                             return htmlControl.ID;
 
-                        string id = Guid.NewGuid().ToString();
+                        string id = guidProvider.Next();
                         htmlControl.ID = id;
                         return id;
                     }

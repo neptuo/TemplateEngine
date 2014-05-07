@@ -11,5 +11,6 @@ namespace Neptuo.TemplateEngine.Hosting
         public string DataSource { get; set; }
         public int? PageIndex { get; set; }
         public int? PageSize { get; set; }
+        public bool IsListMode { get; set; }
     }
 }
