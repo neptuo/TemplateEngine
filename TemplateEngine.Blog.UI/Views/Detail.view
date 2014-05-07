@@ -1,0 +1,8 @@
+﻿<ui:DetailView>
+    <Source>
+        <data:ArticleDataSource Key="{Request ArticleKey}" />
+    </Source>
+    <Template>
+        <ui:Literal Text="{Binding Content}" />
+    </Template>
+</ui:DetailView>

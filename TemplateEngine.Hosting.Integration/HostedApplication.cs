@@ -28,6 +28,11 @@ namespace Neptuo.TemplateEngine.Hosting.Integration
     {
         private IApplicationBuilder builder;
 
+        public static IApplicationBuilder Empty
+        {
+            get { return new ApplicationBuilderBase(); }
+        }
+
         public HostedApplication(IApplicationBuilder builder)
         {
             Guard.NotNull(builder, "builder");
