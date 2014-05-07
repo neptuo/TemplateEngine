@@ -982,4 +982,26 @@ var Neptuo$TemplateEngine$Templates$GeneratedViewBase = {
     IsAbstract: true
 };
 JsTypes.push(Neptuo$TemplateEngine$Templates$GeneratedViewBase);
+var Neptuo$TemplateEngine$Templates$Extensions$IsJavascriptEngineSupportedExtension = {
+    fullname: "Neptuo.TemplateEngine.Templates.Extensions.IsJavascriptEngineSupportedExtension",
+    baseTypeName: "System.Object",
+    assemblyName: "Neptuo.TemplateEngine.Templates.Client",
+    interfaceNames: ["Neptuo.Templates.Extensions.IValueExtension"],
+    Kind: "Class",
+    definition: {
+        ctor: function (){
+            System.Object.ctor.call(this);
+        },
+        ProvideValue: function (context){
+            return true;
+        }
+    },
+    ctors: [{
+        name: "ctor",
+        parameters: []
+    }
+    ],
+    IsAbstract: false
+};
+JsTypes.push(Neptuo$TemplateEngine$Templates$Extensions$IsJavascriptEngineSupportedExtension);
 
