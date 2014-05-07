@@ -115,6 +115,7 @@
     <Compile Include="Controls\OptionControl.cs" />
     <Compile Include="Controls\PaginationControl.cs" />
     <Compile Include="Controls\ParameterControl.cs" />
+    <Compile Include="Controls\Placeholder.cs" />
     <Compile Include="Controls\Presentation\PresentationControlBase.cs" />
     <Compile Include="Controls\Presentation\PresentationListControlBase.cs" />
     <Compile Include="Controls\SelectControl.cs" />
@@ -144,6 +145,7 @@
     <Compile Include="Extensions\BindingExtension.cs" />
     <Compile Include="Extensions\CurrentUrlExtension.cs" />
     <Compile Include="Extensions\FormatStringExtension.cs" />
+    <Compile Include="Extensions\IsJavascriptEngineSupportedExtension.cs" />
     <Compile Include="Extensions\RequestExtension.cs" />
     <Compile Include="Extensions\SwitchExtension.cs" />
     <Compile Include="Extensions\TemplateBindingExtension.cs" />

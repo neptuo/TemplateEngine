@@ -1,70 +1,72 @@
 ﻿<ui:Doctype Type="Xhtml" />
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-    <meta charset="utf-8" />
-    <title>
-        <ui:TemplatePlaceholder Name="Title" />
-        <ui:Literal Text=" - " ui:IsPlaceholder="Title" />
-        TemplateEngine
-    </title>
+    <head>
+        <meta charset="utf-8" />
+        <title>
+            <ui:TemplatePlaceholder Name="Title" />
+            <ui:Literal Text=" - " ui:IsPlaceholder="Title" />
+            TemplateEngine
+        </title>
 
-    <ui:Bundle Path="~/design/css/admin" IsStyle="true" />
-    <ui:Bundle Path="~/design/js/admin" />
-  
-    <ajax:StartUp DefaultUpdate="Body" />
-    <ui:ViewBundle Path="Default" />
-    <ui:ViewBundle Path="~/Views/Accounts/UserList.view" />
-  
-    <ui:TemplatePlaceholder Name="Head" />
-</head>
-<body>
-    <ajax:View Partial="Body">
-        <div class="navbar navbar-fixed-top navbar-main">
-            <div class="navbar-header">
-                <a form:href="Home" class="navbar-brand" ajax:Update="BodyContainer">
-                    <span class="glyphicon glyphicon-tree-deciduous"></span>
-                    TemplateEngine
-                </a>
-            </div>
-            <ul class="nav navbar-nav">
-                <li>
-                    <a form:href="Publishing.Article.List" ajax:Update="BodyContainer">
-                        <span class="glyphicon glyphicon-globe"></span>
-                        <ui:Literal l:Text="Publishing" />
-                    </a>
-                </li>
-                <li>
-                    <a form:href="Accounts.User.List" ajax:Update="BodyContainer">
-                        <span class="glyphicon glyphicon-user"></span>
-                        <ui:Literal l:Text="User accounts" />
-                    </a>
-                </li>
-            </ul>
-            <div class="right" style="padding: 9px 0">
-                <ui:PostForm>
-                    <ui:Button l:Text="Sign Out" ui:Event="Accounts/Logout" CssClass="btn btn-default btn-xs" />
-                </ui:PostForm>
-            </div>
-        </div>
+        <ui:Bundle Path="~/design/css/admin" IsStyle="true" />
+        
+        <ui:Placeholder ui:IsVisible="{IsJavascriptEngineSupported}">
+            <ui:Bundle Path="~/design/js/admin" />
+            
+            <ajax:StartUp DefaultUpdate="Body" />
+            <ui:ViewBundle Path="Default" />
+        </ui:Placeholder>
 
-        <ajax:View Partial="BodyContainer" html:Class="body-container">
-            <div class="side-navbar" ui:IsPlaceHolder="SideNav">
-                <ui:TemplatePlaceholder Name="SideNav" />
+        <ui:TemplatePlaceholder Name="Head" />
+    </head>
+    <body>
+        <ajax:View Partial="Body">
+            <div class="navbar navbar-fixed-top navbar-main">
+                <div class="navbar-header">
+                    <a form:href="Home" class="navbar-brand" ajax:Update="BodyContainer">
+                        <span class="glyphicon glyphicon-tree-deciduous"></span>
+                        TemplateEngine
+                    </a>
+                </div>
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a form:href="Publishing.Article.List" ajax:Update="BodyContainer">
+                            <span class="glyphicon glyphicon-globe"></span>
+                            <ui:Literal l:Text="Publishing" />
+                        </a>
+                    </li>
+                    <li>
+                        <a form:href="Accounts.User.List" ajax:Update="BodyContainer">
+                            <span class="glyphicon glyphicon-user"></span>
+                            <ui:Literal l:Text="User accounts" />
+                        </a>
+                    </li>
+                </ul>
+                <div class="right" style="padding: 9px 0">
+                    <ui:PostForm>
+                        <ui:Button l:Text="Sign Out" ui:Event="Accounts/Logout" CssClass="btn btn-default btn-xs" />
+                    </ui:PostForm>
+                </div>
             </div>
-            <ajax:View Partial="Content" html:Class="body">
-                <ui:MessagePanel Key="" />
-                <ui:TemplatePlaceholder Name="Body" />
+
+            <ajax:View Partial="BodyContainer" html:Class="body-container">
+                <div class="side-navbar" ui:IsPlaceHolder="SideNav">
+                    <ui:TemplatePlaceholder Name="SideNav" />
+                </div>
+                <ajax:View Partial="Content" html:Class="body">
+                    <ui:MessagePanel Key="" />
+                    <ui:TemplatePlaceholder Name="Body" />
+                </ajax:View>
             </ajax:View>
-        </ajax:View>
 
-        <footer class="navbar">
-            <div class="right">
-                <a href="http://www.neptuo.com">Neptuo</a>
-                <a href="http://te.neptuo.com">TemplateEngine</a>
-                © 2014
-            </div>
-            <div class="clear"></div>
-        </footer>
-    </ajax:View>
-</body>
+            <footer class="navbar">
+                <div class="right">
+                    <a href="http://www.neptuo.com">Neptuo</a>
+                    <a href="http://te.neptuo.com">TemplateEngine</a>
+                    © 2014
+                </div>
+                <div class="clear"></div>
+            </footer>
+        </ajax:View>
+    </body>
 </html>
