@@ -22,7 +22,17 @@ namespace Neptuo.TemplateEngine.Publishing.Bootstrap
         public void Initialize()
         {
             converterRepository
-                .Add(typeof(JsObject), typeof(ArticleViewModel), new ArticleViewModelConverter());
+                .Add(typeof(JsObject), typeof(ArticleViewModel), new ArticleViewModelConverter())
+                .Add(typeof(JsObject), typeof(ArticleTagViewModel), new ArticleTagViewModelConverter())
+                .Add(typeof(JsObject), typeof(ArticleLineViewModel), new ArticleLineViewModelConverter())
+
+                .Add(typeof(JsObject), typeof(ArticleListResult), new ArticleListResultConverter())
+                .Add(typeof(JsObject), typeof(ArticleTagListResult), new ArticleTagListResultConverter())
+                .Add(typeof(JsObject), typeof(ArticleLineListResult), new ArticleLineListResultConverter())
+
+                .Add(typeof(JsObject), typeof(ArticleEditViewModel), new ArticleEditViewModelConverter())
+                .Add(typeof(JsObject), typeof(ArticleTagEditViewModel), new ArticleTagEditViewModelConverter())
+                .Add(typeof(JsObject), typeof(ArticleLineEditViewModel), new ArticleLineEditViewModelConverter());
         }
     }
 }

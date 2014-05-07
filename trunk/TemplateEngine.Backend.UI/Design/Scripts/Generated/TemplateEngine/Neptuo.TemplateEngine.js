@@ -190,6 +190,45 @@ var Neptuo$TemplateEngine$Bootstrap$PresentationModelBootstrapTask = {
     IsAbstract: false
 };
 JsTypes.push(Neptuo$TemplateEngine$Bootstrap$PresentationModelBootstrapTask);
+var Neptuo$TemplateEngine$ListResultConverterBase$2 = {
+    fullname: "Neptuo.TemplateEngine.ListResultConverterBase$2",
+    baseTypeName: "Neptuo.ComponentModel.Converters.ConverterBase$2",
+    assemblyName: "Neptuo.TemplateEngine.Client",
+    Kind: "Class",
+    definition: {
+        ctor: function (TListResult, TItem){
+            this.TListResult = TListResult;
+            this.TItem = TItem;
+            Neptuo.ComponentModel.Converters.ConverterBase$2.ctor.call(this, Object, this.TListResult);
+        },
+        TryConvert: function (sourceValue, targetValue){
+            var totalCount = sourceValue["TotalCount"];
+            var data = sourceValue["Data"];
+            var result = new System.Collections.Generic.List$1.ctor(this.TItem);
+            for (var i = 0; i < data.length; i++){
+                var item;
+                if ((function (){
+                    var $1 = {
+                        Value: item
+                    };
+                    var $res = this.TryConvertItem(data[i], $1);
+                    item = $1.Value;
+                    return $res;
+                }).call(this))
+                    result.Add(item);
+            }
+            targetValue.Value = this.CreateResult(result, totalCount);
+            return true;
+        }
+    },
+    ctors: [{
+        name: "ctor",
+        parameters: []
+    }
+    ],
+    IsAbstract: true
+};
+JsTypes.push(Neptuo$TemplateEngine$ListResultConverterBase$2);
 var Neptuo$TemplateEngine$ModelValueGetterListResult = {
     fullname: "Neptuo.TemplateEngine.ModelValueGetterListResult",
     baseTypeName: "Neptuo.TemplateEngine.Templates.DataSources.ListResult",

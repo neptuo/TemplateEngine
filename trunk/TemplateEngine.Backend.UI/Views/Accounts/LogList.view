@@ -15,7 +15,7 @@
             </ui:TemplateContent>
         </ui:SubHeader>
  
-        <ui:ListView PageIndex="{Request PageIndex}" PageSize="10"> 
+        <ui:ListView> 
             <Source>
                 <data:UserLogDataSource />
             </Source>
