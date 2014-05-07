@@ -71,6 +71,7 @@
     <Compile Include="DataSources\IListDataSource.cs" />
     <Compile Include="DataSources\ListDataSourceProxy.cs" />
     <Compile Include="ClientGeneratedViewBase.cs" />
+    <Compile Include="Extensions\ClientIsJavascriptEngineSupportedExtension.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

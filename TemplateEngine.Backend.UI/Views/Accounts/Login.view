@@ -5,12 +5,14 @@
         <title>Sign to TemplateEngine</title>
 
         <ui:Bundle Path="~/design/css/admin" IsStyle="true" />
-        <ui:Bundle Path="~/design/js/admin" />
 
-        <ajax:StartUp DefaultUpdate="Body" />
-        <ui:ViewBundle Path="Default" />
-        <ui:ViewBundle Path="~/Views/Accounts/Login.view" />
-
+        <ui:Placeholder ui:IsVisible="{IsJavascriptEngineSupported}">
+            <ui:Bundle Path="~/design/js/admin" />
+            
+            <ajax:StartUp DefaultUpdate="Body" />
+            <ui:ViewBundle Path="Default" />
+            <ui:ViewBundle Path="~/Views/Accounts/Login.view" />
+        </ui:Placeholder>
     </head>
     <body>
 

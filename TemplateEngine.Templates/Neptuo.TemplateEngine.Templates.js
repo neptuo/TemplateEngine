@@ -1596,6 +1596,24 @@ var Neptuo$TemplateEngine$Templates$Controls$ParameterControl = {
     IsAbstract: false
 };
 JsTypes.push(Neptuo$TemplateEngine$Templates$Controls$ParameterControl);
+var Neptuo$TemplateEngine$Templates$Controls$Placeholder = {
+    fullname: "Neptuo.TemplateEngine.Templates.Controls.Placeholder",
+    baseTypeName: "Neptuo.TemplateEngine.Templates.Controls.ContentControlBase",
+    assemblyName: "Neptuo.TemplateEngine.Templates",
+    Kind: "Class",
+    definition: {
+        ctor: function (componentManager){
+            Neptuo.TemplateEngine.Templates.Controls.ContentControlBase.ctor.call(this, componentManager);
+        }
+    },
+    ctors: [{
+        name: "ctor",
+        parameters: ["Neptuo.Templates.IComponentManager"]
+    }
+    ],
+    IsAbstract: false
+};
+JsTypes.push(Neptuo$TemplateEngine$Templates$Controls$Placeholder);
 var Neptuo$TemplateEngine$Templates$Controls$PresentationControlBase = {
     fullname: "Neptuo.TemplateEngine.Templates.Controls.PresentationControlBase",
     baseTypeName: "Neptuo.TemplateEngine.Templates.Controls.TemplateControl",
