@@ -13,6 +13,7 @@
   
     <ajax:StartUp DefaultUpdate="Body" />
     <ui:ViewBundle Path="Default" />
+    <ui:ViewBundle Path="~/Views/Accounts/UserList.view" />
   
     <ui:TemplatePlaceholder Name="Head" />
 </head>

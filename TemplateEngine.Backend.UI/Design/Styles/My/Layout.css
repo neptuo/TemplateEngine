@@ -80,8 +80,8 @@ footer.navbar {
     border-right: 1px solid #cccccc;
 }
 
-.side-navbar a {
-
+.side-navbar ul {
+    position: fixed;
 }
 
 .body {

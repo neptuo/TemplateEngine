@@ -18,6 +18,27 @@ namespace Neptuo.TemplateEngine.Publishing
             targetValue.Title = sourceValue["Title"].As<string>();
             targetValue.UrlPart = sourceValue["UrlPart"].As<string>();
             targetValue.Content = sourceValue["Content"].As<string>();
+            targetValue.IsVisible = sourceValue["IsVisible"].As<bool>();
+            targetValue.Author = sourceValue["Author"].As<string>();
+            targetValue.Created = sourceValue["Created"].As<DateTime>();
+            targetValue.LastModified = sourceValue["LastModified"].As<DateTime?>();
+
+            JsObject lineValue = sourceValue["Line"].As<JsObject>();
+            ArticleLineViewModel line;
+            if (Converts.Try(lineValue, out line))
+                targetValue.Line = line;
+
+            List<ArticleTagViewModel> tags = new List<ArticleTagViewModel>();
+            JsArray tagsValue = sourceValue["Tags"].As<JsArray>();
+            for (int i = 0; i < tagsValue.length; i++)
+            {
+                JsObject tagValue = tagsValue[i].As<JsObject>();
+                ArticleTagViewModel tag;
+                if (Converts.Try(tagValue, out tag))
+                    tags.Add(tag);
+            }
+            targetValue.Tags = tags;
+
             return true;
         }
     }

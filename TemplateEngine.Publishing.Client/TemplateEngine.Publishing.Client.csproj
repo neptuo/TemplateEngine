@@ -53,6 +53,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ArticleLineEditViewModelConverter.cs" />
+    <Compile Include="ArticleTagListResultConverter.cs" />
+    <Compile Include="ArticleListResult.cs" />
+    <Compile Include="ArticleLineViewModelConverter.cs" />
+    <Compile Include="ArticleLineListResultConverter.cs" />
+    <Compile Include="ArticleListResultConverter.cs" />
+    <Compile Include="ArticleTagEditViewModelConverter.cs" />
+    <Compile Include="ArticleLineListResult.cs" />
+    <Compile Include="ArticleTagListResult.cs" />
+    <Compile Include="ArticleTagViewModelConverter.cs" />
+    <Compile Include="ArticleEditViewModelConverter.cs" />
     <Compile Include="ArticleViewModelConverter.cs" />
     <Compile Include="Bootstrap\PublishingBootstrapTask.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

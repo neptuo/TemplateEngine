@@ -4,6 +4,263 @@
 
 if (typeof(JsTypes) == "undefined")
     var JsTypes = [];
+var Neptuo$TemplateEngine$Publishing$ArticleLineEditViewModelConverter = {
+    fullname: "Neptuo.TemplateEngine.Publishing.ArticleLineEditViewModelConverter",
+    baseTypeName: "Neptuo.ComponentModel.Converters.ConverterBase$2",
+    assemblyName: "Neptuo.TemplateEngine.Publishing.Client",
+    Kind: "Class",
+    definition: {
+        ctor: function (){
+            Neptuo.ComponentModel.Converters.ConverterBase$2.ctor.call(this, Object, Neptuo.TemplateEngine.Publishing.ViewModels.ArticleLineEditViewModel.ctor);
+        },
+        TryConvert: function (sourceValue, targetValue){
+            targetValue.Value = new Neptuo.TemplateEngine.Publishing.ViewModels.ArticleLineEditViewModel.ctor();
+            targetValue.Value.set_Key(sourceValue["Key"]);
+            targetValue.Value.set_Name(sourceValue["Name"]);
+            targetValue.Value.set_UrlPart(sourceValue["UrlPart"]);
+            targetValue.Value.set_AvailableTagKeys(new System.Collections.Generic.List$1.ctor$$IEnumerable$1(System.Int32.ctor, sourceValue["AvailableTagKeys"]));
+            return true;
+        }
+    },
+    ctors: [{
+        name: "ctor",
+        parameters: []
+    }
+    ],
+    IsAbstract: false
+};
+JsTypes.push(Neptuo$TemplateEngine$Publishing$ArticleLineEditViewModelConverter);
+var Neptuo$TemplateEngine$Publishing$ArticleTagListResultConverter = {
+    fullname: "Neptuo.TemplateEngine.Publishing.ArticleTagListResultConverter",
+    baseTypeName: "Neptuo.TemplateEngine.ListResultConverterBase$2",
+    assemblyName: "Neptuo.TemplateEngine.Publishing.Client",
+    Kind: "Class",
+    definition: {
+        ctor: function (){
+            Neptuo.TemplateEngine.ListResultConverterBase$2.ctor.call(this, Neptuo.TemplateEngine.Publishing.ArticleTagListResult.ctor, Neptuo.TemplateEngine.Publishing.ViewModels.ArticleTagViewModel.ctor);
+        },
+        TryConvertItem: function (sourceValue, item){
+            return Neptuo.Converts.Try$2$$TSource$$TTarget(Object, Neptuo.TemplateEngine.Publishing.ViewModels.ArticleTagViewModel.ctor, sourceValue, item);
+        },
+        CreateResult: function (data, totalCount){
+            return new Neptuo.TemplateEngine.Publishing.ArticleTagListResult.ctor(data, totalCount);
+        }
+    },
+    ctors: [{
+        name: "ctor",
+        parameters: []
+    }
+    ],
+    IsAbstract: false
+};
+JsTypes.push(Neptuo$TemplateEngine$Publishing$ArticleTagListResultConverter);
+var Neptuo$TemplateEngine$Publishing$ArticleListResult = {
+    fullname: "Neptuo.TemplateEngine.Publishing.ArticleListResult",
+    baseTypeName: "Neptuo.TemplateEngine.Templates.DataSources.ListResult",
+    assemblyName: "Neptuo.TemplateEngine.Publishing.Client",
+    Kind: "Class",
+    definition: {
+        ctor: function (data, totalCount){
+            Neptuo.TemplateEngine.Templates.DataSources.ListResult.ctor.call(this, data, totalCount);
+        }
+    },
+    ctors: [{
+        name: "ctor",
+        parameters: ["System.Collections.IEnumerable", "System.Int32"]
+    }
+    ],
+    IsAbstract: false
+};
+JsTypes.push(Neptuo$TemplateEngine$Publishing$ArticleListResult);
+var Neptuo$TemplateEngine$Publishing$ArticleLineViewModelConverter = {
+    fullname: "Neptuo.TemplateEngine.Publishing.ArticleLineViewModelConverter",
+    baseTypeName: "Neptuo.ComponentModel.Converters.ConverterBase$2",
+    assemblyName: "Neptuo.TemplateEngine.Publishing.Client",
+    Kind: "Class",
+    definition: {
+        ctor: function (){
+            Neptuo.ComponentModel.Converters.ConverterBase$2.ctor.call(this, Object, Neptuo.TemplateEngine.Publishing.ViewModels.ArticleLineViewModel.ctor);
+        },
+        TryConvert: function (sourceValue, targetValue){
+            targetValue.Value = new Neptuo.TemplateEngine.Publishing.ViewModels.ArticleLineViewModel.ctor();
+            targetValue.Value.set_Key(sourceValue["Key"]);
+            targetValue.Value.set_Name(sourceValue["Name"]);
+            targetValue.Value.set_UrlPart(sourceValue["UrlPart"]);
+            return true;
+        }
+    },
+    ctors: [{
+        name: "ctor",
+        parameters: []
+    }
+    ],
+    IsAbstract: false
+};
+JsTypes.push(Neptuo$TemplateEngine$Publishing$ArticleLineViewModelConverter);
+var Neptuo$TemplateEngine$Publishing$ArticleLineListResultConverter = {
+    fullname: "Neptuo.TemplateEngine.Publishing.ArticleLineListResultConverter",
+    baseTypeName: "Neptuo.TemplateEngine.ListResultConverterBase$2",
+    assemblyName: "Neptuo.TemplateEngine.Publishing.Client",
+    Kind: "Class",
+    definition: {
+        ctor: function (){
+            Neptuo.TemplateEngine.ListResultConverterBase$2.ctor.call(this, Neptuo.TemplateEngine.Publishing.ArticleLineListResult.ctor, Neptuo.TemplateEngine.Publishing.ViewModels.ArticleLineViewModel.ctor);
+        },
+        TryConvertItem: function (sourceValue, item){
+            return Neptuo.Converts.Try$2$$TSource$$TTarget(Object, Neptuo.TemplateEngine.Publishing.ViewModels.ArticleLineViewModel.ctor, sourceValue, item);
+        },
+        CreateResult: function (data, totalCount){
+            return new Neptuo.TemplateEngine.Publishing.ArticleLineListResult.ctor(data, totalCount);
+        }
+    },
+    ctors: [{
+        name: "ctor",
+        parameters: []
+    }
+    ],
+    IsAbstract: false
+};
+JsTypes.push(Neptuo$TemplateEngine$Publishing$ArticleLineListResultConverter);
+var Neptuo$TemplateEngine$Publishing$ArticleListResultConverter = {
+    fullname: "Neptuo.TemplateEngine.Publishing.ArticleListResultConverter",
+    baseTypeName: "Neptuo.TemplateEngine.ListResultConverterBase$2",
+    assemblyName: "Neptuo.TemplateEngine.Publishing.Client",
+    Kind: "Class",
+    definition: {
+        ctor: function (){
+            Neptuo.TemplateEngine.ListResultConverterBase$2.ctor.call(this, Neptuo.TemplateEngine.Publishing.ArticleListResult.ctor, Neptuo.TemplateEngine.Publishing.ViewModels.ArticleViewModel.ctor);
+        },
+        TryConvertItem: function (sourceValue, item){
+            return Neptuo.Converts.Try$2$$TSource$$TTarget(Object, Neptuo.TemplateEngine.Publishing.ViewModels.ArticleViewModel.ctor, sourceValue, item);
+        },
+        CreateResult: function (data, totalCount){
+            return new Neptuo.TemplateEngine.Publishing.ArticleListResult.ctor(data, totalCount);
+        }
+    },
+    ctors: [{
+        name: "ctor",
+        parameters: []
+    }
+    ],
+    IsAbstract: false
+};
+JsTypes.push(Neptuo$TemplateEngine$Publishing$ArticleListResultConverter);
+var Neptuo$TemplateEngine$Publishing$ArticleTagEditViewModelConverter = {
+    fullname: "Neptuo.TemplateEngine.Publishing.ArticleTagEditViewModelConverter",
+    baseTypeName: "Neptuo.ComponentModel.Converters.ConverterBase$2",
+    assemblyName: "Neptuo.TemplateEngine.Publishing.Client",
+    Kind: "Class",
+    definition: {
+        ctor: function (){
+            Neptuo.ComponentModel.Converters.ConverterBase$2.ctor.call(this, Object, Neptuo.TemplateEngine.Publishing.ViewModels.ArticleTagEditViewModel.ctor);
+        },
+        TryConvert: function (sourceValue, targetValue){
+            targetValue.Value = new Neptuo.TemplateEngine.Publishing.ViewModels.ArticleTagEditViewModel.ctor();
+            targetValue.Value.set_Key(sourceValue["Key"]);
+            targetValue.Value.set_Name(sourceValue["Name"]);
+            targetValue.Value.set_UrlPart(sourceValue["UrlPart"]);
+            return true;
+        }
+    },
+    ctors: [{
+        name: "ctor",
+        parameters: []
+    }
+    ],
+    IsAbstract: false
+};
+JsTypes.push(Neptuo$TemplateEngine$Publishing$ArticleTagEditViewModelConverter);
+var Neptuo$TemplateEngine$Publishing$ArticleLineListResult = {
+    fullname: "Neptuo.TemplateEngine.Publishing.ArticleLineListResult",
+    baseTypeName: "Neptuo.TemplateEngine.Templates.DataSources.ListResult",
+    assemblyName: "Neptuo.TemplateEngine.Publishing.Client",
+    Kind: "Class",
+    definition: {
+        ctor: function (data, totalCount){
+            Neptuo.TemplateEngine.Templates.DataSources.ListResult.ctor.call(this, data, totalCount);
+        }
+    },
+    ctors: [{
+        name: "ctor",
+        parameters: ["System.Collections.IEnumerable", "System.Int32"]
+    }
+    ],
+    IsAbstract: false
+};
+JsTypes.push(Neptuo$TemplateEngine$Publishing$ArticleLineListResult);
+var Neptuo$TemplateEngine$Publishing$ArticleTagListResult = {
+    fullname: "Neptuo.TemplateEngine.Publishing.ArticleTagListResult",
+    baseTypeName: "Neptuo.TemplateEngine.Templates.DataSources.ListResult",
+    assemblyName: "Neptuo.TemplateEngine.Publishing.Client",
+    Kind: "Class",
+    definition: {
+        ctor: function (data, totalCount){
+            Neptuo.TemplateEngine.Templates.DataSources.ListResult.ctor.call(this, data, totalCount);
+        }
+    },
+    ctors: [{
+        name: "ctor",
+        parameters: ["System.Collections.IEnumerable", "System.Int32"]
+    }
+    ],
+    IsAbstract: false
+};
+JsTypes.push(Neptuo$TemplateEngine$Publishing$ArticleTagListResult);
+var Neptuo$TemplateEngine$Publishing$ArticleTagViewModelConverter = {
+    fullname: "Neptuo.TemplateEngine.Publishing.ArticleTagViewModelConverter",
+    baseTypeName: "Neptuo.ComponentModel.Converters.ConverterBase$2",
+    assemblyName: "Neptuo.TemplateEngine.Publishing.Client",
+    Kind: "Class",
+    definition: {
+        ctor: function (){
+            Neptuo.ComponentModel.Converters.ConverterBase$2.ctor.call(this, Object, Neptuo.TemplateEngine.Publishing.ViewModels.ArticleTagViewModel.ctor);
+        },
+        TryConvert: function (sourceValue, targetValue){
+            targetValue.Value = new Neptuo.TemplateEngine.Publishing.ViewModels.ArticleTagViewModel.ctor();
+            targetValue.Value.set_Key(sourceValue["Key"]);
+            targetValue.Value.set_Name(sourceValue["Name"]);
+            targetValue.Value.set_UrlPart(sourceValue["UrlPart"]);
+            return true;
+        }
+    },
+    ctors: [{
+        name: "ctor",
+        parameters: []
+    }
+    ],
+    IsAbstract: false
+};
+JsTypes.push(Neptuo$TemplateEngine$Publishing$ArticleTagViewModelConverter);
+var Neptuo$TemplateEngine$Publishing$ArticleEditViewModelConverter = {
+    fullname: "Neptuo.TemplateEngine.Publishing.ArticleEditViewModelConverter",
+    baseTypeName: "Neptuo.ComponentModel.Converters.ConverterBase$2",
+    assemblyName: "Neptuo.TemplateEngine.Publishing.Client",
+    Kind: "Class",
+    definition: {
+        ctor: function (){
+            Neptuo.ComponentModel.Converters.ConverterBase$2.ctor.call(this, Object, Neptuo.TemplateEngine.Publishing.ViewModels.ArticleEditViewModel.ctor);
+        },
+        TryConvert: function (sourceValue, targetValue){
+            targetValue.Value = new Neptuo.TemplateEngine.Publishing.ViewModels.ArticleEditViewModel.ctor();
+            targetValue.Value.set_Key(sourceValue["Key"]);
+            targetValue.Value.set_Title(sourceValue["Title"]);
+            targetValue.Value.set_UrlPart(sourceValue["UrlPart"]);
+            targetValue.Value.set_Content(sourceValue["Content"]);
+            targetValue.Value.set_IsVisible(sourceValue["IsVisible"]);
+            targetValue.Value.set_Author(sourceValue["Author"]);
+            targetValue.Value.set_LineKey(sourceValue["LineKey"]);
+            targetValue.Value.set_TagKeys(new System.Collections.Generic.List$1.ctor$$IEnumerable$1(System.Int32.ctor, sourceValue["TagKeys"]));
+            return true;
+        }
+    },
+    ctors: [{
+        name: "ctor",
+        parameters: []
+    }
+    ],
+    IsAbstract: false
+};
+JsTypes.push(Neptuo$TemplateEngine$Publishing$ArticleEditViewModelConverter);
 var Neptuo$TemplateEngine$Publishing$ArticleViewModelConverter = {
     fullname: "Neptuo.TemplateEngine.Publishing.ArticleViewModelConverter",
     baseTypeName: "Neptuo.ComponentModel.Converters.ConverterBase$2",
@@ -19,6 +276,37 @@ var Neptuo$TemplateEngine$Publishing$ArticleViewModelConverter = {
             targetValue.Value.set_Title(sourceValue["Title"]);
             targetValue.Value.set_UrlPart(sourceValue["UrlPart"]);
             targetValue.Value.set_Content(sourceValue["Content"]);
+            targetValue.Value.set_IsVisible(sourceValue["IsVisible"]);
+            targetValue.Value.set_Author(sourceValue["Author"]);
+            targetValue.Value.set_Created(sourceValue["Created"]);
+            targetValue.Value.set_LastModified(sourceValue["LastModified"]);
+            var lineValue = sourceValue["Line"];
+            var line;
+            if ((function (){
+                var $1 = {
+                    Value: line
+                };
+                var $res = Neptuo.Converts.Try$2$$TSource$$TTarget(Object, Neptuo.TemplateEngine.Publishing.ViewModels.ArticleLineViewModel.ctor, lineValue, $1);
+                line = $1.Value;
+                return $res;
+            }).call(this))
+                targetValue.Value.set_Line(line);
+            var tags = new System.Collections.Generic.List$1.ctor(Neptuo.TemplateEngine.Publishing.ViewModels.ArticleTagViewModel.ctor);
+            var tagsValue = sourceValue["Tags"];
+            for (var i = 0; i < tagsValue.length; i++){
+                var tagValue = tagsValue[i];
+                var tag;
+                if ((function (){
+                    var $1 = {
+                        Value: tag
+                    };
+                    var $res = Neptuo.Converts.Try$2$$TSource$$TTarget(Object, Neptuo.TemplateEngine.Publishing.ViewModels.ArticleTagViewModel.ctor, tagValue, $1);
+                    tag = $1.Value;
+                    return $res;
+                }).call(this))
+                    tags.Add(tag);
+            }
+            targetValue.Value.set_Tags(tags);
             return true;
         }
     },
@@ -43,7 +331,7 @@ var Neptuo$TemplateEngine$Publishing$Bootstrap$PublishingBootstrapTask = {
             this.converterRepository = Neptuo.Converts.get_Repository();
         },
         Initialize: function (){
-            this.converterRepository.Add(Typeof(Object), Typeof(Neptuo.TemplateEngine.Publishing.ViewModels.ArticleViewModel.ctor), new Neptuo.TemplateEngine.Publishing.ArticleViewModelConverter.ctor());
+            this.converterRepository.Add(Typeof(Object), Typeof(Neptuo.TemplateEngine.Publishing.ViewModels.ArticleViewModel.ctor), new Neptuo.TemplateEngine.Publishing.ArticleViewModelConverter.ctor()).Add(Typeof(Object), Typeof(Neptuo.TemplateEngine.Publishing.ViewModels.ArticleTagViewModel.ctor), new Neptuo.TemplateEngine.Publishing.ArticleTagViewModelConverter.ctor()).Add(Typeof(Object), Typeof(Neptuo.TemplateEngine.Publishing.ViewModels.ArticleLineViewModel.ctor), new Neptuo.TemplateEngine.Publishing.ArticleLineViewModelConverter.ctor()).Add(Typeof(Object), Typeof(Neptuo.TemplateEngine.Publishing.ArticleListResult.ctor), new Neptuo.TemplateEngine.Publishing.ArticleListResultConverter.ctor()).Add(Typeof(Object), Typeof(Neptuo.TemplateEngine.Publishing.ArticleTagListResult.ctor), new Neptuo.TemplateEngine.Publishing.ArticleTagListResultConverter.ctor()).Add(Typeof(Object), Typeof(Neptuo.TemplateEngine.Publishing.ArticleLineListResult.ctor), new Neptuo.TemplateEngine.Publishing.ArticleLineListResultConverter.ctor()).Add(Typeof(Object), Typeof(Neptuo.TemplateEngine.Publishing.ViewModels.ArticleEditViewModel.ctor), new Neptuo.TemplateEngine.Publishing.ArticleEditViewModelConverter.ctor()).Add(Typeof(Object), Typeof(Neptuo.TemplateEngine.Publishing.ViewModels.ArticleTagEditViewModel.ctor), new Neptuo.TemplateEngine.Publishing.ArticleTagEditViewModelConverter.ctor()).Add(Typeof(Object), Typeof(Neptuo.TemplateEngine.Publishing.ViewModels.ArticleLineEditViewModel.ctor), new Neptuo.TemplateEngine.Publishing.ArticleLineEditViewModelConverter.ctor());
         }
     },
     ctors: [{
@@ -83,7 +371,7 @@ var Neptuo$TemplateEngine$Publishing$Templates$DataSources$ArticleTagDataSource 
             this._Key = null;
             this._Name = null;
             this._UrlPart = null;
-            Neptuo.TemplateEngine.Templates.DataSources.FullDataSourceProxy$2.ctor.call(this, Neptuo.TemplateEngine.ModelValueGetterListResult.ctor, Neptuo.TemplateEngine.Publishing.ViewModels.ArticleTagViewModel.ctor, modelBinder, urlProvider, Neptuo.TemplateEngine.Publishing.Templates.DataSources.ArticleTagDataSource.GetFilterListProperties(), Neptuo.TemplateEngine.Publishing.Templates.DataSources.ArticleTagDataSource.GetFilterSingleProperties());
+            Neptuo.TemplateEngine.Templates.DataSources.FullDataSourceProxy$2.ctor.call(this, Neptuo.TemplateEngine.Publishing.ArticleTagListResult.ctor, Neptuo.TemplateEngine.Publishing.ViewModels.ArticleTagEditViewModel.ctor, modelBinder, urlProvider, Neptuo.TemplateEngine.Publishing.Templates.DataSources.ArticleTagDataSource.GetFilterListProperties(), Neptuo.TemplateEngine.Publishing.Templates.DataSources.ArticleTagDataSource.GetFilterSingleProperties());
         },
         Key$$: "System.Collections.Generic.IEnumerable`1[[System.Int32]]",
         get_Key: function (){
@@ -108,8 +396,8 @@ var Neptuo$TemplateEngine$Publishing$Templates$DataSources$ArticleTagDataSource 
         },
         OnGetItem: function (callback){
             if (this.get_Key() == null){
-                var model = new Neptuo.TemplateEngine.Publishing.ViewModels.ArticleTagViewModel.ctor();
-                model = Neptuo.TemplateEngine.Providers.ModelBinders.ModelBinderExtensions.Bind$1$$IModelBinder$$T(Neptuo.TemplateEngine.Publishing.ViewModels.ArticleTagViewModel.ctor, this.get_ModelBinder(), model);
+                var model = new Neptuo.TemplateEngine.Publishing.ViewModels.ArticleTagEditViewModel.ctor();
+                model = Neptuo.TemplateEngine.Providers.ModelBinders.ModelBinderExtensions.Bind$1$$IModelBinder$$T(Neptuo.TemplateEngine.Publishing.ViewModels.ArticleTagEditViewModel.ctor, this.get_ModelBinder(), model);
                 callback(model);
                 return true;
             }
@@ -153,7 +441,7 @@ var Neptuo$TemplateEngine$Publishing$Templates$DataSources$ArticleLineDataSource
             this._Key = null;
             this._Name = null;
             this._UrlPart = null;
-            Neptuo.TemplateEngine.Templates.DataSources.FullDataSourceProxy$2.ctor.call(this, Neptuo.TemplateEngine.ModelValueGetterListResult.ctor, Neptuo.TemplateEngine.Publishing.ViewModels.ArticleLineViewModel.ctor, modelBinder, urlProvider, Neptuo.TemplateEngine.Publishing.Templates.DataSources.ArticleLineDataSource.GetFilterListProperties(), Neptuo.TemplateEngine.Publishing.Templates.DataSources.ArticleLineDataSource.GetFilterSingleProperties());
+            Neptuo.TemplateEngine.Templates.DataSources.FullDataSourceProxy$2.ctor.call(this, Neptuo.TemplateEngine.Publishing.ArticleLineListResult.ctor, Neptuo.TemplateEngine.Publishing.ViewModels.ArticleLineEditViewModel.ctor, modelBinder, urlProvider, Neptuo.TemplateEngine.Publishing.Templates.DataSources.ArticleLineDataSource.GetFilterListProperties(), Neptuo.TemplateEngine.Publishing.Templates.DataSources.ArticleLineDataSource.GetFilterSingleProperties());
         },
         Key$$: "System.Nullable`1[[System.Int32]]",
         get_Key: function (){
@@ -178,8 +466,8 @@ var Neptuo$TemplateEngine$Publishing$Templates$DataSources$ArticleLineDataSource
         },
         OnGetItem: function (callback){
             if (this.get_Key() == null){
-                var model = new Neptuo.TemplateEngine.Publishing.ViewModels.ArticleLineViewModel.ctor();
-                model = Neptuo.TemplateEngine.Providers.ModelBinders.ModelBinderExtensions.Bind$1$$IModelBinder$$T(Neptuo.TemplateEngine.Publishing.ViewModels.ArticleLineViewModel.ctor, this.get_ModelBinder(), model);
+                var model = new Neptuo.TemplateEngine.Publishing.ViewModels.ArticleLineEditViewModel.ctor();
+                model = Neptuo.TemplateEngine.Providers.ModelBinders.ModelBinderExtensions.Bind$1$$IModelBinder$$T(Neptuo.TemplateEngine.Publishing.ViewModels.ArticleLineEditViewModel.ctor, this.get_ModelBinder(), model);
                 callback(model);
                 return true;
             }
@@ -229,7 +517,7 @@ var Neptuo$TemplateEngine$Publishing$Templates$DataSources$ArticleDataSource = {
             this._IsIncludeHidden = false;
             this._Title = null;
             this._UrlPart = null;
-            Neptuo.TemplateEngine.Templates.DataSources.FullDataSourceProxy$2.ctor.call(this, Neptuo.TemplateEngine.ModelValueGetterListResult.ctor, Neptuo.TemplateEngine.Publishing.ViewModels.ArticleViewModel.ctor, modelBinder, urlProvider, Neptuo.TemplateEngine.Publishing.Templates.DataSources.ArticleDataSource.GetFilterListProperties(), Neptuo.TemplateEngine.Publishing.Templates.DataSources.ArticleDataSource.GetFilterSingleProperties());
+            Neptuo.TemplateEngine.Templates.DataSources.FullDataSourceProxy$2.ctor.call(this, Neptuo.TemplateEngine.Publishing.ArticleListResult.ctor, Neptuo.TemplateEngine.Publishing.ViewModels.ArticleEditViewModel.ctor, modelBinder, urlProvider, Neptuo.TemplateEngine.Publishing.Templates.DataSources.ArticleDataSource.GetFilterListProperties(), Neptuo.TemplateEngine.Publishing.Templates.DataSources.ArticleDataSource.GetFilterSingleProperties());
         },
         Key$$: "System.Nullable`1[[System.Int32]]",
         get_Key: function (){
@@ -275,8 +563,8 @@ var Neptuo$TemplateEngine$Publishing$Templates$DataSources$ArticleDataSource = {
         },
         OnGetItem: function (callback){
             if (this.get_Key() == null){
-                var model = new Neptuo.TemplateEngine.Publishing.ViewModels.ArticleViewModel.ctor();
-                model = Neptuo.TemplateEngine.Providers.ModelBinders.ModelBinderExtensions.Bind$1$$IModelBinder$$T(Neptuo.TemplateEngine.Publishing.ViewModels.ArticleViewModel.ctor, this.get_ModelBinder(), model);
+                var model = new Neptuo.TemplateEngine.Publishing.ViewModels.ArticleLineEditViewModel.ctor();
+                model = Neptuo.TemplateEngine.Providers.ModelBinders.ModelBinderExtensions.Bind$1$$IModelBinder$$T(Neptuo.TemplateEngine.Publishing.ViewModels.ArticleLineEditViewModel.ctor, this.get_ModelBinder(), model);
                 callback(model);
                 return true;
             }

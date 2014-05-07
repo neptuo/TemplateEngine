@@ -32,7 +32,7 @@ namespace Neptuo.TemplateEngine.Accounts.Templates.DataSources
                 query.Filter.UserKey = IntSearch.Create(UserKey.Value);
 
             //TODO: Fix by sorting after where!
-            //query.OrderByDescending(l => l.Key);
+            //query.OrderByDescending(l => l.SignedIn);
         }
 
         public IEnumerable GetData(int? pageIndex, int? pageSize)

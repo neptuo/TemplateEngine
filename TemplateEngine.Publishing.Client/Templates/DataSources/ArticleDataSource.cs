@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Publishing.Templates.DataSources
 {
-    public class ArticleDataSource : FullDataSourceProxy<ModelValueGetterListResult, ArticleViewModel>, IArticleDataSourceFilter
+    public class ArticleDataSource : FullDataSourceProxy<ArticleListResult, ArticleEditViewModel>, IArticleDataSourceFilter
     {
         public int? Key { get; set; }
         public int? LineKey { get; set; }
@@ -39,8 +39,8 @@ namespace Neptuo.TemplateEngine.Publishing.Templates.DataSources
         {
             if (Key == null)
             {
-                ArticleViewModel model = new ArticleViewModel();
-                model = ModelBinder.Bind<ArticleViewModel>(model);
+                ArticleLineEditViewModel model = new ArticleLineEditViewModel();
+                model = ModelBinder.Bind<ArticleLineEditViewModel>(model);
 
                 callback(model);
                 return true;
