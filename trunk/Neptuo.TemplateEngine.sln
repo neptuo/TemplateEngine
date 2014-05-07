@@ -80,6 +80,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TemplateEngine.Publishing.C
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TemplateEngine.Publishing.Controllers", "TemplateEngine.Publishing.Controllers\TemplateEngine.Publishing.Controllers.csproj", "{0418CDBA-38E7-4D3F-A41F-1725FF2F6E19}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TemplateEngine.Blog.UI", "TemplateEngine.Blog.UI\TemplateEngine.Blog.UI.csproj", "{4ED8E251-0B39-493F-957D-C81588D52B8E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -210,6 +212,10 @@ Global
 		{0418CDBA-38E7-4D3F-A41F-1725FF2F6E19}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0418CDBA-38E7-4D3F-A41F-1725FF2F6E19}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0418CDBA-38E7-4D3F-A41F-1725FF2F6E19}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4ED8E251-0B39-493F-957D-C81588D52B8E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4ED8E251-0B39-493F-957D-C81588D52B8E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4ED8E251-0B39-493F-957D-C81588D52B8E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4ED8E251-0B39-493F-957D-C81588D52B8E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
