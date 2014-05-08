@@ -1,8 +1,12 @@
-﻿<ui:DetailView>
-    <Source>
-        <data:ArticleDataSource Key="{Request ArticleKey}" />
-    </Source>
-    <Template>
-        <ui:Literal Text="{Binding Content}" />
-    </Template>
-</ui:DetailView>
+﻿<ui:Template Template="~/Views/Shared/Layout.view">
+    <ui:TemplateContent Name="Content">
+        <ui:DetailView>
+            <Source>
+                <data:ArticleDataSource Key="{Request ArticleKey}" />
+            </Source>
+            <Template>
+                <ui:Literal Text="{Binding Content}" />
+            </Template>
+        </ui:DetailView>
+    </ui:TemplateContent>
+</ui:Template>

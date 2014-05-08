@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web.Routing;
 using Neptuo.TemplateEngine.Hosting.Integration.Routing;
+using System.Configuration;
 
 namespace Neptuo.TemplateEngine.Hosting.Integration.Bootstrap
 {
@@ -32,7 +33,7 @@ namespace Neptuo.TemplateEngine.Hosting.Integration.Bootstrap
 
         public void Initialize()
         {
-            var configuration = new ViewBundleHttpHandlerConfiguration("~/Views", @"C:\Temp\NeptuoTemplateEngineJavascript");
+            var configuration = new ViewBundleHttpHandlerConfiguration("~/Views", ConfigurationManager.AppSettings["JavascriptTempDirectory"] ?? @"C:\Temp\NeptuoTemplateEngineJavascript");
 
             routeParameterRegistry.Add("path", new TemplateRouteParameterFactory());
 
