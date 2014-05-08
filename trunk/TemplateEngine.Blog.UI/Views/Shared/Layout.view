@@ -1,0 +1,19 @@
+﻿<ui:DocType />
+<html>
+    <head>
+        <title>Football news</title>
+
+        <ui:Bundle Path="~/design/css/blog" IsStyle="true" />
+        <ui:Placeholder ui:IsVisible="{IsJavascriptEngineSupported}">
+            <ui:Bundle Path="~/design/js/blog" />
+
+            <ajax:StartUp DefaultUpdate="Body" />
+            <ui:ViewBundle Path="Default" />
+        </ui:Placeholder>
+    </head>
+    <body>
+        <ajax:View Partial="Body">
+            <ui:TemplatePlaceholder Name="Content" />
+        </ajax:View>
+    </body>
+</html>
