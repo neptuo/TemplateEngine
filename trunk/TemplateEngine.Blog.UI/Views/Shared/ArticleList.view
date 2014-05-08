@@ -1,0 +1,17 @@
+﻿<ui:ListView>
+    <Source>
+        <data:ArticleDataSource LineKey="{Binding Key}" />
+    </Source>
+    <ItemTemplate>
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <ui:Literal Text="{Binding Created}" />
+                <ui:Link Href="~/Detail.html" Text="{Binding Title}">
+                    <Parameters>
+                        <ui:Parameter Name="ArticleKey" Value="{Binding Key}" />
+                    </Parameters>
+                </ui:Link>
+            </div>
+        </div>
+    </ItemTemplate>
+</ui:ListView>

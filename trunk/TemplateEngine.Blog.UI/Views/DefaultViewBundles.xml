@@ -4,5 +4,6 @@
         <View Path="~/Views/Default.view" />
         <View Path="~/Views/Detail.view" />
         <View Path="~/Views/Shared/Layout.view" />
+        <View Path="~/Views/Shared/ArticleList.view" />
     </ViewBundle>
 </ViewBundles>

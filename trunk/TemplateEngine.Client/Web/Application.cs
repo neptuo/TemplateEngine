@@ -83,6 +83,7 @@ namespace Neptuo.TemplateEngine.Web
             MainView = new MainView(viewActivator, this);
 
             Router = new ApplicationRouter(!IsDebug);
+            Router.AddRoute(new StaticTemplateRoute("/", "~/Default" + TemplateUrlSuffix, TemplateUrlSuffix, this));
             Router.AddRoute(new TemplateRoute(TemplateUrlSuffix, this));
 
             UpdateViewNotifier = new UpdateViewNotifier(MainView);

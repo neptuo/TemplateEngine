@@ -51,7 +51,7 @@ namespace Neptuo.TemplateEngine.Routing
             );
         }
         
-        public string MapView(string url)
+        public virtual string MapView(string url)
         {
             if (UrlSuffix != null && !url.EndsWith(UrlSuffix))
                 return null;
