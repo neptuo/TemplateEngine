@@ -92,6 +92,9 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="packages.config" />
+    <Content Include="Views\Shared\ArticleList.view">
+      <SubType>Designer</SubType>
+    </Content>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -137,7 +140,9 @@
     <Content Include="Views\DefaultViewBundles.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Design\Scripts\jquery-1.9.1.min.map" />
     <Content Include="Views\Detail.view">
       <SubType>Designer</SubType>

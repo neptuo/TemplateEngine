@@ -82,6 +82,7 @@
     <Compile Include="ModelValueGetterListResult.cs" />
     <Compile Include="ModelValueGetterListResultConverter.cs" />
     <Compile Include="Routing\ApplicationRouter.cs" />
+    <Compile Include="Routing\StaticTemplateRoute.cs" />
     <Compile Include="Routing\TemplateRoute.cs" />
     <Compile Include="Routing\TemplateRouteHandler.cs" />
     <Compile Include="Web\Application.cs" />

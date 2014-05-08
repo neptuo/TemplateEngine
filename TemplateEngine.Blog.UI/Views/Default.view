@@ -1,17 +1,14 @@
-﻿<ui:Template Template="~/Views/Shared/Layout.view">
-    <ui:TemplateContent Name="Content">
-        <ui:ListView>
-            <Source>
-                <data:ArticleDataSource LineKey="1" />
-            </Source>
-            <ItemTemplate>
-                <ui:Link Href="~/Detail.html" Text="{Binding Title}">
-                    <Parameters>
-                        <ui:Parameter Name="ArticleKey" Value="{Binding Key}" />
-                    </Parameters>
-                </ui:Link>
-                <br />
-            </ItemTemplate>
-        </ui:ListView>
-    </ui:TemplateContent>
-</ui:Template>
+﻿<ui:DetailView>
+    <Source>
+        <data:ArticleLineDataSource Key="4" />
+    </Source>
+    <Template>
+
+        <ui:Template Template="~/Views/Shared/Layout.view">
+            <ui:TemplateContent Name="Content">
+                <ui:Template Template="~/Views/Shared/ArticleList.view" />
+            </ui:TemplateContent>
+        </ui:Template>
+
+    </Template>
+</ui:DetailView>

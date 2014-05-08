@@ -92,7 +92,7 @@ namespace Neptuo.TemplateEngine.Publishing.Templates.DataSources
                     new ArticleViewModel(
                         article.Key,
                         article.Title,
-                        article.Content,
+                        article.Content.Replace(Environment.NewLine, "<br />"),
                         article.Url,
                         article.IsVisible,
                         article.Author,
