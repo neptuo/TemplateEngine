@@ -11,15 +11,32 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Controllers
 {
+    /// <summary>
+    /// Base controller implementation.
+    /// Maps methods to actions - enables usage of <see cref="ActionAttribute"/>.
+    /// Method outcomes uses as navigation.
+    /// Enables start method in transaction, <see cref="TransactionalAttribute"/>.
+    /// Enables input validation, see <see cref="ValidateAttribute."/>
+    /// </summary>
     public class ControllerBase : IController
     {
+        /// <summary>
+        /// Current context.
+        /// </summary>
         protected IControllerContext Context { get; private set; }
 
+        /// <summary>
+        /// List of messages.
+        /// </summary>
         protected MessageStorage Messages
         {
             get { return Context.Messages; }
         }
 
+        /// <summary>
+        /// Executes controller.
+        /// Finds appropriate method using <see cref="ActionAttribute"/>.
+        /// </summary>
         public void Execute(IControllerContext context)
         {
             Guard.NotNull(context, "context");
@@ -48,6 +65,12 @@ namespace Neptuo.TemplateEngine.Controllers
             }
         }
 
+        /// <summary>
+        /// Uses <see cref="IModelBinder"/> for binding parameter values to method parameters.
+        /// </summary>
+        /// <param name="context">Controller context.</param>
+        /// <param name="methodInfo">Target method.</param>
+        /// <returns>List of parameter values.</returns>
         private object[] BindActionParameters(IControllerContext context, MethodInfo methodInfo)
         {
             ParameterInfo[] parameters = methodInfo.GetParameters();
@@ -63,11 +86,24 @@ namespace Neptuo.TemplateEngine.Controllers
             return values.ToArray();
         }
 
+        /// <summary>
+        /// Do execution of <paramref name="methodInfo"/>.
+        /// </summary>
+        /// <param name="context">Controller context.</param>
+        /// <param name="methodInfo">Target method.</param>
+        /// <param name="parameters">Method parameters.</param>
+        /// <returns>Method result.</returns>
         private object ExecuteAction(IControllerContext context, MethodInfo methodInfo, object[] parameters)
         {
             return methodInfo.Invoke(this, parameters);
         }
 
+        /// <summary>
+        /// Process action method result.
+        /// </summary>
+        /// <param name="context">Controller context.</param>
+        /// <param name="methodInfo">Target method.</param>
+        /// <param name="result">Method execution result.</param>
         private void ProcessActionResult(IControllerContext context, MethodInfo methodInfo, object result)
         {
             string stringResult = result as string;
@@ -75,7 +111,12 @@ namespace Neptuo.TemplateEngine.Controllers
                 context.Navigation = stringResult;
         }
 
-
+        /// <summary>
+        /// Tries to validate input parameters.
+        /// </summary>
+        /// <param name="methodInfo">Target method.</param>
+        /// <param name="parameters">Method parameters.</param>
+        /// <returns>True if succeeded.</returns>
         private bool TryValidate(MethodInfo methodInfo, object[] parameters)
         {
             bool result = true;
@@ -96,6 +137,12 @@ namespace Neptuo.TemplateEngine.Controllers
             return result;
         }
 
+        /// <summary>
+        /// Tries invoke method in transaction.
+        /// Returns object describing transaction and never returns null.
+        /// </summary>
+        /// <param name="methodInfo">Target method.</param>
+        /// <returns><see cref="TransactionalDisposable"/></returns>
         private TransactionalDisposable TryTransaction(MethodInfo methodInfo)
         {
             IUnitOfWork transaction = null;

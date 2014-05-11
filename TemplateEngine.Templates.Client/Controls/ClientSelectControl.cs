@@ -9,6 +9,9 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Templates.Controls
 {
+    /// <summary>
+    /// Javascript implementation of <see cref="SelectControl"/>.
+    /// </summary>
     public class ClientSelectControl : ClientListViewControl, IHtmlAttributeCollection, IAttributeCollection
     {
         public string Name { get; set; }

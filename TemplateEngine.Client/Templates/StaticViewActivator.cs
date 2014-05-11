@@ -9,6 +9,9 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Templates
 {
+    /// <summary>
+    /// Single implementation of <see cref="IViewActivator"/> and <see cref="IViewLoadedChecker"/>.
+    /// </summary>
     public class StaticViewActivator : IViewActivator, IViewLoadedChecker
     {
         private static Dictionary<string, Type> mappings = new Dictionary<string, Type>();

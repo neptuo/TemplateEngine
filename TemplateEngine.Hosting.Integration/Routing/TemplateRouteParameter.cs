@@ -10,6 +10,9 @@ using System.Web;
 
 namespace Neptuo.TemplateEngine.Hosting.Integration.Routing
 {
+    /// <summary>
+    /// Route parameter for template path.
+    /// </summary>
     public class TemplateRouteParameter : TemplateRouteParameterBase, IRouteParameter
     {
         private HttpContextBase httpContext;

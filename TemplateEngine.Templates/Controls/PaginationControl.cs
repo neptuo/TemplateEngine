@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Templates.Controls
 {
+    /// <summary>
+    /// Actual implementation of <see cref="IPaginationControl"/>.
+    /// </summary>
     public class PaginationControl : TemplateControl, IPaginationControl
     {
         private ICurrentUrlProvider urlProvider;

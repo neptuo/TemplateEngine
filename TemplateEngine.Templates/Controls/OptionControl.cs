@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Templates.Controls
 {
+    /// <summary>
+    /// Option item in drop down.
+    /// </summary>
     public class OptionControl : HtmlContentControlBase
     {
         public bool IsSelected { get; set; }

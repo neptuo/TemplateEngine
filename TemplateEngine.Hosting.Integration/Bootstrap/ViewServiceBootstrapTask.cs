@@ -29,6 +29,9 @@ using System.Configuration;
 
 namespace Neptuo.TemplateEngine.Hosting.Integration.Bootstrap
 {
+    /// <summary>
+    /// Completely setups template processing.
+    /// </summary>
     public class ViewServiceBootstrapTask : IBootstrapTask
     {
         private IDependencyContainer container;
@@ -73,8 +76,12 @@ namespace Neptuo.TemplateEngine.Hosting.Integration.Bootstrap
                 .RegisterType<MessageStorage>(new PerSessionLifetime(1));
         }
 
+        /// <summary>
+        /// Setups view service.
+        /// </summary>
         protected virtual void SetupViewService(CodeDomViewService viewService, TypeBuilderRegistry registry, IFileProvider fileProvider, IVirtualPathProvider virtualPathProvider)
         {
+            // Current temp directory.
             string tempDirectory = ConfigurationManager.AppSettings["TempDirectory"] ?? @"C:\Temp\NeptuoTemplateEngine";
             string currentDirectory = DateTime.Now.ToString("yyyy-MM-dd HH-mm-ss");
 
@@ -85,7 +92,7 @@ namespace Neptuo.TemplateEngine.Hosting.Integration.Bootstrap
 #else
             string currentTemp = tempDirectory;
 #endif
-
+            // View service setup.
             viewService.ParserService.ContentParsers.Add(new XmlContentParser(registry));
             viewService.ParserService.DefaultValueParser = new PlainValueParser();
             viewService.ParserService.ValueParsers.Add(new MarkupExtensionValueParser(registry));
@@ -99,6 +106,9 @@ namespace Neptuo.TemplateEngine.Hosting.Integration.Bootstrap
             SetupPreProcesssor(viewService.PreProcessorService, viewService);
         }
 
+        /// <summary>
+        /// Registers components to <paramref name="registry"/>.
+        /// </summary>
         protected virtual void SetupTypeBuilderRegistry(TypeBuilderRegistry registry)
         {
             registry.RegisterNamespace(new NamespaceDeclaration("ui", "Neptuo.TemplateEngine.Templates.Controls, Neptuo.TemplateEngine.Templates"));
@@ -123,6 +133,9 @@ namespace Neptuo.TemplateEngine.Hosting.Integration.Bootstrap
             registry.RegisterPropertyBuilder(typeof(CssClassCollection), new DefaultPropertyBuilderFactory<CssClassPropertyBuilder>());
         }
 
+        /// <summary>
+        /// Registers code generators to <paramref name="generator"/>.
+        /// </summary>
         protected virtual void SetupCodeDomGenerator(CodeDomGenerator generator)
         {
             IFieldNameProvider fieldNameProvider = new SequenceFieldNameProvider();
@@ -140,11 +153,17 @@ namespace Neptuo.TemplateEngine.Hosting.Integration.Bootstrap
             //generator.SetPropertyTypeGenerator(typeof(ITemplate), new CodeDomTemplatePropertyTypeGenerator(fieldNameProvider, "{0}.Views.{1}.view"));
         }
 
+        /// <summary>
+        /// Setups SharpKit code generator.
+        /// </summary>
         protected virtual void SetupJavascriptGenerator(SharpKitCodeGenerator generator)
         {
             generator.RunCsc = false;
         }
 
+        /// <summary>
+        /// Registers visitor for pre processing service.
+        /// </summary>
         protected virtual void SetupPreProcesssor(IPreProcessorService preprocessorService, CodeDomViewService viewService)
         {
             preprocessorService.AddVisitor(new TemplatePropertyVisitor("{0}.Views.{1}.view", viewService.ParserService));

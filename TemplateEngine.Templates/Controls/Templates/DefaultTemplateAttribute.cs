@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Templates.Controls
 {
+    /// <summary>
+    /// Default template path.
+    /// </summary>
     [AttributeUsage(AttributeTargets.Property, Inherited = true, AllowMultiple = false)]
     public class DefaultTemplateAttribute : Attribute
     {

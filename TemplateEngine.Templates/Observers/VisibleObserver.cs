@@ -8,8 +8,14 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Templates.Observers
 {
+    /// <summary>
+    /// Enables hidding of control where applied.
+    /// </summary>
     public class VisibleObserver : IObserver
     {
+        /// <summary>
+        /// Hide current control?
+        /// </summary>
         public bool IsVisible { get; set; }
 
         public void OnInit(ObserverEventArgs e)

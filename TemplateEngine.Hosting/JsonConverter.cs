@@ -9,6 +9,9 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Hosting.Integration
 {
+    /// <summary>
+    /// Converts object to json response.
+    /// </summary>
     public class JsonConverter : ConverterBase<object, JsonResponse>
     {
         public override bool TryConvert(object sourceValue, out JsonResponse targetValue)

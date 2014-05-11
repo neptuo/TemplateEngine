@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Navigation
 {
+    /// <summary>
+    /// Registed url to identifier.
+    /// </summary>
     public class FormUri
     {
         private string identifier;
@@ -41,6 +44,10 @@ namespace Neptuo.TemplateEngine.Navigation
         //    this.url = url;
         //}
 
+        /// <summary>
+        /// Converts string identifier to registration.
+        /// </summary>
+        /// <param name="uri">Registered identifier.</param>
         public static explicit operator FormUri(string uri)
         {
             FormUri formUri;

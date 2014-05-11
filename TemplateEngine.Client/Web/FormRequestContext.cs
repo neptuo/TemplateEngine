@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Web
 {
+    /// <summary>
+    /// Submitted post form context.
+    /// </summary>
     public class FormRequestContext
     {
         public string[] ToUpdate { get; private set; }

@@ -11,12 +11,22 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Templates.Extensions
 {
+    /// <summary>
+    /// Gets parameter value from request.
+    /// </summary>
     [DefaultProperty("Key")]
     public class RequestExtension : IValueExtension
     {
         private IParameterProvider parameterProvider;
 
+        /// <summary>
+        /// Parameter name.
+        /// </summary>
         public string Key { get; set; }
+
+        /// <summary>
+        /// Default value.
+        /// </summary>
         public object Default { get; set; }
 
         public RequestExtension(IParameterProvider parameterProvider)

@@ -13,6 +13,9 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Web
 {
+    /// <summary>
+    /// Single, retryable controller invoke request.
+    /// </summary>
     public class ControllerInvoker : IControllerInvoker
     {
         protected IApplication Application { get; private set; }

@@ -9,6 +9,9 @@ using System.Web;
 
 namespace Neptuo.TemplateEngine.Templates.Controls
 {
+    /// <summary>
+    /// Javascript implementation of <see cref="BundleControl"/>.
+    /// </summary>
     public abstract class ClientBundleControl : BundleControlBase
     {
         public ClientBundleControl(IVirtualUrlProvider urlProvider)

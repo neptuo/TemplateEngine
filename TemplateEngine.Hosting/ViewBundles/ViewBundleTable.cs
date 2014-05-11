@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Web.ViewBundles
 {
+    /// <summary>
+    /// Singleton of <paramref name="IViewBundleCollection"/>.
+    /// </summary>
     public class ViewBundleTable
     {
         private static object lockBundles = new object();

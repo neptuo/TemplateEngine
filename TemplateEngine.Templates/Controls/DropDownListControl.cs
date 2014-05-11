@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Templates.Controls
 {
+    /// <summary>
+    /// Drop down control.
+    /// </summary>
     public class DropDownListControl : SelectControl
     {
         public string ID { get; set; }

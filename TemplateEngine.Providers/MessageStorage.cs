@@ -6,10 +6,20 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Providers
 {
+    /// <summary>
+    /// List of messages.
+    /// </summary>
     public class MessageStorage
     {
         private Dictionary<string, List<Message>> storage = new Dictionary<string, List<Message>>();
 
+        /// <summary>
+        /// Adds message with <paramref name="key"/> to <paramref name="group"/>.
+        /// </summary>
+        /// <param name="group">Messsage group.</param>
+        /// <param name="key">Message key.</param>
+        /// <param name="text">Message text.</param>
+        /// <param name="type">Message type.</param>
         public void Add(string group, string key, string text, MessageType type = MessageType.Error)
         {
             if(group == null)
@@ -25,6 +35,11 @@ namespace Neptuo.TemplateEngine.Providers
             list.Add(new Message(key, text, type));
         }
 
+        /// <summary>
+        /// Gets enumeration of message in group <paramref name="key"/>.
+        /// </summary>
+        /// <param name="key"></param>
+        /// <returns></returns>
         public IEnumerable<Message> GetList(string key)
         {
             if (key == null)
@@ -37,6 +52,10 @@ namespace Neptuo.TemplateEngine.Providers
             return list;
         }
 
+        /// <summary>
+        /// Gets internal storage.
+        /// </summary>
+        /// <returns></returns>
         public Dictionary<string, List<Message>> GetStorage()
         {
             return storage;

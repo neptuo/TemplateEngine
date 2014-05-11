@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Templates.Controls
 {
+    /// <summary>
+    /// Creates hidden input.
+    /// </summary>
     public class HiddenBoxControl : FormInputControlBase, ITextControl
     {
         public string Text { get; set; }

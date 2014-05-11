@@ -30,6 +30,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>..\References\Doc\Neptuo.TemplateEngine.Hosting.Integration.XML</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="log4net">
@@ -115,7 +116,7 @@
     <Compile Include="ErrorHttpHandler.cs" />
     <Compile Include="Routing\DependencyRouteHandler.cs" />
     <Compile Include="Routing\ErrorRouteHandler.cs" />
-    <Compile Include="Routing\JavascriptViewGeneratorRouteHandler.cs" />
+    <Compile Include="Routing\ViewBundleRouteHandler.cs" />
     <Compile Include="Routing\StaticTemplateRouteHandler.cs" />
     <Compile Include="Routing\TemplateRouteHandler.cs" />
     <Compile Include="Routing\TemplateRouteParameter.cs" />

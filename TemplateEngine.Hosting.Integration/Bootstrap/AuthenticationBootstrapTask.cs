@@ -10,6 +10,9 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Hosting.Integration.Bootstrap
 {
+    /// <summary>
+    /// Registers authentication stuff.
+    /// </summary>
     public class AuthenticationBootstrapTask : IBootstrapTask
     {
         private readonly IEventRegistry eventRegistry;

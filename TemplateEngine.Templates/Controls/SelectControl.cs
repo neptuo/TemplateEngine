@@ -9,13 +9,33 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Templates.Controls
 {
+    /// <summary>
+    /// Control that processes models from <see cref="IListDataSource"/> and creates <see cref="SelectItem"/>
+    /// including comparision with selected value.
+    /// Each item is wrapped with <see cref="SelectItem"/> and <see cref="SelectItem.IsSelected"/> is set accordingly to <see cref="Value"/>.
+    /// </summary>
     public class SelectControl : ListViewControl, IHtmlAttributeCollection, IAttributeCollection
     {
         public string Name { get; set; }
+
+        /// <summary>
+        /// Selected value (or collection of value).
+        /// </summary>
         public object Value { get; set; }
+
+        /// <summary>
+        /// Add empty item to list model?
+        /// </summary>
         public bool IsAddEmpty { get; set; }
+
+        /// <summary>
+        /// List of attributes.
+        /// </summary>
         public HtmlAttributeCollection Attributes { get; private set; }
 
+        /// <summary>
+        /// Navigation property path in each item from data source to compare with selected value.
+        /// </summary>
         [DefaultValue("Key")]
         public string SelectedValuePath { get; set; }
 
@@ -39,6 +59,9 @@ namespace Neptuo.TemplateEngine.Templates.Controls
             base.OnInit();
         }
 
+        /// <summary>
+        /// Create <see cref="SelectItem"/> for model.
+        /// </summary>
         protected override void ProcessModelItem(List<object> itemTemplates, object model)
         {
             SelectItem item = new SelectItem(model);
@@ -49,6 +72,10 @@ namespace Neptuo.TemplateEngine.Templates.Controls
             base.ProcessModelItem(itemTemplates, item);
         }
 
+        /// <summary>
+        /// If <see cref="Value"/> is collection, enumerates on it.
+        /// </summary>
+        /// <param name="targetSelectedValue">Model item.</param>
         protected virtual bool IsSelectedValue(object targetSelectedValue)
         {
             if (!(Value is string))
@@ -67,6 +94,9 @@ namespace Neptuo.TemplateEngine.Templates.Controls
             return IsSelectedSingleValue(Value, targetSelectedValue);
         }
 
+        /// <summary>
+        /// Tries to determine if <paramref name="targetSelectedValue"/> is equal to <paramref name="itemValue"/>.
+        /// </summary>
         private bool IsSelectedSingleValue(object itemValue, object targetSelectedValue)
         {
             if (itemValue == null && targetSelectedValue == null)

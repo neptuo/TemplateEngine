@@ -8,6 +8,9 @@ using System.Web.Routing;
 
 namespace Neptuo.TemplateEngine.Hosting.Integration.Routing
 {
+    /// <summary>
+    /// Template route handler for static template.
+    /// </summary>
     public class StaticTemplateRouteHandler : TemplateRouteHandler
     {
         public string TemplateUrl { get; private set; }

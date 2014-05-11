@@ -9,6 +9,9 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Templates.Controls
 {
+    /// <summary>
+    /// Base control that can has content.
+    /// </summary>
     [DefaultProperty("Content")]
     public abstract class ContentControlBase : ControlBase, IContentControl
     {

@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Templates.Controls
 {
+    /// <summary>
+    /// Region view.
+    /// </summary>
     public class PartialViewControl : HtmlContentControlBase
     {
         public string Partial { get; set; }

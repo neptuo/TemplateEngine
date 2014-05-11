@@ -8,6 +8,9 @@ using Neptuo.TemplateEngine.Web;
 
 namespace Neptuo.TemplateEngine.Templates.DataSources
 {
+    /// <summary>
+    /// Javascript implementation of <see cref="CollectionDataSource"/>.
+    /// </summary>
     public class ClientCollectionDataSource : IClientListDataSource
     {
         public IEnumerable Data { get; set; }

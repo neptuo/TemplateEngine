@@ -12,6 +12,9 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Web
 {
+    /// <summary>
+    /// Actual implementation of <see cref="IMainView"/>.
+    /// </summary>
     public class MainView : IMainView
     {
         protected IViewActivator ViewActivator { get; private set; }

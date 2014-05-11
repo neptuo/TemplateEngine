@@ -7,8 +7,14 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Templates.DataSources
 {
+    /// <summary>
+    /// Single object data source.
+    /// </summary>
     public interface IDataSource
     {
+        /// <summary>
+        /// Gets item.
+        /// </summary>
         object GetItem();
     }
 }

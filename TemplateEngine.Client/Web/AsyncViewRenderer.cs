@@ -12,6 +12,9 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Web
 {
+    /// <summary>
+    /// Implementation of <see cref="IAsyncViewRenderer"/> that loads views if not loaded when render request is creates.
+    /// </summary>
     public class AsyncViewRenderer : IAsyncViewRenderer
     {
         public string ViewPath { get; private set; }
@@ -43,6 +46,9 @@ namespace Neptuo.TemplateEngine.Web
             UrlProvider = urlProvider;
         }
 
+        /// <summary>
+        /// Tries to load view if requested one is not loaded.
+        /// </summary>
         public void Render()
         {
             if (!Checker.IsViewLoaded(ViewPath))
@@ -73,7 +79,10 @@ namespace Neptuo.TemplateEngine.Web
 
             return String.Format("{0}?Path={1}", UrlProvider.ResolveUrl("~/Views.ashx"), viewPath);
         }
-
+        
+        /// <summary>
+        /// Renders view and reacts to <see cref="AsyncNotifyService"/>.
+        /// </summary>
         private void RenderView()
         {
             notifyService = new AsyncNotifyService();
@@ -94,6 +103,9 @@ namespace Neptuo.TemplateEngine.Web
                 notifyService.OnReady += OnAsyncNotifyReady;
         }
 
+        /// <summary>
+        /// Do render view when nothing is pending.
+        /// </summary>
         private void OnAsyncNotifyReady()
         {
             if (isNotifyReadyCalled)

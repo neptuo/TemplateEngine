@@ -7,8 +7,14 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Templates
 {
+    /// <summary>
+    /// Storage of <see cref="TemplateContentControl"/> objects.
+    /// </summary>
     public class TemplateContentStorage
     {
+        /// <summary>
+        /// Parent storage.
+        /// </summary>
         private TemplateContentStorage parent;
         private Dictionary<string, TemplateContentControl> storage = new Dictionary<string, TemplateContentControl>();
 
@@ -17,11 +23,17 @@ namespace Neptuo.TemplateEngine.Templates
             this.parent = parent;
         }
 
+        /// <summary>
+        /// Adds new item.
+        /// </summary>
         public void Add(string key, TemplateContentControl content)
         {
             storage[key] = content;
         }
 
+        /// <summary>
+        /// Adds range of new items.
+        /// </summary>
         public void AddRange(IEnumerable<TemplateContentControl> contents)
         {
             if (contents == null)
@@ -31,6 +43,11 @@ namespace Neptuo.TemplateEngine.Templates
                 Add(content.Name, content);
         }
 
+        /// <summary>
+        /// Returns true if current or parent contains item with <paramref name="key"/>.
+        /// </summary>
+        /// <param name="key">Template content name.</param>
+        /// <returns>True if current or parent contains item with <paramref name="key"/>.</returns>
         public bool ContainsKey(string key)
         {
             if (storage.ContainsKey(key))
@@ -42,6 +59,10 @@ namespace Neptuo.TemplateEngine.Templates
             return parent.ContainsKey(key);
         }
 
+        /// <summary>
+        /// Gets item with <paramref name="key"/>.
+        /// Also searches parents.
+        /// </summary>
         public TemplateContentControl Get(string key)
         {
             if (storage.ContainsKey(key))

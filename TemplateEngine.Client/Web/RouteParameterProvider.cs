@@ -10,8 +10,6 @@ namespace Neptuo.TemplateEngine.Web
 {
     public class RouteParameterProvider : DictionaryParameterProvider
     {
-        private RouteContext routeContext;
-
         public RouteParameterProvider(RouteContext routeContext)
             : base(new Dictionary<string, string>())
         {

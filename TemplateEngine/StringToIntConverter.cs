@@ -7,11 +7,16 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine
 {
+    /// <summary>
+    /// Converter between string and int.
+    /// </summary>
     public class StringToIntConverter : ConverterBase<string, int>
     {
-        public override bool TryConvert(string sourceValue, out int targetValue)
-        {
-            return Int32.TryParse(sourceValue, out targetValue);
-        }
+        /// <summary>
+        /// Uses <see cref="Int32.TryParse"/> as converter function.
+        /// </summary>
+        public StringToIntConverter()
+            : base(Int32.TryParse)
+        { }
     }
 }

@@ -14,6 +14,9 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Hosting.Integration.Bootstrap
 {
+    /// <summary>
+    /// Registers navigation components.
+    /// </summary>
     public class NavigationBootstrapTask : IBootstrapTask
     {
         private IDependencyContainer dependencyContainer;

@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Routing
 {
+    /// <summary>
+    /// Actual implementation of <see cref="IRouter"/>.
+    /// </summary>
     public class Router : IRouter
     {
         protected List<IRoute> Routes { get; private set; }

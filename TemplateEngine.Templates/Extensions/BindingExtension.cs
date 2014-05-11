@@ -8,13 +8,24 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Templates.Extensions
 {
+    /// <summary>
+    /// Binds value from <see cref="DataContextStorage"/>.
+    /// </summary>
     [DefaultProperty("Expression")]
     public class BindingExtension : IValueExtension
     {
         protected DataContextStorage DataContext { get; private set; }
         protected IValueConverterService ConverterService { get; private set; }
         protected IBindingManager BindingManager { get; private set; }
+
+        /// <summary>
+        /// Navigation property path.
+        /// </summary>
         public string Expression { get; set; }
+
+        /// <summary>
+        /// Name of registered converter.
+        /// </summary>
         public string ConverterKey { get; set; }
 
         public BindingExtension(DataContextStorage dataContext, IBindingManager bindingManager, IValueConverterService converterService)

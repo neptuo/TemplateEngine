@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Templates.Controls
 {
+    /// <summary>
+    /// Control for rendering doc type definition.
+    /// </summary>
     public class DoctypeControl : IControl
     {
         public DoctypeType Type { get; set; }
@@ -30,6 +33,9 @@ namespace Neptuo.TemplateEngine.Templates.Controls
         }
     }
 
+    /// <summary>
+    /// Types of supported doc types.
+    /// </summary>
     public enum DoctypeType
     {
         Html5,

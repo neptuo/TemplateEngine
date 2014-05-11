@@ -9,6 +9,9 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Web
 {
+    /// <summary>
+    /// Contains logic shared between controls for partial rendering.
+    /// </summary>
     public class PartialUpdateHelper : IControl
     {
         private IGuidProvider guidProvider;

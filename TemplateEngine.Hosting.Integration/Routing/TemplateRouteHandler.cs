@@ -9,6 +9,9 @@ using System.Web.Routing;
 
 namespace Neptuo.TemplateEngine.Hosting.Integration.Routing
 {
+    /// <summary>
+    /// Route handler for executing template requests.
+    /// </summary>
     public class TemplateRouteHandler : IRouteHandler
     {
         private IViewService viewService;

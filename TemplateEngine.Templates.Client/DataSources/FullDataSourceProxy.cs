@@ -12,6 +12,11 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Templates.DataSources
 {
+    /// <summary>
+    /// Merged implementation of <see cref="ListDataSourceProxy"/> and <see cref="DataSourceProxy"/>.
+    /// </summary>
+    /// <typeparam name="TListResultModel">Result list type.</typeparam>
+    /// <typeparam name="TSingleResultModel">Result model type.</typeparam>
     public abstract class FullDataSourceProxy<TListResultModel, TSingleResultModel> : IClientListDataSource, IClientDataSource
         where TListResultModel : IListResult
     {

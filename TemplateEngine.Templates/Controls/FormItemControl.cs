@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Templates.Controls
 {
+    /// <summary>
+    /// Renders UI for form item.
+    /// </summary>
     public class FormItemControl : ContentControlBase
     {
         private IGuidProvider guidProvider;

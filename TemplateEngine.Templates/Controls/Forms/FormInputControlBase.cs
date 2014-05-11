@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Templates.Controls
 {
+    /// <summary>
+    /// Creates input.
+    /// </summary>
     public abstract class FormInputControlBase : FormControlBase
     {
         protected string Type { get; set; }

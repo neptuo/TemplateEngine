@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Navigation
 {
+    /// <summary>
+    /// Base <see cref="INavigateTo"/> implementation that adds parameters to query string.
+    /// </summary>
     public abstract class QueryStringNavigateTo : INavigateTo
     {
         private IVirtualUrlProvider urlProvider;

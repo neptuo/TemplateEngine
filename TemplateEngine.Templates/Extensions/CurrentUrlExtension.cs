@@ -9,6 +9,9 @@ using System.Web;
 
 namespace Neptuo.TemplateEngine.Templates.Extensions
 {
+    /// <summary>
+    /// Returns current url.
+    /// </summary>
     public class CurrentUrlExtension : IValueExtension
     {
         private ICurrentUrlProvider provider;

@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Templates.Controls
 {
+    /// <summary>
+    /// Creates button.
+    /// </summary>
     public class ButtonControl : HtmlContentControlBase
     {
         public string Name { get; set; }

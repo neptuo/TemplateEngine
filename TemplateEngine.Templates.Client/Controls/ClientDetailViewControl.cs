@@ -11,6 +11,9 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Templates.Controls
 {
+    /// <summary>
+    /// Javascript implementation of <see cref="DetailViewControl"/>.
+    /// </summary>
     public class ClientDetailViewControl : TemplateControl
     {
         public IClientDataSource Source { get; set; }

@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Templates.Controls
 {
+    /// <summary>
+    /// Implementation of <see cref="ITemplate"/> that is stored in separte file.
+    /// </summary>
     public class FileTemplate : ViewTemplateBase
     {
         protected IViewActivator ViewActivator { get; private set; }
@@ -18,6 +21,10 @@ namespace Neptuo.TemplateEngine.Templates.Controls
             ViewActivator = viewActivator;
         }
 
+        /// <summary>
+        /// Create instance of template using <see cref="IViewActivator"/>.
+        /// </summary>
+        /// <returns></returns>
         protected override BaseGeneratedView CreateView()
         {
             return ViewActivator.CreateView(Path);

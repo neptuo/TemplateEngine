@@ -10,6 +10,11 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Templates.DataSources
 {
+    /// <summary>
+    /// List data source proxy.
+    /// Calls web data source with class name and uses <see cref="IConverter"/> to convert response JSON.
+    /// </summary>
+    /// <typeparam name="TResultModel">Result list type.</typeparam>
     public abstract class ListDataSourceProxy<TResultModel> : IClientListDataSource
         where TResultModel : IListResult
     {
@@ -51,8 +56,14 @@ namespace Neptuo.TemplateEngine.Templates.DataSources
             return parameterBuilder.ToJsObject();
         }
 
+        /// <summary>
+        /// Set additional request parameters.
+        /// </summary>
         protected abstract void SetParameters(JsObjectBuilder parameterBuilder);
 
+        /// <summary>
+        /// Returns data source name.
+        /// </summary>
         protected virtual string GetDataSourceName()
         {
             return GetType().Name;

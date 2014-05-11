@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Hosting
 {
+    /// <summary>
+    /// Describes web data source request.
+    /// </summary>
     public class WebDataSourceModel
     {
         public string DataSource { get; set; }

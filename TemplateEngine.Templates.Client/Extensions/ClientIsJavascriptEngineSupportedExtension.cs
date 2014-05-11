@@ -9,6 +9,9 @@ using System.Web;
 
 namespace Neptuo.TemplateEngine.Templates.Extensions
 {
+    /// <summary>
+    /// Javascript implementation of <see cref="IsJavascriptEngineSupportedExtension"/>.
+    /// </summary>
     [ReturnType(typeof(bool))]
     public class ClientIsJavascriptEngineSupportedExtension : IValueExtension
     {

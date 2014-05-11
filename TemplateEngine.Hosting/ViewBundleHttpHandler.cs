@@ -14,6 +14,9 @@ using System.Web;
 
 namespace Neptuo.TemplateEngine.Hosting
 {
+    /// <summary>
+    /// Handles request for view bundles.
+    /// </summary>
     public class ViewBundleHttpHandler : IHttpHandler
     {
         private ViewBundleHttpHandlerConfiguration configuration;

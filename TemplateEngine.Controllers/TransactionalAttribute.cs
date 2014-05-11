@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Controllers
 {
+    /// <summary>
+    /// Defines request for transactional execution.
+    /// </summary>
     [AttributeUsage(AttributeTargets.Method)]
     public class TransactionalAttribute : Attribute
     { }

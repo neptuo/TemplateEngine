@@ -13,12 +13,18 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Templates.Compilation
 {
+    /// <summary>
+    /// TemplateEngine view service.
+    /// </summary>
     public class ViewService : CodeDomViewService
     {
         public ViewService()
             : base(true)
         { }
 
+        /// <summary>
+        /// Gets generated javascript code for <paramref name="viewContent"/>.
+        /// </summary>
         public string GenerateJavascriptSourceCodeFromView(string viewContent, IViewServiceContext context, INaming naming)
         {
             IPropertyDescriptor propertyDescriptor = ParseViewContent(viewContent, context);

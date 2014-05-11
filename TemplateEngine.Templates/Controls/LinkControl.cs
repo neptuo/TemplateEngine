@@ -13,21 +13,40 @@ using Neptuo.TemplateEngine.Providers;
 
 namespace Neptuo.TemplateEngine.Templates.Controls
 {
+    /// <summary>
+    /// Html achor control.
+    /// </summary>
     public class LinkControl : HtmlContentControlBase
     {
         private IVirtualUrlProvider urlProvider;
         private ICurrentUrlProvider currentUrl;
         private IParameterProviderFactory parameterFactory;
 
+        /// <summary>
+        /// Link target url.
+        /// </summary>
         public string Href { get; set; }
 
+        /// <summary>
+        /// Text of link.
+        /// </summary>
         [Hint("Replace for Content property for setting via attribute.")]
         public string Text { get; set; }
 
+        /// <summary>
+        /// Whether copy current url paramters.
+        /// </summary>
         [Hint("Can contain 'All', 'Query', 'Form' or comma separated list of parameter names.")]
         public string CopyParameters { get; set; }
+
+        /// <summary>
+        /// List of parameter to append to <see cref="Href"/>.
+        /// </summary>
         public ICollection<ParameterControl> Parameters { get; set; }
 
+        /// <summary>
+        /// Allow adding 'active' class if <see cref="Href"/> matches current url.
+        /// </summary>
         [Hint("Setting to false, disable adding 'active' css class when matching url with current.")]
         [DefaultValue(true)]
         public bool AllowActive { get; set; }

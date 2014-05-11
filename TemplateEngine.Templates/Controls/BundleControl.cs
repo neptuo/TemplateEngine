@@ -11,6 +11,9 @@ using System.Web.Optimization;
 
 namespace Neptuo.TemplateEngine.Templates.Controls
 {
+    /// <summary>
+    /// Enables inclusion of <see cref="Bundle"/> in view.
+    /// </summary>
     public class BundleControl : BundleControlBase
     {
         private IApplicationConfiguration config;

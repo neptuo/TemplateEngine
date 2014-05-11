@@ -9,6 +9,9 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Templates.Extensions
 {
+    /// <summary>
+    /// Provides values from <see cref="DataContextStorage"/> and named stack "Template".
+    /// </summary>
     public class TemplateBindingExtension : BindingExtension
     {
         public TemplateBindingExtension(DataContextStorage dataContext, IBindingManager bindingManager, IValueConverterService converterService)

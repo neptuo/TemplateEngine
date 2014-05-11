@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Templates.Controls
 {
+    /// <summary>
+    /// Creates form that is sumitted by get.
+    /// </summary>
     public class GetFormControl : HtmlContentControlBase
     {
         public GetFormControl(IComponentManager componentManager, ICurrentUrlProvider urlProvider)

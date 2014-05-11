@@ -10,6 +10,10 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Templates
 {
+    /// <summary>
+    /// ComponetManager that enables partial update.
+    /// Implements <see cref="IPartialUpdateWriter"/> for registering regions.
+    /// </summary>
     public class PartialUpdateComponentManager : ComponentManager, IPartialUpdateWriter
     {
         private string[] partialsToUpdate;

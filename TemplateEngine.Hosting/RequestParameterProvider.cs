@@ -8,6 +8,9 @@ using System.Web;
 
 namespace Neptuo.TemplateEngine.Hosting
 {
+    /// <summary>
+    /// Parameter provider for <see cref="HttpRequestBase"/>.
+    /// </summary>
     public class RequestParameterProvider : IParameterProvider
     {
         public HttpRequestBase HttpRequest { get; private set; }

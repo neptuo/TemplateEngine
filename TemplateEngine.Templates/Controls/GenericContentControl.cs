@@ -7,8 +7,14 @@ using Neptuo.Templates;
 
 namespace Neptuo.TemplateEngine.Templates.Controls
 {
+    /// <summary>
+    /// Html control that can render any html element.
+    /// </summary>
     public class GenericContentControl : HtmlContentControlBase
     {
+        /// <summary>
+        /// Html tag name.
+        /// </summary>
         public new string TagName
         {
             get { return base.TagName; }

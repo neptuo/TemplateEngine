@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Web
 {
+    /// <summary>
+    /// Actual implementation of <see cref="IUpdateViewNotifier"/>.
+    /// </summary>
     public class UpdateViewNotifier : IUpdateViewNotifier
     {
         public UpdateViewNotifier(IMainView mainView)

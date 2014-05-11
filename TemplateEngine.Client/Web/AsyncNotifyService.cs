@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Web
 {
+    /// <summary>
+    /// Service for maintaing pending async requests.
+    /// </summary>
     public class AsyncNotifyService
     {
         private int counter = 0;

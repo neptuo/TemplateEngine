@@ -9,6 +9,9 @@ using System.Web;
 
 namespace Neptuo.TemplateEngine.Web.Navigation
 {
+    /// <summary>
+    /// Server redirect <see cref="INavigator"/> implementation.
+    /// </summary>
     public class RedirectNavigator : INavigator
     {
         private IVirtualUrlProvider urlProvider;

@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Templates.Observers
 {
+    /// <summary>
+    /// Sets some html attribute on html element.
+    /// </summary>
     public class HtmlObserver : IObserver
     {
         public string ID { get; set; }

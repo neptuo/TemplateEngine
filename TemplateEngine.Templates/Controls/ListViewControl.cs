@@ -10,14 +10,45 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Templates.Controls
 {
+    /// <summary>
+    /// View that operates on <see cref="IListDataSource"/> and enables rending list of item.
+    /// Gets page from list data source and applies <see cref="ItemTemplate"/>.
+    /// If no item is in data source, renders <see cref="EmptyTemplate"/>.
+    /// Enables paging by setting <see cref="PageSize"/> (and <see cref="PageIndex"/>). For paging uses <see cref="Pagination"/> control.
+    /// Each item object is inserted in <see cref="DataContext"/> in init phase.
+    /// </summary>
     public class ListViewControl : TemplateControl
     {
+        /// <summary>
+        /// Data source.
+        /// </summary>
         public IListDataSource Source { get; set; }
+
+        /// <summary>
+        /// Template for item.
+        /// </summary>
         public ITemplate ItemTemplate { get; set; }
+        
+        /// <summary>
+        /// Template when no item is in data source.
+        /// </summary>
         public ITemplate EmptyTemplate { get; set; }
+
+        /// <summary>
+        /// Pagination control.
+        /// </summary>
         public IPaginationControl Pagination { get; set; }
+
+        /// <summary>
+        /// Page size.
+        /// </summary>
         public int? PageSize { get; set; }
+
+        /// <summary>
+        /// Page index.
+        /// </summary>
         public int? PageIndex { get; set; }
+
         protected int TotalCount { get; private set; }
         protected IRequestContext RequestContext { get; private set; }
         protected DataContextStorage DataContext { get; private set; }

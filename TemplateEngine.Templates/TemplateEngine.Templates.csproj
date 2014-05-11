@@ -31,6 +31,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>..\References\Doc\Neptuo.TemplateEngine.Templates.XML</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Antlr3.Runtime">
@@ -84,7 +85,6 @@
     <Compile Include="Controls\ControlBase.cs" />
     <Compile Include="Controls\CssClassCollection.cs" />
     <Compile Include="Controls\DesignData\HintAttribute.cs" />
-    <Compile Include="Controls\DesignData\SupportUiEventAttribute.cs" />
     <Compile Include="Controls\DetailViewControl.cs" />
     <Compile Include="Controls\DoctypeControl.cs" />
     <Compile Include="Controls\DropDownListControl.cs" />
@@ -116,8 +116,6 @@
     <Compile Include="Controls\PaginationControl.cs" />
     <Compile Include="Controls\ParameterControl.cs" />
     <Compile Include="Controls\Placeholder.cs" />
-    <Compile Include="Controls\Presentation\PresentationControlBase.cs" />
-    <Compile Include="Controls\Presentation\PresentationListControlBase.cs" />
     <Compile Include="Controls\SelectControl.cs" />
     <Compile Include="Controls\SelectControlContext.cs" />
     <Compile Include="Controls\SelectItem.cs" />
@@ -164,7 +162,6 @@
     <Compile Include="Observers\HtmlObserver.cs" />
     <Compile Include="Observers\IsPlaceholderObserver.cs" />
     <Compile Include="Observers\VisibleObserver.cs" />
-    <Compile Include="PresentationConfiguration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StackStorage.cs" />
     <Compile Include="TemplateContentStorage.cs" />

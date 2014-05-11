@@ -24,6 +24,10 @@ using Neptuo.TemplateEngine.Navigation.Bootstrap;
 
 namespace Neptuo.TemplateEngine.Hosting.Integration
 {
+    /// <summary>
+    /// Simplifies TemplateEngine hosting.
+    /// Set this class as your http applcation in global.asax.
+    /// </summary>
     public class HostedApplication : HttpApplication
     {
         private IApplicationBuilder builder;
@@ -59,6 +63,9 @@ namespace Neptuo.TemplateEngine.Hosting.Integration
         protected virtual void OnAfterStart()
         { }
 
+        /// <summary>
+        /// Registers requered bootstrap tasks.
+        /// </summary>
         protected void RegisterBootstrapTasks(IBootstrapTaskRegistry bootstrapper, IDependencyContainer container)
         {
             bootstrapper.Register<ViewServiceBootstrapTask>();
@@ -73,6 +80,9 @@ namespace Neptuo.TemplateEngine.Hosting.Integration
             builder.RegisterBootstrapTasks(bootstrapper);
         }
 
+        /// <summary>
+        /// Creates and initializes root dependency container.
+        /// </summary>
         protected virtual IDependencyContainer CreateDependencyContainer()
         {
             UnityDependencyContainer dependencyContainer = new UnityDependencyContainer()
@@ -108,21 +118,9 @@ namespace Neptuo.TemplateEngine.Hosting.Integration
             return new SequenceBootstrapper(type => (IBootstrapTask)container.Resolve(type));
         }
 
-        //protected void Session_Start(object sender, EventArgs e)
-        //{
-
-        //}
-
-        //protected void Application_BeginRequest(object sender, EventArgs e)
-        //{
-
-        //}
-
-        //protected void Application_AuthenticateRequest(object sender, EventArgs e)
-        //{
-
-        //}
-
+        /// <summary>
+        /// Log errors.
+        /// </summary>
         protected void Application_Error(object sender, EventArgs e)
         {
             Exception exception = Server.GetLastError();
@@ -151,15 +149,5 @@ namespace Neptuo.TemplateEngine.Hosting.Integration
                 LogManager.GetLogger("Global").Fatal(null, exception);
             }
         }
-
-        //protected void Session_End(object sender, EventArgs e)
-        //{
-
-        //}
-
-        //protected void Application_End(object sender, EventArgs e)
-        //{
-
-        //}
     }
 }

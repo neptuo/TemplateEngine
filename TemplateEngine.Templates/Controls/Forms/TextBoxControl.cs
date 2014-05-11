@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Templates.Controls
 {
+    /// <summary>
+    /// Creates text input.
+    /// </summary>
     public class TextBoxControl : FormInputControlBase, ITextControl
     {
         public string Text { get; set; }

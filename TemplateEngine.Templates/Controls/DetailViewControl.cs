@@ -8,6 +8,10 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Templates.Controls
 {
+    /// <summary>
+    /// View that operates on <see cref="IDataSource"/> and enables rending single item.
+    /// This single item is inserted into <see cref="DataContext"/>.
+    /// </summary>
     public class DetailViewControl : TemplateControl
     {
         public IDataSource Source { get; set; }
