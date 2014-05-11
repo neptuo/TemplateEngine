@@ -16,6 +16,9 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Templates.Compilation.PreProcessing
 {
+    /// <summary>
+    /// Visits unset <see cref="ITemplate"/> properties.
+    /// </summary>
     public class TemplatePropertyVisitor : BaseVisitor
     {
         public string ViewPathFormat { get; private set; }

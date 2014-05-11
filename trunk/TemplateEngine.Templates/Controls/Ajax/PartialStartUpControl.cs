@@ -10,11 +10,17 @@ using System.Web;
 
 namespace Neptuo.TemplateEngine.Templates.Controls
 {
+    /// <summary>
+    /// Registers javascript application.
+    /// </summary>
     public class PartialStartUpControl : IControl
     {
         private IApplicationConfiguration config;
         private HttpContextBase httpContext;
 
+        /// <summary>
+        /// Default regions to update.
+        /// </summary>
         public string DefaultUpdate { get; set; }
 
         public PartialStartUpControl(IApplicationConfiguration config, HttpContextBase httpContext)

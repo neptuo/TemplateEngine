@@ -9,6 +9,9 @@ using System.Web;
 
 namespace Neptuo.TemplateEngine.Templates.Extensions
 {
+    /// <summary>
+    /// Tries to determine whether javascript processing is supported.
+    /// </summary>
     [ReturnType(typeof(bool))]
     public class IsJavascriptEngineSupportedExtension : IValueExtension
     {

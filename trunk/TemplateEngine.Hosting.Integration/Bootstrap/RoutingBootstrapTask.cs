@@ -14,6 +14,9 @@ using System.Configuration;
 
 namespace Neptuo.TemplateEngine.Hosting.Integration.Bootstrap
 {
+    /// <summary>
+    /// Registers routes.
+    /// </summary>
     public class RoutingBootstrapTask : IBootstrapTask
     {
         private RouteCollection routes;
@@ -37,12 +40,15 @@ namespace Neptuo.TemplateEngine.Hosting.Integration.Bootstrap
 
             routeParameterRegistry.Add("path", new TemplateRouteParameterFactory());
 
+            // Template routes.
             routes.Add(new TokenRoute("~/", new StaticTemplateRouteHandler(viewService, dependencyProvider, "~/Views/Default.view")));
             routes.Add(new TokenRoute("~/{Path}", new TemplateRouteHandler(viewService, dependencyProvider), TemplateRouteParameter.TemplateUrlSuffix));
             
+            // Error handler.
             routes.Add(new TokenRoute("~/error", new ErrorRouteHandler(), ".ashx"));
             
-            routes.Add(new TokenRoute("~/views", new JavascriptViewGeneratorRouteHandler(configuration, javascriptViewService, dependencyProvider), ".ashx"));
+            // View bundle and web data source handlers.
+            routes.Add(new TokenRoute("~/views", new ViewBundleRouteHandler(configuration, javascriptViewService, dependencyProvider), ".ashx"));
             routes.Add(new TokenRoute("~/DataSource", new DependencyRouteHandler<WebDataSourceHttpHandler>(dependencyProvider), ".ashx"));
         }
     }

@@ -10,6 +10,9 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Hosting.Integration
 {
+    /// <summary>
+    /// Registers configuration.
+    /// </summary>
     public class ConfigurationBootstrapTask : IBootstrapTask
     {
         private IDependencyContainer dependencyContainer;

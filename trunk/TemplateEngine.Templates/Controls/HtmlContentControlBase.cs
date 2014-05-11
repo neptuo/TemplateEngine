@@ -10,6 +10,9 @@ using System.Collections;
 
 namespace Neptuo.TemplateEngine.Templates.Controls
 {
+    /// <summary>
+    /// Base of content html control.
+    /// </summary>
     [DefaultProperty("Content")]
     public abstract class HtmlContentControlBase : HtmlControlBase, IContentControl
     {

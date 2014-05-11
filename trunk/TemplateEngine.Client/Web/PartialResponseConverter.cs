@@ -10,6 +10,9 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Web
 {
+    /// <summary>
+    /// Converts JSON object to <see cref="PartialResponse"/>
+    /// </summary>
     public class PartialResponseConverter : ConverterBase<JsObject, PartialResponse>
     {
         public override bool TryConvert(JsObject sourceValue, out PartialResponse targetValue)

@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Web
 {
+    /// <summary>
+    /// Helper for localizing template vlaue.
+    /// </summary>
     public static class LocalizationHelper
     {
         public static string Translate(string text)

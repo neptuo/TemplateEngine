@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Templates.Controls
 {
+    /// <summary>
+    /// Creates form submitted by post.
+    /// </summary>
     public class PostFormControl : HtmlContentControlBase
     {
         public PostFormControl(IComponentManager componentManager, ICurrentUrlProvider urlProvider)

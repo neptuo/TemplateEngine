@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Templates
 {
+    /// <summary>
+    /// List of registered <see cref="IValueConverter"/>.
+    /// </summary>
     public interface IValueConverterService
     {
         IValueConverter GetConverter(string key);

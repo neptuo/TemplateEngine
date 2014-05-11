@@ -11,6 +11,9 @@ using Neptuo.TemplateEngine.Providers;
 
 namespace Neptuo.TemplateEngine.Hosting
 {
+    /// <summary>
+    /// Enables execution of data source through HTTP requests.
+    /// </summary>
     public class WebDataSourceHttpHandler : IHttpHandler
     {
         private IModelBinder modelBinder;

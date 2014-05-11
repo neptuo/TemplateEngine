@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Templates.Controls
 {
+    /// <summary>
+    /// Creates checkbox.
+    /// </summary>
     public class CheckBoxControl : FormInputControlBase
     {
         public string LabelText { get; set; }

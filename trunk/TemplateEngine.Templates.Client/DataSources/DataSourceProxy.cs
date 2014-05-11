@@ -11,11 +11,20 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Templates.DataSources
 {
+    /// <summary>
+    /// Single data source proxy.
+    /// Calls web data source with class name and uses <see cref="IConverter"/> to convert response JSON.
+    /// </summary>
+    /// <typeparam name="TResultModel">Result model type.</typeparam>
     public abstract class DataSourceProxy<TResultModel> : IClientDataSource
     {
         protected IModelBinder ModelBinder { get; private set; }
         protected IVirtualUrlProvider UrlProvider { get; private set; }
 
+        /// <summary>
+        /// Should be parameters from context on item model.
+        /// Default: true.
+        /// </summary>
         protected bool IsBindModel { get; set; }
 
         public DataSourceProxy(IModelBinder modelBinder, IVirtualUrlProvider urlProvider)
@@ -64,10 +73,20 @@ namespace Neptuo.TemplateEngine.Templates.DataSources
             return parameterBuilder.ToJsObject();
         }
 
+        /// <summary>
+        /// Set additional request parameters.
+        /// </summary>
         protected abstract void SetParameters(JsObjectBuilder parameterBuilder);
 
+        /// <summary>
+        /// On trying to model from this data source.
+        /// Called before generation request.
+        /// </summary>
         protected abstract bool OnGetItem(Action<object> callback);
 
+        /// <summary>
+        /// Returns data source name.
+        /// </summary>
         protected virtual string GetDataSourceName()
         {
             return GetType().Name;

@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Templates.Controls
 {
+    /// <summary>
+    /// Base of html cotrol that can't has content.
+    /// </summary>
     public abstract class HtmlControlBase : ControlBase, IAttributeCollection, IHtmlAttributeCollection
     {
         public string ID { get; set; }
@@ -16,7 +19,14 @@ namespace Neptuo.TemplateEngine.Templates.Controls
 
         public HtmlAttributeCollection Attributes { get; protected set; }
 
+        /// <summary>
+        /// Html tag name.
+        /// </summary>
         protected virtual string TagName { get; set; }
+
+        /// <summary>
+        /// Is using self closing html tag.
+        /// </summary>
         protected virtual bool IsSelfClosing { get; set; }
 
         public HtmlControlBase(IComponentManager componentManager, string tagName, bool isSelfClosing = false)

@@ -12,13 +12,16 @@ using System.Web.Routing;
 
 namespace Neptuo.TemplateEngine.Hosting.Integration.Routing
 {
-    public class JavascriptViewGeneratorRouteHandler : IRouteHandler
+    /// <summary>
+    /// View bundle route handler.
+    /// </summary>
+    public class ViewBundleRouteHandler : IRouteHandler
     {
         private ViewBundleHttpHandlerConfiguration configuration;
         private ViewService viewService;
         private IDependencyProvider dependencyProvider;
 
-        public JavascriptViewGeneratorRouteHandler(ViewBundleHttpHandlerConfiguration configuration, ViewService viewService, IDependencyProvider dependencyProvider)
+        public ViewBundleRouteHandler(ViewBundleHttpHandlerConfiguration configuration, ViewService viewService, IDependencyProvider dependencyProvider)
         {
             this.configuration = configuration;
             this.viewService = viewService;

@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Templates.Observers
 {
+    /// <summary>
+    /// Sets region to update on current element submit.
+    /// </summary>
     public class PartialObserver : IObserver
     {
         public string Update { get; set; }

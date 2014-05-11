@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Routing
 {
+    /// <summary>
+    /// Route parameters dicitionary.
+    /// </summary>
     public class RouteParamDictionary : Dictionary<string, string>
     {
         public RouteParamDictionary AddItem(string key, string value)

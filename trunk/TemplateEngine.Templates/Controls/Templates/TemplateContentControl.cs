@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Templates.Controls
 {
+    /// <summary>
+    /// Defines content of placeholder.
+    /// </summary>
     public class TemplateContentControl : ContentControlBase
     {
         public string Name { get; set; }

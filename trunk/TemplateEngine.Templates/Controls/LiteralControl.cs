@@ -8,6 +8,9 @@ using Neptuo.Templates;
 
 namespace Neptuo.TemplateEngine.Templates.Controls
 {
+    /// <summary>
+    /// Control for renderin text.
+    /// </summary>
     [DefaultProperty("Text")]
     public class LiteralControl : ControlBase, ITextControl
     {

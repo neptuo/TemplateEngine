@@ -227,97 +227,6 @@ var Neptuo$TemplateEngine$ListResultConverterBase$2 = {
     IsAbstract: true
 };
 JsTypes.push(Neptuo$TemplateEngine$ListResultConverterBase$2);
-var Neptuo$TemplateEngine$ModelValueGetterListResult = {
-    fullname: "Neptuo.TemplateEngine.ModelValueGetterListResult",
-    baseTypeName: "Neptuo.TemplateEngine.Templates.DataSources.ListResult",
-    assemblyName: "Neptuo.TemplateEngine.Client",
-    Kind: "Class",
-    definition: {
-        ctor: function (data, totalCount){
-            Neptuo.TemplateEngine.Templates.DataSources.ListResult.ctor.call(this, data, totalCount);
-        }
-    },
-    ctors: [{
-        name: "ctor",
-        parameters: ["System.Collections.IEnumerable", "System.Int32"]
-    }
-    ],
-    IsAbstract: false
-};
-JsTypes.push(Neptuo$TemplateEngine$ModelValueGetterListResult);
-var Neptuo$TemplateEngine$ModelValueGetterListResult$ModelValueGetter = {
-    fullname: "Neptuo.TemplateEngine.ModelValueGetterListResult.ModelValueGetter",
-    baseTypeName: "System.Object",
-    assemblyName: "Neptuo.TemplateEngine.Client",
-    interfaceNames: ["Neptuo.PresentationModels.IModelValueGetter"],
-    Kind: "Class",
-    definition: {
-        ctor: function (source){
-            this.source = null;
-            System.Object.ctor.call(this);
-            this.source = source;
-        },
-        TryGetValue: function (identifier, value){
-            if (this.source == null){
-                value.Value = null;
-                return false;
-            }
-            if (System.String.IsNullOrEmpty(identifier)){
-                value.Value = this.source;
-                return true;
-            }
-            var currentSource = this.source;
-            var exprs = identifier.Split$$Char$Array$$StringSplitOptions(["."], 1);
-            for (var i = 0; i < exprs.length; i++){
-                currentSource = currentSource[exprs[i]];
-                if (currentSource == null)
-                    break;
-            }
-            value.Value = currentSource;
-            return true;
-        }
-    },
-    ctors: [{
-        name: "ctor",
-        parameters: ["SharpKit.JavaScript.JsObject"]
-    }
-    ],
-    IsAbstract: false
-};
-JsTypes.push(Neptuo$TemplateEngine$ModelValueGetterListResult$ModelValueGetter);
-var Neptuo$TemplateEngine$ModelValueGetterListResultConverter = {
-    fullname: "Neptuo.TemplateEngine.ModelValueGetterListResultConverter",
-    baseTypeName: "Neptuo.ComponentModel.Converters.ConverterBase$2",
-    assemblyName: "Neptuo.TemplateEngine.Client",
-    Kind: "Class",
-    definition: {
-        ctor: function (){
-            Neptuo.ComponentModel.Converters.ConverterBase$2.ctor.call(this, Object, Neptuo.TemplateEngine.ModelValueGetterListResult.ctor);
-        },
-        TryConvert: function (sourceValue, targetValue){
-            var totalCount = sourceValue["TotalCount"];
-            var data = sourceValue["Data"];
-            targetValue.Value = new Neptuo.TemplateEngine.ModelValueGetterListResult.ctor(this.GetModelValueGetters(data), totalCount);
-            return true;
-        },
-        GetModelValueGetters: function (sourceValue){
-            var data = new System.Collections.Generic.List$1.ctor(Neptuo.PresentationModels.IModelValueGetter.ctor);
-            var array = sourceValue;
-            for (var i = 0; i < array.length; i++){
-                var item = array[i];
-                data.Add(new Neptuo.TemplateEngine.ModelValueGetterListResult.ModelValueGetter.ctor(item));
-            }
-            return data;
-        }
-    },
-    ctors: [{
-        name: "ctor",
-        parameters: []
-    }
-    ],
-    IsAbstract: false
-};
-JsTypes.push(Neptuo$TemplateEngine$ModelValueGetterListResultConverter);
 var Neptuo$TemplateEngine$Routing$ApplicationRouter = {
     fullname: "Neptuo.TemplateEngine.Routing.ApplicationRouter",
     baseTypeName: "Neptuo.TemplateEngine.Routing.Router",
@@ -909,7 +818,7 @@ var Neptuo$TemplateEngine$Bootstrap$ConverterBootstrapTask = {
             this.repository = Neptuo.Converts.get_Repository();
         },
         Initialize: function (){
-            this.repository.Add(Typeof(Object), Typeof(Neptuo.TemplateEngine.Providers.PartialResponse.ctor), new Neptuo.TemplateEngine.Web.PartialResponseConverter.ctor()).Add(Typeof(Object), Typeof(Neptuo.TemplateEngine.ModelValueGetterListResult.ctor), new Neptuo.TemplateEngine.ModelValueGetterListResultConverter.ctor());
+            this.repository.Add(Typeof(Object), Typeof(Neptuo.TemplateEngine.Providers.PartialResponse.ctor), new Neptuo.TemplateEngine.Web.PartialResponseConverter.ctor());
         }
     },
     ctors: [{
@@ -1500,35 +1409,6 @@ var Neptuo$TemplateEngine$Templates$StaticViewActivator = {
     IsAbstract: false
 };
 JsTypes.push(Neptuo$TemplateEngine$Templates$StaticViewActivator);
-var Neptuo$TemplateEngine$Web$Routing$TemplateRouteParameterBase = {
-    fullname: "Neptuo.TemplateEngine.Web.Routing.TemplateRouteParameterBase",
-    baseTypeName: "System.Object",
-    staticDefinition: {
-        cctor: function (){
-            Neptuo.TemplateEngine.Web.Routing.TemplateRouteParameterBase.TemplateUrlSuffix = ".html";
-            Neptuo.TemplateEngine.Web.Routing.TemplateRouteParameterBase.TemplatePathSuffix = ".view";
-        },
-        FormatUrl: function (path){
-            if (path == null)
-                throw $CreateException(new System.ArgumentNullException.ctor$$String("path"), new Error());
-            return System.String.Format$$String$$Object$$Object("{0}{1}", path, ".html");
-        }
-    },
-    assemblyName: "Neptuo.TemplateEngine.Client",
-    Kind: "Class",
-    definition: {
-        ctor: function (){
-            System.Object.ctor.call(this);
-        }
-    },
-    ctors: [{
-        name: "ctor",
-        parameters: []
-    }
-    ],
-    IsAbstract: false
-};
-JsTypes.push(Neptuo$TemplateEngine$Web$Routing$TemplateRouteParameterBase);
 var Neptuo$TemplateEngine$Web$UpdateViewNotifier = {
     fullname: "Neptuo.TemplateEngine.Web.UpdateViewNotifier",
     baseTypeName: "System.Object",
@@ -1889,7 +1769,6 @@ var Neptuo$TemplateEngine$Web$RouteParameterProvider = {
     Kind: "Class",
     definition: {
         ctor: function (routeContext){
-            this.routeContext = null;
             Neptuo.TemplateEngine.Web.DictionaryParameterProvider.ctor.call(this, new System.Collections.Generic.Dictionary$2.ctor(System.String.ctor, System.String.ctor));
             Neptuo.Guard.NotNull$$Object$$String(routeContext, "routeContext");
             Neptuo.Collections.Generic.DictionaryExtensions.AddRange$2(System.String.ctor, System.String.ctor, this.get_Parameters(), routeContext.get_Request().get_Form());
@@ -1944,26 +1823,4 @@ var Neptuo$TemplateEngine$Web$RouteParameterProviderFactory = {
     IsAbstract: false
 };
 JsTypes.push(Neptuo$TemplateEngine$Web$RouteParameterProviderFactory);
-var Neptuo$TemplateEngine$Web$InitScript = {
-    fullname: "Neptuo.TemplateEngine.Web.InitScript",
-    baseTypeName: "System.Object",
-    staticDefinition: {
-        TransformParameters: function (data){
-            var parameters = new System.Collections.Generic.Dictionary$2.ctor(System.String.ctor, System.String.ctor);
-            for (var i = 0; i < data.length; i++)
-                parameters.set_Item$$TKey(data[i]["name"], data[i]["value"]);
-            return parameters;
-        }
-    },
-    assemblyName: "Neptuo.TemplateEngine.Client",
-    Kind: "Class",
-    definition: {
-        ctor: function (){
-            System.Object.ctor.call(this);
-        }
-    },
-    ctors: [],
-    IsAbstract: true
-};
-JsTypes.push(Neptuo$TemplateEngine$Web$InitScript);
 

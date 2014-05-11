@@ -9,8 +9,14 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Providers
 {
+    /// <summary>
+    /// Describes current request.
+    /// </summary>
     public interface IRequestContext : ICurrentUrlProvider, IVirtualUrlProvider, IParameterProviderFactory
     {
+        /// <summary>
+        /// Current component manager.
+        /// </summary>
         IComponentManager ComponentManager { get; }
     }
 }

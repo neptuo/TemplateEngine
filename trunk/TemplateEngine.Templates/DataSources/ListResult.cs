@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Templates.DataSources
 {
+    /// <summary>
+    /// Actual implementation of <see cref="IListResult"/>.
+    /// </summary>
     public class ListResult : IListResult
     {
         public IEnumerable Data { get; private set; }

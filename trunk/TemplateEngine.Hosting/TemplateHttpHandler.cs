@@ -12,6 +12,9 @@ using System.Web;
 
 namespace Neptuo.TemplateEngine.Hosting
 {
+    /// <summary>
+    /// Maps request to static .view files in ~/views directory.
+    /// </summary>
     public class TemplateHttpHandler : TemplateHttpHandlerBase
     {
         public string TemplateUrl { get; private set; }

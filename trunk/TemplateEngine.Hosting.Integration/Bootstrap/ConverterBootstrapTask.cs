@@ -9,6 +9,9 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Hosting.Integration.Bootstrap
 {
+    /// <summary>
+    /// Registers global converters.
+    /// </summary>
     public class ConverterBootstrapTask : IBootstrapTask
     {
         private IConverterRepository converterRepository;

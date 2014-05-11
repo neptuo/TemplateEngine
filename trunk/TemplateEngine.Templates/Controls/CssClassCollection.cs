@@ -7,6 +7,10 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Templates.Controls
 {
+    /// <summary>
+    /// Css class collection.
+    /// Constains setuped css class name.
+    /// </summary>
     public class CssClassCollection : IEnumerable<string>
     {
         private HashSet<string> storage = new HashSet<string>();

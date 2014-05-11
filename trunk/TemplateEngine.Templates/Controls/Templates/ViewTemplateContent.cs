@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Templates.Controls
 {
+    /// <summary>
+    /// Implementation of <see cref="ITemplateContent"/> operation on separated view.
+    /// </summary>
     public class ViewTemplateContent : ITemplateContent
     {
         public BaseGeneratedView View { get; private set; }

@@ -18,6 +18,10 @@ using Neptuo.TemplateEngine.Security;
 
 namespace Neptuo.TemplateEngine.Hosting
 {
+    /// <summary>
+    /// Base http handler for processing templates and executing controllers.
+    /// Supports partial rendering.
+    /// </summary>
     public abstract class TemplateHttpHandlerBase : IHttpHandler, IRequiresSessionState
     {
         public const string EngineRequestType = "X-EngineRequestType";
@@ -146,10 +150,21 @@ namespace Neptuo.TemplateEngine.Hosting
             return new ComponentManager();
         }
 
+        /// <summary>
+        /// Maps current rueqest to instance of view.
+        /// </summary>
+        /// <param name="context">Http context.</param>
         protected abstract BaseGeneratedView GetCurrentView(HttpContext context);
 
+        /// <summary>
+        /// Creates dependency container for current context.
+        /// </summary>
+        /// <returns></returns>
         protected abstract IDependencyContainer GetDependencyContainer();
 
+        /// <summary>
+        /// Gets current request form uri.
+        /// </summary>
         protected abstract FormUri GetCurrentFormUri(HttpContext context);
     }
 }

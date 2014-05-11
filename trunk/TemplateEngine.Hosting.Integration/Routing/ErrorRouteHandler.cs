@@ -8,6 +8,9 @@ using System.Web.Routing;
 
 namespace Neptuo.TemplateEngine.Hosting.Integration.Routing
 {
+    /// <summary>
+    /// Error route handler.
+    /// </summary>
     public class ErrorRouteHandler : IRouteHandler
     {
         public IHttpHandler GetHttpHandler(RequestContext requestContext)

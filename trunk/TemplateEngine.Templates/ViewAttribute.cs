@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Templates
 {
+    /// <summary>
+    /// Attribute that defines view path in generated class.
+    /// </summary>
     public class ViewAttribute : Attribute
     {
         public string ViewPath { get; set; }

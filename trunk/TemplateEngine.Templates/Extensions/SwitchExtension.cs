@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Templates.Extensions
 {
+    /// <summary>
+    /// Regarding value of <see cref="Expression"/>, returns <see cref="TrueValue"/> or <see cref="FalseValue"/>.
+    /// </summary>
     [DefaultProperty("Expression")]
     public class SwitchExtension : IValueExtension
     {

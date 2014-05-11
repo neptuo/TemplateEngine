@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Web.ViewBundles
 {
+    /// <summary>
+    /// View bundle implementation that 'contains everything'.
+    /// </summary>
     public class GreedyViewBundle : IViewBundle
     {
         public string Name { get; set; }

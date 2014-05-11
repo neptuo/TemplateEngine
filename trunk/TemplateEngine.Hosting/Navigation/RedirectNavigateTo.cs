@@ -9,6 +9,9 @@ using System.Web;
 
 namespace Neptuo.TemplateEngine.Web.Navigation
 {
+    /// <summary>
+    /// Server redirect <see cref="INavigateTo"/> implementation.
+    /// </summary>
     public class RedirectNavigateTo : QueryStringNavigateTo
     {
         private HttpContextBase httpContext;

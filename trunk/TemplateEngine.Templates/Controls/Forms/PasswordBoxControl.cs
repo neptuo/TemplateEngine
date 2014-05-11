@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Templates.Controls
 {
+    /// <summary>
+    /// Creates password input.
+    /// </summary>
     public class PasswordBoxControl : TextBoxControl
     {
         public PasswordBoxControl(IComponentManager componentManager)

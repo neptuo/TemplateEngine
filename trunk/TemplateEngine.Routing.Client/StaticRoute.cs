@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Routing
 {
+    /// <summary>
+    /// Static url route.
+    /// </summary>
     public class StaticRoute : IRoute
     {
         public string Url { get; private set; }

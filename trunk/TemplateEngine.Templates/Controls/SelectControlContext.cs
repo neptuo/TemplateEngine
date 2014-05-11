@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Templates.Controls
 {
+    /// <summary>
+    /// Context for <see cref="SelectControl"/>.
+    /// </summary>
     public class SelectControlContext
     {
         public IRequestContext RequestContext { get; private set; }

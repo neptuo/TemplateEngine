@@ -9,6 +9,9 @@ using System.Xml;
 
 namespace Neptuo.TemplateEngine.Web.ViewBundles
 {
+    /// <summary>
+    /// XML bundle definition loader.
+    /// </summary>
     public class XmlViewBundleLoader
     {
         protected IVirtualPathProvider PathProvider { get; private set; }
@@ -19,6 +22,9 @@ namespace Neptuo.TemplateEngine.Web.ViewBundles
             PathProvider = pathProvider;
         }
 
+        /// <summary>
+        /// Loads bundles from XML file.
+        /// </summary>
         public void LoadXml(string filePath, IViewBundleCollection viewBundles)
         {
             Guard.NotNullOrEmpty(filePath, "filePath");
@@ -63,6 +69,9 @@ namespace Neptuo.TemplateEngine.Web.ViewBundles
             }
         }
 
+        /// <summary>
+        /// Loads all XML files in <paramref name="directoryPath"/>.
+        /// </summary>
         public void LoadDirectory(string directoryPath, IViewBundleCollection viewBundles)
         {
             directoryPath = PathProvider.MapPath(directoryPath);

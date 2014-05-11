@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Web.ViewBundles
 {
+    /// <summary>
+    /// Actual implmentation of <see cref="IViewBundleCollection"/>.
+    /// </summary>
     public class ViewBundleCollection : IViewBundleCollection
     {
         protected Dictionary<string, IViewBundle> Bundles { get; private set; }

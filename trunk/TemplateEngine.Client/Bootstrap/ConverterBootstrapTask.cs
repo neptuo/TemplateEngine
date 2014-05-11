@@ -12,6 +12,9 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Bootstrap
 {
+    /// <summary>
+    /// Registers converters.
+    /// </summary>
     public class ConverterBootstrapTask : IBootstrapTask
     {
         private IConverterRepository repository;
@@ -24,8 +27,7 @@ namespace Neptuo.TemplateEngine.Bootstrap
         public void Initialize()
         {
             repository
-                .Add(typeof(JsObject), typeof(PartialResponse), new PartialResponseConverter())
-                .Add(typeof(JsObject), typeof(ModelValueGetterListResult), new ModelValueGetterListResultConverter());
+                .Add(typeof(JsObject), typeof(PartialResponse), new PartialResponseConverter());
         }
     }
 }

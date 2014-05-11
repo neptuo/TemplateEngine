@@ -368,8 +368,7 @@ var Neptuo$TemplateEngine$Providers$Message = {
             this._Type = Neptuo.TemplateEngine.Providers.MessageType.Error;
             this._Text = null;
             System.Object.ctor.call(this);
-            if (text == null)
-                throw $CreateException(new System.ArgumentNullException.ctor$$String("text"), new Error());
+            Neptuo.Guard.NotNull$$Object$$String(text, "text");
             this.set_Key(key);
             this.set_Text(text);
             this.set_Type(type);

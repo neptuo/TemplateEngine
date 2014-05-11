@@ -8,13 +8,35 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Templates.Controls
 {
+    /// <summary>
+    /// Template control that enables template composition.
+    /// </summary>
     [DefaultProperty("Content")]
     public class TemplateControl : ControlBase
     {
+        /// <summary>
+        /// List of contens for placeholders.
+        /// </summary>
         public ICollection<TemplateContentControl> Content { get; set; }
+
+        /// <summary>
+        /// Current templates.
+        /// </summary>
         public ITemplate Template { get; set; }
+
+        /// <summary>
+        /// Instance of <see cref="Template"/>.
+        /// </summary>
         protected ITemplateContent TemplateContent { get; set; }
+
+        /// <summary>
+        /// Storage for contents.
+        /// </summary>
         protected TemplateContentStorageStack TemplateStorageStack { get; private set; }
+
+        /// <summary>
+        /// Storage for contents.
+        /// </summary>
         protected TemplateContentStorage TemplateStorage { get; private set; }
 
         public TemplateControl(IComponentManager componentManager, TemplateContentStorageStack contents)

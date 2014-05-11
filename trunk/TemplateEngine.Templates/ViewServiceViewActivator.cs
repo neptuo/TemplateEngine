@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Templates
 {
+    /// <summary>
+    /// <see cref="IViewActivator"/> implemented using <see cref="IViewService"/>.
+    /// </summary>
     public class ViewServiceViewActivator : IViewActivator
     {
         private IDependencyProvider dependencyProvider;

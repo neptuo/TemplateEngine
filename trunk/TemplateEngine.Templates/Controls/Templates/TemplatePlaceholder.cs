@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Templates.Controls
 {
+    /// <summary>
+    /// Defines place in template where content can be set.
+    /// </summary>
     public class TemplatePlaceholder : IControl
     {
         protected TemplateContentStorageStack Contents { get; private set; }

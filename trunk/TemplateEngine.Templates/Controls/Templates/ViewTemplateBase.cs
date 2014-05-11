@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Templates.Controls
 {
+    /// <summary>
+    /// Base implementation of <see cref="ITemplate"/> operating on separated compiled template.
+    /// </summary>
     public abstract class ViewTemplateBase : ITemplate
     {
         protected IDependencyProvider DependencyProvider { get; private set; }
@@ -18,6 +21,9 @@ namespace Neptuo.TemplateEngine.Templates.Controls
             ComponentManager = componentManager;
         }
 
+        /// <summary>
+        /// Creates instance of <see cref="ITemplateContent"/>.
+        /// </summary>
         public ITemplateContent CreateInstance()
         {
             BaseGeneratedView view = CreateView();
@@ -29,6 +35,9 @@ namespace Neptuo.TemplateEngine.Templates.Controls
             return templateContent;
         }
 
+        /// <summary>
+        /// Override to create instance of current view.
+        /// </summary>
         protected abstract BaseGeneratedView CreateView();
 
         public void Dispose()

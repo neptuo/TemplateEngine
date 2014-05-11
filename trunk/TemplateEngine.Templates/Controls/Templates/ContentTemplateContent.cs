@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Templates.Controls
 {
+    /// <summary>
+    /// Actul implementation of <see cref="ITemplateContent"/>
+    /// </summary>
     public class ContentTemplateContent : ITemplateContent
     {
         protected IComponentManager ComponentManager { get; private set; }

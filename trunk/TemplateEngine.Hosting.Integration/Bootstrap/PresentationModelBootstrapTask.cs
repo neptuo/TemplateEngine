@@ -13,6 +13,9 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Hosting.Integration.Bootstrap
 {
+    /// <summary>
+    /// Registers presentation models.
+    /// </summary>
     public class PresentationModelBootstrapTask : IBootstrapTask
     {
         protected IDependencyContainer DependencyContainer { get; private set; }

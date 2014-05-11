@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Web
 {
+    /// <summary>
+    /// History API implementation of <see cref="IHistoryState"/>.
+    /// </summary>
     public class HistoryState : IHistoryState
     {
         private bool isPopAssigned = false;

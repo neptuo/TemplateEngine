@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Templates.DataSources
 {
+    /// <summary>
+    /// <see cref="IListDataSource"/> that operates on <see cref="Data"/>.
+    /// </summary>
     public class CollectionDataSource : IListDataSource
     {
         public IEnumerable Data { get; set; }

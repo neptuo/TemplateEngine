@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Templates
 {
+    /// <summary>
+    /// Actul implementation of <see cref="IExtendedHtmlWriter"/>.
+    /// </summary>
     public class ExtendedHtmlTextWriter : HtmlTextWriter, IExtendedHtmlWriter
     {
         protected List<HtmlAttribute> PendingAttributes { get; private set; }

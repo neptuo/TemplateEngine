@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Hosting.DataSources
 {
+    /// <summary>
+    /// Actual implementation of <see cref="IWebDataSourceRegistry"/>
+    /// </summary>
     public class DictionaryWebDataSourceRegistry : IWebDataSourceRegistry
     {
         protected Dictionary<string, Type> Registry { get; private set; }

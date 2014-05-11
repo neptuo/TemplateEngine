@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Templates.Controls
 {
+    /// <summary>
+    /// Creates form item.
+    /// </summary>
     public abstract class FormControlBase : HtmlControlBase, IFormControl
     {
         public string Name { get; set; }

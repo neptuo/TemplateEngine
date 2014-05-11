@@ -10,6 +10,9 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Hosting.Integration.Bootstrap
 {
+    /// <summary>
+    /// Registers binding manager.
+    /// </summary>
     public class BindingBootstrapTask : IBootstrapTask
     {
         private IDependencyContainer dependencyContainer;

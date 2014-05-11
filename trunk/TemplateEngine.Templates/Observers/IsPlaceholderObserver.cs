@@ -8,8 +8,14 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Templates.Observers
 {
+    /// <summary>
+    /// If <see cref="IsPlaceholder"/> is not defined for current template, skips processing of control where applied.
+    /// </summary>
     public class IsPlaceholderObserver : IObserver
     {
+        /// <summary>
+        /// Placeholder name.
+        /// </summary>
         public string IsPlaceholder { get; set; }
 
         protected TemplateContentStorageStack TemplateStorage { get; private set; }

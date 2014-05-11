@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Providers.ModelBinders
 {
+    /// <summary>
+    /// Uses PresentationModels for <see cref="IModelBinder"/>.
+    /// </summary>
     public class ModelBinder : IModelBinder
     {
         protected IParameterProvider ParameterProvider { get; private set; }

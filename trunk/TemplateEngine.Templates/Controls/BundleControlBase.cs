@@ -9,6 +9,9 @@ using System.Web;
 
 namespace Neptuo.TemplateEngine.Templates.Controls
 {
+    /// <summary>
+    /// Base for bundling control.
+    /// </summary>
     public class BundleControlBase : IControl
     {
         private IVirtualUrlProvider urlProvider;

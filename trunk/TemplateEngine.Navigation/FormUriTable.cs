@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Navigation
 {
+    /// <summary>
+    /// Singleton instance of <see cref="IFormUriRepository"/>.
+    /// </summary>
     public static class FormUriTable
     {
         private static DefaultFormUriRepository instance;

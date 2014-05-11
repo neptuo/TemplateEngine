@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Templates
 {
+    /// <summary>
+    /// <see cref="IStackStorage"/> for <see cref="TemplateContentStorage"/>.
+    /// </summary>
     public class TemplateContentStorageStack : IStackStorage<TemplateContentStorage>
     {
         private Stack<TemplateContentStorage> innerStorage = new Stack<TemplateContentStorage>();

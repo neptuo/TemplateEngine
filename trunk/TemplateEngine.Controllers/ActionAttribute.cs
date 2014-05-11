@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Controllers
 {
+    /// <summary>
+    /// Defines controller action.
+    /// </summary>
     [AttributeUsage(AttributeTargets.Method | AttributeTargets.Class)]
     public class ActionAttribute : Attribute
     {

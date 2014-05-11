@@ -20,6 +20,8 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>
+    </DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -28,6 +30,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>..\References\Doc\Neptuo.TemplateEngine.Client.XML</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Neptuo">
@@ -79,8 +82,6 @@
   <ItemGroup>
     <Compile Include="Bootstrap\PresentationModelBootstrapTask.cs" />
     <Compile Include="ListResultConverterBase.cs" />
-    <Compile Include="ModelValueGetterListResult.cs" />
-    <Compile Include="ModelValueGetterListResultConverter.cs" />
     <Compile Include="Routing\ApplicationRouter.cs" />
     <Compile Include="Routing\StaticTemplateRoute.cs" />
     <Compile Include="Routing\TemplateRoute.cs" />
@@ -106,7 +107,6 @@
     <Compile Include="Web\PartialUpdateComponentManager.cs" />
     <Compile Include="Web\PartialUpdateHelper.cs" />
     <Compile Include="Templates\StaticViewActivator.cs" />
-    <Compile Include="Web\TemplateRouteParameterBase.cs" />
     <Compile Include="Web\UpdateViewNotifier.cs" />
     <Compile Include="Web\IViewLoadedChecker.cs" />
     <Compile Include="Web\JsArrayExtensions.cs" />
@@ -115,7 +115,6 @@
     <Compile Include="Web\QueueControllerInvokeManager.cs" />
     <Compile Include="Web\RouteParameterProvider.cs" />
     <Compile Include="Web\RouteParameterProviderFactory.cs" />
-    <Compile Include="Web\_InitScript.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -9,6 +9,9 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Hosting.Integration
 {
+    /// <summary>
+    /// <see cref="IApplicationBuilder"/> adapter.
+    /// </summary>
     public class ApplicationBuilderBase : IApplicationBuilder
     {
         public virtual void RegisterTypes(IDependencyContainer dependencyContainer)

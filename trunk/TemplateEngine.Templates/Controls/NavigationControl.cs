@@ -12,6 +12,9 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Templates.Controls
 {
+    /// <summary>
+    /// Enables putting navigation rules into views.
+    /// </summary>
     [DefaultProperty("Items")]
     public class NavigationControl : ControlBase
     {

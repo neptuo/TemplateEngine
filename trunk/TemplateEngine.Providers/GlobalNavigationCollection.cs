@@ -7,10 +7,19 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Providers
 {
+    /// <summary>
+    /// Collectio of globally registered navigation rules.
+    /// </summary>
     public class GlobalNavigationCollection
     {
         private Dictionary<string, FormUri> storage = new Dictionary<string, FormUri>();
 
+        /// <summary>
+        /// Adds nagivation rule.
+        /// </summary>
+        /// <param name="on">Navigation rule.</param>
+        /// <param name="to">Target form.</param>
+        /// <returns>This (fluently).</returns>
         public GlobalNavigationCollection Add(string on, FormUri to)
         {
             if (on == null)
@@ -23,6 +32,12 @@ namespace Neptuo.TemplateEngine.Providers
             return this;
         }
 
+        /// <summary>
+        /// Tries get registered form for <paramref name="on"/>.
+        /// </summary>
+        /// <param name="on">Navigation rule.</param>
+        /// <param name="to">Target form.</param>
+        /// <returns>True is there is registered form for <paramref name="on"/>.</returns>
         public bool TryGetValue(string on, out FormUri to)
         {
             if (on == null)

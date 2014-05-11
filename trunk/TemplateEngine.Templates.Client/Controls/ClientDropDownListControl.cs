@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Templates.Controls
 {
+    /// <summary>
+    /// Javascript implementation of <see cref="DropDownControl"/>.
+    /// </summary>
     public class ClientDropDownListControl : ClientSelectControl
     {
         public string ID { get; set; }

@@ -10,6 +10,9 @@ using System.Web;
 
 namespace Neptuo.TemplateEngine.Templates
 {
+    /// <summary>
+    /// Javascript implementation of <see cref="GeneratedViewBase"/>.
+    /// </summary>
     public abstract class ClientGeneratedViewBase : BaseGeneratedView
     {
         protected IVirtualUrlProvider urlProvider;

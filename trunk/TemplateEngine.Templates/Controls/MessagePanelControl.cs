@@ -9,11 +9,21 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Templates.Controls
 {
+    /// <summary>
+    /// Control that renders messages from <paramref name="MessageStorage"/>.
+    /// </summary>
     public class MessagePanelControl : HtmlControlBase
     {
         protected MessageStorage MessageStorage { get; private set; }
 
+        /// <summary>
+        /// Message group.
+        /// </summary>
         public string Group { get; set; }
+
+        /// <summary>
+        /// Message key/property.
+        /// </summary>
         public string Key { get; set; }
 
         public MessagePanelControl(IComponentManager componentManager, MessageStorage messageStorage)

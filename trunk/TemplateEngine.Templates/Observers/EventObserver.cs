@@ -10,6 +10,9 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Templates.Observers
 {
+    /// <summary>
+    /// Defines ui:Event on current button.
+    /// </summary>
     public class EventObserver : IObserver
     {
         public string Event { get; set; }
