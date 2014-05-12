@@ -1,0 +1,73 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Neptuo.TemplateEngine.Navigation</name>
+    </assembly>
+    <members>
+        <member name="T:Neptuo.TemplateEngine.Navigation.IFormUriRepository">
+            <summary>
+            Repository for registrations.
+            </summary>
+        </member>
+        <member name="M:Neptuo.TemplateEngine.Navigation.IFormUriRepository.TryGet(System.String,Neptuo.TemplateEngine.Navigation.FormUri@)">
+            <summary>
+            Tries to find regstration for <paramref name="identifier"/>.
+            </summary>
+        </member>
+        <member name="M:Neptuo.TemplateEngine.Navigation.IFormUriRepository.EnumerateForms">
+            <summary>
+            Enumerates all registered forms.
+            </summary>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Navigation.FormUri">
+            <summary>
+            Registed url to identifier.
+            </summary>
+        </member>
+        <member name="M:Neptuo.TemplateEngine.Navigation.FormUri.op_Explicit(System.String)~Neptuo.TemplateEngine.Navigation.FormUri">
+            <summary>
+            Converts string identifier to registration.
+            </summary>
+            <param name="uri">Registered identifier.</param>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Navigation.FormUriTable">
+            <summary>
+            Singleton instance of <see cref="T:Neptuo.TemplateEngine.Navigation.IFormUriRepository"/>.
+            </summary>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Navigation.INavigateTo">
+            <summary>
+            Represents opened navigation.
+            Calling to <see cref="M:Neptuo.TemplateEngine.Navigation.INavigateTo.Open"/> executes navigation.
+            </summary>
+        </member>
+        <member name="M:Neptuo.TemplateEngine.Navigation.INavigateTo.Param(System.String,System.Object)">
+            <summary>
+            Sets parameter to current navigation context.
+            </summary>
+            <param name="key">Parameter key.</param>
+            <param name="value">Parameter value.</param>
+        </member>
+        <member name="M:Neptuo.TemplateEngine.Navigation.INavigateTo.Open">
+            <summary>
+            Executes navigation.
+            No parameters can be than set.
+            </summary>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Navigation.INavigator">
+            <summary>
+            Enables to navigate to forms.
+            </summary>
+        </member>
+        <member name="M:Neptuo.TemplateEngine.Navigation.INavigator.Open(Neptuo.TemplateEngine.Navigation.FormUri)">
+            <summary>
+            Navigates to <paramref name="formUri"/>.
+            </summary>
+        </member>
+        <member name="M:Neptuo.TemplateEngine.Navigation.INavigator.NavigateTo(Neptuo.TemplateEngine.Navigation.FormUri)">
+            <summary>
+            Creates navigation object, <see cref="T:Neptuo.TemplateEngine.Navigation.INavigateTo"/>, for <paramref name="formUri"/>.
+            </summary>
+        </member>
+    </members>
+</doc>

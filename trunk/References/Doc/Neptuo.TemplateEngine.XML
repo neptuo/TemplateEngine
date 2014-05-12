@@ -1,0 +1,202 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Neptuo.TemplateEngine</name>
+    </assembly>
+    <members>
+        <member name="T:Neptuo.TemplateEngine.Configuration.IApplicationConfiguration">
+            <summary>
+            Application configuration.
+            </summary>
+        </member>
+        <member name="P:Neptuo.TemplateEngine.Configuration.IApplicationConfiguration.IsDebug">
+            <summary>
+            Contains debug flag.
+            </summary>
+        </member>
+        <member name="P:Neptuo.TemplateEngine.Configuration.IApplicationConfiguration.AnonymousRoleKey">
+            <summary>
+            Role key for anonynous user.
+            </summary>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.ModuleAttribute">
+            <summary>
+            Defines application module.
+            </summary>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Security.IUserContext">
+            <summary>
+            Context of signed user.
+            </summary>
+        </member>
+        <member name="P:Neptuo.TemplateEngine.Security.IUserContext.User">
+            <summary>
+            User info.
+            </summary>
+        </member>
+        <member name="P:Neptuo.TemplateEngine.Security.IUserContext.Permissions">
+            <summary>
+            Permission settings.
+            </summary>
+        </member>
+        <member name="P:Neptuo.TemplateEngine.Security.IUserContext.AuthenticationToken">
+            <summary>
+            Token that is used to authenticate user.
+            </summary>
+        </member>
+        <member name="P:Neptuo.TemplateEngine.Security.IUserContext.IsAuthenticated">
+            <summary>
+            Whether is user authenticated or is anonnymous.
+            </summary>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Security.Events.UserSignedInEvent">
+            <summary>
+            Event fired when user is signed in.
+            </summary>
+        </member>
+        <member name="M:Neptuo.TemplateEngine.Security.Events.UserSignedInEvent.#ctor(Neptuo.TemplateEngine.Security.IUserContext,System.DateTime)">
+            <summary>
+            Creates new instance.
+            </summary>
+            <param name="userContext">User context.</param>
+            <param name="timestamp">Sign in timestamp.</param>
+        </member>
+        <member name="P:Neptuo.TemplateEngine.Security.Events.UserSignedInEvent.UserContext">
+            <summary>
+            User context.
+            </summary>
+        </member>
+        <member name="P:Neptuo.TemplateEngine.Security.Events.UserSignedInEvent.Timestamp">
+            <summary>
+            Sign in timestamp.
+            </summary>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Security.Events.UserSignedOutEvent">
+            <summary>
+            Event fires when user is signed out.
+            </summary>
+        </member>
+        <member name="M:Neptuo.TemplateEngine.Security.Events.UserSignedOutEvent.#ctor(System.DateTime)">
+            <summary>
+            Creates new instance.
+            </summary>
+            <param name="timestamp">Sign out timestmap.</param>
+        </member>
+        <member name="P:Neptuo.TemplateEngine.Security.Events.UserSignedOutEvent.Timestamp">
+            <summary>
+            Sign out timestmap.
+            </summary>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Security.IAuthenticator">
+            <summary>
+            Authentication service.
+            </summary>
+        </member>
+        <member name="M:Neptuo.TemplateEngine.Security.IAuthenticator.Login(System.String,System.String)">
+            <summary>
+            Signs user in.
+            </summary>
+            <param name="username">User name.</param>
+            <param name="password">Password.</param>
+            <returns>True if succeed.</returns>
+        </member>
+        <member name="M:Neptuo.TemplateEngine.Security.IAuthenticator.Logout">
+            <summary>
+            Signs user out.
+            </summary>
+            <returns>True is succeed.</returns>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Security.IPermissionProvider">
+            <summary>
+            Provides permission settings.
+            </summary>
+        </member>
+        <member name="M:Neptuo.TemplateEngine.Security.IPermissionProvider.IsAllowed(System.Object,System.String)">
+            <summary>
+            Returns whether <paramref name="action"/> is granted on <paramref name="key"/>.
+            </summary>
+            <param name="key">Target object.</param>
+            <param name="action">Action wanted to test on <paramref name="key"/>.</param>
+            <returns>True if <paramref name="action"/> is granted on <paramref name="key"/>.</returns>
+        </member>
+        <member name="M:Neptuo.TemplateEngine.Security.IPermissionProvider.Get(System.Object)">
+            <summary>
+            Gets set of permission settings for <paramref name="key"/>.
+            </summary>
+            <param name="key">Target object.</param>
+            <returns>Set of permission settings for <paramref name="key"/>.</returns>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Security.IPermissionSet">
+            <summary>
+            Contains permission settings for single object, <see cref="M:Neptuo.TemplateEngine.Security.IPermissionProvider.Get(System.Object)"/>.
+            </summary>
+        </member>
+        <member name="M:Neptuo.TemplateEngine.Security.IPermissionSet.IsAllowed(System.String)">
+            <summary>
+            Returns whether <paramref name="action"/> is granted.
+            </summary>
+            <param name="action">Action wanted to test on <paramref name="key"/>.</param>
+            <returns>True if <paramref name="action"/> is granted.</returns>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Security.IUserInfo">
+            <summary>
+            User info.
+            </summary>
+        </member>
+        <member name="P:Neptuo.TemplateEngine.Security.IUserInfo.Key">
+            <summary>
+            User key.
+            </summary>
+        </member>
+        <member name="P:Neptuo.TemplateEngine.Security.IUserInfo.Username">
+            <summary>
+            User name.
+            </summary>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Security.OptimisticPermissionProvider">
+            <summary>
+            Provides access to all objects with all actions.
+            Testing implementation.
+            </summary>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Security.OptimisticPermissionSet">
+            <summary>
+            Provides access to all actions.
+            Testing implementation.
+            </summary>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Security.PermissionSet">
+            <summary>
+            Implementation of <see cref="T:Neptuo.TemplateEngine.Security.IPermissionSet"/> that gets list of granted permissions and operate on it.
+            </summary>
+        </member>
+        <member name="F:Neptuo.TemplateEngine.Security.PermissionSet.availablePermissions">
+            <summary>
+            List of granted permissions.
+            </summary>
+        </member>
+        <member name="M:Neptuo.TemplateEngine.Security.PermissionSet.#ctor(System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Create new instance.
+            </summary>
+            <param name="availablePermissions">List of granted permissions.</param>
+        </member>
+        <member name="M:Neptuo.TemplateEngine.Security.PermissionSet.IsAllowed(System.String)">
+            <summary>
+            Returns true if <see cref="F:Neptuo.TemplateEngine.Security.PermissionSet.availablePermissions"/> contains <paramref name="action"/>.
+            </summary>
+            <param name="action">Action wanted to test on <paramref name="key"/>.</param>
+            <returns>True if <see cref="F:Neptuo.TemplateEngine.Security.PermissionSet.availablePermissions"/> contains <paramref name="action"/>.</returns>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.StringToIntConverter">
+            <summary>
+            Converter between string and int.
+            </summary>
+        </member>
+        <member name="M:Neptuo.TemplateEngine.StringToIntConverter.#ctor">
+            <summary>
+            Uses <see cref="M:System.Int32.TryParse(System.String,System.Int32@)"/> as converter function.
+            </summary>
+        </member>
+    </members>
+</doc>
