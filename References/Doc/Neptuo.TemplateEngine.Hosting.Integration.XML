@@ -1,0 +1,149 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Neptuo.TemplateEngine.Hosting.Integration</name>
+    </assembly>
+    <members>
+        <member name="T:Neptuo.TemplateEngine.Hosting.Integration.ApplicationBuilderBase">
+            <summary>
+            <see cref="T:Neptuo.TemplateEngine.Hosting.Integration.IApplicationBuilder"/> adapter.
+            </summary>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Hosting.Integration.IApplicationBuilder">
+            <summary>
+            Enables customization for <see cref="T:Neptuo.TemplateEngine.Hosting.Integration.HostedApplication"/>.
+            </summary>
+        </member>
+        <member name="M:Neptuo.TemplateEngine.Hosting.Integration.IApplicationBuilder.RegisterTypes(Neptuo.IDependencyContainer)">
+            <summary>
+            Enables type registration to root container.
+            </summary>
+        </member>
+        <member name="M:Neptuo.TemplateEngine.Hosting.Integration.IApplicationBuilder.RegisterBootstrapTasks(Neptuo.Bootstrap.IBootstrapTaskRegistry)">
+            <summary>
+            Enables bootstrap task registration.
+            </summary>
+        </member>
+        <member name="M:Neptuo.TemplateEngine.Hosting.Integration.IApplicationBuilder.RegisterForms(Neptuo.TemplateEngine.Navigation.Bootstrap.IFormUriRegistry,Neptuo.TemplateEngine.Providers.ITemplateUrlFormatter)">
+            <summary>
+            Enables formUri registration.
+            </summary>
+        </member>
+        <member name="M:Neptuo.TemplateEngine.Hosting.Integration.IApplicationBuilder.RegisterGlobalNavigations(Neptuo.TemplateEngine.Providers.GlobalNavigationCollection)">
+            <summary>
+            Enables registration for global navigation rules.
+            </summary>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Hosting.Integration.Bootstrap.AuthenticationBootstrapTask">
+            <summary>
+            Registers authentication stuff.
+            </summary>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Hosting.Integration.Bootstrap.BindingBootstrapTask">
+            <summary>
+            Registers binding manager.
+            </summary>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Hosting.Integration.ConfigurationBootstrapTask">
+            <summary>
+            Registers configuration.
+            </summary>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Hosting.Integration.Bootstrap.ConverterBootstrapTask">
+            <summary>
+            Registers global converters.
+            </summary>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Hosting.Integration.Bootstrap.NavigationBootstrapTask">
+            <summary>
+            Registers navigation components.
+            </summary>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Hosting.Integration.Bootstrap.PresentationModelBootstrapTask">
+            <summary>
+            Registers presentation models.
+            </summary>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Hosting.Integration.Bootstrap.RoutingBootstrapTask">
+            <summary>
+            Registers routes.
+            </summary>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Hosting.Integration.Bootstrap.ViewServiceBootstrapTask">
+            <summary>
+            Completely setups template processing.
+            </summary>
+        </member>
+        <member name="M:Neptuo.TemplateEngine.Hosting.Integration.Bootstrap.ViewServiceBootstrapTask.SetupViewService(Neptuo.Templates.Compilation.CodeDomViewService,Neptuo.Templates.Compilation.Parsers.TypeBuilderRegistry,Neptuo.Templates.Compilation.IFileProvider,Neptuo.Templates.IVirtualPathProvider)">
+            <summary>
+            Setups view service.
+            </summary>
+        </member>
+        <member name="M:Neptuo.TemplateEngine.Hosting.Integration.Bootstrap.ViewServiceBootstrapTask.SetupTypeBuilderRegistry(Neptuo.Templates.Compilation.Parsers.TypeBuilderRegistry)">
+            <summary>
+            Registers components to <paramref name="registry"/>.
+            </summary>
+        </member>
+        <member name="M:Neptuo.TemplateEngine.Hosting.Integration.Bootstrap.ViewServiceBootstrapTask.SetupCodeDomGenerator(Neptuo.Templates.Compilation.CodeGenerators.CodeDomGenerator)">
+            <summary>
+            Registers code generators to <paramref name="generator"/>.
+            </summary>
+        </member>
+        <member name="M:Neptuo.TemplateEngine.Hosting.Integration.Bootstrap.ViewServiceBootstrapTask.SetupJavascriptGenerator(Neptuo.Templates.Compilation.CodeGenerators.SharpKitCodeGenerator)">
+            <summary>
+            Setups SharpKit code generator.
+            </summary>
+        </member>
+        <member name="M:Neptuo.TemplateEngine.Hosting.Integration.Bootstrap.ViewServiceBootstrapTask.SetupPreProcesssor(Neptuo.Templates.Compilation.PreProcessing.IPreProcessorService,Neptuo.Templates.Compilation.CodeDomViewService)">
+            <summary>
+            Registers visitor for pre processing service.
+            </summary>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Hosting.Integration.HostedApplication">
+            <summary>
+            Simplifies TemplateEngine hosting.
+            Set this class as your http applcation in global.asax.
+            </summary>
+        </member>
+        <member name="M:Neptuo.TemplateEngine.Hosting.Integration.HostedApplication.RegisterBootstrapTasks(Neptuo.Bootstrap.IBootstrapTaskRegistry,Neptuo.IDependencyContainer)">
+            <summary>
+            Registers requered bootstrap tasks.
+            </summary>
+        </member>
+        <member name="M:Neptuo.TemplateEngine.Hosting.Integration.HostedApplication.CreateDependencyContainer">
+            <summary>
+            Creates and initializes root dependency container.
+            </summary>
+        </member>
+        <member name="M:Neptuo.TemplateEngine.Hosting.Integration.HostedApplication.Application_Error(System.Object,System.EventArgs)">
+            <summary>
+            Log errors.
+            </summary>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Hosting.Integration.Routing.ErrorRouteHandler">
+            <summary>
+            Error route handler.
+            </summary>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Hosting.Integration.Routing.ViewBundleRouteHandler">
+            <summary>
+            View bundle route handler.
+            </summary>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Hosting.Integration.Routing.StaticTemplateRouteHandler">
+            <summary>
+            Template route handler for static template.
+            </summary>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Hosting.Integration.Routing.TemplateRouteHandler">
+            <summary>
+            Route handler for executing template requests.
+            </summary>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Hosting.Integration.Routing.TemplateRouteParameter">
+            <summary>
+            Route parameter for template path.
+            </summary>
+        </member>
+    </members>
+</doc>

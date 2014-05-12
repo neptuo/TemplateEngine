@@ -1,0 +1,569 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Neptuo.TemplateEngine.Client</name>
+    </assembly>
+    <members>
+        <member name="T:Neptuo.TemplateEngine.Bootstrap.PresentationModelBootstrapTask">
+            <summary>
+            Registers Persentation models.
+            </summary>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.ListResultConverterBase`2">
+            <summary>
+            Base implmentation of <see cref="!:ConverterBase"/> for list result <see cref="T:Neptuo.TemplateEngine.Templates.DataSources.ListResult"/> and JSON object.
+            </summary>
+            <typeparam name="TListResult">Type of <see cref="T:Neptuo.TemplateEngine.Templates.DataSources.ListResult"/> descendant.</typeparam>
+            <typeparam name="TItem">Type of list item.</typeparam>
+        </member>
+        <member name="M:Neptuo.TemplateEngine.ListResultConverterBase`2.TryConvert(SharpKit.JavaScript.JsObject,`0@)">
+            <summary>
+            Loads TotalCount and Data from JSON and calls <see cref="M:Neptuo.TemplateEngine.ListResultConverterBase`2.TryConvertItem(SharpKit.JavaScript.JsObject,`1@)"/> for every single Data item.
+            </summary>
+            <param name="sourceValue">JSON object.</param>
+            <param name="targetValue">Target list result.</param>
+            <returns>True if succeeds.</returns>
+        </member>
+        <member name="M:Neptuo.TemplateEngine.ListResultConverterBase`2.TryConvertItem(SharpKit.JavaScript.JsObject,`1@)">
+            <summary>
+            Converts single item from <paramref name="sourceValue"/>.
+            </summary>
+            <param name="sourceValue">JSON item object.</param>
+            <param name="item">Target item instance.</param>
+            <returns>True if succeeds.</returns>
+        </member>
+        <member name="M:Neptuo.TemplateEngine.ListResultConverterBase`2.CreateResult(System.Collections.IEnumerable,System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="data"></param>
+            <param name="totalCount"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Routing.ApplicationRouter">
+            <summary>
+            Extends <see cref="T:Neptuo.TemplateEngine.Routing.Router"/> and uses flag <see cref="P:Neptuo.TemplateEngine.Routing.ApplicationRouter.RedirectWhenNoRoute"/> for unknown route urls.
+            </summary>
+        </member>
+        <member name="M:Neptuo.TemplateEngine.Routing.ApplicationRouter.#ctor(System.Boolean)">
+            <summary>
+            Create new instance.
+            </summary>
+            <param name="redirectWhenNoRoute">
+            If true, router creates standart get request for unknown route url.
+            Otherwise creates alert (for debugging).
+            </param>
+        </member>
+        <member name="M:Neptuo.TemplateEngine.Routing.ApplicationRouter.WhenNoRouteFound(Neptuo.TemplateEngine.Routing.RequestContext)">
+            <summary>
+            Uses <see cref="P:Neptuo.TemplateEngine.Routing.ApplicationRouter.RedirectWhenNoRoute"/> to take action when unknown rote url.
+            </summary>
+            <param name="context">Request context.</param>
+        </member>
+        <member name="P:Neptuo.TemplateEngine.Routing.ApplicationRouter.RedirectWhenNoRoute">
+            <summary>
+            If true, router creates standart get request for unknown route url.
+            Otherwise creates alert (for debugging).
+            </summary>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Routing.StaticTemplateRoute">
+            <summary>
+            Routes to static template url.
+            </summary>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Routing.TemplateRoute">
+            <summary>
+            Template route tha maps url ~/Accounts/UserList.html to views ~/Views/Accounts/UserList.view.
+            </summary>
+        </member>
+        <member name="M:Neptuo.TemplateEngine.Routing.TemplateRoute.#ctor(System.String,Neptuo.TemplateEngine.Web.IApplication)">
+            <summary>
+            Creates new instance.
+            </summary>
+            <param name="urlSuffix">Url suffix.</param>
+            <param name="application">Instance of application.</param>
+        </member>
+        <member name="M:Neptuo.TemplateEngine.Routing.TemplateRoute.GetRouteData(Neptuo.TemplateEngine.Routing.RequestContext)">
+            <summary>
+            Tries to map url to view path and if succeeds returns <see cref="T:Neptuo.TemplateEngine.Routing.RouteData"/> for that url.
+            </summary>
+            <param name="context">Request context.</param>
+            <returns>Route data if succeeds mapping url to view path.</returns>
+        </member>
+        <member name="M:Neptuo.TemplateEngine.Routing.TemplateRoute.MapView(System.String)">
+            <summary>
+            Maps urls to view paths.
+            </summary>
+            <param name="url">Virtual url to map.</param>
+            <returns>Virtual view path for <paramref name="url"/>.</returns>
+        </member>
+        <member name="P:Neptuo.TemplateEngine.Routing.TemplateRoute.UrlSuffix">
+            <summary>
+            Url suffix.
+            </summary>
+        </member>
+        <member name="P:Neptuo.TemplateEngine.Routing.TemplateRoute.Application">
+            <summary>
+            Instance of application.
+            </summary>
+        </member>
+        <member name="M:Neptuo.TemplateEngine.Routing.StaticTemplateRoute.#ctor(System.String,System.String,System.String,Neptuo.TemplateEngine.Web.IApplication)">
+            <summary>
+            Creates new instance.
+            </summary>
+            <param name="realUrl">Real url (can be seen in browser).</param>
+            <param name="virtualUrl">Url that will be rendere render.</param>
+            <param name="urlSuffix">Url suffix for <see cref="T:Neptuo.TemplateEngine.Routing.TemplateRoute"/>.</param>
+            <param name="application">Applcation instance.</param>
+        </member>
+        <member name="M:Neptuo.TemplateEngine.Routing.StaticTemplateRoute.MapView(System.String)">
+            <summary>
+            Maps request for <see cref="P:Neptuo.TemplateEngine.Routing.StaticTemplateRoute.RealUrl"/> to <see cref="P:Neptuo.TemplateEngine.Routing.StaticTemplateRoute.VirtualUrl"/>.
+            </summary>
+        </member>
+        <member name="P:Neptuo.TemplateEngine.Routing.StaticTemplateRoute.RealUrl">
+            <summary>
+            Real url (can be seen in browser).
+            </summary>
+        </member>
+        <member name="P:Neptuo.TemplateEngine.Routing.StaticTemplateRoute.VirtualUrl">
+            <summary>
+            Url that will be rendere render.
+            </summary>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Routing.TemplateRouteHandler">
+            <summary>
+            Route handler for rendering template.
+            </summary>
+        </member>
+        <member name="M:Neptuo.TemplateEngine.Routing.TemplateRouteHandler.#ctor(Neptuo.TemplateEngine.Web.IMainView,System.String,System.String[],Neptuo.IDependencyContainer)">
+            <summary>
+            Creates new instance.
+            </summary>
+            <param name="mainView">Main view.</param>
+            <param name="viewPath">View path to render.</param>
+            <param name="toUpdate">List regions to update.</param>
+            <param name="dependencyContainer">Container for rendering view.</param>
+        </member>
+        <member name="M:Neptuo.TemplateEngine.Routing.TemplateRouteHandler.ProcessRequest(Neptuo.TemplateEngine.Routing.RouteContext)">
+            <summary>
+            Renders view.
+            </summary>
+            <param name="context">Route context.</param>
+        </member>
+        <member name="P:Neptuo.TemplateEngine.Routing.TemplateRouteHandler.MainView">
+            <summary>
+            Main view.
+            </summary>
+        </member>
+        <member name="P:Neptuo.TemplateEngine.Routing.TemplateRouteHandler.ViewPath">
+            <summary>
+            View path to render.
+            </summary>
+        </member>
+        <member name="P:Neptuo.TemplateEngine.Routing.TemplateRouteHandler.ToUpdate">
+            <summary>
+            List regions to update.
+            </summary>
+        </member>
+        <member name="P:Neptuo.TemplateEngine.Routing.TemplateRouteHandler.DependencyContainer">
+            <summary>
+            Container for rendering view.
+            </summary>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Web.Application">
+            <summary>
+            Actual implmentation of <see cref="T:Neptuo.TemplateEngine.Web.IApplication"/>.
+            Entry point is static method <see cref="M:Neptuo.TemplateEngine.Web.Application.Start(System.Boolean,System.String,System.String[],System.String)"/>.
+            </summary>
+        </member>
+        <member name="P:Neptuo.TemplateEngine.Web.ITemplateConfiguration.ApplicationPath">
+            <summary>
+            Gets current root app path.
+            </summary>
+            <example>
+            /App/ThisApp
+            </example>
+        </member>
+        <member name="P:Neptuo.TemplateEngine.Web.ITemplateConfiguration.DefaultToUpdate">
+            <summary>
+            Name of default region to update.
+            </summary>
+        </member>
+        <member name="P:Neptuo.TemplateEngine.Web.ITemplateConfiguration.TemplateUrlSuffix">
+            <summary>
+            Url suffix for template pages.
+            </summary>
+        </member>
+        <member name="M:Neptuo.TemplateEngine.Web.IApplication.InvokeController(Neptuo.TemplateEngine.Web.FormRequestContext)">
+            <summary>
+            Tries to find and invoke controller.
+            </summary>
+            <param name="parameters">Form request context.</param>
+        </member>
+        <member name="P:Neptuo.TemplateEngine.Web.IApplication.IsDebug">
+            <summary>
+            Whether is application in debug mode.
+            </summary>
+        </member>
+        <member name="P:Neptuo.TemplateEngine.Web.IApplication.HistoryState">
+            <summary>
+            Provides access to application history state.
+            </summary>
+        </member>
+        <member name="P:Neptuo.TemplateEngine.Web.IApplication.MainView">
+            <summary>
+            Provides access to whole user interface.
+            </summary>
+        </member>
+        <member name="P:Neptuo.TemplateEngine.Web.IApplication.DependencyContainer">
+            <summary>
+            Root dependecy container.
+            </summary>
+        </member>
+        <member name="P:Neptuo.TemplateEngine.Web.IApplication.Router">
+            <summary>
+            Router.
+            </summary>
+        </member>
+        <member name="P:Neptuo.TemplateEngine.Web.IApplication.ControllerRegistry">
+            <summary>
+            Registry for controllers.
+            </summary>
+        </member>
+        <member name="M:Neptuo.TemplateEngine.Web.Application.Start(System.Boolean,System.String,System.String[],System.String)">
+            <summary>
+            Entry point.
+            </summary>
+            <param name="isDebug">Contains debug flag.</param>
+            <param name="applicationPath">Application relative path.</param>
+            <param name="defaultToUpdate">Default list of regions to update when not defined.</param>
+            <param name="templateUrlSuffix">Url suffix for templates.</param>
+        </member>
+        <member name="M:Neptuo.TemplateEngine.Web.Application.CreateDependencyContainer">
+            <summary>
+            Creates and register root dependency container.
+            </summary>
+        </member>
+        <member name="M:Neptuo.TemplateEngine.Web.Application.RunBootstrapTasks(Neptuo.IDependencyContainer)">
+            <summary>
+            Executes all loaded bootstrap tasks.
+            </summary>
+        </member>
+        <member name="M:Neptuo.TemplateEngine.Web.Application.OnHistoryStatePop(Neptuo.TemplateEngine.Web.HistoryItem)">
+            <summary>
+            When history state is changed.
+            </summary>
+        </member>
+        <member name="M:Neptuo.TemplateEngine.Web.Application.OnNavigation(System.String,System.String[])">
+            <summary>
+            When user invokes navigation.
+            </summary>
+            <param name="url">New url.</param>
+            <param name="toUpdate">List regions to update.</param>
+        </member>
+        <member name="M:Neptuo.TemplateEngine.Web.Application.OnFormSubmit(Neptuo.TemplateEngine.Web.FormRequestContext)">
+            <summary>
+            When user submits post form.
+            </summary>
+            <param name="context"></param>
+        </member>
+        <member name="M:Neptuo.TemplateEngine.Web.Application.InvokeController(Neptuo.TemplateEngine.Web.FormRequestContext)">
+            <summary>
+            Invokes controllers.
+            </summary>
+            <param name="context">Request context.</param>
+        </member>
+        <member name="M:Neptuo.TemplateEngine.Web.Application.NavigateToUrl(System.String,System.String[])">
+            <summary>
+            Renders <paramref name="url"/>.
+            </summary>
+            <param name="url">New url.</param>
+            <param name="toUpdate">List regions to update.</param>
+        </member>
+        <member name="P:Neptuo.TemplateEngine.Web.Application.Instance">
+            <summary>
+            Singleton instance.
+            </summary>
+        </member>
+        <member name="P:Neptuo.TemplateEngine.Web.Application.IsDebug">
+            <summary>
+            Contains debug flag.
+            </summary>
+        </member>
+        <member name="P:Neptuo.TemplateEngine.Web.Application.ApplicationPath">
+            <summary>
+            Application relative path.
+            Eg. /AppRootDirectory.
+            </summary>
+        </member>
+        <member name="P:Neptuo.TemplateEngine.Web.Application.DefaultToUpdate">
+            <summary>
+            Default list of regions to update when not defined.
+            </summary>
+        </member>
+        <member name="P:Neptuo.TemplateEngine.Web.Application.TemplateUrlSuffix">
+            <summary>
+            Url suffix for templates.
+            </summary>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Web.AsyncNotifyService">
+            <summary>
+            Service for maintaing pending async requests.
+            </summary>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Web.AsyncViewRenderer">
+            <summary>
+            Implementation of <see cref="T:Neptuo.TemplateEngine.Web.IAsyncViewRenderer"/> that loads views if not loaded when render request is creates.
+            </summary>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Web.IAsyncViewRenderer">
+            <summary>
+            View renderer.
+            </summary>
+        </member>
+        <member name="M:Neptuo.TemplateEngine.Web.IAsyncViewRenderer.Render">
+            <summary>
+            Invkes render.
+            </summary>
+        </member>
+        <member name="E:Neptuo.TemplateEngine.Web.IAsyncViewRenderer.OnCompleted">
+            <summary>
+            Fired when render is completed.
+            </summary>
+        </member>
+        <member name="M:Neptuo.TemplateEngine.Web.AsyncViewRenderer.Render">
+            <summary>
+            Tries to load view if requested one is not loaded.
+            </summary>
+        </member>
+        <member name="M:Neptuo.TemplateEngine.Web.AsyncViewRenderer.RenderView">
+            <summary>
+            Renders view and reacts to <see cref="T:Neptuo.TemplateEngine.Web.AsyncNotifyService"/>.
+            </summary>
+        </member>
+        <member name="M:Neptuo.TemplateEngine.Web.AsyncViewRenderer.OnAsyncNotifyReady">
+            <summary>
+            Do render view when nothing is pending.
+            </summary>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Bootstrap.ConverterBootstrapTask">
+            <summary>
+            Registers converters.
+            </summary>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Web.ControllerInvoker">
+            <summary>
+            Single, retryable controller invoke request.
+            </summary>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Web.IControllerInvoker">
+            <summary>
+            Contract for processing forms usign POST.
+            </summary>
+        </member>
+        <member name="M:Neptuo.TemplateEngine.Web.IControllerInvoker.Invoke">
+            <summary>
+            Starts POST request.
+            </summary>
+        </member>
+        <member name="E:Neptuo.TemplateEngine.Web.IControllerInvoker.OnSuccess">
+            <summary>
+            Executed when POST is successfull.
+            </summary>
+        </member>
+        <member name="E:Neptuo.TemplateEngine.Web.IControllerInvoker.OnError">
+            <summary>
+            Executed when POST was not successfull;
+            </summary>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Web.FormRequestContext">
+            <summary>
+            Submitted post form context.
+            </summary>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Web.HistoryItem">
+            <summary>
+            Single history state item.
+            </summary>
+        </member>
+        <member name="P:Neptuo.TemplateEngine.Web.HistoryItem.ToUpdate">
+            <summary>
+            Regions to update.
+            </summary>
+        </member>
+        <member name="P:Neptuo.TemplateEngine.Web.HistoryItem.Url">
+            <summary>
+            Url.
+            </summary>
+        </member>
+        <member name="P:Neptuo.TemplateEngine.Web.HistoryItem.FormData">
+            <summary>
+            Associated form data.
+            </summary>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Web.HistoryState">
+            <summary>
+            History API implementation of <see cref="T:Neptuo.TemplateEngine.Web.IHistoryState"/>.
+            </summary>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Web.IHistoryState">
+            <summary>
+            Maintains history and browser url state.
+            </summary>
+        </member>
+        <member name="M:Neptuo.TemplateEngine.Web.IHistoryState.Push(Neptuo.TemplateEngine.Web.HistoryItem)">
+            <summary>
+            Adds new <see cref="T:Neptuo.TemplateEngine.Web.HistoryItem"/>.
+            </summary>
+            <param name="item">New history item.</param>
+        </member>
+        <member name="M:Neptuo.TemplateEngine.Web.IHistoryState.Replace(Neptuo.TemplateEngine.Web.HistoryItem)">
+            <summary>
+            Rewrites current <see cref="T:Neptuo.TemplateEngine.Web.HistoryItem"/>.
+            </summary>
+            <param name="item">New history item to rewite current.</param>
+        </member>
+        <member name="E:Neptuo.TemplateEngine.Web.IHistoryState.OnPop">
+            <summary>
+            When user goes backward or forward.
+            </summary>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Web.IControllerInvokeManager">
+            <summary>
+            Manages <see cref="T:Neptuo.TemplateEngine.Web.IControllerInvoker"/>.
+            </summary>
+        </member>
+        <member name="M:Neptuo.TemplateEngine.Web.IControllerInvokeManager.Invoke(Neptuo.TemplateEngine.Web.IControllerInvoker)">
+            <summary>
+            Starts <paramref name="invoker"/>.
+            </summary>
+            <param name="invoker">Invoker to start.</param>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Web.IMainView">
+            <summary>
+            Represents whole user interface.
+            </summary>
+        </member>
+        <member name="M:Neptuo.TemplateEngine.Web.IMainView.RenderView(System.String,System.String[],Neptuo.IDependencyContainer)">
+            <summary>
+            Renders user inteface with <paramref name="viewPath"/> and updates <paramref name="toUpdate"/> parts of view.
+            Uses <paramref name="dependencyContainer"/> as dependencyContainer for rendering view.
+            </summary>
+            <param name="viewPath">New view.</param>
+            <param name="toUpdate">Parts of user interface to update.</param>
+            <param name="dependencyContainer">Depdency container used to render view.</param>
+        </member>
+        <member name="M:Neptuo.TemplateEngine.Web.IMainView.UpdateView(System.String,System.IO.TextWriter)">
+            <summary>
+            Updates content of element with <paramref name="partialGuid"/> with content from <paramref name="content"/>.
+            </summary>
+            <param name="partialGuid">Guid of element to update.</param>
+            <param name="content">New content for element with <paramref name="partialGuid"/>.</param>
+        </member>
+        <member name="M:Neptuo.TemplateEngine.Web.IMainView.UpdateError(System.String,Neptuo.TemplateEngine.Web.ErrorModel)">
+            <summary>
+            Updates content of element with <paramref name="partialGuid"/> with error information.
+            </summary>
+            <param name="partialGuid">Guid of element to update.</param>
+            <param name="model">Error information.</param>
+        </member>
+        <member name="M:Neptuo.TemplateEngine.Web.IMainView.WritePlaceholder(Neptuo.Templates.IHtmlWriter,System.String)">
+            <summary>
+            Writes placeholder for future partial update.
+            </summary>
+            <param name="writer">Html writer.</param>
+            <param name="partialGuid">Guid for the element.</param>
+        </member>
+        <member name="M:Neptuo.TemplateEngine.Web.IMainView.AutoFocus">
+            <summary>
+            Moves focus to element with 'auto focus'.
+            </summary>
+        </member>
+        <member name="E:Neptuo.TemplateEngine.Web.IMainView.OnLinkClick">
+            <summary>
+            Invoked when user clicks a link.
+            </summary>
+        </member>
+        <member name="E:Neptuo.TemplateEngine.Web.IMainView.OnPostFormSubmit">
+            <summary>
+            Invoked when user posts a form.
+            </summary>
+        </member>
+        <member name="E:Neptuo.TemplateEngine.Web.IMainView.OnGetFormSubmit">
+            <summary>
+            Invoked when user submits GET form.
+            </summary>
+        </member>
+        <member name="E:Neptuo.TemplateEngine.Web.IMainView.OnBeforeRenderView">
+            <summary>
+            Invoked before rendering view (before any action needed to render view).
+            First parameter is viewPath, second is array of toUpdate names.
+            </summary>
+            <remarks>
+            Ideal to show loading wheel.
+            </remarks>
+        </member>
+        <member name="E:Neptuo.TemplateEngine.Web.IMainView.OnAfterRenderView">
+            <summary>
+            Invokend after rendering view (doesn't include any after render action - like loading data in List/Detail views).
+            </summary>
+            <remarks>
+            Ideal to hide loading wheel.
+            </remarks>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Web.IUpdateViewNotifier">
+            <summary>
+            Helps maintaing "Loading" view.
+            </summary>
+        </member>
+        <member name="M:Neptuo.TemplateEngine.Web.IUpdateViewNotifier.StartUpdate">
+            <summary>
+            Start view update starts.
+            </summary>
+        </member>
+        <member name="M:Neptuo.TemplateEngine.Web.IUpdateViewNotifier.EndUpdate">
+            <summary>
+            End view update.
+            </summary>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Templates.PartialUpdateComponentManager">
+            <summary>
+            ComponetManager that enables partial update.
+            Implements <see cref="T:Neptuo.TemplateEngine.Templates.IPartialUpdateWriter"/> for registering regions.
+            </summary>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Web.PartialUpdateHelper">
+            <summary>
+            Contains logic shared between controls for partial rendering.
+            </summary>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Templates.StaticViewActivator">
+            <summary>
+            Single implementation of <see cref="T:Neptuo.TemplateEngine.Templates.IViewActivator"/> and <see cref="T:Neptuo.TemplateEngine.Web.IViewLoadedChecker"/>.
+            </summary>
+        </member>
+        <member name="M:Neptuo.TemplateEngine.Web.IViewLoadedChecker.IsViewLoaded(System.String)">
+            <summary>
+            Checks if view for <paramref name="viewPath"/> is loaded.
+            </summary>
+            <param name="viewPath">View path.</param>
+            <returns>True if view for <paramref name="viewPath"/> is loaded.</returns>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Web.UpdateViewNotifier">
+            <summary>
+            Actual implementation of <see cref="T:Neptuo.TemplateEngine.Web.IUpdateViewNotifier"/>.
+            </summary>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Web.MainView">
+            <summary>
+            Actual implementation of <see cref="T:Neptuo.TemplateEngine.Web.IMainView"/>.
+            </summary>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Web.PartialResponseConverter">
+            <summary>
+            Converts JSON object to <see cref="T:Neptuo.TemplateEngine.Providers.PartialResponse"/>
+            </summary>
+        </member>
+    </members>
+</doc>

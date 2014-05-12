@@ -1,0 +1,134 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Neptuo.TemplateEngine.Routing.Client</name>
+    </assembly>
+    <members>
+        <member name="T:Neptuo.TemplateEngine.Routing.IRoute">
+            <summary>
+            Single route.
+            </summary>
+        </member>
+        <member name="M:Neptuo.TemplateEngine.Routing.IRoute.GetRouteData(Neptuo.TemplateEngine.Routing.RequestContext)">
+            <summary>
+            If <paramref name="context"/> meets route restrictions, retuns <see cref="T:Neptuo.TemplateEngine.Routing.RouteData"/>.
+            Otherwise retuns null.
+            </summary>
+            <param name="context">Request context.</param>
+            <returns>Route data if route restriction has been met.</returns>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Routing.IRouteHandler">
+            <summary>
+            Route executor.
+            </summary>
+        </member>
+        <member name="M:Neptuo.TemplateEngine.Routing.IRouteHandler.ProcessRequest(Neptuo.TemplateEngine.Routing.RouteContext)">
+            <summary>
+            Executes request with <paramref name="context"/>.
+            </summary>
+            <param name="context">Execution context.</param>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Routing.IRouter">
+            <summary>
+            Contains list of routes enables their execution.
+            </summary>
+        </member>
+        <member name="M:Neptuo.TemplateEngine.Routing.IRouter.AddRoute(Neptuo.TemplateEngine.Routing.IRoute)">
+            <summary>
+            Adds new route.
+            </summary>
+            <param name="route">New route.</param>
+        </member>
+        <member name="M:Neptuo.TemplateEngine.Routing.IRouter.RouteTo(Neptuo.TemplateEngine.Routing.RequestContext)">
+            <summary>
+            Tries to route <paramref name="context"/> to any of existing routes.
+            </summary>
+            <param name="context">Request context.</param>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Routing.RouteNotFoundException">
+            <summary>
+            Exception thrown by <see cref="T:Neptuo.TemplateEngine.Routing.Router"/> when no route is matching <see cref="P:Neptuo.TemplateEngine.Routing.RouteNotFoundException.RequestContext"/>.
+            </summary>
+        </member>
+        <member name="M:Neptuo.TemplateEngine.Routing.RouteNotFoundException.#ctor(Neptuo.TemplateEngine.Routing.RequestContext)">
+            <summary>
+            Creates new instance.
+            </summary>
+            <param name="requestContext">Current request context.</param>
+        </member>
+        <member name="P:Neptuo.TemplateEngine.Routing.RouteNotFoundException.RequestContext">
+            <summary>
+            Current request context.
+            </summary>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Routing.RouteContext">
+            <summary>
+            Context of route handler execution.
+            </summary>
+        </member>
+        <member name="M:Neptuo.TemplateEngine.Routing.RouteContext.#ctor(Neptuo.TemplateEngine.Routing.RouteData)">
+            <summary>
+            Create new context.
+            </summary>
+            <param name="routeData">Route data returned by route.</param>
+        </member>
+        <member name="P:Neptuo.TemplateEngine.Routing.RouteContext.Request">
+            <summary>
+            Request context.
+            </summary>
+        </member>
+        <member name="P:Neptuo.TemplateEngine.Routing.RouteContext.RouteData">
+            <summary>
+            Route data returned by route.
+            </summary>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Routing.RouteData">
+            <summary>
+            <see cref="T:Neptuo.TemplateEngine.Routing.IRoute"/> outcome.
+            </summary>
+        </member>
+        <member name="M:Neptuo.TemplateEngine.Routing.RouteData.#ctor(Neptuo.TemplateEngine.Routing.RequestContext,Neptuo.TemplateEngine.Routing.IRouteHandler,Neptuo.TemplateEngine.Routing.RouteValueDictionary)">
+            <summary>
+            Creates new instance.
+            </summary>
+            <param name="request">Request context.</param>
+            <param name="routeHandler">Handler to execute.</param>
+            <param name="routeValues">Custom route values.</param>
+        </member>
+        <member name="P:Neptuo.TemplateEngine.Routing.RouteData.Request">
+            <summary>
+            Request context.
+            </summary>
+        </member>
+        <member name="P:Neptuo.TemplateEngine.Routing.RouteData.RouteHandler">
+            <summary>
+            Handler to execute.
+            </summary>
+        </member>
+        <member name="P:Neptuo.TemplateEngine.Routing.RouteData.RouteValues">
+            <summary>
+            Custom route values.
+            </summary>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Routing.RouteParamDictionary">
+            <summary>
+            Route parameters dicitionary.
+            </summary>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Routing.Router">
+            <summary>
+            Actual implementation of <see cref="T:Neptuo.TemplateEngine.Routing.IRouter"/>.
+            </summary>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Routing.RouteValueDictionary">
+            <summary>
+            Custom route value dictionary.
+            </summary>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Routing.StaticRoute">
+            <summary>
+            Static url route.
+            </summary>
+        </member>
+    </members>
+</doc>

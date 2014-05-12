@@ -1,0 +1,188 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Neptuo.TemplateEngine.Controllers</name>
+    </assembly>
+    <members>
+        <member name="T:Neptuo.TemplateEngine.Controllers.ActionAttribute">
+            <summary>
+            Defines controller action.
+            </summary>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Controllers.ControllerBase">
+            <summary>
+            Base controller implementation.
+            Maps methods to actions - enables usage of <see cref="T:Neptuo.TemplateEngine.Controllers.ActionAttribute"/>.
+            Method outcomes uses as navigation.
+            Enables start method in transaction, <see cref="T:Neptuo.TemplateEngine.Controllers.TransactionalAttribute"/>.
+            Enables input validation, see <see cref="!:ValidateAttribute."/>
+            </summary>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Controllers.IController">
+            <summary>
+            Contract for controller.
+            </summary>
+        </member>
+        <member name="M:Neptuo.TemplateEngine.Controllers.IController.Execute(Neptuo.TemplateEngine.Controllers.IControllerContext)">
+            <summary>
+            Executes controller with <paramref name="context"/>.
+            </summary>
+            <param name="context">Controller context.</param>
+        </member>
+        <member name="M:Neptuo.TemplateEngine.Controllers.ControllerBase.Execute(Neptuo.TemplateEngine.Controllers.IControllerContext)">
+            <summary>
+            Executes controller.
+            Finds appropriate method using <see cref="T:Neptuo.TemplateEngine.Controllers.ActionAttribute"/>.
+            </summary>
+        </member>
+        <member name="M:Neptuo.TemplateEngine.Controllers.ControllerBase.BindActionParameters(Neptuo.TemplateEngine.Controllers.IControllerContext,System.Reflection.MethodInfo)">
+            <summary>
+            Uses <see cref="!:IModelBinder"/> for binding parameter values to method parameters.
+            </summary>
+            <param name="context">Controller context.</param>
+            <param name="methodInfo">Target method.</param>
+            <returns>List of parameter values.</returns>
+        </member>
+        <member name="M:Neptuo.TemplateEngine.Controllers.ControllerBase.ExecuteAction(Neptuo.TemplateEngine.Controllers.IControllerContext,System.Reflection.MethodInfo,System.Object[])">
+            <summary>
+            Do execution of <paramref name="methodInfo"/>.
+            </summary>
+            <param name="context">Controller context.</param>
+            <param name="methodInfo">Target method.</param>
+            <param name="parameters">Method parameters.</param>
+            <returns>Method result.</returns>
+        </member>
+        <member name="M:Neptuo.TemplateEngine.Controllers.ControllerBase.ProcessActionResult(Neptuo.TemplateEngine.Controllers.IControllerContext,System.Reflection.MethodInfo,System.Object)">
+            <summary>
+            Process action method result.
+            </summary>
+            <param name="context">Controller context.</param>
+            <param name="methodInfo">Target method.</param>
+            <param name="result">Method execution result.</param>
+        </member>
+        <member name="M:Neptuo.TemplateEngine.Controllers.ControllerBase.TryValidate(System.Reflection.MethodInfo,System.Object[])">
+            <summary>
+            Tries to validate input parameters.
+            </summary>
+            <param name="methodInfo">Target method.</param>
+            <param name="parameters">Method parameters.</param>
+            <returns>True if succeeded.</returns>
+        </member>
+        <member name="M:Neptuo.TemplateEngine.Controllers.ControllerBase.TryTransaction(System.Reflection.MethodInfo)">
+            <summary>
+            Tries invoke method in transaction.
+            Returns object describing transaction and never returns null.
+            </summary>
+            <param name="methodInfo">Target method.</param>
+            <returns><see cref="T:Neptuo.TemplateEngine.Controllers.TransactionalDisposable"/></returns>
+        </member>
+        <member name="P:Neptuo.TemplateEngine.Controllers.ControllerBase.Context">
+            <summary>
+            Current context.
+            </summary>
+        </member>
+        <member name="P:Neptuo.TemplateEngine.Controllers.ControllerBase.Messages">
+            <summary>
+            List of messages.
+            </summary>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Controllers.IControllerContext">
+            <summary>
+            Context of controller execution.
+            </summary>
+        </member>
+        <member name="P:Neptuo.TemplateEngine.Controllers.IControllerContext.ActionName">
+            <summary>
+            Action name.
+            </summary>
+        </member>
+        <member name="P:Neptuo.TemplateEngine.Controllers.IControllerContext.ModelBinder">
+            <summary>
+            Model binder to bind parameters with.
+            </summary>
+        </member>
+        <member name="P:Neptuo.TemplateEngine.Controllers.IControllerContext.DependencyProvider">
+            <summary>
+            Current dependency provider.
+            </summary>
+        </member>
+        <member name="P:Neptuo.TemplateEngine.Controllers.IControllerContext.Navigation">
+            <summary>
+            Output navigation rule.
+            </summary>
+        </member>
+        <member name="P:Neptuo.TemplateEngine.Controllers.IControllerContext.Messages">
+            <summary>
+            List of messages.
+            </summary>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Controllers.IControllerRegistry">
+            <summary>
+            Registry for controllers.
+            </summary>
+        </member>
+        <member name="M:Neptuo.TemplateEngine.Controllers.IControllerRegistry.Add(System.String,Neptuo.TemplateEngine.Controllers.IControllerFactory)">
+            <summary>
+            Adds new controller factory for action <paramref name="actionName"/>.
+            </summary>
+            <param name="actionName">Action name to map <paramref name="factory"/> to.</param>
+            <param name="factory">Controler factory.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Neptuo.TemplateEngine.Controllers.IControllerRegistry.TryGet(System.String,Neptuo.TemplateEngine.Controllers.IController@)">
+            <summary>
+            Tries to find controller for <paramref name="actionName"/>.
+            </summary>
+            <param name="actionName">Action name.</param>
+            <param name="controller">Controller if one exists for <paramref name="actionName"/>.</param>
+            <returns>True if there is registered controller for <paramref name="actionName"/>.</returns>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Controllers.IControllerFactory">
+            <summary>
+            Factory for <see cref="T:Neptuo.TemplateEngine.Controllers.IController"/>.
+            </summary>
+        </member>
+        <member name="M:Neptuo.TemplateEngine.Controllers.IControllerFactory.Create">
+            <summary>
+            Creates instance of <see cref="T:Neptuo.TemplateEngine.Controllers.IController"/>.
+            </summary>
+            <returns>Creates instance of <see cref="T:Neptuo.TemplateEngine.Controllers.IController"/>.</returns>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Controllers.TransactionalAttribute">
+            <summary>
+            Defines request for transactional execution.
+            </summary>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Controllers.TransactionalDisposable">
+            <summary>
+            Helper class for maintaing action method transactional behavioral.
+            </summary>
+        </member>
+        <member name="F:Neptuo.TemplateEngine.Controllers.TransactionalDisposable.transaction">
+            <summary>
+            Unit of work (if not null) to commit on successfull commit.
+            </summary>
+        </member>
+        <member name="M:Neptuo.TemplateEngine.Controllers.TransactionalDisposable.#ctor(Neptuo.Data.IUnitOfWork)">
+            <summary>
+            Creates new instance.
+            </summary>
+            <param name="transaction">Unit of work (if not null) to commit on successfull commit.</param>
+        </member>
+        <member name="M:Neptuo.TemplateEngine.Controllers.TransactionalDisposable.Dispose(System.Boolean)">
+            <summary>
+            If <paramref name="saveChanges"/> is true and has transaction, commits it.
+            </summary>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Controllers.ValidateAttribute">
+            <summary>
+            Defines validation request.
+            </summary>
+        </member>
+        <member name="P:Neptuo.TemplateEngine.Controllers.ValidateAttribute.MessageKey">
+            <summary>
+            Validation messages key name.
+            </summary>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,210 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Neptuo.TemplateEngine.Providers</name>
+    </assembly>
+    <members>
+        <member name="T:Neptuo.TemplateEngine.Providers.ModelBinders.IModelBinder">
+            <summary>
+            Parameters->model binder.
+            </summary>
+        </member>
+        <member name="M:Neptuo.TemplateEngine.Providers.ModelBinders.IModelBinder.Bind(System.Type)">
+            <summary>
+            Creates instance of <paramref name="targetType"/> and binds parameters.
+            </summary>
+            <param name="targetType">Result object type.</param>
+            <returns>Creates instance of <paramref name="targetType"/> and binds parameters.</returns>
+        </member>
+        <member name="M:Neptuo.TemplateEngine.Providers.ModelBinders.IModelBinder.Bind(System.Object)">
+            <summary>
+            Binds parameters to properties of <paramref name="instance"/>.
+            </summary>
+            <param name="instance">Any object instance.</param>
+            <returns><paramref name="instance"/> with bound parameters.</returns>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Providers.ModelBinders.ModelBinder">
+            <summary>
+            Uses PresentationModels for <see cref="T:Neptuo.TemplateEngine.Providers.ModelBinders.IModelBinder"/>.
+            </summary>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Providers.IParameterProvider">
+            <summary>
+            Provides access to current parameters.
+            </summary>
+        </member>
+        <member name="M:Neptuo.TemplateEngine.Providers.IParameterProvider.TryGet(System.String,System.Object@)">
+            <summary>
+            Tries get value of parameter <paramref name="key"/>.
+            </summary>
+            <param name="key">Parameter name.</param>
+            <param name="value">Parameter value.</param>
+            <returns>True if parameter exists.</returns>
+        </member>
+        <member name="P:Neptuo.TemplateEngine.Providers.IParameterProvider.Keys">
+            <summary>
+            All parameter keys.
+            </summary>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Providers.GlobalNavigationCollection">
+            <summary>
+            Collectio of globally registered navigation rules.
+            </summary>
+        </member>
+        <member name="M:Neptuo.TemplateEngine.Providers.GlobalNavigationCollection.Add(System.String,Neptuo.TemplateEngine.Navigation.FormUri)">
+            <summary>
+            Adds nagivation rule.
+            </summary>
+            <param name="on">Navigation rule.</param>
+            <param name="to">Target form.</param>
+            <returns>This (fluently).</returns>
+        </member>
+        <member name="M:Neptuo.TemplateEngine.Providers.GlobalNavigationCollection.TryGetValue(System.String,Neptuo.TemplateEngine.Navigation.FormUri@)">
+            <summary>
+            Tries get registered form for <paramref name="on"/>.
+            </summary>
+            <param name="on">Navigation rule.</param>
+            <param name="to">Target form.</param>
+            <returns>True is there is registered form for <paramref name="on"/>.</returns>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Providers.ICurrentUrlProvider">
+            <summary>
+            Provides current request url.
+            </summary>
+        </member>
+        <member name="M:Neptuo.TemplateEngine.Providers.ICurrentUrlProvider.GetCurrentUrl">
+            <summary>
+            Provides current request url.
+            </summary>
+            <returns>Current request url.</returns>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Providers.IParameterProviderFactory">
+            <summary>
+            Factory for <see cref="T:Neptuo.TemplateEngine.Providers.IParameterProvider"/>.
+            </summary>
+        </member>
+        <member name="M:Neptuo.TemplateEngine.Providers.IParameterProviderFactory.Provider(Neptuo.TemplateEngine.Providers.ParameterProviderType)">
+            <summary>
+            Gets parameter provider specifis parameters.
+            </summary>
+            <param name="providerType">Type of parameters.</param>
+            <returns><see cref="T:Neptuo.TemplateEngine.Providers.IParameterProvider"/>.</returns>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Providers.IRequestContext">
+            <summary>
+            Describes current request.
+            </summary>
+        </member>
+        <member name="P:Neptuo.TemplateEngine.Providers.IRequestContext.ComponentManager">
+            <summary>
+            Current component manager.
+            </summary>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Providers.ITemplateUrlFormatter">
+            <summary>
+            Formats template url.
+            </summary>
+        </member>
+        <member name="M:Neptuo.TemplateEngine.Providers.ITemplateUrlFormatter.FormatUrl(System.String)">
+            <summary>
+            Url part in form of ~/Accounts/UserList and returns ~/Accounts/UserList.html if .html is current suffix.
+            </summary>
+            <param name="urlPart">Url part.</param>
+            <returns>Formated template url.</returns>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Providers.JsonResponse">
+            <summary>
+            JSON response result.
+            </summary>
+        </member>
+        <member name="P:Neptuo.TemplateEngine.Providers.JsonResponse.Response">
+            <summary>
+            JSON content.
+            </summary>
+        </member>
+        <member name="P:Neptuo.TemplateEngine.Providers.JsonResponse.ContentType">
+            <summary>
+            Content type.
+            </summary>
+        </member>
+        <member name="P:Neptuo.TemplateEngine.Providers.JsonResponse.ReponseLength">
+            <summary>
+            Length of content.
+            </summary>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Providers.Message">
+            <summary>
+            Single message.
+            </summary>
+        </member>
+        <member name="P:Neptuo.TemplateEngine.Providers.Message.Key">
+            <summary>
+            Message key.
+            </summary>
+        </member>
+        <member name="P:Neptuo.TemplateEngine.Providers.Message.Type">
+            <summary>
+            Message type.
+            </summary>
+        </member>
+        <member name="P:Neptuo.TemplateEngine.Providers.Message.Text">
+            <summary>
+            Message text.
+            </summary>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Providers.MessageType">
+            <summary>
+            Types of message.
+            </summary>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Providers.MessageStorage">
+            <summary>
+            List of messages.
+            </summary>
+        </member>
+        <member name="M:Neptuo.TemplateEngine.Providers.MessageStorage.Add(System.String,System.String,System.String,Neptuo.TemplateEngine.Providers.MessageType)">
+            <summary>
+            Adds message with <paramref name="key"/> to <paramref name="group"/>.
+            </summary>
+            <param name="group">Messsage group.</param>
+            <param name="key">Message key.</param>
+            <param name="text">Message text.</param>
+            <param name="type">Message type.</param>
+        </member>
+        <member name="M:Neptuo.TemplateEngine.Providers.MessageStorage.GetList(System.String)">
+            <summary>
+            Gets enumeration of message in group <paramref name="key"/>.
+            </summary>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Neptuo.TemplateEngine.Providers.MessageStorage.GetStorage">
+            <summary>
+            Gets internal storage.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Providers.PartialResponse">
+            <summary>
+            Controller outcome.
+            </summary>
+        </member>
+        <member name="M:Neptuo.TemplateEngine.Providers.PartialResponse.#ctor(Neptuo.TemplateEngine.Providers.MessageStorage,System.String)">
+            <summary>
+            Creates new instance.
+            </summary>
+            <param name="messages">List of messages.</param>
+            <param name="navigation">Navigation rule.</param>
+        </member>
+        <member name="P:Neptuo.TemplateEngine.Providers.PartialResponse.Messages">
+            <summary>
+            List of messages.
+            </summary>
+        </member>
+        <member name="P:Neptuo.TemplateEngine.Providers.PartialResponse.Navigation">
+            <summary>
+            Navigation rule.
+            </summary>
+        </member>
+    </members>
+</doc>
