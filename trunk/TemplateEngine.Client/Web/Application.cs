@@ -129,7 +129,7 @@ namespace Neptuo.TemplateEngine.Web
                 .RegisterInstance<ITemplateUrlFormatter>(this)
                 .RegisterType<IParameterProviderFactory, RouteParameterProviderFactory>()
                 .RegisterType<IParameterProvider, RouteParameterProvider>()
-                .RegisterType<IBindingManager, BindingManagerBase>()
+                .RegisterType<IBindingManager, ClientBindingManager>()
                 .RegisterType<IValueConverterService, ValueConverterService>()
                 .RegisterType<IRequestContext, CompositeRequestContext>()
                 .RegisterInstance(new TemplateContentStorageStack())

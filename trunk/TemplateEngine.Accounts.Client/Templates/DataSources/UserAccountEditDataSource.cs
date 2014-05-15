@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Accounts.Templates.DataSources
 {
-    public class UserAccountEditDataSource : DataSourceProxy<UserAccountEditModel>
+    public class UserAccountEditDataSource : DataSourceProxy<JsObject>
     {
         private int key;
 

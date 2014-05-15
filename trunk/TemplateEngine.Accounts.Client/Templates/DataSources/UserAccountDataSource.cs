@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Accounts.Templates.DataSources
 {
-    public class UserAccountDataSource : DynamicListDataSourceProxy<UserAccountListResult>, IUserAccountDataSourceFilter
+    public class UserAccountDataSource : DynamicListDataSourceProxy<ListResult>, IUserAccountDataSourceFilter
     {
         public int? Key { get; set; }
         public string Username { get; set; }

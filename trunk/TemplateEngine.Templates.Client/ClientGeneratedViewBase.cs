@@ -30,11 +30,7 @@ namespace Neptuo.TemplateEngine.Templates
             if (value == null)
                 return default(T);
 
-            Type sourceType = value.GetType();
             Type targetType = typeof(T);
-
-            if (sourceType == targetType)
-                return (T)value;
 
             if (targetType == typeof(string))
                 return value.ToString().As<T>();

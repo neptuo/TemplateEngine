@@ -965,10 +965,7 @@ var Neptuo$TemplateEngine$Templates$GeneratedViewBase = {
         CastValueTo$1: function (T, value){
             if (value == null)
                 return null;
-            var sourceType = value.GetType();
             var targetType = Typeof(T);
-            if (sourceType == targetType)
-                return Cast(value, T);
             if (targetType == Typeof(System.String.ctor))
                 return value.toString();
             return value;

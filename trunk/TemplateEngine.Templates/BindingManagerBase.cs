@@ -10,7 +10,7 @@ namespace Neptuo.TemplateEngine.Templates
 {
     public class BindingManagerBase : IBindingManager
     {
-        public bool TrySetValue(object target, string expression, object value)
+        public virtual bool TrySetValue(object target, string expression, object value)
         {
             PropertyInfo info = null;
             Type type = target.GetType();
@@ -31,7 +31,7 @@ namespace Neptuo.TemplateEngine.Templates
             return info != null;
         }
 
-        public bool TryGetValue(string expression, object source, out object value)
+        public virtual bool TryGetValue(string expression, object source, out object value)
         {
             if (String.IsNullOrEmpty(expression))
             {
@@ -49,36 +49,40 @@ namespace Neptuo.TemplateEngine.Templates
             if (provider != null)
                 return provider.TryGetValue(expression, out value);
 
-            PropertyInfo info = null;
-            Type type = source.GetType();
             string[] exprs = expression.Split(new char[] { '.' }, StringSplitOptions.RemoveEmptyEntries);
+            return TryGetValueInternal(exprs, 0, source, out value);
+        }
 
-            for (int i = 0; i < exprs.Length; i++)
+        protected virtual bool TryGetValueInternal(string[] expression, int expressionIndex, object source, out object value)
+        {
+            if(expression.Length == expressionIndex)
             {
-                info = type.GetProperty(exprs[i]);
-                if (info == null)
-                {
-                    value = null;
-                    return false;
-                }
-
-
-                if (source != null)
-                {
-                    source = info.GetValue(source, null);
-                    if (source != null)
-                        type = source.GetType();
-                    else
-                        type = info.PropertyType;
-                } 
-
-                provider = source as IModelValueProvider;
-                if (provider != null)
-                    return provider.TryGetValue(String.Join(".", exprs.Skip(i + 1)), out value);
+                value = source;
+                return true;
             }
 
-            value = source;
-            return true;
+            if(source == null)
+            {
+                value = null;
+                return true;
+            }
+
+            IModelValueGetter provider = source as IModelValueGetter;
+            if (provider != null)
+                return provider.TryGetValue(String.Join(".", expression.Skip(expressionIndex)), out value);
+
+            Type type = source.GetType();
+            PropertyInfo info = type.GetProperty(expression[expressionIndex]);
+            if (info == null)
+            {
+                value = null;
+                return false;
+            }
+
+            if (source != null)
+                source = info.GetValue(source, null);
+
+            return TryGetValueInternal(expression, expressionIndex + 1, source, out value);
         }
     }
 }

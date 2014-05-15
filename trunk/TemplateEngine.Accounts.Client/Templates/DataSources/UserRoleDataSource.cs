@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Accounts.Templates.DataSources
 {
-    public class UserRoleDataSource : ListDataSourceProxy<UserRoleListResult>, IUserRoleDataSourceFilter
+    public class UserRoleDataSource : ListDataSourceProxy<ListResult>, IUserRoleDataSourceFilter
     {
         public int? Key { get; set; }
         public string Name { get; set; }
