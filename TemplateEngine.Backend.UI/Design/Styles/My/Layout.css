@@ -82,6 +82,7 @@ footer.navbar {
 
 .side-navbar ul {
     position: fixed;
+    width: 190px;
 }
 
 .body {
