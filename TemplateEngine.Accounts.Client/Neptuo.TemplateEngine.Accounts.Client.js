@@ -103,7 +103,7 @@ var Neptuo$TemplateEngine$Accounts$Templates$DataSources$ResourcePermissionDataS
         ctor: function (urlProvider){
             this._RoleKey = null;
             this._ResourceName = null;
-            Neptuo.TemplateEngine.Templates.DataSources.DynamicListDataSourceProxy$1.ctor.call(this, Neptuo.TemplateEngine.Accounts.ResourcePermissionListResult.ctor, urlProvider, Neptuo.TemplateEngine.Accounts.Templates.DataSources.ResourcePermissionDataSource.GetFilterProperties());
+            Neptuo.TemplateEngine.Templates.DataSources.DynamicListDataSourceProxy$1.ctor.call(this, Neptuo.TemplateEngine.Templates.DataSources.ListResult.ctor, urlProvider, Neptuo.TemplateEngine.Accounts.Templates.DataSources.ResourcePermissionDataSource.GetFilterProperties());
         },
         RoleKey$$: "System.Nullable`1[[System.Int32]]",
         get_RoleKey: function (){
@@ -137,7 +137,7 @@ var Neptuo$TemplateEngine$Accounts$Templates$DataSources$UserLogDataSource = {
     definition: {
         ctor: function (urlProvider){
             this._UserKey = null;
-            Neptuo.TemplateEngine.Templates.DataSources.ListDataSourceProxy$1.ctor.call(this, Neptuo.TemplateEngine.Accounts.UserLogListResult.ctor, urlProvider);
+            Neptuo.TemplateEngine.Templates.DataSources.ListDataSourceProxy$1.ctor.call(this, Neptuo.TemplateEngine.Templates.DataSources.ListResult.ctor, urlProvider);
         },
         UserKey$$: "System.Nullable`1[[System.Int32]]",
         get_UserKey: function (){
@@ -401,7 +401,7 @@ var Neptuo$TemplateEngine$Accounts$Templates$DataSources$UserAccountDataSource =
             this._Key = null;
             this._Username = null;
             this._RoleKey = null;
-            Neptuo.TemplateEngine.Templates.DataSources.DynamicListDataSourceProxy$1.ctor.call(this, Neptuo.TemplateEngine.Accounts.UserAccountListResult.ctor, urlProvider, Neptuo.TemplateEngine.Accounts.Templates.DataSources.UserAccountDataSource.GetFilterProperties());
+            Neptuo.TemplateEngine.Templates.DataSources.DynamicListDataSourceProxy$1.ctor.call(this, Neptuo.TemplateEngine.Templates.DataSources.ListResult.ctor, urlProvider, Neptuo.TemplateEngine.Accounts.Templates.DataSources.UserAccountDataSource.GetFilterProperties());
         },
         Key$$: "System.Nullable`1[[System.Int32]]",
         get_Key: function (){
@@ -441,7 +441,7 @@ var Neptuo$TemplateEngine$Accounts$Templates$DataSources$UserAccountEditDataSour
     definition: {
         ctor: function (modelBinder, urlProvider){
             this.key = 0;
-            Neptuo.TemplateEngine.Templates.DataSources.DataSourceProxy$1.ctor.call(this, Neptuo.TemplateEngine.Accounts.UserAccountEditModel.ctor, modelBinder, urlProvider);
+            Neptuo.TemplateEngine.Templates.DataSources.DataSourceProxy$1.ctor.call(this, Object, modelBinder, urlProvider);
         },
         Key$$: "System.Int32",
         get_Key: function (){
@@ -487,7 +487,7 @@ var Neptuo$TemplateEngine$Accounts$Templates$DataSources$UserRoleDataSource = {
             this._Key = null;
             this._Name = null;
             this._Description = null;
-            Neptuo.TemplateEngine.Templates.DataSources.ListDataSourceProxy$1.ctor.call(this, Neptuo.TemplateEngine.Accounts.UserRoleListResult.ctor, urlProvider);
+            Neptuo.TemplateEngine.Templates.DataSources.ListDataSourceProxy$1.ctor.call(this, Neptuo.TemplateEngine.Templates.DataSources.ListResult.ctor, urlProvider);
         },
         Key$$: "System.Nullable`1[[System.Int32]]",
         get_Key: function (){

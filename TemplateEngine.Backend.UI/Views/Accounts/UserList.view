@@ -96,7 +96,8 @@
                         </ui:ListView>
                     </td>
                     <td>
-                        <!--<ui:ListView PageSize="1">
+                        <!--Current user log update error due to parallel requests
+                        <ui:ListView PageSize="1">
                             <Source>
                                 <data:UserLogDataSource UserKey="{Binding Key}" />
                             </Source>
@@ -110,6 +111,11 @@
                     </td>
                     <td class="action-list">
                         <ui:Link form:Href="Accounts.User.Edit" ajax:Update="Content" Text="Edit" html:Class="btn btn-default btn-xs">
+                            <Parameters>
+                                <ui:Parameter Name="UserKey" Value="{Binding Key}" />
+                            </Parameters>
+                        </ui:Link>
+                        <ui:Link form:Href="Accounts.Log.List" ajax:Update="Content" Text="Logs" html:Class="btn btn-default btn-xs">
                             <Parameters>
                                 <ui:Parameter Name="UserKey" Value="{Binding Key}" />
                             </Parameters>

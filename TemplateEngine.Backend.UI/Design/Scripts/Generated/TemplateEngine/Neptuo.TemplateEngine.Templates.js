@@ -69,28 +69,30 @@ var Neptuo$TemplateEngine$Templates$BindingManagerBase = {
             var provider = As(source, Neptuo.PresentationModels.IModelValueGetter.ctor);
             if (provider != null)
                 return provider.TryGetValue(expression, value);
-            var info = null;
-            var type = source.GetType();
             var exprs = expression.Split$$Char$Array$$StringSplitOptions(["."], 1);
-            for (var i = 0; i < exprs.get_Length(); i++){
-                info = type.GetProperty$$String(exprs[i]);
-                if (System.Reflection.PropertyInfo.op_Equality$$PropertyInfo$$PropertyInfo(info, null)){
-                    value.Value = null;
-                    return false;
-                }
-                if (source != null){
-                    source = info.GetValue$$Object$$Object$Array(source, null);
-                    if (source != null)
-                        type = source.GetType();
-                    else
-                        type = info.get_PropertyType();
-                }
-                provider = As(source, Neptuo.PresentationModels.IModelValueProvider.ctor);
-                if (provider != null)
-                    return provider.TryGetValue(System.String.Join$$String$$IEnumerable$1$String(".", System.Linq.Enumerable.Skip$1(System.String.ctor, exprs, i + 1)), value);
+            return this.TryGetValueInternal(exprs, 0, source, value);
+        },
+        TryGetValueInternal: function (expression, expressionIndex, source, value){
+            if (expression.get_Length() == expressionIndex){
+                value.Value = source;
+                return true;
             }
-            value.Value = source;
-            return true;
+            if (source == null){
+                value.Value = null;
+                return true;
+            }
+            var provider = As(source, Neptuo.PresentationModels.IModelValueGetter.ctor);
+            if (provider != null)
+                return provider.TryGetValue(System.String.Join$$String$$IEnumerable$1$String(".", System.Linq.Enumerable.Skip$1(System.String.ctor, expression, expressionIndex)), value);
+            var type = source.GetType();
+            var info = type.GetProperty$$String(expression[expressionIndex]);
+            if (System.Reflection.PropertyInfo.op_Equality$$PropertyInfo$$PropertyInfo(info, null)){
+                value.Value = null;
+                return false;
+            }
+            if (source != null)
+                source = info.GetValue$$Object$$Object$Array(source, null);
+            return this.TryGetValueInternal(expression, expressionIndex + 1, source, value);
         }
     },
     ctors: [{
@@ -4179,10 +4181,7 @@ var Neptuo$TemplateEngine$Templates$GeneratedViewBase = {
         CastValueTo$1: function (T, value){
             if (value == null)
                 return null;
-            var sourceType = value.GetType();
             var targetType = Typeof(T);
-            if (sourceType == targetType)
-                return Cast(value, T);
             if (targetType == Typeof(System.String.ctor))
                 return value.toString();
             return value;

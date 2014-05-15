@@ -2,6 +2,7 @@
 using Neptuo.ComponentModel.Converters;
 using Neptuo.TemplateEngine.Controllers;
 using Neptuo.TemplateEngine.Providers;
+using Neptuo.TemplateEngine.Templates.DataSources;
 using Neptuo.TemplateEngine.Web;
 using SharpKit.JavaScript;
 using System;
@@ -27,7 +28,9 @@ namespace Neptuo.TemplateEngine.Bootstrap
         public void Initialize()
         {
             repository
-                .Add(typeof(JsObject), typeof(PartialResponse), new PartialResponseConverter());
+                .Add(typeof(JsObject), typeof(PartialResponse), new PartialResponseConverter())
+                .Add(typeof(JsObject), typeof(ListResult), new ListResultConverter())
+                .Add(typeof(JsObject), typeof(JsObject), new JsObjectToJsObjectConverter());
         }
     }
 }
