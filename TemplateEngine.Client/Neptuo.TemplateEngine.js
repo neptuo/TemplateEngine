@@ -235,6 +235,43 @@ var Neptuo$TemplateEngine$ListResultConverter = {
     IsAbstract: false
 };
 JsTypes.push(Neptuo$TemplateEngine$ListResultConverter);
+var Neptuo$TemplateEngine$ReflectionConverterBase$1 = {
+    fullname: "Neptuo.TemplateEngine.ReflectionConverterBase$1",
+    baseTypeName: "Neptuo.ComponentModel.Converters.ConverterBase$2",
+    assemblyName: "Neptuo.TemplateEngine.Client",
+    Kind: "Class",
+    definition: {
+        ctor: function (TTarget){
+            this.TTarget = TTarget;
+            Neptuo.ComponentModel.Converters.ConverterBase$2.ctor.call(this, Object, this.TTarget);
+        },
+        TryConvert: function (sourceValue, targetValue){
+            targetValue.Value = this.BindInstance(sourceValue, new this.TTarget());
+            return true;
+        },
+        BindInstance: function (sourceValue, targetValue){
+            Neptuo.Guard.NotNull$$Object$$String(targetValue, "targetValue");
+            for (var $i2 = 0,$t2 = targetValue.GetType().GetProperties(),$l2 = $t2.length,propertyInfo = $t2[$i2]; $i2 < $l2; $i2++, propertyInfo = $t2[$i2]){
+                if (propertyInfo.get_CanWrite()){
+                    if (Typeof(System.Collections.Generic.IEnumerable$1.ctor).IsAssignableFrom(propertyInfo.get_PropertyType()))
+                        propertyInfo.SetValue$$Object$$Object(targetValue, new System.Collections.Generic.List$1.ctor$$IEnumerable$1(System.Object.ctor, sourceValue[propertyInfo.get_Name()]));
+                    else if (Typeof(System.DateTime.ctor).IsAssignableFrom(propertyInfo.get_PropertyType()))
+                        propertyInfo.SetValue$$Object$$Object(targetValue, System.DateTime.Parse$$String(sourceValue[propertyInfo.get_Name()]));
+                    else
+                        propertyInfo.SetValue$$Object$$Object(targetValue, sourceValue[propertyInfo.get_Name()]);
+                }
+            }
+            return targetValue;
+        }
+    },
+    ctors: [{
+        name: "ctor",
+        parameters: []
+    }
+    ],
+    IsAbstract: true
+};
+JsTypes.push(Neptuo$TemplateEngine$ReflectionConverterBase$1);
 var Neptuo$TemplateEngine$Templates$ClientBindingManager = {
     fullname: "Neptuo.TemplateEngine.Templates.ClientBindingManager",
     baseTypeName: "Neptuo.TemplateEngine.Templates.BindingManagerBase",
@@ -1032,9 +1069,9 @@ var Neptuo$TemplateEngine$Web$ControllerInvoker = {
             Neptuo.DependencyContainerExtensions.RegisterInstance$1(Neptuo.TemplateEngine.Providers.IParameterProvider.ctor, container, parameterProvider);
             var modelBinder = Neptuo.DependencyProviderExtensions.Resolve$1$$IDependencyProvider(Neptuo.TemplateEngine.Providers.ModelBinders.IModelBinder.ctor, container);
             var messageStorage = Neptuo.DependencyProviderExtensions.Resolve$1$$IDependencyProvider(Neptuo.TemplateEngine.Providers.MessageStorage.ctor, container);
-            var $it1 = parameterProvider.get_Keys().GetEnumerator();
-            while ($it1.MoveNext()){
-                var key = $it1.get_Current();
+            var $it2 = parameterProvider.get_Keys().GetEnumerator();
+            while ($it2.MoveNext()){
+                var key = $it2.get_Current();
                 var controller;
                 if ((function (){
                     var $1 = {

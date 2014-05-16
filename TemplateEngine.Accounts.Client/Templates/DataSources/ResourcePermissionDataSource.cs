@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Accounts.Templates.DataSources
 {
-    public class ResourcePermissionDataSource : DynamicListDataSourceProxy<ListResult>, IResourcePermissionDataSourceFilter
+    public class ResourcePermissionDataSource : DynamicListDataSourceProxy<ResourcePermissionListResult>, IResourcePermissionDataSourceFilter
     {
         public int? RoleKey { get; set; }
         public string ResourceName { get; set; }

@@ -14,19 +14,9 @@ using System.Threading.Tasks;
 
 namespace Neptuo.TemplateEngine.Accounts.Templates.DataSources
 {
-    public class UserAccountEditDataSource : DataSourceProxy<JsObject>
+    public class UserAccountEditDataSource : DataSourceProxy<UserAccountEditModel>
     {
-        private int key;
-
-        public int Key
-        {
-            get { return key; }
-            set
-            {
-                if (value.As<object>() != null)
-                    key = value;
-            }
-        }
+        public int? Key { get; set; }
 
         public UserAccountEditDataSource(IModelBinder modelBinder, IVirtualUrlProvider urlProvider)
             : base(modelBinder, urlProvider)
@@ -42,9 +32,7 @@ namespace Neptuo.TemplateEngine.Accounts.Templates.DataSources
         {
             if (Key == 0)
             {
-                UserAccountEditModel model = new UserAccountEditModel() { Key = 0 };
-                model = ModelBinder.Bind<UserAccountEditModel>(model);
-
+                UserAccountEditModel model = BindModelIfRequired(new UserAccountEditModel());
                 callback(model);
                 return true;
             }

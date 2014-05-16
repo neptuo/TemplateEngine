@@ -3856,8 +3856,7 @@ var Neptuo$TemplateEngine$Templates$DataSources$DataSourceProxy$1 = {
                             model = $1.Value;
                             return $res;
                         }).call(this)){
-                            if (this.get_IsBindModel())
-                                model = Neptuo.TemplateEngine.Providers.ModelBinders.ModelBinderExtensions.Bind$1$$IModelBinder$$T(this.TResultModel, this.get_ModelBinder(), model);
+                            model = this.BindModelIfRequired(model);
                             callback(model);
                             return;
                         }
@@ -3867,6 +3866,11 @@ var Neptuo$TemplateEngine$Templates$DataSources$DataSourceProxy$1 = {
                     })
                 });
             }
+        },
+        BindModelIfRequired: function (model){
+            if (this.get_IsBindModel())
+                model = Neptuo.TemplateEngine.Providers.ModelBinders.ModelBinderExtensions.Bind$1$$IModelBinder$$T(this.TResultModel, this.get_ModelBinder(), model);
+            return model;
         },
         SetParametersInternal: function (){
             var parameterBuilder = Neptuo.TemplateEngine.JsObjectBuilder.New("DataSource", this.GetDataSourceName());
