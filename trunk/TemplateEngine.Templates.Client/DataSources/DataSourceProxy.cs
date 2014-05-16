@@ -51,9 +51,7 @@ namespace Neptuo.TemplateEngine.Templates.DataSources
                         TResultModel model;
                         if (Converts.Try<JsObject, TResultModel>(response.As<JsObject>(), out model))
                         {
-                            if (IsBindModel)
-                                model = ModelBinder.Bind<TResultModel>(model);
-
+                            model = BindModelIfRequired(model);
                             callback(model);
                             return;
                         }
@@ -64,6 +62,14 @@ namespace Neptuo.TemplateEngine.Templates.DataSources
                     }
                 });
             }
+        }
+
+        protected TResultModel BindModelIfRequired(TResultModel model)
+        {
+            if (IsBindModel)
+                model = ModelBinder.Bind<TResultModel>(model);
+
+            return model;
         }
 
         private JsObject SetParametersInternal()

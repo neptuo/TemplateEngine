@@ -83,6 +83,7 @@
     <Compile Include="Bootstrap\PresentationModelBootstrapTask.cs" />
     <Compile Include="JsObjectToJsObjectConverter.cs" />
     <Compile Include="ListResultConverter.cs" />
+    <Compile Include="ReflectionConverterBase.cs" />
     <Compile Include="Templates\ClientBindingManager.cs" />
     <Compile Include="ListResultConverterBase.cs" />
     <Compile Include="Routing\ApplicationRouter.cs" />

@@ -105,7 +105,7 @@ var Neptuo$TemplateEngine$Accounts$Templates$DataSources$ResourcePermissionDataS
         ctor: function (urlProvider){
             this._RoleKey = null;
             this._ResourceName = null;
-            Neptuo.TemplateEngine.Templates.DataSources.DynamicListDataSourceProxy$1.ctor.call(this, Neptuo.TemplateEngine.Templates.DataSources.ListResult.ctor, urlProvider, Neptuo.TemplateEngine.Accounts.Templates.DataSources.ResourcePermissionDataSource.GetFilterProperties());
+            Neptuo.TemplateEngine.Templates.DataSources.DynamicListDataSourceProxy$1.ctor.call(this, Neptuo.TemplateEngine.Accounts.ResourcePermissionListResult.ctor, urlProvider, Neptuo.TemplateEngine.Accounts.Templates.DataSources.ResourcePermissionDataSource.GetFilterProperties());
         },
         RoleKey$$: "System.Nullable`1[[System.Int32]]",
         get_RoleKey: function (){
@@ -139,7 +139,7 @@ var Neptuo$TemplateEngine$Accounts$Templates$DataSources$UserLogDataSource = {
     definition: {
         ctor: function (urlProvider){
             this._UserKey = null;
-            Neptuo.TemplateEngine.Templates.DataSources.ListDataSourceProxy$1.ctor.call(this, Neptuo.TemplateEngine.Templates.DataSources.ListResult.ctor, urlProvider);
+            Neptuo.TemplateEngine.Templates.DataSources.ListDataSourceProxy$1.ctor.call(this, Neptuo.TemplateEngine.Accounts.UserLogListResult.ctor, urlProvider);
         },
         UserKey$$: "System.Nullable`1[[System.Int32]]",
         get_UserKey: function (){
@@ -162,22 +162,12 @@ var Neptuo$TemplateEngine$Accounts$Templates$DataSources$UserLogDataSource = {
 JsTypes.push(Neptuo$TemplateEngine$Accounts$Templates$DataSources$UserLogDataSource);
 var Neptuo$TemplateEngine$Accounts$UserAccountEditModelConverter = {
     fullname: "Neptuo.TemplateEngine.Accounts.UserAccountEditModelConverter",
-    baseTypeName: "Neptuo.ComponentModel.Converters.ConverterBase$2",
+    baseTypeName: "Neptuo.TemplateEngine.ReflectionConverterBase$1",
     assemblyName: "Neptuo.TemplateEngine.Accounts.Client",
     Kind: "Class",
     definition: {
         ctor: function (){
-            Neptuo.ComponentModel.Converters.ConverterBase$2.ctor.call(this, Object, Neptuo.TemplateEngine.Accounts.UserAccountEditModel.ctor);
-        },
-        TryConvert: function (sourceValue, targetValue){
-            targetValue.Value = new Neptuo.TemplateEngine.Accounts.UserAccountEditModel.ctor();
-            targetValue.Value.set_Key(sourceValue["Key"]);
-            targetValue.Value.set_Username(sourceValue["Username"]);
-            targetValue.Value.set_Password(sourceValue["Password"]);
-            targetValue.Value.set_PasswordAgain(sourceValue["PasswordAgain"]);
-            targetValue.Value.set_IsEnabled(sourceValue["IsEnabled"]);
-            targetValue.Value.set_RoleKeys(new System.Collections.Generic.List$1.ctor$$IEnumerable$1(System.Int32.ctor, sourceValue["RoleKeys"]));
-            return true;
+            Neptuo.TemplateEngine.ReflectionConverterBase$1.ctor.call(this, Neptuo.TemplateEngine.Accounts.UserAccountEditModel.ctor);
         }
     },
     ctors: [{
@@ -307,19 +297,12 @@ var Neptuo$TemplateEngine$Accounts$UserLogListResultConverter = {
 JsTypes.push(Neptuo$TemplateEngine$Accounts$UserLogListResultConverter);
 var Neptuo$TemplateEngine$Accounts$UserRoleEditModelConverter = {
     fullname: "Neptuo.TemplateEngine.Accounts.UserRoleEditModelConverter",
-    baseTypeName: "Neptuo.ComponentModel.Converters.ConverterBase$2",
+    baseTypeName: "Neptuo.TemplateEngine.ReflectionConverterBase$1",
     assemblyName: "Neptuo.TemplateEngine.Accounts.Client",
     Kind: "Class",
     definition: {
         ctor: function (){
-            Neptuo.ComponentModel.Converters.ConverterBase$2.ctor.call(this, Object, Neptuo.TemplateEngine.Accounts.UserRoleEditModel.ctor);
-        },
-        TryConvert: function (sourceValue, targetValue){
-            targetValue.Value = new Neptuo.TemplateEngine.Accounts.UserRoleEditModel.ctor();
-            targetValue.Value.set_Key(sourceValue["Key"]);
-            targetValue.Value.set_Name(sourceValue["Name"]);
-            targetValue.Value.set_Description(sourceValue["Description"]);
-            return true;
+            Neptuo.TemplateEngine.ReflectionConverterBase$1.ctor.call(this, Neptuo.TemplateEngine.Accounts.UserRoleEditModel.ctor);
         }
     },
     ctors: [{
@@ -403,7 +386,7 @@ var Neptuo$TemplateEngine$Accounts$Templates$DataSources$UserAccountDataSource =
             this._Key = null;
             this._Username = null;
             this._RoleKey = null;
-            Neptuo.TemplateEngine.Templates.DataSources.DynamicListDataSourceProxy$1.ctor.call(this, Neptuo.TemplateEngine.Templates.DataSources.ListResult.ctor, urlProvider, Neptuo.TemplateEngine.Accounts.Templates.DataSources.UserAccountDataSource.GetFilterProperties());
+            Neptuo.TemplateEngine.Templates.DataSources.DynamicListDataSourceProxy$1.ctor.call(this, Neptuo.TemplateEngine.Accounts.UserAccountListResult.ctor, urlProvider, Neptuo.TemplateEngine.Accounts.Templates.DataSources.UserAccountDataSource.GetFilterProperties());
         },
         Key$$: "System.Nullable`1[[System.Int32]]",
         get_Key: function (){
@@ -442,28 +425,22 @@ var Neptuo$TemplateEngine$Accounts$Templates$DataSources$UserAccountEditDataSour
     Kind: "Class",
     definition: {
         ctor: function (modelBinder, urlProvider){
-            this.key = 0;
-            Neptuo.TemplateEngine.Templates.DataSources.DataSourceProxy$1.ctor.call(this, Object, modelBinder, urlProvider);
+            this._Key = null;
+            Neptuo.TemplateEngine.Templates.DataSources.DataSourceProxy$1.ctor.call(this, Neptuo.TemplateEngine.Accounts.UserAccountEditModel.ctor, modelBinder, urlProvider);
         },
-        Key$$: "System.Int32",
+        Key$$: "System.Nullable`1[[System.Int32]]",
         get_Key: function (){
-            return this.key;
+            return this._Key;
         },
         set_Key: function (value){
-            if (value != null)
-                this.key = value;
+            this._Key = value;
         },
         SetParameters: function (parameterBuilder){
             parameterBuilder.Set("Key", this.get_Key());
         },
         OnGetItem: function (callback){
             if (this.get_Key() == 0){
-                var model = (function (){
-                    var $v3 = new Neptuo.TemplateEngine.Accounts.UserAccountEditModel.ctor();
-                    $v3.set_Key(0);
-                    return $v3;
-                }).call(this);
-                model = Neptuo.TemplateEngine.Providers.ModelBinders.ModelBinderExtensions.Bind$1$$IModelBinder$$T(Neptuo.TemplateEngine.Accounts.UserAccountEditModel.ctor, this.get_ModelBinder(), model);
+                var model = this.BindModelIfRequired(new Neptuo.TemplateEngine.Accounts.UserAccountEditModel.ctor());
                 callback(model);
                 return true;
             }
@@ -489,7 +466,7 @@ var Neptuo$TemplateEngine$Accounts$Templates$DataSources$UserRoleDataSource = {
             this._Key = null;
             this._Name = null;
             this._Description = null;
-            Neptuo.TemplateEngine.Templates.DataSources.ListDataSourceProxy$1.ctor.call(this, Neptuo.TemplateEngine.Templates.DataSources.ListResult.ctor, urlProvider);
+            Neptuo.TemplateEngine.Templates.DataSources.ListDataSourceProxy$1.ctor.call(this, Neptuo.TemplateEngine.Accounts.UserRoleListResult.ctor, urlProvider);
         },
         Key$$: "System.Nullable`1[[System.Int32]]",
         get_Key: function (){
@@ -531,23 +508,23 @@ var Neptuo$TemplateEngine$Accounts$Templates$DataSources$UserRoleEditDataSource 
     Kind: "Class",
     definition: {
         ctor: function (modelBinder, urlProvider){
-            this.key = 0;
+            this._Key = null;
             Neptuo.TemplateEngine.Templates.DataSources.DataSourceProxy$1.ctor.call(this, Neptuo.TemplateEngine.Accounts.UserRoleEditModel.ctor, modelBinder, urlProvider);
         },
-        Key$$: "System.Int32",
+        Key$$: "System.Nullable`1[[System.Int32]]",
         get_Key: function (){
-            return this.key;
+            return this._Key;
         },
         set_Key: function (value){
-            if (value != null)
-                this.key = value;
+            this._Key = value;
         },
         SetParameters: function (parameterBuilder){
             parameterBuilder.Set("Key", this.get_Key());
         },
         OnGetItem: function (callback){
             if (this.get_Key() == 0){
-                callback(new Neptuo.TemplateEngine.Accounts.UserRoleEditModel.ctor());
+                var model = this.BindModelIfRequired(new Neptuo.TemplateEngine.Accounts.UserRoleEditModel.ctor());
+                callback(model);
                 return true;
             }
             return false;

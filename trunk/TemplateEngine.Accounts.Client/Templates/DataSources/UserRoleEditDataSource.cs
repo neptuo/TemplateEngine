@@ -12,17 +12,7 @@ namespace Neptuo.TemplateEngine.Accounts.Templates.DataSources
 {
     public class UserRoleEditDataSource : DataSourceProxy<UserRoleEditModel>
     {
-        private int key;
-
-        public int Key
-        {
-            get { return key; }
-            set
-            {
-                if (value.As<object>() != null)
-                    key = value;
-            }
-        }
+        public int? Key { get; set; }
 
         public UserRoleEditDataSource(IModelBinder modelBinder, IVirtualUrlProvider urlProvider)
             : base(modelBinder, urlProvider)
@@ -38,10 +28,10 @@ namespace Neptuo.TemplateEngine.Accounts.Templates.DataSources
         {
             if (Key == 0)
             {
-                callback(new UserRoleEditModel());
+                UserRoleEditModel model = BindModelIfRequired(new UserRoleEditModel());
+                callback(model);
                 return true;
             }
-
             return false;
         }
     }
