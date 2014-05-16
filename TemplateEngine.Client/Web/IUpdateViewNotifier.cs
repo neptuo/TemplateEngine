@@ -6,7 +6,7 @@ using System.Text;
 namespace Neptuo.TemplateEngine.Web
 {
     /// <summary>
-    /// Helps maintaing "Loading" view.
+    /// Helps maintaining "Loading" state.
     /// </summary>
     public interface IUpdateViewNotifier
     {
