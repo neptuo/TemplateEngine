@@ -1,0 +1,90 @@
+﻿<ui:AdminLayout Title="Article lines">
+    <ui:TemplateContent Name="SideNav">
+        <ul class="nav nav-pills nav-stacked">
+            <ui:PublishingSideNav />
+        </ul>
+    </ui:TemplateContent>
+    <ui:TemplateContent Name="Body">
+
+        <ui:SubHeader>
+            <ui:TemplateContent Name="Left">
+                <h2>
+                    <span class="glyphicon glyphicon-book"></span>
+                    Article lines
+                </h2>
+            </ui:TemplateContent>
+            <ui:TemplateContent Name="Right">
+                <a form:href="Publishing.ArticleLine.Edit" ajax:Update="Content" class="btn btn-primary">Create article line</a>
+            </ui:TemplateContent>
+        </ui:SubHeader>
+
+        <div class="sub-panel">
+            <ui:GetForm html:Class="form-inline" ajax:Update="Content">
+                <ui:FormItem l:LabelText="ID:">
+                    <ui:TextBox Name="Key" Text="{Request Key}" IsAutoFocus="true" CssClass="form-control input-sm w50" html:Style="display: block;" />
+                </ui:FormItem>
+                <ui:FormItem l:LabelText="Name:">
+                    <ui:TextBox Name="Name" Text="{Request Name}" CssClass="form-control input-sm" />
+                </ui:FormItem>
+
+                <div class="right">
+                    <ui:Button html:Class="btn btn-success btn-sm">
+                        <span class="glyphicon glyphicon-search"></span>
+                        <ui:Literal l:Text="Search" />
+                    </ui:Button>
+                    <ui:Link form:Href="Publishing.ArticleLine.List" ajax:Update="Content" CssClass="btn btn-default btn-sm" l:Text="Clear" CopyParameters="PageIndex" AllowActive="false" />
+                </div>
+            </ui:GetForm>
+        </div>
+        
+        <ui:ListView PageIndex="{Request PageIndex}" PageSize="10">
+            <Source>
+                <data:ArticleLineDataSource Key="{Request Key}" Name="{Request Name}" />
+            </Source>
+            <Template>
+                <div style="padding: 10px;">
+                    <table class="table table-condensed table-hover">
+                        <thead>
+                            <tr>
+                                <th class="w50">ID</th>
+                                <th>Name</th>
+                                <th>Url</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <ui:TemplatePlaceholder Name="Content" />
+                        </tbody>
+                    </table>
+                </div>
+            </Template>
+            <ItemTemplate>
+                <tr>
+                    <td>
+                        <ui:Literal Text="{Binding Key}" />
+                    </td>
+                    <td>
+                        <ui:Literal Text="{Binding Name}" />
+                    </td>
+                    <td>
+                        <ui:Literal Text="{Binding UrlPart}" />
+                    </td>
+                    <td class="action-list">
+                        <ui:Link form:Href="Publishing.ArticleLine.Edit" ajax:Update="Content" Text="Edit" html:Class="btn btn-default btn-xs">
+                            <Parameters>
+                                <ui:Parameter Name="LineKey" Value="{Binding Key}" />
+                            </Parameters>
+                        </ui:Link>
+                        <ui:PostForm html:Class="form-inline" ajax:Update="Content" html:Style="display: inline;">
+                            <ui:HiddenBox Name="LineKey" Text="{Binding Key}" />
+                            <ui:Button l:Text="Delete" ui:Event="Publishing/ArticleLine/Delete" html:Class="btn btn-xs btn-danger" />
+                        </ui:PostForm>
+                    </td>
+                </tr>
+            </ItemTemplate>
+            <EmptyTemplate>
+                No article lines, <a form:href="Publishing.ArticleLine.Edit" ajax:Update="Content">create one</a>.
+            </EmptyTemplate>
+        </ui:ListView>
+
+    </ui:TemplateContent>
+</ui:AdminLayout>

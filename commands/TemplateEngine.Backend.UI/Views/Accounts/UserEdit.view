@@ -1,0 +1,77 @@
+﻿<ui:AdminLayout Title="User Accounts - Create/Edit account">
+    <ui:TemplateContent Name="SideNav">
+        <ul class="nav nav-pills nav-stacked">
+            <ui:AccountSideNav />
+        </ul>
+    </ui:TemplateContent>
+    <ui:TemplateContent Name="Body">
+
+        <ui:DetailView>
+            <Source>
+                <data:UserAccountEditDataSource Key="{Request UserKey}" />
+            </Source>
+            <Template>
+
+                <div style="padding: 15px 10px;">
+                    <ui:PostForm ajax:Update="Content">
+                        <div class="col-md-6">
+                            <ui:FormItem l:LabelText="Username" l:HelpText="Local username, must be unique">
+                                <ui:TextBox Name="Username" Text="{Binding Username}" IsAutoFocus="true" html:ID="Username" html:Class="form-control" />
+                                <ui:MessagePanel Group="UserEdit" Key="Username" />
+                            </ui:FormItem>
+                            <ui:FormItem l:LabelText="Password" l:HelpText="Local password (leave empty to use current password)">
+                                <ui:PasswordBox Name="Password" Text="{Binding Password}" html:Class="form-control" />
+                                <ui:MessagePanel Group="UserEdit" Key="Password" />
+                            </ui:FormItem>
+                            <ui:FormItem l:LabelText="Password again" l:HelpText="Must match previously typed password">
+                                <ui:PasswordBox Name="PasswordAgain" Text="{Binding PasswordAgain}" html:Class="form-control" />
+                                <ui:MessagePanel Group="UserEdit" Key="PasswordAgain" />
+                            </ui:FormItem>
+                            <ui:FormItem l:HelpText="Check to activate account">
+                                <ui:CheckBox Name="IsEnabled" IsChecked="{Binding IsEnabled}" l:LabelText="Is enabled" />
+                                <ui:MessagePanel Group="UserEdit" Key="IsEnabled" />
+                            </ui:FormItem>
+                        </div>
+                        <div class="col-md-6">
+                            <ui:FormItem l:LabelText="Roles" l:HelpText="Assigned roles to account">
+                                <ui:Select Value="{Binding RoleKeys}" SelectedValuePath="Key">
+                                    <Source>
+                                        <data:UserRoleDataSource />
+                                    </Source>
+                                    <Template>
+                                        <ui:TemplatePlaceholder name="Content" />
+                                    </Template>
+                                    <ItemTemplate>
+                                        <ui:CheckBox IsChecked="{Binding IsSelected}" LabelText="{Binding Model.Name}" Name="RoleKeys" value="{Binding Model.Key}" />
+                                    </ItemTemplate>
+                                </ui:Select>
+                            </ui:FormItem>
+                        </div>
+
+                        <ui:SubHeader>
+                            <ui:TemplateContent Name="Left">
+                                <h2>
+                                    <span class="glyphicon glyphicon-user"></span>
+                                    <ui:Literal Text="{Switch {Binding IsNew}, TrueValue=Create, FalseValue=Edit}" l:FormatString="User accounts - {0} account" />
+                                </h2>
+                            </ui:TemplateContent>
+                            <ui:TemplateContent Name="Right">
+                                <a form:href="Accounts.User.List" ajax:Update="Content" class="btn btn-small">
+                                    <span class="glyphicon glyphicon-arrow-left"></span>
+                                    Back to user list
+                                </a>
+
+                                <ui:HiddenBox Name="Key" Text="{Binding Key}" />
+                                <ui:Button l:Text="Save" ui:Event="{Switch {Binding IsNew}, TrueValue=Accounts/User/Create, FalseValue=Accounts/User/Update}" CssClass="btn btn-primary" />
+                                <!--ui:Visible="{Binding IsNew}"-->
+                                <ui:Button l:Text="Delete" ui:Event="Accounts/User/Delete" CssClass="btn btn-danger" />
+                            </ui:TemplateContent>
+                        </ui:SubHeader>
+                    </ui:PostForm>
+                </div>
+
+            </Template>
+        </ui:DetailView>
+
+    </ui:TemplateContent>
+</ui:AdminLayout>

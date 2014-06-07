@@ -1,0 +1,35 @@
+﻿<ui:Doctype Type="Xhtml" />
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta charset="utf-8" />
+        <title>Sign to TemplateEngine</title>
+
+        <ui:Bundle Path="~/design/css/admin" IsStyle="true" />
+
+        <ui:Placeholder ui:IsVisible="{IsJavascriptEngineSupported}">
+            <ui:Bundle Path="~/design/js/admin" />
+            
+            <ajax:StartUp DefaultUpdate="Body" />
+            <ui:ViewBundle Path="Default" />
+            <ui:ViewBundle Path="~/Views/Accounts/Login.view" />
+        </ui:Placeholder>
+    </head>
+    <body>
+
+        <ajax:View Partial="Body">
+
+            <div class="sub-header">
+                <h2 class="col-md-6" style="margin: 0 auto; float: none;">
+                    <span class="glyphicon glyphicon-user"></span>
+                    Sign in to TemplateEngine
+                </h2>
+            </div>
+            <div style="padding: 15px 10px;">
+                <div class="col-md-6" style="margin: 0 auto; float: none;">
+                    <ui:LoginView />
+                </div>
+            </div>
+        </ajax:View>
+
+    </body>
+</html>

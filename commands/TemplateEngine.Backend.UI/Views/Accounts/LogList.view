@@ -1,0 +1,69 @@
+﻿<ui:AdminLayout Title="User logs"> 
+    <ui:TemplateContent Name="SideNav">
+        <ul class="nav nav-pills nav-stacked">
+            <ui:AccountSideNav />
+        </ul>
+    </ui:TemplateContent>
+    <ui:TemplateContent Name="Body">
+        
+        <ui:SubHeader>
+            <ui:TemplateContent Name="Left">
+                <h2>
+                    <span class="glyphicon glyphicon-th-list"></span>
+                    User log
+                </h2>
+            </ui:TemplateContent>
+        </ui:SubHeader>
+ 
+        <ui:ListView> 
+            <Source>
+                <data:UserLogDataSource UserKey="{Request UserKey}" />
+            </Source>
+            <Template>
+                <div style="padding: 10px;">
+                    <table class="table table-condensed table-hover">
+                        <thead>
+                            <tr>
+                                <th>Username</th>
+                                <th>Signed in</th>
+                                <th>Signed out</th>
+                                <th>Last activity</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <ui:TemplatePlaceholder Name="Content" />
+                        </tbody>
+                    </table>
+                </div>
+            </Template>
+            <ItemTemplate>
+                <tr>
+                    <td>
+                        <ui:Link form:Href="Accounts.User.List" Text="{Binding User.Username}">
+                            <Parameters>
+                                <ui:Parameter Name="Key" Value="{Binding User.Key}" />
+                            </Parameters>
+                        </ui:Link>
+                    </td>
+                    <td>
+                        <ui:Literal Text="{Binding SignedIn}" />
+                    </td>
+                    <td>
+                        <ui:Literal Text="{Binding SignedOut}" />
+                    </td>
+                    <td>
+                        <ui:Literal Text="{Binding LastActivity}" />
+                    </td>
+                    <td>
+                        
+                    </td>
+                </tr>
+            </ItemTemplate>
+            <EmptyTemplate>
+                No user logs
+            </EmptyTemplate>
+        </ui:ListView>
+
+    </ui:TemplateContent>    
+</ui:AdminLayout>

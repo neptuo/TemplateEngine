@@ -1,0 +1,24 @@
+﻿<li> <!--class="active"-->
+    <ui:Link form:Href="Accounts.User.List" ajax:Update="BodyContainer">
+        <span class="glyphicon glyphicon-user"></span>
+        User accounts
+    </ui:Link>
+</li>
+<li>
+    <ui:Link form:Href="Accounts.Role.List" ajax:Update="BodyContainer">
+        <span class="glyphicon glyphicon-th-large"></span>
+        User roles
+    </ui:Link>
+</li>
+<li>
+    <ui:Link form:Href="Accounts.Log.List" ajax:Update="BodyContainer">
+        <span class="glyphicon glyphicon-list"></span>
+        User logs
+    </ui:Link>
+</li>
+<li ui:IsVisible="false">
+    <a href="#" class="disabled">
+        <span class="glyphicon glyphicon-align-left"></span>
+        Permissions
+    </a>
+</li>

@@ -1,0 +1,88 @@
+﻿<ui:AdminLayout Title="Articles - Create/Edit article">
+    <ui:TemplateContent Name="SideNav">
+        <ul class="nav nav-pills nav-stacked">
+            <ui:PublishingSideNav />
+        </ul>
+    </ui:TemplateContent>
+    <ui:TemplateContent Name="Body">
+
+        <ui:DetailView>
+            <Source>
+                <data:ArticleDataSource Key="{Request ArticleKey}" />
+            </Source>
+            <Template>
+
+                <div style="padding: 15px 10px;">
+                    <ui:PostForm ajax:Update="Content">
+                        <div class="col-md-6">
+                            <ui:FormItem l:LabelText="Title" l:HelpText="Article title">
+                                <ui:TextBox Name="Title" Text="{Binding Title}" IsAutoFocus="true" html:Class="form-control" />
+                                <ui:MessagePanel Group="ArticleEdit" Key="Title" />
+                            </ui:FormItem>
+                            <ui:FormItem l:LabelText="Url" l:HelpText="Article url (used for dynamic url address)">
+                                <ui:TextBox Name="UrlPart" Text="{Binding UrlPart}" html:Class="form-control" />
+                                <ui:MessagePanel Group="ArticleEdit" Key="UrlPart" />
+                            </ui:FormItem>
+                            <ui:FormItem l:LabelText="Author" l:HelpText="Article author">
+                                <ui:TextBox Name="Author" Text="{Binding Author}" html:Class="form-control" />
+                                <ui:MessagePanel Group="ArticleEdit" Key="Author" />
+                            </ui:FormItem>
+                        </div>
+                        <div class="col-md-6">
+                            <ui:FormItem l:LabelText="Line" l:HelpText="Article line">
+                                <ui:DropDownList Name="LineKey" Value="{Binding LineKey}" CssClass="form-control input-sm w200" CssStyle="display: block;">
+                                    <Source>
+                                        <data:ArticleLineDataSource />
+                                    </Source>
+                                </ui:DropDownList>
+                            </ui:FormItem>
+                            <ui:FormItem l:LabelText="Tags" l:HelpText="Tags assigned to article">
+                                <ui:Select Value="{Binding TagKeys}" SelectedValuePath="Key">
+                                    <Source>
+                                        <data:ArticleTagDataSource Key="{Binding AvailableTagKeys}" />
+                                    </Source>
+                                    <ItemTemplate>
+                                        <ui:CheckBox IsChecked="{Binding IsSelected}" LabelText="{Binding Model.Name}" Name="TagKeys" value="{Binding Model.Key}" />
+                                    </ItemTemplate>
+                                </ui:Select>
+                            </ui:FormItem>
+                            <ui:FormItem l:HelpText="Check to make article visible">
+                                <ui:CheckBox Name="IsVisible" IsChecked="{Binding IsVisible}" l:LabelText="Is visible" />
+                                <ui:MessagePanel Group="ArticleEdit" Key="IsVisible" />
+                            </ui:FormItem>
+                        </div>
+                        <div class="clear"></div>
+                        <div class="col-md-12">
+                            <ui:FormItem l:LabelText="Content" l:HelpText="Article content">
+                                <textarea name="Content" rows="22" html:Class="form-control"><ui:Literal Text="{Binding Content}" /></textarea>
+                                <ui:MessagePanel Group="ArticleEdit" Key="Content" />
+                            </ui:FormItem>
+                        </div>
+
+                        <ui:SubHeader>
+                            <ui:TemplateContent Name="Left">
+                                <h2>
+                                    <span class="glyphicon glyphicon-align-left"></span>
+                                    <ui:Literal Text="{Switch {Binding IsNew}, TrueValue=Create, FalseValue=Edit}" l:FormatString="Articles - {0} article" />
+                                </h2>
+                            </ui:TemplateContent>
+                            <ui:TemplateContent Name="Right">
+                                <a form:href="Publishing.Article.List" ajax:Update="Content" class="btn btn-small">
+                                    <span class="glyphicon glyphicon-arrow-left"></span>
+                                    Back to list
+                                </a>
+
+                                <ui:HiddenBox Name="Key" Text="{Binding Key}" />
+                                <ui:Button l:Text="Save" ui:Event="{Switch {Binding IsNew}, TrueValue=Publishing/Article/Create, FalseValue=Publishing/Article/Update}" CssClass="btn btn-primary" />
+                                <!--ui:Visible="{Binding IsNew}"-->
+                                <ui:Button l:Text="Delete" ui:Event="Publishing/Article/Delete" CssClass="btn btn-danger" />
+                            </ui:TemplateContent>
+                        </ui:SubHeader>
+                    </ui:PostForm>
+                </div>
+
+            </Template>
+        </ui:DetailView>
+
+    </ui:TemplateContent>
+</ui:AdminLayout>

@@ -1,0 +1,820 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Neptuo.TemplateEngine.Templates</name>
+    </assembly>
+    <members>
+        <member name="T:Neptuo.TemplateEngine.Templates.IBindingManager">
+            <summary>
+            Binding manager used by <paramref name="BindingExtension"/>.
+            Processes navigation properties on object and gets/sets value on target objects.
+            </summary>
+        </member>
+        <member name="M:Neptuo.TemplateEngine.Templates.IBindingManager.TrySetValue(System.Object,System.String,System.Object)">
+            <summary>
+            Tries to set navigation property <paramref name="expression"/> on root object <paramref name="target"/>.
+            New value is in <paramref name="value"/>.
+            </summary>
+            <param name="target">Object to apply <paramref name="expression"/> on.</param>
+            <param name="expression">Navigation property.</param>
+            <param name="value">New value.</param>
+            <returns>True if succeeded.</returns>
+        </member>
+        <member name="M:Neptuo.TemplateEngine.Templates.IBindingManager.TryGetValue(System.String,System.Object,System.Object@)">
+            <summary>
+            Tries to get value of navigation property <paramref name="expression"/> on root object <paramref name="target"/>.
+            </summary>
+            <param name="target">Object to apply <paramref name="expression"/> on.</param>
+            <param name="expression">Navigation property.</param>
+            <param name="value">Property value.</param>
+            <returns>True if succeeded.</returns>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Templates.Controls.PartialStartUpControl">
+            <summary>
+            Registers javascript application.
+            </summary>
+        </member>
+        <member name="P:Neptuo.TemplateEngine.Templates.Controls.PartialStartUpControl.DefaultUpdate">
+            <summary>
+            Default regions to update.
+            </summary>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Templates.Controls.PartialViewControl">
+            <summary>
+            Region view.
+            </summary>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Templates.Controls.HtmlContentControlBase">
+            <summary>
+            Base of content html control.
+            </summary>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Templates.Controls.HtmlControlBase">
+            <summary>
+            Base of html cotrol that can't has content.
+            </summary>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Templates.Controls.ControlBase">
+            <summary>
+            Controls extends this class support tag name specified in <see cref="T:Neptuo.Templates.Controls.ComponentAttribute"/>.
+            </summary>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Templates.Controls.IHtmlAttributeCollection">
+            <summary>
+            Has <see cref="T:Neptuo.Templates.HtmlAttributeCollection"/>.
+            </summary>
+        </member>
+        <member name="P:Neptuo.TemplateEngine.Templates.Controls.HtmlControlBase.TagName">
+            <summary>
+            Html tag name.
+            </summary>
+        </member>
+        <member name="P:Neptuo.TemplateEngine.Templates.Controls.HtmlControlBase.IsSelfClosing">
+            <summary>
+            Is using self closing html tag.
+            </summary>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Templates.Controls.BundleControl">
+            <summary>
+            Enables inclusion of <see cref="T:System.Web.Optimization.Bundle"/> in view.
+            </summary>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Templates.Controls.BundleControlBase">
+            <summary>
+            Base for bundling control.
+            </summary>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Templates.Controls.ContentControlBase">
+            <summary>
+            Base control that can has content.
+            </summary>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Templates.Controls.CssClassCollection">
+            <summary>
+            Css class collection.
+            Constains setuped css class name.
+            </summary>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Templates.Controls.DesignData.HintAttribute">
+            <summary>
+            Item description.
+            </summary>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Templates.Controls.DetailViewControl">
+            <summary>
+            View that operates on <see cref="T:Neptuo.TemplateEngine.Templates.DataSources.IDataSource"/> and enables rending single item.
+            This single item is inserted into <see cref="P:Neptuo.TemplateEngine.Templates.Controls.DetailViewControl.DataContext"/>.
+            </summary>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Templates.Controls.TemplateControl">
+            <summary>
+            Template control that enables template composition.
+            </summary>
+        </member>
+        <member name="P:Neptuo.TemplateEngine.Templates.Controls.TemplateControl.Content">
+            <summary>
+            List of contens for placeholders.
+            </summary>
+        </member>
+        <member name="P:Neptuo.TemplateEngine.Templates.Controls.TemplateControl.Template">
+            <summary>
+            Current templates.
+            </summary>
+        </member>
+        <member name="P:Neptuo.TemplateEngine.Templates.Controls.TemplateControl.TemplateContent">
+            <summary>
+            Instance of <see cref="P:Neptuo.TemplateEngine.Templates.Controls.TemplateControl.Template"/>.
+            </summary>
+        </member>
+        <member name="P:Neptuo.TemplateEngine.Templates.Controls.TemplateControl.TemplateStorageStack">
+            <summary>
+            Storage for contents.
+            </summary>
+        </member>
+        <member name="P:Neptuo.TemplateEngine.Templates.Controls.TemplateControl.TemplateStorage">
+            <summary>
+            Storage for contents.
+            </summary>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Templates.Controls.DoctypeControl">
+            <summary>
+            Control for rendering doc type definition.
+            </summary>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Templates.Controls.DoctypeType">
+            <summary>
+            Types of supported doc types.
+            </summary>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Templates.Controls.DropDownListControl">
+            <summary>
+            Drop down control.
+            </summary>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Templates.Controls.SelectControl">
+            <summary>
+            Control that processes models from <see cref="!:IListDataSource"/> and creates <see cref="T:Neptuo.TemplateEngine.Templates.Controls.SelectItem"/>
+            including comparision with selected value.
+            Each item is wrapped with <see cref="T:Neptuo.TemplateEngine.Templates.Controls.SelectItem"/> and <see cref="P:Neptuo.TemplateEngine.Templates.Controls.SelectItem.IsSelected"/> is set accordingly to <see cref="P:Neptuo.TemplateEngine.Templates.Controls.SelectControl.Value"/>.
+            </summary>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Templates.Controls.ListViewControl">
+            <summary>
+            View that operates on <see cref="T:Neptuo.TemplateEngine.Templates.DataSources.IListDataSource"/> and enables rending list of item.
+            Gets page from list data source and applies <see cref="P:Neptuo.TemplateEngine.Templates.Controls.ListViewControl.ItemTemplate"/>.
+            If no item is in data source, renders <see cref="P:Neptuo.TemplateEngine.Templates.Controls.ListViewControl.EmptyTemplate"/>.
+            Enables paging by setting <see cref="P:Neptuo.TemplateEngine.Templates.Controls.ListViewControl.PageSize"/> (and <see cref="P:Neptuo.TemplateEngine.Templates.Controls.ListViewControl.PageIndex"/>). For paging uses <see cref="P:Neptuo.TemplateEngine.Templates.Controls.ListViewControl.Pagination"/> control.
+            Each item object is inserted in <see cref="P:Neptuo.TemplateEngine.Templates.Controls.ListViewControl.DataContext"/> in init phase.
+            </summary>
+        </member>
+        <member name="P:Neptuo.TemplateEngine.Templates.Controls.ListViewControl.Source">
+            <summary>
+            Data source.
+            </summary>
+        </member>
+        <member name="P:Neptuo.TemplateEngine.Templates.Controls.ListViewControl.ItemTemplate">
+            <summary>
+            Template for item.
+            </summary>
+        </member>
+        <member name="P:Neptuo.TemplateEngine.Templates.Controls.ListViewControl.EmptyTemplate">
+            <summary>
+            Template when no item is in data source.
+            </summary>
+        </member>
+        <member name="P:Neptuo.TemplateEngine.Templates.Controls.ListViewControl.Pagination">
+            <summary>
+            Pagination control.
+            </summary>
+        </member>
+        <member name="P:Neptuo.TemplateEngine.Templates.Controls.ListViewControl.PageSize">
+            <summary>
+            Page size.
+            </summary>
+        </member>
+        <member name="P:Neptuo.TemplateEngine.Templates.Controls.ListViewControl.PageIndex">
+            <summary>
+            Page index.
+            </summary>
+        </member>
+        <member name="M:Neptuo.TemplateEngine.Templates.Controls.SelectControl.ProcessModelItem(System.Collections.Generic.List{System.Object},System.Object)">
+            <summary>
+            Create <see cref="T:Neptuo.TemplateEngine.Templates.Controls.SelectItem"/> for model.
+            </summary>
+        </member>
+        <member name="M:Neptuo.TemplateEngine.Templates.Controls.SelectControl.IsSelectedValue(System.Object)">
+            <summary>
+            If <see cref="P:Neptuo.TemplateEngine.Templates.Controls.SelectControl.Value"/> is collection, enumerates on it.
+            </summary>
+            <param name="targetSelectedValue">Model item.</param>
+        </member>
+        <member name="M:Neptuo.TemplateEngine.Templates.Controls.SelectControl.IsSelectedSingleValue(System.Object,System.Object)">
+            <summary>
+            Tries to determine if <paramref name="targetSelectedValue"/> is equal to <paramref name="itemValue"/>.
+            </summary>
+        </member>
+        <member name="P:Neptuo.TemplateEngine.Templates.Controls.SelectControl.Value">
+            <summary>
+            Selected value (or collection of value).
+            </summary>
+        </member>
+        <member name="P:Neptuo.TemplateEngine.Templates.Controls.SelectControl.IsAddEmpty">
+            <summary>
+            Add empty item to list model?
+            </summary>
+        </member>
+        <member name="P:Neptuo.TemplateEngine.Templates.Controls.SelectControl.Attributes">
+            <summary>
+            List of attributes.
+            </summary>
+        </member>
+        <member name="P:Neptuo.TemplateEngine.Templates.Controls.SelectControl.SelectedValuePath">
+            <summary>
+            Navigation property path in each item from data source to compare with selected value.
+            </summary>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Templates.Controls.FormItemControl">
+            <summary>
+            Renders UI for form item.
+            </summary>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Templates.Controls.ButtonControl">
+            <summary>
+            Creates button.
+            </summary>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Templates.Controls.CheckBoxControl">
+            <summary>
+            Creates checkbox.
+            </summary>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Templates.Controls.FormInputControlBase">
+            <summary>
+            Creates input.
+            </summary>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Templates.Controls.FormControlBase">
+            <summary>
+            Creates form item.
+            </summary>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Templates.Controls.IFormControl">
+            <summary>
+            Represents named form item.
+            </summary>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Templates.Controls.GetFormControl">
+            <summary>
+            Creates form that is sumitted by get.
+            </summary>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Templates.Controls.HiddenBoxControl">
+            <summary>
+            Creates hidden input.
+            </summary>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Templates.Controls.ITextControl">
+            <summary>
+            Represents control with Text property.
+            </summary>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Templates.Controls.PasswordBoxControl">
+            <summary>
+            Creates password input.
+            </summary>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Templates.Controls.TextBoxControl">
+            <summary>
+            Creates text input.
+            </summary>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Templates.Controls.PostFormControl">
+            <summary>
+            Creates form submitted by post.
+            </summary>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Templates.Controls.GenericContentControl">
+            <summary>
+            Html control that can render any html element.
+            </summary>
+        </member>
+        <member name="P:Neptuo.TemplateEngine.Templates.Controls.GenericContentControl.TagName">
+            <summary>
+            Html tag name.
+            </summary>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Templates.Controls.IPaginationControl">
+            <summary>
+            Describes paging control for <see cref="T:Neptuo.TemplateEngine.Templates.Controls.ListViewControl"/>.
+            </summary>
+        </member>
+        <member name="P:Neptuo.TemplateEngine.Templates.Controls.IPaginationControl.PageSize">
+            <summary>
+            Page size.
+            </summary>
+        </member>
+        <member name="P:Neptuo.TemplateEngine.Templates.Controls.IPaginationControl.PageIndex">
+            <summary>
+            Page index.
+            </summary>
+        </member>
+        <member name="P:Neptuo.TemplateEngine.Templates.Controls.IPaginationControl.TotalCount">
+            <summary>
+            Total count.
+            </summary>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Templates.Controls.IValueControl">
+            <summary>
+            Represents control with Value property.
+            </summary>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Templates.Controls.LinkControl">
+            <summary>
+            Html achor control.
+            </summary>
+        </member>
+        <member name="P:Neptuo.TemplateEngine.Templates.Controls.LinkControl.Href">
+            <summary>
+            Link target url.
+            </summary>
+        </member>
+        <member name="P:Neptuo.TemplateEngine.Templates.Controls.LinkControl.Text">
+            <summary>
+            Text of link.
+            </summary>
+        </member>
+        <member name="P:Neptuo.TemplateEngine.Templates.Controls.LinkControl.CopyParameters">
+            <summary>
+            Whether copy current url paramters.
+            </summary>
+        </member>
+        <member name="P:Neptuo.TemplateEngine.Templates.Controls.LinkControl.Parameters">
+            <summary>
+            List of parameter to append to <see cref="P:Neptuo.TemplateEngine.Templates.Controls.LinkControl.Href"/>.
+            </summary>
+        </member>
+        <member name="P:Neptuo.TemplateEngine.Templates.Controls.LinkControl.AllowActive">
+            <summary>
+            Allow adding 'active' class if <see cref="P:Neptuo.TemplateEngine.Templates.Controls.LinkControl.Href"/> matches current url.
+            </summary>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Templates.Controls.LiteralControl">
+            <summary>
+            Control for renderin text.
+            </summary>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Templates.Controls.MessagePanelControl">
+            <summary>
+            Control that renders messages from <paramref name="MessageStorage"/>.
+            </summary>
+        </member>
+        <member name="P:Neptuo.TemplateEngine.Templates.Controls.MessagePanelControl.Group">
+            <summary>
+            Message group.
+            </summary>
+        </member>
+        <member name="P:Neptuo.TemplateEngine.Templates.Controls.MessagePanelControl.Key">
+            <summary>
+            Message key/property.
+            </summary>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Templates.Controls.NavigationControl">
+            <summary>
+            Enables putting navigation rules into views.
+            </summary>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Templates.Controls.NavigationItem">
+            <summary>
+            Single navigation rule.
+            </summary>
+        </member>
+        <member name="P:Neptuo.TemplateEngine.Templates.Controls.NavigationItem.On">
+            <summary>
+            Navigation rule.
+            </summary>
+        </member>
+        <member name="P:Neptuo.TemplateEngine.Templates.Controls.NavigationItem.To">
+            <summary>
+            Form to navigate to.
+            </summary>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Templates.Controls.OptionControl">
+            <summary>
+            Option item in drop down.
+            </summary>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Templates.Controls.PaginationControl">
+            <summary>
+            Actual implementation of <see cref="T:Neptuo.TemplateEngine.Templates.Controls.IPaginationControl"/>.
+            </summary>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Templates.Controls.ParameterControl">
+            <summary>
+            Single parameter.
+            </summary>
+        </member>
+        <member name="P:Neptuo.TemplateEngine.Templates.Controls.ParameterControl.Name">
+            <summary>
+            Parameter name.
+            </summary>
+        </member>
+        <member name="P:Neptuo.TemplateEngine.Templates.Controls.ParameterControl.Value">
+            <summary>
+            Parameter value.
+            </summary>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Templates.Controls.Placeholder">
+            <summary>
+            Simple placeholder.
+            Create no content by it self.
+            </summary>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Templates.Controls.SelectControlContext">
+            <summary>
+            Context for <see cref="T:Neptuo.TemplateEngine.Templates.Controls.SelectControl"/>.
+            </summary>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Templates.Controls.SelectItem">
+            <summary>
+            Model describing state of item in <see cref="T:Neptuo.TemplateEngine.Templates.Controls.SelectControl"/>.
+            </summary>
+        </member>
+        <member name="P:Neptuo.TemplateEngine.Templates.Controls.SelectItem.Model">
+            <summary>
+            Item model.
+            </summary>
+        </member>
+        <member name="P:Neptuo.TemplateEngine.Templates.Controls.SelectItem.IsSelected">
+            <summary>
+            Is model in selected values?
+            </summary>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Templates.Controls.ContentTemplate">
+            <summary>
+            Implementation of <see cref="T:Neptuo.TemplateEngine.Templates.Controls.ITemplate"/> that is set inside of template using inner element.
+            </summary>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Templates.Controls.ITemplate">
+            <summary>
+            Describes template that can be repeateably evaluated.
+            </summary>
+        </member>
+        <member name="M:Neptuo.TemplateEngine.Templates.Controls.ITemplate.CreateInstance">
+            <summary>
+            Creates instance of template.
+            </summary>
+        </member>
+        <member name="M:Neptuo.TemplateEngine.Templates.Controls.ContentTemplate.CreateInstance">
+            <summary>
+            Creates instance of template using <see cref="P:Neptuo.TemplateEngine.Templates.Controls.ContentTemplate.BindMethod"/> as source of values in templates.
+            </summary>
+        </member>
+        <member name="P:Neptuo.TemplateEngine.Templates.Controls.ContentTemplate.ComponentManager">
+            <summary>
+            Current component manager.
+            </summary>
+        </member>
+        <member name="P:Neptuo.TemplateEngine.Templates.Controls.ContentTemplate.BindMethod">
+            <summary>
+            Bind method that setups content of element.
+            </summary>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Templates.Controls.ContentTemplateContent">
+            <summary>
+            Actul implementation of <see cref="T:Neptuo.TemplateEngine.Templates.Controls.ITemplateContent"/>
+            </summary>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Templates.Controls.ITemplateContent">
+            <summary>
+            Single renderable instance of template.
+            </summary>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Templates.Controls.DefaultTemplateAttribute">
+            <summary>
+            Default template path.
+            </summary>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Templates.Controls.FileTemplate">
+            <summary>
+            Implementation of <see cref="T:Neptuo.TemplateEngine.Templates.Controls.ITemplate"/> that is stored in separte file.
+            </summary>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Templates.Controls.ViewTemplateBase">
+            <summary>
+            Base implementation of <see cref="T:Neptuo.TemplateEngine.Templates.Controls.ITemplate"/> operating on separated compiled template.
+            </summary>
+        </member>
+        <member name="M:Neptuo.TemplateEngine.Templates.Controls.ViewTemplateBase.CreateInstance">
+            <summary>
+            Creates instance of <see cref="T:Neptuo.TemplateEngine.Templates.Controls.ITemplateContent"/>.
+            </summary>
+        </member>
+        <member name="M:Neptuo.TemplateEngine.Templates.Controls.ViewTemplateBase.CreateView">
+            <summary>
+            Override to create instance of current view.
+            </summary>
+        </member>
+        <member name="M:Neptuo.TemplateEngine.Templates.Controls.FileTemplate.CreateView">
+            <summary>
+            Create instance of template using <see cref="T:Neptuo.TemplateEngine.Templates.IViewActivator"/>.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Templates.Controls.TemplateContentControl">
+            <summary>
+            Defines content of placeholder.
+            </summary>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Templates.Controls.TemplatePlaceholder">
+            <summary>
+            Defines place in template where content can be set.
+            </summary>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Templates.Controls.ViewTemplateContent">
+            <summary>
+            Implementation of <see cref="T:Neptuo.TemplateEngine.Templates.Controls.ITemplateContent"/> operation on separated view.
+            </summary>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Templates.DataContextStorage">
+            <summary>
+            Represents current context.
+            Other objects can push data object into and another objects can acces them.
+            Works in stack based fashion.
+            Can contain multiple (named) stacks of data object.
+            </summary>
+        </member>
+        <member name="M:Neptuo.TemplateEngine.Templates.DataContextStorage.Push(System.Object,System.String)">
+            <summary>
+            Pushes new object into (named) storage.
+            </summary>
+            <param name="value">New value.</param>
+            <param name="name">Optional stack name.</param>
+        </member>
+        <member name="M:Neptuo.TemplateEngine.Templates.DataContextStorage.Pop(System.String)">
+            <summary>
+            Gets nad removes top value from (named) storage.
+            </summary>
+            <param name="name">Optional stack name.</param>
+        </member>
+        <member name="M:Neptuo.TemplateEngine.Templates.DataContextStorage.Peek(System.String)">
+            <summary>
+            Gets top value from (named) storage, without removing it.
+            </summary>
+            <param name="name">Optional stack name.</param>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Templates.DataSources.CollectionDataSource">
+            <summary>
+            <see cref="T:Neptuo.TemplateEngine.Templates.DataSources.IListDataSource"/> that operates on <see cref="P:Neptuo.TemplateEngine.Templates.DataSources.CollectionDataSource.Data"/>.
+            </summary>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Templates.DataSources.IListDataSource">
+            <summary>
+            Data source for list of items.
+            </summary>
+        </member>
+        <member name="M:Neptuo.TemplateEngine.Templates.DataSources.IListDataSource.GetData(System.Nullable{System.Int32},System.Nullable{System.Int32})">
+            <summary>
+            Gets page of items.
+            </summary>
+        </member>
+        <member name="M:Neptuo.TemplateEngine.Templates.DataSources.IListDataSource.GetTotalCount">
+            <summary>
+            Gets total items count.
+            </summary>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Templates.DataSources.IDataSource">
+            <summary>
+            Single object data source.
+            </summary>
+        </member>
+        <member name="M:Neptuo.TemplateEngine.Templates.DataSources.IDataSource.GetItem">
+            <summary>
+            Gets item.
+            </summary>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Templates.DataSources.IListResult">
+            <summary>
+            Describes result of <see cref="T:Neptuo.TemplateEngine.Templates.DataSources.IListDataSource"/>.
+            </summary>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Templates.DataSources.ListResult">
+            <summary>
+            Actual implementation of <see cref="T:Neptuo.TemplateEngine.Templates.DataSources.IListResult"/>.
+            </summary>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Templates.DataSources.WebDataSourceAttribute">
+            <summary>
+            Marker attribute to mark data source as accessible through web.
+            </summary>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Templates.ExtendedHtmlTextWriter">
+            <summary>
+            Actul implementation of <see cref="T:Neptuo.TemplateEngine.Templates.IExtendedHtmlWriter"/>.
+            </summary>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Templates.IExtendedHtmlWriter">
+            <summary>
+            Extended html writer.
+            </summary>
+        </member>
+        <member name="M:Neptuo.TemplateEngine.Templates.IExtendedHtmlWriter.AttributeOnNextTag(System.String,System.String)">
+            <summary>
+            Writes attribute on next used html tag.
+            </summary>
+            <param name="name">Attribute name.</param>
+            <param name="value">Attribute value.</param>
+            <returns>This (fluently).</returns>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Templates.Extensions.BindingExtension">
+            <summary>
+            Binds value from <see cref="T:Neptuo.TemplateEngine.Templates.DataContextStorage"/>.
+            </summary>
+        </member>
+        <member name="P:Neptuo.TemplateEngine.Templates.Extensions.BindingExtension.Expression">
+            <summary>
+            Navigation property path.
+            </summary>
+        </member>
+        <member name="P:Neptuo.TemplateEngine.Templates.Extensions.BindingExtension.ConverterKey">
+            <summary>
+            Name of registered converter.
+            </summary>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Templates.Extensions.CurrentUrlExtension">
+            <summary>
+            Returns current url.
+            </summary>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Templates.Extensions.IsJavascriptEngineSupportedExtension">
+            <summary>
+            Tries to determine whether javascript processing is supported.
+            </summary>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Templates.Extensions.RequestExtension">
+            <summary>
+            Gets parameter value from request.
+            </summary>
+        </member>
+        <member name="P:Neptuo.TemplateEngine.Templates.Extensions.RequestExtension.Key">
+            <summary>
+            Parameter name.
+            </summary>
+        </member>
+        <member name="P:Neptuo.TemplateEngine.Templates.Extensions.RequestExtension.Default">
+            <summary>
+            Default value.
+            </summary>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Templates.Extensions.SwitchExtension">
+            <summary>
+            Regarding value of <see cref="P:Neptuo.TemplateEngine.Templates.Extensions.SwitchExtension.Expression"/>, returns <see cref="P:Neptuo.TemplateEngine.Templates.Extensions.SwitchExtension.TrueValue"/> or <see cref="P:Neptuo.TemplateEngine.Templates.Extensions.SwitchExtension.FalseValue"/>.
+            </summary>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Templates.Extensions.TemplateBindingExtension">
+            <summary>
+            Provides values from <see cref="T:Neptuo.TemplateEngine.Templates.DataContextStorage"/> and named stack "Template".
+            </summary>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Templates.IPartialUpdateWriter">
+            <summary>
+            Registers control as region in partial rendering.
+            </summary>
+        </member>
+        <member name="M:Neptuo.TemplateEngine.Templates.IPartialUpdateWriter.Update(System.String,Neptuo.Templates.Controls.IControl)">
+            <summary>
+            Registers <paramref name="control"/> as region renderer for region <paramref name="partialView"/>.
+            </summary>
+            <param name="partialView">Name of region.</param>
+            <param name="control">Control, to region <paramref name="partialView"/>.</param>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.IStackStorage`1">
+            <summary>
+            Represents stack.
+            </summary>
+            <typeparam name="T">Item type.</typeparam>
+        </member>
+        <member name="M:Neptuo.TemplateEngine.IStackStorage`1.Push(`0)">
+            <summary>
+            Add new value.
+            </summary>
+        </member>
+        <member name="M:Neptuo.TemplateEngine.IStackStorage`1.Pop">
+            <summary>
+            Gets and removes top value.
+            </summary>
+        </member>
+        <member name="M:Neptuo.TemplateEngine.IStackStorage`1.Peek">
+            <summary>
+            Gets top value, without removing it.
+            </summary>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Templates.IValueConverter">
+            <summary>
+            Converts used by <paramref name="BindingExtension"/>.
+            </summary>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Templates.IValueConverterService">
+            <summary>
+            List of registered <see cref="T:Neptuo.TemplateEngine.Templates.IValueConverter"/>.
+            </summary>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Templates.IViewActivator">
+            <summary>
+            Creates instance of views.
+            </summary>
+        </member>
+        <member name="M:Neptuo.TemplateEngine.Templates.IViewActivator.CreateView(System.String)">
+            <summary>
+            Creates instance of view on <paramref name="path"/>.
+            </summary>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Web.LocalizationHelper">
+            <summary>
+            Helper for localizing template vlaue.
+            </summary>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Templates.Observers.PartialObserver">
+            <summary>
+            Sets region to update on current element submit.
+            </summary>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Templates.Observers.EventObserver">
+            <summary>
+            Defines ui:Event on current button.
+            </summary>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Templates.Observers.HtmlObserver">
+            <summary>
+            Sets some html attribute on html element.
+            </summary>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Templates.Observers.IsPlaceholderObserver">
+            <summary>
+            If <see cref="P:Neptuo.TemplateEngine.Templates.Observers.IsPlaceholderObserver.IsPlaceholder"/> is not defined for current template, skips processing of control where applied.
+            </summary>
+        </member>
+        <member name="P:Neptuo.TemplateEngine.Templates.Observers.IsPlaceholderObserver.IsPlaceholder">
+            <summary>
+            Placeholder name.
+            </summary>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Templates.Observers.VisibleObserver">
+            <summary>
+            Enables hidding of control where applied.
+            </summary>
+        </member>
+        <member name="P:Neptuo.TemplateEngine.Templates.Observers.VisibleObserver.IsVisible">
+            <summary>
+            Hide current control?
+            </summary>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Templates.TemplateContentStorage">
+            <summary>
+            Storage of <see cref="T:Neptuo.TemplateEngine.Templates.Controls.TemplateContentControl"/> objects.
+            </summary>
+        </member>
+        <member name="F:Neptuo.TemplateEngine.Templates.TemplateContentStorage.parent">
+            <summary>
+            Parent storage.
+            </summary>
+        </member>
+        <member name="M:Neptuo.TemplateEngine.Templates.TemplateContentStorage.Add(System.String,Neptuo.TemplateEngine.Templates.Controls.TemplateContentControl)">
+            <summary>
+            Adds new item.
+            </summary>
+        </member>
+        <member name="M:Neptuo.TemplateEngine.Templates.TemplateContentStorage.AddRange(System.Collections.Generic.IEnumerable{Neptuo.TemplateEngine.Templates.Controls.TemplateContentControl})">
+            <summary>
+            Adds range of new items.
+            </summary>
+        </member>
+        <member name="M:Neptuo.TemplateEngine.Templates.TemplateContentStorage.ContainsKey(System.String)">
+            <summary>
+            Returns true if current or parent contains item with <paramref name="key"/>.
+            </summary>
+            <param name="key">Template content name.</param>
+            <returns>True if current or parent contains item with <paramref name="key"/>.</returns>
+        </member>
+        <member name="M:Neptuo.TemplateEngine.Templates.TemplateContentStorage.Get(System.String)">
+            <summary>
+            Gets item with <paramref name="key"/>.
+            Also searches parents.
+            </summary>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Templates.TemplateContentStorageStack">
+            <summary>
+            <see cref="!:IStackStorage"/> for <see cref="T:Neptuo.TemplateEngine.Templates.TemplateContentStorage"/>.
+            </summary>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Templates.ViewAttribute">
+            <summary>
+            Attribute that defines view path in generated class.
+            </summary>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Templates.ViewServiceViewActivator">
+            <summary>
+            <see cref="T:Neptuo.TemplateEngine.Templates.IViewActivator"/> implemented using <see cref="T:Neptuo.Templates.Compilation.IViewService"/>.
+            </summary>
+        </member>
+    </members>
+</doc>

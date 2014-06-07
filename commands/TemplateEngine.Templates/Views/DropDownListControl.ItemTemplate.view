@@ -1,0 +1,1 @@
+﻿<ui:Option Text="{Binding Model.Name}" Value="{Binding Model.Key}" IsSelected="{Binding IsSelected}" />

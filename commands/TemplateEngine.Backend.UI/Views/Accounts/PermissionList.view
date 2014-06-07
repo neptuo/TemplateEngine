@@ -1,0 +1,77 @@
+﻿<ui:AdminLayout Title="Permissions">
+    <ui:TemplateContent Name="SideNav">
+        <ul class="nav nav-pills nav-stacked">
+            <ui:AccountSideNav />
+        </ul>
+    </ui:TemplateContent>
+    <ui:TemplateContent Name="Body">
+
+        <ui:PostForm ajax:Update="Content" CssClass="inline-form">
+            <ui:ListView PageIndex="{Request PageIndex}" PageSize="10">
+                <Source>
+                    <data:ResourcePermissionDataSource RoleKey="{Request RoleKey}" ResourceName="{Request ResourceName}" PermissionName="{Request PermissionName}" />
+                </Source>
+                <Template>
+                    <div style="padding: 10px;">
+                        <table class="table table-condensed table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Resource</th>
+                                    <th>Hint</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <ui:TemplatePlaceholder Name="Content" />
+                            </tbody>
+                        </table>
+                    </div>
+                </Template>
+                <ItemTemplate>
+                    <tr>
+                        <td>
+                            <ui:Literal Text="{Binding ResourceName}" />
+                        </td>
+                        <td>
+                            <ui:Literal Text="{Binding ResourceHint}" />
+                        </td>
+                        <td>
+                            <ui:CheckBox Name="ResourceNames" Value="{Binding ResourceName}" LabelText="{Binding PermissionName}" IsChecked="{Binding IsEnabled}" />
+                        </td>
+                    </tr>
+                </ItemTemplate>
+                <EmptyTemplate>
+                    Select role to view permissions.
+                </EmptyTemplate>
+            </ui:ListView>
+
+            <ui:SubHeader>
+                <ui:TemplateContent Name="Left">
+                    <h2>
+                        <span class="glyphicon glyphicon-eye-open"></span>
+                        Permissions assigned to role:
+                        <ui:DetailView>
+                            <Source>
+                                <data:UserRoleEditDataSource Key="{Request RoleKey}" />
+                            </Source>
+                            <Template>
+                                <ui:Literal Text="{Binding Name}" />
+                            </Template>
+                        </ui:DetailView>
+                    </h2>
+                </ui:TemplateContent>
+                <ui:TemplateContent Name="Right">
+                    <a form:href="Accounts.Role.List" ajax:Update="Content" class="btn btn-small">
+                        <span class="glyphicon glyphicon-arrow-left"></span>
+                        Back to role list
+                    </a>
+
+                    <ui:Button l:Text="Save changes" ui:Event="Accounts/Permission/Update" CssClass="btn btn-primary" />
+                    <ui:HiddenBox Name="PermissionName" Value="ReadWrite" />
+                    <ui:HiddenBox Name="RoleKey" Value="{Request RoleKey}" />
+                </ui:TemplateContent>
+            </ui:SubHeader>
+        </ui:PostForm>
+
+    </ui:TemplateContent>
+</ui:AdminLayout>

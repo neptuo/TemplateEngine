@@ -1,0 +1,164 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{7DF11E7B-E7FE-4EBB-A707-C592A230DF54}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Neptuo.TemplateEngine</RootNamespace>
+    <AssemblyName>Neptuo.TemplateEngine.Client</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>
+    </DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>..\References\Doc\Neptuo.TemplateEngine.Client.XML</DocumentationFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Neptuo">
+      <HintPath>..\References\Neptuo.dll</HintPath>
+    </Reference>
+    <Reference Include="Neptuo.Bootstrap">
+      <HintPath>..\References\Neptuo.Bootstrap.dll</HintPath>
+    </Reference>
+    <Reference Include="Neptuo.ObjectBuilder.Client">
+      <HintPath>..\References\Neptuo.ObjectBuilder.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="Neptuo.PresentationModels, Version=4.3.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\Neptuo.PresentationModels.dll</HintPath>
+    </Reference>
+    <Reference Include="Neptuo.PresentationModels.BindingConverters">
+      <HintPath>..\References\Neptuo.PresentationModels.BindingConverters.dll</HintPath>
+    </Reference>
+    <Reference Include="Neptuo.PresentationModels.TypeModels, Version=4.3.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\Neptuo.PresentationModels.TypeModels.dll</HintPath>
+    </Reference>
+    <Reference Include="Neptuo.PresentationModels.TypeModels.DataAnnotations">
+      <HintPath>..\References\Neptuo.PresentationModels.TypeModels.DataAnnotations.dll</HintPath>
+    </Reference>
+    <Reference Include="Neptuo.PresentationModels.Validation">
+      <HintPath>..\References\Neptuo.PresentationModels.Validation.dll</HintPath>
+    </Reference>
+    <Reference Include="Neptuo.System.Client">
+      <HintPath>..\References\Neptuo.System.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="Neptuo.Templates.Components">
+      <HintPath>..\References\Neptuo.Templates.Components.dll</HintPath>
+    </Reference>
+    <Reference Include="Neptuo.Tokens">
+      <HintPath>..\References\Neptuo.Tokens.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpKit.Html, Version=1.0.0.0, Culture=neutral, PublicKeyToken=2575297a09c47a96, processorArchitecture=MSIL" />
+    <Reference Include="SharpKit.JavaScript, Version=1.5.0.0, Culture=neutral, PublicKeyToken=2575297a09c47a96, processorArchitecture=MSIL" />
+    <Reference Include="SharpKit.jQuery, Version=1.6.4.0, Culture=neutral, PublicKeyToken=2575297a09c47a96, processorArchitecture=MSIL" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Bootstrap\PresentationModelBootstrapTask.cs" />
+    <Compile Include="JsObjectToJsObjectConverter.cs" />
+    <Compile Include="ListResultConverter.cs" />
+    <Compile Include="ReflectionConverterBase.cs" />
+    <Compile Include="Templates\ClientBindingManager.cs" />
+    <Compile Include="ListResultConverterBase.cs" />
+    <Compile Include="Routing\ApplicationRouter.cs" />
+    <Compile Include="Routing\StaticTemplateRoute.cs" />
+    <Compile Include="Routing\TemplateRoute.cs" />
+    <Compile Include="Routing\TemplateRouteHandler.cs" />
+    <Compile Include="Web\Application.cs" />
+    <Compile Include="Web\AsyncNotifyService.cs" />
+    <Compile Include="Web\AsyncViewRenderer.cs" />
+    <Compile Include="Bootstrap\ConverterBootstrapTask.cs" />
+    <Compile Include="Web\ErrorModel.cs" />
+    <Compile Include="Web\ControllerInvoker.cs" />
+    <Compile Include="Web\FormRequestContext.cs" />
+    <Compile Include="Web\HistoryItem.cs" />
+    <Compile Include="Web\HistoryState.cs" />
+    <Compile Include="Web\IApplication.cs" />
+    <Compile Include="Web\IAsyncViewRenderer.cs" />
+    <Compile Include="Web\IControllerInvoker.cs" />
+    <Compile Include="Web\IControllerInvokeManager.cs" />
+    <Compile Include="Web\IHistoryState.cs" />
+    <Compile Include="Web\IMainView.cs" />
+    <Compile Include="Web\ITemplateConfiguration.cs" />
+    <Compile Include="Web\IUpdateViewNotifier.cs" />
+    <Compile Include="Web\JsObjectBuilder.cs" />
+    <Compile Include="Web\PartialUpdateComponentManager.cs" />
+    <Compile Include="Web\PartialUpdateHelper.cs" />
+    <Compile Include="Templates\StaticViewActivator.cs" />
+    <Compile Include="Web\UpdateViewNotifier.cs" />
+    <Compile Include="Web\IViewLoadedChecker.cs" />
+    <Compile Include="Web\JsArrayExtensions.cs" />
+    <Compile Include="Web\MainView.cs" />
+    <Compile Include="Web\PartialResponseConverter.cs" />
+    <Compile Include="Web\QueueControllerInvokeManager.cs" />
+    <Compile Include="Web\RouteParameterProvider.cs" />
+    <Compile Include="Web\RouteParameterProviderFactory.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <SkcPlugin Include="Neptuo.SharpKit.Exugin.ExuginPlugin, Neptuo.SharpKit.Exugin">
+      <InProject>false</InProject>
+    </SkcPlugin>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TemplateEngine.Controllers.Client\TemplateEngine.Controllers.Client.csproj">
+      <Project>{7a29ab8f-8a8d-4da6-b17a-faa81e3d4869}</Project>
+      <Name>TemplateEngine.Controllers.Client</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TemplateEngine.Navigation\TemplateEngine.Navigation.csproj">
+      <Project>{f16d8bc8-2191-498f-9950-dc8aa200b0ba}</Project>
+      <Name>TemplateEngine.Navigation</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TemplateEngine.Providers\TemplateEngine.Providers.csproj">
+      <Project>{30214616-7c89-467a-9147-7385e91aed13}</Project>
+      <Name>TemplateEngine.Providers</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TemplateEngine.Routing.Client\TemplateEngine.Routing.Client.csproj">
+      <Project>{9432ee8b-1181-43cb-9e8d-e156eac8f7ba}</Project>
+      <Name>TemplateEngine.Routing.Client</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TemplateEngine.Templates\TemplateEngine.Templates.csproj">
+      <Project>{ee534abf-10e8-467b-aa25-d8a39b6542b4}</Project>
+      <Name>TemplateEngine.Templates</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TemplateEngine\TemplateEngine.csproj">
+      <Project>{0ddeef40-567f-49de-94ec-314309702534}</Project>
+      <Name>TemplateEngine</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Neptuo.TemplateEngine.js" />
+    <None Include="Neptuo.TemplateEngine.Client.xml">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildBinPath)\SharpKit\5\SharpKit.Build.targets" />
+</Project>

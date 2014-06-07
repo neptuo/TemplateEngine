@@ -1,0 +1,110 @@
+﻿<ui:AdminLayout Title="Article lines">
+    <ui:TemplateContent Name="SideNav">
+        <ul class="nav nav-pills nav-stacked">
+            <ui:PublishingSideNav />
+        </ul>
+    </ui:TemplateContent>
+    <ui:TemplateContent Name="Body">
+
+        <ui:SubHeader>
+            <ui:TemplateContent Name="Left">
+                <h2>
+                    <span class="glyphicon glyphicon-align-left"></span>
+                    Articles
+                </h2>
+            </ui:TemplateContent>
+            <ui:TemplateContent Name="Right">
+                <a form:href="Publishing.Article.Edit" ajax:Update="Content" class="btn btn-primary">Create article</a>
+            </ui:TemplateContent>
+        </ui:SubHeader>
+
+        <div class="sub-panel">
+            <ui:GetForm html:Class="form-inline" ajax:Update="Content">
+                <ui:FormItem l:LabelText="ID:">
+                    <ui:TextBox Name="Key" Text="{Request Key}" IsAutoFocus="true" CssClass="form-control input-sm w50" html:Style="display: block;" />
+                </ui:FormItem>
+                <ui:FormItem l:LabelText="Title:">
+                    <ui:TextBox Name="Title" Text="{Request Title}" CssClass="form-control input-sm" />
+                </ui:FormItem>
+                <ui:FormItem l:LabelText="Line:">
+                    <ui:DropDownList Name="LineKey" Value="{Request LineKey}" IsAddEmpty="true" CssClass="form-control input-sm w200" CssStyle="display: block;">
+                        <Source>
+                            <data:ArticleLineDataSource />
+                        </Source>
+                    </ui:DropDownList>
+                </ui:FormItem>
+
+                <div class="right">
+                    <ui:Button html:Class="btn btn-success btn-sm">
+                        <span class="glyphicon glyphicon-search"></span>
+                        <ui:Literal l:Text="Search" />
+                    </ui:Button>
+                    <ui:Link form:Href="Publishing.Article.List" ajax:Update="Content" CssClass="btn btn-default btn-sm" l:Text="Clear" CopyParameters="PageIndex" AllowActive="false" />
+                </div>
+            </ui:GetForm>
+        </div>
+        
+        <ui:ListView PageIndex="{Request PageIndex}" PageSize="10">
+            <Source>
+                <data:ArticleDataSource Key="{Request Key}" Title="{Request Title}" LineKey="{Request LineKey}" TagKey="{Request TagKey}" IsIncludeHidden="true" />
+            </Source>
+            <Template>
+                <div style="padding: 10px;">
+                    <table class="table table-condensed table-hover">
+                        <thead>
+                            <tr>
+                                <th class="w50">ID</th>
+                                <th>Title</th>
+                                <th class="w150">Url</th>
+                                <th class="w100">Author</th>
+                                <th class="w50">Visible</th>
+                                <th class="w200">Last modified</th>
+                                <th class="w100"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <ui:TemplatePlaceholder Name="Content" />
+                        </tbody>
+                    </table>
+                </div>
+            </Template>
+            <ItemTemplate>
+                <tr>
+                    <td>
+                        <ui:Literal Text="{Binding Key}" />
+                    </td>
+                    <td>
+                        <ui:Literal Text="{Binding Title}" />
+                    </td>
+                    <td>
+                        <ui:Literal Text="{Binding UrlPart}" />
+                    </td>
+                    <td>
+                        <ui:Literal Text="{Binding Author}" />
+                    </td>
+                    <td>
+                        <ui:Literal Text="{Binding IsVisible}" />
+                    </td>
+                    <td>
+                        <ui:Literal Text="{Binding LastModified}" />
+                    </td>
+                    <td class="action-list">
+                        <ui:Link form:Href="Publishing.Article.Edit" ajax:Update="Content" Text="Edit" html:Class="btn btn-default btn-xs">
+                            <Parameters>
+                                <ui:Parameter Name="ArticleKey" Value="{Binding Key}" />
+                            </Parameters>
+                        </ui:Link>
+                        <ui:PostForm html:Class="form-inline" ajax:Update="Content" html:Style="display: inline;">
+                            <ui:HiddenBox Name="ArticleKey" Text="{Binding Key}" />
+                            <ui:Button l:Text="Delete" ui:Event="Publishing/Article/Delete" html:Class="btn btn-xs btn-danger" />
+                        </ui:PostForm>
+                    </td>
+                </tr>
+            </ItemTemplate>
+            <EmptyTemplate>
+                No articles, <a form:href="Publishing.Article.Edit" ajax:Update="Content">create one</a>.
+            </EmptyTemplate>
+        </ui:ListView>
+
+    </ui:TemplateContent>
+</ui:AdminLayout>

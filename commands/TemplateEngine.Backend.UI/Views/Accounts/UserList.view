@@ -1,0 +1,136 @@
+﻿<ui:AdminLayout Title="User Accounts">
+    <ui:TemplateContent Name="SideNav">
+        <ul class="nav nav-pills nav-stacked">
+            <ui:AccountSideNav />
+        </ul>
+    </ui:TemplateContent>
+    <ui:TemplateContent Name="Body">
+
+        <ui:SubHeader>
+            <ui:TemplateContent Name="Left">
+                <h2>
+                    <span class="glyphicon glyphicon-user"></span>
+                    User accounts
+                </h2>
+            </ui:TemplateContent>
+            <ui:TemplateContent Name="Right">
+                <a form:href="Accounts.User.Edit" ajax:Update="Content" class="btn btn-primary">Create user account</a>
+            </ui:TemplateContent>
+        </ui:SubHeader>
+
+        <div class="sub-panel">
+            <ui:GetForm html:Class="form-inline" ajax:Update="Content">
+                <ui:FormItem l:LabelText="ID:">
+                    <ui:TextBox Name="Key" Text="{Request Key}" IsAutoFocus="true" CssClass="form-control input-sm w50" html:Style="display: block;" />
+                </ui:FormItem>
+                <ui:FormItem l:LabelText="Username:">
+                    <ui:TextBox Name="Username" Text="{Request Username}" CssClass="form-control input-sm" />
+                </ui:FormItem>
+                <ui:FormItem>
+                    <label for="RoleKey">Role:</label>
+                    <ui:DropDownList Name="RoleKey" Value="{Request RoleKey}" IsAddEmpty="true" CssClass="form-control input-sm w200" CssStyle="display: block;">
+                        <Source>
+                            <data:UserRoleDataSource />
+                        </Source>
+                    </ui:DropDownList>
+                </ui:FormItem>
+
+                <div class="right">
+                    <ui:Button html:Class="btn btn-success btn-sm">
+                        <span class="glyphicon glyphicon-search"></span>
+                        <ui:Literal l:Text="Search" />
+                    </ui:Button>
+                    <ui:Link form:Href="Accounts.User.List" ajax:Update="Content" CssClass="btn btn-default btn-sm" l:Text="Clear" CopyParameters="PageIndex" AllowActive="false" />
+                </div>
+            </ui:GetForm>
+        </div>
+
+        <!--<ui:Link form:Href="Accounts.User.List" Text="Link" CopyParameters="Query">
+            <Parameters>
+                <ui:Parameter Name="PageIndex" Value="2" />
+            </Parameters>
+        </ui:Link>-->
+
+        <ui:ListView PageIndex="{Request PageIndex}" PageSize="10">
+            <Source>
+                <data:UserAccountDataSource Username="{Request Username}" Key="{Request Key}" RoleKey="{Request RoleKey}" />
+            </Source>
+            <Template>
+                <div style="padding: 10px;">
+                    <table class="table table-condensed table-hover">
+                        <thead>
+                            <tr>
+                                <th class="w50">ID</th>
+                                <th>Username</th>
+                                <th>Roles</th>
+                                <th class="w200">Last logged in</th>
+                                <th class="w150">Is enabled</th>
+                                <th class="w150 action-list"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <ui:TemplatePlaceholder Name="Content" />
+                        </tbody>
+                    </table>
+                </div>
+            </Template>
+            <ItemTemplate>
+                <tr>
+                    <td>
+                        <ui:Literal Text="{Binding Key}" />
+                    </td>
+                    <td>
+                        <ui:Literal Text="{Binding Username}" />
+                    </td>
+                    <td>
+                        <ui:ListView>
+                            <Source>
+                                <data:CollectionDataSource Data="{Binding Roles}" />
+                            </Source>
+                            <ItemTemplate>
+                                <ui:Literal Text="{Binding Name}" />
+                            </ItemTemplate>
+                            <EmptyTemplate>
+                                No roles assigned
+                            </EmptyTemplate>
+                        </ui:ListView>
+                    </td>
+                    <td>
+                        <!--Current user log update error due to parallel requests
+                        <ui:ListView PageSize="1">
+                            <Source>
+                                <data:UserLogDataSource UserKey="{Binding Key}" />
+                            </Source>
+                            <ItemTemplate>
+                                <ui:Literal Text="{Binding SignedIn}" />
+                            </ItemTemplate>
+                        </ui:ListView>-->
+                    </td>
+                    <td>
+                        <ui:Literal Text="{Binding IsEnabled}" />
+                    </td>
+                    <td class="action-list">
+                        <ui:Link form:Href="Accounts.User.Edit" ajax:Update="Content" Text="Edit" html:Class="btn btn-default btn-xs">
+                            <Parameters>
+                                <ui:Parameter Name="UserKey" Value="{Binding Key}" />
+                            </Parameters>
+                        </ui:Link>
+                        <ui:Link form:Href="Accounts.Log.List" ajax:Update="Content" Text="Logs" html:Class="btn btn-default btn-xs">
+                            <Parameters>
+                                <ui:Parameter Name="UserKey" Value="{Binding Key}" />
+                            </Parameters>
+                        </ui:Link>
+                        <ui:PostForm html:Class="form-inline" ajax:Update="Content" html:Style="display: inline;">
+                            <ui:HiddenBox Name="UserKey" Text="{Binding Key}" />
+                            <ui:Button l:Text="Delete" ui:Event="Accounts/User/Delete" html:Class="btn btn-xs btn-danger" />
+                        </ui:PostForm>
+                    </td>
+                </tr>
+            </ItemTemplate>
+            <EmptyTemplate>
+                No user accounts
+            </EmptyTemplate>
+        </ui:ListView>
+
+    </ui:TemplateContent>
+</ui:AdminLayout>

@@ -1,0 +1,20 @@
+﻿using Neptuo.Data;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Neptuo.TemplateEngine.Publishing
+{
+    public class ArticleLine : IKey<int>, IVersion
+    {
+        public int Key { get; set; }
+        public byte[] Version { get; set; }
+
+        public string Name { get; set; }
+        public string Url { get; set; }
+
+        public virtual ICollection<ArticleTag> AvailableTags { get; set; }
+    }
+}

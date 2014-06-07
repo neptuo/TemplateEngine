@@ -1,0 +1,57 @@
+﻿<ui:AdminLayout Title="User Accounts - Create/Edit account">
+    <ui:TemplateContent Name="SideNav">
+        <ul class="nav nav-pills nav-stacked">
+            <ui:AccountSideNav />
+        </ul>
+    </ui:TemplateContent>
+    <ui:TemplateContent Name="Body">
+
+        <ui:DetailView>
+            <Source>
+                <data:UserRoleEditDataSource Key="{Request RoleKey}" />
+            </Source>
+            <Template>
+
+                <div style="padding: 15px 10px;">
+                    <ui:PostForm ajax:Update="Content">
+                        <ui:FormItem l:LabelText="Name" l:HelpText="Role name">
+                            <ui:TextBox Name="Name" Text="{Binding Name}" IsAutoFocus="true" html:ID="Name" html:Class="form-control" />
+                            <ui:MessagePanel Group="RoleEdit" Key="Name" />
+                        </ui:FormItem>
+                        <ui:FormItem l:LabelText="Description" l:HelpText="Role descrition">
+                            <ui:TextBox Name="Description" Text="{Binding Description}" html:ID="Description" html:Class="form-control" />
+                            <ui:MessagePanel Group="RoleEdit" Key="Description" />
+                        </ui:FormItem>
+
+                        <ui:SubHeader>
+                            <ui:TemplateContent Name="Left">
+                                <h2>
+                                    <span class="glyphicon glyphicon-user"></span>
+                                    User Roles - Create/Edit role
+                                </h2>
+                            </ui:TemplateContent>
+                            <ui:TemplateContent Name="Right">
+                                <a form:href="Accounts.Role.List" ajax:Update="Content" class="btn btn-small">
+                                    <span class="glyphicon glyphicon-arrow-left"></span>
+                                    Back to role list
+                                </a>
+
+                                <ui:HiddenBox Name="Key" Text="{Binding Key}" />
+
+                                <ui:Button l:Text="Save" ui:Event="{Switch {Binding IsNew}, TrueValue=Accounts/Role/Create, FalseValue=Accounts/Role/Update}" CssClass="btn btn-primary" />
+                                <ui:Button l:Text="Delete" ui:Event="Accounts/Role/Delete" html:Class="btn btn-danger" />
+                                <ui:Link form:Href="Accounts.User.List" l:Text="Accounts with role" ajax:Update="Content" html:Class="btn btn-default">
+                                    <Parameters>
+                                        <ui:Parameter Name="RoleKey" Value="{Binding Key}" />
+                                    </Parameters>
+                                </ui:Link>
+                            </ui:TemplateContent>
+                        </ui:SubHeader>
+                    </ui:PostForm>
+                </div>
+
+            </Template>
+        </ui:DetailView>
+
+    </ui:TemplateContent>
+</ui:AdminLayout>

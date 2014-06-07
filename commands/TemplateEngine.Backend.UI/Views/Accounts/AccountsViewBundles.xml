@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ViewBundles>
+    <ViewBundle>
+        <View Path="~/Views/Accounts/UserList.view" />
+        <View Path="~/Views/Accounts/UserEdit.view" />
+        <View Path="~/Views/Accounts/RoleList.view" />
+        <View Path="~/Views/Accounts/RoleEdit.view" />
+        <View Path="~/Views/Accounts/LogList.view" />
+        <View Path="~/Views/Accounts/PermissionList.view" />
+        <View Path="~/Views/Accounts/PermissionEdit.view" />
+        <View Path="~/Views/Accounts/SideNavUserControl.view" />
+        
+        <Script Path="~/Design/Scripts/Generated/TemplateEngine/Accounts/Neptuo.TemplateEngine.Accounts.Client.js" />
+        <Script Path="~/Design/Scripts/Generated/TemplateEngine/Accounts/Neptuo.TemplateEngine.Accounts.Shared.js" />
+        <Script Path="~/Design/Scripts/Generated/TemplateEngine/Accounts/Neptuo.TemplateEngine.Accounts.ViewModels.js" />
+    </ViewBundle>
+    <ViewBundle Path="~/Views/Accounts/Login.view">
+        <View Path="~/Views/Accounts/Login.view" />
+        <View Path="~/Views/Accounts/LoginUserControl.view" />
+    </ViewBundle>
+</ViewBundles>

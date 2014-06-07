@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{F116D6F7-E47C-4C73-A802-4F61BA50857F}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Neptuo.TemplateEngine.Web.Compilation</RootNamespace>
+    <AssemblyName>Neptuo.TemplateEngine.Web.Compilation</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Neptuo">
+      <HintPath>..\References\Neptuo.dll</HintPath>
+    </Reference>
+    <Reference Include="Neptuo.SharpKit.CodeGenerator">
+      <HintPath>..\References\Neptuo.SharpKit.CodeGenerator.dll</HintPath>
+    </Reference>
+    <Reference Include="Neptuo.Templates.Components">
+      <HintPath>..\References\Neptuo.Templates.Components.dll</HintPath>
+    </Reference>
+    <Reference Include="Neptuo.Templates.Components.Compilation">
+      <HintPath>..\References\Neptuo.Templates.Components.Compilation.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CodeGenerators\CodeDomCssClassPropertyGenerator.cs" />
+    <Compile Include="CodeGenerators\CodeDomExplicitCastGenerator.cs" />
+    <Compile Include="CodeGenerators\CodeDomLocalizationGenerator.cs" />
+    <Compile Include="CodeGenerators\CodeDomMethodReferenceGenerator.cs" />
+    <Compile Include="CodeGenerators\CodeDomResolveUrlGenerator.cs" />
+    <Compile Include="CodeGenerators\CodeDomStructureGenerator.cs" />
+    <Compile Include="CodeGenerators\CodeDomTemplateGenerator.cs" />
+    <Compile Include="CodeGenerators\CodeDomTemplatePropertyTypeGenerator.cs" />
+    <Compile Include="CodeObjects\CssClassPropertyDescriptor.cs" />
+    <Compile Include="CodeObjects\ExplicitCastCodeObject.cs" />
+    <Compile Include="CodeObjects\LocalizationCodeObject.cs" />
+    <Compile Include="CodeObjects\MethodReferenceCodeObject.cs" />
+    <Compile Include="CodeObjects\ResolveUrlCodeObject.cs" />
+    <Compile Include="CodeObjects\TemplateCodeObject.cs" />
+    <Compile Include="ViewService.cs" />
+    <Compile Include="Parsers\CssClassPropertyBuilder.cs" />
+    <Compile Include="Parsers\FormUriObserverBuider.cs" />
+    <Compile Include="Parsers\FormUriObserverBuiderFactory.cs" />
+    <Compile Include="Parsers\FuncObserverBuilderRegistration.cs" />
+    <Compile Include="Parsers\GenericContentControlBuilder.cs" />
+    <Compile Include="Parsers\LiteralControlBuilder.cs" />
+    <Compile Include="Parsers\LocalizationObserverBuilder.cs" />
+    <Compile Include="Parsers\LocalizationObserverBuilderFactory.cs" />
+    <Compile Include="Parsers\TemplatePropertyBuilder.cs" />
+    <Compile Include="Parsers\TemplatePropertyHelper.cs" />
+    <Compile Include="Parsers\UserTemplateComponentBuilder.cs" />
+    <Compile Include="Parsers\UserTemplateComponentBuilderFactory.cs" />
+    <Compile Include="PreProcessing\TemplatePropertyVisitor.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TemplateEngine.Navigation\TemplateEngine.Navigation.csproj">
+      <Project>{f16d8bc8-2191-498f-9950-dc8aa200b0ba}</Project>
+      <Name>TemplateEngine.Navigation</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TemplateEngine.Templates\TemplateEngine.Templates.csproj">
+      <Project>{ee534abf-10e8-467b-aa25-d8a39b6542b4}</Project>
+      <Name>TemplateEngine.Templates</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Exugin>
+    <Export Filename="Neptuo.TemplateEngine.Templates.js" FilenameFormat="~/{0}" />
+
+    <Type Target="Neptuo.TemplateEngine.Templates.ClientGeneratedViewBase" Name="Neptuo.TemplateEngine.Templates.GeneratedViewBase" />
+    <Type Target="Neptuo.TemplateEngine.Templates.Controls.ClientPartialStartUpControl" Name="Neptuo.TemplateEngine.Templates.Controls.PartialStartUpControl" />
+    <Type Target="Neptuo.TemplateEngine.Templates.Controls.ClientPartialViewControl"  Name="Neptuo.TemplateEngine.Templates.Controls.PartialViewControl"  />
+    <Type Target="Neptuo.TemplateEngine.Templates.Controls.ClientBundleControl" Name="Neptuo.TemplateEngine.Templates.Controls.BundleControl" />
+    <Type Target="Neptuo.TemplateEngine.Templates.Controls.ClientDetailViewControl" Name="Neptuo.TemplateEngine.Templates.Controls.DetailViewControl" />
+    <Type Target="Neptuo.TemplateEngine.Templates.Controls.ClientDropDownListControl" Name="Neptuo.TemplateEngine.Templates.Controls.DropDownListControl" />
+    <Type Target="Neptuo.TemplateEngine.Templates.Controls.ClientListViewControl" Name="Neptuo.TemplateEngine.Templates.Controls.ListViewControl" />
+    <Type Target="Neptuo.TemplateEngine.Templates.Controls.ClientSelectControl" Name="Neptuo.TemplateEngine.Templates.Controls.SelectControl" />
+    <Type Target="Neptuo.TemplateEngine.Templates.DataSources.IClientDataSource"  Name="Neptuo.TemplateEngine.Templates.DataSources.IDataSource"  />
+    <Type Target="Neptuo.TemplateEngine.Templates.DataSources.IClientListDataSource"  Name="Neptuo.TemplateEngine.Templates.DataSources.IListDataSource"  />
+    <Type Target="Neptuo.TemplateEngine.Templates.DataSources.ClientCollectionDataSource" Name="Neptuo.TemplateEngine.Templates.DataSources.CollectionDataSource" />
+    <Type Target="Neptuo.TemplateEngine.Templates.Extensions.ClientIsJavascriptEngineSupportedExtension" Name="Neptuo.TemplateEngine.Templates.Extensions.IsJavascriptEngineSupportedExtension" />
+</Exugin>

@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Exugin>
+    <Export Filename="Neptuo.TemplateEngine.Templates.js" FilenameFormat="~/{0}" />
+
+    <Type Target="Neptuo.TemplateEngine.Templates.GeneratedViewBase" Export="false" />
+    <Type Target="Neptuo.TemplateEngine.Templates.Controls.PartialStartUpControl" Export="false" />
+    <Type Target="Neptuo.TemplateEngine.Templates.Controls.PartialViewControl" Export="false" />
+    <Type Target="Neptuo.TemplateEngine.Templates.Controls.BundleControl" Export="false" />
+    <Type Target="Neptuo.TemplateEngine.Templates.Controls.DetailViewControl" Export="false" />
+    <Type Target="Neptuo.TemplateEngine.Templates.Controls.DropDownListControl" Export="false" />
+    <Type Target="Neptuo.TemplateEngine.Templates.Controls.ListViewControl" Export="false" />
+    <Type Target="Neptuo.TemplateEngine.Templates.Controls.SelectControl" Export="false" />
+    <Type Target="Neptuo.TemplateEngine.Templates.DataSources.IDataSource" Export="false" />
+    <Type Target="Neptuo.TemplateEngine.Templates.DataSources.IListDataSource" Export="false" />
+    <Type Target="Neptuo.TemplateEngine.Templates.DataSources.ListDataSourceBase" Export="false" />
+    <Type Target="Neptuo.TemplateEngine.Templates.DataSources.CollectionDataSource" Export="false" />
+    <Type Target="Neptuo.TemplateEngine.Templates.Extensions.IsJavascriptEngineSupportedExtension" Export="false" />
+</Exugin>

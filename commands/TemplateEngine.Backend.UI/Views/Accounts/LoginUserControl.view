@@ -1,0 +1,11 @@
+﻿<ui:PostForm>
+    <ui:FormItem l:LabelText="Username" l:HelpText="Your user name">
+        <ui:TextBox Name="Username" Text="{Request Username}" IsAutoFocus="true" html:Class="form-control" />
+    </ui:FormItem>
+
+    <ui:FormItem l:LabelText="Password" l:HelpText="Your password">
+        <ui:PasswordBox Name="Password" html:Class="form-control" />
+    </ui:FormItem>
+
+    <ui:Button l:Text="Sign in" ui:Event="Accounts/Login" CssClass="btn btn-primary" />
+</ui:PostForm>

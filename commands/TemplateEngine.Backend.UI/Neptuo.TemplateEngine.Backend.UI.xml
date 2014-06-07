@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Exugin>
+    <Type Target="Neptuo.TemplateEngine.Backend.UI.Global" Export="false" />
+    <Type Target="Neptuo.TemplateEngine.Backend.UI.BackendBuilder" Export="false" />
+
+
+    <Merge Filename="Design/Scripts/Generated/TemplateEngine/Neptuo.TemplateEngine.Controllers.js" Sources="../TemplateEngine.Controllers.Client/Neptuo.TemplateEngine.Controllers.js" />
+    <Merge Filename="Design/Scripts/Generated/TemplateEngine/Neptuo.TemplateEngine.Providers.js" Sources="../TemplateEngine.Providers/Neptuo.TemplateEngine.Providers.js" />
+    <Merge Filename="Design/Scripts/Generated/TemplateEngine/Neptuo.TemplateEngine.Templates.js" Sources="../TemplateEngine.Templates/Neptuo.TemplateEngine.Templates.js,../TemplateEngine.Templates.Client/Neptuo.TemplateEngine.Templates.js" />
+
+    <Merge Filename="Design/Scripts/Generated/TemplateEngine/Neptuo.TemplateEngine.Routing.js" Sources="../TemplateEngine.Routing.Client/Neptuo.TemplateEngine.Routing.js" />
+    <Merge Filename="Design/Scripts/Generated/TemplateEngine/Neptuo.TemplateEngine.js" Sources="../TemplateEngine.Client/Neptuo.TemplateEngine.js" />
+    <Merge Filename="Design/Scripts/Generated/TemplateEngine/Neptuo.TemplateEngine.Navigation.js" Sources="../TemplateEngine.Navigation/Neptuo.TemplateEngine.Navigation.js" />
+
+    <Merge Filename="Design/Scripts/Generated/TemplateEngine/Accounts/Neptuo.TemplateEngine.Accounts.Shared.js" Sources="../TemplateEngine.Accounts.Shared/Neptuo.TemplateEngine.Accounts.Shared.js" />
+    <Merge Filename="Design/Scripts/Generated/TemplateEngine/Accounts/Neptuo.TemplateEngine.Accounts.ViewModels.js" Sources="../TemplateEngine.Accounts.ViewModels/Neptuo.TemplateEngine.Accounts.ViewModels.js" />
+    <Merge Filename="Design/Scripts/Generated/TemplateEngine/Accounts/Neptuo.TemplateEngine.Accounts.Client.js" Sources="../TemplateEngine.Accounts.Client/Neptuo.TemplateEngine.Accounts.Client.js" />
+
+    <Merge Filename="Design/Scripts/Generated/TemplateEngine/Publishing/Neptuo.TemplateEngine.Publishing.Shared.js" Sources="../TemplateEngine.Publishing.Shared/Neptuo.TemplateEngine.Publishing.Shared.js" />
+    <Merge Filename="Design/Scripts/Generated/TemplateEngine/Publishing/Neptuo.TemplateEngine.Publishing.ViewModels.js" Sources="../TemplateEngine.Publishing.ViewModels/Neptuo.TemplateEngine.Publishing.ViewModels.js" />
+    <Merge Filename="Design/Scripts/Generated/TemplateEngine/Publishing/Neptuo.TemplateEngine.Publishing.Client.js" Sources="../TemplateEngine.Publishing.Client/Neptuo.TemplateEngine.Publishing.Client.js" />
+</Exugin>

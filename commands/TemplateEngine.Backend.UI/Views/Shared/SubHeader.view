@@ -1,0 +1,9 @@
+﻿<div class="sub-header">
+    <div class="left">
+        <ui:TemplatePlaceholder Name="Left" />
+    </div>
+    <div class="right">
+        <ui:TemplatePlaceholder Name="Right" />
+    </div>
+    <div class="clear"></div>
+</div>

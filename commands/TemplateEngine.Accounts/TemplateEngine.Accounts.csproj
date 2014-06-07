@@ -1,0 +1,116 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{36F0D8F9-1F8F-409C-9EDA-C17644C4C0D8}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Neptuo.TemplateEngine.Accounts</RootNamespace>
+    <AssemblyName>Neptuo.TemplateEngine.Accounts</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Neptuo">
+      <HintPath>..\References\Neptuo.dll</HintPath>
+    </Reference>
+    <Reference Include="Neptuo.Commands">
+      <HintPath>..\References\Neptuo.Commands.dll</HintPath>
+    </Reference>
+    <Reference Include="Neptuo.Data">
+      <HintPath>..\References\Neptuo.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Neptuo.PresentationModels">
+      <HintPath>..\References\Neptuo.PresentationModels.dll</HintPath>
+    </Reference>
+    <Reference Include="Neptuo.PresentationModels.Validation">
+      <HintPath>..\References\Neptuo.PresentationModels.Validation.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Commands\Handlers\UserLoginCommandHandler.cs" />
+    <Compile Include="Commands\Handlers\UserLogoutCommandHandler.cs" />
+    <Compile Include="Commands\UserLoginCommand.cs" />
+    <Compile Include="Commands\UserLogoutCommand.cs" />
+    <Compile Include="Data\IResourcePermissionRepository.cs" />
+    <Compile Include="Data\Queries\IResourcePermissionFilter.cs" />
+    <Compile Include="Data\Queries\IResourcePermissionQuery.cs" />
+    <Compile Include="Data\Queries\ResourcePermissionFilter.cs" />
+    <Compile Include="Data\ResourcePermissionDataProvider.cs" />
+    <Compile Include="ResourcePermission.cs" />
+    <Compile Include="ResourcePermissionProvider.cs" />
+    <Compile Include="UserContextBase.cs" />
+    <Compile Include="Data\DataProviderBase.cs" />
+    <Compile Include="Data\IUserAccountRepository.cs" />
+    <Compile Include="Data\IUserLogRepository.cs" />
+    <Compile Include="Data\IUserRoleRepository.cs" />
+    <Compile Include="Data\Queries\CredentialsAccountFilter.cs" />
+    <Compile Include="Data\Queries\IUserAccountFilter.cs" />
+    <Compile Include="Data\Queries\IUserAccountQuery.cs" />
+    <Compile Include="Data\Queries\IUserLogFilter.cs" />
+    <Compile Include="Data\Queries\IUserLogQuery.cs" />
+    <Compile Include="Data\Queries\IUserRoleFilter.cs" />
+    <Compile Include="Data\Queries\IUserRoleQuery.cs" />
+    <Compile Include="Data\Queries\UserAccountFilter.cs" />
+    <Compile Include="Data\Queries\UserLogFilter.cs" />
+    <Compile Include="Data\Queries\UserRoleFilter.cs" />
+    <Compile Include="Data\UserLogDataProvider.cs" />
+    <Compile Include="Data\UserRoleDataProvider.cs" />
+    <Compile Include="Events\UserAccountCreated.cs" />
+    <Compile Include="Events\UserAccountDeleted.cs" />
+    <Compile Include="Events\UserAccountUpdated.cs" />
+    <Compile Include="Events\UserLogCreatedEvent.cs" />
+    <Compile Include="IUserLogContext.cs" />
+    <Compile Include="UserAccount.cs" />
+    <Compile Include="Data\UserAccountDataProvider.cs" />
+    <Compile Include="UserLog.cs" />
+    <Compile Include="UserRole.cs" />
+    <Compile Include="PasswordProvider.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UserAccountService.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TemplateEngine.Accounts.Shared\TemplateEngine.Accounts.Shared.csproj">
+      <Project>{bd9ba2ab-c026-4c9f-8605-920d24987756}</Project>
+      <Name>TemplateEngine.Accounts.Shared</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TemplateEngine\TemplateEngine.csproj">
+      <Project>{0ddeef40-567f-49de-94ec-314309702534}</Project>
+      <Name>TemplateEngine</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,130 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{D9B6611D-C5D5-4652-99A7-4152775E16CA}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Neptuo.TemplateEngine.Accounts</RootNamespace>
+    <AssemblyName>Neptuo.TemplateEngine.Accounts.Client</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Neptuo, Version=2.6.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\Neptuo.dll</HintPath>
+    </Reference>
+    <Reference Include="Neptuo.Bootstrap, Version=3.4.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\Neptuo.Bootstrap.dll</HintPath>
+    </Reference>
+    <Reference Include="Neptuo.PresentationModels, Version=4.3.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\Neptuo.PresentationModels.dll</HintPath>
+    </Reference>
+    <Reference Include="Neptuo.PresentationModels.TypeModels, Version=4.3.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\Neptuo.PresentationModels.TypeModels.dll</HintPath>
+    </Reference>
+    <Reference Include="Neptuo.Templates.Components, Version=2.14.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\Neptuo.Templates.Components.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpKit.Html, Version=1.0.0.0, Culture=neutral, PublicKeyToken=2575297a09c47a96, processorArchitecture=MSIL" />
+    <Reference Include="SharpKit.JavaScript, Version=1.5.0.0, Culture=neutral, PublicKeyToken=2575297a09c47a96, processorArchitecture=MSIL" />
+    <Reference Include="SharpKit.jQuery, Version=1.6.4.0, Culture=neutral, PublicKeyToken=2575297a09c47a96, processorArchitecture=MSIL" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Bootstrap\AccountBootstrapTask.cs" />
+    <Compile Include="ResourcePermissionListResult.cs" />
+    <Compile Include="ResourcePermissionListResultConverter.cs" />
+    <Compile Include="Templates\DataSources\ResourcePermissionDataSource.cs" />
+    <Compile Include="Templates\DataSources\UserLogDataSource.cs" />
+    <Compile Include="UserAccountEditModelConverter.cs" />
+    <Compile Include="UserAccountListResult.cs" />
+    <Compile Include="UserAccountListResultConverter.cs" />
+    <Compile Include="UserLogListResult.cs" />
+    <Compile Include="UserLogListResultConverter.cs" />
+    <Compile Include="UserRoleEditModelConverter.cs" />
+    <Compile Include="UserRoleListResult.cs" />
+    <Compile Include="UserRoleListResultConverter.cs" />
+    <Compile Include="Templates\DataSources\UserAccountDataSource.cs" />
+    <Compile Include="Templates\DataSources\UserAccountEditDataSource.cs" />
+    <Compile Include="Templates\DataSources\UserRoleDataSource.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Templates\DataSources\UserRoleEditDataSource.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <SkcPlugin Include="Neptuo.SharpKit.Exugin.ExuginPlugin, Neptuo.SharpKit.Exugin">
+      <InProject>false</InProject>
+    </SkcPlugin>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Neptuo.TemplateEngine.Accounts.Client.js" />
+    <None Include="Neptuo.TemplateEngine.Accounts.Client.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TemplateEngine.Accounts.Shared\TemplateEngine.Accounts.Shared.csproj">
+      <Project>{bd9ba2ab-c026-4c9f-8605-920d24987756}</Project>
+      <Name>TemplateEngine.Accounts.Shared</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TemplateEngine.Accounts.ViewModels\TemplateEngine.Accounts.ViewModels.csproj">
+      <Project>{f5033996-e58c-4e29-a79e-7512e4d8fdaa}</Project>
+      <Name>TemplateEngine.Accounts.ViewModels</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TemplateEngine.Client\TemplateEngine.Client.csproj">
+      <Project>{7df11e7b-e7fe-4ebb-a707-c592a230df54}</Project>
+      <Name>TemplateEngine.Client</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TemplateEngine.Controllers.Client\TemplateEngine.Controllers.Client.csproj">
+      <Project>{7a29ab8f-8a8d-4da6-b17a-faa81e3d4869}</Project>
+      <Name>TemplateEngine.Controllers.Client</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TemplateEngine.Navigation\TemplateEngine.Navigation.csproj">
+      <Project>{f16d8bc8-2191-498f-9950-dc8aa200b0ba}</Project>
+      <Name>TemplateEngine.Navigation</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TemplateEngine.Providers\TemplateEngine.Providers.csproj">
+      <Project>{30214616-7c89-467a-9147-7385e91aed13}</Project>
+      <Name>TemplateEngine.Providers</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TemplateEngine.Templates.Client\TemplateEngine.Templates.Client.csproj">
+      <Project>{6e0bcd94-e6d1-4f4d-bf0f-912ee279c09c}</Project>
+      <Name>TemplateEngine.Templates.Client</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TemplateEngine.Templates\TemplateEngine.Templates.csproj">
+      <Project>{ee534abf-10e8-467b-aa25-d8a39b6542b4}</Project>
+      <Name>TemplateEngine.Templates</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildBinPath)\SharpKit\5\SharpKit.Build.targets" />
+</Project>

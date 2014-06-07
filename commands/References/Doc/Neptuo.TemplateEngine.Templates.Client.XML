@@ -1,0 +1,125 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Neptuo.TemplateEngine.Templates.Client</name>
+    </assembly>
+    <members>
+        <member name="T:Neptuo.TemplateEngine.Templates.Controls.ClientBundleControl">
+            <summary>
+            Javascript implementation of <see cref="T:Neptuo.TemplateEngine.Templates.Controls.BundleControl"/>.
+            </summary>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Templates.Controls.ClientDetailViewControl">
+            <summary>
+            Javascript implementation of <see cref="T:Neptuo.TemplateEngine.Templates.Controls.DetailViewControl"/>.
+            </summary>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Templates.Controls.ClientDropDownListControl">
+            <summary>
+            Javascript implementation of <see cref="!:DropDownControl"/>.
+            </summary>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Templates.Controls.ClientSelectControl">
+            <summary>
+            Javascript implementation of <see cref="T:Neptuo.TemplateEngine.Templates.Controls.SelectControl"/>.
+            </summary>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Templates.Controls.ClientListViewControl">
+            <summary>
+            Javascript implementation of <see cref="T:Neptuo.TemplateEngine.Templates.Controls.ListViewControl"/>.
+            </summary>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Templates.DataSources.ClientCollectionDataSource">
+            <summary>
+            Javascript implementation of <see cref="T:Neptuo.TemplateEngine.Templates.DataSources.CollectionDataSource"/>.
+            </summary>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Templates.DataSources.IClientListDataSource">
+            <summary>
+            Javascript implementation of <see cref="T:Neptuo.TemplateEngine.Templates.DataSources.IListDataSource"/>.
+            </summary>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Templates.DataSources.DataSourceProxy`1">
+            <summary>
+            Single data source proxy.
+            Calls web data source with class name and uses <see cref="!:IConverter"/> to convert response JSON.
+            </summary>
+            <typeparam name="TResultModel">Result model type.</typeparam>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Templates.DataSources.IClientDataSource">
+            <summary>
+            Javascript implementation of <see cref="T:Neptuo.TemplateEngine.Templates.DataSources.IDataSource"/>.
+            </summary>
+        </member>
+        <member name="M:Neptuo.TemplateEngine.Templates.DataSources.DataSourceProxy`1.SetParameters(Neptuo.TemplateEngine.JsObjectBuilder)">
+            <summary>
+            Set additional request parameters.
+            </summary>
+        </member>
+        <member name="M:Neptuo.TemplateEngine.Templates.DataSources.DataSourceProxy`1.OnGetItem(System.Action{System.Object})">
+            <summary>
+            On trying to model from this data source.
+            Called before generation request.
+            </summary>
+        </member>
+        <member name="M:Neptuo.TemplateEngine.Templates.DataSources.DataSourceProxy`1.GetDataSourceName">
+            <summary>
+            Returns data source name.
+            </summary>
+        </member>
+        <member name="P:Neptuo.TemplateEngine.Templates.DataSources.DataSourceProxy`1.IsBindModel">
+            <summary>
+            Should be parameters from context on item model.
+            Default: true.
+            </summary>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Templates.DataSources.DynamicListDataSourceProxy`1">
+            <summary>
+            Overrides <see cref="M:Neptuo.TemplateEngine.Templates.DataSources.DynamicListDataSourceProxy`1.SetParameters(Neptuo.TemplateEngine.JsObjectBuilder)"/> and using reflection sets value of properties defined in ctor.
+            </summary>
+            <typeparam name="TResultModel"></typeparam>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Templates.DataSources.ListDataSourceProxy`1">
+            <summary>
+            List data source proxy.
+            Calls web data source with class name and uses <see cref="!:IConverter"/> to convert response JSON.
+            </summary>
+            <typeparam name="TResultModel">Result list type.</typeparam>
+        </member>
+        <member name="M:Neptuo.TemplateEngine.Templates.DataSources.ListDataSourceProxy`1.SetParameters(Neptuo.TemplateEngine.JsObjectBuilder)">
+            <summary>
+            Set additional request parameters.
+            </summary>
+        </member>
+        <member name="M:Neptuo.TemplateEngine.Templates.DataSources.ListDataSourceProxy`1.GetDataSourceName">
+            <summary>
+            Returns data source name.
+            </summary>
+        </member>
+        <member name="F:Neptuo.TemplateEngine.Templates.DataSources.DynamicListDataSourceProxy`1.properties">
+            <summary>
+            List of properties to append to request.
+            </summary>
+        </member>
+        <member name="M:Neptuo.TemplateEngine.Templates.DataSources.DynamicListDataSourceProxy`1.#ctor(Neptuo.Templates.IVirtualUrlProvider,System.Collections.Generic.IEnumerable{System.String})">
+            <param name="properties">List of properties to append to request.</param>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Templates.DataSources.FullDataSourceProxy`2">
+            <summary>
+            Merged implementation of <see cref="!:ListDataSourceProxy"/> and <see cref="!:DataSourceProxy"/>.
+            </summary>
+            <typeparam name="TListResultModel">Result list type.</typeparam>
+            <typeparam name="TSingleResultModel">Result model type.</typeparam>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Templates.ClientGeneratedViewBase">
+            <summary>
+            Javascript implementation of <see cref="T:Neptuo.TemplateEngine.Templates.GeneratedViewBase"/>.
+            </summary>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Templates.Extensions.ClientIsJavascriptEngineSupportedExtension">
+            <summary>
+            Javascript implementation of <see cref="T:Neptuo.TemplateEngine.Templates.Extensions.IsJavascriptEngineSupportedExtension"/>.
+            </summary>
+        </member>
+    </members>
+</doc>

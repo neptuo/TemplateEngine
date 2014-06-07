@@ -1,0 +1,155 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{F0850D8E-C545-4652-8E66-7CB4B816D1CB}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Neptuo.TemplateEngine.Accounts.Bootstrap</RootNamespace>
+    <AssemblyName>Neptuo.TemplateEngine.Accounts.Bootstrap</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.1.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Neptuo">
+      <HintPath>..\References\Neptuo.dll</HintPath>
+    </Reference>
+    <Reference Include="Neptuo.Bootstrap">
+      <HintPath>..\References\Neptuo.Bootstrap.dll</HintPath>
+    </Reference>
+    <Reference Include="Neptuo.Data">
+      <HintPath>..\References\Neptuo.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Neptuo.Data.Entity">
+      <HintPath>..\References\Neptuo.Data.Entity.dll</HintPath>
+    </Reference>
+    <Reference Include="Neptuo.Templates.Components">
+      <HintPath>..\References\Neptuo.Templates.Components.dll</HintPath>
+    </Reference>
+    <Reference Include="Neptuo.Templates.Components.Compilation">
+      <HintPath>..\References\Neptuo.Templates.Components.Compilation.dll</HintPath>
+    </Reference>
+    <Reference Include="Neptuo.Web">
+      <HintPath>..\References\Neptuo.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="Neptuo.Web.Routing">
+      <HintPath>..\References\Neptuo.Web.Routing.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TemplateEngine.Accounts.Controllers\TemplateEngine.Accounts.Controllers.csproj">
+      <Project>{fd17a578-fd88-4deb-a1b2-5619bbb515fa}</Project>
+      <Name>TemplateEngine.Accounts.Controllers</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TemplateEngine.Accounts.Data.Entity\TemplateEngine.Accounts.Data.Entity.csproj">
+      <Project>{6dd08b12-15bd-4eb3-8273-da33c59b71c3}</Project>
+      <Name>TemplateEngine.Accounts.Data.Entity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TemplateEngine.Accounts.Shared\TemplateEngine.Accounts.Shared.csproj">
+      <Project>{bd9ba2ab-c026-4c9f-8605-920d24987756}</Project>
+      <Name>TemplateEngine.Accounts.Shared</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TemplateEngine.Accounts.Templates\TemplateEngine.Accounts.Templates.csproj">
+      <Project>{fbf201ad-00ac-4899-98ea-3abc7db0d67c}</Project>
+      <Name>TemplateEngine.Accounts.Templates</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TemplateEngine.Accounts.Web\TemplateEngine.Accounts.Web.csproj">
+      <Project>{a67f64a5-c62d-491e-8aee-2b5766668b5e}</Project>
+      <Name>TemplateEngine.Accounts.Web</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TemplateEngine.Accounts\TemplateEngine.Accounts.csproj">
+      <Project>{36f0d8f9-1f8f-409c-9eda-c17644c4c0d8}</Project>
+      <Name>TemplateEngine.Accounts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TemplateEngine.Controllers\TemplateEngine.Controllers.csproj">
+      <Project>{cefd01c6-467d-4e1c-ace6-af093e443e08}</Project>
+      <Name>TemplateEngine.Controllers</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TemplateEngine.Hosting\TemplateEngine.Hosting.csproj">
+      <Project>{f794b999-94db-4443-8780-25ad170742ee}</Project>
+      <Name>TemplateEngine.Hosting</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TemplateEngine.Navigation\TemplateEngine.Navigation.csproj">
+      <Project>{f16d8bc8-2191-498f-9950-dc8aa200b0ba}</Project>
+      <Name>TemplateEngine.Navigation</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TemplateEngine.Providers\TemplateEngine.Providers.csproj">
+      <Project>{30214616-7c89-467a-9147-7385e91aed13}</Project>
+      <Name>TemplateEngine.Providers</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TemplateEngine.Shared\TemplateEngine.Shared.csproj">
+      <Project>{a4c6627c-c21b-4bb7-93a4-b40ac748588d}</Project>
+      <Name>TemplateEngine.Shared</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TemplateEngine.Templates\TemplateEngine.Templates.csproj">
+      <Project>{ee534abf-10e8-467b-aa25-d8a39b6542b4}</Project>
+      <Name>TemplateEngine.Templates</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TemplateEngine.Web.Compilation\TemplateEngine.Templates.Compilation.csproj">
+      <Project>{f116d6f7-e47c-4c73-a802-4f61ba50857f}</Project>
+      <Name>TemplateEngine.Templates.Compilation</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TemplateEngine\TemplateEngine.csproj">
+      <Project>{0ddeef40-567f-49de-94ec-314309702534}</Project>
+      <Name>TemplateEngine</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

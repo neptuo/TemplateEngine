@@ -1,0 +1,37 @@
+﻿<ui:AdminLayout Title="Home">
+    <ui:TemplateContent Name="Body">
+
+        <ui:SubHeader>
+            <ui:TemplateContent Name="Left">
+                <h2>
+                    <span class="glyphicon glyphicon-tree-deciduous"></span>
+                    TemplateEngine - Dashboard
+                </h2>
+            </ui:TemplateContent>
+        </ui:SubHeader>
+
+        <div class="box">
+            <div class="box-header">
+                <h3>
+                    <span class="glyphicon glyphicon-globe"></span>
+                    Publishing
+                </h3>
+            </div>
+            <ul class="side-navbar nav nav-pills nav-stacked">
+                <ui:PublishingSideNav />
+            </ul>
+        </div>
+
+        <div class="box">
+            <div class="box-header">
+                <h3>
+                    <span class="glyphicon glyphicon-user"></span>
+                    User accounts
+                </h3>
+            </div>
+            <ul class="side-navbar nav nav-pills nav-stacked">
+                <ui:AccountSideNav />
+            </ul>
+        </div>
+    </ui:TemplateContent>
+</ui:AdminLayout>

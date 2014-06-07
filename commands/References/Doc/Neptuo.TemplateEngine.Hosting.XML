@@ -1,0 +1,227 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Neptuo.TemplateEngine.Hosting</name>
+    </assembly>
+    <members>
+        <member name="T:Neptuo.TemplateEngine.Hosting.FormsAuthenticationProvider">
+            <summary>
+            Reacts to <see cref="T:Neptuo.TemplateEngine.Security.Events.UserSignedInEvent"/> and <see cref="T:Neptuo.TemplateEngine.Security.Events.UserSignedOutEvent"/>.
+            Setups authentication cookies.
+            </summary>
+        </member>
+        <member name="M:Neptuo.TemplateEngine.Hosting.FormsAuthenticationProvider.Handle(Neptuo.TemplateEngine.Security.Events.UserSignedOutEvent)">
+            <summary>
+            Signs user out (discarts auth cookie.).
+            </summary>
+        </member>
+        <member name="M:Neptuo.TemplateEngine.Hosting.FormsAuthenticationProvider.Handle(Neptuo.TemplateEngine.Security.Events.UserSignedInEvent)">
+            <summary>
+            Signs user in (creates auth cookie with <see cref="!:eventData.UserContext.AuthenticationToken"/> as userName).
+            </summary>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Hosting.ViewBundleHttpHandler">
+            <summary>
+            Handles request for view bundles.
+            </summary>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Hosting.Integration.JsonConverter">
+            <summary>
+            Converts object to json response.
+            </summary>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Navigation.QueryStringNavigateTo">
+            <summary>
+            Base <see cref="T:Neptuo.TemplateEngine.Navigation.INavigateTo"/> implementation that adds parameters to query string.
+            </summary>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Web.Navigation.RedirectNavigateTo">
+            <summary>
+            Server redirect <see cref="T:Neptuo.TemplateEngine.Navigation.INavigateTo"/> implementation.
+            </summary>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Web.Navigation.RedirectNavigator">
+            <summary>
+            Server redirect <see cref="T:Neptuo.TemplateEngine.Navigation.INavigator"/> implementation.
+            </summary>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Hosting.RequestParameterProvider">
+            <summary>
+            Parameter provider for <see cref="T:System.Web.HttpRequestBase"/>.
+            </summary>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Hosting.RequestParameterProviderFactory">
+            <summary>
+            Parameter provider factory for <see cref="T:System.Web.HttpRequestBase"/>.
+            </summary>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Web.ViewBundles.GreedyViewBundle">
+            <summary>
+            View bundle implementation that 'contains everything'.
+            </summary>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Web.ViewBundles.IViewBundle">
+            <summary>
+            Defines bundle for views and scripts.
+            </summary>
+        </member>
+        <member name="M:Neptuo.TemplateEngine.Web.ViewBundles.IViewBundle.AddView(System.String)">
+            <summary>
+            Adds view path to bundle.
+            </summary>
+            <param name="viewPath">New view path.</param>
+        </member>
+        <member name="M:Neptuo.TemplateEngine.Web.ViewBundles.IViewBundle.AddScript(System.String)">
+            <summary>
+            Adds script path to bundle.
+            </summary>
+            <param name="scriptPath">New string path.</param>
+        </member>
+        <member name="M:Neptuo.TemplateEngine.Web.ViewBundles.IViewBundle.EnumerateViews">
+            <summary>
+            Enuamerates all registered views.
+            </summary>
+        </member>
+        <member name="M:Neptuo.TemplateEngine.Web.ViewBundles.IViewBundle.EnumerateScripts">
+            <summary>
+            Enumerates all registered scripts.
+            </summary>
+        </member>
+        <member name="M:Neptuo.TemplateEngine.Web.ViewBundles.IViewBundle.ContainsView(System.String)">
+            <summary>
+            Returns true if contains <paramref name="viewPath"/>.
+            </summary>
+            <param name="viewPath">View path.</param>
+            <returns>True if contains <paramref name="viewPath"/>.</returns>
+        </member>
+        <member name="M:Neptuo.TemplateEngine.Web.ViewBundles.IViewBundle.ContainsScript(System.String)">
+            <summary>
+            Returns true if contains <paramref name="scriptPath"/>.
+            </summary>
+            <param name="scriptPath">Script path.</param>
+            <returns>True if contains <paramref name="scriptPath"/>.</returns>
+        </member>
+        <member name="P:Neptuo.TemplateEngine.Web.ViewBundles.IViewBundle.Name">
+            <summary>
+            Bundle name.
+            </summary>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Web.ViewBundles.IViewBundleCollection">
+            <summary>
+            Collection of bundles.
+            </summary>
+        </member>
+        <member name="M:Neptuo.TemplateEngine.Web.ViewBundles.IViewBundleCollection.Add(Neptuo.TemplateEngine.Web.ViewBundles.IViewBundle)">
+            <summary>
+            Adds view bundle.
+            </summary>
+            <param name="bundle">New view bundle.</param>
+        </member>
+        <member name="M:Neptuo.TemplateEngine.Web.ViewBundles.IViewBundleCollection.TryGet(System.String,Neptuo.TemplateEngine.Web.ViewBundles.IViewBundle@)">
+            <summary>
+            Tries get view bundle with <paramref name="name"/>.
+            </summary>
+            <param name="name">View bundle name.</param>
+            <param name="bundle">View bundle.</param>
+            <returns>True if there is registered view bundle with name <paramref name="name"/>.</returns>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Web.ViewBundles.ViewBundle">
+            <summary>
+            Actual implmentation of <see cref="T:Neptuo.TemplateEngine.Web.ViewBundles.IViewBundle"/>.
+            </summary>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Web.ViewBundles.ViewBundleCollection">
+            <summary>
+            Actual implmentation of <see cref="T:Neptuo.TemplateEngine.Web.ViewBundles.IViewBundleCollection"/>.
+            </summary>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Web.ViewBundles.ViewBundleTable">
+            <summary>
+            Singleton of <paramref name="IViewBundleCollection"/>.
+            </summary>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Web.ViewBundles.XmlViewBundleLoader">
+            <summary>
+            XML bundle definition loader.
+            </summary>
+        </member>
+        <member name="M:Neptuo.TemplateEngine.Web.ViewBundles.XmlViewBundleLoader.LoadXml(System.String,Neptuo.TemplateEngine.Web.ViewBundles.IViewBundleCollection)">
+            <summary>
+            Loads bundles from XML file.
+            </summary>
+        </member>
+        <member name="M:Neptuo.TemplateEngine.Web.ViewBundles.XmlViewBundleLoader.LoadDirectory(System.String,Neptuo.TemplateEngine.Web.ViewBundles.IViewBundleCollection)">
+            <summary>
+            Loads all XML files in <paramref name="directoryPath"/>.
+            </summary>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Hosting.DataSources.DictionaryWebDataSourceRegistry">
+            <summary>
+            Actual implementation of <see cref="T:Neptuo.TemplateEngine.Hosting.DataSources.IWebDataSourceRegistry"/>
+            </summary>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Hosting.DataSources.IWebDataSourceRegistry">
+            <summary>
+            Contains registration of web data sources.
+            </summary>
+        </member>
+        <member name="M:Neptuo.TemplateEngine.Hosting.DataSources.IWebDataSourceRegistry.Add(System.String,System.Type)">
+            <summary>
+            Adds datasource type to <paramref name="name"/>.
+            </summary>
+            <param name="name">Data source name.</param>
+            <param name="dataSourceType">Data source type.</param>
+        </member>
+        <member name="M:Neptuo.TemplateEngine.Hosting.DataSources.IWebDataSourceRegistry.TryGet(System.String,System.Type@)">
+            <summary>
+            Tries get data source type registered with <paramref name="name"/>.
+            </summary>
+            <param name="name">Data source name.</param>
+            <param name="dataSourceType">Data source type.</param>
+            <returns>Trues if there is data source for <paramref name="name"/>.</returns>
+        </member>
+        <member name="M:Neptuo.TemplateEngine.Hosting.DataSources.WebDataSourceRegistryExtensions.AddFromAssembly(Neptuo.TemplateEngine.Hosting.DataSources.IWebDataSourceRegistry,System.Reflection.Assembly)">
+            <summary>
+            Adds all types with <see cref="T:Neptuo.TemplateEngine.Templates.DataSources.WebDataSourceAttribute"/> from <paramref name="assembly"/>.
+            </summary>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Hosting.TemplateHttpHandler">
+            <summary>
+            Maps request to static .view files in ~/views directory.
+            </summary>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Hosting.TemplateHttpHandlerBase">
+            <summary>
+            Base http handler for processing templates and executing controllers.
+            Supports partial rendering.
+            </summary>
+        </member>
+        <member name="M:Neptuo.TemplateEngine.Hosting.TemplateHttpHandlerBase.GetCurrentView(System.Web.HttpContext)">
+            <summary>
+            Maps current rueqest to instance of view.
+            </summary>
+            <param name="context">Http context.</param>
+        </member>
+        <member name="M:Neptuo.TemplateEngine.Hosting.TemplateHttpHandlerBase.GetDependencyContainer">
+            <summary>
+            Creates dependency container for current context.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Neptuo.TemplateEngine.Hosting.TemplateHttpHandlerBase.GetCurrentFormUri(System.Web.HttpContext)">
+            <summary>
+            Gets current request form uri.
+            </summary>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Hosting.WebDataSourceHttpHandler">
+            <summary>
+            Enables execution of data source through HTTP requests.
+            </summary>
+        </member>
+        <member name="T:Neptuo.TemplateEngine.Hosting.WebDataSourceModel">
+            <summary>
+            Describes web data source request.
+            </summary>
+        </member>
+    </members>
+</doc>
