@@ -91,7 +91,7 @@ namespace Neptuo.TemplateEngine.Hosting.Integration
                 .Map(typeof(PerRequestLifetime), new PerRequestLifetimeMapper())
                 .Map(typeof(PerSessionLifetime), new PerSessionLifetimeMapper());
 
-            EventDispatcher eventDispatcher = new EventDispatcher();
+            EventManager eventDispatcher = new EventManager();
 
             dependencyContainer
                 .RegisterType<HttpContextBase>(new GetterLifetime(() => new HttpContextWrapper(HttpContext.Current)))

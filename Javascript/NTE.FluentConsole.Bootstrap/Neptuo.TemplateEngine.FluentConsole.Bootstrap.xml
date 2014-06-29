@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Exugin>
+    <Export Filename="Neptuo.TemplateEngine.FluentConsole.Bootstrap.js" FilenameFormat="~/{0}" />
+    <Export Filename="Neptuo.TemplateEngine.FluentConsole.Bootstrap.js" FilenameFormat="~/../../NTE.FluentConsole.UI/Javascript/Generated/FluentConsole/{0}" />
+</Exugin>
