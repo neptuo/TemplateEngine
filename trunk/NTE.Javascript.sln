@@ -1,0 +1,29 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30501.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NTE.FluentConsole", "Javascript\NTE.FluentConsole\NTE.FluentConsole.csproj", "{C666E385-9CC3-4B90-9926-6FFFDB4B4236}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NTE.FluentConsole.Bootstrap", "Javascript\NTE.FluentConsole.Bootstrap\NTE.FluentConsole.Bootstrap.csproj", "{F3A286B2-5BE1-43BC-BA06-1DF3777D115C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+		Description = Javascript solution for NTE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C666E385-9CC3-4B90-9926-6FFFDB4B4236}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C666E385-9CC3-4B90-9926-6FFFDB4B4236}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C666E385-9CC3-4B90-9926-6FFFDB4B4236}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C666E385-9CC3-4B90-9926-6FFFDB4B4236}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F3A286B2-5BE1-43BC-BA06-1DF3777D115C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F3A286B2-5BE1-43BC-BA06-1DF3777D115C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F3A286B2-5BE1-43BC-BA06-1DF3777D115C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F3A286B2-5BE1-43BC-BA06-1DF3777D115C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
