@@ -74,9 +74,19 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Stylesheet\Bootstrap\bootstrap-theme.css" />
+    <Content Include="Stylesheet\Bootstrap\bootstrap-theme.min.css" />
+    <Content Include="Stylesheet\Bootstrap\bootstrap.css" />
+    <Content Include="Stylesheet\Bootstrap\bootstrap.min.css" />
+    <Content Include="Stylesheet\FluentConsole.css" />
+    <Content Include="Stylesheet\Common.css" />
+    <Content Include="Stylesheet\Bootstrap\Fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Views\Default.view">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Stylesheet\Bootstrap\Fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Stylesheet\Bootstrap\Fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Stylesheet\Bootstrap\Fonts\glyphicons-halflings-regular.woff" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -102,7 +112,9 @@
     <Content Include="Javascript\Generated\Neptuo.Tokens.js" />
     <Content Include="Javascript\jquery-1.9.1.js" />
     <Content Include="Javascript\jquery-1.9.1.min.js" />
-    <Content Include="Resources.xml" />
+    <Content Include="Resources.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -112,9 +124,7 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Stylesheet\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\TemplateEngine.Hosting.Integration\TemplateEngine.Hosting.Integration.csproj">
       <Project>{f206c037-60a2-47a0-9166-f60a785fadc7}</Project>

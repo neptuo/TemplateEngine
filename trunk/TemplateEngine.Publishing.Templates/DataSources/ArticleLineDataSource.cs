@@ -51,7 +51,8 @@ namespace Neptuo.TemplateEngine.Publishing.Templates.DataSources
             {
                 query.Filter.Key = IntSearch.Create(Key.Value);
                 ArticleLine model = query.ResultSingle();
-                viewModel = new ArticleLineEditViewModel(model.Key, model.Name, model.Url, model.AvailableTags.Select(t => t.Key));
+                if (model != null)
+                    viewModel = new ArticleLineEditViewModel(model.Key, model.Name, model.Url, model.AvailableTags.Select(t => t.Key));
             }
 
             modelBinder.Bind(viewModel);

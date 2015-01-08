@@ -32,6 +32,7 @@
   <ItemGroup>
     <Reference Include="SharpKit.Html, Version=1.0.0.0, Culture=neutral, PublicKeyToken=2575297a09c47a96, processorArchitecture=MSIL" />
     <Reference Include="SharpKit.JavaScript, Version=1.5.0.0, Culture=neutral, PublicKeyToken=2575297a09c47a96, processorArchitecture=MSIL" />
+    <Reference Include="SharpKit.jQuery, Version=1.6.4.0, Culture=neutral, PublicKeyToken=2575297a09c47a96, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -51,15 +52,15 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <SkcPlugin Include="Neptuo.SharpKit.Exugin.ExuginPlugin, Neptuo.SharpKit.Exugin">
-      <InProject>false</InProject>
-    </SkcPlugin>
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\NTE.FluentConsole.Bootstrap\NTE.FluentConsole.Bootstrap.csproj">
       <Project>{f3a286b2-5be1-43bc-ba06-1df3777d115c}</Project>
       <Name>NTE.FluentConsole.Bootstrap</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <SkcPlugin Include="Neptuo.SharpKit.Exugin.ExuginPlugin, Neptuo.SharpKit.Exugin">
+      <InProject>false</InProject>
+    </SkcPlugin>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildBinPath)\SharpKit\5\SharpKit.Build.targets" />

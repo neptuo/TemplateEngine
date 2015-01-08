@@ -1,5 +1,6 @@
 ﻿using Neptuo.TemplateEngine.FluentConsole.Bootstrap;
 using SharpKit.Html;
+using SharpKit.jQuery;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +14,17 @@ namespace Neptuo.TemplateEngine.FluentConsole
     {
         public void Start()
         {
-            HtmlContext.alert("Loading console desk");
+            //HtmlContext.alert("Loading console desk");
+
+            new jQuery(HtmlContext.window).on("resize", OnWindowResize);
+            OnWindowResize(null);
+        }
+
+        private void OnWindowResize(Event e)
+        {
+            new jQuery("body")
+                .width(HtmlContext.window.innerWidth)
+                .height(HtmlContext.window.innerHeight);
         }
     }
 }
