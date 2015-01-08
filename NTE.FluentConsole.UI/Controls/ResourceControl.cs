@@ -46,6 +46,7 @@ namespace Neptuo.TemplateEngine.FluentConsole.UI.Controls
             foreach (IStylesheet stylesheet in resource.EnumerateStylesheets())
             {
                 writer.Tag("link")
+                    .Attribute("rel", "stylesheet")
                     .Attribute("href", urlProvider.ResolveUrl(stylesheet.Source))
                     .CloseTag();
             }

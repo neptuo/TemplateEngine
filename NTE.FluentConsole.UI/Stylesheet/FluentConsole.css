@@ -1,0 +1,91 @@
+﻿.fc-container, .fc-mainbar, .fc-content {
+    height: 100%;
+}
+
+.fc-container {
+    width: 100%;
+    display: table; 
+    table-layout: fixed; 
+}
+
+.fc-mainbar, .fc-content {
+    display: table-cell;
+}
+
+/* ---------------- MAINBAR ----------------------------------------------------------------------- */
+
+.fc-mainbar {
+    width: 80px;
+    background: #555555;
+}
+
+.fc-mainbar .fc-button {
+    display: block;
+    padding: 5px;
+    border: 5px solid transparent;
+    color: white;
+    cursor: pointer;
+}
+
+.fc-mainbar .fc-button:hover {
+    background: #777777;
+}
+
+.fc-mainbar .fc-button .fc-button-icon {
+    width: 48px;
+    height: 50px;
+    line-height: 1;
+    text-align: left;
+    font-family: 'Glyphicons';
+    font-size: 45px;
+    display: block;
+    margin: 0 auto;
+}
+
+.fc-mainbar .fc-button .fc-button-text {
+    display: block;
+    font-size: 11px;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.fc-mainbar .fc-button.fc-selected {
+    background: #4584F1;
+}
+
+/* ---------------- DESKTOP ----------------------------------------------------------------------- */
+
+.fc-content .fc-desktop {
+    width: 100%;
+    height: 100%;
+    border-right: 2px solid #777777;
+}
+
+/* ---------------- APPLICATION ------------------------------------------------------------------- */
+
+.fc-frame {
+    position: absolute;
+    height: 100%;
+    border-right: 2px solid #555555;
+    border-left: 4px solid #4584F1;
+    /*border-top: 4px solid #4584F1;*/
+}
+
+.fc-frame .fc-frame-title {
+    color: white;
+    font-size: 20px;
+    padding: 20px;
+    background: #333333;
+}
+
+.fc-frame .fc-frame-progress {
+    height: 10px;
+    /*background: yellow;*/
+}
+
+
+
+
+.fc-content .fc-frame-narrow {
+    width: 400px;
+}

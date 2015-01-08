@@ -2,11 +2,45 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
         <title></title>
-
+        
         <ui:Resource Name="FluentConsole" />
     </head>
     <body>
+        <div class="fc-container">
+            <div class="fc-mainbar">
 
+                <div class="fc-button">
+                    <span class="fc-button-icon glyphicon-home"></span>
+                    <span class="fc-button-text">Home</span>
+                </div>
+                <div class="fc-button fc-selected">
+                    <span class="fc-button-icon glyphicon-globe"></span>
+                    <span class="fc-button-text">Publishing</span>
+                </div>
+                <div class="fc-button">
+                    <span class="fc-button-icon glyphicon-user"></span>
+                    <span class="fc-button-text">Accounts</span>
+                </div>
+
+
+            </div>
+            <div class="fc-content">
+                <div class="fc-desktop" style="display: none;">
+                    
+                </div>
+                <div class="fc-frame fc-frame-narrow">
+                    <div class="fc-frame-title">
+                         Publishing - Articles
+                    </div>
+                    <div class="fc-frame-progress"></div>
+                    <div class="fc-frame-content">
+                        x
+                        <br />
+                        x
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <script>
             

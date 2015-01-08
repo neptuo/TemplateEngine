@@ -1,13 +1,22 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Resources>
+    <Resource Name="Bootstrap">
+        <Stylesheet Source="~/Stylesheet/Bootstrap/bootstrap.css" />
+        <Stylesheet Source="~/Stylesheet/Bootstrap/bootstrap-theme.css" />
+    </Resource>
+    <Resource Name="CommonStylesheet">
+        <Stylesheet Source="~/Stylesheet/Common.css" />
+        <Stylesheet Source="~/Stylesheet/FluentConsole.css" />
+        <!--<Resource Name="Bootstrap" />-->
+    </Resource>
     <Resource Name="CommonJavascript">
         <Javascript Source="~/Javascript/jquery-1.9.1.js" />
         <Javascript Source="~/Javascript/Generated/Neptuo.System.Client.js" />
     </Resource>
     <Resource Name="FluentConsole">
-        <Stylesheet Source="~/Stylesheet/FluentConsole.css" />
         <Javascript Source="~/Javascript/Generated/FluentConsole/Neptuo.TemplateEngine.FluentConsole.Bootstrap.js" />
         <Javascript Source="~/Javascript/Generated/FluentConsole/Neptuo.TemplateEngine.FluentConsole.js" />
+        <Resource Name="CommonStylesheet" />
         <Resource Name="CommonJavascript" />
     </Resource>
 </Resources>
