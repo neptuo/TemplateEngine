@@ -26,6 +26,7 @@ using System.Web;
 using CodeDomStructureGenerator = Neptuo.TemplateEngine.Templates.Compilation.CodeGenerators.CodeDomStructureGenerator;
 using Neptuo.TemplateEngine.Providers;
 using System.Configuration;
+using System.Web.Configuration;
 
 namespace Neptuo.TemplateEngine.Hosting.Integration.Bootstrap
 {
@@ -82,9 +83,11 @@ namespace Neptuo.TemplateEngine.Hosting.Integration.Bootstrap
         protected virtual void SetupViewService(CodeDomViewService viewService, TypeBuilderRegistry registry, IFileProvider fileProvider, IVirtualPathProvider virtualPathProvider)
         {
             // Current temp directory.
-            string tempDirectory = ConfigurationManager.AppSettings["TempDirectory"] ?? @"C:\Temp\NeptuoTemplateEngine";
-            string currentDirectory = DateTime.Now.ToString("yyyy-MM-dd HH-mm-ss");
+            CompilationSection compilation = (CompilationSection)ConfigurationManager.GetSection("system.web/compilation");
 
+            //string tempDirectory = ConfigurationManager.AppSettings["TempDirectory"] ?? @"C:\Temp\NeptuoTemplateEngine";
+            string tempDirectory = compilation.TempDirectory;
+            string currentDirectory = DateTime.Now.ToString("yyyy-MM-dd HH-mm-ss");
 #if DEBUG
             string currentTemp = Path.Combine(tempDirectory, currentDirectory);
             if (!Directory.Exists(currentTemp))
