@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using System.Web.Routing;
 using Neptuo.TemplateEngine.Hosting.Integration.Routing;
 using System.Configuration;
+using Neptuo.Templates;
 
 namespace Neptuo.TemplateEngine.Hosting.Integration.Bootstrap
 {
@@ -24,19 +25,22 @@ namespace Neptuo.TemplateEngine.Hosting.Integration.Bootstrap
         private ViewService javascriptViewService;
         private IDependencyProvider dependencyProvider;
         private IRouteParameterRegistry routeParameterRegistry;
+        private IVirtualPathProvider virtualPathProvider;
 
-        public RoutingBootstrapTask(IViewService viewService, ViewService javascriptViewService, IDependencyProvider dependencyProvider)
+        public RoutingBootstrapTask(IViewService viewService, ViewService javascriptViewService, IDependencyProvider dependencyProvider, IVirtualPathProvider virtualPathProvider) 
         {
             this.routes = RouteTable.Routes;
             this.viewService = viewService;
             this.javascriptViewService = javascriptViewService;
             this.dependencyProvider = dependencyProvider;
             this.routeParameterRegistry = RouteParameters.Registry;
+            this.virtualPathProvider = virtualPathProvider;
         }
 
         public void Initialize()
         {
-            var configuration = new ViewBundleHttpHandlerConfiguration("~/Views", ConfigurationManager.AppSettings["JavascriptTempDirectory"] ?? @"C:\Temp\NeptuoTemplateEngineJavascript");
+            string tempDirectory = virtualPathProvider.MapPath("~/temp");
+            var configuration = new ViewBundleHttpHandlerConfiguration("~/Views", tempDirectory);
 
             routeParameterRegistry.Add("path", new TemplateRouteParameterFactory());
 

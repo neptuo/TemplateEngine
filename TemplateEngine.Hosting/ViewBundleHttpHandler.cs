@@ -81,6 +81,7 @@ namespace Neptuo.TemplateEngine.Hosting
             string viewPath = context.Server.MapPath(virtualViewPath);
             DateTime viewLastModified = File.GetLastWriteTime(viewPath);
             string tempViewPath = GetTempJavascriptFilePath(viewPath);
+            File.AppendAllLines(Path.Combine(configuration.TempDirectory, "JavascriptLog.txt"), new List<string>() { String.Format("File '{0}' (from '{1}') exists: {2}", tempViewPath, viewPath, File.Exists(tempViewPath)) });
             if (File.Exists(viewPath))
             {
                 string viewContent = File.ReadAllText(viewPath);

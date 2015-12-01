@@ -83,10 +83,10 @@ namespace Neptuo.TemplateEngine.Hosting.Integration.Bootstrap
         protected virtual void SetupViewService(CodeDomViewService viewService, TypeBuilderRegistry registry, IFileProvider fileProvider, IVirtualPathProvider virtualPathProvider)
         {
             // Current temp directory.
-            CompilationSection compilation = (CompilationSection)ConfigurationManager.GetSection("system.web/compilation");
-
+            //CompilationSection compilation = (CompilationSection)ConfigurationManager.GetSection("system.web/compilation");
+            //string tempDirectory = compilation.TempDirectory;
             //string tempDirectory = ConfigurationManager.AppSettings["TempDirectory"] ?? @"C:\Temp\NeptuoTemplateEngine";
-            string tempDirectory = compilation.TempDirectory;
+            string tempDirectory = virtualPathProvider.MapPath("~/temp");
             string currentDirectory = DateTime.Now.ToString("yyyy-MM-dd HH-mm-ss");
 #if DEBUG
             string currentTemp = Path.Combine(tempDirectory, currentDirectory);
