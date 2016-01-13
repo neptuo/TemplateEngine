@@ -3835,7 +3835,7 @@ var Neptuo$TemplateEngine$Templates$Controls$ListViewControl = {
         Render: function (writer){
             this.get_UpdateHelper().Render(writer);
         },
-        OnLoadData: function (result){
+        OnLoadData: function (result) {
             var isEmpty = true;
             var itemTemplates = new System.Collections.Generic.List$1.ctor(System.Object.ctor);
             this.get_DataContext().Push(this, "Template");

@@ -1,6 +1,6 @@
 ﻿<ui:DetailView>
     <Source>
-        <data:ArticleLineDataSource Key="4" />
+        <data:ArticleLineDataSource Key="1" />
     </Source>
     <Template>
 

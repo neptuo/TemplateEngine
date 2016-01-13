@@ -16,7 +16,11 @@ var Neptuo$TemplateEngine$Publishing$ArticleLineEditViewModelConverter = {
             targetValue.Value.set_Key(sourceValue["Key"]);
             targetValue.Value.set_Name(sourceValue["Name"]);
             targetValue.Value.set_UrlPart(sourceValue["UrlPart"]);
-            targetValue.Value.set_AvailableTagKeys(new System.Collections.Generic.List$1.ctor$$IEnumerable$1(System.Int32.ctor, sourceValue["AvailableTagKeys"]));
+            var keys = sourceValue["AvailableTagKeys"];
+            if (keys == null)
+                targetValue.Value.set_AvailableTagKeys(new System.Collections.Generic.List$1.ctor(System.Int32.ctor));
+            else
+                targetValue.Value.set_AvailableTagKeys(new System.Collections.Generic.List$1.ctor$$IEnumerable$1(System.Int32.ctor, sourceValue["AvailableTagKeys"]));
             return true;
         }
     },

@@ -95,6 +95,7 @@
     <Content Include="Views\Shared\ArticleList.view">
       <SubType>Designer</SubType>
     </Content>
+    <None Include="Properties\PublishProfiles\AspOneFtp.pubxml" />
     <None Include="Properties\PublishProfiles\s1.azure.neptuo.com.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

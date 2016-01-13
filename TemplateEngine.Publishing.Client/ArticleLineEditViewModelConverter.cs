@@ -17,7 +17,13 @@ namespace Neptuo.TemplateEngine.Publishing
             targetValue.Key = sourceValue["Key"].As<int>();
             targetValue.Name = sourceValue["Name"].As<string>();
             targetValue.UrlPart = sourceValue["UrlPart"].As<string>();
-            targetValue.AvailableTagKeys = new List<int>(sourceValue["AvailableTagKeys"].As<int[]>());
+
+            int[] keys = sourceValue["AvailableTagKeys"].As<int[]>();
+            if (keys == null)
+                targetValue.AvailableTagKeys = new List<int>();
+            else
+                targetValue.AvailableTagKeys = new List<int>(sourceValue["AvailableTagKeys"].As<int[]>());
+
             return true;
         }
     }
