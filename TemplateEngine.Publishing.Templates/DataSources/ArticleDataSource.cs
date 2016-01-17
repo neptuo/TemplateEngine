@@ -66,8 +66,8 @@ namespace Neptuo.TemplateEngine.Publishing.Templates.DataSources
                 Article model = query.ResultSingle();
                 viewModel = new ArticleEditViewModel(
                     model.Key, 
-                    model.Title, 
-                    model.Content, 
+                    model.Title,
+                    CommonMark.CommonMarkConverter.Convert(model.Content.Replace(Environment.NewLine, "<br />")), 
                     model.Url, 
                     model.IsVisible, 
                     model.Author, 
@@ -92,7 +92,7 @@ namespace Neptuo.TemplateEngine.Publishing.Templates.DataSources
                     new ArticleViewModel(
                         article.Key,
                         article.Title,
-                        article.Content.Replace(Environment.NewLine, "<br />"),
+                        CommonMark.CommonMarkConverter.Convert(article.Content.Replace(Environment.NewLine, "<br />")),
                         article.Url,
                         article.IsVisible,
                         article.Author,
